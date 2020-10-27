@@ -1,4 +1,4 @@
-# Week 7: Raster Analyses
+# Week 7: Raster & Terrain Analysis
 
 **_What You'll Learn_:**
 
@@ -25,7 +25,7 @@ All data are in **NAD83 UTM coordinates, Z units in meters**, the **Minnesota fi
 
 ### WhiteboxGAT provides two way to access the standard Map Algebra tools:
 
-## Project 1: Resampling & Merging
+## Exercise 1: Resampling & Merging Rasters
 1. If you haven't, open the WhiteboxGAT application by browsing to the folder you unzipped the app to, and right-click Open.
 
 2. **Click** on the load layers button ![](images/RasterAnalysisWBGAT-a498db83.png) and browse to load the two raster layers **valley3.tif** and **valley9**.tif into a new project. You will be prompted about importing to the WhiteBoxGAT format, which is fine.
@@ -124,17 +124,16 @@ You should have something that looks like the image here, with the higher detail
 
 ## To Turn In:
 
-1. Create a Layout, using the **Map Properties panel**, which can be found under **View>Map Properties**, to add cartographic elements to the layout.
+It's useful to understand how the map layout tools in WhiteBoxGAT work, so here you will create a very simple layout from your current layers.
+
+1. Create a Layout, using the **Map Properties panel**, which can be found under **Menu>View>Map Properties**, to add cartographic elements to the layout.
 2. **To add cartographic elements**, **select** them in the **Map Elements** panel, on the left, and **click Add**. Experiment with the available elements, but at the very least add a **Title, Your Name, North Arrow & Scale Bar.**
 3. Note that when you add a Map Element, you can select it in the **Current Map Elements** panel on the right, and alter various settings, such as font colors, etc...
 4. You can use the Slect Elements tool ![](images/RasterAnalysisWBGAT-b647b25a.png) to select, resize, etc... your cartographic elements.
 
-
 ![](images/RasterAnalysisWBGAT-4436e753.png)
 
-
-
-# Week 7: Terrain Analysis
+## Exercise 2: Terrain & Watershed Analysis
 
 **_What You’ll Learn_:** Basic terrain analysis functions, including watershed, viewshed, and profile processing.
 
