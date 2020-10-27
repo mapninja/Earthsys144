@@ -347,7 +347,11 @@ _If you get “out of memory” errors, save work, reboot computer, only start W
 
 ![](images/RasterAnalysisWBGAT-b93b1ec7.png)
 
-We do this reclassification to assist in locating the outlet point.  We need to ensure that the outlet point is directly on a stream cell. We must create a pourpoint, the location on a stream at the base of a watershed.  Start by creating an empty point shapefile:
+## Identifying Outlet point for the Watershed
+
+We do this reclassification to assist in locating the outlet point.  We need to ensure that the outlet point is directly on a stream cell. We must create a pourpoint, the location on a stream at the base of a watershed.  
+
+Start by creating an empty point shapefile:
 
 1. Use the TOC Tools tab, then File Utilities>Create New Shapefile to make a new, empty shapefile.   Name the file outlet.shp, and add it to your Map if it isn't added automatically.
 
@@ -357,63 +361,70 @@ We do this reclassification to assist in locating the outlet point.  We need to 
 
 3. Zoom to the lower southwest quadrant of the screen and find the area shown in the image at right (there will be no green dot, navigate by the stream shapes).
 
-This figure is zoomed to about ¼ of the DEM extent.  
-
-You’ll want to zoom in much closer to digitize the point, so you can place it near
-
-the center of one of the stream cells.
-
-
-
-*   Zoom further to something like the figure to the right:
+![](images/RasterAnalysisWBGAT-a5e24d16.png)
 
 You must digitize a watershed outlet point (near the green point shown).
 
+4. Make the outlet.shp active (select it in the Layers TOC) and
 
+5. Click Digitize New Feature tool ![](images/RasterAnalysisWBGAT-fb114f65.png) on the main Whitebox toolbar. If you don't see it, click on the Edit Vectors button ![](images/RasterAnalysisWBGAT-c2238988.png) to toggle editing for the selected layer
 
-*   Make the outlet.shp active (select it in the Layers TOC) and
-*   Click the main Whitebox frame Tools, then from the dropdown select On Screen Digitizing> Digitize New Feature (see right).  
+6. CLick OK in the resulting FID Popup, then click on the stream, where shown, belo to digitize your outlet.  You may find it necessary to zoom in to the desired location for an outlet on the DEM/thresholded flow accumulation layer, close enough so you can identify individual cells, and add an outlet point at the location described above.
 
+7. Toggle editing off with the Edit Vectors button ![](images/RasterAnalysisWBGAT-c2238988.png), then right-click on outlets.shp in the TOC, left click on View Attribute Table, and verify the outlet point has been added.
 
+# Snap the Pour Point
 
-This adds new tools at the top of the main window to Edit Features, Digitize New Features, and Delete Features.
+1. Open the Tools tab in the TOC, and then select **Hydrological Tools>Watershed Tools->Snap Pour Points**.  
+1. Specify **Outlet.shp** as your Input Outlets File,
+2. Use **FlowAccum** as the **Flow Accumulation Raster**
+3. A new **output shp** to contain your  pour point, name it **PourPoint**.
+4.Use a Snap distance of 9 (about 3 cells).
+5. Select Run
 
-When editing is activated, clicking on the Digitize new Feature icon will open a window to record the feature ID (FID) for a new point (see figure above-right).  Typing in a value and then clicking on OK activates the cursor for digitizing. Clicking on the displayed canvas adds a point to the outlet.shp layer.
+![](images/RasterAnalysisWBGAT-ec77c365.png)
 
+This should create a shapefile with a single point, near your digitized outlet.
 
+1. Open **Hydrological Tools>Watershed Tools>Watershed**, with the appropriate D8 flow Pointer Raster (**FlowDir**), the  pour point layer you just created, (**PourPoint.shp**), and picking an appropriate name for your output watershed.
 
-*   Digitize your outlet.  To do this, zoom in to the desired location for an outlet on the DEM/thresholded flow accumulation layer, close enough so you can identify individual cells, and add an outlet point at the location described above.  Give it a positive FID.  
-*   Toggle editing off, then right-click on outlets.shp in the TOC, left click on View Attribute Table, and verify the outlet point has been added.
-*   Open the Tools tab in the TOC, and then select Hydrological Tools>Watershed Tools->Snap Pour Points.  
-*   Specify Outlet as your Input Outlets File,
-*   The flow accumulation as the raster you created earlier, f_accum
-*   A new output raster to contain your raster pour point, name it r_pour_pt
-*   An appropriate snap distance, something like 3 to 9 (about 1 to 3 cells).
-*   Select Run
+![](images/RasterAnalysisWBGAT-1a271b94.png)
 
-This should create a raster with a single cell for a value, near your digitized outlet.
+This should create a watershed layer something like that below.  
 
-Now, from the TOC Tools tab,
+![](images/RasterAnalysisWBGAT-8d849fd8.png)
 
+1. Change the color, and made the watershed raster 50% transparent.
 
+## Raster to Vector
 
-*   run Hydrological Tools>Watershed Tools>Watershed, with the appropriate D8 flow Pointer Raster (f_direction), the raster pour point layer you just created, (r_pour_pt), and picking an appropriate name for your output watershed.
+1. Open the TOC Tools, **Conversion Tools>Raster/Vector Conversions>Raster Streams to Vector**.
 
-This should create a watershed layer something like that to the right.
+2. Name the output something like **StreamNet**
 
+![](images/RasterAnalysisWBGAT-58e33d51.png)
 
+![](images/RasterAnalysisWBGAT-9a1ca5a7.png)
 
-*   Change the color, and made the watershed raster 50% transparent.
+Since the Watershed layer is in WhiteBoxGAT's data format, *.dep, it is necessary to export to a format that QGIS can use.
 
-Now convert the d_streams from a raster to a shapefile:
+1. Right-click on the Watershed Layer, in the ToC and select Export Layer.
+2. Export the image as a **Saga Grid File (*.sdat)**
 
+![](images/RasterAnalysisWBGAT-b32e4895.png)
 
+# To Turn In
 
-*   Use the TOC Tools, Conversion Tools>Raster/Vector Conversions>Raster Streams to Vector.**_  _**
+Now, move to **QGIS**, and create a layout displaying:
 
-Name the output something like _Derived_Streams._
+- Qdrift DEM & Hillshade
+- Watershed,
+- Outlet.shp and
+- Streamnet.shp
 
+with all the usual expected cartographic elements, and creativity.  
+Print as a .pdf.
 
+If you have trouble with your shapfiles not having valid projections, you can simply Define the projection in the Layer Properties, in QGIS, when you import them. Use EPSG:26915, which is the CRS of the original Qdrift DEM file.
 
-*   Create a layout displaying the _Qdrift_ DEM, Watershed, _Outlet_ and _Derived_Streams_ with all the usual elements.
-*   Print as a .pdf.
+![](images/RasterAnalysisWBGAT-05d95eba.png)
