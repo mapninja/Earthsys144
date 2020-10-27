@@ -217,47 +217,39 @@ This gives you a Profile of the elevation change along _the line of sight_.
 ![](images/RasterAnalysisWBGAT-15a8eeae.png)
 
 6. Right click in the Profile box and Save As _Sight_Profile.PNG_
+
 7. Close the Profile box
 
 ## Create a Viewshed
 
-1. Click on the Tools tab of the TOC, select **Terrain Analysis>_Viewshed._**
-2. Specify Qdrift as the Input DEM, viewspot as the Input Viewing Station and name the output Q_View.  Set the station units to 1.8 (this is the height of the viewer in meters, about 5’10”)._
+1. **Click** on the **Tools tab** of the TOC, and **Search** for the **Viewshed tool**, which is also under **Terrain Analysis>Viewshed**
 
-_This will display something like the figure to the right.  We want to alter this, so that the visible areas from the point (red in the image) display on top of the elevation layer, but the areas that aren’t visible from the viewing point are shown without an overly.  We need to turn the blue colored areas transparent, and perhaps change the color of the red areas to a something darker_
+2. Specify **Qdrift** as the **Input DEM**, **viewspot** as the **Input Viewing Station File** and name the output **Visible**.  Set the **Station Height** to **1.8** (this is the height of the viewer in meters, about 5’10”).
 
-To highlight the viewable areas, click on the Layers button, Set the display properties for the output viewshed (see right).
+![](images/RasterAnalysisWBGAT-2d927409.png)
 
-
-    Change the colors to reversed Black/White Palette and set the Opacity near 120.
+This will display something like the figure below.  We want to alter this, so that the visible areas from the point (red in the image) display on top of the elevation layer, but the areas that aren’t visible from the viewing point are shown without an overlay.  We need to turn the purple colored areas transparent, and perhaps change the color of the red areas to a something darker
 
 
-    Change the order of the display so that the viewable area is above the hillshade, in turn on top of the elevation data.
-
-Your view should look something like that to the right, with the shaded areas the landscape that is visible from the viewer location.
+![](images/RasterAnalysisWBGAT-92a69fdc.png)
 
 
+1. Click on Layers at the top of the ToC,
 
+2. Right-click  on the **Visible** **layer** name and select **Export Layer**
 
+3. **Change** the **Export data type** to: **SAGA Grid Files** (*.sdat)
 
-    U_se the Cartographic Tool bar, found at the top center of the main Whitebox frame, to add a Title, North Arrow, Legend and Scale Bar_.   
+![](images/RasterAnalysisWBGAT-fd756586.png)
 
-
-    _Use the Insert Image to add the previously saved Profile graph.  _
-
-To resize the Profile graph:
-
-
-    _Double left click on the image, then change the Width to 300 and the Height to 150 in the Map Properties window that pops up_
-
-Select Cartographic> Print Map and send the save as an Adobe PDF (in the Print Service Name).
-
-
+4. Click OK and the file will be saved to your current workig directory.
 
 
 # Project 2: Watershed Functions**
 
-Save and close your map above, if you haven’t done so already.  Then, open a new map and add the _Qdrift.dep_ DEM.
+1. Save and close your map above, if you haven’t done so already.  
+
+2. Then, open a new map and add the _Qdrift.dep_ DEM.
 
 Again we’ll be using Whitebox GAT for this new project, to calculate watershed boundaries based on elevation data(See **_Video: Watershed_**).
 
