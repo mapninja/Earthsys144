@@ -417,14 +417,18 @@ Since the Watershed layer is in WhiteBoxGAT's data format, *.dep, it is necessar
 
 Now, move to **QGIS**, and create a layout displaying:
 
-- Qdrift DEM & Hillshade
+- Qdrift DEM & Hillshade (remember the 50% transparency, trick)
 - Watershed,
-- Outlet.shp and
+- Outlet.shp
 - Streamnet.shp
+- Viewspot.shp
+- Sight.shp
+- Visible (From the visibility exercise, using Paletted/Unique values using the remove tool to get rid of ![](images/RasterAnalysisWBGAT-a5b8e214.png) 0 values)
+- Elevation Profile added as an image to the layout
 
-with all the usual expected cartographic elements, and creativity.  
+Use all the usual expected cartographic elements, and creativity.  
 Print as a .pdf.
 
 If you have trouble with your shapfiles not having valid projections, you can simply Define the projection in the Layer Properties, in QGIS, when you import them. Use EPSG:26915, which is the CRS of the original Qdrift DEM file.
 
-![](images/RasterAnalysisWBGAT-05d95eba.png)
+![](images/RasterAnalysisWBGAT-cd2a596b.png)
