@@ -230,7 +230,7 @@ We’ll be applying them in the following order:
 
 ## Fill
 
-We use the fill command to fill and pits in the DEM, ass described in chapter 11 of GIS Fundamentals.  The simplest of watershed processing routines begins by simply filling the pits. More sophisticated ones may fill the pits, and “burn in” a stream line, along which the DEM is lowered after filling to maintain a downstream flow.
+We use the fill command to fill pits in the DEM, as described in chapter 11 of GIS Fundamentals.  The simplest of watershed processing routines begins by simply filling the pits. More sophisticated ones may fill the pits, and “burn in” a stream line, along which the DEM is lowered after filling to maintain a downstream flow.
 
 
 1. Open the **Fill Depressions tool** from the Tools panel.  Specify the **Qdrift DEM** as input, and something like **Filled** for the output name.  
