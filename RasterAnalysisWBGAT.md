@@ -245,19 +245,20 @@ This will display something like the figure below.  We want to alter this, so th
 4. Click OK and the file will be saved to your current workig directory.
 
 
-# Project 2: Watershed Functions**
+# Project 2: Watershed Functions
+Again we’ll be using Whitebox GAT for this new project, to calculate watershed boundaries based on elevation data
 
 1. Save and close your map above, if you haven’t done so already.  
 
 2. Then, open a new map and add the _Qdrift.dep_ DEM.
 
-Again we’ll be using Whitebox GAT for this new project, to calculate watershed boundaries based on elevation data(See **_Video: Watershed_**).
+![](images/RasterAnalysisWBGAT-a75eceb3.png)
 
-Open **Tools**>**Hydrological Tools**>**DEM Pre-processing**. This should display the tools shown at the right. The yellow highlights at right mark the tools we will use.
+3. Open **Tools**>**Hydrological Tools**>**DEM Pre-processing**. This should display the tools shown at the right. The yellow highlights below mark the tools we will use.
+
+![](images/RasterAnalysisWBGAT-c92ae629.png)
 
 We’ll be applying them in the following order:
-
-
 
 *   Fill Depressions
 *   D8 Flow Pointer
@@ -265,84 +266,96 @@ We’ll be applying them in the following order:
 *   Snap Pour Points (on a point feature we’ll create)
 *   Watershed
 
+## Fill
+
 We use the fill command to fill and pits in the DEM, ass described in chapter 11 of GIS Fundamentals.  The simplest of watershed processing routines begins by simply filling the pits. More sophisticated ones may fill the pits, and “burn in” a stream line, along which the DEM is lowered after filling to maintain a downstream flow.
 
 
+1. Open the **Fill Depressions tool** from the Tools panel.  Specify the **Qdrift DEM** as input, and something like **Filled** for the output name.  
+2. Leave the Flat Increment Value as is and click on Run.
 
-*   Apply the Fill Depressions tool from the Tools panel.  Specify the Qdrift DEM as input, and something like filled_dem for the output name.  
-*   Leave the Flat Increment Value as is and click on Run.
+![](images/RasterAnalysisWBGAT-89cb7722.png)
 
-After a minute, the filled data set should be automatically added to your view, if not, find and load it.  
+3. The **Filled** layer should be automatically added to your view, if not, find and load it.  
 
-
-
-*   Open the raster calculator by clicking on the Tools label <span style="text-decoration:underline;">along the top</span> <span style="text-decoration:underline;">of the main Whitebox Frame</span> (see the figure below – note this is <span style="text-decoration:underline;">NOT</span> the tools tab in the TOC).
+4. **Open** the **raster calculator** by clicking on the ![](images/RasterAnalysisWBGAT-12a2780d.png) along the top of the main Whitebox Application
 
 This should open the raster calculator tool.  You build an expression by selecting and typing into the Expression window, adding layers, numbers, and operators.
 
+5. Subtract the Qdrift DEM from your filled_dem (see figure), using the following expression:
 
+`[Difference]=[Qdrift]−[Filled]`
 
-*   Subtract the Qdrift DEM from your filled_dem (see figure), and
+![](images/RasterAnalysisWBGAT-ca51fec8.png)
 
+6. Exit the Raster Calculator after clicking **Evaluate**
 
+Notice the location and range of the fills; it should look something like shown below
 
-*   Display the output layer.
-*   Change the palette on the output file to Black/White with Palette, setting the Nonlinearity at 20.  
+![](images/RasterAnalysisWBGAT-bda2f6bd.png)
 
-Notice the location and range of the fills; it should look something like shown on the right, if not, troubleshoot and fix your work.   
+7. Remove the difference layer to reduce clutter.
 
-Remove the difference layer to reduce clutter.
-
-
-
-*   Apply the D8 flow Pointer, found in the TOC Tools tab, under Hydrologic Tools>Flow Pointers. Use the filled DEM as your input, and specifying a flow direction output data layer; name the output something like _f_direction_.  
+## Flow Direction
 
 As noted in the textbook, this flow direction layer will contain a set of numbers that define the cardinal and sub-cardinal direction.  
 
-Your output from the flow direction tool should look something like the figure below, and the symbols should show 8 values from 1 to 128, corresponding to flow direction.
+1. Apply the D8 flow Pointer, found in the TOC Tools tab, under **Hydrologic Tools>Flow Pointers**.
+2. Use the **Filled** DEM as your input, and specifying a flow direction output data layer; name the output something like **FlowDir**.  
+
+![](images/RasterAnalysisWBGAT-71b9f2e0.png)
+
+Your output from the flow direction tool should look something like the figure below, and the **symbols should show 8 values from 1 to 128**, corresponding to flow direction.
+
+![](images/RasterAnalysisWBGAT-9fcd027d.png)
+
+## Flow Accumulation  
+
+Flow accumulation finds the highest points, and accumulates the area (or number of cells) downhill, according to the flow direction. We may use this flow accumulation grid to approximate where streams will be found on the surface, and to determine outlet points for watersheds.  
+
+3. Now apply the **D8 and Rho8** **Flow Accumulation**, found in the **Hydrological Tools>Flow Accumulation** folder.  
+
+4. Specify the **input** as **FlowDir**, name the output raster as FlowAccum and select “number of upslope grid cells” as the Output Type.
+
+![](images/RasterAnalysisWBGAT-48054d44.png)
+
+This should generate a display similar to the graphic below. If you look closely, you will see some narrow, perhaps intermittent white lines in a dark background.
+
+![](images/RasterAnalysisWBGAT-1f4b4d14.png)
 
 
 
-*   **_Now apply the D8 and Rho8 Flow Accumulation in the TOC tools_**, found in the **_Hydrological Tools_**>**_Flow Accumulation_** folder.  This finds the highest points, and accumulates the area (or number of cells) downhill, according to the flow direction.
-*   **_Specify the input as f_direction, name the output raster as f_accum and select “number of upslope grid cells” as the Output Type._**
+## Reclassification
 
-This should generate a display similar to the graphic at right. If you look closely, you will see some narrow, perhaps intermittent white lines in a dark background.
+Notice the maximum and minimum value for the data layer, they will be something like 1.63 * 10^6 and 1. These numbers are the number of cells that drain to any given cell.  Since these cells are 3 m by 3 m, each cell counts for 9 square meters, and there are about 111,000 cells per square kilometer.
 
-Notice the maximum and minimum value for the data layer, they will be something like 1.63 * 10^6 and 1.These numbers are the cells that drain to any given cell.  
+In any given small region and geology, there is usually a rough correspondence between drainage area, here measured with flow accumulation, and stream occurrence.  For example, in this region, once a drainage area of 0.45 square kilometers is reached, a stream is usually found.  This would be about 50,000 cells.  
 
-Since these cells are 3 m by 3 m, each cell counts for 9 square meters, and there are about 111,000 cells per square kilometer.
+So if we symbolize the flow accumulation layer so all cells above 50,000 are blue, and all equal or below this count are no data or no color, we will get an approximate idea of where the streams will be found (this threshold is made up for this exercise, but is probably not too far off). You may apply the symbolization by reclassifying the flow accumulation layer into two classes, setting the middle threshold to 50,000 and the upper threshold to the maximum value.  
 
-We may use this flow accumulation grid to approximate where streams will be found on the surface, and to determine outlet points for watersheds.  
+1.   Use TOC Tools, **GIS Analysis>Reclass Tools>Reclass**, to reclass your flow accumulation layer into cells likely in streams, and those not.
 
-In any given small region and geology, there is usually a rough correspondence between drainage area, here measured with flow accumulation, and stream occurrence.  For example, in this region, once a drainage area of 0.45 square kilometers is reached, a stream is usually fond.  This would be 0.45 km2 * 1,000,000 m<sup>2</sup>/km<sup>2</sup> / 9 m<sup>2</sup>/cell, or about 50,000 cells.  So if we symbolize the flow accumulation layer so all cells above 50,000 are blue, and all equal or below this count are no data or no color, we will get an approximate idea of where the streams will be found (this threshold is made up for this exercise, but is probably not too far off).
+2.   Select the **FlowAccum** as the input and **Streams** as the output file.
 
-You may apply the symbolization by reclassifying the flow accumulation layer into two classes, setting the middle threshold to 50,000 and the upper threshold to the maximum value.  
+3.   Enter the table values as shown below:
 
+![](images/RasterAnalysisWBGAT-dc6c590a.png)
 
+_If you get “out of memory” errors, save work, reboot computer, only start Whitebox GAT and try again. If you still have problems use Tools>Stream Network Analysis>Extract Streams._  
 
-*   Use TOC Tools, GIS Analysis>Reclass Tools> Reclass, to reclass your flow accumulation layer into cells likely in streams, and those not.
-*   Select the f_accum as the input and d_streams as the output file.
-*   Enter the table values as show below
+4. Toggle off the visibility of all  other  layers and your **Streams** should appear as shown below.  Dark cells have drainage of more than 50,000 cells, and likely show streams.
 
-If you get “out of memory” errors, save work, reboot computer, only start Whitebox GAT and try again. If you still have problems use Tools>Stream Network Analysis>Extract Streams.  
+![](images/RasterAnalysisWBGAT-b93b1ec7.png)
 
-Your d_streams should appear as shown to the right.  Dark cells have drain more than 50,000 cells, and likely show streams.
+We do this reclassification to assist in locating the outlet point.  We need to ensure that the outlet point is directly on a stream cell. We must create a pourpoint, the location on a stream at the base of a watershed.  Start by creating an empty point shapefile:
 
-We do this reclassification to assist in locating the outlet point.  We need to ensure that the outlet point is directly on a stream cell.
+1. Use the TOC Tools tab, then File Utilities>Create New Shapefile to make a new, empty shapefile.   Name the file outlet.shp, and add it to your Map if it isn't added automatically.
 
+![](images/RasterAnalysisWBGAT-536f1d87.png)
 
+2. Use the Arrange the **Streams** layer in the TOC until it is visible and just below the **Outlet.shp**, using the **Raise/Lower Layer** tools ![](images/RasterAnalysisWBGAT-f8ad6126.png)
 
-We must create a pourpoint, the location on a stream at the base of a watershed.  Start by creating an empty point shapefile:
-
-
-
-*   Use the TOC Tools tab, then File Utilities>Create New Shapefile to make a new, empty shapefile.   Name the file outlet.shp.
-
-Arrange the _d_streams_ layer in the TOC until it is visible and just below the _outlet.shp_ layer
-
-
-
-*   Zoom to the lower southwest quadrant of the screen and find the area shown in the image at right (there will be no green dot, navigate by the stream shapes).
+3. Zoom to the lower southwest quadrant of the screen and find the area shown in the image at right (there will be no green dot, navigate by the stream shapes).
 
 This figure is zoomed to about ¼ of the DEM extent.  
 
