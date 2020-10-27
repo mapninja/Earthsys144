@@ -195,38 +195,34 @@ If you haven't already, start **Whitebox GAT,** by clicking on WhiteboxGIS.jar, 
 
 ## Viewshed and Profile View  
 
-1. Start a New Map, using the New Map button ![](images/RasterAnalysisWBGAT-9aff6c11.png) , add the Qdrift.dep, viewspot.shp and the sight.shp shapefiles datasets.
+1. Start a New Map, using the New Map button ![](images/RasterAnalysisWBGAT-9aff6c11.png)
+2. Add the Qdrift.dep, viewspot.shp and the sight.shp shapefiles datasets.
 
-This displays our view locations, a single point in the bottom left portion of the Q_drift _DEM.  This also identifies a “line of sight”, defined from the sight.shp file.  
+This displays your view location, a single point in the bottom left portion of the **Qdrift** DEM.  This also identifies a “line of sight”, defined from the **sight.shp** **file**.  
 
+3. Select the TOC Layers tab, right click on the sight.shp file, then click on Layer Display Properties to display a point properties menu, and alter the point size, shape, and color as you wish to make the point visible.
 
+![](images/RasterAnalysisWBGAT-58d04e51.png)
 
-*   Select the TOC Layers tab, right click on the sight.shp file, then click on Layer Display Properties to display a point properties menu, and alter the point size, shape, and color as you wish to make the point visible.
+## Creating a terrain profile plot
 
-Now, to create a terrain profile plot:
+4. Select the **Tools Tab**, then Search for the **Terrain Analysis>Profile tool**
 
+![](images/RasterAnalysisWBGAT-e61296ff.png)
 
+5. Use **Qdrift** as the **Input DEM** and **sight.shp** as the **Input Vector**
 
-*   Select Tools Tab in the TOC, then Terrain Analysis>Profile to set the Qdrift as the Input DEM and sight.shp as the Input Vector (see the figure below).
+This gives you a Profile of the elevation change along _the line of sight_.
 
-This gives you a Profile of the elevation change along the line of sight.
+![](images/RasterAnalysisWBGAT-15a8eeae.png)
 
-Right click in the Profile box and
+6. Right click in the Profile box and Save As _Sight_Profile.PNG_
+7. Close the Profile box
 
-Save As
+## Create a Viewshed
 
-_Sight_Profile.PNG_
-
-
-
-
-
-    Create a Viewshed
-
-
-
-*   _Close the Profile box, click on the Tools tab of the TOC, select Terrain Analysis_>_Viewshed._
-*   _Specify Qdrift as the Input DEM, viewspot as the Input Viewing Station and name the output Q_View.  Set the station units to 1.8 (this is the height of the viewer in meters, about 5’10”)._
+1. Click on the Tools tab of the TOC, select **Terrain Analysis>_Viewshed._**
+2. Specify Qdrift as the Input DEM, viewspot as the Input Viewing Station and name the output Q_View.  Set the station units to 1.8 (this is the height of the viewer in meters, about 5’10”)._
 
 _This will display something like the figure to the right.  We want to alter this, so that the visible areas from the point (red in the image) display on top of the elevation layer, but the areas that aren’t visible from the viewing point are shown without an overly.  We need to turn the blue colored areas transparent, and perhaps change the color of the red areas to a something darker_
 
@@ -257,11 +253,6 @@ To resize the Profile graph:
 Select Cartographic> Print Map and send the save as an Adobe PDF (in the Print Service Name).
 
 
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image2.png "image_tooltip")
 
 
 # Project 2: Watershed Functions**
