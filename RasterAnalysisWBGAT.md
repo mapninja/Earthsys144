@@ -21,9 +21,8 @@ Whitebox GAT software is available from:  [http://www.uoguelph.ca/~hydrogeo/Whit
 
 All data are in **NAD83 UTM coordinates, Z units in meters**, the **Minnesota files in zone 15, and the California files in zone 11**.
 
-**_What You'll Do_**: You'll learn basic raster map algebra, while merging the multi-resolution **Minnesota DEM**s, removing high-frequency noise from the Shasta DEM, and calculating a cost surface with a threshold.
+**_What You'll Do_**: You'll learn basic raster map algebra, while merging the multi-resolution **Minnesota DEM**s
 
-### WhiteboxGAT provides two way to access the standard Map Algebra tools:
 
 ## Exercise 1: Resampling & Merging Rasters
 1. If you haven't, open the WhiteboxGAT application by browsing to the folder you unzipped the app to, and right-click Open.
