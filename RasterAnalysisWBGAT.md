@@ -56,14 +56,14 @@ Finer detail in the stream bank is seen in the higher resolution valley3 hillsha
 
 We can use WhiteBoxGAT tools to merge these two data sets, but first we must do some pre-processing. Note that we want to use the detailed **valley3** data where we have it, and the coarser ****valley9**** data everywhere else.
 
-## Converting NoData/NULL valaues to zeros
+## Converting NoData/NULL values to zeros
 
-First, we'll substitute 0 values for No Data values in the Valley3 data set. Recall that most raster operations return **NoData** as cell output when any input cell is **NoData**. **Valley3** has **NoData** values over most of its area, so combining it with **Valley9** requires we change **No Data** to **something else.**
+First, we'll substitute 0 values for No Data values in the **Valley3** data set. Recall that most raster operations return **NoData** as cell output when any input cell is **NoData**. **Valley3** has **NoData** values over most of its area, so combining it with **Valley9** requires we change **No Data** to **something else.**
 
 1. Return to the Tools panel and search for 'nodata'
-2. Use the C**onvert NoData to zero tool** to create a new version ov valley3, without NoData values.
+2. Use the Convert **NoData** to zero tool** to create a new version of **valley3**, without NoData values, naming it **valley3nonull**.
 
-![](images/RasterAnalysisWBGAT-88c34770.png)
+![](images/RasterAnalysisWBGAT-ff5863e8.png)
 
 ![](images/RasterAnalysisWBGAT-7b0778cc.png)
 
