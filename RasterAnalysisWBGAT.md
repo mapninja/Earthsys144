@@ -34,7 +34,7 @@ All data are in **NAD83 UTM coordinates, Z units in meters**, the **Minnesota fi
 
 Your data should appear similar to the above, with the **higher resolution valley3** raster in the valley across the bottom center, and the coarser resolution **valley9** data set over the entire area.
 
-3. Switch to the **Layers** view by clicking on the word layers at teh top of the tools panel on the left, and Toggle the two data sets on and off to view their extent.
+3. Switch to the **Layers** view by clicking on the word layers at the top of the tools panel on the left, and Toggle the two data sets on and off to view their extent.
 
 ![](images/RasterAnalysisWBGAT-684d3690.png)  
 
@@ -51,7 +51,7 @@ Your data should appear similar to the above, with the **higher resolution valle
 
 ![](images/RasterAnalysisWBGAT-76b43f91.png)
 
-8. Return to the Layers Panel, and note that you can highlight a layer, and use the Raise & Lower Layer buttons ![](images/RasterAnalysisWBGAT-519f0025.png) to change teh order of Layers in your map.  
+8. Return to the Layers Panel, and note that you can highlight a layer, and use the Raise & Lower Layer buttons ![](images/RasterAnalysisWBGAT-519f0025.png) to change the order of Layers in your map.  
 
 Finer detail in the stream bank is seen in the higher resolution valley3 hillshade.
 
