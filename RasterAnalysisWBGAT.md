@@ -100,14 +100,14 @@ This tool takes the values of the **valley9** raster cell centers and resamples 
 
 ##  Merging Rasters
 
-![](images/RasterAnalysisWBGAT-89210101.png)
-
-1. Search for the **Conditional Evaluation tool** and set the Input Raster as valley3nonull
+1. Search for the **Conditional Evaluation tool** and set the Input Raster as **valley3nonull**
 2. Use the following as your Condtional Statement:
 
      ```value != 0```
 3. Value where TRUE: **valley3nonull**
 4. Value where FALSE: **valley9_3m**
+
+![](images/RasterAnalysisWBGAT-89210101.png)
 
    This tool will choose between the  two datasets, for the output, using the following logic:
 
