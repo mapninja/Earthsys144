@@ -24,7 +24,7 @@ The Guidance on the homepage mentions updating your Java SE, but you should try 
 
 ![](images/InstallWhiteboxGAT-22cd7601.png)
 
-If this works, you may simply need to start WhiteboxGAT using this method, for teh  time being.
+If this works, you may simply need to start WhiteboxGAT using this method, for the  time being.
 
 # Installing WhiteboxTools & the QGIS Whitebox Plugin
 
