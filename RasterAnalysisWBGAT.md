@@ -12,6 +12,8 @@ Whitebox is free and open source, and although many of the functions are availab
 
 Whitebox GAT software is available from:  [http://www.uoguelph.ca/~hydrogeo/Whitebox/download.shtml](http://www.uoguelph.ca/~hydrogeo/Whitebox/download.shtml)
 
+If you have issues getting  WhiteBoxGAT to run from the WhiteboxGIS.jar file, [please see these troubleshooting  steps to try to resolve the issue: https://github.com/mapninja/Earthsys144/blob/master/InstallWhiteboxGAT.md](https://github.com/mapninja/Earthsys144/blob/master/InstallWhiteboxGAT.md).
+
 **Data** are located in  [https://github.com/mapninja/Earthsys144/raw/master/data/L10.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L10.zip), including:
 
 1. **Valley3** and ****Valley9****, which are three and 9 meter DEMS of a portion of southeastern Minnesota;
