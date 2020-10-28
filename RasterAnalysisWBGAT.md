@@ -12,7 +12,7 @@ Whitebox is free and open source, and although many of the functions are availab
 
 Whitebox GAT software is available from:  [http://www.uoguelph.ca/~hydrogeo/Whitebox/download.shtml](http://www.uoguelph.ca/~hydrogeo/Whitebox/download.shtml)
 
-**Data** are located in the [L10.zip file](/data/L10.zip), including:
+**Data** are located in  [https://github.com/mapninja/Earthsys144/raw/master/data/L10.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L10.zip), including:
 
 1. **Valley3** and ****Valley9****, which are three and 9 meter DEMS of a portion of southeastern Minnesota;
 2. **mar_rd83.shp,** a vector road layer, and
@@ -139,9 +139,9 @@ It's useful to understand how the map layout tools in WhiteBoxGAT work, so here 
 
 You should read chapter 11 in the GIS Fundamentals textbook before performing this lab.
 
-**Data** are located in the **[L11.zip](/data/L11.zip)** file
+**Data** are located in the **[https://github.com/mapninja/Earthsys144/raw/master/data/L11.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L11.zip)** file
 
-all in NAD83 UTM zone 15 coordinates, meters, including
+all in NAD83 UTM zone 15 coordinates, meters, including:
 1. Qdrift, a GeoTiff elevation, 3m cell size, Z units in meters, and
 2. Qdrift30, a GeoTiff elevation grid, 30m cell size, Z units in meters
 3. viewspot.shp
