@@ -83,7 +83,7 @@ Here, we are finally displaying images. This script calls  two data collections:
 *   Read the [image visualization docs](https://developers.google.com/earth-engine/image_visualization).
 
 
-## Script 3 - Computations on images {#section-3-computations-on-images}
+## Script 3 - Computations on images
 
 Start from the previous (section 2) script or at least the same import (ALOS DSM named `dsm`).  Demonstrate several frequently-used operations.  You may need to fiddle with the thresholds for your area of interest.
 
@@ -97,8 +97,7 @@ Start from the previous (section 2) script or at least the same import (ALOS DSM
 
 
 
-## Script 4 - Spatial reductions {#section-4-spatial-reductions}
-
+## Script 4 - Spatial reductions
 
 A _reducer_ is an Earth Engine object that represents a way of aggregating data or computing a statistic.  Demonstrate spatial reductions.  Start from the section 3 script which should have terrain and a mask already in it.  The mask is the `elevGt500` threshold image.  Select the polygon geometry tool and draw a triangle (or more complex polygon) on the map over a place where `elevGt500` is true (1).  Somewhere after the section 2 code,  add this:
 
@@ -125,7 +124,7 @@ Important points:
 
 
 
-## Script 5 - Image Collections {#section-5-image-collections}
+## Script 5 - Image Collections
 
 Start over on a new tab.  Search for 'landsat 8 surface reflectance' and import the Tier 1 dataset.  Then filter and sort in various ways.
 
@@ -143,7 +142,7 @@ Start over on a new tab.  Search for 'landsat 8 surface reflectance' and import 
 *   You can programatically isolate images (if that's your thing) by time, location and/or metadata.
 
 
-## Script 6 - `map()`ing {#section-6-map-ing}
+## Script 6 - `map()`ing
 
 Mapping a function over a collection is key to making Earth Engine work.  Start from the previous section or at least the same imports.  Map a simple function over a list.  Use the list for something useful (making annual composites).  Break things.
 
@@ -164,7 +163,7 @@ Mapping a function over a collection is key to making Earth Engine work.  Start 
 
 
 
-## Script 7 - Functions (and computing NDVI) {#section-7-functions-and-computing-ndvi}
+## Script 7 - Functions (and computing NDVI)
 
 Start from the previous script.  Make a function to compute NDVI.  Test the function on the first thing in a collection.  Map the function over an image collection.
 
@@ -182,7 +181,7 @@ Start from the previous script.  Make a function to compute NDVI.  Test the func
 
 
 
-## Script 8 - Reducing Image Collections {#section-8-reducing-image-collections}
+## Script 8 - Reducing Image Collections
 
 Previously, spatial reductions were demonstrated in which the inputs to the reducer are pixels in a spatial region (Script 4).  If images in a collection represent observations over time, reducing an `ImageCollection` is a temporal reduction.  In this case, a stack of pixels over time is input to the reducer.  Demonstrate several ways to `reduce()` the collection of images with NDVI.
 
@@ -203,7 +202,7 @@ Previously, spatial reductions were demonstrated in which the inputs to the redu
 
 
 
-## Script 9 - Compositing (more reducing) {#section-9-compositing-more-reducing}
+## Script 9 - Compositing (more reducing)
 
 Now that mapping a function over a collection and reducing the result has been demonstrated, it's possible to understand the Code Editor Cloud Masking examples.  Go through all those.  These are just mapping a function over the collection to mask clouds, then reducing.  Here is `ee.Algorithms.Landsat.simpleComposite()` compared to a pared down surface reflectance example (it's safe to copy-paste the Landsat 8 Surface Reflectance example instead).
 
@@ -213,7 +212,7 @@ Now that mapping a function over a collection and reducing the result has been d
 
 
 
-## Script 10 - Classification {#section-10-classification}
+## Script 10 - Classification
 
 Start over.  Go to the Scripts tab > Examples > Cloud Masking > Landsat8 Surface Reflectance.  (You can use any of these examples or one of the composites you already made; you may need to adjust the bands used.)  Label data are in the form of a `FeatureCollection` in which each `Feature` has a property storing its label (e.g. vegetation, bare, water).  When predictors are added to the label, it's training data for a classifier.  Use bands of the composite as predictors.  Add this to the end of the cloud masking example:
 
@@ -237,7 +236,7 @@ Start over.  Go to the Scripts tab > Examples > Cloud Masking > Landsat8 Surface
 
 
 
-## Script 11 - Charting {#section-11-charting}
+## Script 11 - Charting
 
 You can do this for any image collection with NDVI in it.  See also the charting example in the classification section.
 
@@ -255,7 +254,7 @@ You can do this for any image collection with NDVI in it.  See also the charting
 
 
 
-## Script 12 - Exporting {#section-12-exporting}
+## Script 12 - Exporting
 
 This can be demonstrated on any `Image` and/or `FeatureCollection`.  It's useful to have some visualization parameters lying around with which to demonstrate `visualize()`.  Draw a polygon (not too big) over some area of interest, name it `geometry`.  Start the tasks, click run, and discuss as you wait for the results to materialize in Drive.
 
@@ -271,7 +270,7 @@ This can be demonstrated on any `Image` and/or `FeatureCollection`.  It's useful
 *   This is not the only destination for exports.  See the <code>[Export docs](https://developers.google.com/earth-engine/exporting)</code>.
 
 
-## Script 13 - User interfaces {#section-13-user-interfaces}
+## Script 13 - User interfaces
 
 Here is a very simple example from  [https://code.earthengine.google.com/?accept_repo=users/nclinton/ui-api-101](https://code.earthengine.google.com/?accept_repo=users/nclinton/ui-api-101)
 
@@ -291,12 +290,12 @@ Here is a very simple example from  [https://code.earthengine.google.com/?accept
 
 
 
-## Script 14 - Object based methods {#section-14-object-based-methods}
+## Script 14 - Object based methods
 
 See demo repo script.
 
 
-## Where to go next… {#where-to-go-next…}
+## Where to go next…
 
 
 
