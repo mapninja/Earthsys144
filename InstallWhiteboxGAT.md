@@ -20,6 +20,10 @@ The Guidance on the homepage mentions updating your Java SE, but you should try 
 1. **Right-Click** on the **folder** that your WhiteboxGIS.jar file is in (it's probably called **WhiteboxGAT-mac**), then go to **Services>New Terminal at Folder** which should open a Terminal Window.
 2. Type the following into the Terminal window:
 
+`xattr -dr com.apple.quarantine WhiteboxGIS.jar`
+
+then...
+
 `java -jar WhiteboxGIS.jar`
 
 ![](images/InstallWhiteboxGAT-22cd7601.png)
