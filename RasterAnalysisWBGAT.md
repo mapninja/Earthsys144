@@ -87,7 +87,7 @@ Note that the result is not added to the map, automatically.
 
 ![](images/RasterAnalysisWBGAT-6ebd708f.png)
 
-This tool takes the values of the **valley9** raster cell centers and resamples them using the **Cubic Convolution method**, replacing the values in our **Destination** raster.
+This tool takes the values of the **valley9** raster cell centers and resamples them using the **Bilinear Interpolation method**, replacing the values in our **Destination** raster.
 
 ![](images/RasterAnalysisWBGAT-afd28bd0.png)
 
