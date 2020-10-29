@@ -45,7 +45,7 @@ It is worth noting that the Code Editor uses the javascript client API to make r
     5. **Feedback** - for sending feedback on the Code Editor
     6. **Suggest a dataset** - Our intention is to continue to collect datasets in our public archive and make them more accessible, so we appreciate suggestions on which new datasets we should ingest into the Earth Engine public archive.
 
-## Script 00 - Javascript Syntax
+## Script 00 - Javascript Syntax  
 
 Beginning users (especially if new to programming) often confuse commas, periods, semi-colons, parentheses, square and curly brackets.  An understanding of these syntactic elements is key to making Earth Engine work.  Carefully read and run this script for an introduction to basic JavaScript, including Hello World!, strings, numbers, comments, lists, objects (dictionaries), functions, etc.
 
