@@ -67,7 +67,7 @@ Everything in the previous section was a client-side object that lives in the br
 *   Printing something asynchronously requests the value of the object from the server.  To get the value in code, use `evaluate()`.  Do NOT use `getInfo()`, which is synchronous and can cause the browser to lock.
 *   Read the [Client vs. Server docs](https://developers.google.com/earth-engine/client_server).  See also [the debugging doc](https://developers.google.com/earth-engine/debugging#avoid-mixing-client-functions-and-objects-with-server-functions-and-objects).
 
-## Section 02 - Hello, Images
+## Script 02 - Hello, Images
 
 Here, we are finally displaying images. This script calls  two data collections:
 - SRTM 30m Elevation data
@@ -83,17 +83,11 @@ Here, we are finally displaying images. This script calls  two data collections:
 *   Read the [image visualization docs](https://developers.google.com/earth-engine/image_visualization).
 
 
-## Section 3 - Computations on images {#section-3-computations-on-images}
+## Script 3 - Computations on images {#section-3-computations-on-images}
 
 Start from the previous (section 2) script or at least the same import (ALOS DSM named `dsm`).  Demonstrate several frequently-used operations.  You may need to fiddle with the thresholds for your area of interest.
 
-
-
-
-
 **Important points:**
-
-
 
 *   Demonstrate search for a specific locations.
 *   Look at the documentation tab (e.g. `ee.Terrain.products()`)
@@ -103,24 +97,12 @@ Start from the previous (section 2) script or at least the same import (ALOS DSM
 
 
 
-## Section 4 - Spatial reductions {#section-4-spatial-reductions}
-
-
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image7.png "image_tooltip")
+## Script 4 - Spatial reductions {#section-4-spatial-reductions}
 
 
 A _reducer_ is an Earth Engine object that represents a way of aggregating data or computing a statistic.  Demonstrate spatial reductions.  Start from the section 3 script which should have terrain and a mask already in it.  The mask is the `elevGt500` threshold image.  Select the polygon geometry tool and draw a triangle (or more complex polygon) on the map over a place where `elevGt500` is true (1).  Somewhere after the section 2 code,  add this:
 
 
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image8.png "image_tooltip")
 
 
 Important points:
@@ -143,16 +125,13 @@ Important points:
 
 
 
-## Section 5 - Image Collections {#section-5-image-collections}
+## Script 5 - Image Collections {#section-5-image-collections}
 
 Start over on a new tab.  Search for 'landsat 8 surface reflectance' and import the Tier 1 dataset.  Then filter and sort in various ways.
 
 
 
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image9.png "image_tooltip")
 
 
 **Important points:**
@@ -164,16 +143,13 @@ Start over on a new tab.  Search for 'landsat 8 surface reflectance' and import 
 *   You can programatically isolate images (if that's your thing) by time, location and/or metadata.
 
 
-## Section 6 - `map()`ing {#section-6-map-ing}
+## Script 6 - `map()`ing {#section-6-map-ing}
 
 Mapping a function over a collection is key to making Earth Engine work.  Start from the previous section or at least the same imports.  Map a simple function over a list.  Use the list for something useful (making annual composites).  Break things.
 
 
 
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image10.png "image_tooltip")
 
 
 **Important points:**
@@ -188,16 +164,13 @@ Mapping a function over a collection is key to making Earth Engine work.  Start 
 
 
 
-## Section 7 - Functions (and computing NDVI) {#section-7-functions-and-computing-ndvi}
+## Script 7 - Functions (and computing NDVI) {#section-7-functions-and-computing-ndvi}
 
 Start from the previous script.  Make a function to compute NDVI.  Test the function on the first thing in a collection.  Map the function over an image collection.
 
 
 
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image11.png "image_tooltip")
 
 
 **Important points:**
@@ -209,16 +182,13 @@ Start from the previous script.  Make a function to compute NDVI.  Test the func
 
 
 
-## Section 8 - Reducing Image Collections {#section-8-reducing-image-collections}
+## Script 8 - Reducing Image Collections {#section-8-reducing-image-collections}
 
-Previously, spatial reductions were demonstrated in which the inputs to the reducer are pixels in a spatial region (Section 4).  If images in a collection represent observations over time, reducing an `ImageCollection` is a temporal reduction.  In this case, a stack of pixels over time is input to the reducer.  Demonstrate several ways to `reduce()` the collection of images with NDVI.
-
-
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image12.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+Previously, spatial reductions were demonstrated in which the inputs to the reducer are pixels in a spatial region (Script 4).  If images in a collection represent observations over time, reducing an `ImageCollection` is a temporal reduction.  In this case, a stack of pixels over time is input to the reducer.  Demonstrate several ways to `reduce()` the collection of images with NDVI.
 
 
-![alt_text](images/image12.png "image_tooltip")
+
+
 
 
 **Important points:**
@@ -233,29 +203,23 @@ Previously, spatial reductions were demonstrated in which the inputs to the redu
 
 
 
-## Section 9 - Compositing (more reducing) {#section-9-compositing-more-reducing}
+## Script 9 - Compositing (more reducing) {#section-9-compositing-more-reducing}
 
 Now that mapping a function over a collection and reducing the result has been demonstrated, it's possible to understand the Code Editor Cloud Masking examples.  Go through all those.  These are just mapping a function over the collection to mask clouds, then reducing.  Here is `ee.Algorithms.Landsat.simpleComposite()` compared to a pared down surface reflectance example (it's safe to copy-paste the Landsat 8 Surface Reflectance example instead).
 
 
 
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image13.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image13.png "image_tooltip")
 
 
 
-## Section 10 - Classification {#section-10-classification}
+
+## Script 10 - Classification {#section-10-classification}
 
 Start over.  Go to the Scripts tab > Examples > Cloud Masking > Landsat8 Surface Reflectance.  (You can use any of these examples or one of the composites you already made; you may need to adjust the bands used.)  Label data are in the form of a `FeatureCollection` in which each `Feature` has a property storing its label (e.g. vegetation, bare, water).  When predictors are added to the label, it's training data for a classifier.  Use bands of the composite as predictors.  Add this to the end of the cloud masking example:
 
 
 
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image14.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image14.png "image_tooltip")
 
 
 *Note that there's also charting and ensemble prediction in the EE101 repository.
@@ -273,16 +237,13 @@ Start over.  Go to the Scripts tab > Examples > Cloud Masking > Landsat8 Surface
 
 
 
-## Section 11 - Charting {#section-11-charting}
+## Script 11 - Charting {#section-11-charting}
 
 You can do this for any image collection with NDVI in it.  See also the charting example in the classification section.
 
 
 
-<p id="gdcalert15" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image15.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert16">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image15.png "image_tooltip")
 
 
 **Important points:**
@@ -294,16 +255,13 @@ You can do this for any image collection with NDVI in it.  See also the charting
 
 
 
-## Section 12 - Exporting {#section-12-exporting}
+## Script 12 - Exporting {#section-12-exporting}
 
 This can be demonstrated on any `Image` and/or `FeatureCollection`.  It's useful to have some visualization parameters lying around with which to demonstrate `visualize()`.  Draw a polygon (not too big) over some area of interest, name it `geometry`.  Start the tasks, click run, and discuss as you wait for the results to materialize in Drive.
 
 
 
-<p id="gdcalert16" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image16.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert17">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image16.png "image_tooltip")
 
 
 **Important points**:
@@ -313,16 +271,13 @@ This can be demonstrated on any `Image` and/or `FeatureCollection`.  It's useful
 *   This is not the only destination for exports.  See the <code>[Export docs](https://developers.google.com/earth-engine/exporting)</code>.
 
 
-## Section 13 - User interfaces {#section-13-user-interfaces}
+## Script 13 - User interfaces {#section-13-user-interfaces}
 
 Here is a very simple example from  [https://code.earthengine.google.com/?accept_repo=users/nclinton/ui-api-101](https://code.earthengine.google.com/?accept_repo=users/nclinton/ui-api-101)
 
 
 
-<p id="gdcalert17" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image17.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert18">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
 
-
-![alt_text](images/image17.png "image_tooltip")
 
 
 **Important points**:
@@ -336,7 +291,7 @@ Here is a very simple example from  [https://code.earthengine.google.com/?accept
 
 
 
-## Section 14 - Object based methods {#section-14-object-based-methods}
+## Script 14 - Object based methods {#section-14-object-based-methods}
 
 See demo repo script.
 
