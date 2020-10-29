@@ -23,6 +23,6 @@ uses a comparison/assignment, which read as:
 Here we have only two files, so we can only enter a and/or b for files in our formula. **ifelse** is the SAGA version of the **CON** function, described in the chapter 10 of the GIS Fundamentals textbook. Refer to that book for an explanation of the conditional function.
 ![](images/Conditionals_in_QGIS-bb533c93.png)
 
-The resulting layer should have 3m  cellsize, and  values from both datasets. THis is easier to see, once you have created an Hillshade.
+The resulting layer should have 3m  cellsize, and  values from both datasets. This is easier to see, once you have created an Hillshade.
 
 ![](images/Conditionals_in_QGIS-2ed79426.png)

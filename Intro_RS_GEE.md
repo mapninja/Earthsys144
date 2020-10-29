@@ -21,22 +21,22 @@ It is worth noting that the Code Editor uses the javascript client API to make r
     1. The Editor Panel is where you write and edit your Javascript code.
     2. Note that the Run button executes the code.
 2. Right Panel
-    3. Console tab for printing output.
-    4. Inspector tab for querying map results.
+    1. Console tab for printing output.
+    2. Inspector tab for querying map results.
         1. Click on the map and note that _there is a scale in meters associated with the zoom level_.
-    5. Tasks tab for managing long-running tasks.
+    3. Tasks tab for managing long-running tasks.
 3. Left Panel
-    6. Scripts tab for managing your programming scripts.  These are git repos hosted at Google.
-    7. Docs tab for accessing documentation of Earth Engine objects and methods, as well as a few specific to the Code Editor application.  This is the definitive API reference and is populated by the server.
-    8. Assets tab for managing assets that you upload.  You get 250 GB free.
+    1. Scripts tab for managing your programming scripts.  These are git repos hosted at Google.
+    2. Docs tab for accessing documentation of Earth Engine objects and methods, as well as a few specific to the Code Editor application.  This is the definitive API reference and is populated by the server.
+    3. Assets tab for managing assets that you upload.  You get 250 GB free.
 4. Interactive Map
-    9. For visualizing map layer output.
-    10. Note layer controls.
-    11. Note the geometry tools.
+    1. For visualizing map layer output.
+    2. Note layer controls.
+    3. Note the geometry tools.
 5. Search Bar
-    12. For finding datasets and places of interest.
+    1. For finding datasets and places of interest.
 6. Get Link button
-    13. A static snapshot of the Code Editor at the time the button is clicked.  If you change the code, get a new link.  You can email these around for easy collaboration.
+    1. A static snapshot of the Code Editor at the time the button is clicked.  If you change the code, get a new link.  You can email these around for easy collaboration.
 7. Help Menu
     14. User guide - reference documentation
     15. Help forum - Google group for discussing Earth Engine
