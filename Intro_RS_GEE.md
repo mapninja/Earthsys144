@@ -294,6 +294,26 @@ Here is a very simple example from  [https://code.earthengine.google.com/?accept
 
 See demo repo script.
 
+# To Turn In:
+
+Go to the  GEE  Data catalog
+Search through the catalog and find a regularaly updated dataset
+Read all of the metadata for the dataset, carefully, so that you understand what bands are in the data, what type of data they hold, etc...
+
+Answer these questions:
+
+1. What is the pixel resolution of the dataset?
+2. What is the cadence/repeat time of the system?
+3. How many bands are in the dataset?
+4. What is the availabel date range for the collection?
+5. What is the data useful for?
+
+Use the example script to launch the GEE Code Editor and run the script to see the data.
+
+Use what you have learned in the preceding code examples to:
+
+- filter the imagae collection to a point locations
+- filter the image collection to a paraticular date range (for instance, if you select) 
 
 ## Where to go next…
 

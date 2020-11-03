@@ -1,5 +1,9 @@
 # Alternative Conditional Method for those using WhiteboxTools in QGIS
 
+## resample
+
+Something is going wrong with the CC and Bilinear Interpolations in the  Resample, when using WBT in QGIS. Instead, please use Nearest Neighbor (NN) as the method for resample, with your valley3nonull layer as the base raster.
+
 ## Raster Calculator
 
 We use the SAGA and NOT the QGIS raster calculator because we need a comparison operation available in the SAGA toolbox.
