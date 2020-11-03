@@ -11,7 +11,7 @@ then:
 
 `java -jar WhiteboxGIS.jar`
 
-This removes an overly aggressive quarantine from teh jar file, and hopefully allows you to run it.
+This removes an overly aggressive quarantine from the jar file, and hopefully allows you to run it.
 
 If that doesn't work, then try using the following instructions for a Clean Install of QGIS PR, and WhiteboxTools for QGIS.
 
