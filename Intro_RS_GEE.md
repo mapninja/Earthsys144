@@ -16,7 +16,7 @@ The code in these scripts is heavily commented with instructions and notes about
 
 You are encouraged to alter the scripts by changing date ranges, adjusting visualization parameters, and altering the bands being used, to see what happens.
 
-You can always reload the script, if thisngs get broken beyond comprehension.
+You can always reload the script, if things get broken beyond comprehension.
 
 ## An Introduction to the Code Editor Interface
 
