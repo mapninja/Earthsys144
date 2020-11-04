@@ -1,5 +1,10 @@
 # Week 7 Lab Alternative Workflows with WBT in QGIS
 
+First, see if you can get WhiteboxGAT to work using the instructions, here:
+https://github.com/mapninja/Earthsys144/blob/master/TroubleshootingWBG.md
+
+### If you can't get WhiteboxGAT to run on your computer
+
 All of this is done with QGIS PR 3.16, using WhiteboxTools, through the plugin, as noted, here:
 
 https://github.com/mapninja/Earthsys144/blob/master/CleanQGISInstallationforMac.md
