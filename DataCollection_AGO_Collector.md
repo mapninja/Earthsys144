@@ -2,9 +2,9 @@
 
 ## Collecting Field Data with ArcGIS Collector
 
-**ArcGIS Online** is becoming the fully functional online GIS that it has always promised. This workshop is designed as an introduction to **ArcGIS.com** and **Collector for ArcGIS**, and assumes some familiarity with spatial data and basic GIS terminology.  Participants will explore a  workflow for creating and managing multi-user spatial field data collection projects using nothing but a browser and consumer-grade mobile phones (iOS or Android).
+**ArcGIS Online** is becoming the fully functional online GIS that it has always promised. This exercise is designed as an introduction to **ArcGIS.com** and **Collector for ArcGIS**, and assumes some familiarity with spatial data and basic GIS terminology.  You will explore a  workflow for creating and managing multi-user spatial field data collection projects using nothing but a browser and consumer-grade mobile phone (iOS or Android).
 
-Participants will learn to:  
+You will learn to:  
 
 * Create empty "feature classes" to hold spatial data
 * Customize the data schema to the field data need
@@ -19,7 +19,7 @@ Participants will learn to:
 * Create a simple read-only view of the live data, for monitoring data collection
 * Export the data to multiple formats
 
-By the end of the workshop, participants should be familiar enough to create their own field data collection applications, customized to their research needs.
+By the end of the exercise, you should be familiar enough to create your own field data collection applications, customized to your research needs.
 
 ## Part 1: Create a Feature Layer  
 
@@ -59,7 +59,7 @@ Your **Walking Tour layer** is created and its item details page should open. In
 
 7. Go to the **Data tab** of the item page and go to **Fields**. If you created layers for points, lines, and polygons, verify that ***Place*** is chosen in the list of layers.  
 
-![Data tab](./images/fields.png)  
+![](images/DataCollection_AGO_Collector-41ec569f.png)  
 
 8. Click **Add**. Give a name ***PlaceType*** and an alias ***Point of Interest Type***. Choose type: **String**. Accept the other defaults and click **Add New Field**.  
 
@@ -73,6 +73,7 @@ Type a label of **Art** with a code of **0**.
 ![Create a list](./images/addlist.png)  
 
 10. Add entries for the following:  
+
 
   label|code
 ----:|:---
@@ -211,3 +212,9 @@ Walk around campus, adding public art, historically significant locations, vario
 #### Share the View Map
 #### Creating an app to show the data to others  
 #### Exporting the data
+
+# To Turn In:
+
+1. Check Sharing settings.
+3. Join the "Earthsys144 Collector App Group" (group URL: https://arcg.is/1mb59z)
+4. Share your data collection map app with the group.
