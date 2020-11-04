@@ -13,6 +13,10 @@ then:
 
 This removes an overly aggressive quarantine from the jar file, and hopefully allows you to run it.
 
+If this doesn't work, or you get messages about installing the JDK, etc... then tryin updating your Java Runtime Engine: 
+
+https://drive.google.com/file/d/1-inpVbJ-jhN0Owr4osNcacbCAR41MESX/view?usp=sharing 
+
 If that doesn't work, then try using the following instructions for a Clean Install of QGIS PR, and WhiteboxTools for QGIS.
 
-Note that there will be chages to the workflows you will use, between the lab written for WhiteboxGAT and the tools you will use in WhiteboxTools. Please look at the Lab Addenda Announcements on Canvas to find some of the support there on the differences between the two labs. If those announcements steps don't get you through, please use Slack to get in touch, in the Labs channel.  
+Note that there will be changes to the workflows you will use, between the lab written for WhiteboxGAT and the tools you will use in WhiteboxTools. Please look at the Lab Addenda Announcements on Canvas to find some of the support there on the differences between the two labs. If those announcements steps don't get you through, please use Slack to get in touch, in the Labs channel.  
