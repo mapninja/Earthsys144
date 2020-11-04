@@ -108,4 +108,4 @@ This should be essentially the same. For some reason WBT doesn't like the shp fi
 
 ![](images/ResampleExercisewithWBT-4d8b64c0.png)
 
-## The rest should be essentialy the same.
+## The rest should be essentially the same.
