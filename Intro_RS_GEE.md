@@ -58,17 +58,16 @@ It is worth noting that the Code Editor uses the javascript client API to make r
 
 Beginning users (especially if new to programming) often confuse commas, periods, semi-colons, parentheses, square and curly brackets.  An understanding of these syntactic elements is key to making Earth Engine work.  Carefully read and run this script for an introduction to basic JavaScript, including Hello World!, strings, numbers, comments, lists, objects (dictionaries), functions, etc.
 
-For more, you can check out the W3Schools site: https://www.w3schools.com/js/DEFAULT.asp 
+Run this script in the ode Editor, by clicking on it to load it into the Code Window, then click Run.
+
+For more, you can check out the W3Schools site: https://www.w3schools.com/js/DEFAULT.asp
 
 ### Script 01 - Client vs. Server objects
 
-_For the purpose of this lab, you won't need to understand this slide too deeply, but when you start making your own scripts and running tasks on the GEE platform, it will be important to understand these points. I've put this script here, just after the javascript syntax introduction so  that it is easlity referenced in the future. You should skim this topic, but don't worry if it doesn't make perfect sense, yet._
+_For the purpose of this lab, you won't need to understand this bit too deeply, but when you start making your own scripts and running tasks on the GEE platform, it will be important to understand these points. I've put this script here, just after the javascript syntax introduction so  that it is easlity referenced in the future. You should skim this topic, but don't worry if it doesn't make perfect sense, yet._
 
 Everything in the previous section was a client-side object that lives in the browser.  Client-side code is useful for a great many things, and is often necessary, for example when programming [user interfaces for Earth Engine](https://developers.google.com/earth-engine/apps).  However, client-side objects are NOT to be confused with server-side objects as demonstrated by the code in this script.  
 
-**Important points:**
-
-*   Printing something asynchronously requests the value of the object from the server.  To get the value in code, use `evaluate()`.  Do NOT use `getInfo()`, which is synchronous and can cause the browser to lock.
 *   Read the [Client vs. Server docs](https://developers.google.com/earth-engine/client_server).  See also [the debugging doc](https://developers.google.com/earth-engine/debugging#avoid-mixing-client-functions-and-objects-with-server-functions-and-objects).
 
 ## Walking through the rest of the scripts
