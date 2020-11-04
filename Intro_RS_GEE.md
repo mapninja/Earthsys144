@@ -9,14 +9,14 @@ We'll be completing these exercises using the Earth Engine code editor: [https:/
 
 https://code.earthengine.google.com/?accept_repo=users/stacemaples/GEE_Intro_RS  
 
-## What you will do for this label
-For this Lab, you will work your way through a series of Sample Scripts, running each of them, and in some cases "uncommenting" sections of code to enable new functions.
+## What you will do for this lab
+For this Lab, you will work your way through a series of Sample Scripts, running each of them, and in some cases "uncommenting" sections of code to enable new functions, or changing code in simple ways.
 
-THe code in these scripts is heavily commented with instructions and notes about what the code is doing.
+The code in these scripts is heavily commented with instructions and notes about what the code is doing.
 
-You are encouraged to alter the scripts by changing datate ranges, adjusting visualization parameters, and altering the bands being used, to see what happens.
+You are encouraged to alter the scripts by changing date ranges, adjusting visualization parameters, and altering the bands being used, to see what happens.
 
-
+You can always reload the script, if thisngs get broken beyond comprehension.
 
 ## An Introduction to the Code Editor Interface
 
@@ -104,6 +104,9 @@ The Sample Scripts in the repo at the link above are heavily commented.
 
 The content or your Homework submission should look something like this:
 
+```
+Week 8 - Google Earth ENgine  - Stace Maples
+
 1. What is the Earth Engine Name of the dataset? (HINT: Earth Engine Snippet):
 
 ee.ImageCollection("USDA/NASS/CDL")
@@ -117,7 +120,7 @@ ee.ImageCollection("USDA/NASS/CDL")
 1997-01-01T00:00:00 - 2019-01-01T00:00:00
 
 4. Shared Script: https://code.earthengine.google.com/d592975ab22732d8326a858eb9948c90
-
+```
 
 
 
