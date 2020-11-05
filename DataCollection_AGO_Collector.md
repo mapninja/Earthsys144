@@ -240,9 +240,7 @@ You may want to share the collected data through a visualization, though obvious
 
 # To Turn In:
 
-1. Check Sharing settings.
-3. Join the "Earthsys144 Collector App Group" (group URL: https://arcg.is/1mb59z)
-4. Share your data collection map app with the group.
-
+1. Join the "**Earthsys144 Collector App Group**" (See Above)
+2. Share your data collection map app with the **Earthsys144 Collector App Group**.
 
 *This tutorial was adapted from the excellent "[Make your first Collector map](https://www.esri.com/arcgis-blog/products/collector/field-mobility/make-your-first-collector-map/)" tutorial by Kylie Donia, of Esri*.
