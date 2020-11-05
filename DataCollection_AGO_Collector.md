@@ -233,6 +233,16 @@ Now that you are a member of the Earthsys144 Mapping App Group, you can share co
 #### Creating a "View Layer"
 You may want to share the collected data through a visualization, though obviously you won't want to share your "Full Editing Control" Map, with everyone. Creating a View Layer is a way to safely share visualizations of the data being collected, with anyone you wnat, without exposing the data to editing.
 
+1. Return to your **Content page**, and find your **Walking Tour feature layer** item and click on it to go to the **Details** page.
+2. Click on the **Create View Layer** button
+3. Give it an appropriate name like **My Mapping App Data Public View (_SUNetID_)** and click OK
+
+The resulting Feature Layer is a read-only view of the data being collected in your Mapping App that can be added to a New Map, filtered, symbolized, pushed to a web application and shared publicly, within the Stanford Org, or with a controlled Group, but without editing permissions. 
+
+![](images/DataCollection_AGO_Collector-473cb884.png)
+
+![](images/DataCollection_AGO_Collector-cb80240e.png)
+
 #### Create a View Map
 #### Share the View Map
 #### Creating an app to show the data to others  
