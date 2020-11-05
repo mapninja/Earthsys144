@@ -88,7 +88,7 @@ The Sample Scripts in the repo at the link above are heavily commented.
 4. **Answer the following in a TXT document**:
    1. What is the Earth Engine Name of the dataset? (HINT: Earth Engine Snippet)
    2. What is the Pixel Resolution of the dataset?
-   3. What date range is the data available for?
+   3. What date range is the data available for? (HINT: this is listed near the thumbnail and  "Earth Engine Snippet")
 5. **Scroll to the bottom of the page** for your dataset and click on the **Open in Code Editor button** to open the sample  script  for this dataset, in your Code Editor window.
 6. **Run the Script**
 7. **[Optional]** If you so desire, make some changes to the code to alter the setCenter() function, date filters, vis params, etc..., and create comments to highlight what changes you have made.
@@ -105,7 +105,7 @@ The Sample Scripts in the repo at the link above are heavily commented.
 The content or your Homework submission should look something like this:
 
 ```
-Week 8 - Google Earth ENgine  - Stace Maples
+Week 8 - Google Earth Engine  - Stace Maples
 
 1. What is the Earth Engine Name of the dataset? (HINT: Earth Engine Snippet):
 

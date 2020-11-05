@@ -92,11 +92,6 @@ Other| 4
 
 ![Create custom fields](./images/newfields.png)   
 
-  Since you want to be able to attach pictures showing the POIs in the Walking Tour, enable attachments:  
-14. Go to the **Overview tab** of the item details page, scroll to the **layers list**, and click **Enable Attachments** for the Places layer.  
-
-![Enable attachments](./images/enableattach.png)   
-
 ### Enable offline editing for Collector  
 This is a step that MUST be done before adding your feature layers to an ArcGIS Online map for creating your editing app.
 
@@ -187,7 +182,7 @@ Shortening the names of our layers in the Map will simplify the appearance of th
 
 13. **Save** your **map settings**, if necessary.
 
-## Part 3: Record Points of Interest with Collector  
+## Part 3: Record Points of Interest with Collector   
 Open Collector, using "**stanford**" as your organization, and your SUNetID and password.  
 1. Choose the map you just made.  
 2. To add a feature, touch the + sign and follow the prompts.
@@ -201,7 +196,10 @@ Walk around campus, adding public art, historically significant locations, vario
 
 ## Part 4: Multi-user editing
 
-### Create a Group
+About groups
+### Join the Earthsys144 Mapping App Group
+
+
 ### Share the map and feature layer with the group
 ### Approve group membership requests
 
