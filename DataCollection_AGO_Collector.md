@@ -47,7 +47,7 @@ By the end of the exercise, you should be familiar enough to create your own fie
 
 5. Set the **extent** for your layer and click **Next**.  
 
-6. Provide a **title**, like "**Walking Tour**".  *Since this must be a unique name in your organization, you might need to include your initials if others have followed these same steps*. Click **Done**.  
+6. Provide a **title**, like "**Walking Tour (SDM)**".  *Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise*. Click **Done**.  
 
 ![Rename the layers](./images/CreateFeatures.gif)  
 
@@ -114,7 +114,7 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
 ![Add to map](./images/addtomap.png)  
 
 
-2. **Save** your map, giving it a title "**Walking Tour [***Your initials***]**" and a **tag**.  
+2. **Save** your map, giving it a title "**Walking Tour [*SUNetID*]**" and a **tag**.  
 
 ![Save and name](./images/savemapas.png)  
 
@@ -190,24 +190,49 @@ Open Collector, using "**stanford**" as your organization, and your SUNetID and 
 Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group.
 Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...).
 
-*This tutorial was adapted from the excellent "[Make your first Collector map](https://www.esri.com/arcgis-blog/products/collector/field-mobility/make-your-first-collector-map/)" tutorial by Kylie Donia, of Esri*.
 
-# Sections to expand on if time permits...
 
 ## Part 4: Multi-user editing
 
-Management of multiple field workers can be easily implemented through Groups, in ArcGIS.com. You can creaate a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your COllector app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
+Management of multiple field workers can be easily implemented through the use of **Groups**, in ArcGIS.com. You can creaate a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your COllector app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
 
 
 ### Join the Earthsys144 Mapping App Group
 
+1. From **The Map**, on ArcGIS.com, click on the **Home** button and go to **Groups**
+2. Click on the **My Organization's Groups** tab at the top, left
+3. Search for **earthsys144** and click on the resulting **Earthsys144 Mapping App Group** link
+
+![](images/DataCollection_AGO_Collector-182cf5ce.png)
+
+4. Click on the **Join This Group** button
 
 ### Share the map and feature layer with the group
-### Approve group membership requests
+Now that you are a member of the Earthsys144 Mapping App Group, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use you app for data collection. When implementing for yourself, you would obviously limit your group only those people YOU add, to control access to the Collector app.
+
+1. Click on the Content Tab a the top of the page, to go to the **My Content** page
+2. Find your **Mapping App** (it's Item Type will be **Web Map**) and check it's **checkbox**, then click on the **Share icon** that appears
+
+![](images/DataCollection_AGO_Collector-40b7c248.png)
+
+3. **Click** the option to **Set sharing level** to **organization**
+4. **Click** on the **Edit group sharing** button, select the **Earthsys144 Mapping App Group** and click OK
+
+![](images/DataCollection_AGO_Collector-5a345265.png)
+
+![](images/DataCollection_AGO_Collector-ed518d2f.png)
+
+5. Click Save, then click Update to also change the Sharing options for the Feature Layer in your Map (this is necessary).
+
+![](images/DataCollection_AGO_Collector-de6a5beb.png)
+
+6. You Mapping app, and Feature Layer should now be visible to the members of the **Earthsys144 Mapping App Group**
 
 ## Working with the data
 
 #### Creating a "View Layer"
+You may want to share the collected data through a visualization, though obviously you won't want to share your "Full Editing Control" Map, with everyone. Creating a View Layer is a way to safely share visualizations of the data being collected, with anyone you wnat, without exposing the data to editing.
+
 #### Create a View Map
 #### Share the View Map
 #### Creating an app to show the data to others  
@@ -218,3 +243,6 @@ Management of multiple field workers can be easily implemented through Groups, i
 1. Check Sharing settings.
 3. Join the "Earthsys144 Collector App Group" (group URL: https://arcg.is/1mb59z)
 4. Share your data collection map app with the group.
+
+
+*This tutorial was adapted from the excellent "[Make your first Collector map](https://www.esri.com/arcgis-blog/products/collector/field-mobility/make-your-first-collector-map/)" tutorial by Kylie Donia, of Esri*.
