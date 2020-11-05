@@ -196,7 +196,9 @@ Walk around campus, adding public art, historically significant locations, vario
 
 ## Part 4: Multi-user editing
 
-About groups
+Management of multiple field workers can be easily implemented through Groups, in ArcGIS.com. You can creaate a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your COllector app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
+
+
 ### Join the Earthsys144 Mapping App Group
 
 
