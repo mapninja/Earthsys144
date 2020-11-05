@@ -6,7 +6,7 @@ Whitebox GAT software is available from:  [http://www.uoguelph.ca/~hydrogeo/Whit
 
 ## Installation
 
-**Download** the sofware from the above URL, **unzip** it, then **move** it to a secure location on your computer where it won't be accidentally deleted, or synced to Dropbox/Box.com/Google Drive/iCloud, etc...
+**Download** the sofware from the above URL, then **move** it to a secure location on your computer where it won't be accidentally deleted, or synced to Dropbox/Box.com/Google Drive/iCloud, etc... and then **unzip** it.
 
 The Guidance on the homepage mentions updating your Java SE, but you should try running the software, first, as some folks are having issues with newer Java Version not running the app. I've had good luck with the default version of Java on my Mac, which is running MacOS **Catalina 10.15.7**
 
