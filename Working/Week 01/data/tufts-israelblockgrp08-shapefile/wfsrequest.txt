@@ -1,0 +1,1 @@
+http://geoserver01.uit.tufts.edu/wfs?outputformat=SHAPE-ZIP&request=GetFeature&service=wfs&srsName=EPSG%3A4326&typeName=sde%3AGISPORTAL.GISOWNER01.ISRAELBLOCKGRP08&version=2.0.0
