@@ -1,30 +1,28 @@
 ## Introduction to Data Models and testing your QGIS Installation
 
-This first lab will introduce you to the 2 basic data models, Vector & Raster, and help you test your new QGIS Installation.
+This  lab will introduce you to the 2 basic data models, Vector & Raster, and help you test your new QGIS Installation.
 
 
 ### Creating a “Vector” Dataset
 
-This first task will introduce you to the basics of vector data. For this exercise you will use a web application called, and at: [geojson.io](https://geojson.io) to “digitize” a feature from satellite imagery. We’ll use existing imagery services built into the application to digitize a feature, then compare it with more current imagery.
+This first task will introduce you to the basics of vector data. For this exercise you will use a web application called, and at, [geojson.io](https://geojson.io) to “digitize” a feature from satellite imagery. We’ll use existing imagery services built into the application to digitize a feature, then compare it with more current imagery.
 
 As you create your “features” note that the coordinates that define the “vertices” of your “polygons” are displayed at the right, in a format called [GeoJSON](https://geojson.org/). Don’t worry about the “code” in this window, mostly, just pay attention to the coordinates and how they change as you add new vertices, in different directions, as well as the way features are separated, when you have more than one.
 
-
-
 1. First, note the coordinates at the following URL:
 <code>[https://geojson.io/#map=18/37.42652/-122.18319](https://geojson.io/#map=18/37.42652/-122.18319)</code>
-2. Now click on the URL to open the application, centered on those coordinates
+2. Now click on the URL to open the application, centered on those coordinates![]
 3. At the bottom left of the map, click on the <strong>Satellite</strong> basemap button to change the view
 4. Use the tools at the top right, or your scroll wheel and mouse, to navigate to the area shown, below:
 
+(./images/image12.png)
 
-![alt_text](./images/image1.png "image_tooltip")
 
 5. Use the <strong>Draw a Polygon </strong>tool
 
 to create a polygon around the bed at the top left, as shown:
 
-
+![alt_text](./images/image6.png "image_tooltip")
 
 ![alt_text](./images/image3.png "image_tooltip")
 
@@ -109,7 +107,7 @@ Note that this should correctly display the only attributes available in our dat
 
 5. Save your current project work by clicking on the Save button
 
-![alt_text](./images/image6.png "image_tooltip")
+
 , and note that most GIS Desktop Software packages DO NOT have autosave features. Avoid data and effort loss by saving often!
 
 
