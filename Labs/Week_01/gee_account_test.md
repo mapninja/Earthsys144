@@ -22,10 +22,20 @@ Most of you should currently be enrolled in our Google Earth Engine enterprise a
 
 ![](images/gee_account_test-94feb0f7.png)
 
-7. 
+7. You can use the default File Name and Path, with a Commit Message: "`my first script edit`"
+8. Click OK, to save to your repo
+
+_Note that you may see other messages at some point, about creating a repo, etc,... if you have never logged in before. Accept the defaults for these messages._
 
 ![](images/gee_account_test-7eee1354.png)
 
+9. Finally, click on the Get Link button, and Copy the Shareable Link, to **turn in on Canvas**.
+
+![](images/gee_account_test-55b8811e.png)
+
+----
+
+### In case you want more...
 
 At this point, that's all you need to do. If you are feeling adventurous, you can start clicking on the sample scripts to load them into the Code Window, then click Run, to see what they do.
 
