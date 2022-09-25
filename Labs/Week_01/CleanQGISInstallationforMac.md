@@ -1,6 +1,8 @@
-# Week 01 Lab 01a - Doing a Clean QGIS Installation on Mac
+# Week 01 Lab 01a - Doing a Clean QGIS Installation (on Mac)
 
-It often useful to just clean everything out and install QGIS, fresh and clean, especially on a Mac. Here's my workflow:
+Here, I describe the installation of QGIS on a Mac, in particular, because of some of the security settings obstacles that the MacOS present. The QGIS installer for WIndows is straightforward, and fairly self-explanatory.
+
+Note that once you have QGIS installed, adding the plugins, etc... will progress in nearly identical steps.
 
 This workflow will guide you through:
 
@@ -79,10 +81,11 @@ QuickMapServices Plugin provides a convenient catalog of tiled map servcies for 
 1. go to **Plugins>Manage and Install** and search for **QuickMapServices** and install the plugin.
 2. **Close** the **Plugin Manager** and go to **Web>QuickMapServices>Settings**
 3. **Click** on the **More Services** tab, then **Get Contributed Pack**
-4. Close the Settings Dialog after the new services are loaded and return to **Web>QuickMapServices** to see all the new services available.
 
 
 ![](images/CleanQGISInstallationforMac-c46e4e28.png)
+
+4. Close the Settings Dialog after the new services are loaded and return to **Web>QuickMapServices** to see all the new services available.
 
 ### SAGANP plugin
 
@@ -116,3 +119,9 @@ You'll get another warning about unsigned software, as wehn you first install QG
 Note that WhiteboxTools has some plugins that you can find under the `WBT/plugins/` directory, wherever you saved it. These programs will likely not work properly, until you use the above method on each individual plugin executable, which are the files with the blackbox icons, in the image, below. We will be making use of these tools, later in the quarter, so it is good to know how to troubleshoot them, if they don't initially work properly.
 
 ![](images/CleanQGISInstallationforMac-9ea369b3.png)
+
+# To Turn In
+
+4. Return to **Web>QuickMapServices** to see all the new services available.
+5. Select the Google>Hybrid basemap
+6. Create a Screenshot image of your desktop, showing QGIS, with the Google Hybrid basemap loaded, and upload it to Canvas.
