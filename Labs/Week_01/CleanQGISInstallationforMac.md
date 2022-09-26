@@ -75,13 +75,6 @@ This step will create a new User Profile, which is  useful when troubleshooting 
 
 ## Install Plugins
 
-Skip this section. [I've left it here, in hopes that eventually, Alex Buy's excellent plugins site will return.](https://plugins.bruy.me/)
-```
-1. Open your new installation of **QGIS** and go to **Plugins>Manage and Install**
-2. Go to **Settings** and check the option to **Show also Experimental plugins**
-3. **Scroll down** and click on the **Add...** button and add "**Alex's QGIS Python Plugins**" using the URL: https://plugins.bruy.me/plugins/plugins.xml
-```
-
 ### QuickMapServices
 
 QuickMapServices Plugin provides a convenient catalog of tiled map services for use as basemaps and reference layers, in QGIS.
