@@ -2,6 +2,13 @@
 
 Here, I describe the installation of QGIS on a Mac, in particular, because of some of the security settings obstacles that the MacOS present. The QGIS installer for WIndows is straightforward, and fairly self-explanatory.
 
+Here is the main download link for QGIS, where you can find the Mac, Windows and Linux versions, in one place:
+
+https://www.qgis.org/en/site/forusers/download.html
+
+
+
+
 Note that once you have QGIS installed, adding the plugins, etc... will progress in nearly identical steps.
 
 This workflow will guide you through:
@@ -76,7 +83,7 @@ Skip this section. [I've left it here, in hopes that eventually, Alex Buy's exce
 
 ### QuickMapServices
 
-QuickMapServices Plugin provides a convenient catalog of tiled map servcies for use as basemaps and reference layers, in QGIS.
+QuickMapServices Plugin provides a convenient catalog of tiled map services for use as basemaps and reference layers, in QGIS.
 
 1. go to **Plugins>Manage and Install** and search for **QuickMapServices** and install the plugin.
 2. **Close** the **Plugin Manager** and go to **Web>QuickMapServices>Settings**
