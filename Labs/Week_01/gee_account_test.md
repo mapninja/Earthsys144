@@ -1,6 +1,6 @@
 # Testing your access to Google Earth Engine
 
-Most of you should currently be enrolled in our Google Earth Engine enterprise account. the following steps will confirm you have access, and give you some material to explore with, if want to work with the platform before we get to remote sensing, let in the Quarter.
+Most of you should currently be enrolled in our Google Earth Engine enterprise account. The following steps will confirm that you have access, and give you some material to explore with if want to work with the platform before we get to remote sensing, later in the Quarter.
 
 1. Open [this link](https://goo.gl/9f9NgB) `https://goo.gl/9f9NgB` and login with your `SUNETID@stanford.edu` credentials
 2. In the resulting Google Earth Engine Code Editor window, you should see a set of sample scripts, under **Scripts>Reader>users/stacemaples/SGC-EE101**
