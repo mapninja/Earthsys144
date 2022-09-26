@@ -2,11 +2,12 @@
 
 Here, I describe the installation of QGIS on a Mac, in particular, because of some of the security settings obstacles that the MacOS present. The QGIS installer for WIndows is straightforward, and fairly self-explanatory.
 
-Here is the main download link for QGIS, where you can find the Mac, Windows and Linux versions, in one place:
-
+## For WIindows Users
+Here is the main download link for QGIS, where you can find the Mac, Windows and Linux versions, in one place:  
 https://www.qgis.org/en/site/forusers/download.html
 
-
+Here's a recent walkthrough of the Windows installation process:  
+https://www.geeksforgeeks.org/how-to-install-qgis-on-windows/
 
 
 Note that once you have QGIS installed, adding the plugins, etc... will progress in nearly identical steps.
