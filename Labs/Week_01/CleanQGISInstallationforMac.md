@@ -104,7 +104,7 @@ Saga tools are useful, but as a project separate from QGIS they often introduce 
 
 This assumes you have **downloaded** **Whiteboxtools** from https://www.whiteboxgeo.com/download-redirect/ and have **upzipped** the resulting archive to somewhere stable on your hard drive (I put mine at `/Users/maples/WBT`).
 
-1. **Return** to the **Plugins Manager** and search for "`**whitebox**`" to find the "WhiteboxTools for Processing" plugin, and install it.
+1. **Return** to the **Plugins Manager** and search for "`whitebox`" to find the "WhiteboxTools for Processing" plugin, and install it.
 2. **Return** to the **Processing Toolbox Settings** and expand  Providers>WhiteboxTools, then double-click in the box next to **WhiteboxTools** executable to use the ... button to browse to the folder where your WhiteboxTools executable is, as shown below:  
 
 ![](images/CleanQGISInstallationforMac-7ec82a0a.png)
