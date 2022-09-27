@@ -1,4 +1,4 @@
-# Coordinate Systems, Projections & Geodesy
+# Coordinate Systems, Projections, Geodesy, and Measurements
 
 ## Projections & Measurement Error
 
@@ -149,14 +149,15 @@ First, let's check some settings that will be critical to our accurate measureme
 
 ![](images/Coordinate_Systems_Geodesy-25510999.png)
 
-5. **Click OK** to apply the changes to the Project. Now all measurements on the ellipsoid will use `WGS84, meters`.
+5. **Click OK** to apply the changes to the Project. Now all _**measurements on the ellipsoid**_ will use `WGS84, meters`.
 
 ### Project CRS
+One aspect of dealing with **CRS** that causes people a great deal of confusion is the interaction between the **Project CRS**, and the **CRS' of the individual layers**, in the project. Most GIS Desktop applications, including **QGIS** and **ArcGIS**, are able to "**Project-on-the-Fly**" when the layers in a project DO NOT have the same CRS. For instance, you may have a layer of points defined by Latitude and Longitude coordinates, in **WGS84**, while you have another layer of data that is in a local **State Plane Coordinate System**, like the one shown below. The State Plane Coordinate System divides the US into 'zones', within which the distortion of measurement (area, distance, direction and shape) is minimized. Note in the image, below, that the zones are limited in size. As long as you are working WITHIN one of these zones, and have set teh CRS to it, properly, you can ignore the effect of distortions in measurements, as they will be minimal. However, if you need to work across a larger region or more than one zone, you will have to select a CRS that preserves the geographic properties that you are interested in measuring.
+
+![](https://geodesy.noaa.gov/SPCS/images/spcs83_conus_final.png)
 
 * Examine Project CRS
 * Set Project CRS from Layer
-
-![](https://geodesy.noaa.gov/SPCS/images/spcs83_conus_final.png)
 
 * Change Project CRS to `ESRI:102999 [NAD_1983_2011_StatePlane_California_III_FIPS_0403]`
 
