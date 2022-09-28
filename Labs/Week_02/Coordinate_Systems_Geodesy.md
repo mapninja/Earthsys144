@@ -10,14 +10,14 @@ The datasets for this exercise include the County Boundaries as polygons and a 1
 
 1. **Create a Project Folder** (something like _/Week02Labs_), on your hard drive, to save the data and QGIS Project files, within, and keep all of the content from the project in one place for portability (we'll discuss this idea, more, later).
 
-#### Download the data from:Â
+#### Download the data from:
 
 2. Download the following datasets from Earthworks, into your **Project Folder**.
 
   * Please **Download** the **original shapefile**, using the **Original Shapefile** button, for the _1:1,000,000-Scale County Boundaries of the United States, 2014_ - https://earthworks.stanford.edu/catalog/stanford-wg010mf7692
   * Please **Download** the **GeoJSON** version, using the **Export Formats>GeoJSON** button for the _10-Degree Graticule Grid, World, 1:10 million, 2012_ - https://earthworks.stanford.edu/catalog/stanford-fr122tq8910
 
-![](images/Coordinate_Systems_Geodesy-85bbc2cc.png)
+![](images/50_Coordinate_Systems_Geodesy-85bbc2cc.png)
 
 3. **Browse** to where you saved these **files**, and **unzip them**, if necessary.
 
@@ -30,11 +30,11 @@ Now, we will create a new project file to add our data and make our calculations
 _Be aware that a Project File DOES NOT CONTAIN THE DATA THAT YOU ADD TO IT, BUT ONLY LINKS TO THE DATASETS! This idiosyncrasy of GIS Projects, in general, means that if you want to move your project, best practice is to put your datasets and project files into the same folder. It's fine to put data into a_ `/data/` _folder, if you like to be tidy, but that_ `/data/` _folder should be nested under a project folder, that also contains your project file. If you want to move the project, or share it with others, you want to move, or .zip compress, the whole project folder, with everything underneath it._
 
 1. **Open QGIS**, if not already open.
-2. **Click** on the **New Project** button ![](images/Coordinate_Systems_Geodesy-e1fd8eb8.png)
-2. **Click** on the **Save** button ![](images/Coordinate_Systems_Geodesy-c1847aa3.png)
+2. **Click** on the **New Project** button ![](images/50_Coordinate_Systems_Geodesy-e1fd8eb8.png)
+2. **Click** on the **Save** button ![](images/50_Coordinate_Systems_Geodesy-c1847aa3.png)
 3. **Browse** to your **Project Folder** and name the project  something like `week_02_projections.qgz`  and **click Save**.
 
-![](images/Coordinate_Systems_Geodesy-e98f5463.png)
+![](images/50_Coordinate_Systems_Geodesy-e98f5463.png)
 
 ## Add the Data
 
@@ -46,11 +46,11 @@ We'll explore adding data to this new project using two common methods.
 
 _HINT: If you saved your Project File to the same folder as you `/data/` folder, or you data, you should be able to simply Expand the Home folder that shows up near the top of the Browser panel. The Home folder is always the folder that the currently open project file is in._
 
-![](images/Coordinate_Systems_Geodesy-4ed8aeab.png)
+![](images/50_Coordinate_Systems_Geodesy-4ed8aeab.png)
 
 2. **Select**, **Drag-and-Drop** the `countyp010g.shp` file, into the Map Canvas to add it to the project.
 
-![](images/Coordinate_Systems_Geodesy-0804df1b.png)
+![](images/50_Coordinate_Systems_Geodesy-0804df1b.png)
 
 3. **Click** the **Save Button** to save the change you have made to the **Project file**.
 
@@ -59,15 +59,15 @@ _HINT: If you saved your Project File to the same folder as you `/data/` folder,
 
  1. From the **Main Menu**, go to **Layer>Add Layer>Add Vector Layer**  
 
-![](images/Coordinate_Systems_Geodesy-e068b994.png)
+![](images/50_Coordinate_Systems_Geodesy-e068b994.png)
 
- 2. Use the **Browse button** ![](images/Coordinate_Systems_Geodesy-9a4f6a5d.png) to **browse** to the location that your **GeoJSON** version of the Graticules was downloaded.  
+ 2. Use the **Browse button** ![](images/50_Coordinate_Systems_Geodesy-9a4f6a5d.png) to **browse** to the location that your **GeoJSON** version of the Graticules was downloaded.  
 
-![](images/Coordinate_Systems_Geodesy-23ac0858.png)
+![](images/50_Coordinate_Systems_Geodesy-23ac0858.png)
 
  3.  **Select** the **GeoJSON** file and **click Open**, then **Add**, to add the layer to the Map Canvas.
 
-![](images/Coordinate_Systems_Geodesy-ad437cf2.png)
+![](images/50_Coordinate_Systems_Geodesy-ad437cf2.png)
  4. You will see the above Select Transformation dialog, immediately.
 
 _Selecting a transformation is necessary when you have layers with different Geographic Coordinate Systems, in your project. In this case, we will accept the default_ `EPSG:4326 - WGS84 to EPSG:4269 - NAD83` _transformation, which will cause the GeoJSON layer we have just added to "**Project-on-the-Fly**" to the Geographic Coordinate System of the Project. We'll dig into this more in the next section of the lab_
@@ -80,16 +80,16 @@ _Selecting a transformation is necessary when you have layers with different Geo
 
 Let's quickly take a look at the data we have added to our Project. Here, note that once vector datasets are in QGIS, they essentially behave the same. Yay
 
-1. First, use the **Zoom Button** ![](images/Coordinate_Systems_Geodesy-ab211db4.png) to **draw a box** around Alaska and the Continental US, which should Zoom to the extent shown, below (colors are assigned randomly, so you may not see the same colors in your map canvas).
+1. First, use the **Zoom Button** ![](images/50_Coordinate_Systems_Geodesy-ab211db4.png) to **draw a box** around Alaska and the Continental US, which should Zoom to the extent shown, below (colors are assigned randomly, so you may not see the same colors in your map canvas).
 
-![](images/Coordinate_Systems_Geodesy-3e28e699.png)
+![](images/50_Coordinate_Systems_Geodesy-3e28e699.png)
 
 #### Open the Attribute Table
 
 1. Right-click on the `countyp010g` Layer in the Layer panel, and select **Open Attribute Table**.
-![](images/Coordinate_Systems_Geodesy-e22330eb.png)  
+![](images/50_Coordinate_Systems_Geodesy-e22330eb.png)  
 
-![](images/Coordinate_Systems_Geodesy-a8a89a47.png)
+![](images/50_Coordinate_Systems_Geodesy-a8a89a47.png)
 
 **Note the attributes** we have available to us, and that for every "county polygon" in the dataset, there is a corresponding record, or row, in the attribute table, containing the properties of the county it refers to, such as `ADMIN_NAME, ADMIN_FIPS, STATE, POP[ulation]`, etc...
 
@@ -102,13 +102,13 @@ Here, we will assign new sets of symbols to our spatial data layers. In particul
 
 1. Right-click on the stanford-fr122tq8910-GeoJSON layer, in the Layers Panel, and go to Properties.
 
-![](images/Coordinate_Systems_Geodesy-0a61e22f.png)
+![](images/50_Coordinate_Systems_Geodesy-0a61e22f.png)
 
 2. **Click** on **Symbology**, in the **Tabs**, on the left, to bring the **Layer Properties - Symbology ta**b, forward.
 3. **Click** on the **Color Drop-down arrow** to **select** a **different color** (I chose red) for the graticule lines.
 4. **Change** the **Width** of the line to **.4 Millimeters**
 
-![](images/Coordinate_Systems_Geodesy-b1713a88.png)
+![](images/50_Coordinate_Systems_Geodesy-b1713a88.png)
 
 5. Click OK to apply the changes in the Map Canvas. Adjust to your taste.
 
@@ -118,13 +118,13 @@ Here, we will assign new sets of symbols to our spatial data layers. In particul
 Here we will use the preferred Layer Styling Panel to apply symbology to the counties layer, using a calculation (`"POP"  /  "SQ_MILES"`) we will have QGIS make, on-the-fly.
 1. Go to **Main Menu>View>Panels>Layer Styling** to enable the Layer Styling Panel, which should appear at the right side of the software window.
 2. Click on the `countyp010g` layer in the Layers Panel, to activate it as the Symbology Layer being edited.
-3. **Change** the **Method dropdown** ![](images/Coordinate_Systems_Geodesy-386097d7.png) from **Single Symbol** to **Graduated**. _Note that the layer will temporarily disappear because there are no values assigned, yet, to base the symbology on._
-4. **Click** on the **Equation button** ![](images/Coordinate_Systems_Geodesy-0ea8f44f.png), which is to the right of the **Value dropdown**, to open the **Expression Dialog**.
+3. **Change** the **Method dropdown** ![](images/50_Coordinate_Systems_Geodesy-386097d7.png) from **Single Symbol** to **Graduated**. _Note that the layer will temporarily disappear because there are no values assigned, yet, to base the symbology on._
+4. **Click** on the **Equation button** ![](images/50_Coordinate_Systems_Geodesy-0ea8f44f.png), which is to the right of the **Value dropdown**, to open the **Expression Dialog**.
 5. In the resulting window, search for `pop` and double-click what should be the only item returned to the search, `POP`.
-6. Click on the Division Operator button ![](images/Coordinate_Systems_Geodesy-d3cfd682.png) to add the Division symbol.
+6. Click on the Division Operator button ![](images/50_Coordinate_Systems_Geodesy-d3cfd682.png) to add the Division symbol.
 7. Replace your current search term with `sq` to highlight the `SQ_MILES` field, and **double-click** it to add it to your **Expression**.
 
-![](images/Coordinate_Systems_Geodesy-f0eb2a47.png)
+![](images/50_Coordinate_Systems_Geodesy-f0eb2a47.png)
 
 8. **Click OK** to apply the calculation (your layer still won't be visible yet).
 9. Confirm that the **Classes Mode** is **Equal Counts (Quantile)**, and that the number of **Classes** is set to **5**.
@@ -132,7 +132,7 @@ Here we will use the preferred Layer Styling Panel to apply symbology to the cou
 11. Select a different **Color ramp**, if you like.
 12. Save your Project.
 
-![](images/Coordinate_Systems_Geodesy-a1e4e5be.png)
+![](images/50_Coordinate_Systems_Geodesy-a1e4e5be.png)
 
 ### CRS
 
@@ -147,16 +147,21 @@ First, let's check some settings that will be critical to our accurate measureme
 3. For you Ellipsoid, use the dropdown to find and select WGS 84 (EPSG:7030)
 4. Confirm that the **Units for distance measurements** are set to `Meters` & **Units for area measurements** are set to `Square Meters`.
 
-![](images/Coordinate_Systems_Geodesy-25510999.png)
+![](images/50_Coordinate_Systems_Geodesy-25510999.png)
 
 5. **Click OK** to apply the changes to the Project. Now all _**measurements on the ellipsoid**_ will use `WGS84, meters`.
 
 ### Project CRS
 One aspect of dealing with **CRS** that causes people a great deal of confusion is the interaction between the **Project CRS**, and the **CRS' of the individual layers**, in the project. Most GIS Desktop applications, including **QGIS** and **ArcGIS**, are able to "**Project-on-the-Fly**" when the layers in a project DO NOT have the same CRS. For instance, you may have a layer of points defined by Latitude and Longitude coordinates, in **WGS84**, while you have another layer of data that is in a local **State Plane Coordinate System**, like the one shown below. The State Plane Coordinate System divides the US into 'zones', within which the distortion of measurement (area, distance, direction and shape) is minimized. Note in the image, below, that the zones are limited in size. As long as you are working WITHIN one of these zones, and have set teh CRS to it, properly, you can ignore the effect of distortions in measurements, as they will be minimal. However, if you need to work across a larger region or more than one zone, you will have to select a CRS that preserves the geographic properties that you are interested in measuring.
 
-![](https://geodesy.noaa.gov/SPCS/images/spcs83_conus_final.png)
+![](https://geodesy.noaa.gov/SPCS/images/50_spcs83_conus_final.png)
 
-* Examine Project CRS
+### Examine Project CRS
+First, we will want to examine the current CRS of the project, and explain how it was set.
+
+1. Look at the bottom right of the QGIS software window and find the Current CRS display: ![](images/50_Coordinate_Systems_Geodesy-456903cd.png)
+2. Note that the Project CRS is currently EPSG:4269, which is NAD83. QGIS uses the CRS of the first data layer added to a project to determine it's CRS. Therefore, when we added the `countyp010g` shapefile (which is EPSG:4269 NAD83), the Project CRS became the same as that layer.
+
 * Set Project CRS from Layer
 
 * Change Project CRS to `ESRI:102999 [NAD_1983_2011_StatePlane_California_III_FIPS_0403]`
