@@ -1,8 +1,21 @@
 # Coordinate Systems, Projections, Geodesy, and Measurements
+## Objectives  
+
+Upon completion of this lab, you should be able to:
+* Articulate the relationship between the coordinate reference systems of the Project and Layers it contains.
+* Examine and change the CRS (coordinate reference system) of the Project.
+* Calculate new fields using expressions in the Field Calculator
+* 'Project' data layers to new CRS.
+* Create a custom CRS, centered on a location of your choice.
+* Identify and manipulate the True Lines of Scale for a projection.
+* Understand the difference between Ellipsoid Height and Orthometric (GEOID) Height, and calculate the difference, for any location.
+
 
 ## Projections & Measurement Error
 
 In this Lab Assignment, we will be exploring Projections & Geographic Coordinate Systems and the effect they have upon spatial measurements. We'll calculate the area of our
+
+
 
 ### Data
 
@@ -110,10 +123,9 @@ Here, we will assign new sets of symbols to our spatial data layers. In particul
 
 ![](images/50_Coordinate_Systems_Geodesy-b1713a88.png)
 
-5. Click OK to apply the changes in the Map Canvas. Adjust to your taste.
+5. **Click OK to apply** the changes in the **Map Canvas**. Adjust to your taste.
 
 ## Using a quantity to apply Symbology, with the Layer Styling Panel.
-
 
 Here we will use the preferred Layer Styling Panel to apply symbology to the counties layer, using a calculation (`"POP"  /  "SQ_MILES"`) we will have QGIS make, on-the-fly.
 1. Go to **Main Menu>View>Panels>Layer Styling** to enable the Layer Styling Panel, which should appear at the right side of the software window.
@@ -152,33 +164,118 @@ First, let's check some settings that will be critical to our accurate measureme
 5. **Click OK** to apply the changes to the Project. Now all _**measurements on the ellipsoid**_ will use `WGS84, meters`.
 
 ### Project CRS
-One aspect of dealing with **CRS** that causes people a great deal of confusion is the interaction between the **Project CRS**, and the **CRS' of the individual layers**, in the project. Most GIS Desktop applications, including **QGIS** and **ArcGIS**, are able to "**Project-on-the-Fly**" when the layers in a project DO NOT have the same CRS. For instance, you may have a layer of points defined by Latitude and Longitude coordinates, in **WGS84**, while you have another layer of data that is in a local **State Plane Coordinate System**, like the one shown below. The State Plane Coordinate System divides the US into 'zones', within which the distortion of measurement (area, distance, direction and shape) is minimized. Note in the image, below, that the zones are limited in size. As long as you are working WITHIN one of these zones, and have set teh CRS to it, properly, you can ignore the effect of distortions in measurements, as they will be minimal. However, if you need to work across a larger region or more than one zone, you will have to select a CRS that preserves the geographic properties that you are interested in measuring.
+One aspect of dealing with **CRS** that causes people a great deal of confusion is the interaction between the **Project CRS**, and the **CRS' of the individual layers**, in the project. Most GIS Desktop applications, including **QGIS** and **ArcGIS**, are able to "**Project-on-the-Fly**" when the layers in a project DO NOT have the same CRS. For instance, you may have a layer of points defined by **Latitude and Longitude** coordinates, in **WGS84**, while you have another layer of data that is in a local **State Plane Coordinate System**, like the one shown below. The **State Plane Coordinate System** divides the US into 'zones', within which the distortion of measurement (area, distance, direction and shape) is minimized. Note in the image, below, that the zones are limited in size. As long as you are working WITHIN one of these zones, and have set the CRS to it, properly, you can ignore the effect of distortions in measurements, as they will be minimal. However, if you need to work across a larger region or more than one zone, you will have to select a CRS that preserves the geographic properties that you are interested in measuring.
 
-![](https://geodesy.noaa.gov/SPCS/images/50_spcs83_conus_final.png)
+![](https://geodesy.noaa.gov/SPCS/images/spcs83_conus_final.png)
 
 ### Examine Project CRS
 First, we will want to examine the current CRS of the project, and explain how it was set.
 
-1. Look at the bottom right of the QGIS software window and find the Current CRS display: ![](images/50_Coordinate_Systems_Geodesy-456903cd.png)
-2. Note that the Project CRS is currently EPSG:4269, which is NAD83. QGIS uses the CRS of the first data layer added to a project to determine it's CRS. Therefore, when we added the `countyp010g` shapefile (which is EPSG:4269 NAD83), the Project CRS became the same as that layer.
+1. Look at the **bottom right of the QGIS software window** and find the **Current CRS display**: ![](images/50_Coordinate_Systems_Geodesy-456903cd.png)
+2. Note that the **Project CRS** is currently EPSG:4269, which is NAD83, and a Geographic Coordinate System, rather than projected. QGIS uses the CRS of the first data layer added to a project to determine it's CRS. Therefore, when we added the `countyp010g` shapefile (which is EPSG:4269 NAD83), the **Project CRS** became the same as that layer.
 
-* Set Project CRS from Layer
+### Examine the CRS of Layers
 
-* Change Project CRS to `ESRI:102999 [NAD_1983_2011_StatePlane_California_III_FIPS_0403]`
+It is useful to know how to quickly examine the CRS of each of the layers in our project. There is an easy way to quickly get the EPSG code for a layer's CRS.  
+
+1. Hover your cursor over the Layer Name of the layer you want to know the EPSG code for, in the Layers panel. This will display three bits of information:  
+* The filename of the layer (the layer name and filename aren't necessarily always the same!)  
+* The CRS of the Layer (In this case, `EPSG:4326`)   
+* The path that the source file can be found at (whether local, or network!)
+
+The important bit, for us right now, is that EPSG code. **EPSG** codes are 4-5 digit numbers that represent **CRS** definitions. The acronym **EPSG** comes from the, now defunct, **European Petroleum Survey Group**. Each code is a four-five digit number which represents a particular CRS definition. Often, you will also see ESRI: codes for CRS definitions. You can search for EPSG and ESRI CRS codes, and get some basic human-readable information, as well as the relevant mathematical information, for a particular CRS, here: https://spatialreference.org/ref/epsg/
+
+![](images/Coordinate_Systems_Geodesy-4045ea4f.png)
+
+### Set Project CRS from Layer
+Often, it is desirable to have the Project CRS be the same as at least one of the data layers in the project, though as in this case, it may not be. It's pretty straightforward to change the CRS of the Project, using one of the layers as a _template_.
+
+1. Right-click on the `stanford-fr122tq8910-geojson` layer in the **Layer Panel**, and go to **Layer CRS>Set Project CRS from Layer.**
+
+![](images/Coordinate_Systems_Geodesy-5bf40aa0.png)
+
+It will hardly look as if anything has changed, since **WGS84** and **NAD83** are virtually identical, except for their extents (NAD83, _or North American Datum of 1983, is intended for use within the Continental US_).
+
+2. Look at the Current CRS indicator at the bottom right of the QGIS window, and confirm that the Project CRS is now EPSG:4326 ![](images/Coordinate_Systems_Geodesy-9e74a09f.png)
+
+
+### Change Project CRS in Properties
+
+Now we'll make a little more complex change to our Project CRS. This time, we will change the CRS something other than the current, or the CRS of either of our data layers.
+
+1. Go to **Project>Properties**
+2. **Click** on the **CRS Tab** to bring the **Project Properties - CRS** options forward
+3. In the **Filter box** at the top of the panel, use `state plane california` as your search term, and examine the results returned.
+4. **Begin clicking** on the **different CRS** in the list, and **note that the basic parameters of the selected CRS are displayed** in the left panel, under the Predefined CRS List, and that the valid extent of each of the CRS is displayed in the bottom right panel.
+
+![](images/Coordinate_Systems_Geodesy-6c79f8b8.png)
+
+5. Click on `NAD_1983_2011_StatePlane_California_III_FIPS_0403_Ft_US ESRI:103005` and note it's parameters (particularly the **Units**), and extent.
+6. Now, click on `NAD_1983_2011_StatePlane_California_III_FIPS_0403 ESRI:102999` and note it's parameters (again, the **Units**), and extent.
+
+While the extent of the first CRS is the same as the second, note that one version is in Feet and one is in Meters. In general, CRS definitions are assumed to be in meters, while those that are in Feet are labeled in their title, as such.  
+
+7. Finally, select `NAD_1983_2011_StatePlane_California_III_FIPS_0403 ESRI:102999` (meters), and **click OK to apply** it as the **Project CRS**.
+8. Save your work.
+
+![](images/Coordinate_Systems_Geodesy-c0b0d062.png)
 
 #### Questions
-What happened to the data?
+What happened to the display of the Map Canvas?
 
 What class of projection (developable surface) do you think you are using, now?
 
-### Attribute Table
+Where is the CRS "centered," and why?
+
+### Adding Measurements to the Attribute Table
+Now we will begin making some calculations, using our data. In this example, we will be calculating Area of each of the counties in our dataset, using two methods, alternatively.
+
 #### Calculate `$AREA`
+First, we will use the $AREA function to calculate the area of our counties, based upon the ellipsoid we selected, earlier, in the Project Properties. This is actually one of the most useful "tricks" to know in QGIS; that it is possible to make calculations on the Ellipsoid, which are far more accurate than those that make calculations using the data "projected onto a plane." This calculation will return the area of each feature in the layer, using the model of the curvature of the Earth that is the Ellipsoid.
 
-Static Variable
+1. **Right-click** on the `countyp010g` layer, in the **Layer Panel**, and **Open Attribute Table**.
+2. Click on the **Field Calculator** button ![](images/Coordinate_Systems_Geodesy-57fe9b67.png).
+3. In the middle Search Box in the Field Calculator, search for the word `area` which will return any items (functions, variables, etc...) that contain the word `area`
+4. Double-click on the `$area` function, which should be the first function under the `Geometry` heading, to push it to the Expression Panel. Read the `function $area description`, that should now be visible on the right side of the panel.
+5. Finish the Expression you started, by adding `/1000000` so that your final expression is `$area/1000000` which will result in a value equal to the SQKM Area of each polygon.
+6. Use the following additional options for the Expression:
+* Check **Create New Field**
+* **Output Field Name**: `ORIG_SQKM`
+* **Output Field Type**: `Decimal number (real)`
+* **Precision**: `2`
+7. Click OK to calculate the field.
 
-ORIG_SQKM = `$AREA/1000000`
+![](images/Coordinate_Systems_Geodesy-bb0bbd46.png)
+
+
+![](images/Coordinate_Systems_Geodesy-d8d3ac3c.png)
+
+8. **Click** on the **Toggle Editing button** ![](images/Coordinate_Systems_Geodesy-787c7591.png) to **close** the **edit session** that was automatically opened in order to add and write to your attribute table.
+
+We've just created a Static Variable in the attribute table that gives us the Ellipse Area of each feature in our dataset.
+
+9. Click on the ORIG_SQKM field header, until the column sorts descending, and you can compare you measurements to those pictured, above. You can close the Attribute Table, and return to the Main QGIS Window, once you confirm you have calculated the values, properly.
 
 #### Change CRS of a Layer
+Up to this point, we've been working with our data layer, using it's native **CRS**, and using the **Project CRS** to control the display of our data. Now we will export a new copy of our `countyp010g` layer, "projecting" it as we do, to a new planar projection (the same one we are using for our Project, currently). Then we will measure the area of our polygons using planar (projected) calculations, based upon the State Plane Coordinate System.
+
+Projecting your data layers into the the same projection, and one that preserves the geographic properties we are interested in measuring (Area, Direction, Distance or Shape) is actually a best practice in beginning a new project. Using a single appropriate CRS for the Project and layers not only ensures that overlay operations using the **Processing Tools** will work properly (sometimes tools that work across more than one layer, require that those layers are in the same CRS, sometimes, not), it can vastly improve the rendering performance of all GIS applications, particularly when working with datasets with many features.
+
+1. Right-click on the `countyp010g` layer, in the **Layers Panel**, and go to **Export>Save Features As...**
+
+![](images/Coordinate_Systems_Geodesy-a375d637.png)
+
+2. **IMPORTANT** When providing the File Name the Save Vector Layer as... Dialog, it is critical to click on the Browse button ![](images/Coordinate_Systems_Geodesy-12667624.png) and select a location to save the export, as well as providing a name. THis is not apparent in QGIS, and not providing a full path for the export will result in an error.   
+3. Use the following options for your export:
+* Format: `Esri Shapefile`
+* File name: (see above)
+* Layer name: Disabled for shapefiles
+* CRS: `Project CRS: ESRI:102999 - NAD_1983_2011_StatePlane_California_III_FIPS_0403` (The Project `CRS` will always, conveniently, show up in the dropdown)
+* Leave the defaults for the remaining settings
+
+4.
+![](images/Coordinate_Systems_Geodesy-f215df9a.png)
+
 
 Export using CRS: `ESRI:102999 [NAD_1983_2011_StatePlane_California_III_FIPS_0403]`
 
@@ -193,13 +290,13 @@ Static Variable
 
 ELLIP_AREA = `$AREA/1000000`
 
-### Calculate Error
+### Calculate Error Introduced by Projection
 
 AREA_ERROR =  `"ELLIP_AREA"  -  "PROJ_AREA" `
 
 ERRO_PCT = AREA_ERROR/ELLIP_AREA
 
-# Altering a CRS for a Specific Region
+# Creating a Custom a CRS for a Specific Region
 
 Change CRS and map with two layouts
 
