@@ -381,4 +381,8 @@ Zoom into the central part of the Continental US to see the detail in the error.
 ## Ellipsoid vs Orthometric Height
 
 ### Sample Scripts
-* https://code.earthengine.google.com/?accept_repo=users/stacemaples/Earthsys144
+
+
+1. [Use this link to Open Google Earth Engine](https://code.earthengine.google.com/7ea9a5f87188944551aa038ae8260921?accept_repo=users%2Fstacemaples%2FEarthsys144), load the sample script, and Run the script:
+
+`https://code.earthengine.google.com/7ea9a5f87188944551aa038ae8260921?accept_repo=users%2Fstacemaples%2FEarthsys144`
