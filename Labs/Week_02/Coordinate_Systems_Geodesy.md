@@ -378,11 +378,66 @@ Zoom into the central part of the Continental US to see the detail in the error.
 2. **Use your creativity**, but remember what the purpose of the map is, and make sure that your symbology and other choices are communicating properly.
 3. **Export** to a **PDF** or **PNG** image, and upload to **Canvas**.
 
-## Ellipsoid vs Orthometric Height
+# Ellipsoid vs Orthometric Height with Google Earth Engine
+
+Now we'll turn briefly to the issue of height measurement. In this section, You will run an Earth Engine script that imports and visualizes two **Digital Elevation Models (DEM)**, one of them the **NASADEM** product, which contains **orthometric** (Geoid-based) **heights**, and the other the Shuttle Radar Topography Mission (SRTM), which contains heights based upon the Ellipsoid, WGS84.
 
 ### Sample Scripts
 
 
 1. [Use this link to Open Google Earth Engine](https://code.earthengine.google.com/7ea9a5f87188944551aa038ae8260921?accept_repo=users%2Fstacemaples%2FEarthsys144), load the sample script, and Run the script:
 
-`https://code.earthengine.google.com/7ea9a5f87188944551aa038ae8260921?accept_repo=users%2Fstacemaples%2FEarthsys144`
+`https://code.earthengine.google.com/7ea9a5f87188944551aa038ae8260921?accept_repo=users%2Fstacemaples%2FEarthsys144`  
+
+2. At the top of the Code Editor Panel, click on the hyperlinked text for `NASADEM: NASA NASADEM Digital Elevation 30m` to open the Data Catlog information for the dataset. This is referred to as the Metadata, or "data about the data."
+
+![](images/50_Coordinate_Systems_Geodesy-20626995-drop-shadow.png)
+
+![](images/50_Coordinate_Systems_Geodesy-e34dd1e2-drop-shadow.png)
+
+2. Use the Layers Widget to Toggle the Layers on and Off to see the underlying Digital Elevation Models (DEM), and observe their differences (they are subtle, but visible).  
+
+![](images/50_Coordinate_Systems_Geodesy-6f7ac410-drop-shadow.png)
+
+3. Use the Geometry Imports widget to toggle on the visibility of the geometry variable that is controlling the extent of the map.
+
+![](images/50_Coordinate_Systems_Geodesy-fdb611ca-drop-shadow.png)
+
+4. Click on the Center Map on Record icon to see the geometry, as a whole.
+
+![](images/50_Coordinate_Systems_Geodesy-89e10d16-drop-shadow.png)
+
+5. In the Console Tab, at the Top Right of the Code Editor, expand the Object Item to see the Average Error in Elevation between the Ellipsoid and Orthometric (Geoid) Heights, for the geometry currently being used.
+
+5. Now click on the Delete icon next to the `var: geometry` imports, to delete it.
+
+![](images/50_Coordinate_Systems_Geodesy-abdbe0b4-drop-shadow.png)
+
+6. Now, pan and zoom the maps to another area (You will need to use the same zoom level as the original script, or higher, for the Average Difference in Elevation), of your choice.
+7. **Click** on the **Draw a Rectangle tool** to **activate** it.  
+
+
+![](images/50_Coordinate_Systems_Geodesy-ec2136c5-drop-shadow.png)
+
+8. **Draw** a new geometry for the script to use, in your chosen **Area of Interest**.
+9. **Code Editor** should import the new geometry as `var:geometry`, by default.
+
+![](images/50_Coordinate_Systems_Geodesy-25bd6dd3-drop-shadow.png)
+
+10. Run the script, again. If it throws an error, delete your current geometry, and try a smaller one, until you are successful.
+
+![](images/50_Coordinate_Systems_Geodesy-d5f32526-drop-shadow.png)
+
+11. Observe the change to the resulting value of Error in the Console.
+
+
+![](images/50_Coordinate_Systems_Geodesy-db249f2a-drop-shadow.png)
+
+# To Turn In:
+
+1. Once you have successfully created a new extent for the script, and run it to get the new `Average Error value`, Save your script to your Scripts repository.
+2. Use the Get Link button to create a shareable Link
+
+![](images/50_Coordinate_Systems_Geodesy-0f2bb8e9-drop-shadow.png)
+
+3. Submit your Get Link URL to Canvas.
