@@ -1,4 +1,4 @@
-# Note that this exercise is being edited currently
+substitutedistribution# Note that this exercise is being edited currently
 
 # Coordinate Systems, Projections, Geodesy, and Measurements
 ## Objectives  
@@ -222,11 +222,9 @@ While the extent of the first CRS is the same as the second, note that one versi
 
 ![](images/50_Coordinate_Systems_Geodesy-c0b0d062-drop-shadow.png)
 
-#### Questions
+#### Questions;  (For your consideration, not to turn in)  
 What happened to the display of the Map Canvas?
-
 What class of projection (developable surface) do you think you are using, now?
-
 Where is the CRS "centered," and why?
 
 ### Adding Measurements to the Attribute Table
@@ -289,31 +287,98 @@ The result should be a new version of your `countyp010g` layer, now in `ESRI:102
 
 ### It's not in `ESRI:102999` What the heck happened?
 
-This is one of the idiosyncrasies of working with Open Source software. So, the best I can tell is that
+This is one of the idiosyncrasies of working with Open Source software. So, the best I can tell is that QGIS is preferring the EPSG Versions of CRS definitions. [I've reported the issue to the QGIS developers](https://github.com/qgis/QGIS/issues/50419), so hopefully it will be fixed, eventually, or there will be some messaging in the output process that indicates that the EPGS CRS is preferred.   
 
-### Attribute Table
-#### Calculate `Area`
+What is important to note is that the two 'versions' of State Plane CA 3 are identical, except for the labeling, so we can continue without issue.
 
-Projected Area = `area( $geometry )/1000000`
+### Calculate `Area`
 
-#### Calculate `$AREA`
+Now we will re-calculate the are of our `counties_stateplane_ca3` layer, using the newly exported version of the data, that we have "projected" to `State Plane Coordinate System`. This time, we will use **Planar Measurements** to make the calculation, which will be virtually identical to the process we used to calculate the area, using the ellipsoid, except this time we will use the `area` function, rather than the `$area` function.
 
-Static Variable
+One difference between the `$area` and `area` functions is that the `area` function requires you explicitly pass the geometry to the function, in your expression, so that the expression you use this time, will be:`area( $geometry )/1000000`
 
-ELLIP_AREA = `$AREA/1000000`
+1. **Repeat** the steps you used to calculate `$area` on the ellipsoid, using the following settings:
+
+Use the expression: `area( $geometry )/1000000`
+
+* Check **Create New Field**
+* **Output Field Name**: `PROJ_SQKM`
+* **Output Field Type**: `Decimal number (real)`
+* **Precision**: `2`
+7. Click OK to calculate the field.
+
+![](images/50_Coordinate_Systems_Geodesy-b5930102.png)
+
+A quick comparison of the two variables, `ORIG_SQKM` (calculated above, before you exported to the new **CRS**) & `PROJ_SQKM` reveals immediately that the **Ellipsoid** and **Planar measurements** are not the same. In the next part of the exercise, we will calculate the error between the two measurements, and apply a symbology that will reveal where measurements are most accurate, and how that accuracy decays, spatially.   
+
+![](images/50_Coordinate_Systems_Geodesy-55365511.png)
 
 ### Calculate Error Introduced by Projection
 
-AREA_ERROR =  `"ELLIP_AREA"  -  "PROJ_AREA" `
+Now we will calculate a new variable in the attribute table, `ERROR_PCT`, which will reveal the spatial distribution of error in our planar measurements, as well as illustrating a **foundational concept** about **projected coordinate systems**, in general.
 
-ERRO_PCT = AREA_ERROR/ELLIP_AREA
+We'll use the following equations, which returns the **Absolute Value** of the percent difference between the projected area in `PROJ_SQKM` vs. the actual area, in `ORIG_SQKM`
+
+`ERROR_PCT =   abs((("ORIG_SQKM"  -  "PROJ_SQKM")/ "ORIG_SQKM")*100)`
+
+1. Return to the Attribute Table for the `counties_stateplane_ca3 layer`
+2. Open the Field Calculator and use the following options:
+* Check **Create New Field**
+* **Output Field Name**: `ERROR_PCT`
+* **Output Field Type**: `Decimal number (real)`
+* **Precision**: `3`
+* Expression: `abs((("ORIG_SQKM"  -  "PROJ_SQKM")/ "ORIG_SQKM")*100)` ( _note that is you created area fieldnames that differ from this exercise, you will need to substitute yours, for the these_)  
+
+![](images/50_Coordinate_Systems_Geodesy-4440f21f.png)
+
+7. Click OK to calculate the field.
+8. Toggle off Editing ![](images/50_50_Coordinate_Systems_Geodesy-787c7591.png) and save.
+
+9. Examine you results in the attribute table to be sure that they make sense:
+
+![](images/50_Coordinate_Systems_Geodesy-32c3229e.png)  
+
+
+
+## Apply Symbology Using the New `ERROR_PCT` Field
 
 # Creating a Custom a CRS for a Specific Region
 
-Change CRS and map with two layouts
+Now, we'll apply a simple symbology, based upon our ERROR_PCT field, that will reveal how errors in measurement are propagating when using projected coordinates and planar measurements.
+
+1. Return to the Layer Styling Panel, and use the following options to create a symbology:
+* Target Layer: counties_stateplane_ca3
+* Symbol Method: Graduated
+* Value: ERROR_PCT
+* Color Ramp: Your Choice
+* Mode: Equal Count (Quantile)
+* Classes: 50
+
+2. Click Classify, if necessary to populate the Classes Pane with values, and apply the symbology to the layer.
+
+![](images/50_Coordinate_Systems_Geodesy-57d459ef-drop-shadow.png)
+
+The results should reveal a distinct pattern in the errors that are introduced by calculating on projected data, using planar measurement.
+
+![](images/50_Coordinate_Systems_Geodesy-7fd184da-drop-shadow.png)
+
+Zoom into the central part of the Continental US to see the detail in the error.
+
+## Questions: (For your consideration, not to turn in)
+
+1. Where do you think the True Lines of Scale for the NAD_1983_2011_StatePlane_California_III_FIPS_0403 projection are?  
+
+(_HINT: Use the Identify Features Tool_ ![](images/Coordinate_Systems_Geodesy-32507c2a.png) _to identify the `degrees` field value for the lines of Latitude (Parallels) in the `stanford-fr122tq8910-geojson` layer, and estimate, keeping in mind that the values decrease to zero as you move towards the equator_)
+
+![](images/50_Coordinate_Systems_Geodesy-786652bd-drop-shadow.png)
+
+# To Turn In :
+
+1. **Create a QGIS Layout** with appropriate cartographic elements (_Title, Legend, Scale bar, Your Name, Date, CRS of the map, etc..._).
+2. **Use your creativity**, but remember what the purpose of the map is, and make sure that your symbology and other choices are communicating properly.
+3. **Export** to a **PDF** or **PNG** image, and upload to **Canvas**.
 
 ## Ellipsoid vs Orthometric Height
 
 ### Sample Scripts
 * https://code.earthengine.google.com/?accept_repo=users/stacemaples/Earthsys144
-*
