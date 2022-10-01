@@ -436,8 +436,9 @@ Now we'll turn briefly to the issue of height measurement. In this section, You 
 # To Turn In:
 
 1. Once you have successfully created a new extent for the script, and run it to get the new `Average Error value`, Save your script to your Scripts repository.
+
+
 2. Use the Get Link button to create a shareable Link
-
+3. Submit your Get Link URL to Canvas.  
+4. 
 ![](images/50_Coordinate_Systems_Geodesy-0f2bb8e9-drop-shadow.png)
-
-3. Submit your Get Link URL to Canvas.
