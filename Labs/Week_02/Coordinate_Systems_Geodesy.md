@@ -1,3 +1,5 @@
+# Note that this exercise is being edited currently
+
 # Coordinate Systems, Projections, Geodesy, and Measurements
 ## Objectives  
 
@@ -273,11 +275,21 @@ Projecting your data layers into the the same projection, and one that preserves
 * CRS: `Project CRS: ESRI:102999 - NAD_1983_2011_StatePlane_California_III_FIPS_0403` (The Project `CRS` will always, conveniently, show up in the dropdown)
 * Leave the defaults for the remaining settings
 
-4.
+
 ![](images/Coordinate_Systems_Geodesy-f215df9a.png)
 
 
-Export using CRS: `ESRI:102999 [NAD_1983_2011_StatePlane_California_III_FIPS_0403]`
+4. Click OK to Export the new layers
+
+The result should be a new version of your `countyp010g` layer, now in `ESRI:102999 - NAD_1983_2011_StatePlane_California_III_FIPS_0403` **CRS**
+
+![](images/Coordinate_Systems_Geodesy-eab8431d.png)
+
+5. Confirm that the new layer is, in fact, using the `ESRI:102999` **CRS**, by hovering your curser over the layer name, in the **Layers Panel**.
+
+### It's not in `ESRI:102999` What the heck happened?
+
+This is one of the idiosyncrasies of working with Open Source software. So, the best I can tell is that
 
 ### Attribute Table
 #### Calculate `Area`
