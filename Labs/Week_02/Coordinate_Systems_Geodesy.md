@@ -1,4 +1,4 @@
-# Note that this exercise is being edited currently
+##### `Note that this exercise is being edited currently`
 
 # Coordinate Systems, Projections, Geodesy, and Measurements
 ## Objectives  
