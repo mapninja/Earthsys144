@@ -440,5 +440,5 @@ Now we'll turn briefly to the issue of height measurement. In this section, You 
 
 2. Use the Get Link button to create a shareable Link
 3. Submit your Get Link URL to Canvas.  
-4. 
+4.
 ![](images/50_Coordinate_Systems_Geodesy-0f2bb8e9-drop-shadow.png)
