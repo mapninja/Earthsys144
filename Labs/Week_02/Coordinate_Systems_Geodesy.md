@@ -9,7 +9,7 @@ Upon completion of this lab, you should be able to:
 * Calculate new fields using expressions in the Field Calculator
 * 'Project' data layers to new CRS.
 * Create a custom CRS, centered on a location of your choice.
-* Identify and manipulate the True Lines of Scale for a projection.
+* Identify and manipulate the Lines of True Scale for a projection.
 * Understand the difference between Ellipsoid Height and Orthometric (GEOID) Height, and calculate the difference, for any location.
 
 
