@@ -15,7 +15,9 @@ Upon completion of this lab, you should be able to:
 
 ## Projections & Measurement Error
 
-In this Lab Assignment, we will be exploring Projections & Geographic Coordinate Systems and the effect they have upon spatial measurements. We'll calculate the area of our
+In this Lab Assignment, we will be exploring Projections & Geographic Coordinate Systems and the effect they have upon spatial measurements. We'll calculate the area of our counties features, using two methods: First, using measurements "on the ellipsoid"; and second using planar measurements, based upon the projection of the data.
+
+Then, we'll calculate the % error that calculating measurements using planar calculations can introduce, and visualize that error to make the influence of the projection on those measurements, apparent. 
 
 
 
