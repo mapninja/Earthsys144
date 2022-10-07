@@ -8,7 +8,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Installing QGIS (dealing with security warnings for MacOS), and adding plugins we will use for the course.](Labs/Week_01/CleanQGISInstallationforMac.md)
 1a. [Confirming access to Google Earth Engine](Labs/Week_01/gee_account_test.md)
-2. [Cartography Exercise](Labs/Week_01/earthquake lab QGIS 3_10.pdf) (David Medeiros) & [Exercise Data (_click link to download_)](https://github.com/mapninja/Earthsys144/raw/master/data/CartographyExerciseMaterials.zip)
+2. [Cartography Exercise](https://github.com/mapninja/Earthsys144/raw/master/Labs/Week_01/earthquake%20lab%20QGIS%203_10.pdf) (David Medeiros) & [Exercise Data (_click link to download_)](https://github.com/mapninja/Earthsys144/raw/master/data/CartographyExerciseMaterials.zip)
 
 ## Week 02 Coordinate Systems & Geodesy
 
