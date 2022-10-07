@@ -6,7 +6,7 @@ Most of you should currently be enrolled in our Google Earth Engine enterprise a
 2. _You may be prompted to create a repository name. The default name should be fine._
 2. In the resulting Google Earth Engine Code Editor window, you should see a set of sample scripts, under **Scripts>Reader>users/stacemaples/SGC-EE101**
 
-![](images/gee_account_test-1763caf1.png)
+![](images/gee_account_test-1763caf1_reduce-drop-shadow.png)
 
 # To Turn In:
 1. **Load** one of the **scripts** into the Code Editor Window, **by clicking** on it.
@@ -20,22 +20,22 @@ Most of you should currently be enrolled in our Google Earth Engine enterprise a
 
 5. **Click the Dropdown arrow** on the **Save** button and **Save as...**
 
-![](images/gee_account_test-b698b325.png)
+![](images/gee_account_test-b698b325_reduce-drop-shadow.png)
 
 6.** Click OK to Save** a Copy of the script
 
-![](images/gee_account_test-94feb0f7.png)
+![](images/gee_account_test-94feb0f7_reduce-drop-shadow.png)
 
 7. You can use the default File Name and Path, with a Commit Message: "`my first script edit`"
 8. Click OK, to save to your repo
 
 _Note that you may see other messages at some point, about creating a repo, etc,... if you have never logged in before. Accept the defaults for these messages._
 
-![](images/gee_account_test-7eee1354.png)
+![](images/gee_account_test-7eee1354_reduce-drop-shadow.png)
 
 9. Finally, click on the **Get Link button**, and **Copy the Shareable Link**, to **turn in on Canvas**.
 
-![](images/gee_account_test-55b8811e.png)
+![](images/gee_account_test-55b8811e_reduce-drop-shadow.png)
 
 ----
 
