@@ -13,3 +13,8 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 02 Coordinate Systems & Geodesy
 
 1. [Coordinate Systems, Projections, Geodesy & Measurement](Labs/Week_02/Coordinate_Systems_Geodesy.md)
+
+## Week 03 Creating & Collecting data
+
+1. [Editing Basics in QGIS](/Users/maples/GitHub/Earthsys144/Labs/Week_03/Editing_with_QGIS.md)
+2. Building a Field Data Collection app with ArcGIS Online
