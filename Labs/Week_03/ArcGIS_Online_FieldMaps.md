@@ -43,8 +43,18 @@ By the end of the exercise, you should be familiar enough to create your own fie
 ### Create an empty feature layer
 
 1. Go to Content, and in My Content click Create (New Item) and choose Feature Layer to open the Create a feature layer dialog.
-2. Select the Build a layer category, select Points, lines, and polygons, and click Create.
-3. Rename the individual point, line and polygon layers
+
+![](images/ArcGIS_Online_FieldMaps-b8fcdba2.png)
+
+2. Select the Feature Layer item.
+
+![](images/ArcGIS_Online_FieldMaps-54402a17.png)
+
+3. Select **Define your own layer**, and click Next.
+
+![](images/ArcGIS_Online_FieldMaps-aeadde9f.png)
+
+3. Use the + Add to create individual point, line and polygon layers and name them, as shown in the table, below:
 
 <table>
   <tr>
@@ -76,9 +86,7 @@ By the end of the exercise, you should be familiar enough to create your own fie
 
 
 
-
-1. Set the extent for your layer and click Next.
-2. Provide a title, like "Walking Tour (SDM)". _Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise_. Click Done.
+4. Provide a title, like "Walking Tour (SDM)". _Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise_. Click Save.
 
 
 ![./images/image3.gif](./images/image3.gif)
@@ -190,7 +198,7 @@ This is a step that MUST be done before adding your feature layers to an ArcGIS 
 2. Make sure that settings under the Editing section at the top are all enabled, in particular that "Enable Sync" is checked.
 3. Note the other settings for controlling who and how data can be edited.
 
-![](images/ArcGIS_Online_FieldMaps-ac42ebd4.png)
+![](images/ArcGIS_Online_FieldMaps-bae26f51.png)
 
 
 1. Click Save to save these settings.
@@ -200,18 +208,18 @@ This is a step that MUST be done before adding your feature layers to an ArcGIS 
 
 Now you will add the feature layers you created to an ArcGIS.com map. This map will drive the functionality in the Collector/FieldMaps  for ArcGIS application, so everything we do from this point will be to improve the simplicity of use for our data collectors in the field.
 
-
-
 1. Return to the Overview tab the item page of your layer, in the drop-down list for Open in **Classic** Map Viewer with Full Editing Control pick Add to new map to start making your map.
 
-![](images/ArcGIS_Online_FieldMaps-28acb1ff.png)
+![](images/ArcGIS_Online_FieldMaps-15144885.png)
 
+_You may see a pop-up prompting you to update the symbology for one of your layers. You can click cancel to dismiss the symbology panel_
 
 1. Save your map, giving it a title "Walking Tour [_SUNetID_]" and a tag.
 
 
 ![](images/ArcGIS_Online_FieldMaps-41b39077.png)
 
+![](images/ArcGIS_Online_FieldMaps-e89307d8.png)
 
 Shortening the names of our layers in the Map will simplify the appearance of those items in the resulting Collector/FieldMaps  application.
 
@@ -220,7 +228,7 @@ Shortening the names of our layers in the Map will simplify the appearance of th
 1. In the Contents pane, hover over the layer of places, click More Options (ellipsis), choose Rename, and rename the layer of places to Places.
 2. Repeat for the Paths & Areas layers.
 
-![](images/ArcGIS_Online_FieldMaps-e89307d8.png)
+
 
 
 
@@ -231,16 +239,19 @@ Shortening the names of our layers in the Map will simplify the appearance of th
 
 
 
-1. Click Options for the Types (Unique symbols) drawing style.
+1. Change the "Attribute to Show" option to `Point of Interest Type`
+
+![](images/ArcGIS_Online_FieldMaps-41bf521b.png)
+
+2. Click Options for the **Types (Unique symbols)** drawing style.
+
 2. Click the symbol next to the Art POI Type, click Shape, choose an appropriate symbol and set it to a size of 20, then click OK.
 
 
 ![](images/ArcGIS_Online_FieldMaps-ceab2706.png)
 
 
-
-
-1. Configure the symbols for the each of your other POI Types. Explore the various symbology categories available.
+1. Configure the symbols for the each of your other POI Types. Explore the various symbology categories available. I've used the National Park Service Symbols, here, but you should feel free to explore and experiment.
 
 ![](images/ArcGIS_Online_FieldMaps-1a81e0cb.png)
 
