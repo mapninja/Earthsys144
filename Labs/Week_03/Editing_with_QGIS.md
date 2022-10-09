@@ -8,7 +8,7 @@
 
 ## Getting ready for the lab
 
-Download the data: [https://canvas.stanford.edu/courses/143291/files/8447843/download?download_frd=1](https://canvas.stanford.edu/courses/143291/files/8447843/download?download_frd=1)
+Download the data: [https://drive.google.com/file/d/1mD8NcG0z928kYq3vf2aheqbmmZLgp6Aw/view?usp=sharing](https://drive.google.com/file/d/1mD8NcG0z928kYq3vf2aheqbmmZLgp6Aw/view?usp=sharing)
 
 Data include:
 
