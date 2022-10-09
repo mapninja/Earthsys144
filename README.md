@@ -16,5 +16,5 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 ## Week 03 Creating & Collecting data
 
-1. [Editing Basics in QGIS](/Users/maples/GitHub/Earthsys144/Labs/Week_03/Editing_with_QGIS.md)
+1. [Editing Basics in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/Editing_with_QGIS.md)
 2. Building a Field Data Collection app with ArcGIS Online
