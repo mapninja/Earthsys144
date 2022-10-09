@@ -308,11 +308,12 @@ _This creates feature templates that Collector/FieldMaps  will use as the POI ty
 Open Collector/FieldMaps , using "stanford" as your organization, and your SUNetID and password.
 
 
-
 1. Choose the map you just made.
 2. To add a feature, touch the + sign and follow the prompts.
 
-Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...).
+Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group.
+
+3. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...). **Collect at least 12+ points, with Photo or Video attachments.**
 
 
 ## Part 4: Multi-user editing
@@ -387,4 +388,3 @@ The resulting Feature Layer is a read-only view of the data being collected in y
 # To Turn In:
 
 1. Join the "**Earthsys144 Collector App Group**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 Collector App Group**. (you should have already done this, see above)
-2.
