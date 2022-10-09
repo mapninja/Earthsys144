@@ -26,6 +26,7 @@ You will learn to:
 
 By the end of the exercise, you should be familiar enough to create your own field data collection applications, customized to your research needs.
 
+**_Note that the examples and many of the features you will need for your Data Collection app require the use of the Classic Map Viewer/Editor in ArcGIS Online. Anytime you are asked to open or create a map, be sure that you are using the Classic Map Viewer. If you find yourself in the new Map Viewer (Beta), you should be able to switch at teh top of the page_**
 
 ## Part 1: Create a Feature Layer
 
@@ -201,7 +202,7 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
 
 
 
-1. Return to the Overview tab the item page of your layer, in the drop-down list for Open in Map Viewer with Full Editing Control pick Add to new map to start making your map.
+1. Return to the Overview tab the item page of your layer, in the drop-down list for Open in **Classic** Map Viewer with Full Editing Control pick Add to new map to start making your map.
 
 ![](images/ArcGIS_Online_FieldMaps-28acb1ff.png)
 
@@ -386,4 +387,4 @@ The resulting Feature Layer is a read-only view of the data being collected in y
 # To Turn In:
 
 1. Join the "**Earthsys144 Collector App Group**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 Collector App Group**. (you should have already done this, see above)
-2. 
+2.
