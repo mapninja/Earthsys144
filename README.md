@@ -2,7 +2,7 @@
 
 Here you will find the Earthsys144 and ESS164 labs, as they are completed and assigned.
 
-Please note that exercises in this repo that have not yet been released in Canvas may be in a state of 'becoming' and that changes to the assignemtns may occur up to the point that I release the assignments in Canvas.
+Please note that exercises in this repo that have not yet been released in Canvas may be in a state of 'becoming' and that changes to the assignments may occur up to the point that I release the assignments in Canvas.
 
 ## Week 01 Introductions & Cartographic Design
 
@@ -17,4 +17,4 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 03 Creating & Collecting data
 
 1. [Editing Basics in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/Editing_with_QGIS.md)
-2. Building a Field Data Collection app with ArcGIS Online
+2. [Building a Field Data Collection app with ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
