@@ -284,7 +284,7 @@ _This creates feature templates that Collector/FieldMaps  will use as the POI ty
 2. Check, then uncheck, the Display checkbox, to turn off the display of all attributes in the Pop-up.
 3. Scroll down until you see the attributes you created [{Label},{notes},{PlaceType}] and check the Edit checkboxes (which will also check the Display checkbox)
 
-![](images/ArcGIS_Online_FieldMaps-5ee25d6f.png)  
+![](images/ArcGIS_Online_FieldMaps-0e949c7c.png)
 
 1. Click OK, twice, to commit your changes and close the Configure Pop-ups panel.
 2. Change the basemap to OpenStreetMap
@@ -315,12 +315,18 @@ _This creates feature templates that Collector/FieldMaps  will use as the POI ty
 
 ## Part 3: Record Points of Interest with Collector/FieldMaps
 
+For this part of the exercise, you will need to download "ArcGIS FIeld Maps" for iPhone of Android, from the respective app stores.
 
-Open Collector/FieldMaps , using "stanford" as your organization, and your SUNetID and password.
+Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID and password.
 
 
 1. Choose the map you just made.
+
+![](images/ArcGIS_Online_FieldMaps-53af99e6.png)  
+
 2. To add a feature, touch the + sign and follow the prompts.
+
+![](images/ArcGIS_Online_FieldMaps-c1f41a38.png)
 
 Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group.
 
