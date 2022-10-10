@@ -374,11 +374,11 @@ Now that you are a member of the **Earthsys144 FieldMaps app Group 2022**, you c
 
 ![](images/ArcGIS_Online_FieldMaps-dd56ec20.png)
 
+![](images/ArcGIS_Online_FieldMaps-5aad5a9b.png)
 
-1. Click Save, then click Update to also change the Sharing options for the Feature Layer in your Map (this is necessary).
+1. Click OK, then go to the Details Page for your Feature Layer and share it with the **Earthsys144 FieldMaps app Group 2022**, as well (this is necessary).
 
 
-![](images/ArcGIS_Online_FieldMaps-5506cdba.png)
 
 
 1. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 FieldMaps app Group 2022
@@ -405,5 +405,5 @@ The resulting Feature Layer is a read-only view of the data being collected in y
 
 # To Turn In:
 
-1. Join the "**Earthsys144 FieldMaps app Group 2022**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 FieldMaps app Group 2022**. (you should have already done this, see above). Return to the Details Page of your  and scroll to the bottom of the page, copy the URL and paste it into the Homework URL submission text box, in canvas.
+1. Join the "**Earthsys144 FieldMaps app Group 2022**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 FieldMaps app Group 2022**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
 2. Go to the Details Page for the View Layer you created and scroll to the bottom of the page to find the URL. Copy the URL and paste it into the Homework URL submission text box, in Canvas.
