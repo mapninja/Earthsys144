@@ -109,19 +109,16 @@ You should know about snapping from the textbook readings, if not, review them p
 
 
 
-1.
-On the Main Menu, go to **Project>Snapping Options...**
+1. On the Main Menu, go to **Project>Snapping Options...**
 This should display a **Project Snapping Settings** bar, a portion of which is shown here:
 
 ![](images/Editing_with_QGIS-f8c71d6c.png)
 
-2.
-Click on the horseshoe magnet to **activate** dropdowns and options.
+2. Click on the horseshoe magnet to **activate** dropdowns and options.
 
 ![](images/Editing_with_QGIS-90b9ef3c.png)  
 
-3.
-Set snapping to apply to **All Layers**, **change the snapping to meters**, and **set the snap distance to 3.00 meters**. (If the snapping is not in meters, it will be in “px”. That is the button to click to change to meters.)  
+3. Set snapping to apply to **All Layers**, **change the snapping to meters**, and **set the snap distance to 3.00 meters**. (If the snapping is not in meters, it will be in “px”. That is the button to click to change to meters.)  
 
 _There are additional options in the setting not used here, for example, to enable Topological Editing and Snapping on Intersection. Also note that to enable types of Snapping other than vertex, you use the dropdown, and click on each of the snapping types you want to  enable._
 
@@ -238,13 +235,11 @@ Position the cursor over a segment where you wish to place the new vertex and do
 
 
 
-11.
-Digitize the roads in the image, no need to digitize the driveways. Remember to save your edits frequently.
+11. Digitize the roads in the image, no need to digitize the driveways. Remember to save your edits frequently.
 
 ![](images/Editing_with_QGIS-f5e13019.png)
 
-12.
-When finished, save edits and toggle off editing for your roads file.
+12. When finished, save edits and toggle off editing for your roads file.
 
 
 
@@ -284,38 +279,28 @@ If you accidentally move a vertex or line segment, remember the** Undo option** 
 
 
 
-1.
-Add the ponds layer you created, and symbolize it using something visible,  like a simple orange or  bright blue fill.
+1. Add the ponds layer you created, and symbolize it using something visible,  like a simple orange or  bright blue fill.
 
 
-2.
-Zoom to display a pond, dark and usually with a convex outer boundary on this image:
+2. Zoom to display a pond, dark and usually with a convex outer boundary on this image:
 
 
-3.
-**To digitize a pond/polygon**, first click on the **Add Polygon** button ![](images/Editing_with_QGIS-3b7785a1.png)
+3. **To digitize a pond/polygon**, first click on the **Add Polygon** button ![](images/Editing_with_QGIS-3b7785a1.png)
 
 
-
-
-
-4.
-Position the cursor over the pond edge, and **click to start digitizing**. Click along the margin, placing vertices that define the pond boundary. 
+4. Position the cursor over the pond edge, and **click to start digitizing**. Click along the margin, placing vertices that define the pond boundary.
 
 ![](images/Editing_with_QGIS-af381bfd.png)
 
-5.
-**After placing the last Vertex**, **Right-click to end** the polygon.
+5. **After placing the last Vertex**, **Right-click to end** the polygon.
 
 
 
-6.
-Digitize polygons for all the ponds on the image, using the example map at the end of this section as a guide.
+6. Digitize polygons for all the ponds on the image, using the example map at the end of this section as a guide.
 
 ![](images/Editing_with_QGIS-22f21a2c.png)
 
-7.
-Make sure to frequently save your edits.
+7. Make sure to frequently save your edits.
 
 
 
@@ -352,4 +337,4 @@ Remember to include cartographic elements: title, your name, legend, north arrow
 ![](images/Editing_with_QGIS-c1b16301.png)
 
 
-**Export your layout to _yourSUNetID__Week3LabEx1.pdf and upload to Canvas.**
+**Export your layout to _yourSUNetID__Week3LabEx1.pdf or *.png, and upload to Canvas.**
