@@ -97,8 +97,9 @@ For the third layer, also use the UTM system,
 
 We most often add features with the Digitizing and Advance Digitizing toolbars.
 
-Basic Digitizing is typically a default toolbar, Advanced digitizing often not. You can display the Advanced Digitizing toolbar through View-Toolbars (see figure at right).
+Basic Digitizing is typically a default toolbar, Advanced digitizing often not. You can display the Advanced Digitizing toolbar through View-Toolbars (see figure below).
 
+![](images/Editing_with_QGIS-577105ca.png)
 
 ## Snapping
 
@@ -117,10 +118,12 @@ This should display a **Project Snapping Settings** bar, a portion of which is s
 2.
 Click on the horseshoe magnet to **activate** dropdowns and options.
 
-![](images/Editing_with_QGIS-f27bb664.png)  
+![](images/Editing_with_QGIS-90b9ef3c.png)  
+
 3.
-Set snapping to apply to **All Layers**, **change the snapping to meters**, and **set the snap distance to 3.00 meters**. (If the snapping is not in meters, it will be in “px”. That is the button to click to change to meters.)
-_There are additional options in the setting not used here, for example, to enable Topological Editing and Snapping on Intersection.Also note that to enable types of Snapping other than vertex, you use the dropdown, and click on each of the snapping types you want to  enable. _
+Set snapping to apply to **All Layers**, **change the snapping to meters**, and **set the snap distance to 3.00 meters**. (If the snapping is not in meters, it will be in “px”. That is the button to click to change to meters.)  
+
+_There are additional options in the setting not used here, for example, to enable Topological Editing and Snapping on Intersection. Also note that to enable types of Snapping other than vertex, you use the dropdown, and click on each of the snapping types you want to  enable._
 
 
 ## Creating Features
@@ -297,12 +300,12 @@ Zoom to display a pond, dark and usually with a convex outer boundary on this im
 
 
 4.
-Position the cursor over the pond edge, and **click to start digitizing**. Click along the margin, placing vertices that define the pond boundary. \
+Position the cursor over the pond edge, and **click to start digitizing**. Click along the margin, placing vertices that define the pond boundary. 
 
 ![](images/Editing_with_QGIS-af381bfd.png)
 
 5.
-**After placing the last Vertex**, **Left-click to end** the polygon. \
+**After placing the last Vertex**, **Right-click to end** the polygon.
 
 
 
