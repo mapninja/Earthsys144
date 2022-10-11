@@ -1,16 +1,23 @@
-**Week 06 Lab 1: Tables Operations in QGIS**
+# Week 06 Lab 1: Tables Operations in QGIS
 
-**_What You’ll Learn:_** This Lab provides practice with tabular data management in QGIS.  In this Lab, we will view, select, re-order, and update tabular data.
+### What You’ll Learn
+
+This Lab provides practice with tabular data management in QGIS.  In this Lab, we will view, select, re-order, and update tabular data.
 
 You should read chapter 8 in the GIS Fundamentals textbook before performing this Lab.
 
+### Data  
 **_Data_**: are in the **L7.zip**, with census data **_demographics.shp_** in decimal degree coordinates, a table **more_data.dbf**, and **_soils.shp_** in `UTM Zone 17, NAD83 coordinates, and the units are meters`.
 
 [Download the data from this link](https://github.com/mapninja/Earthsys144/raw/master/data/L7.zip)
 
-**_What You’ll Produce:_** **Three maps, two of selections based on census data**, and one of a soils data set.
+### What You’ll Produce
 
-**Background:** Most spatial data in a GIS consist of at least two types of data, those data depicting the location and shape of objects, and text or numerical data describing the characteristics of the  objects.  These text and numerical data are most often contained in tables, and most GIS packages have some way of creating and editing these data tables.  
+**Three maps, two of selections based on census data**, and one of a soils data set.
+
+### Background
+
+Most spatial data in a GIS consist of at least two types of data, those data depicting the location and shape of objects, and text or numerical data describing the characteristics of the  objects.  These text and numerical data are most often contained in tables, and most GIS packages have some way of creating and editing these data tables.  
 
 QGIS provides a rich set of tools for viewing and displaying attribute data.  However, you don’t have as many options for manipulating and saving new data, as with a full-featured database manager, so we’ll do some rather simple operations in this lab.  
 
