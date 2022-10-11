@@ -26,7 +26,7 @@ You will learn to:
 
 By the end of the exercise, you should be familiar enough to create your own field data collection applications, customized to your research needs.
 
-**_Note that the examples and many of the features you will need for your Data Collection app require the use of the Classic Map Viewer/Editor in ArcGIS Online. Anytime you are asked to open or create a map, be sure that you are using the Classic Map Viewer. If you find yourself in the new Map Viewer (Beta), you should be able to switch at teh top of the page_**
+**_Note that the examples and many of the features you will need for your Data Collection app require the use of the Classic Map Viewer/Editor in ArcGIS Online. Anytime you are asked to open or create a map, be sure that you are using the Classic Map Viewer. If you find yourself in the new Map Viewer (Beta), you should be able to switch at the top of the page_**
 
 ## Part 1: Create a Feature Layer
 
@@ -208,7 +208,7 @@ This is a step that MUST be done before adding your feature layers to an ArcGIS 
 
 Now you will add the feature layers you created to an ArcGIS.com map. This map will drive the functionality in the Collector/FieldMaps  for ArcGIS application, so everything we do from this point will be to improve the simplicity of use for our data collectors in the field.
 
-1. Return to the Overview tab the item page of your layer, in the drop-down list for Open in **Classic** Map Viewer with Full Editing Control pick Add to new map to start making your map.
+1. Return to the Overview tab the item page of your layer, in the drop-down list for **Open in Map Viewer** use the **Open in Classic Map Viewer with Full Editing Control** to start making your map.
 
 ![](images/ArcGIS_Online_FieldMaps-15144885.png)
 
@@ -224,11 +224,8 @@ _You may see a pop-up prompting you to update the symbology for one of your laye
 Shortening the names of our layers in the Map will simplify the appearance of those items in the resulting Collector/FieldMaps  application.
 
 
-
 1. In the Contents pane, hover over the layer of places, click More Options (ellipsis), choose Rename, and rename the layer of places to Places.
 2. Repeat for the Paths & Areas layers.
-
-
 
 
 
