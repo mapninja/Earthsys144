@@ -229,7 +229,7 @@ Shortening the names of our layers in the Map will simplify the appearance of th
 
 
 
-1. Click **Change Style** button ![](images/ArcGIS_Online_FieldMaps-a950f14d.png) for the Places layer, Choose to show the `Point of Interest Type` attribute you created, previously.
+1. Click **Change Style** button ![](images/ArcGIS_Online_FieldMaps-a950f14d.png) for the Places layer.
 
 ![](images/ArcGIS_Online_FieldMaps-edcf3f1f.png)
 
