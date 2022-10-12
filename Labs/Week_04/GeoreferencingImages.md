@@ -8,9 +8,9 @@
 
 1. In a browser, go to the following link (described above):
 
-![](images/GeoreferencingImages-a3388300.png)
+![](images/GeoreferencingImages-a3388300-drop-shadow_reduce.png)
 
-![](images/GeoreferencingImages-770e751a.png)
+![](images/GeoreferencingImages-770e751a-drop-shadow_reduce.png)
 
 ### Adding Data from a Web Feature Service (WFS)
 
@@ -18,19 +18,19 @@
 2. In the Server Connections panel, lick on the **New** Button
 3. Use "Earthworks" as the Name for the connection, and `https://geowebservices.stanford.edu/geoserver/wfs` as the URL. Click OK to add the connection.
 
-![](images/GeoreferencingImages-4f1ac719.png)
+![](images/GeoreferencingImages-4f1ac719-drop-shadow_reduce.png)
 
 4. Back in the Data Source Manager, Click on the Connect Button to create a live connection to the Earthworks server.
 5. In the search box, search for `Public Land Survey System of the United States` (You may not need the entire string to return the target layer).
 6. Confirm that the layer returned has the following unique identifier: `druid:td889mh1819`
 
 
-![](images/GeoreferencingImages-079634f3.png)
+![](images/GeoreferencingImages-079634f3-drop-shadow_reduce.png)
 
 7. Click on the layer in the Search Return window, and then click the Add button, to add the Feature Layer Service to your QGIS Map.
 8. Close the Data Source Manager window.
 
-![](images/GeoreferencingImages-822b51ff.png)
+![](images/GeoreferencingImages-822b51ff-drop-shadow_reduce.png)
 
 
 
@@ -41,13 +41,13 @@
 ### Using Filters to subset a layer's view
 
 1. Examine the Attributes
-![](images/GeoreferencingImages-b52fe42c.png)
+![](images/GeoreferencingImages-b52fe42c-drop-shadow_reduce.png)
 
 2. Build the QUery
 
-![](images/GeoreferencingImages-3a2041a1.png)
+![](images/GeoreferencingImages-3a2041a1-drop-shadow_reduce.png)
 
-![](images/GeoreferencingImages-7faad8b8.png)
+![](images/GeoreferencingImages-7faad8b8-drop-shadow_reduce.png)
 
 
 
@@ -56,10 +56,10 @@
 1. Use Transparent Fill  
 
 
-![](images/GeoreferencingImages-5fb490c5.png)
+![](images/GeoreferencingImages-5fb490c5-drop-shadow_reduce.png)
 2. Set the Stroke color to something bright  
 
-![](images/GeoreferencingImages-f56493cb.png)
+![](images/GeoreferencingImages-f56493cb-drop-shadow_reduce.png)
 ### Add a basemap
 
 
@@ -69,7 +69,7 @@
 
 You can do this using the PURL Page Viewer, here: https://searchworks.stanford.edu/view/10453474
 
-![](images/GeoreferencingImages-e200422a.png)
+![](images/GeoreferencingImages-e200422a-drop-shadow_reduce.png)
 
 Compare the top and bottom graticule
 
@@ -89,11 +89,11 @@ Use your curser in QGIS to hover over the approximate center of Wyoming and see 
 
 * Change Project CRS to USA_Contiguous_Equidistant_Conic `ESRI:102005` and observer the results
 
-![](images/GeoreferencingImages-710d8abe.png)
+![](images/GeoreferencingImages-710d8abe-drop-shadow_reduce.png)
 
 What has happened to the PLSS Grid Layer?
 
-![](images/GeoreferencingImages-a5dae868.png)
+![](images/GeoreferencingImages-a5dae868-drop-shadow_reduce.png)
 
 * Return to Project CRS Properties and Copy the Proj4 Text:
 
@@ -110,13 +110,13 @@ You can cut & Paste the following:
 
 `+proj=eqdc +lat_0=43 +lon_0=-107.5 +lat_1=37 +lat_2=49 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs`
 
-![](images/GeoreferencingImages-f22eab0f.png)
+![](images/GeoreferencingImages-f22eab0f-drop-shadow_reduce.png)
 
 Once you've created the Custom Projection, apply it:
 
-![](images/GeoreferencingImages-600c37b6.png)
+![](images/GeoreferencingImages-600c37b6-drop-shadow_reduce.png)
 
-![](images/GeoreferencingImages-ef467f86.png)
+![](images/GeoreferencingImages-ef467f86-drop-shadow_reduce.png)
 
 
 
@@ -127,12 +127,12 @@ Save your Project File
 * Download **Original Source File** of Wyoming Map
 * Launch Layers>Georeferencer Plugin
 
-![](images/GeoreferencingImages-cddb9aa8.png)
+![](images/GeoreferencingImages-cddb9aa8-drop-shadow_reduce.png)
 
 * Load jp2 image ![](images/GeoreferencingImages-bea03193.png)
 
 
-![](images/GeoreferencingImages-59d5a890.png)
+![](images/GeoreferencingImages-59d5a890-drop-shadow_reduce.png)
 
 * Set Transformation Settings: ![](images/GeoreferencingImages-21191db7.png)
 
@@ -143,27 +143,27 @@ Save your Project File
  *  Save GCP Points
  *  Load in QGIS when done
 
-![](images/GeoreferencingImages-600d9b86.png)
+![](images/GeoreferencingImages-600d9b86-drop-shadow_reduce.png)
 
 
 * Place points at corners and center, then work around for even coverage across the image ![](images/GeoreferencingImages-81727f78.png)
 
-![](images/GeoreferencingImages-0fac269d.png)
+![](images/GeoreferencingImages-0fac269d-drop-shadow_reduce.png)
 
-![](images/GeoreferencingImages-54b2173e.png)
+![](images/GeoreferencingImages-54b2173e-drop-shadow_reduce.png)
 
 Link Georeferencer to QGIS or Vice Versa ![](images/GeoreferencingImages-d07410f9.png)
 
-![](images/GeoreferencingImages-0dae9f4b.png)
+![](images/GeoreferencingImages-0dae9f4b-drop-shadow_reduce.png)
 
 
 
 Press the Start Georeferencing Button when enough points are placed. ![](images/GeoreferencingImages-01c707a8.png)
 
-![](images/GeoreferencingImages-500242e1.png)
+![](images/GeoreferencingImages-500242e1-drop-shadow_reduce.png)
 
 Drag the newly added image below the PLSS Layer
 
 Check the accuracy of your georeferencing against the PLSS grid layer
 
-![](images/GeoreferencingImages-e7488dd4.png)
+![](images/GeoreferencingImages-e7488dd4-drop-shadow_reduce.png)
