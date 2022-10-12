@@ -1,4 +1,4 @@
-# Georeferencing and Digitization
+# Georeferencing and Altering Projections
 
 ## Data
 * Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. Map Of The State Of Wyoming. Compiled from the official Records of the General Land Office and other sources under the direction of Harry King, C.E., Chief of Drafting Division G.L.O. 1900. Compiled, Drawn and Lettered by I.P. Berthrong [cartographic material] - https://searchworks.stanford.edu/view/10453474
