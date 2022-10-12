@@ -21,5 +21,6 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 ## Week 04 Attributes, Tables, Relational Databases
 
-1. [Table Operations in QGIS Part 1](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt1.md)
-2.
+1. [Georeferencing and Creating a Custom Projection](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md)
+2. [Table Operations in QGIS Part 1](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt1.md)
+3.
