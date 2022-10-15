@@ -96,4 +96,8 @@ Compose and export a map (PDF), with **5 Categories** using `PERCAPINC`.  Rememb
 
 Refer to [John Nelson’s blog post](http://uxblog.idvsolutions.com/2011/10/telling-truth.html) on Classification in choropleth mapping for advice on determining the appropriate classification method for this data.
 
+![](images/Table_Operations_in_QGIS_pt2-b720c6ef.png)
+
 Note that you can view the **Histogram tab** for your Field Values in the Layer Styling Panel, when your layer is selected to explore your options. To activate the Layer Styling Panel, on the **Main Menu:** **View>Panels>Layer Styling**
+
+![](images/Table_Operations_in_QGIS_pt2-0ddfe5ef.png)
