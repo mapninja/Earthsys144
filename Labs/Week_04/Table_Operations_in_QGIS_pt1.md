@@ -173,7 +173,7 @@ Here we will use a simple method of calculating a binary field to identify our s
 7. Be sure to **toggle off Editing**, and **save your edits**.
 
 8. You can clear the selection now, using the Deselect all features... button ![](images/Table_Operations_in_QGIS-547ecfaa.png)
-9. Save your Project
+9. **Save your Project and retain it for the next section.**
 
 ## To turn in:
 
