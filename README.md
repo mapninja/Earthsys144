@@ -17,11 +17,11 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 03 Creating & Collecting data
 
 1. [Editing Basics in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/Editing_with_QGIS.md)
-2. [Building a Field Data Collection app with ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
+2. [Building a Field Data Collection app Âwith ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/masteÂr/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
+3. [Georeferencing and Creating a Custom Projection](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md)
 
 ## Week 04 Attributes, Tables, Relational Databases
 
-1. [Georeferencing and Creating a Custom Projection](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md)
-2. [Table Operations in QGIS Part 1](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt1.md)
-3. [Table Operations in QGIS Part 2](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt2.md)
-4. [Table Operations in QGIS Part 3](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt3.md)
+1. [Table Operations in QGIS Part 1](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt1.md)
+2. [Table Operations in QGIS Part 2](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt2.md)
+3. [Table Operations in QGIS Part 3](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt3.md)
