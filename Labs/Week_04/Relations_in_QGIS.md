@@ -12,4 +12,14 @@ Not only can you very quickly query all of the `unique_identifier` records for a
 
 In this exercise, you will create Relations between several datsets in QGIS in order to answer the questions:
 
-1. What are the chemicals being released within 5km of any particular school in our study area, and
+1. What are the chemicals being released within 5km of any particular school in our study area, and their total Air and Water Release amounts
+
+
+## Getting Ready
+### Download the Data
+
+[Download the Data from Github](https://github.com/mapninja/Earthsys144/raw/master/data/TRI2Schools.zip)
+
+### Install "Select by Relationship" Plugin
+
+### Install "Group Stats" Plugin
