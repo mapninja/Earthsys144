@@ -18,8 +18,145 @@ In this exercise, you will create Relations between several datsets in QGIS in o
 ## Getting Ready
 ### Download the Data
 
-[Download the Data from Github](https://github.com/mapninja/Earthsys144/raw/master/data/TRI2Schools.zip)
+[Download the Data from Github]()
 
 ### Install "Select by Relationship" Plugin
 
 ### Install "Group Stats" Plugin
+
+### Open the Project
+
+1. Right-click on the `toxic_sites_stateplane` layer and **>Zoom to Layer...**
+
+![](images/Relations_in_QGIS-852d8d52.png)
+
+### Examine the data
+
+1. Open the properties of the layers in the project to examine their CRS, and where they are coming from.
+
+Note that the data for this lab is contained in a File Geodatabase. This is proprietary data format, created by Esri and mostly supported in their ArcGIS Desktop and ArcGIS Pro software. QGIS, however, has the ability to read data from a geodatabase, and we are using it here to show that it is possible to interact with data in this format, in QGIS. However, if you want to be able to write to the data (alter geometries, calculate fields, etc...), you will need to export each layer you want to alter, to a QGIS Friendly format.
+
+![](images/Relations_in_QGIS-f8394a0b.png)
+
+### Create a Distance Matrix  
+
+1. Open the Processing Tools Panel (**Main Menu>Processing>Toolbox**)
+2. Search for the 'Distance Matrix' Tool and open it.
+3. Use the following settings for the tools:
+
+![](images/Relations_in_QGIS-6ab860d3.png)
+
+4. Click OK, to create the `Schools2ToxDistanceMatrix.shp`, which should be added to your map.
+5. Toggle off the visibility of the layer, since we will only use the table, for this exercise.
+6. Open the attribute table for the new `Schools2ToxDistanceMatrix.shp` layer and look at the justification of the cell values in the table (you may need to expand your columns).
+
+![](images/Relations_in_QGIS-44083df7.png)
+
+Note that the numeric values in the table are "**Right-Justified**", which indicates that they are being interpreted by the software as Numeric Type values. Here, we used the shapefile format for our table, even though we don't need the geometries for our purpose. We did this because the shapefile format carries with it metadata that tells software like QGIS specifically how to format the data in the columns of our table. Bringing a CSV table into QGIS often results in numeric values being formatted as strings, and therefore unavailable to queries like value ranges, etc...
+
+### Filter on a Columns Values
+
+Now we will place a filter on the table we just created to limit it to only those records that have a distance value of less than 5000m. In this way, we will be left with a table that represents all of the Toxic sites within 5km of each school, which we can use to query the chemicals being released with 5km of that school.
+
+1. Open the `School2ToxDistance` layer's **Attribute Table** and note that you have more than 15k rows of information.
+2. Right-click on the `School2ToxDistance` layer, in the Layers Panel and select **>Filter**
+2. Create a Filter Expression where `"Distance" <= 5000`
+
+
+![](images/Relations_in_QGIS-ecc986af.png)
+
+
+3. Click OK to apply the filter, and reexamine the attribute table to ensure that you now have 572 features.
+
+![](images/Relations_in_QGIS-5e1a2886.png)
+
+Your other records haven't been deleted. You've just created a view, (RESTRICT, in relational algebra) of the table, restricting it to those values that meet the criteria of the query you created. Because we filtered out all of the values over 5000m, the table now only contains records for Toxic Sites within 5km of a school.
+
+### Creating Relations, in Relations_in_QGIS
+
+Now we will begin relating our tables to one another, so that we can query across all of them, at the same time.
+
+1. Go to **Main Menu>Project>Properties**
+2. Click on the **Relations** Tab to make it active.
+3. Click on Add Relation ![](images/Relations_in_QGIS-e24a9ebe.png) to add your first relation.
+
+Here, we are interested in connecting our `schools_stateplane` layer to our `School2ToxDistance` layer, and our `School2ToxDistance` layer to our `toxic_sites_stateplane` layer, which will allow us to query those `toxic_sites_stateplane` sites that are within 5km of a school.
+
+1. First, create the following **relation**, named `School2Distance` **_from_** `schools_stateplane` [using `ObjectID`] to `School2ToxDistance` [Using `InputID`]:
+
+![](images/Relations_in_QGIS-b97db48e.png)
+
+2. Next, create the following **relation**, named `Tox2Dist` **_from_** `School2ToxDistance` [using `TargetID`] to `toxic_sites_stateplane` [using `OBJECTID`]
+
+![](images/Relations_in_QGIS-c473c0d7.png)
+
+3. Finally, create the following **relation**, named `Tox2Chem` **_from_** `toxic_sites_stateplane` [using `TRIFID`] to `chemicals` [using `TRIFID`]
+
+![](images/Relations_in_QGIS-0bb659f3.png)
+
+This last relation creates a connection from the `toxic_sites_stateplane` layer to their `chemicals` records.
+
+4. Click OK to Apply your **relations**, and close the **Project Properties** dialog box.
+5. Save your project.
+
+### Using the Select by Relationship Plugin to Query Across Relations
+
+1. Look for the Select by Relationship toolbar, which would have been added to the QGIS interface, when you installed the plugin.
+
+![](images/Relations_in_QGIS-db8977f7.png)
+
+2. Click on the **Allow Selection by Relationship** button ![](images/Relations_in_QGIS-245dd831.png) to activate the tool
+3. Click on the Settings Button for the tool ![](images/Relations_in_QGIS-ef17c33e.png)
+4. Set the tool options, as follows:
+
+![](images/Relations_in_QGIS-cddd1686.png)
+
+5. Click on Select Relationship... ![](images/Relations_in_QGIS-e2317f97.png) and check all three relations (which should be the ones you created, previously).
+
+![](images/Relations_in_QGIS-ed4b966c.png)
+
+6. **IMPORTANT:** Activate your `schools_stateplane` layer, by selecting it in the Layers Panel.
+6. Use the Select Features tools ![](images/Relations_in_QGIS-7f6f2594.png) to draw a box around one of the schools in your data frame (I've chosen to focus on Edgewood Magnet School, for this example) and select that school.
+7. Open the `schools_stateplane` **Attribute Table** and change the **Table View** to **Show Selected Features**, which should show only the school you selected (Here, Edgewood Magnet School)
+
+![](images/Relations_in_QGIS-2205a411.png)
+
+![](images/Relations_in_QGIS-074d29a4.png)
+
+8. Now open the `toxic_sites_stateplane` Attribute Table, and change the Table View to Show Selected Features.
+9. Now open the `chemicals` Attribute Table, and change the view to Show Selected Features.
+
+![](images/Relations_in_QGIS-21533559.png)
+
+You should now see that the `chemicals` records for the 'toxic_sites_stateplane' within 5km of the `schools_stateplane` selection you created, are now selected.
+
+## Using Group Stats to Create a Summary Statistics Analysis
+
+1. Go to Main Menu>Vector>Group Stats, to Open the Group Stats Plugin
+2. Make sure that `chemicals` is selected as the target in the  dropdown
+3. **Check** the option to **Use only the selected features**
+3. From the Fields Panel, in Group Stats, drag objects into the **Columns**, **Rows** and **Value** panels, as shown below, so that we are:
+
+    **COUNT**ing and **SUM**ming the variable `TTLAIR` for every **SELECTED** unique value of `CHEMNAME`
+
+4. Click the Calculate button to create the Summary Table.
+5. Click on the Column Headers to sort, as needed.
+
+![](images/Relations_in_QGIS-ea0401af.png)
+
+6. On the Main Menu (which has changed appearance while using Group Stats), go to **Data>Save all as CSV file**, and save your chemical report with a meaningful name, like EdgewoodSchoolChemReport.csv
+
+![](images/Relations_in_QGIS-d60f2ff0.png)
+
+![](images/Relations_in_QGIS-9f402680.png)
+
+
+7. CLose Group Statistics
+
+# To Turn In:
+
+Create a Map Layout:
+1. With only the school you ran the Chemical Report on visible in the map (Hint: Use a filter on `schools_stateplane` like you did with the Distance Matrix, above).
+2. All TRI Sites from `toxic_sites_stateplane` visible
+3. A basemap of your choice (but a choice that makes sense for your operational layers, above)
+4. Insert the Chemical Report Table using the Add FIxed Table tool ![](images/Relations_in_QGIS-06630c7d.png)
