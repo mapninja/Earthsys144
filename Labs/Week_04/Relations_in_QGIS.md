@@ -18,11 +18,22 @@ In this exercise, you will create Relations between several datsets in QGIS in o
 ## Getting Ready
 ### Download the Data
 
-[Download the Data from Github]()
+1. [Download the Data from Github](https://github.com/mapninja/Earthsys144/raw/master/data/Tox2SchoolsLab.zip)
+2. Unzip the data on your hard drive, preferably somewhere that iCloud or other cloud storage services won't delete you local copies.
+
 
 ### Install "Select by Relationship" Plugin
 
+This plugin allows you to query tables in your project, across "relations" that are created in the Project Setting.
+
+1. Use **Main Menu>Plugins>Manage and Install Plugin...** to open the **Plugin Manager **
+2. Search for, and install, the **Select by Relationship** plugin.
+
 ### Install "Group Stats" Plugin
+
+This plugin provides a graphical summary statistics interface for creating summaries of the attribute tables of your tables & layers.
+
+2. Search for, and install, the **Group Stats** plugin.
 
 ### Open the Project
 
