@@ -120,6 +120,44 @@ This last relation creates a connection from the `toxic_sites_stateplane` layer 
 4. Click OK to Apply your **relations**, and close the **Project Properties** dialog box.
 5. Save your project.
 
+### Using the Actions for Relations plugin to Query Across Relationship
+
+1. Use the Clear all selections tool ![](images/Relations_in_QGIS-a9c70529.png) to ensure that you have no active selections in your project.
+2. Click on your `schools_stateplane` layer, in the** Layers Panel**, to activate it.
+3. Activate the **Select Features** tool ![](images/Relations_in_QGIS-29f01df2.png) and draw a box around one of the `schools_stateplane` features in the map canvas. It should highlight yellow.
+
+![](images/Relations_in_QGIS-6e02f6d9.png)
+
+4. Right-click on the schools_stateplane layer, in the Layer Panel, and go to **>Actions for relations>Show referencing features for the selected features>Show features in referencing layer "`School2ToxDistance`"**
+
+![](images/Relations_in_QGIS-2aaf5871.png)
+
+5. This should open your `School2ToxDistance` attribute table with a filter on those records related to the school you selected in `schools_stateplane`
+
+![](images/Relations_in_QGIS-b33aa530.png)
+
+6. Drag down the numbered buttons on the left side of the table rows, to select all of the Schools2ToxDistanceMatrix records (they are _filtered_, not _selected_, which is different)  
+![](images/Relations_in_QGIS-0713932a.png)
+
+7. Now, return to the **Layers Panel**, right-click on the `Schools2ToxDistanceMatrix` layer and go to **>Actions for relations>Show referencing features for the selected features>Show features in referencing layer "`toxic_sites_stateplane`"**
+
+![](images/Relations_in_QGIS-d67cff9f.png)
+
+8. this should yield a **filtered attribute table** for the `toxic_sites_stateplane`
+
+![](images/Relations_in_QGIS-8f49fc65.png)
+
+9. Select the filtered records in the `toxic_sites_stateplane` attribute table
+![](images/Relations_in_QGIS-027ecf17.png)
+
+
+10. Use the **Actions for relations tool** to 'walk' to the `chemicals` table.
+
+![](images/Relations_in_QGIS-6f79bb5a.png)
+
+![](images/Relations_in_QGIS-2216bcf7.png)
+
+This should yield a selection of the `chemicals` records associated with `toxic_sites_stateplane` sites within 5km of the `schools_stateplane` feature you selected. If you chose to use the **Actions for relations** plugin for this section, you can skip to the **Using Group Stats to Create a Summary Statistics Analysis** section which describes the use of the Group Stats plugin to create a summary of the currently selected records.
 
 
 ### Using the Select by Relationship Plugin to Query Across Relations
@@ -127,7 +165,7 @@ This last relation creates a connection from the `toxic_sites_stateplane` layer 
 **_NOTE: SINCE I FIRST WROTE THIS TUTORIAL, A NEW PLUGIN HAS COME TO MY ATTENTION, CALLED_ Actions for Relations plugin, _WHICH WORKS MUCH MORE SIMPLY, AND ELEGANTLY. MY SUGGESTION IS TO USE THAT PLUGIN, INSTEAD OF THE_ Select by Relationship Plugin, _referenced here. Both will work, but the_ Actions for Relations plugin _is far simpler to use, and the results are the same._**
 **I just discovered this plugin, and haven't finished incorporated it into the exercise, yet, but I have recorded [a video walkthrough for you to use to get you started](https://stanford.zoom.us/rec/play/Pm_DPAZ-XSCHF9q2CnOw1fd3UIg6yJmwqoqCBdHeJjPNd-WRRdLAzqJWIQJ3XJQQcqaWDeDumAdwC4Qi.aQnM1Ao7i6ZQoC5g).**
 
-My siggestion is to use the **Actions for Relations** plugin, after watching the video walkthrough.
+My suggestion is to use the **Actions for Relations** plugin (above), after watching the video walkthrough.
 
 1. Look for the Select by Relationship toolbar, which would have been added to the QGIS interface, when you installed the plugin.
 
