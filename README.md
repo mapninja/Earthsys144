@@ -26,3 +26,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 2. [Table Operations in QGIS Part 2](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt2.md)
 3. [Table Operations in QGIS Part 3](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt3.md)
 4. [Relations in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Relations_in_QGIS.md)
+
+## Week 05 Basic Spatial Analysis
+
+1. Buffering and Overlay in QGIS
