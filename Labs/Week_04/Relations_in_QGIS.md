@@ -151,7 +151,8 @@ You should now see that the `chemicals` records for the 'toxic_sites_stateplane'
 ![](images/Relations_in_QGIS-9f402680.png)
 
 
-7. CLose Group Statistics
+7. Close Group Statistics
+8. Add your Chemical Report Table you just exported back to the QGIS Project (QGIS doesn't add it by default).
 
 # To Turn In:
 
@@ -160,3 +161,5 @@ Create a Map Layout:
 2. All TRI Sites from `toxic_sites_stateplane` visible
 3. A basemap of your choice (but a choice that makes sense for your operational layers, above)
 4. Insert the Chemical Report Table using the Add FIxed Table tool ![](images/Relations_in_QGIS-06630c7d.png)
+
+![](images/Relations_in_QGIS-a7f16abc.png)
