@@ -178,6 +178,8 @@ _**Skip this section if you used the Actions for relations plugin to create your
 
 My suggestion is to use the **Actions for Relations** plugin (above), after [watching the video walkthrough](https://stanford.zoom.us/rec/play/Pm_DPAZ-XSCHF9q2CnOw1fd3UIg6yJmwqoqCBdHeJjPNd-WRRdLAzqJWIQJ3XJQQcqaWDeDumAdwC4Qi.aQnM1Ao7i6ZQoC5g).
 
+If you want to explore this plugin, [check out this video walkthrough](https://stanford.zoom.us/rec/play/vkuXfRNUeZa24wjYaBZ4IG6KU2ngHLvJFsfVj6_CjIK5Emrg047yqpqmX6T9H6ltFYqWckT1qSPiwHWp.AXiu2jrhbGbuUArU)
+
 1. Look for the Select by Relationship toolbar, which would have been added to the QGIS interface, when you installed the plugin.
 
 ![](images/Relations_in_QGIS-db8977f7.png)
