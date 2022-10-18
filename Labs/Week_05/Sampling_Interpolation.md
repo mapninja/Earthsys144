@@ -9,9 +9,11 @@
 
 You will also begin working more with Raster data in this exercise. In previous exercises you have USED raster data, but here, you will begin CREATING raster data, specifically from vector data, using _interpolation methods._
 
-**Data** for the exercise are in the L12.zip file.
+[**Data** for the exercise are in the L12.zip file](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip).
 
-**Background:** The ideas behind the exercises are covered in Chapter12 (Spatial Estimation) and 10 (Raster Analysis) of the GIS Fundamentals textbook.
+https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip
+
+**Background:** The ideas behind the exercises are covered in Chapter 12 (Spatial Estimation) and 10 (Raster Analysis) of the GIS Fundamentals textbook.
 
 **Sampling and Interpolation in QGIS**
 
@@ -269,6 +271,9 @@ Now we want to generalize the strata polygons, removing those from single cells 
     3. **Threshold**: `50%`  
 
 2. Name `ReclassSlopeMajority`
+
+![](images/Sampling_Interpolation-413fc672.png)
+
 3. Toggle the two layers to see that small zones have been removed.
 
 
@@ -276,43 +281,36 @@ Now we want to generalize the strata polygons, removing those from single cells 
 
 Convert the final smoothed raster to a vector layer:
 
-
-
-
 1. Use **Raster Conversion>Polygonize**
- 1. Name the **output Vector polygons**: `STRATA.shp`
+ 1. Use the `defaults` on your `ReclassSlopeMajority` layer
+ 2. Name the **output Vector polygons**: `STRATA.shp`
 
+![](images/Sampling_Interpolation-b2d08211.png)
 
-
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
-
-
+![](images/Sampling_Interpolation-ee145748.png)
 
 ### Calculating a Stratified Sampling Model
 
-We would like to have a total of approximately 1000 sample points, with 25% of the sample points in the steepest areas (class 3) 65% of the samples in the intermediate slope areas (class 2), and 10% of the samples in the flat (class 1).
+We would like to have a total of approximately `1000` **sample points**, with `25%` of the sample points in the **steepest areas** (`class 3`)` 65%` of the samples in the **intermediate slope** areas (`class 2`), and `10%` of the samples in the **flat** (`class 1`).
 
-This means 250 sample points in class 3, 650 in class 2, and 100 in the class 1 strata.
+This means `250` sample points in `class 3`, `650` in `class 2`, and `100` in the `class 1` strata.
 
-We can achieve this by distributing these samples over the polygons, based on the polygon area relative to the total area for the strata.  For example, assume the largest steep polygon has an area of 116.3 square kilometers, and the total steep area is 192.5 square kilometers.  So, this largest steep polygon should get 250 * 116.3/192.5, or 151 sample points.
+We can achieve this by distributing these samples over the polygons, **_based on the polygon area relative to the total area for the strata_**.  For example, assume the largest steep polygon has an area of 116.3 square kilometers, and the total steep area is 192.5 square kilometers.  So, this largest steep polygon should get `250 * 116.3/192.5`, or `151` **sample points**.
 
 We multiply the number of points for the strata by the polygon area, and divide it by the total area of the strata.
 
 How do we get the polygon, class, and total strata area?  
 
-Remember from previous labs, we can calculate the area for each individual polygon by editing the layer table and using the Field Calculator.  
+Remember from previous labs, we can calculate the area for each individual polygon by using the **Field Calculator** to edit the layer table.
 
 You might recall that the steps are to:
 
+1. Open the data table for editing (i.e., the **attribute table** from the `STRATA` layer),
+3. **Calculate** the area into a _new_ Decimal number (real)  column named: SqKm using:  
 
+   `$area/ 1000000`
 
-1. Open the data table for editing (i.e., the attribute table from the STRATA layer),
-2. add a field called “SqKm” that is** **Decimal (Real).
-3. Calculate the area into a new Decimal number (real)  column named: SqKm using:  
-<code>$area/ 1000000<strong> </strong></code>
+![](images/Sampling_Interpolation-e17f5b9a.png)
 4. save edits and toggle off editing.  
 
 
@@ -320,150 +318,94 @@ You might recall that the steps are to:
 
 We can then summarize the resulting column** **to get total square kilometers in the SqKm Field, or to get a total for a specific class/strata.  Previously we’ve had you use the Basic Statistics tool to calculate summary statistics for all records in a column, including the sum.
 
+1. Use the **Select features using an expression** tool in the **attribute table to select a class**, e.g., `class 1 (DN = 1)`
+
+2. Use the **Vector>Analysis>Basic Statistics for Fields** tool, checking the box for **Selected features only** (figure below), for a **sum** of that class area.
+
+![](images/Sampling_Interpolation-7588c603.png)
+
+3. Record the **Total area** for your selected subset of features.
 
 
-1.
-Use the **Select features using an expression** tool in the **attribute table to select a class**, e.g., class 1 (DN = 1)
-
-
-
-2.
-Use the **Vector**>**Analysis**>**Basic Statistics for Fields** tool, checking the box for Selected features only (figure at right), for a **sum** of that class area.
-
-
-
-3.
-Record the **Total area** for your selected subset of features.
-You can then use these with the individual polygon table entries for SqKm to calculate the number of sample points to apply per polygon.
+You can then use these with the individual polygon table entries for `SqKm` to calculate the number of sample points to apply per polygon.
 
 You should arrive at calculated areas close to:
 
-
-
-* **287.408** square kilometers for the flat (DN = 1) strata
-* **357.3539**  square kilometers for the intermediate (DN = 2) strata
-* **25.1439** square kilometers for the steep (DN = 3) strata
+* `287.408` square kilometers for the `flat (DN = 1)` strata
+* `357.3539`  square kilometers for the `intermediate (DN = 2)` strata
+* `25.1439` square kilometers for the `steep (DN = 3)` strata
 
 Your numbers may be slightly different, but should be within a few percent of these areas if you used the methods we described above.
 
 
 ### Calculating Samples per Polygon
 
+4. Open the `strata` layer **attribute table** and add a new **long integer field** named `samp_num`
 
+5. **Select** all the polygons for a given strata (e.g., first DN=1)
 
-4.
-Open the strata layer attribute table and add a new long integer field named samp_num
+6. **Multiply** the **total number of points** for each stratum (e.g., 100 for the flat strata, DN = 1) by the area of the polygon, divided by the total area of the strata (in this case 286.7), so:
 
+DN=1:  `100 *  "SqKm"  / 287.408`  
+DN=2:  `650 *  "SqKm"  / 357.3539`  
+DN=3:  `250 *  "SqKm"  / 25.1439`  
 
+7. Repeat for all three strata, selecting each DN, substituting the appropriate areas and number of samples for the strata, and calculating the number of points per strata.   
 
-5.
-Select all the polygons for a given strata (e.g., first DN=1)
+![](images/Sampling_Interpolation-7bcc3414.png)
 
+8. Save your edits and toggle editing
 
-6.
-Multiply the total number of points for this stratum (e.g., 100 for the flat strata, DN = 1) by the area of the polygon, divided by the total area of the strata (in this case 286.7), so:
-                    DN=1:  `100 *  "SqKm"  / 287.408
-`                    DN=2:  `650 *  "SqKm"  / 357.3539
-`                    DN=3:  `250 *  "SqKm"  / 25.1439`
-
-
-
-
-7.
-Repeat for all three strata, selecting each DN, substituting the appropriate areas and number of samples for the strata, and calculating the number of points per strata.   
-
-
-
-8.
-Save your edits and toggle editing
 Note that your numbers for the strata area and relative number of samples may be different than those shown if you applied a somewhat different set of generalization parameters in the previous work. Substitute your specific summary numbers.
 
-Now, to create the random points.  We use the same tool as before, but this time specifying our new **SampleNum** column to determine the number of points, per feature  
+![](images/Sampling_Interpolation-d0c2de31.png)
 
+Now, to create the random points.  We use the same tool as before, but this time specifying our new `SampleNum` column to determine the number of points, per feature  
 
+1. Open the **Vector>Research tools>Random Points in Polygons**.
 
+2. Specify `Strata` as the **Input Polygon Layer**
 
-1.
-Open the **_Vector_**>**_Research tools_**>**_Random Points in Polygons_**.
+3. Click the button on the right end of the **Number of points for each feature option**, then a click on **Field type>SampleNum** in the drop-down to specify the field that holds the number of points for each feature.
 
+   4. Browse and save the Output **Random points in polygons** layer as `StrataRandom1000.shp`
 
-2.
-Specify **Strata** as the **Input Polygon Layer
-**
-
-
-3.
-Click the button on the right end of the **Number of points for each feature option**, then a click on **Field type>SampleNum** in the drop-down to specify the field that holds the number of points for each feature.
-
-
-
-4.
-Browse and save the Output** Random points in polygons **layer as **StrataRandom1000.shp**
 This should generate a sample set that looks something like that below, with a higher sampling density in the steeper areas of interest:
 
 To add colors to your STRATA map, change symbology to “Categorized” and use “DN” for value.
 
-Now you will use this stratified random sample to produce one last interpolation method.
+![](images/Sampling_Interpolation-c2e1fe19.png)
 
-
-
-1.
-First, use the methods previously described (**_Processing> Toolbox_**>**_Raster Analysis_**>**_Sample raster values_**) to once again sample/assign the **ChirDEM** **elevations** found at each sample point, and saving the Output as** StratRandElevationSamples.shp**
 
 ### Spline Interpolation
 
-_It may be the case that some of the SAGA tools in the Nightly Build of QGIS are not working. properly. If you are not successful creating a Spline Layer, do the following: GO to **Settings>User Profile>New User Profile, **then** close QGIS and reopen. You will need to reinstall the SAGANP plugin, but I’ve had success with this method of “clearing things out”**_
+It may be the case that some of the SAGA tools in the Nightly Build of QGIS are not working, properly. If you are not successful creating a Spline Layer, do the following: Go to **Settings>User Profile>New User Profile** then close QGIS and reopen. You will need to reinstall the **SAGANP** plugin, but I’ve had success with this method of “_clearing things out_”
 
-Additional Note: SAGA & SAGANP seem to be unhappy with using “Temporary Layers” as inputs, so be sure to export your sample points to a shapefile, before running Spine.  
+Additional Note: **SAGA & SAGANP** seem to be unhappy with using “Temporary Layers” as inputs, so be sure to **export** your `sample points` to a **shapefile**, before running Spine.  
 
+Now you will use this stratified random sample to produce one last interpolation method.
 
-
-
-1.
-Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline interpolation**.
+1. First, use the methods previously described (**Processing> Toolbox>Raster Analysis>Sample raster values**) to once again sample/assign the `ChirDEM` **elevations** found at each sample point, and saving the Output as `StratRandElevationSamples.shp`
 
 
-2.
-Specify **StratRandElevationSamples** as the Input points, and your sampled elevation (SAMPLE_1)
+1. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline interpolation**.
+ 1. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`SAMPLE_1`)
+ 3. **Method**: `with B-spline refinement`
+ 4. **Maximum Level**: `11`
+ 5. **Output Extent**: **Calculate from Layer>**`ChirDEM`
+ 6. **Cellsize**: `30`
+ 7. **Fit**: `Cells`
+ 8. **Output Grid**: Browse and name `SplineStratRand`
 
+![](images/Sampling_Interpolation-8945315c.png)
 
-3.
-Method: **with B-spline refinement**
+9. After running the tool, **calculate contours**, Create a **hillshade** and _apply the same style_ as the other Interpolation Layers, including applying transparency to the hillshade, etc...  
 
-
-4.
-Maximum Level: 11
-
-
-5.
-Output Extent: **Calculate from Layer>ChirDEM**
-
-
-6.
-Cellsize: 30
-
-
-7.
-Fit: Cells
-
-
-
-8.
-Output Grid: Browse and name **SplineStratRand
-**
-
-
-9.
-After running the tool, **calculate contours**, Create a **hillshade** and apply the same style as the other Interpolation Layers, including applying transparency to the hillshade, etc...  
-
-
-
-10.
-“**Group**” the Spline layers in the Layer panel.   
-
-###
+10. “**Group**” the Spline layers in the **Layers panel**.   
 
 
 ### To Turn In:
 
 Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours will not be the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF
+
+![](images/Sampling_Interpolation-094645eb.png)

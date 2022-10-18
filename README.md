@@ -30,3 +30,4 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 05 Basic Spatial Analysis
 
 1. [Buffering and Overlay in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Buffering_Overlay.md)
+2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
