@@ -1,11 +1,13 @@
-## Week 7 Lab: Buffering and Overlay in QGIS
+## Week 5 Lab: Buffering and Overlay in QGIS
 
 **What You’ll Learn:** to apply the concepts of buffering and overlay, two common cartographic operations. You should read the sections on buffering and overlay in Chapter 9 in the GIS Fundamentals textbook.
 
-**Data**: All data are in L9.zip file, including:
+**Data**: [All data are in L9.zip file](https://github.com/mapninja/Earthsys144/raw/master/data/L9.zip), including:
 * lakes.shp
 * roads.shp
 * public_Hugo.shp  
+
+https://github.com/mapninja/Earthsys144/raw/master/data/L9.zip
 
 **What You’ll Produce:**
 
