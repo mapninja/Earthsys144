@@ -21,8 +21,18 @@ In this exercise, you will create Relations between several datsets in QGIS in o
 1. [Download the Data from Github](https://github.com/mapninja/Earthsys144/raw/master/data/Tox2SchoolsLab.zip)
 2. Unzip the data on your hard drive, preferably somewhere that iCloud or other cloud storage services won't delete you local copies.
 
+### Install the **Actions for Relations plugin**
+
+**I just discovered this plugin, and haven't incorporated it into the exercise, yet, but I have recorded [a video walkthrough for you to use to get you started](https://stanford.zoom.us/rec/play/Pm_DPAZ-XSCHF9q2CnOw1fd3UIg6yJmwqoqCBdHeJjPNd-WRRdLAzqJWIQJ3XJQQcqaWDeDumAdwC4Qi.aQnM1Ao7i6ZQoC5g).**
+
+1. Use **Main Menu>Plugins>Manage and Install Plugin...** to open the **Plugin Manager **
+2. Search for, and install, the **Actions for Relations** plugin.
 
 ### Install "Select by Relationship" Plugin
+
+
+**_NOTE: SINCE I FIRST WROTE THIS TUTORIAL, A NEW PLUGIN HAS COME TO MY ATTENTION, CALLED_ Actions for Relations plugin, _WHICH WORKS MUCH MORE SIMPLY, AND ELEGANTLY. MY SUGGESTION IS TO USE THAT PLUGIN, INSTEAD OF THE_ Select by Relationship Plugin, _referenced below. Both will work, but the_ Actions for Relations plugin _is far simpler to use, and the results are the same._**
+
 
 This plugin allows you to query tables in your project, across "relations" that are created in the Project Setting.
 
@@ -110,7 +120,14 @@ This last relation creates a connection from the `toxic_sites_stateplane` layer 
 4. Click OK to Apply your **relations**, and close the **Project Properties** dialog box.
 5. Save your project.
 
+
+
 ### Using the Select by Relationship Plugin to Query Across Relations
+
+**_NOTE: SINCE I FIRST WROTE THIS TUTORIAL, A NEW PLUGIN HAS COME TO MY ATTENTION, CALLED_ Actions for Relations plugin, _WHICH WORKS MUCH MORE SIMPLY, AND ELEGANTLY. MY SUGGESTION IS TO USE THAT PLUGIN, INSTEAD OF THE_ Select by Relationship Plugin, _referenced here. Both will work, but the_ Actions for Relations plugin _is far simpler to use, and the results are the same._**
+**I just discovered this plugin, and haven't finished incorporated it into the exercise, yet, but I have recorded [a video walkthrough for you to use to get you started](https://stanford.zoom.us/rec/play/Pm_DPAZ-XSCHF9q2CnOw1fd3UIg6yJmwqoqCBdHeJjPNd-WRRdLAzqJWIQJ3XJQQcqaWDeDumAdwC4Qi.aQnM1Ao7i6ZQoC5g).**
+
+My siggestion is to use the **Actions for Relations** plugin, after watching the video walkthrough.
 
 1. Look for the Select by Relationship toolbar, which would have been added to the QGIS interface, when you installed the plugin.
 
