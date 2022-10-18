@@ -52,7 +52,11 @@ Documentation repo: https://github.com/HenrikSpa/GroupStats
 
 ### Open the Project
 
-1. Right-click on the `toxic_sites_stateplane` layer and **>Zoom to Layer...**
+1. **Browse** to and **Open** the `relates.qgz` QGIS Project file.
+
+![](images/Relations_in_QGIS-5d089780.png)
+
+2. Right-click on the `toxic_sites_stateplane` layer and **>Zoom to Layer...**
 
 ![](images/Relations_in_QGIS-852d8d52.png)
 
