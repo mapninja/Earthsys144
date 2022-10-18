@@ -406,6 +406,8 @@ Now you will use this stratified random sample to produce one last interpolation
 
 ### To Turn In:
 
-Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours will not be the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF
+Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours will not be the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF.
+
+Hint: As you create each Map in your layout, uncheck the options to Auto-Update in the **Item Properties** for each of the four **Map Frames**, so that you can work on the next, without effecting the previous. 
 
 ![](images/Sampling_Interpolation-094645eb.png)
