@@ -34,7 +34,17 @@ Please note that exercises in this repo that have not yet been released in Canva
 3. Network Analysis in QGIS
 4. Basic Raster & Terrain Analysis
 
-## Week 06 Spatial Analysis (con't) & Raster/Terrain
+## Week 06 Spatial Sampling, Stats & Satellite Remote Sensing
 
 1. Remote Sensing with Google Earth Engine
 2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
+
+## Week 07 APIs & Web Mapping
+
+1. Web Mapping
+2. Programming, APIs and Web Services
+
+## Week 08 Cartographic Modeling & SPatial Statistics
+
+1. Cartographic Modeling
+2. Spatial Statistics
