@@ -160,7 +160,7 @@ This last relation creates a connection from the `toxic_sites_stateplane` layer 
 ![](images/Relations_in_QGIS-027ecf17.png)
 
 
-10. Use the **Actions for relations tool** to 'walk' to the `chemicals` table.
+10. Right-click on the `toxic_sites_stateplane` layer, and use the **Actions for relations tool** to 'walk' to the `chemicals` table.
 
 ![](images/Relations_in_QGIS-6f79bb5a.png)
 
