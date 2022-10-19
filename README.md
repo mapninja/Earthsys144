@@ -27,7 +27,12 @@ Please note that exercises in this repo that have not yet been released in Canva
 3. [Table Operations in QGIS Part 3](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt3.md)
 4. [Relations in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Relations_in_QGIS.md)
 
-## Week 05 Basic Spatial Analysis
+## Week 05 Basic Spatial Analysis & Raster Analysis
 
 1. [Buffering and Overlay in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Buffering_Overlay.md)
+2. Areal Interpolation
+
+## Week 06 Spatial Analysis (con't) & Raster/Terrain
+
+1. Network Analysis in QGIS
 2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
