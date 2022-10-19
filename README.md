@@ -1,4 +1,4 @@
-# Earthsys144
+# Earthsys144 - Fundamentals of Geographic Information Science
 
 Here you will find the Earthsys144 and ESS164 labs, as they are completed and assigned.
 
