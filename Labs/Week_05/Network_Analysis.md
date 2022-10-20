@@ -24,7 +24,7 @@ DataSF shares hundeds of datasets at https://datasf.org/opendata/
 
 Direct Download for the SF Streets data at:  
 
-[SF Streets – Active and Retired](https://data.sfgov.org/Geographic-Locations-and-Boundaries/Streets-Active-and-Retired/3psu-pn9h)
+[SF Streets – Active and Retired](https://github.com/mapninja/Earthsys144/raw/master/data/Streets%20Active%20and%20Retired.zip)
 
 ### Displaying Network Data  
 

@@ -31,7 +31,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Buffering and Overlay in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Buffering_Overlay.md)
 2. Areal Interpolation
-3. Network Analysis in QGIS
+3. [Network Analysis in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Network_Analysis.md)
 4. Basic Raster & Terrain Analysis
 
 ## Week 06 Spatial Sampling, Stats & Satellite Remote Sensing
