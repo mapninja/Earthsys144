@@ -33,11 +33,12 @@ Please note that exercises in this repo that have not yet been released in Canva
 2. Areal Interpolation
 3. [Network Analysis in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Network_Analysis.md)
 4. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
-5. Watershed Delineation
 
-## Week 06 Spatial Sampling, Stats & Satellite Remote Sensing
 
-1. Remote Sensing with Google Earth Engine
+## Week 06 Watersheds, Spatial Sampling, Stats & Satellite Remote Sensing
+
+1. Watershed Delineation
+2. Remote Sensing with Google Earth Engine
 2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
 
 ## Week 07 APIs & Web Mapping
