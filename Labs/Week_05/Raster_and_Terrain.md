@@ -125,7 +125,6 @@ Now we will resample our `valley9` layer to have the same pixel dimensions as ou
 6. Browse and save the Output File as `valley9_3m.tif` and click **Run**.
 
 
-
 ![](images/Raster_and_Terrain-2a8e7f37.png)
 
 
@@ -219,7 +218,7 @@ all in NAD83 UTM zone 15 coordinates, meters, including:
 3. `ViewingStation.shp`
 4. `targetspot.shp`
 5. `sight.sh`
-6. There are also WhiteboxTools versions of both _Qdrif_t and _Qdrift30_ in the L11.zip
+6. There are also WhiteboxTools versions of both _Qdrif_t and _Qdrift30_ in the `L11.zip`
 
 ### Background
 
@@ -239,61 +238,48 @@ Although the most common use of DEMs is as a shaded relief background for maps, 
 This displays your view location, a single point in the bottom left portion of the Qdrift DEM. This also identifies a “line of sight”, defined from the sight.shp file.
 
 
-
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image9.png "image_tooltip")
+![](images/Raster_and_Terrain-f4b39d3a.png)
 
 
+1. Use the `Layer Styling Panel` to make the `ViewingStation` and `sight` layers more visible.
+2. In the **Processing Panel**, search for **‘Profile’** and launch the **Profile Tool** from the **WhiteBoxTools** toolset.
+1. Use `Qdrift` as the **Input Surface File** and `sight.shp` as the **Input Vector Line File**.
+2. Save the **html** output to your project folder, so you can access it later, if needed.
 
-
-1. Use the **Layer Properties Panel** to make the ViewingStation and sight layers more visible.
-2. In the **Processing Panel**, search for **‘Profile’** and launch the **Profile Tool **from the WhiteBoxTools toolset.
-1. Use **Qdrift** as the Input Surface File and **sight.shp** as the Input Vector Line File.
+![](images/Raster_and_Terrain-8a205b63.png)
 
 The tool should result in a new Browser Page opening, and displaying the results, as an HTML page.  
 
-
+![](images/Raster_and_Terrain-a790b290.png)
 
 2. Take a Screenshot of the Profile Result in your browser to use it in your layout to turn in, later.  
 
-1. Close the Profile Results page.
+1. Close the **Profile Results** page.
 
-##
-**Create a Viewshed**
+## Create a Viewshed
 
-1. In the Processing Panel, Search for the **Viewshed** tool, which is also under **WhiteboxTools> Geomorphometric Analysis> Viewshed
-**
-2. Specify **Qdrift** as the Input DEM, **viewspot** as the** Input Viewing Station File** and name the output**: Visible**. Set the Station Height to 1.8 (this is the height of the viewer in meters, about 5’10”).
+1. In the **Processing Panel**, Search for the **Viewshed** tool, which is also under **WhiteboxTools> Geomorphometric Analysis> Viewshed**
+2. Specify `Qdrift` as the Input DEM,
+3. Specify `viewspot` as the **Input Viewing Station File** and name the output : `Visible`
+3. Set the **Station Height** to `1.8` (this is the height of the viewer in meters, about 5’10”).
+4. Save the Output file as `viewshed.tif` and Run the tool.
+
+![](images/Raster_and_Terrain-486ddb20.png)
 
 This will display something like the figure below. We want to alter this, so that the visible areas from the point (white in the image) display on top of the elevation layer, but the areas that aren’t visible from the viewing point are shown as transparent.
 
+![](images/Raster_and_Terrain-a1d6b193.png)
 
-
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image10.png "image_tooltip")
-
-
-
-
-1. Select the **visible** layer in the Layer Panel, then activate the Layer Styling Panel.
+1. Select the `viewshed` layer in the Layer Panel, then activate the **Layer Styling Panel**.
 2. Change the Layer Style from Singleband Grey to  **Paletted/Unique Colors**
-3. **Click on the Classify button** to allow the Styling Pellette to identify the number of unique values in the dataset, to **apply a color palette**, which will likely be terrible.
-4. **Right-click on the Color** for **Value:0**, and **select Change Opacity**. **Set the Opacity to 0**.
-5. **Right-click on the Color** for **Value:1**, and **select Change Color**. Use the Color selector to** select a color of your choice.**
+3. **Click** on the **Classify** button to allow the **Styling Pellette** to identify the number of unique values in the dataset, to **apply a color palette**, which will likely be terrible.
+4. **Right-click on the Color** for `Value:0`, select **Change Opacity** and set the **Opacity** to `0`
 
+![](images/Raster_and_Terrain-36f44398.png)
 
+5. **Right-click on the Color** for `Value:1`, and **select Change Color**. Use the **Color selector** to select a _**color of your choice**_.
 
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image11.png "image_tooltip")
-
-
+![](images/Raster_and_Terrain-6a478d01.png)
 
 
 1. Make sure that your Project and all of your Layers are properly saved as files (that you haven’t been using the Temp Layer feature in QGIS Processing Tools), because you will use them later.
-2. Start a New Project for the next Hydrology exercise.
