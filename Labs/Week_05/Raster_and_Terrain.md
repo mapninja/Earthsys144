@@ -118,14 +118,13 @@ Now we will resample our `valley9` layer to have the same pixel dimensions as ou
 
 ![](images/Raster_and_Terrain-f1e135ff.png)
 
-![](images/Raster_and_Terrain-7cc7d839.png)
+![](images/Raster_and_Terrain-8c97ee78.png)
 
 4. Use the **Base Raster File** dropdown to select the `valley3nonull` layer as your “template” layer.
 5. Select `nn` (Nearest Neighbor) as your **Resample Method**. This will preserve the original values of your DEM, but split each 9m pixel, into a 3x3 block of pixels, all with the same elevation value.
 6. Browse and save the Output File as `valley9_3m.tif` and click **Run**.
 
 
-![](images/Raster_and_Terrain-8c97ee78.png)
 
 ![](images/Raster_and_Terrain-2a8e7f37.png)
 
@@ -204,7 +203,7 @@ Note that, to duplicate my example, you will need to spend some time customizing
 
 ![](images/Raster_and_Terrain-c231010e.png)
 
-**Exercise 2: Terrain Analysis**
+## Exercise 2: Terrain Analysis
 
 _What You’ll Learn_: Basic terrain analysis functions, including watershed, viewshed, and profile processing.
 
@@ -215,34 +214,27 @@ Data are located in the [https://github.com/mapninja/Earthsys144/raw/master/data
 all in NAD83 UTM zone 15 coordinates, meters, including:
 
 
-
-1. **Qdrift**, a GeoTiff elevation, 3m cell size, Z units in meters, and
-2. **Qdrift30**, a GeoTiff elevation grid, 30m cell size, Z units in meters
-3. **ViewingStation.shp**
-4. **targetspot.shp**
-5. **sight.sh**p
+1. `Qdrift`, a GeoTiff elevation, 3m cell size, Z units in meters, and
+2. `Qdrift30`, a GeoTiff elevation grid, 30m cell size, Z units in meters
+3. `ViewingStation.shp`
+4. `targetspot.shp`
+5. `sight.sh`
 6. There are also WhiteboxTools versions of both _Qdrif_t and _Qdrift30_ in the L11.zip
 
-
-## Background
+### Background
 
 Elevation data, also known as terrain data, are important for many kinds of analysis, and are available in many forms and resolutions. In the U.S. there have long been available nearly nationwide data at 30 m resolution. Since the early 2000’s these have largely been replaced by 10 m resolution DEMs, and now many parts of the country are developing higher resolution DEMs, and 1 to 3 meters, based on LiDAR data collections.
 
 Although the most common use of DEMs is as a shaded relief background for maps, we often are interested in working with terrain data for calculating slopes, aspects, steepness or slope along profiles, viewsheds, as well as watershed and other hydrologic functions.
 
 
-#
-Viewshed and Profile View
+## Viewshed and Profile View
 
 
-##
-**
-Creating a terrain profile plot**
-
-
+## Creating a terrain profile plot
 
 1. **Start a New Map Project**, and save it to the folder you unzipped your Lab Data to.
-2. Add the **Qdrift.tif, ViewingStationViewingStation.shp** and the **Sight.shp** shapefiles datasets. Rearrange the layers so that the two shapefiles are on top, if necessary.
+2. Add the `Qdrift.tif`, `ViewingStation.shp` and the `Sight.shp` shapefiles datasets. Rearrange the layers so that the two shapefiles are on top, if necessary.
 
 This displays your view location, a single point in the bottom left portion of the Qdrift DEM. This also identifies a “line of sight”, defined from the sight.shp file.
 
