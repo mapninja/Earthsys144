@@ -127,108 +127,85 @@ You must digitize a watershed outlet point, on the network (within the green cir
 2. Use the Add Point Feature button ![](images/Watershed_Modeling-d0661e45.png) to create a single point, using the image above as your guide to placement. Try to place the point as close to on top of a stream pixel, as possible.
 2.Toggle Off Editing and **Save your Edit** for `PourPoint`.
 
-#
-**Snap the Pour Point**
+### Snap the Pour Point
 
-1. Search for the **SnapPourPoints **tool in the Processing Toolbox.
-2. Specify **PourPoint.shp** as your **Input Outlets File**,
-3. Use the FlowAccumulation from your earlier **FlowAccumulationFullWorkflow** tool, earlier, as the **Flow Accumulation Raster**
-4. A new output shapefile to contain your pour point, name it SnappedPoint.shp.
+1. Search for the **SnapPourPoints** tool in the **Whitebox Tools Processing Toolbox**.
+2. Specify `PourPoint.shp` as your **Input Outlets File**,
+3. Use the `FlowAccumulation` layer as the **Flow Accumulation Raster**
+4. A new output shapefile to contain your pour point, name it `SnappedPoint.shp`
 5. Use a Snap distance of 9 (about 3 cells)
 6. Click  Run
 
+![](images/Watershed_Modeling-4ee9f9b2.png)
+
+![](images/Watershed_Modeling-76c52a69.png)
+
+![](images/Watershed_Modeling-04a7c1fd.png)
 
 
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+This should create a shapefile with a single point, near your digitized outlet. (see the red point in the image, above)
 
 
-![alt_text](images/image7.png "image_tooltip")
+## Watershed Modeling
 
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image8.png "image_tooltip")
-
-
-This should create a shapefile with a single point, near your digitized outlet.(see the red point in the image, above)
-
-
-# Watershed Modeling
-
-Now we will use the layers we have created to model the watershed of the stream network we have just created the PourPoint for. This is the area within which all water will, theoretically, flow through the point we have created.
+Now we will use the layers we have created to model the watershed of the stream network we have just created the `PourPoint` for. This is _the area within which all water will, theoretically, flow through the `pourpoint`_ we have created.
 
 
 
-1. Search for the Watershed tool, from the WhiteboxTools.
-2. Use FlowDirection as the D8 Pointer File
-3. Use SnappedPoint.shp as the Input Pour Points
-4. Name your Output file: watershed.tif
+1. Search for the **Watershed tool**, from the **WhiteboxTools**.
+2. Use `FlowDirection` as the **D8 Pointer File**
+3. Use `SnappedPoint.shp` as the **Input Pour Points**
+4. **Name** your **Output file**: `watershed.tif`
 
+![](images/Watershed_Modeling-1c33d82e.png)
 
+You may need to change the Styling of the watershed layer, in the same way you did for the viewshed layer, earlier.
 
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image9.png "image_tooltip")
+1. Select the `watershed` layer in the **Layer Panel**, then activate the **Layer Styling Panel**.
+2. Change the **Layer Style** from Singleband Grey to  **Paletted/Unique Colors**
+3. **Click** on the **Classify** button to allow the **Styling Pellette** to identify the number of unique values in the dataset, to **apply a color palette**, which will likely be terrible.
+4. **Right-click on the Color** for `Value:1`, select **Change Opacity** and set the **Opacity** to `50`
+5. **Right-click on the Color** for `Value:1`, select **Change Color** and change it to something watery.
 
 
 This should create a watershed layer something like that below.
 
+![](images/Watershed_Modeling-02160079.png)
 
-
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image10.png "image_tooltip")
-
-
-
-##
-**Raster to Vector Conversion**
+## Raster to Vector Conversion
 
 
 
 1. **Search** for the **RasterStreamstoVector** tool from WhiteboxTools and launch it.
-2. Use your **Streams.tif **Layer (the one you reclassified to 1’s and NoData) as the **Input Streams File**
-3. **Use your FlowDIrection **layer as the **D8 Pointer File**
-4. **Name the outpu**t something like **StreamNet.shp**
-5. Click Run
+2. Use your `Streams.tif` Layer (the one you reclassified to 1’s and 0's) as the **Input Streams File**
+3. Use your `FlowDIrection` layer as the **D8 Pointer File**
+4. **Name** the **Output File** something like `StreamNet.shp`
+5. Click **Run**
 
-
-
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image11.png "image_tooltip")
+![](images/Watershed_Modeling-ebb0816e.png)
 
 
 This should result in a new layer that contains Vector Line features for your Stream Network. You may need to change the order of your layers to see the streams from your newly created watershed.
 
+![](images/Watershed_Modeling-615f9df1.png)
+
 **Save your work!**
 
 
-#
-**To Turn In**
+# To Turn In
 
 Now, create a layout displaying:
 
 
 
-* **Qdrift.tif DEM & Hillshade.tif** (remember the 50% transparency, trick)
-* **Watershed.tif**,
-* **SnappedPoint.shp**
-* **Streamnet.shp**
-* **ViewingStation.shp**
-* **Sight.shp**
-* **Visible.tiff** (From the Viewshed exercise, using Paletted/Unique values you can use the remove tool
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image12.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image12.png "image_tooltip")
- to get rid of  0 values, in the Layer Styling panel)
-* **Elevation Profile** added as an image to the layout
+* `Qdrift.tif DEM & Hillshade.tif` (remember the 50% transparency, trick)
+* `Watershed.tif` (with transparency),
+* `SnappedPoint.shp`
+* `Streamnet.shp`
+* `ViewingStation.shp`
+* `Sight.shp`
+* `Visible.tiff` (From the Viewshed exercise, using Paletted/Unique values you can use the remove tool ![](images/Watershed_Modeling-5c2f3678.png)(to get rid of  0 values, in the Layer Styling panel)
+* `Elevation Profile.html` added as an screenshot image to the layout
 
 Use all the usual expected cartographic elements, and creativity.
 
@@ -238,10 +215,10 @@ You can almost certainly do better than this:
 
 
 
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image13.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
+
+![](images/Watershed_Modeling-e2f93a7c.png)
 
 
-![alt_text](images/image13.png "image_tooltip")
 
 
-Note that I used to teach raster later in the quarter, but have recognized it is better to be exposed to it, earlier, so we are now in Week 4, not Week 7.
+Note that I used to teach raster later in the quarter, but have recognized it is better to be exposed to it, earlier, so we are now in Week 5, not Week 7.
