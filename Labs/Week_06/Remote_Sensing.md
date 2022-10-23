@@ -8,7 +8,7 @@ We'll be completing these exercises using the Earth Engine code editor: [https:/
 1. Using your _mysunetid@stanford.edu_ email, login to the Code Editor: We'll be completing these exercises using the Earth Engine code editor: [https://code.earthengine.google.com/](https://code.earthengine.google.com/).
 2. Once logged in, click on this link to load the sample scripts:
 
-[https://code.earthengine.google.com/?accept_repo=users/stacemaples/GEE_Intro_RS](https://code.earthengine.google.com/?accept_repo=users/stacemaples/GEE_Intro_RS)
+[https://code.earthengine.google.com/?accept_repo=users/stacemaples/SGC-EE101](https://code.earthengine.google.com/?accept_repo=users/stacemaples/SGC-EE101)
 
 
 ## What you will do for this lab
@@ -84,11 +84,13 @@ Everything in the previous section was a client-side object that lives in the br
 
 ## Walking through the rest of the scripts
 
-The Sample Scripts in the repo at the link above are heavily commented.
+The [Sample Scripts in the repo](https://code.earthengine.google.com/?accept_repo=users/stacemaples/SGC-EE101) at the link above are heavily commented.
 
 1. Please **click on each script** to load it into the Code Editor and **read through the code comments**.
 2. Some code comments will ask you to **alter the code in simple ways**, or **explore the GEE interface in ways that expand your knowledge** of the platform.
 3. Note that **many of the functions and methods** you are exploring **can be applied equally to other datasets** in the Google Earth Engine Data Catalog
+4. You should "play" with the first 15 scripts in the repo.
+5. Beyond the first 15 scripts, you will find more complex workflows and "modeling." The code become longer and more complex, but still well-commented. If you are interested in using Google Earth Engine for your final project, you should explore the scripts beyond #15, as well. 
 
 ### To Uncomment code:
 
@@ -130,7 +132,7 @@ Work your way through the **entire set of scripts**, then **go to the Google Ear
 6. **Make some changes to the code**.   
 
 Some ideas include:
-  * Alter the setCenter() function,
+  * Alter the `setCenter()` function (most samples use it),
   * Change the date filters,
   * Change the vis params, etc...
 
@@ -169,7 +171,7 @@ The content or your Homework submission should be placed into a text document an
 
 `1997-01-01T00:00:00 - 2019-01-01T00:00:00`
 
-4. **Shared Script**: [`https://code.earthengine.google.com/666862ea4bc45869053eb7a2d0146135`](https://code.earthengine.google.com/666862ea4bc45869053eb7a2d0146135)
+4. **Shared Script**: [`https://code.earthengine.google.com/1fb4c87e6c15605e98a1e0e95b210f7c`](https://code.earthengine.google.com/1fb4c87e6c15605e98a1e0e95b210f7c)
 
 ----
 
