@@ -90,17 +90,17 @@ The Sample Scripts in the repo at the link above are heavily commented.
 2. Some code comments will ask you to **alter the code in simple ways**, or **explore the GEE interface in ways that expand your knowledge** of the platform.
 3. Note that **many of the functions and methods** you are exploring **can be applied equally to other datasets** in the Google Earth Engine Data Catalog
 
-To Uncomment code:
+### To Uncomment code:
 
 Javascript Code is **commented in two ways**, in these Sample Scripts:
 
-A single line of code is commented out, like so (and appears green, when commented out):
+A **single line of code** is commented out, like so (and appears green, when commented out):
 
 `// print(‘hello, world’);`
 
 So that DELETING THE // WILL UNCOMMENT THIS CODE AND CAUSE IT TO RUN WHEN THE RUN BUTTON IS PUSHED.
 
-A block of code is commented out, like so:
+A **block of code** is commented out, like so:
 ```
 /*
 saythis = ‘Hello, World!’;
@@ -121,6 +121,7 @@ Work your way through the **entire set of scripts**, then **go to the Google Ear
 2. **Explore the Metadata** for the dataset, particularly the **data type** and **ranges**, as well as the **bands available** and their **Properties**.
 3. Answer the following **in a TXT document**:
     1. What is the Earth Engine Name of the dataset? (_HINT: Earth Engine Snippet_)
+    2. How many bands does the dataset include?
     2. What is the **Pixel Resolution** of the dataset? You may have to look around for this.
     3. What **date range is the data available** for? (_HINT: this is listed near the thumbnail and "Earth Engine Snippet"_)
     4. Click on the **Get Link button** to (see below for image), copy a link to your script and add this link to your document.
@@ -155,6 +156,10 @@ The content or your Homework submission should be placed into a text document an
 1. **What is the Earth Engine Name of the dataset?** (HINT: Earth Engine Snippet):
 
 `ee.ImageCollection("USDA/NASS/CDL")`
+
+2. **How many bands does the dataset include?**
+
+`3 bands: cropland, cultivated and confidence`
 
 2. **What is the Pixel Resolution of the dataset?**
 
