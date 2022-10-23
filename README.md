@@ -35,7 +35,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 4. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 
 
-## Week 06 Watersheds, Spatial Sampling, Stats & Satellite Remote Sensing
+## Week 06 Watersheds, Spatial Sampling & Satellite Remote Sensing
 
 1. [Watershed Delineation](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
 2. Remote Sensing with Google Earth Engine
