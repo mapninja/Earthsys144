@@ -1,9 +1,6 @@
-
 # Project 2: Watershed Functions
 
 Again we’ll be using **WhiteboxTools** in QGIS for this new project, to calculate watershed boundaries based on elevation data.
-
-
 
 1. Open a new Project and add the `Qdrift` **DEM**
 2. Open the **Processing Toolbox** Panel and Expand **WhiteboxTools>Hydrological Analysis**. This should display the tools shown at the right-side of the below image.

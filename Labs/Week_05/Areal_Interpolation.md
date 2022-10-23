@@ -2,8 +2,14 @@
 
 In this exercise, we will be performing what is referred to as “Areal Interpolation” of Census Attributes.  We have a set of boundaries (in this case the Major Watershed Basins of Connecticut, our CT_Major_Basins Layer) for which we would like to summarize the population.  Our problem is that these watershed boundaries do not correspond with the geographic units that the U.S. Census uses to collect and tabulate demographic data.  Some of the Census Block Groups in our CT_Block_Groups layer overlaps more than one Watershed basin unit.  What we will do in the following steps is  to calculate the proportion of overlap for each Census Block Group, relative to the Watershed Boundaries, and use these proportions to assign an appropriate estimate of the population to each watershed.
 
+## Getting Started
 
+The data for this exercise can be downloaded from:
 
+https://github.com/mapninja/Earthsys144/raw/master/data/CT_Watershed_Data.gdb.zip
+
+1. Download the data and put it somewhere stable on your hard drive.
+2. Unzip the `CT_Watershed_Data.gdb` dataset to your har drive.
 1. Start a new **Project** Save it to the folder where you upzipped the data for the workshop, as `Areal_Interpolation`
 2. In the Browser Panel, expand the Project Home folder, which should have your `CT_Watershed_Data.gdb` Geodatabase file, in it.  
 3. Expand the `CT_Watershed_Data.gdb` and **drag and drop** the following layers (**in order**) to the **Map Canvas**:
