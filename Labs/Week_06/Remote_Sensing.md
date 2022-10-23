@@ -36,8 +36,6 @@ You can always reload the script, if things get broken beyond comprehension.
 
 It is worth noting that the Code Editor uses the javascript client API to make requests to the server. The key point is that the Code Editor runs in the browser and all the hard processing is done on Google Servers. Also, there are [Code Editor docs](https://developers.google.com/earth-engine/playground).
 
-
-
 1. **Editor Panel**
     1. The **Editor Panel** is where you **write and edit your Javascript code**.
     2. Note that the **Run button executes the code**.
