@@ -7,7 +7,12 @@ This Lab provides practice with tabular data management in QGIS.  In this Lab, w
 You should read chapter 8 in the GIS Fundamentals textbook before performing this Lab.
 
 ### Data  
-**_Data_**: are in the **L7.zip**, with census data **_demographics.shp_** in decimal degree coordinates, a table **more_data.dbf**, and **_soils.shp_** in `UTM Zone 17, NAD83 coordinates, and the units are meters`.
+**_Data_**: are in the `L7.zip`, with
+* census data `demographics.shp` in decimal degree coordinates,
+* a table `more_data.dbf`, and
+* `soils.shp`
+
+All are in `UTM Zone 17, NAD83 coordinates, and the units are meters`.
 
 [Download the data from this link](https://github.com/mapninja/Earthsys144/raw/master/data/L7.zip)
 
@@ -23,16 +28,18 @@ QGIS provides a rich set of tools for viewing and displaying attribute data.  Ho
 
 ## Examining Tables, Fields and their Properties
 
-1. Start **QGIS**, and use the Browser Panel to browse to your **L7 folder**, then **right-click** the layer **_demographics.shp,_** and **Add Layer to Project**. This layer contains boundaries and population data on a set of urban polygons.
+1. Start **QGIS**, and use the Browser Panel to browse to your `L7 folder`, then **right-click** the layer `demographics.shp,` and **Add Layer to Project**. This layer contains boundaries and population data on a set of urban polygons.
 2. **Add** a **basemap**, if you like, using the **QuickMapServices** plugin.
 
 ![](images/Table_Operations_in_QGIS-6417862c.png)
 
-3. **Open** the **Attribute Table** (**right-click** in **TOC**, then **Open Attribute Table**).  _Note the **fields**, especially one called_ **Blkgrp**.
-4. **Add** the data table named **_more_data.dbf_,** using the same method you used with the **Browser panel**.
-5. **Open** the **_more_data.dbf_** (**right-click** in the **Layers Panel**, then **Open Attribute Table**) _Notice that **more_data.dbf** also has a field named_ **Blkgrp**.
+3. **Open** the **Attribute Table** (**right-click** in **TOC**, then **Open Attribute Table**).  _Note the **fields**, especially one called_ `Blkgrp`.
+4. **Add** the data table named `moredata.dbf_`, using the same method you used with the **Browser panel**.
+5. **Open** the `moredata.dbf_` (**right-click** in the **Layers Panel**, then **Open Attribute Table**)
 
-6. **Open the Properties** of the **demographics.shp** **layer** in the **Layers** **panel**, then click on the **Fields tab**. This should display the **name, type, and length** of each column:  
+   Notice that `moredata.dbf` also has a field named_ `Blkgrp`.  
+
+6. **Open the Properties** of the `demographics.shp` **layer** in the **Layers** **panel**, then click on the **Fields tab**. This should display the **name, type, and length** of each column:  
 
 ![](images/Table_Operations_in_QGIS-dc8a46a0.png)
 
@@ -41,15 +48,15 @@ QGIS provides a rich set of tools for viewing and displaying attribute data.  Ho
 * Which variables might serve as keys for the table, and which would be inappropriate as keys?  
 _(See Chapter 8 in the Bolstad textbook, if you’re unsure on these concepts)_
 
-**Close** this window, and **Open the Attribute Table for demographics.shp**
+**Close** this window, and Open the Attribute Table for `demographics.shp`
 
-Each record (row) in each table corresponds to each polygon in this US Census Bureau demographic data, displayed in **_demographics.shp_**.  These files were produced from U.S. Census data, which uses a variable named **Blkgrp** as a unique identifier.  Each record in our tables corresponds to a **US Census block group**.
+Each record (row) in each table corresponds to each polygon in this US Census Bureau demographic data, displayed in `demographics.shp`.  These files were produced from U.S. Census data, which uses a variable named `Blkgrp` as a unique identifier.  Each record in our tables corresponds to a **US Census block group**.
 
-**Inspect the Field properties**, as you did above, for the **_more_data.dbf _table**. _Note that the **BLKGRP** variable is defined in the same way as the **BLKGRP** variable in the **demographics.shp** table_. We should be able to use this as our joining variable.
+**Inspect the Field properties**, as you did above, for the `moredata.dbf` table. Note that the `BLKGRP` variable is defined in the same way as the `BLKGRP` variable in the `demographics.shp` table. We should be able to use this as our joining variable.
 
 ![](images/Table_Operations_in_QGIS-16a038bf.png)
 
-The file **_more_data.dbf_** includes populations at various dates for each block group polygon, e.g., `Hh80`=**population in 1980**, **`Hh90`=population in 1990**, **etc**...  
+The file `moredata.dbf_` includes populations at various dates for each block group polygon, e.g., `Hh80`=**population in 1980**, **`Hh90`=population in 1990**, **etc**...  
 
 
 ### Table Joins
@@ -58,25 +65,25 @@ The file **_more_data.dbf_** includes populations at various dates for each bloc
 
 
 
-1. **Open** the **Properties** for the **_demographics.shp_** **layer (_shortcut: try double-clicking on the layer name!_)** and click on the **Joins** tab. ![](images/Table_Operations_in_QGIS-c11e7d77.png)
+1. **Open** the **Properties** for the `demographics.shp` layer (_shortcut: try double-clicking on the layer name!_) and click on the **Joins** tab. ![](images/Table_Operations_in_QGIS-c11e7d77.png)
 
 2. Click on the add button near the bottom left ![](images/Table_Operations_in_QGIS-b1a3cd28.png)
-3. Specify the **Join layer**: *`*more_data`**, the **Join field** (from **more_data**) as **`BLKGRP`**, and the **Target field** (in the **_demographics_** layer table) as **`BLKGRP`**.
+3. Specify the **Join layer**: `more_data`, the **Join field** (from `more_data`) as `BLKGRP`, and the **Target field** (in the `demographics` layer table) as `BLKGRP`.
 
 ![](images/Table_Operations_in_QGIS-98e4f7c4.png)
 
 _Note that the field names don’t have to be the same, they just happen to be in this example_
 
 4. Now click **Apply** and **OK**
-5. **Open the Attribute Table** for the **_demographics_** layer, again.
+5. **Open the Attribute Table** for the `demographics` layer, again.
 
 ![](images/Table_Operations_in_QGIS-ca17ed9b.png)
 
-_Notice the demographics.shp table has the **more_data** fields append to the end of each record._
+_Notice the `demographics.shp` table has the `more_data` fields append to the end of each record._
 
-You’ve just successfully connected the two tables, matching the records in one table to the records in another table that have the same value for **BLKGRP**.
+You’ve just successfully connected the two tables, matching the records in one table to the records in another table that have the same value for `BLKGRP`.
 
-The field names, at the top of the column, for the fields from **_demographic.shp_** file are unchanged. The fields names from the more_data table have that **table’s name pre-pendeded**, e.g., `more_data_HHINCAVG` (see arrows in the figure above).
+The field names, at the top of the column, for the fields from `demographic.shp` file are unchanged. The fields names from the `more_data` table have that **table’s name pre-pendeded**, e.g., `more_data_HHINCAVG` (see arrows in the figure above).
 
 It’s important to note a few things about this Join:
 
@@ -90,7 +97,7 @@ _IMPORTANT NOTE: It appears that there is a slight difference in the way some ve
 
 Now, let’s select items based on the joined tables.  
 
-1. Open the Attributes Table of demographics, if not already.  It should display both the original data plus the data from _`more_data.dbf`_.
+1. Open the Attributes Table of demographics, if not already.  It should display both the original data plus the data from `moredata.dbf`.
 2. Click on the **Select by Expression tool** ![](images/Table_Operations_in_QGIS-1f2f8db2.png) on the upper frame of the table window
 
 From the popup window (see below), we will now build the following selection equation:
@@ -103,10 +110,10 @@ From the popup window (see below), we will now build the following selection equ
 ![](images/Table_Operations_in_QGIS-8527df8b.png)
 
 
-3. Begin typing “**more_data_HHPCTGROWT**” in the search box at the top of the Select by Expression window, but only until you see the variable you are interested in, then **double-click** on  it to place it in the **Expression window**
+3. Begin typing “`more_data_HHPCTGROWT`” in the search box at the top of the Select by Expression window, but only until you see the variable you are interested in, then **double-click** on  it to place it in the **Expression window**
 
 4. Type the rest of the query:  `>0`
-5. When you’ve created your expression, <strong>click</strong> on the <strong>Select Features</strong> button displayed along the bottom.
+5. When you’ve created your expression, click on the **Select Features button** displayed along the bottom.
 
 ![](images/Table_Operations_in_QGIS-8cfb03f1.png)
 
@@ -116,11 +123,11 @@ This should select most of the rows in the table, probably displaying them in a 
 
 ![](images/Table_Operations_in_QGIS-ae4def0d.png)
 
-1. With the **demographics layer attribute table** open, click on the button at the bottom left that currently should read “**Show All Features**” and change it to “**Show Selected Features**” and note the effect on the **attribute table**.
+1. With the `demographics` layer attribute table open, click on the button at the bottom left that currently should read “**Show All Features**” and change it to “**Show Selected Features**” and note the effect on the **attribute table**.
 
 ![](images/Table_Operations_in_QGIS-8073303d.png)
 
-2. **Click** on the **`more_data_HHPCTGROWT Field Header`** to sort the column, by value, **ascending**. **Click**, again, to sort, **descending**.
+2. **Click** on the `more_data_HHPCTGROWT` Field Header to sort the column, by value, **ascending**. **Click**, again, to sort, **descending**.
 
 3. Return the attribute table to **Show All Features view**
 4. **Clear** your selection by clicking on the **Deselect All FeaturesFrom the Layer** icon ![](images/Table_Operations_in_QGIS-c880a705.png) above the table.
@@ -129,16 +136,16 @@ This should select most of the rows in the table, probably displaying them in a 
 
 **Select** **blockgroups** that have:
 * **BOTH**
-* population growth greater than 0
+* `population growth greater than 0`
 * **AND**
-* income less than $30,000
+* `income less than $30,000`
 
-5. In the **Select by Expression **window, this **Expression** will be (for my version of QGIS):
+5. In the **Select by Expression** window, this **Expression** will be (for my version of QGIS):
 
 
-```
-("more_data_HHPCTGROWT" >0) AND ( "more_data_HHINCAVG" <30000)  
-```
+
+`("more_data_HHPCTGROWT" >0) AND ( "more_data_HHINCAVG" <30000)`  
+
 
 6. Use the Search in the **Expression Editor** to build the expression for **your specific dataset** and **examine** your selection.  
 
@@ -155,20 +162,23 @@ This should select most of the rows in the table, probably displaying them in a 
 
 Here we will use a simple method of calculating a binary field to identify our selected records, so that we can create a distinct symbology for those records, in our final map.
 
-1. **Open** the **Field calculator**. ![](images/Table_Operations_in_QGIS-9d6cfd67.png) _Note its similarity to the **Expression Editor?**_
+1. **Open** the **Field calculator**. ![](images/Table_Operations_in_QGIS-9d6cfd67.png)
+
+   _Note its similarity to the **Expression Editor?**_
+
 2. **Only update 17 selected features**,
-3. **Create a new field**: **Grow_Low**  
-4. Use **Integer (32 bit)** as the Output Field Type
-5. Assign the value of ‘1’ to these **17 selected records**, by simply typing the number **1** in the **Expression panel** and click **OK**  
+3. **Create a new field**: `Grow_Low`  
+4. Use `Integer (32 bit)` as the **Output Field Type**
+5. Assign the value of `1` to these **17 selected records**, by simply typing the number `1` in the **Expression panel** and click **OK**  
 
 ![](images/Table_Operations_in_QGIS-f6147816.png)
 
-4. **Check** that **1** was written to a new Column called **Grow_Low** in the **attribute table**.
+4. **Check** that `1` was written to a new Column called `Grow_Low` in the **attribute table**.
 
 ![](images/Table_Operations_in_QGIS-9ee03865.png)
 
 5. **Invert** the **selection** with the **Invert Selection button** ![](images/Table_Operations_in_QGIS-f8b811d0.png)
-6. Return to the **Field calculator**, and use the “**Update Existing Field**” to assign the value of **0** to the **Grow_Low** field for the **remaining 150 records**.  
+6. Return to the **Field calculator**, and use “**Update Existing Field**” to assign the value of `0` to the `Grow_Low` field for the **remaining 150 records**.  
 
 7. Be sure to **toggle off Editing**, and **save your edits**.
 
