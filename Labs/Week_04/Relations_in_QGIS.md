@@ -19,7 +19,7 @@ In this exercise, you will create Relations between several datsets in QGIS in o
 ### Download the Data
 
 1. [Download the Data from Github](https://github.com/mapninja/Earthsys144/raw/master/data/Tox2SchoolsLab.zip)
-2. Unzip the data on your hard drive, preferably somewhere that iCloud or other cloud storage services won't delete you local copies.
+2. **Unzip the data** on your hard drive, preferably somewhere that iCloud or other cloud storage services won't delete you local copies.
 
 ### Install the **Actions for Relations plugin**
 
@@ -211,7 +211,7 @@ You should now see that the `chemicals` records for the 'toxic_sites_stateplane'
 
 ## Using Group Stats to Create a Summary Statistics Analysis
 
-1. Go to Main Menu>Vector>Group Stats, to Open the Group Stats Plugin
+1. Go to **Main Menu>Vector>Group Stats**, to Open the **Group Stats** Plugin
 2. Make sure that `chemicals` is selected as the target in the  dropdown
 3. **Check** the option to **Use only the selected features**
 3. From the Fields Panel, in Group Stats, drag objects into the **Columns**, **Rows** and **Value** panels, as shown below, so that we are:
@@ -223,15 +223,15 @@ You should now see that the `chemicals` records for the 'toxic_sites_stateplane'
 
 ![](images/Relations_in_QGIS-ea0401af.png)
 
-6. On the Main Menu (which has changed appearance while using Group Stats), go to **Data>Save all as CSV file**, and save your chemical report with a meaningful name, like EdgewoodSchoolChemReport.csv
+6. On the Main Menu (which has changed appearance while using **Group Stats**), go to **Data>Save all as CSV file**, and save your chemical report with a meaningful name, like `EdgewoodSchoolChemReport.csv`
 
 ![](images/Relations_in_QGIS-d60f2ff0.png)
 
 ![](images/Relations_in_QGIS-9f402680.png)
 
 
-7. Close Group Statistics
-8. Add your Chemical Report Table you just exported back to the QGIS Project (QGIS doesn't add it by default).
+7. Close **Group Stats**
+8. Add your `Chemical Report Table` you just exported back to the QGIS Project (QGIS doesn't add it by default).
 
 # To Turn In:
 
