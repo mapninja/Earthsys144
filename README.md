@@ -27,27 +27,34 @@ Please note that exercises in this repo that have not yet been released in Canva
 3. [Table Operations in QGIS Part 3](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Table_Operations_in_QGIS_pt3.md)
 4. [Relations in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/Relations_in_QGIS.md)
 
-## Week 05 Basic Spatial Analysis & Raster Analysis
+## Week 05 Basic Spatial Analysis & Networks
 
 1. [Buffering and Overlay in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Buffering_Overlay.md)
 2. [Areal Interpolation using Overlay](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Areal_Interpolation.md)
 3. [Network Analysis in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Network_Analysis.md)
+4. [Remote Sensing with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Remote_Sensing.md)
 
 
-## Week 06 Watersheds, Spatial Sampling & Satellite Remote Sensing
+## Week 06 Basic Raster, Watersheds, Spatial Sampling & Satellite Remote Sensing
 
 1. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 2. [Watershed Delineation (cont' from Basic Raster & Terrain)](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
 2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
-3. [Remote Sensing with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Remote_Sensing.md)
 
 
 ## Week 07 APIs & Web Mapping
 
 1. Web Mapping
-2. Programming, APIs and Web Services
+2. Making Map Tiles with QGIS & Serving from Github
+2. Geocoding with Geonames.org & locator.stanford.edu
+3. More Remote Sensing with Google Earth Engine & Python Notebooks
 
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
 1. Cartographic Modeling
-2. Spatial Statistics
+
+
+## Week 09 Final Project Clinics
+
+1. StoryMaps
+2. Final Project
