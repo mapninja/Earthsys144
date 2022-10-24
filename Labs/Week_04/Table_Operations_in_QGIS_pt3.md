@@ -10,7 +10,7 @@ This exercise will give you practice in creating and joining tables, and the oth
 ### Table Joins
 
 
-1. Open a new blank project, and add the **_soils.shp_ data layer** \
+1. Open a new blank project, and add the `soils.shp` data layer
 
 2. Right-click on the **soils layer** and go to **Layer CRS>Set Project CRS from Layer**
 
@@ -24,7 +24,7 @@ You should have a layer displayed something similar to this:
 
 The `SOIL_TYPE` attribute contains a code corresponding to the soil type of each individual polygon.  Notice there are 15 different soil types designated by numbers between 18 and 69.  There are 122 different soil polygons.  
 
-In this exercise you will use the `SOIL_TYPE` variable in the soils shapefile as the **join item**, or **join column**. **_This is the “keyfield” that will be used in a join_**.  This join matches the table rows for layer soils.shp to a new soil properties table you will import.
+In this exercise you will use the `SOIL_TYPE` variable in the soils shapefile as the **join item**, or **join column**. **_This is the “keyfield” that will be used in a join_**.  This join matches the table rows for layer `soils.shp` to a new soil properties table you will import.
 
 1. Examine `SOIL_TYPE`, or proposed “keyfield” or "join column" in the target table, via the **Properties>Fields panel**.
 
@@ -36,7 +36,7 @@ Note the **properties** of the `SOIL_TYPE` item, **especially the _Type_**, but 
 
 Now we need to download a new data table with information not included in the current table. We’ll then join this new table to **soils.shp**.
 
-Download the  **[SoilProperties.csv](https://docs.google.com/spreadsheets/d/1iD5DjOD3nREz_jGUGGMMLikyvq23z9LrmB6zJWiJBjM/edit?usp=sharing), or comma separated value file**.  This is a text file with commas between each column entry, with a line in the file corresponding to each row.  **Excel, OpenOffice, Google Sheets or LibreOffice** are all spreadsheet software that allow you to easily enter the data in cells, then export it as a CSV formatted file, so if you ever need to create a table of this sort, its quite easy.
+Download the  **[`SoilProperties.csv`](https://docs.google.com/spreadsheets/d/1iD5DjOD3nREz_jGUGGMMLikyvq23z9LrmB6zJWiJBjM/edit?usp=sharing), or comma separated value file**.  This is a text file with commas between each column entry, with a line in the file corresponding to each row.  **Excel, OpenOffice, Google Sheets or LibreOffice** are all spreadsheet software that allow you to easily enter the data in cells, then export it as a CSV formatted file, so if you ever need to create a table of this sort, its quite easy.
 
 **Here is the link for the table you will download:**
 

@@ -36,11 +36,11 @@ We will use the **Refactor tool,** described on the next page, to **assign the n
 * Find or display the Processing Toolbox (if not shown, remember **View>Panels or Processing>Toolbox**)
 
 * Type ‘Refactor’ into the **Search** at the top of the **toolbox**
-* Double-click on the **Refactor fields tool **
+* Double-click on the **Refactor fields tool**
 
 This should open the Refactor table tool, shown in the figure below:
 
-The target layer (“Input layer”) is listed near the top. Once the target layer is specified (here **tablejoin.shp**), the tool lists the source expression, Field name, type, and other characteristics of the existing fields.
+The target layer (“Input layer”) is listed near the top. Once the target layer is specified (here `tablejoin.shp`), the tool lists the source expression, Field name, type, and other characteristics of the existing fields.
 
 We can modify the Field name directly.
 
@@ -66,7 +66,7 @@ We would like to know **total per capita income**.  We calculate this by multipl
 
 1. Toggle the editing on ![](images/Table_Operations_in_QGIS_pt2-f508aba9.png), then add a new column ![](images/Table_Operations_in_QGIS_pt2-4826d846.png)
 2. Name the field something like  `TotIncome`, no spaces, no more than 10 characters
-3. Make the **Type** “**Decimal number**”, **length 12**, **Precision 2**, then click on **OK**
+3. Make the **Type** “`Decimal number`”, **length** `12`, **Precision** `2`, then click on **OK**
 5. **Open** the **Field Calculator tool** ![](images/Table_Operations_in_QGIS_pt2-473b018a.png), and **Update existing field:** `TotIncome` as:
 
     `HH90 * HHINCAVG`
@@ -77,7 +77,7 @@ We would like to know **total per capita income**.  We calculate this by multipl
 
 After the calculation, inspect the `TotIncome` column you just updated.
 
-7. Use the **Field Calculator**, and the same field settings as the previous TotIncome  to **Create a new field** called **PERCAPINC** and **calculate** the per capita income as:
+7. Use the **Field Calculator**, and the same field settings as the previous TotIncome  to **Create a new field** called `PERCAPINC` and **calculate** the per capita income as:
 
     `TotIncome / POPBASE`
 
