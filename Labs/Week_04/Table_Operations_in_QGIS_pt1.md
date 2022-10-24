@@ -163,7 +163,7 @@ Here we will use a simple method of calculating a binary field to identify our s
 
 ![](images/Table_Operations_in_QGIS-f6147816.png)
 
-4. **Check** that **1** was written to a new Column called **Grow_Low **in the **attribute table**.
+4. **Check** that **1** was written to a new Column called **Grow_Low** in the **attribute table**.
 
 ![](images/Table_Operations_in_QGIS-9ee03865.png)
 

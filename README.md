@@ -30,7 +30,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 05 Basic Spatial Analysis & Raster Analysis
 
 1. [Buffering and Overlay in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Buffering_Overlay.md)
-2. [Areal Interpolation](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Areal_Interpolation.md)
+2. [Areal Interpolation using Overlay](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Areal_Interpolation.md)
 3. [Network Analysis in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Network_Analysis.md)
 4. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 
@@ -38,8 +38,8 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 06 Watersheds, Spatial Sampling & Satellite Remote Sensing
 
 1. [Watershed Delineation](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
-2. [Remote Sensing with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Remote_Sensing.md)
-3. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
+2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
+3. [Remote Sensing with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Remote_Sensing.md)
 
 
 ## Week 07 APIs & Web Mapping
