@@ -52,7 +52,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
 1. Cartographic Modeling
-
+2. Spatial Statistics
 
 ## Week 09 Final Project Clinics
 
