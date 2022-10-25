@@ -116,7 +116,7 @@ Here, we are interested in connecting our `schools_stateplane` layer to our `Sch
 
 ![](images/Relations_in_QGIS-b97db48e.png)
 
-2. Next, create the following **relation**, named `Dist2Tox` **_from_** `toxic_sites_stateplane` [using `OBJECTID`] **to** `School2ToxDistance` [using `TargetID`]
+2. Next, create the following **relation**, named `Dist2Tox` **_from_** `School2ToxDistance` [using `TargetID`]  **to** `toxic_sites_stateplane` [using `OBJECTID`]
 
 ![](images/Relations_in_QGIS-ba5e9159.png)
 
