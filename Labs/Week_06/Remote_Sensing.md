@@ -36,32 +36,32 @@ You can always reload the script, if things get broken beyond comprehension.
 
 It is worth noting that the Code Editor uses the javascript client API to make requests to the server. The key point is that the Code Editor runs in the browser and all the hard processing is done on Google Servers. Also, there are [Code Editor docs](https://developers.google.com/earth-engine/playground).
 
-1. **Editor Panel**
-    1. The **Editor Panel** is where you **write and edit your Javascript code**.
-    2. Note that the **Run button executes the code**.
-2. **Right Panel**
-    3. **Console** tab for **printing output and errors**.
-    4. **Inspector** tab for **querying map** results. Click on the map and note that _there is a scale in meters associated with the zoom level_.
-    5. **Tasks** tab for managing **long-running tasks**.
-3. **Left Panel**
-    6. **Scripts** tab for **managing your programming scripts**. These are git repos hosted at Google.
-    7. **Docs** tab for **accessing documentation** of Earth Engine objects and methods, as well as a few specific to the Code Editor application. This is the definitive API reference and is populated by the server.
-    8. **Assets** tab for **managing assets** that you upload. You get 250 GB free.
-4. **Interactive Map**
-    9. For **visualizing map** layer output.
-    10. Note **layer controls**.
-    11. Note the **geometry tools**.
-5. **Search Bar**
-    12. For **finding datasets and places of interest**.
-6. **Get Link** button
-    13. This button creates a static snapshot of the Code Editor at the time the button is clicked. **If you change the code, get a new link.** You can share these for easy collaboration and troubleshooting.
-7. **Help Menu**
-    14. **User guide** - reference documentation
-    15. **Help forum** - Google group for discussing Earth Engine
-    16. **Shortcuts** - Keyboard shortcuts for the Code Editor
-    17. **Feature Tour** - overview of the Code Editor
-    18. **Feedback** - for sending feedback on the Code Editor
-    19. **Suggest a dataset** - Our intention is to continue to collect datasets in our public archive and make them more accessible, so we appreciate suggestions on which new datasets we should ingest into the Earth Engine public archive.
+1. **Editor Panel**  
+    1. The **Editor Panel** is where you **write and edit your Javascript code**.  
+    2. Note that the **Run button executes the code**.  
+2. **Right Panel**  
+    3. **Console** tab for **printing output and errors**.  
+    4. **Inspector** tab for **querying map** results. Click on the map and note that _there is a scale in meters associated with the zoom level_.  
+    5. **Tasks** tab for managing **long-running tasks**.  
+3. **Left Panel**  
+    6. **Scripts** tab for **managing your programming scripts**. These are git repos hosted at Google.  
+    7. **Docs** tab for **accessing documentation** of Earth Engine objects and methods, as well as a few specific to the Code Editor application. This is the definitive API reference and is populated by the server.  
+    8. **Assets** tab for **managing assets** that you upload. You get 250 GB free.  
+4. **Interactive Map**  
+    9. For **visualizing map** layer output.  
+    10. Note **layer controls**.  
+    11. Note the **geometry tools**.  
+5. **Search Bar**  
+    12. For **finding datasets and places of interest**.  
+6. **Get Link** button  
+    13. This button creates a static snapshot of the Code Editor at the time the button is clicked. **If you change the code, get a new link.** You can share these for easy collaboration and troubleshooting.  
+7. **Help Menu**  
+    14. **User guide** - reference documentation  
+    15. **Help forum** - Google group for discussing Earth Engine  
+    16. **Shortcuts** - Keyboard shortcuts for the Code Editor  
+    17. **Feature Tour** - overview of the Code Editor  
+    18. **Feedback** - for sending feedback on the Code Editor  
+    19. **Suggest a dataset** - Our intention is to continue to collect datasets in our public archive and make them more accessible, so we appreciate suggestions on which new datasets we should ingest into the Earth Engine public archive.  
 
 ### Script 00 - Javascript Syntax
 
@@ -90,7 +90,7 @@ The [Sample Scripts in the repo](https://code.earthengine.google.com/?accept_rep
 2. Some code comments will ask you to **alter the code in simple ways**, or **explore the GEE interface in ways that expand your knowledge** of the platform.
 3. Note that **many of the functions and methods** you are exploring **can be applied equally to other datasets** in the Google Earth Engine Data Catalog
 4. You should "play" with the first 15 scripts in the repo.
-5. Beyond the first 15 scripts, you will find more complex workflows and "modeling." The code become longer and more complex, but still well-commented. If you are interested in using Google Earth Engine for your final project, you should explore the scripts beyond #15, as well. 
+5. Beyond the first 15 scripts, you will find more complex workflows and "modeling." The code become longer and more complex, but still well-commented. If you are interested in using Google Earth Engine for your final project, you should explore the scripts beyond #15, as well.
 
 ### To Uncomment code:
 
