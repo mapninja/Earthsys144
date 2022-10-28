@@ -146,6 +146,8 @@ This last relation creates a connection from the `toxic_sites_stateplane` layer 
 ![](images/Relations_in_QGIS-b33aa530.png)
 
 6. Drag down the numbered buttons on the left side of the table rows, to select all of the Schools2ToxDistanceMatrix records (they are _filtered_, not _selected_, which is different)  
+
+_**In this step it IS IMPORTANT that you NOT use the Select all features button to do the selection, since that actually DOES select all features, without regard to the filtering that the plugin is doing.**_
 ![](images/Relations_in_QGIS-0713932a.png)
 
 7. Now, return to the **Layers Panel**, right-click on the `Schools2ToxDistanceMatrix` layer and go to **>Actions for relations>Show referencing features for the selected features>Show features in referencing layer "`toxic_sites_stateplane`"**
