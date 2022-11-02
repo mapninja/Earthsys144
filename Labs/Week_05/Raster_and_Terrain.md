@@ -23,7 +23,7 @@ If you find that you are having trouble with any tools in Whiteboxtools, once yo
 
 ## Download the Data  
 
-Data for Exercises [Dataset 01](https://canvas.stanford.edu/courses/143291/files/8493529/download)   /   [Dataset 02](https://canvas.stanford.edu/courses/143291/files/8493524/download)  / [ViewStation.shp](https://canvas.stanford.edu/courses/143291/files/8502436/download) (the Viewpoint.shp file may be corrupt, use this one for the viewshed analysis.)
+Data for Exercises [Dataset 01](https://github.com/mapninja/Earthsys144/raw/master/data/TerrainLabData01.zip)   /   [Dataset 02](https://github.com/mapninja/Earthsys144/raw/master/data/TerrainLabData02.zip)  / [ViewStation.shp](https://github.com/mapninja/Earthsys144/raw/master/data/ViewStationSHP.zip) (the Viewpoint.shp file may be corrupt, use this one for the viewshed analysis.)
 
 1. `Valley3` and `Valley9`, which are 3m and 9m Digital Elevation Models (DEM) of a portion of southeastern Minnesota;
 2. `mar_rd83.shp`, a vector road layer, and
