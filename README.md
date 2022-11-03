@@ -39,7 +39,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 2. [Watershed Delineation (cont' from Basic Raster & Terrain)](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
-2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
+2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Sampling_Interpolation.md)
 
 
 ## Week 07 APIs & Web Mapping

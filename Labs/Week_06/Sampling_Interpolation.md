@@ -33,10 +33,13 @@ We’ll apply both systematic and random sampling. We’ll also develop and appl
 
 ![](images/Sampling_Interpolation-c4dafe78.png)
 
-1. Use a solar altitude (vertical angle) of 25 degrees, and azimuth of 315.   
+1. Use a solar altitude (vertical angle) of `25 degrees`, and `azimuth of 315`.   
 2. Browse and Name the Output `Hillshade` (Note: If your hillshade appears to not be overlaid over your DEM, you may need to create a new user profile and reinstall plugins. **Menu>Settings>User Profiles>New Profile**)
-3. When finished, make the hillshade 50% transparent, <span style="text-decoration:underline;">on top</span> of the DEM.
 
+
+![](images/Sampling_Interpolation-32c9f8c0.png)
+
+3. When finished, make the hillshade 50% transparent, <span style="text-decoration:underline;">on top</span> of the DEM.
 
 ### Keeping Organized
 
@@ -65,9 +68,9 @@ We’ll first perform a systematic (grid) sampling, and then an Inverse Distance
 
 
 1. Open **Vector Tools>Research Tools>Regular Points**. (Or look up **Regular Points** in the processing toolbox.)
-2. Set the **input extent** by clicking on the options button (arrow 1), and select** Calculate from layer**, using the `ChirDEM` layer.
+2. Set the **input extent** by clicking on the options button (arrow 1), and select **Calculate from layer**, using the `ChirDEM` layer.
 3. Set the **point spacing/count** to `1000`,
-4. **uncheck** use point spacing, to specify you want point count (see at right).  
+4. **check** use point spacing, to specify you want points 1000m apart (see at right).  
 4. Specify an output coordinate system if it is not already set to `EPSG:26912` (that of `ChirDEM`)  
 5. Browse to save the the output as **SystematicGrid1000m.shp**
 
@@ -157,7 +160,7 @@ You can see the “pattern” created by the interaction between search ellipses
 
 ![](images/Sampling_Interpolation-60044080.png)
 
-2. As you did with the original `ChirDEM`, use the **Raster terrain analysis>Hillshade** to create an `IDWHillshade` layer with your `IDWsysP2_12`, using an **Azimuth of 315 and Elevation of 45**
+2. As you did with the original `ChirDEM`, use the **Raster terrain analysis>Hillshade** to create an `IDWHillshade` layer with your `IDWsysP2_12`, using an **Azimuth of 315 and Elevation of 25**
 
 3. **Group** the `IDW`, `IDWHillshade`, and `contours`, pulling them into an IDW Group.
 
@@ -212,7 +215,9 @@ Nearest Neighbor interpolation uses the single nearest value to calculate the va
 
 13. Create and add contour lines, _as you did for the_ `IDW interpolation`.
 
-14. Create a `NNHillshade` layer, using an **Azimuth of 315 and a solar angle (elevation) of 45.**
+14. Create a `NNHillshade` layer, using an **Azimuth of 315 and a solar angle (elevation) of 25.**
+
+![](images/Sampling_Interpolation-51abb1c1.png)
 
 
 15. **_Create a Nearest Neighbor Group _**containing the sample point, contours, interpolated raster layers within the Layers panel, naming it something like Nearest Group.
@@ -232,15 +237,17 @@ Our strata boundaries will be based on calculated slope, filtered to create larg
 
 1. Calculate the slope for `ChirDEM`, using **Raster>Analysis>Slope**, using the default settings, and Browsing and saving as `SlopeDegrees`
 
+![](images/Sampling_Interpolation-e094b323.png)
+
 ![](images/Sampling_Interpolation-aae4e8cc.png)
 
 ### Reclassifying Raster Values
 
-2. Reclassify **SlopeDegrees** using**_ Processing toolbox_**>**_Raster Analysis_**>**_Reclassify by table _**
+2. Reclassify **SlopeDegrees** using **Processing toolbox>Raster Analysis>Reclassify by table**
 
 3. Click on the **…** next to the **Reclassification table** to create your classes.
 
-4. Use Add Row to add rows, then fill in the rows.
+4. Use Add Row to add `3` rows, then fill in the rows.
 
 4. Use three classes, of:
  1. `up to 1.5`
@@ -253,6 +260,7 @@ Our strata boundaries will be based on calculated slope, filtered to create larg
 
 5. Name the output something like `ReclassSlope`
 
+![](images/Sampling_Interpolation-07331e0f.png)
 
 Your layer should look something like this:
 
@@ -263,17 +271,17 @@ Your layer should look something like this:
 
 Now we want to generalize the strata polygons, removing those from single cells or long, thin areas.  Keeping them would complicate sampling needlessly. We’ll use something called a “Majority” filter, which creates a roving “neighborhood” window.
 
-1. Use **Processing Toolbox>SAGA>Raster Filter>Majority filter**
+1. Use **Processing Toolbox>SAGA>Raster Filter>Majority/Minority filter**
 2. Specify:  
 
-    1. **Search Mode**: `Circle`
+    1. **Type**: `Majority`
+    2. **Search Mode**: `Circle`
     2. **Radius**: `10`
     3. **Threshold**: `50%`  
 
-2. Name `ReclassSlopeMajority`
+2. Name `ReclassSlopeMajority` (Note that the only available output type is `*.sdat`)
 
-![](images/Sampling_Interpolation-413fc672.png)
-
+![](images/Sampling_Interpolation-5ecd077e.png)
 3. Toggle the two layers to see that small zones have been removed.
 
 
@@ -310,13 +318,14 @@ You might recall that the steps are to:
 
    `$area/ 1000000`
 
-![](images/Sampling_Interpolation-e17f5b9a.png)
+![](images/Sampling_Interpolation-98fbefc8.png)
+
 4. save edits and toggle off editing.  
 
 
 ### Basic Statistics on a Field
 
-We can then summarize the resulting column** **to get total square kilometers in the SqKm Field, or to get a total for a specific class/strata.  Previously we’ve had you use the Basic Statistics tool to calculate summary statistics for all records in a column, including the sum.
+We can then summarize the resulting column `SqKm` to get total square kilometers in the SqKm Field, or to get a total for a specific class/strata.  Previously we’ve had you use the Basic Statistics tool to calculate summary statistics for all records in a column, including the sum.
 
 1. Use the **Select features using an expression** tool in the **attribute table to select a class**, e.g., `class 1 (DN = 1)`
 
@@ -331,9 +340,9 @@ You can then use these with the individual polygon table entries for `SqKm` to c
 
 You should arrive at calculated areas close to:
 
-* `287.408` square kilometers for the `flat (DN = 1)` strata
-* `357.3539`  square kilometers for the `intermediate (DN = 2)` strata
-* `25.1439` square kilometers for the `steep (DN = 3)` strata
+* `288.749` square kilometers for the `flat (DN = 1)` strata
+* `359.184`  square kilometers for the `intermediate (DN = 2)` strata
+* `25.134` square kilometers for the `steep (DN = 3)` strata
 
 Your numbers may be slightly different, but should be within a few percent of these areas if you used the methods we described above.
 
@@ -352,7 +361,7 @@ DN=3:  `250 *  "SqKm"  / 25.1439`
 
 7. Repeat for all three strata, selecting each DN, substituting the appropriate areas and number of samples for the strata, and calculating the number of points per strata.   
 
-![](images/Sampling_Interpolation-7bcc3414.png)
+![](images/Sampling_Interpolation-5c24bde1.png)
 
 8. Save your edits and toggle editing
 
@@ -368,7 +377,11 @@ Now, to create the random points.  We use the same tool as before, but this time
 
 3. Click the button on the right end of the **Number of points for each feature option**, then a click on **Field type>SampleNum** in the drop-down to specify the field that holds the number of points for each feature.
 
-   4. Browse and save the Output **Random points in polygons** layer as `StrataRandom1000.shp`
+![](images/Sampling_Interpolation-c2c8d1d0.png)
+
+4. Browse and save the Output **Random points in polygons** layer as `StrataRandom1000.shp`
+
+![](images/Sampling_Interpolation-51a42dee.png)
 
 This should generate a sample set that looks something like that below, with a higher sampling density in the steeper areas of interest:
 
@@ -379,25 +392,23 @@ To add colors to your STRATA map, change symbology to “Categorized” and use 
 
 ### Spline Interpolation
 
-It may be the case that some of the SAGA tools in the Nightly Build of QGIS are not working, properly. If you are not successful creating a Spline Layer, do the following: Go to **Settings>User Profile>New User Profile** then close QGIS and reopen. You will need to reinstall the **SAGANP** plugin, but I’ve had success with this method of “_clearing things out_”
-
-Additional Note: **SAGA & SAGANP** seem to be unhappy with using “Temporary Layers” as inputs, so be sure to **export** your `sample points` to a **shapefile**, before running Spine.  
 
 Now you will use this stratified random sample to produce one last interpolation method.
 
 1. First, use the methods previously described (**Processing> Toolbox>Raster Analysis>Sample raster values**) to once again sample/assign the `ChirDEM` **elevations** found at each sample point, and saving the Output as `StratRandElevationSamples.shp`
 
 
-1. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline interpolation**.
+1. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline**.
  1. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`SAMPLE_1`)
- 3. **Method**: `with B-spline refinement`
- 4. **Maximum Level**: `11`
+
  5. **Output Extent**: **Calculate from Layer>**`ChirDEM`
  6. **Cellsize**: `30`
- 7. **Fit**: `Cells`
+ 7. **Refinement**: `[1]yes`
+ 8. **Threshold Error**: `default`
+ 9. **Maximum Level**: `11`
  8. **Output Grid**: Browse and name `SplineStratRand`
 
-![](images/Sampling_Interpolation-8945315c.png)
+![](images/Sampling_Interpolation-649d0a87.png)
 
 9. After running the tool, **calculate contours**, Create a **hillshade** and _apply the same style_ as the other Interpolation Layers, including applying transparency to the hillshade, etc...  
 
