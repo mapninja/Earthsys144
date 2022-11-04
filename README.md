@@ -44,7 +44,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 ## Week 07 APIs & Web Mapping
 
-1. Web Mapping
+1. [Web Mapping with Mapbox GL JS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/Haunted_Sheetmapper.md)
 2. Making Map Tiles with QGIS & Serving from Github
 2. Geocoding with Geonames.org & locator.stanford.edu
 3. More Remote Sensing with Google Earth Engine & Python Notebooks
