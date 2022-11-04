@@ -6,8 +6,8 @@
   <title></title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
   <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
   <style>
@@ -92,12 +92,12 @@
     };
     //YOUR TURN: add your Mapbox token
 
-    mapboxgl.accessToken = 'replace with your own Mapbox Public API token'; //Mapbox token
+    mapboxgl.accessToken = 'Replace with your own Mapbox Public API token'; //Mapbox token
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'replace this code with a Mapbox Style URL', // YOUR TURN: choose a style: https://docs.mapbox.com/api/maps/#styles
       center: [-122.411, 37.785], // starting position [lng, lat]
-      zoom: 10,// starting zoom
+      zoom: 8,// starting zoom
       transformRequest: transformRequest
     });
 
@@ -114,8 +114,8 @@
 
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
-          latfield: 'Latitude',
-          lonfield: 'Longitude',
+          latfield: 'latitude',
+          lonfield: 'longitude',
           delimiter: ','
         }, function (err, data) {
           map.on('load', function () {
@@ -130,7 +130,9 @@
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': "purple"
+                'circle-color': "purple",
+                'circle-stroke-width': 1,
+                'circle-stroke-color': "black"
               }
             });
 
@@ -143,7 +145,7 @@
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Address + `</h4>` + `<h4>` + `<b>` + `Phone: ` + `</b>` + e.features[0].properties.Phone + `</h4>`;
+              var description = `<h3>` + e.features[0].properties.city + `</h3>` + `<h4>` + `<b>` + `Description: ` + `</b>` + e.features[0].properties.description + `</h4>` + `<h4>` + `<b>` + `Location: ` + `</b>` + e.features[0].properties.location + `</h4>`;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
