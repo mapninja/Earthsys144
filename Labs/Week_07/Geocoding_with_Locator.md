@@ -1,4 +1,3 @@
-collection
 # Geocoding with OpenRefine & locator.stanford.edu
 
 #### How to use Web APIs and OpenRefine for geocoding and augmenting data with geographic and other attributes.
@@ -8,7 +7,7 @@ collection
 
 ### Data:
 
-Download the data for this exercise, here ( you may need to File>Save As... if your browser opens the csv, rather than downloading it ):
+**Download** the data for this exercise, here (you may need to **File>Save As...** if your browser opens the `csv`, rather than downloading it ):
 
 https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/SantaClara_TattooParlors.csv
 

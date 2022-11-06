@@ -46,8 +46,8 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Web Mapping with Mapbox GL JS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/Haunted_Sheetmapper.md)
 2. Making Map Tiles with QGIS & Serving from Github
-2. Geocoding with Geonames.org & locator.stanford.edu
-3. More Remote Sensing with Google Earth Engine & Python Notebooks
+3. [Geocoding with locator.stanford.edu](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/Geocoding_with_Locator.md)
+4. More Remote Sensing with Google Earth Engine
 
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
