@@ -2,7 +2,6 @@
 
 #### How to use Web APIs and OpenRefine for geocoding and augmenting data with geographic and other attributes.
 
-
 ## Getting Ready
 
 ### Data:
