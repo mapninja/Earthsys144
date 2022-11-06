@@ -273,3 +273,16 @@ Your `download URL` should be similar to the one, below, but with your username,
 You can see the live Leaflet Map for the example, here:
 
 [`https://mapninja.github.io/SF_Model_Tiles/`](https://mapninja.github.io/SF_Model_Tiles/)
+
+## Using Your Service in Other Platforms
+
+Now that you have a stable, public XYZ Tile Service, you can connect to it with any platform that supports XYZ Tiles, using your **XYZ Tile Template URL** (here's the example, URL):
+
+`https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png`
+
+
+Here is the XYZ Tile Service being served, as a Tile Layer, in ArcGIS Online:  
+
+https://arcg.is/1TW5580
+
+![](images/GitHub_XYZ_Tile_Service-da026bb0.png)
