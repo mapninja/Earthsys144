@@ -77,7 +77,7 @@ Note that we have several columns with _Implicit Location Data_ in them, includi
 * `Zip Code`
 
 3. Use the values for these columns, from the first record in the table, to fill out the **Find Address Candidates: (geocode/USA)** form.
-4. For **Max Loxcations**: `1`
+4. For **Max Locations**: `1`
 5. Change the **Format** to `JSON`
 6. Click **Find Address Candidates (GET)**
 
@@ -128,8 +128,7 @@ In the image, above, you can see the `endpoint URL`, broken down, as follows:
 
 - **Red** - This is the `base URL` of the locator.stanford.edu server  
 - **Orange** - This is the `resource path` of the specific _USA Geocode Service_   
-- **Yellow** - This is `resource path` of the specific **Operation** we want to run: "_Find Address Candidates_"  
-   -
+- **Yellow** - This is `resource path` of the specific **Operation** we want to run: "_Find Address Candidates_"   
 - **Green** - These are the `query parameters`, and their `values`, commonly referred to as a "`key-value`" `pair`. They structure the data that we want to process, so that the locator service understands what it is being given to work with.
 - **Gray** - These are `query parameters`, but they are `keys` with no `values`. In most cases, it isn't necessary to include these in the URL,
 
