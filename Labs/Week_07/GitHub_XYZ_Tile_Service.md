@@ -227,34 +227,35 @@ This is because the path in the `L.tileLayer()` function is still pointing to th
 
 ![](images/GitHub_XYZ_Tile_Service-ac9d67de.png)
 
-3. Click "into" the `*.png` file, then right-click on the Download button and select **Copy Link** to copy the `download URL` for the `*.png` image.
+3. Click "into" the `*.png` file, then click on the Download button
+4. Select and **Copy** the URL for the `*.png` image, from the URL bar of your browser.
 
-![](images/GitHub_XYZ_Tile_Service-4ce99654.png)
+![](images/GitHub_XYZ_Tile_Service-710707a8.png)
 
-4. Paste the `download URL` into a **New text document**, in your plain text editor.
+4. Paste this `download URL` into a **New text document**, in your plain text editor.
 
 Your `download URL` should be similar to the one, below, but with your username, and the subpath to the specific `*.png` image you browsed to.
 
-`https://github.com/mapninja/SF_Model_Tiles/raw/main/11/326/791.png`
+`https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/11/326/791.png`
 
 5. Select and Delete the part of the `download URL` after `/main/`, so that you have something like the following, left:
 
-`https://github.com/mapninja/SF_Model_Tiles/raw/main/`
+`https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/`
 
 6. Now you need to paste the ``{z}/{x}/{y}.png` template for the service, to the end of the URL, like so:
 
-`https://github.com/mapninja/SF_Model_Tiles/raw/main/{z}/{x}/{y}.png`
+`https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png`
 
 7. Select and copy this **XYZ tile template URL**
 8. Return to the Main Repository Page and click on the index.html file to view it.
 9. Click on the Edit button ![](images/GitHub_XYZ_Tile_Service-5d4cd008.png) to open the Github Text editor.
-10. Locate the following line in the `index.html` file:
+10. Locate the following line in the `index.html` file (_your file:/// path will be slightly different_):
 
 `      L.tileLayer('file:////Users/maples/Scratch/144%20Labs/Week%2007/data_EPSG_4326/SF_Model_Tiles/{z}/{x}/{y}.png', {`
 
 11. Select the entire `file:////...` path between the **single quotes (' ')** and paste the copied path into it's place, like so:
 
-`      L.tileLayer('file:////Users/maples/Scratch/144%20Labs/Week%2007/data_EPSG_4326/SF_Model_Tiles/{z}/{x}/{y}.png', {`
+`      L.tileLayer('https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png', {`
 
 11. Create a Commit comment and click the **Commit changes** button.
 
