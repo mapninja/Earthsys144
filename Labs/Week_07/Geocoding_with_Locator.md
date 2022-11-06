@@ -130,7 +130,7 @@ In the image, above, you can see the `endpoint URL`, broken down, as follows:
 - **Orange** - This is the `resource path` of the specific _USA Geocode Service_   
 - **Yellow** - This is `resource path` of the specific **Operation** we want to run: "_Find Address Candidates_"   
 - **Green** - These are the `query parameters`, and their `values`, commonly referred to as a "`key-value`" `pair`. They structure the data that we want to process, so that the locator service understands what it is being given to work with.
-- **Gray** - These are `query parameters`, but they are `keys` with no `values`. In most cases, it isn't necessary to include these in the URL,
+- **Gray** - These are `query parameters`, but they are `keys` with no `values`. In most cases, it isn't necessary to include these in the URL
 
 ## Creating the API `endpoint URL`
 
