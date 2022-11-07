@@ -2,66 +2,78 @@
 
 ## Data
 * Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. Map Of The State Of Wyoming. Compiled from the official Records of the General Land Office and other sources under the direction of Harry King, C.E., Chief of Drafting Division G.L.O. 1900. Compiled, Drawn and Lettered by I.P. Berthrong [cartographic material] - https://searchworks.stanford.edu/view/10453474
+
+
 * Public Land Survey System of the United States, 2010 - https://earthworks.stanford.edu/catalog/stanford-td889mh1819
 
 ## Downloading the Scanned Map Image
 
-1. In a browser, go to the following link (described above):
+1. In a browser, go to the following link (described above): https://searchworks.stanford.edu/view/10453474
+2. Click on the **Share Icon** ![](images/GeoreferencingImages-25c53dbe.png), then **Download**.
+
 
 ![](images/GeoreferencingImages-a3388300-drop-shadow_reduce.png)
 
+3. **Download** the [Original source file](https://stacks.stanford.edu/file/mm941rt1648/3532000.jp2).
+
 ![](images/GeoreferencingImages-770e751a-drop-shadow_reduce.png)
 
-### Adding Data from a Web Feature Service (WFS)
+4. Save the `3532000.jp2` image to your project folder. [`*.jp2`, or **JPEG-2000**](https://www.loc.gov/preservation/digital/formats/fdd/fdd000143.shtml), is a compressed image format that is popular for storing very large imagery datasets, like aerial photography, and scanned maps.
 
-1. Open a new QGIS Project and go to Layer>Add Layer>AddWFS Layer... to open the Data Source Manager
-2. In the Server Connections panel, lick on the **New** Button
-3. Use "Earthworks" as the Name for the connection, and `https://geowebservices.stanford.edu/geoserver/wfs` as the URL. Click OK to add the connection.
+### Download PLSS Data from Earthworks
 
-![](images/GeoreferencingImages-4f1ac719-drop-shadow_reduce.png)
+1. Go to https://earthworks.stanford.edu/catalog/stanford-td889mh1819 and download the **Original Shapefile**
 
-4. Back in the Data Source Manager, Click on the Connect Button to create a live connection to the Earthworks server.
-5. In the search box, search for `Public Land Survey System of the United States` (You may not need the entire string to return the target layer).
-6. Confirm that the layer returned has the following unique identifier: `druid:td889mh1819`
+![](images/GeoreferencingImages-8beebb94.png)
 
+1. **Open** a **new QGIS** Project and Save it to your **Project folder**.
+3. Use the **QGIS Browser** to **Browse** to the **Project Home** and add the `plss00p020.shp` file to your **Project**.
 
-![](images/GeoreferencingImages-079634f3-drop-shadow_reduce.png)
-
-7. Click on the layer in the Search Return window, and then click the Add button, to add the Feature Layer Service to your QGIS Map.
-8. Close the Data Source Manager window.
-
-![](images/GeoreferencingImages-822b51ff-drop-shadow_reduce.png)
-
-
-
-
-
-
+![](images/GeoreferencingImages-a7813ae7.png)
 
 ### Using Filters to subset a layer's view
 
-1. Examine the Attributes
+Here we will use a filter on the `plss00p020.shp` layer, to only show the extent that we need, in this case, features in **Wyoming**.
+
+1. Examine the **Attribute Table**, and note the `state` field, offers a convenient way to limit the features to those we need to georeferencing a map of Wyoming.
 ![](images/GeoreferencingImages-b52fe42c-drop-shadow_reduce.png)
 
-2. Build the QUery
+2. Open the **Properties** of the `plss00p020.shp` Layer, and click on the **Source Tab**, then the **Query Builder** button ![](images/GeoreferencingImages-8564861b.png)
+
+3. Create a Filter Query as follows:
+
+`"state" = 'WY'`
 
 ![](images/GeoreferencingImages-3a2041a1-drop-shadow_reduce.png)
 
-![](images/GeoreferencingImages-7faad8b8-drop-shadow_reduce.png)
+4. Click OK to **Apply** the **Filter**
+5. Click OK to **Close** the **Layer Properties** and note the new extent of the `plss00p020.shp`
+
+![](images/GeoreferencingImages-17f5ea69.png)
+
+5. Right click on the `plss00p020.shp` Layer and **Zoom to Layer**
 
 
+![](images/GeoreferencingImages-90878c25.png)
 
 ### Apply Symbology for Georeferencing Reference
 
-1. Use Transparent Fill  
+Now we will apply a symbology that will allow us to use the layer as reference for our scanned map. Ideally, we will use a high contrast color for the stroke, and a transparent fill, so that we can see a basemap, beneath, for further reference.  
+
+### Add a basemap
+1. Add a **Basemap**, preferably with Labels, using the **QuickMapServices** plugin.
+
+### Adjust Symbology of the PLSS Layer
+2. **Select** the `plss00p020` layer and **open** the **Layer Styling Panel** ![](images/GeoreferencingImages-c67e333f.png)
+2. Set the **Fill Color:** `Transparent Fill`   
 
 
 ![](images/GeoreferencingImages-5fb490c5-drop-shadow_reduce.png)
-2. Set the Stroke color to something bright  
+2. Set the **Stroke color**; `something brigh`t  
 
 ![](images/GeoreferencingImages-f56493cb-drop-shadow_reduce.png)
-### Add a basemap
 
+![](images/GeoreferencingImages-03d82d54.png)
 
 ## Altering a CRS for a specific application
 
@@ -87,7 +99,11 @@ Use your curser in QGIS to hover over the approximate center of Wyoming and see 
 
 ### Altering the CRS of the Project
 
-* Change Project CRS to USA_Contiguous_Equidistant_Conic `ESRI:102005` and observer the results
+1. Click on the Project CRS at the bottom right corner of the QGIS Window
+
+![](images/GeoreferencingImages-69e0f350.png)
+
+2. Change Project CRS to `USA_Contiguous_Equidistant_Conic` `ESRI:102005` and observe the results
 
 ![](images/GeoreferencingImages-710d8abe-drop-shadow_reduce.png)
 
