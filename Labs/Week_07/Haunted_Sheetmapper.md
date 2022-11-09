@@ -69,7 +69,7 @@ _Note: This tutorial demonstrates how to access data from a Google Sheet using c
     2. latitude
     3. Any additional fields you want to be displayed in the popups
 
-3. Once you have made your table, you will need to use the **Share Button**  to make the table accessible to Anyone with the link:
+3. Once you have made your table, you will need to use the **Share Button**  to make the table accessible so that "**_Anyone on the internet with the link can view_**":
 
 ![](images/Haunted_Sheetmapper-8273bec6.png)
 
