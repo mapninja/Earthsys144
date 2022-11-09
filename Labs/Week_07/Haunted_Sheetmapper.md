@@ -58,8 +58,7 @@ _Note: This tutorial demonstrates how to access data from a Google Sheet using c
 ### Create data in Google sheet
 
 
-
-1. For this exercise, you can [duplicate your sheet from this template](https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFj
+1. For this exercise, you can [duplicate your sheet from this template](https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing)
 
 ![](images/Haunted_Sheetmapper-87ac1ea5.png)
 
