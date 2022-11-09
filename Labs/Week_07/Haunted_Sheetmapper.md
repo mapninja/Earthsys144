@@ -62,14 +62,20 @@ _Note: This tutorial demonstrates how to access data from a Google Sheet using c
 
 ![](images/Haunted_Sheetmapper-87ac1ea5.png)
 
-
-2. or make your own sheet from scratch, with any data you want. You will need the following columns:
+2. Make the table
+2. ...or make your own sheet from scratch, with any data you want. You will need the following columns:
 
     1. longitude
     2. latitude
     3. Any additional fields you want to be displayed in the popups
 
-3. Once you have made your table link, to create an export link, copy the following link to your text editor for use, later:
+3. Once you have made your table, you will need to use the **Share Button**  to make the table accessible to Anyone with the link:
+
+![](images/Haunted_Sheetmapper-8273bec6.png)
+
+![](images/Haunted_Sheetmapper-242bf40a.png)
+
+4. To create an export link, copy the following link to your text editor for use, later:
 
 
 `https://docs.google.com/spreadsheets/d/{key}/gviz/tq?tqx=out:csv&sheet={sheetname}`
