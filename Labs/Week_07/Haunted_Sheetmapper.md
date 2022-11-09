@@ -35,7 +35,7 @@ The other 0.1% will, no doubt, be my fault.
 
 **Templates and Data:**
 
-* [Sample index.html code](https://raw.githubusercontent.com/StanfordGeospatialCenter/Earthsys144/master/data/index.html)
+* [Sample index.html code](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html)
 * [Sample data spreadsheet `haunted_places`](https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing)
 * [Live map demo](https://web.stanford.edu/~maples/mapbox/)
 
