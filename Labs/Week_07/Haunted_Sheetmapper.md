@@ -123,7 +123,7 @@ In this part, you will do what all programmers do: Steal someone else's code, an
 
      In _**Atom**_, you can go to **File>New File** to create a new file.
 
-9. Set up the document by copying and pasting [this template code](https://raw.githubusercontent.com/StanfordGeospatialCenter/Earthsys144/master/data/index.html) into your new HTML file
+9. Set up the document by copying and pasting [this template code](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html) into your new HTML file
 
    (or, you can just save that webpage of html, as `index.html`), but make sure you add the `.html` extension, if necessary, when you **save as...**
 
