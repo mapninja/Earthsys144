@@ -51,8 +51,8 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
-1. Cartographic Modeling
-2. Spatial Statistics
+1. [Modeling Geographic Space with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/Modeling_Geographic_Space.md)
+2. Spatial Statistics with QGIS
 
 ## Week 09 Final Project Clinics
 

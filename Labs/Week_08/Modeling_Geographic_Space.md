@@ -36,9 +36,11 @@ At the top of the **Script window**, you will see a number of prepared **Imports
 
 From this point, you will be presented with an explanation of the step we are about to undertake, perhaps some explanation of how the particular function we are using, works, and then a `Code Block`, that executes what has been described, in `JavaScript`.
 
-Your task, for the next section of the lab is to **read the descriptions**, and **explore any links to documentation**, then **Cut & Paste the** `Code Block` provided, into your **Google Earth Engine Code Editor** window. The `Code Block`s in this lesson are **sequential**, so you should **_take care to paste each in the sequence it is presented in_**.
+Your task, for the next section of the lab is to **read the descriptions**, and **explore any links to documentation**, then **Cut & Paste the** `Code Block` provided, into your **Google Earth Engine Code Editor** window. The `Code Block`s in this lesson are **sequential**, so you should **_take care to paste each in the sequence it is presented in_**. Look for the Copy icon ![](images/Modeling_Geographic_Space-785cc605.png), in each `Code Block` which can make copying all the code in the block, easier.
 
-You will note that the `Code Block`s are commented, heavily in some cases. Comments on the code come, in general, before the active code. In some of the `Code Block`s you will see additional code "commented out" with the single-line double slash-style "//" convention. In most cases this code is meant to add an analytic layer to the Map. You can uncomment this code by deleting the first set of forward slashes "//", at the beginning of the line, then run the script, for testing purposes. Re-comment the line, before you progress further. At the end of the script, all of the layers will be added to the map, in the same section.
+You will note that the `Code Block`s are commented, heavily in some cases. Comments on the code come, in general, before the active code.
+
+In some of the `Code Block`s you will see additional code "commented out" with the single-line double slash-style "//" convention. In most cases this code is meant to add an analytic layer to the Map. You can uncomment this code by deleting the first set of forward slashes "//", at the beginning of the line, then run the script, for testing purposes. Re-comment the line, before you progress further. At the end of the script, all of the layers will be added to the map, in the same section.
 
 As you progress, you should remember to **Save** your script, **often**.
 ## Set the Map Options
