@@ -44,8 +44,10 @@ In some of the `Code Block`s you will see additional code "commented out" with t
 
 As you progress, you should remember to **Save** your script, **often**.
 ## Set the Map Options
-
+### Set the Basemap
 First, set the basemap for the model. Here it is set to '`TERRAIN`'. It can be one of "`ROADMAP`", "`SATELLITE`", "`HYBRID`" or "`TERRAIN`" to select one of the [standard Google Maps API map types](https://developers.google.com/maps/documentation/javascript/maptypes).
+
+_Copy & Paste the following code to the Code Editor of the script you just created, to implement it. Do this for every subsequent code block, in this lesson, in sequence._
 ```JavaScript
 // First, set the basemap for the model. Here it is set to 'TERRAIN'. Can be one of
 // "ROADMAP", "SATELLITE", "HYBRID" or "TERRAIN" to select one of the standard
@@ -53,7 +55,12 @@ First, set the basemap for the model. Here it is set to '`TERRAIN`'. It can be o
 // If left as null and only 1 style is specified in opt_styles, that style will be used.
 Map.setOptions('TERRAIN');
 ```
-Center on the `origin` FeatureCollection, which currently has a single Feature.  You can edit the zoom level: `world=0` up to `house=22`. It's set to a pretty good scale for this location, adjust as necessary after you change the origin location(s) later in the lesson.
+### Center the Map on an Object, and Set the Zoom level
+The next code block will cause the Map to center on the `origin` FeatureCollection, which currently has a single Feature.  
+
+You can edit the zoom level: `world=0` up to `house=22`.
+
+It's set to a pretty good scale for this location, adjust as necessary after you change the origin location(s) later in the lesson.
 ```JavaScript
 // Center on the `origin` FeatureCollection, which currently has a single Feature.
 // You can edit the zoom level: world=0 > house=22. It's set to a pretty good spot for this location,
