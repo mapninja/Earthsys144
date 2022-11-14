@@ -343,7 +343,7 @@ Here is a bit of code that will export your `hrsFrom` accumulated layer, with 30
 ```JavaScript
 Export.image.toDrive({
   image: hrsFrom, // This is the image you want to Export
-  description: 'Hours from Origins', // A description of the dataset
+  description: 'Hours_from_Origins', // A description of the dataset, no spaces, etc...
   fileNamePrefix: 'Yosemite_CA_hrsFromOrigins', // This is the name of the resulting GeoTIFF file
   region: mapBounds, // Using the map dimensions, from above. Adjust if needed.
   scale: 30 // Always specify scale! This means the resulting pixels will be 150m
