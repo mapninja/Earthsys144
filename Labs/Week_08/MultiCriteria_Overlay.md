@@ -240,3 +240,15 @@ _In this example, we are giving equal weight to both road and water proximity. I
 29. Check the layer and the map canvas would update to show the overlay raster clipped to the boundary layer. This is the final output that shows areas within the state that are suitable for development.
 
 ![](images/MultiCriteria_Overlay-4152bfa4.png)
+
+# To Turn In:
+
+1. Create a **QGIS** Layout of your Suitability Analysis
+2. Add the _**appropriate Map Elements**_, including:
+   1. Title
+   2. Date
+   3. Your name
+   4. Map CRS
+   5. Legend
+   6. Scalebar
+3. **Export** your **Map Layout** to `PDF` or `PNG` Image, and upload to **Canvas**
