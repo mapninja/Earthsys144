@@ -1,14 +1,10 @@
-# QGIS 101
-https://mapninja.github.io/QGIS-101/
+## Not ready for assignment
 
-
-Stacey Maples – Geospatial Manager – Stanford Geospatial Center – stacemaples@stanford.edu
-
-David Medeiros – GIS Instruction & Support Specialist - Stanford Geospatial Center - davidmed@stanford.edu
+# Being John Snow: Point Pattern Analysis & Spatial Statistics
 
 ## Overview
 
-This workshop aims to accomplish two things: Introduce participants to basic vocabulary, concepts and techniques for working with spatial data in research and introduce the interface and tools in QGIS, a free & open source desktop GIS software. This introductory session will focus upon the fundamental concepts and skills needed to begin using Geographic Information Systems software for the exploration and analysis of spatial data using the QGIS platform.  
+This lesson aims to accomplish two things: Introduce participants to basic vocabulary, concepts and techniques for working with spatial data in research and introduce the interface and tools in QGIS, a free & open source desktop GIS software. This introductory session will focus upon the fundamental concepts and skills needed to begin using Geographic Information Systems software for the exploration and analysis of spatial data using the QGIS platform.  
 
 Topics will include:  
 
@@ -41,11 +37,11 @@ Steven Johnson's "Ghost Map" TED Talk - https://www.ted.com/talks/steven_johnson
 
 ## Setup
 
-Users should prepare for this workshop by installing the QGIS software appropriate for their operating system and downloading the data to their local hard drive.
+Users should prepare for this lesson by installing the QGIS software appropriate for their operating system and downloading the data to their local hard drive.
 
 ### Software
 
-This workshop was created using QGIS version 3.12, which is the long-term release. If you are in new user we suggest installing the latest long-term release for your operating system. While the latest beta release contains extra features and functionality, it often and also contains bugs and limited functionality, which can be frustrating to new users.
+This lesson was created using QGIS version 3.12, which is the long-term release. If you are in new user we suggest installing the latest long-term release for your operating system. While the latest beta release contains extra features and functionality, it often and also contains bugs and limited functionality, which can be frustrating to new users.
 
 To download QGIS for your operating system go to QGIS.org and click on the download link.
 
@@ -53,7 +49,7 @@ To download QGIS for your operating system go to QGIS.org and click on the downl
 
 ### Data
 
-The data package for the workshop can be downloaded from [https://github.com/mapninja/QGIS-101/archive/master.zip](https://github.com/mapninja/QGIS-101/archive/master.zip)
+The data package for the lesson can be downloaded from [https://github.com/mapninja/QGIS-101/archive/master.zip](https://github.com/mapninja/QGIS-101/archive/master.zip)
 
 The project data folder contains the following datasets:
 
@@ -63,7 +59,7 @@ The project data folder contains the following datasets:
 
 
 #### Additional Files
-There is an extra backup data folder that contains versions of files that we will create during the workshop. These files are provided in case any of the steps can't be completed due to software errors or other problems. Welcome to working with open source.  
+There is an extra backup data folder that contains versions of files that we will create during the lesson. These files are provided in case any of the steps can't be completed due to software errors or other problems. Welcome to working with open source.  
 * **Snow-cholera-map-1_modified** - this is a geo-referenced image of the map from John Snow's original report on the cholera outbreak of 1854.  
 * **Water_Pumps.geojson** - this is a spatial data file containing the locations of all of the water pumps recorded in John Snow's original map of the cholera outbreak.  Who woo hoo
 
@@ -91,7 +87,7 @@ The QGIS interface is made up of three basic components:
 
 * **The Browser Window** – Functions much as Explorer does in Windows. In this window, you can visualize your drives and folders. Is the equivalent of ArcCatalog in ArcMap.
 * **The Layers Window** – This is where your added geographic and non-geographic datasets will show. This is similar to the Table of Contents in ArcMap.
-* **Other Panels** - there are many other panels that it is possible to enable in the QGIS interface. We will be making use of the **Processing Toolbox** and **Layer Styling** panel for this workshop.
+* **Other Panels** - there are many other panels that it is possible to enable in the QGIS interface. We will be making use of the **Processing Toolbox** and **Layer Styling** panel for this lesson.
 
 **Toolbars:**
 A number of  toolbars are enabled, by default, in a new installation  of QGIS. Below are the most commonly used, though not all of the defaults.
@@ -149,7 +145,7 @@ The first thing we would like to do is add a base map layer to our map project. 
 ### Add an existing data layer
 Now we're going to add an existing data layer. The data layer that we will add describes our **Area Of Interest** in this study. This layer will provide us with a convenient way to orient our data frame to the area that we are interested in, as well as providing a way to limit the processing extent of certain geo-processing tools.
 
-1. In the **QGIS Browser panel**, find the data folder for this workshop (Hint: look for the "**Project Home**" folder) and double-click on the **study_area.shp** file, to add it to your **map project**.
+1. In the **QGIS Browser panel**, find the data folder for this lesson (Hint: look for the "**Project Home**" folder) and double-click on the **study_area.shp** file, to add it to your **map project**.
 2. In the **Layers panel**, right-click on the **study_area layer** and select "**Zoom to layer**."
 3. On the **Main menu**, enable the **Layer styling panel** from the **View>Panels menu**.
 4. In the **Layer styling panel**: select **Simple fill** from the panel at the top, and change the **Fill style** to "**No brush**." If you would like you can also change the **Stroke color** & **Stroke width** of the stroke to make it more visible against the black-and-white basemap.
@@ -345,7 +341,7 @@ This URL provides access to the georeferenced map outside of the DavidRumsey.com
 
 ### Georeference a map  
 
-Our goal in this workshop is to explore the cholera outbreak of 1854 and determine whether there is evidence that the Broad Street pump is the source of the outbreak. To do this we want to spatially allocate all of the death addresses in our data set to the water pump that they are nearest. Often the data that we need for our analysis doesn't exist in the format that we need it in. In this section we will use John Snow's original map of the 1854 cholera outbreak as a source for the locations of the water pumps in our analysis.
+Our goal in this lesson is to explore the cholera outbreak of 1854 and determine whether there is evidence that the Broad Street pump is the source of the outbreak. To do this we want to spatially allocate all of the death addresses in our data set to the water pump that they are nearest. Often the data that we need for our analysis doesn't exist in the format that we need it in. In this section we will use John Snow's original map of the 1854 cholera outbreak as a source for the locations of the water pumps in our analysis.
 
 #### Setting up  
 
@@ -633,8 +629,8 @@ Set the **Cellsize** to 10 (this is also in meters)
 
 That's all for now!
 
-For more on QGIS Cartography and creating layouts, particularly for journal publication see David's QGIS Cartography workshops:
+For more on QGIS Cartography and creating layouts, particularly for journal publication see David's QGIS Cartography lessons:
 
-https://sites.google.com/stanford.edu/gis-cartography/workshops/qgis-cartography
+https://sites.google.com/stanford.edu/gis-cartography/lessons/qgis-cartography
 
-https://sites.google.com/stanford.edu/gis-cartography/workshops/maps-for-academic-journals
+https://sites.google.com/stanford.edu/gis-cartography/lessons/maps-for-academic-journals
