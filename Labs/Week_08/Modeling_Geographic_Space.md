@@ -1,12 +1,12 @@
-describing# Modeling Geographic Space, with Google Earth Engine
+# Modeling Geographic Space, with Google Earth Engine
 ## How you will complete this lab
-In this Lab, you will use existing code, which represents an implementation of Waldo Tobler's Hiking Function, as a Model for examining the effect of topography (here, modeled as `slope`) on human movement across a bare landscape.
+In this Lab, you will use existing code, which implements Waldo Tobler's Hiking Function, as a Model for examining the effect of topography (here, modeled as `slope`) on human movement across a bare landscape.
 
 **You will take the code from this lesson, and paste it into your own Code Editor, altering the code in order to focus this model on another part of the world, perhaps somewhere you are interested in.**
 
 **In doing so, you will, hopefully, accomplish two things:**
 
-**First**: You will hopefully familiarize yourself with the process of "Modeling Geographic Space" through the successive geoprocessing of layer(s) of spatial data, with the goal of representing some phenomenon, and it's relationship to geographic space.
+**First**: You will hopefully familiarize yourself with the process of "_**Modeling Geographic Space**_" through the successive **geoprocessing** of layer(s) of spatial data, with the goal of representing some phenomenon, and it's relationship to geographic space.
 
 **Second**: You will hopefully gain some confidence in the process of "piecing together" code from another source, and altering it to meet your specific purpose. This is most of what using code, in research, is: Grabbing pieces of code from other sources, and working to integrate them into something that performs a specific task, you are interested in.
 
