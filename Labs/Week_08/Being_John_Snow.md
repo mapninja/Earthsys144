@@ -165,7 +165,7 @@ The Weighted Spatial Mean takes into account some "intensity" value to amplify t
 
 3. **Apply a symbology** to the `Deaths_Weighted_Spatial_Mean` layer.
 
-#### Cased Weighted Spatial Mean
+### Cased Weighted Spatial Mean
 
 It is also possible to calculate several spatial means, by grouping points based upon a nominal, or class variable. In this case, we will use the `WP_Name` field to calculate a unique weighted spatial mean for each subset of Deaths, based upon their proximity to a water pump, as we identified in the previous Spatial Join, task.
 
