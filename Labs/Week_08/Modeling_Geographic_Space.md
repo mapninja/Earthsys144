@@ -419,4 +419,7 @@ _In the above image, I've used the Google Terrain Basemap, and `Paletted/Unique 
    5. Legend
    6. Scalebar
 7. Add text explaining the **Tobler's Hiker Function**, in general, and describing any changes you made to the model, including the new location, number of hours per walking day, etc...
-8. **Export** your **Map Layout** to `PDF` or `PNG` Image, and upload to **Canvas**.
+8. **Export** your **Map Layout** to `PDF` or `PNG` Image, and upload to **Canvas**
+9. Submit a **Get Link URL** to the final version of your script in **Canvas**
+
+![](images/Modeling_Geographic_Space-85c7cfb2.png)
