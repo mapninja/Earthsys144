@@ -243,7 +243,7 @@ _In this example, we are giving equal weight to both road and water proximity. I
 
 # To Turn In:
 
-1. Create a **QGIS** Layout of your Suitability Analysis
+1. Create a **QGIS** Layout of your **Suitability Analysis**
 2. Add the _**appropriate Map Elements**_, including:
    1. Title
    2. Date
