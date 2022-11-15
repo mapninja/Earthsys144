@@ -52,7 +52,8 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
 1. [Modeling Geographic Space with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/Modeling_Geographic_Space.md)
-2. Spatial Statistics with QGIS
+2. [Being John Snow - Spatial Statistics with QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/Being_John_Snow.md)
+3. [MultiCriteria Overlay Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/MultiCriteria_Overlay.md)
 
 ## Week 09 Final Project Clinics
 
