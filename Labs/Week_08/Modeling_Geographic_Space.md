@@ -12,6 +12,11 @@ In this Lab, you will use existing code, which implements Waldo Tobler's Hiking 
 
 ### Getting Started
 
+Run and review this script, which has the world's shortest intro to JavaScript:
+https://code.earthengine.google.com/d1ce116295b8ef3a2ec0bb4f86e688a2?accept_repo=projects%2Fgee-edu%2Fbook
+
+### Starting your script
+
 Below, you will find a **Google Earth Engine Code Editor GetLink** which you can use to load the initial imports for the script you are about to create.
 
 Once the `Imports` are loaded into your **Google Earth Engine Code Editor** window, you should **save** the script to your own **Earth Engine Scripts repository** by clicking on the **Save button** and **Save a Copy** to your `default` repository.
