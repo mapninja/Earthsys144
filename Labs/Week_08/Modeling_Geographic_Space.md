@@ -43,7 +43,7 @@ Your task, for the next section of the lab is to **read the descriptions**, and 
 
 You will note that the `Code Block`s are commented, heavily in some cases. Comments on the code come, in general, before the active code.
 
-In some of the `Code Block`s you will see additional code "commented out" with the single-line double slash-style "//" convention. In most cases this code is meant to add an analytic layer to the Map. You can uncomment this code by deleting the first set of forward slashes "//", at the beginning of the line, then run the script, for testing purposes. Re-comment the line, before you progress further. At the end of the script, all of the layers will be added to the map, in the same section.
+In some of the `Code Block`s you will see a last line or two of additional code "commented out" with the single-line double slash-style "//" convention. In most cases this code is meant to add an analytic layer to the Map. You can uncomment this code by deleting the first set of forward slashes "//", at the beginning of the line, then run the script, for testing purposes. Re-comment the line, before you progress further. At the end of the script, all of the layers will be added to the map, in the same section.
 
 As you progress, you should remember to **Save** your script, **often**.
 ## Set the Map Options
