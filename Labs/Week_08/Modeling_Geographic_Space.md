@@ -309,7 +309,7 @@ Don't forget to **Save your script, often**.
 Here, you will add some code to the end of your script to prepare and export your resulting layers as a single GeoTIFF image.
 
 ### Flatten your layers into a single layer, using Band Math
-First, use the following code to "flatten" the four `n`-Day Walking Layers into a single image with 5 values
+First, use the following code to "flatten" the four `n`-Day Walking Layers into a single image with 5 values. Here, we are flipping the values by subtracting them from 5 and taking the [`abs()`](https://developers.google.com/earth-engine/apidocs/ee-image-abs) , or absolute value, to drop the negative sign.
 
 ```JavaScript
 // Create a single dataset from the three Walking Times layers
@@ -317,15 +317,14 @@ var collapseIsohyets = ee.Image.constant(5).subtract(threedayFlat.add(threedayWa
 // Map.addLayer(collapseIsohyets,{min:0,max:5},'isohyets');
 ```
 ### Remap the Values
-The next step uses [`remap()`](https://developers.google.com/earth-engine/apidocs/ee-image-remap) to change two of the values for the resulting layer.
+The next step uses [`remap()`](https://developers.google.com/earth-engine/apidocs/ee-image-remap) to change one of the values for the resulting layer.
 
-Here, we are changing the value of the 3-Day Walking Time on Flat feature to `0`, and replacing the background value `5` with `NULL`, by leaving it out of the following lists.
+Here, we are changing the background values of `5` to `0`
 ```JavaScript
 //The next step remaps the value 5 to `0`, before we export the layer.
-// A list of pixel values to replace.
+// A list of pixel values to replace,
 var fromList = [1,2,3,4,5];
-// list of replacement value, so that all remain, exept 4 is set to 0, and 5 is set to NULL,
-// since it is in neither list.
+// list of replacement values. Note here we are changing 5 to 0
 var toList =   [1,2,3,4,0];
 ```
 
@@ -335,7 +334,7 @@ Here we use the `remap()` function with the above lists to **remap/refactor** th
 var walkingTimesDataset = collapseIsohyets.remap({
   from: fromList,
   to: toList,
-  bandName: 'constant'
+  bandName: 'cumulative_cost'
 });
 ```
 ### Test the `walkingTimesDataset`
@@ -408,7 +407,7 @@ Once the above code has been successfully run, and you have your exported data i
 
 
 ![](images/Modeling_Geographic_Space-4ee602f7.png)
-_In the above image, I've used the Google Terrain Basemap, and `Paletted/Unique values` Styling Method, with `Blending Mode` set to `Burn`_
+_In the above image, I've used the Google Terrain Basemap, and `Paletted/Unique values` Styling Method, with `Blending Mode` set to `Burn`. Values of 0 have been removed from the Styling Classes, via the **Remove selected row** tool_ ![](images/Modeling_Geographic_Space-5dc59ba8.png)
 
 4. If you have exported additional layers, you can add them, but this is optional.
 5. Create a **QGIS** Layout of your "**Tobler's Hiker Model**"
@@ -419,5 +418,5 @@ _In the above image, I've used the Google Terrain Basemap, and `Paletted/Unique 
    4. Map CRS
    5. Legend
    6. Scalebar
-7. Add text explaining the **Tobler's Hiker Function**, in general, and describing any changes you made to the model, including the location, number of hours, per walking day, etc...
+7. Add text explaining the **Tobler's Hiker Function**, in general, and describing any changes you made to the model, including the new location, number of hours per walking day, etc...
 8. **Export** your **Map Layout** to `PDF` or `PNG` Image, and upload to **Canvas**.
