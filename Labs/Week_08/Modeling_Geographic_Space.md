@@ -32,6 +32,9 @@ At the top of the **Script window**, you will see a number of prepared **Imports
 - '`kmhrVisParam`' is a `dictionary` containing the visualization parameters for our `speedDEM` layer
 - '`hrppVisParam`' is a `dictionary` containing the visualization parameters for our `toblerTime` layer
 
+
+![](images/Modeling_Geographic_Space-dff22632.png)
+
 ## How to complete the rest of this assignment
 
 From this point, you will be presented with an explanation of the step we are about to undertake, perhaps some explanation of how the particular function we are using, works, and then a `Code Block`, that executes what has been described, in `JavaScript`.
@@ -61,6 +64,7 @@ _Copy & Paste the following code to the Code Editor of the script you just creat
 // If left as null and only 1 style is specified in opt_styles, that style will be used.
 Map.setOptions('TERRAIN');
 ```
+
 ### Center the Map on an Object, and Set the Zoom level
 The next code block will cause the Map to center on the `origin` FeatureCollection, which currently has a single Feature.  
 
@@ -74,6 +78,10 @@ It's set to a pretty good scale for this location, adjust as necessary after you
 // adjust as necessary after you change the origin location(s) later in the lesson
 Map.centerObject(origin, 9);
 ```
+
+
+![](images/Modeling_Geographic_Space-4a177595.png)
+
 ## Begin producing the analytic layers of your model
 ### Select the elevation band from the SRTM Collection
 First, declare a variable called `elevation` give it the `elevation` band
@@ -89,6 +97,9 @@ _Note that the following code has a commented out line, at the end, which can be
 var elevation = dataset.select('elevation');
 //Map.addLayer(elevation, {min:0,max:3000},'elevation');//Delete the first "//" on this line to test the layer
 ```
+
+![](images/Modeling_Geographic_Space-67db4c31.png)
+
 ### Calculate `slope` from an image
 **Calculate** the `slope` of your `elevation`, in `degrees`. This is the first step of the model.
 
@@ -97,6 +108,10 @@ var elevation = dataset.select('elevation');
 var slope = ee.Terrain.slope(elevation);
 // Map.addLayer(slope, slopeVisParam, 'slope');//Delete the first "//" on this line to test the layer
 ```
+
+![](images/Modeling_Geographic_Space-8f4c21cb.png)
+
+
 ### Prepare a baseline image, for comparison
 Create a **flat slope image**. We will use this to compare what the model tells us about movement on the DEM, to movement on a flat surface, without any 'slope friction'.
 ```Javascript
@@ -145,6 +160,7 @@ var speedDEM = toblerSpeed(slope);
 var speedFlat = toblerSpeed(flatSlope);
 //Map.addLayer(speedDEM, kmhrVisParam, 'speedDEM');//Delete the first "//" on this line to test the layer
 ```  
+![](images/Modeling_Geographic_Space-898775bb.png)
 
 ## Converting to "Cost" per pixel
 Next, we want to convert the `km/hr` to `hrs/px` values, which tell us how many hours each pixel "costs" to cross. We will use this "cost" layer to accumulate cost from a feature in our `origin` `featureCollection`.
@@ -154,6 +170,8 @@ var toblerTime = ee.Image.constant(0.003)
 .divide(speedDEM);
 // Map.addLayer(toblerTime, hrppVisParam, 'toblerTime');//Delete the first "//" on this line to test the layer
 ```
+
+![](images/Modeling_Geographic_Space-91fe5052.png)
 
 Convert the `km/hr` to `hrs/px` values for the flat image, as well.
 ```Javascript
@@ -188,8 +206,10 @@ of the 'origin' `featureCollection`.
 var hrsFrom = toblerTime.cumulativeCost(originImage,60000);
 var hrsFlat = flatTime.cumulativeCost(originImage,60000);
 // Map.addLayer(hrsFrom,hrsFromVisParam, 'Hours from Origin');//Delete the first "//" on this line to test the layer
-// Map.addLayer(flatTime,hrsFromVisParam, 'Hours from Origin');//Delete the first "//" on this line to test the layer
 ```
+
+![](images/Modeling_Geographic_Space-df3c46ed.png)
+
 ## Selecting the Pixels within _n_ Hours of an `origin` point
 Now, we select only the pixels within **8, 16, & 24 hrs**, which we are using as a 'day' of walking. You can adjust these values to adjust the model, depending on how much walking time you think a day should be.
 
@@ -201,7 +221,8 @@ These are the layers you will want to export, later, to create a map layout in *
 var daysWalk = 8; // You can change this value to increase or reduce the # hrs per day, walking
 
 // Here we are using lt() to select all of the pixels in hrsFrom layer, that are Less Than
-// the # of hours we want for each layer.
+// the # of hours we want for each layer. The results are binary value layers, where `1`
+// is in the walking isohyet, and `0` is not.
 var onedayWalk = hrsFrom.lt(daysWalk);
 var twodayWalk = hrsFrom.lt(daysWalk*2);
 var threedayWalk = hrsFrom.lt(daysWalk*3);
@@ -222,9 +243,12 @@ Map.addLayer(hrsFrom,hrsFromVisParam, 'Hours from Origin',0);
 ```
 
 ## Add the modeled Walking Time layers, to the Map
-Add the walking time areas, with opacity. note that the order in code, is the order rendered
+Add the walking time areas, with opacity. note that the order in code, is the order rendered. Also note that here the walking isohyets are added to the Map, using the `updateMask()` Function which makes the `0`s in the data transparent. By masking these binary value Layers with their own `0` values, we make sure that only the `1`s are rendered.
 
 ```Javascript
+// Here the walking isohyets are added to the Map, using the updateMask() Function
+// to make the `0`s in the data transparent, by masking these binary value Layers
+// with their own `0` values, so that only the `1`s are rendered
 Map.addLayer(threedayFlat.updateMask(threedayFlat), { min:0,max: 1, palette:'green'}, '3 days on Flat',1,0.5);
 Map.addLayer(threedayWalk.updateMask(threedayWalk), { min:0,max: 1, palette:'red'}, '3 days from Origin',1,0.5);
 Map.addLayer(twodayWalk.updateMask(twodayWalk), { min:0,max: 1, palette:'orange'}, '2 days from Origin',1,0.5);
@@ -233,6 +257,8 @@ Map.addLayer(onedayWalk.updateMask(onedayWalk), { min:0,max: 1, palette:'yellow'
 
 ## Test and Troubleshoot the script
 Now, **Save your Script**, and **Run** it to test to see how things are working, so far.
+
+![](images/Modeling_Geographic_Space-180e037a.png)
 
 When Troubleshooting, look for little icons in the left margin of the Code Window. If you see them, they will often have messages about what the interpreter behind the Code Editor thinks is wrong.
 
@@ -255,16 +281,29 @@ The following sections and code will help you prepare the final dataset, and get
 Now you will alter the model to point the model to another part of the world. Currently, the model is pointing to Yosemite Valley, CA. Find yourself _somewhere_ else to point the model, by altering the featureCollection called `origin`, like so:
 
 To change the origin point, _**after running the model successfully**_:  
-1. **Click** on the **Reset** button to keep the model from running as you move to a new location
+1. **Save** your script, then **Click** on the **Reset** button to keep the model from running as you move to a new location
+
+![](images/Modeling_Geographic_Space-89381540.png)
+
 2. **Click** on the **current point**, and **DELETE** it.
 3. **Zoom and Pan** to a new location. Change the **Basemap Widget** to **Map>Terrain** to find topographically interesting locations.
 4. **Hover** over the **Geometry Imports widget**, and click on the '`origin`' layer until the **crosshair** icon activates
+
+![](images/Modeling_Geographic_Space-567f0ea5.png)
+
 5. **Click** with the **crosshair** in a **new location**, and click **Exit** on the **Geometry Imports widget**, to save the new location
+
+![](images/Modeling_Geographic_Space-969a431e.png)
+
 6. **Run** the **Script** to see the new results.  
+
+![](images/Modeling_Geographic_Space-0a441715.png)
 
 Adding more than one point is possible, but reduces performance, dramatically.
 
-Don't forget to Save your script, often.
+![](images/Modeling_Geographic_Space-209038dd.png)
+
+Don't forget to **Save your script, often**.
 
 ## Exporting Your Modeled Layers as a Dataset
 Here, you will add some code to the end of your script to prepare and export your resulting layers as a single GeoTIFF image.
@@ -275,19 +314,19 @@ First, use the following code to "flatten" the four `n`-Day Walking Layers into 
 ```JavaScript
 // Create a single dataset from the three Walking Times layers
 var collapseIsohyets = ee.Image.constant(5).subtract(threedayFlat.add(threedayWalk).add(twodayWalk).add(onedayWalk)).abs();
+// Map.addLayer(collapseIsohyets,{min:0,max:5},'isohyets');
 ```
 ### Remap the Values
 The next step uses [`remap()`](https://developers.google.com/earth-engine/apidocs/ee-image-remap) to change two of the values for the resulting layer.
 
 Here, we are changing the value of the 3-Day Walking Time on Flat feature to `0`, and replacing the background value `5` with `NULL`, by leaving it out of the following lists.
 ```JavaScript
-//The next step remaps the value 4 to 0, and 5 to NULL, before we export the layer.
+//The next step remaps the value 5 to `0`, before we export the layer.
 // A list of pixel values to replace.
-var fromList = [1,2,3,4];
-// list of replacement value, so that all remain the same,
-// except 4 is set to 0, and 5 is set to NULL, by it's omission
+var fromList = [1,2,3,4,5];
+// list of replacement value, so that all remain, exept 4 is set to 0, and 5 is set to NULL,
 // since it is in neither list.
-var toList =   [1,2,3,0];
+var toList =   [1,2,3,4,0];
 ```
 
 Here we use the `remap()` function with the above lists to **remap/refactor** the values of our features in the resulting dataset.
@@ -305,14 +344,18 @@ Now, test your resulting dataset by adding the code below, and running it. Use t
 - `1:OneDayWalk`
 - `2:TwoDayWalk`
 - `3:ThreeDayWalk`
-- `0:ThreeDayOnFlat`
-- `NULL:background values`
+- `4:ThreeDayOnFlat`
+- `0:background values`
 
 ```Javascript
 // Add the walkingTimesDataset, toggled off, so you can verify it's values, by toggling on
 // once you have the model working properly
 Map.addLayer(walkingTimesDataset,{min:0,max:5},'Export Dataset',0);
 ```
+
+![](images/Modeling_Geographic_Space-b82b0263.png)
+
+
 ## Export the `walkingTimesDataset` to Google Drive
 The next section of code will export the `walkingTimesDataset` layer to a **GeoTIFF** file, in the top level folder of the **Google Drive** associated with the account you are logged into **Google Earth Engine** with. You will be able to download this **GeoTIFF** and display it in **QGIS**, for your final layout.
 
@@ -335,7 +378,9 @@ Export.image.toDrive({
   scale: 150 // Always specify scale! This means the resulting pixels will be 150m
 });
 ```
-Once you have run the script with the above **Export** code, you should see the **Tasks Tab** of your **Code Editor window, flashing**. **Click** on it, and **Start** the **Export Task** that is waiting. You can return to the **Tasks Tab** to check the progress of your **Export Task**.
+Once you have run the script with the above **Export** code, you should see the **Tasks Tab** of your **Code Editor window, flashing**. **Click** on it, and **Start** the **Export Task** that is waiting. You can return to the **Tasks Tab** to check the progress of your **Export Task**. The `walkingTimesDataset` should take about 5 minutes to export. The export code, below, with a `scale:30` would take a significantly longer time to process and export.
+
+![](images/Modeling_Geographic_Space-d675b5b7.png)
 
 ## Exporting other layers with the Export Code (_optional_)
 If you want to export more than one layer (say, your `slope` layer, or one of the other analytics layers, too), you can **Cut & Paste** the above code, at the bottom of your script, and alter the `image`: parameter to point to a different layer, then update the `fileNamePrefix` and `description` settings. This will cause more than one Task to appear, in your **Tasks Tab**.
@@ -350,12 +395,21 @@ Export.image.toDrive({
 });
 ```
 
+
+
+![](images/Modeling_Geographic_Space-ed154dcb.png)
+
 # To Turn In: Finishing Up:
 Once the above code has been successfully run, and you have your exported data in **Google Drive**:
 
 1. **Download** your `walkingTimesDataset` from **Google Drive**, to your hard drive.
 2. **Create** a new **QGIS Project** and add `walkingTimesDataset` to it.
 3. **Add** an appropriate **basemap** and **Style** the `walkingTimesDataset` layer appropriately.
+
+
+![](images/Modeling_Geographic_Space-4ee602f7.png)
+_In the above image, I've used the Google Terrain Basemap, and `Paletted/Unique values` Styling Method, with `Blending Mode` set to `Burn`_
+
 4. If you have exported additional layers, you can add them, but this is optional.
 5. Create a **QGIS** Layout of your "**Tobler's Hiker Model**"
 6. Add the _**appropriate Map Elements**_, including:
