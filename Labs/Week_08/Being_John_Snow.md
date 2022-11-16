@@ -178,47 +178,43 @@ It is also possible to calculate several spatial means, by grouping points based
 
 Observe the results. This has the effect of "casing" the spatial mean, based upon the spatial allocation that we did earlier. Notice how the Spatial Mean of each individual cluster of `Deaths` seems to be "pulling" toward the centrally located **Broadwick Street Water Pump**.
 
-Update teh styling and toggle off various layers to note the various Spatial Means calculated from the Deaths.
+Update the styling and toggle off various layers to note the Spatial Means calculated from the Deaths.
 
 ![](images/Being_John_Snow-cfaff81f.png)
 
 ### Standard Distance
 
-The Standard Distance is the spatial statistics equivalent of the standard deviation. It describes the radius around the spatial mean (or weighted spatial mean), which contains 68% of locations in your dataset. It can be very useful for working with GPS data.
+The Standard Distance is the spatial statistical equivalent of the standard deviation. It describes the radius around the spatial mean (or weighted spatial mean), which contains 68% of locations in your dataset (or 95%, or 99%). It can be very useful for working with GPS data.
 
-![](media/image011-drop-shadow.png)
 
-On the pull-down menu go to menu go to **Processing \> Toolbox** to open the
+1. On the pull-down menu go to menu go to **Processing \> Toolbox** to open the
 **Processing Toolbox Window.**
 
-![](media/image012-drop-shadow.png)
 
 On the **Processing Toolbox Window type** to **search**: **Spatial point pattern
 analysis** and **double click** to open the tool window.
 
-1.  Select **Death Addresses** as the **Point** layer.
+1.  Select `Deaths_Allocated` as the **Point** layer.
 
 2.  Click the 3 dots and **Select** Save to a file.
 
 3.  **Give** an appropriate name and **Save** the **3 Output Files** on your
     **Data** folder.
 
-![](media/image013-drop-shadow.png)
+![](images/Being_John_Snow-a225dc63.png)
 
 **Click Run** to calculate the **Standard Distance, Mean Centre and Bounding
 Box.**
 
->   The red dot is the mean center (no weight field; the large circle is the
->   standard distance, which gives an indication of how closely the points are
->   distributed around the mean center; and the rectangle is the bounding box,
->   describing the smallest possible rectangle which will still enclose all the
->   points.
+![](images/Being_John_Snow-5b992332.png)
+
+The red cross is the mean center (no weight field; the large circle is the standard distance, which gives an indication of how closely the points are distributed around the mean center; and the rectangle is the bounding box, describing the smallest possible rectangle which will still enclose all the points.
 
 ### Creating a surface from Point Data to Highlight “Hotspots”
 
 ![media/image14.png](media/image014-drop-shadow.png)
 
-#### Kernel Density (Currently problematic)
+#### Kernel Density
 
 The Kernel Density Tool calculates a magnitude per unit area from the point features using a kernel function to fit a smoothly tapered surface to each point. The result is a raster dataset which can reveal “hotspots” in the array of point data.
 
