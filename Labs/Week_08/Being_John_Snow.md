@@ -1,5 +1,3 @@
-## Not ready for assignment
-
 # Being John Snow: Basic Point Pattern Analysis & Spatial Statistics with QGIS
 
 ## Overview
@@ -244,7 +242,8 @@ Note the proximity of the "hotspot" and the Broad(wick) Street Water Pump.
 
 # To Turn In:
 
-You should now have the following analytic layers in your Project:
+You should now have the following analytic layers in your Project:  
+
 * `Voronoi` Polygons
 * `Deaths_Spatial_Mean`
 * `Deaths_Weighted_Spatial_Mean`
@@ -257,4 +256,18 @@ As well as the original layers from the initial project:
 * `Water Pumps`
 * `1854 Cholera Outbreak`
 
-![](images/Being_John_Snow-c696ac2c.png)
+
+1. Create a **QGIS** Layout of your "**Being John Snow Map**"
+2. Select a subset of the layers above, and create a layout that effectively highlights the Broad(wick) Street Water Pump, and it's centrality in the outbreak. Use creativity, and be selective in what layers you use.
+3. Add the _**appropriate Map Elements**_, including:
+   1. Title
+   2. Date
+   3. Your name
+   4. Map CRS
+   5. Legend
+   6. Scalebar
+4. **Export** your **Map Layout** to `PDF` or `PNG` Image, and upload to **Canvas**
+
+![](images/Being_John_Snow-5fbdfd74.png)
+
+_This visual effect was achieved through the use of the Inverted Polygon Style, on the `Standard_Distance` layer, with transparency, and liberal use of a drop shadow._
