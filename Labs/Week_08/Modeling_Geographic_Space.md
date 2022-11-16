@@ -339,7 +339,7 @@ Here we use the `remap()` function with the above lists to **remap/refactor** th
 var walkingTimesDataset = collapseIsohyets.remap({
   from: fromList,
   to: toList,
-  bandName: 'cumulative_cost'
+  bandName: 'constant'
 });
 ```
 ### Test the `walkingTimesDataset`
