@@ -212,58 +212,49 @@ The red cross is the mean center (no weight field; the large circle is the stand
 
 ### Creating a surface from Point Data to Highlight “Hotspots”
 
-![media/image14.png](media/image014-drop-shadow.png)
-
 #### Kernel Density
 
 The Kernel Density Tool calculates a magnitude per unit area from the point features using a kernel function to fit a smoothly tapered surface to each point. The result is a raster dataset which can reveal “hotspots” in the array of point data.
 
-Note: Project your DeathAddresses data to the EPSG:32630 UTM coordinate system, before running the  next steps. Some changes have been made to the QGIS interface and how it interacts with some of the processing libraries included
+Note: Project your `Deaths_Allocated` data to the `EPSG:32630` UTM coordinate system, before running the  next steps.
 
-1.  Go to the **Processing Toolbox Window** and **type** to search **Kernel Density Estimation (SAGA)** and **double click** to open the tool window.
-2.  **Select** the **Deaths_Allocated** layer as the **Points** features.
-3.  Select **Num_Cases** as the **Weight Field.**
-4.  Set the **Radius** option to **50** (this is in meters).
-5.  On the **Output Extent** option, click the 3 dots and select **Use
-    layer/canvas extent.**
-6.  On the resulting window search for **Study Area** and **Click OK.**
-![](media/image015-drop-shadow.png)
+1.  Go to the **Processing Toolbox Window** and **type** to search **Kernel Density Estimation (SAGANP)** and open the tool.
+2.  **Select** the `Deaths_Allocated` layer as the **Points** features.
+3.  Select `Num_Cases` as the **Weight Field.**
+4.  Set the **Radius** option to `50` (the tool uses the linear unit of the layer CRS for the units, which in this case is in meters).
+5.  On the **Output Extent** option, click the dropdown and select **Use layer/canvas extent**, then select `Study Area` and **Click OK.**
 
-Set the **Cellsize** to 10 (this is also in meters)
+![](images/Being_John_Snow-82c56269.png)
 
-1.  On the **Kernel Option click** the 3 dots and select **Save to File.**
+6.  On the resulting window search for
+7. Set the **Cellsize** to 1 (this is also in meters)
+8.  **Save** the **Output Raster** as `Kernel_Density`
 
-2.  **Save** the **Output Raster** to the **Data Folder** as **Kernel_Density.**
+![](images/Being_John_Snow-b4c365a1.png)
 
-3.  **Click Run** to run the Kernel Density tool.
+9.  **Click Run** to run the **Kernel Density tool**.
 
-4.  **Right Click** the **Kernel_Density layer** and **open** its
-    **properties**.
+![](images/Being_John_Snow-1be84b3e.png)
 
-![](media/image016-drop-shadow.png)
+10. Experiment with **Singleband pseudocolor Styling** for the `Kernel_Density` layer
 
-**Go** to the **Style Tab** and select
+![](images/Being_John_Snow-f3cdfe00.png)
 
-1.  **Render Type:** Singleband gray
+Note the proximity of the "hotspot" and the Broad(wick) Street Water Pump.
 
-    1.  **Color Gradient:** White to black
+# To Turn In:
 
-    2.  **Contrast enhancement:** Stretch to MinMax.
+You should now have the following analytic layers in your Project:
+* `Voronoi` Polygons
+* `Deaths_Spatial_Mean`
+* `Deaths_Weighted_Spatial_Mean`
+* `Deaths_Cased_Weighted_Spatial_Mean`
+* `Kernel_Density`
+* `Standard_Distance`
 
-    3.  **Load min/max values:** Select min/max and click load.
+As well as the original layers from the initial project:
+* `Deaths`
+* `Water Pumps`
+* `1854 Cholera Outbreak`
 
-    4.  **Hue:** Check Colorize and select a color of your choice
-
-    5.  **Resampling:** Zoomed in **Bilinear.**
-
-    6.  **Click OK**
-
-![](media/image017-drop-shadow.png)
-
-That's all for now!
-
-For more on QGIS Cartography and creating layouts, particularly for journal publication see David's QGIS Cartography lessons:
-
-https://sites.google.com/stanford.edu/gis-cartography/lessons/qgis-cartography
-
-https://sites.google.com/stanford.edu/gis-cartography/lessons/maps-for-academic-journals
+![](images/Being_John_Snow-c696ac2c.png)
