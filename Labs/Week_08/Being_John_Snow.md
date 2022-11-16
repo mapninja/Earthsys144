@@ -2,7 +2,6 @@
 
 ## Overview
 
-
 ## Before Getting Started
 
 Do yourself a favor and get acquainted with the story of the **Cholera Outbreak of 1854**, [Dr. John Snow](https://www.ph.ucla.edu/epi/snow.html) and Reverend Henry Whitehead, with [Steven Johnson's "Ghost Map" TED Talk](https://www.ted.com/talks/steven_johnson_how_the_ghost_map_helped_end_a_killer_disease), based upon his book:
@@ -11,7 +10,7 @@ Do yourself a favor and get acquainted with the story of the **Cholera Outbreak 
 
 ### Data
 
-The data package for the lesson can be downloaded from [https://github.com/mapninja/QGIS-101/archive/master.zip](https://github.com/mapninja/QGIS-101/archive/master.zip)
+The data package for the lesson can be downloaded from [https://github.com/mapninja/Earthsys144/raw/master/data/Being_John_Snow.zip](https://github.com/mapninja/Earthsys144/raw/master/data/Being_John_Snow.zip)
 
 The project contains the following datasets:
 
