@@ -58,4 +58,6 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 09 Final Project Clinics
 
 1. StoryMaps
+   1. [Creating StoryMaps](https://arcg.is/1fTaa)
+   2. [Pancakes & Silver](https://arcg.is/1bqTL81)
 2. Final Project
