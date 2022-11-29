@@ -174,7 +174,7 @@ _It make take up to 15 minutes for this process to run. It is a computationally 
 
 Enter the following expression that applies the above criteria on the input. Click the … button next to Reference layer(s) and select ``roads_proximity` layer. Name the output roads_reclass.tif and click Run.
 
- `100*("roads_proximity@1"&lt;=1000) + 50*("roads_proximity@1">1000)*("roads_proximity@1"&lt;=5000) + 10*("roads_proximity@1">5000)`
+ `100*("roads_proximity@1"<=1000) + 50*("roads_proximity@1">1000)*("roads_proximity@1"<=5000) + 10*("roads_proximity@1">5000)`
 
 ![](images/MultiCriteria_Overlay-307e4d66.png)
 
@@ -189,7 +189,7 @@ Enter the following expression that applies the above criteria on the input. Cli
 
 Enter the following expression that applies the above criteria on the input. Click the … button next to Reference layer(s) and select ``water_proximity` layer. Name the output water_reclass.tif and click Run.
 
-`100*("water_proximity@1">5000) + 50*("water_proximity@1">1000)*("water_proximity@1"&lt;=5000) + 10*("water_proximity@1"&lt;1000)`
+`100*("water_proximity@1">5000) + 50*("water_proximity@1">1000)*("water_proximity@1"<=5000) + 10*("water_proximity@1"<1000)`
 
 ![](images/MultiCriteria_Overlay-06e680cb.png)
 
