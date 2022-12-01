@@ -207,6 +207,8 @@ Box.**
 
 The red cross is the mean center (no weight field; the large circle is the standard distance, which gives an indication of how closely the points are distributed around the mean center; and the rectangle is the bounding box, describing the smallest possible rectangle which will still enclose all the points.
 
+Note that some are having trouble with SAGA tools not being installed, in the latest version of QGIS. If you are not able to complete this portion of the lab because the "Spatial point pattern" tool isn't available, there is a Plugin, called **Standard Distance** that you can use to produce the Standard Distance layer, as well.
+
 ### Creating a surface from Point Data to Highlight “Hotspots”
 
 #### Kernel Density
@@ -270,3 +272,4 @@ As well as the original layers from the initial project:
 ![](images/Being_John_Snow-5fbdfd74.png)
 
 _This visual effect was achieved through the use of the Inverted Polygon Style, on the `Standard_Distance` layer, with transparency, and liberal use of a drop shadow._
+
