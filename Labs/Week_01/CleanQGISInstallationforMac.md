@@ -1,14 +1,14 @@
-# Week 01 Lab 01a - Doing a Clean QGIS Installation (on Mac)
+# Week 01 Lab 01a - Doing a Clean QGIS Installation (on Mac & Windows)
 
-Here, I describe the installation of QGIS on a Mac, in particular, because of some of the security settings obstacles that the MacOS present. The QGIS installer for WIndows is straightforward, and fairly self-explanatory.
+Here, I describe the installation of QGIS on a Mac, in particular, because of some of the security settings obstacles that the MacOS presents. The QGIS installer for Windows is straightforward, and fairly self-explanatory.
 
 ## For Windows Users
+
 Here is the main download link for QGIS, where you can find the Mac, Windows and Linux versions, in one place:  
-https://www.qgis.org/en/site/forusers/download.html
+<https://www.qgis.org/en/site/forusers/download.html>
 
 Here's a recent walkthrough of the Windows installation process:  
-https://www.geeksforgeeks.org/how-to-install-qgis-on-windows/
-
+<https://www.geeksforgeeks.org/how-to-install-qgis-on-windows/>
 
 Note that once you have QGIS installed, adding the plugins, etc... will progress in nearly identical steps.
 
@@ -19,40 +19,41 @@ This workflow will guide you through:
 * Installing WhiteboxTools Plugin, to support WhiteboxTools for raster, through the QGIS interface.
 * Install QuickMapServices and Import basemap Services.
 
+# Installing QGIS for Mac  
 ## Cleaning Up (if you already have a previous version of QGIS)
 
 We will be using the latest Pre-Release version of QGIS, which should have all the latest tools and functionality we want. If you have previously installed QGIS PR, you will need to delete the QGIS.app from your Applications Folder, before installing with the directions, below.
 
 `Note: QGIS PR and QGIS LTR (Long-Term Release) are released with different *.app names, so that you can run the LTR and PR versions of the software on the same machine. If the *.app in your Applications Folder is named QGIS-LTR.app, you will not need to delete it, since the PR version installs as QGIS.app`
 
-
 1. Browse to your Application folder, in Finder
 2. Right-click on the QGIS.app app, and 'Move to Trash'
 
 ![](images/CleanQGISInstallationforMac-4d0f9f91_reduce-drop-shadow_reduce-drop-shadow.png)
 
-
 ## Install QGIS PR
 
-1. **Download** the latest **PR** from: https://www.qgis.org/en/site/forusers/download.html
+1. **Download** the latest **PR** from: <https://www.qgis.org/en/site/forusers/download.html>
 2. **Right-click** the **DMG** File and select **Open**
 3. It will take a few minutes to decompress and validate the DMG file.
 4. Once the Installation Package opens, **Drag-and-drop the QGIS app icon, into the Applications Folder icon**, to install the app.
 ![](images/CleanQGISInstallationforMac-71de0185_reduce-drop-shadow.png)
-5.
 
-## Launching QGIS, the 1st Time.
+
+## Launching QGIS, the 1st Time
 
 QGIS is not yet notarized as required by macOS Catalina+ (10.15) security rules.
+
 1. On first launch, please **right-click on the QGIS app icon, hold down the Option key, then choose Open**. This should result in a warning pop-up:
 
-![](images/CleanQGISInstallationforMac-9939f1f0_reduce-drop-shadow.png)
+![](images/Screenshot 2024-03-04 at 1.11.56 PM.png)
 
-2.** Click OK**, to dismiss the error.
-3. Open your **Mac System Preferences**, and go to the **Security & Privacy settings**.
+
+2.**Click Cancel**, to dismiss the error.  
+3. Open your **Mac System Preferences**, and go to the **Security & Privacy settings**.  
 4. Click on the **General tab** at the top, and you should see something like this:
 
-![](images/CleanQGISInstallationforMac-d49a655c_reduce-drop-shadow.png)
+![](images/Screenshot 2024-03-04 at 1.12.50 PM.png)
 
 5. Click **Open Anyway**, then click **Open** at the next warning:
 
@@ -60,7 +61,7 @@ QGIS is not yet notarized as required by macOS Catalina+ (10.15) security rules.
 
 6. QGIS should launch, at this point, but if not, return to your Applications folder and try opening QGIS.app, again. This time, it should work.
 
-![](images/CleanQGISInstallationforMac-ed229237_reduce-drop-shadow.png)
+![](images/Screenshot 2024-03-04 at 1.32.51 PM.png)
 
 ## Getting QGIS ready to use
 
@@ -69,9 +70,11 @@ QGIS is not yet notarized as required by macOS Catalina+ (10.15) security rules.
 This step will create a new User Profile, which is  useful when troubleshooting weird errors, or after an upgrade. This process will create a new, clean User Profile, and reset to the installation default settings for QGIS. Plugins and customizations will need to be reinstalled. It will not delete your old profile, and you can move back and forth between profiles, from the **Settings>User Profiles>** menu.
 
 1. In the QGIS App, go to **Settings>User Profiles>New Profile**...
-2. Name the profile something to identify it,  and click OK.
+2. Name the profile something like `Earthsys144 - Labs` to identify it,  and **click OK**.
 
 ![](images/CleanQGISInstallationforMac-7d8fffc6_reduce-drop-shadow.png)
+
+![](images/Screenshot 2024-03-04 at 1.35.14 PM.png)
 
 ## Install Plugins
 
@@ -80,9 +83,11 @@ This step will create a new User Profile, which is  useful when troubleshooting 
 QuickMapServices Plugin provides a convenient catalog of tiled map services for use as basemaps and reference layers, in QGIS.
 
 1. go to **Plugins>Manage and Install** and search for **QuickMapServices** and install the plugin.
+
+![](images/Screenshot 2024-03-04 at 1.37.18 PM.png)
+
 2. **Close** the **Plugin Manager** and go to **Web>QuickMapServices>Settings**
 3. **Click** on the **More Services** tab, then **Get Contributed Pack**
-
 
 ![](images/CleanQGISInstallationforMac-c46e4e28_reduce-drop-shadow.png)
 
@@ -95,17 +100,23 @@ QuickMapServices Plugin provides a convenient catalog of tiled map services for 
 Saga tools are useful, but as a project separate from QGIS they often introduce breaking changes to the GUI in QGIS by changing the names of tool parameters, etc... SAGANP is an experimental plugin, which attempts to keep up with these changes, outside the less regular releases of QGIS, and will reduce the number of issues you have using the SAGA tools.
 
 1. Return to the **All** tab in the **Plugins Dialog** and search for **SAGA** to find the "**Processing SAGA NextGen Provider**" plugin, and **install** it.
-2. This should add a new **SAGA Next Gen toolset**, which duplicates the SAGA provider. When using any tools from the SAGA toolkit, you should always prefer the SAGANP version of the tool.
+2. This should add a new **SAGA Next Gen toolset**, which duplicates the SAGA provider. When using any tools from the SAGA toolkit, you should always prefer the SAGANG version of the tool.
 ![](./images/CleanQGISInstallationforMac-3bc5b422_reduce-drop-shadow.png)
 
 ### WhiteboxTools plugin (If you are feeling adventurous!)
 
+For a video demonstrating how to setup the plugin, please see [https://www.youtube.com/watch?v=xJXDBsNbcTg&t=3s](https://www.youtube.com/watch?v=xJXDBsNbcTg&t=3s)
+
 **Whiteboxtools** is an excellent, performant and stable set of tools, particularly useful for hydrological modeling, terrain analysis, and map algebra. You can integrate the WBT tools in QGIS through the use of another plugin.
 
-This assumes you have **downloaded** **Whiteboxtools** from https://www.whiteboxgeo.com/download-redirect/ and have **upzipped** the resulting archive to somewhere stable on your hard drive (I put mine at `/Users/maples/WBT`).
+1. First, **download** the appropriate version of **Whiteboxtools** for your operating system from <https://www.whiteboxgeo.com/download-redirect/> and  
 
-1. **Return** to the **Plugins Manager** and search for "`whitebox`" to find the "WhiteboxTools for Processing" plugin, and install it.
-2. **Return** to the **Processing Toolbox Settings** and expand  Providers>WhiteboxTools, then double-click in the box next to **WhiteboxTools** executable to use the ... button to browse to the folder where your WhiteboxTools executable is, as shown below:  
+2. **upzip** the resulting archive to somewhere stable on your hard drive (I put mine at `/Users/maples/WBT`).  
+
+    If you are a **Windows User**, I would consider putting it in a folder somewhere like `C:/WBT`
+
+3. **Return** to the **Plugins Manager** and search for "`whitebox`" to find the "WhiteboxTools for Processing" plugin, and install it.
+4. **Return** to the **Processing Toolbox Settings** and expand  Providers>WhiteboxTools, then double-click in the box next to **WhiteboxTools** executable to use the ... button to browse to the folder where your `whitebox_tools` executable is, as shown below:  
 
 ![](images/CleanQGISInstallationforMac-7ec82a0a_reduce-drop-shadow.png)
 
