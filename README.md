@@ -17,7 +17,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 03 Creating & Collecting data
 
 1. [Editing Basics in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/Editing_with_QGIS.md)
-2. [Building a Field Data Collection app Âwith ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/masteÂr/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
+2. [Building a Field Data Collection app with ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
 3. [Georeferencing and Creating a Custom Projection](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md)
 
 ## Week 04 Attributes, Tables, Relational Databases
@@ -39,22 +39,25 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 2. [Watershed Delineation (cont' from Basic Raster & Terrain)](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
-2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Sampling_Interpolation.md)
+2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Sampling_Interpolation.md)
 
 
 ## Week 07 APIs & Web Mapping
 
-1. Web Mapping
-2. Making Map Tiles with QGIS & Serving from Github
-2. Geocoding with Geonames.org & locator.stanford.edu
-3. More Remote Sensing with Google Earth Engine & Python Notebooks
+1. [Web Mapping with Mapbox GL JS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/Haunted_Sheetmapper.md)
+2. [Making Map Tiles with QGIS & Serving from Github](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/GitHub_XYZ_Tile_Service.md)
+3. [Geocoding with locator.stanford.edu](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_07/Geocoding_with_Locator.md)
+4. More Remote Sensing with Google Earth Engine
 
 ## Week 08 Cartographic Modeling & Spatial Statistics
 
-1. Cartographic Modeling
-2. Spatial Statistics
+1. [Modeling Geographic Space with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/Modeling_Geographic_Space.md)
+2. [Being John Snow - Spatial Statistics with QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/Being_John_Snow.md)
+3. [MultiCriteria Overlay Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_08/MultiCriteria_Overlay.md)
 
 ## Week 09 Final Project Clinics
 
 1. StoryMaps
+   1. [Creating StoryMaps](https://arcg.is/1fTaa)
+   2. [Pancakes & Silver](https://arcg.is/1bqTL81)
 2. Final Project
