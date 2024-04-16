@@ -400,5 +400,5 @@ The resulting Feature Layer is a read-only view of the data being collected in y
 
 # To Turn In:
 
-1. Join the "**Earthsys144 - Fundamentals of GISci - Spring 2024**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 - Fundamentals of GISci - Spring 2024**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
+1. Join the "**Earthsys144 - Fundamentals of GISci - Spring 2024** Group" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 - Fundamentals of GISci - Spring 2024 Group**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
 2. Go to the Details Page for the View Layer you created and scroll to the bottom of the page to find the URL. Copy the URL and paste it into the Homework URL submission text box, in Canvas.
