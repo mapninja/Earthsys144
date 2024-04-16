@@ -333,13 +333,13 @@ Note: Either sign in with the same account you used to make the map, or share th
 Management of multiple field workers can be easily implemented through the use of Groups, in ArcGIS.com. You can create a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your Collector/FieldMaps  app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
 
 
-### Join the Earthsys144 FieldMaps app Group 2022
+### Join the Earthsys144 - Fundamentals of GISci - Spring 2024
 
 
 
 1. From The Map, on ArcGIS.com, click on the Home button and go to Groups
 2. Click on the My Organization's Groups tab at the top, left
-3. Search for `earthsys144` and click on the resulting **Earthsys144 FieldMaps app Group 2022** link
+3. Search for `earthsys144` and click on the resulting **Earthsys144 - Fundamentals of GISci - Spring 2024** link
 
 
 ![](images/ArcGIS_Online_FieldMaps-95409c2e.png)
@@ -350,7 +350,7 @@ Management of multiple field workers can be easily implemented through the use o
 ### Share the map and feature layer with the group
 
 
-Now that you are a member of the **Earthsys144 FieldMaps app Group 2022**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
+Now that you are a member of the **Earthsys144 - Fundamentals of GISci - Spring 2024**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
 
 
 
@@ -363,7 +363,7 @@ Now that you are a member of the **Earthsys144 FieldMaps app Group 2022**, you c
 
 
 1. Click the option to Set sharing level to organization
-2. **Click on the Edit group sharing button, select the Earthsys144 FieldMaps app Group 2022 and click OK**
+2. **Click on the Edit group sharing button, select the Earthsys144 - Fundamentals of GISci - Spring 2024 and click OK**
 
 ![](images/ArcGIS_Online_FieldMaps-6dc16a0a.png)
 
@@ -376,7 +376,7 @@ Now that you are a member of the **Earthsys144 FieldMaps app Group 2022**, you c
 
 
 
-1. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 FieldMaps app Group 2022
+1. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 - Fundamentals of GISci - Spring 2024
 
 ## Working with the data
 
@@ -400,5 +400,5 @@ The resulting Feature Layer is a read-only view of the data being collected in y
 
 # To Turn In:
 
-1. Join the "**Earthsys144 FieldMaps app Group 2022**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 FieldMaps app Group 2022**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
+1. Join the "**Earthsys144 - Fundamentals of GISci - Spring 2024**" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 - Fundamentals of GISci - Spring 2024**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
 2. Go to the Details Page for the View Layer you created and scroll to the bottom of the page to find the URL. Copy the URL and paste it into the Homework URL submission text box, in Canvas.
