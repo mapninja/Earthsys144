@@ -209,7 +209,7 @@ Now we'll make a little more complex change to our Project CRS. This time, we wi
 
 1. Go to **Project>Properties**
 2. **Click** on the **CRS Tab** to bring the **Project Properties - CRS** options forward
-3. In the **Filter box** at the top of the panel, use `state plane california` as your search term, and examine the results returned.
+3. In the **Filter box** at the top of the panel, use `StatePlane_California` as your search term, and expand the "__Lambert Conformal Conic__" results in the "__Predefined Coordinate Reference Systems__" panel to examine the results returned.
 4. **Begin clicking** on the **different CRS** in the list, and **note that the basic parameters of the selected CRS are displayed** in the left panel, under the Predefined CRS List, and that the valid extent of each of the CRS is displayed in the bottom right panel.
 
 ![](images/50_Coordinate_Systems_Geodesy-6c79f8b8-drop-shadow.png)
