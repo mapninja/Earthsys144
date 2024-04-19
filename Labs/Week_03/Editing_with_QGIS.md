@@ -75,20 +75,18 @@ For the second layer, use the same coordinate system as above, but
 
 
 1. Browse to your Lab Data folder and _name_ the Database: **roads**
-2. Leave the Table name: **blank**
 3. Set the Geometry type: **LineString**
 4. Set the coordinate system: **EPSG:26915 - NAD83 / UTM zone 15N**
-5. **L**eave the remainder of the options: **blank**
+5. **Leave** the remainder of the options: **blank**
 
 For the third layer, also use the UTM system,
 
 
 
-* Browse to your Lab Data folder and _name_ the Database: **ponds**
-* Leave the Table name: **blank**
-* Set the Geometry type: **polygon**
-* Set the coordinate system: **EPSG:26915 - NAD83 / UTM zone 15N**
-* **L**eave the remainder of the options: **blank**
+1. Browse to your Lab Data folder and _name_ the Database: **ponds**
+2. Set the Geometry type: **polygon**
+3. Set the coordinate system: **EPSG:26915 - NAD83 / UTM zone 15N**
+4. **Leave** the remainder of the options: **blank**
 
 
 ## Digitizing Features
