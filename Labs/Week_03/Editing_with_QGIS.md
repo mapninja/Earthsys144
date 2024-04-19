@@ -199,7 +199,7 @@ Next, we’ll digitize lines. Here, we are simply placing Vertices, in sequence.
 2. Set the line symbology to something visible, like Yellow 1.6mm, using the Layer Styling Panel.   
 3. **Activate snapping** via the **Project>Snapping** **Options** toolbar, and set the **snap distance** to between **5 to 10 meters (_snapping is something of a personal preference, experimenting with these settings can also help you understand how the setting affects your editing_)**.  
 
-4. Make sure you have **enabled snapping for vertexes and segments, and at least the active layer through a dropdown **(figure below).
+4. Make sure you have **enabled snapping for vertexes and segments (you can select more than one option in the drop-down), and at least the active layer through a dropdown**(figure below).
 
 ![](images/Editing_with_QGIS-bdb4ef7c.png)
 
