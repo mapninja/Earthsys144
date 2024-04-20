@@ -9,7 +9,7 @@ The data for this exercise can be downloaded from:
 https://github.com/mapninja/Earthsys144/raw/master/data/CT_Watershed_Data.gdb.zip
 
 1. Download the data and put it somewhere stable on your hard drive.
-2. Unzip the `CT_Watershed_Data.gdb` dataset to your har drive.
+2. Unzip the `CT_Watershed_Data.gdb` dataset to your hard drive.
 1. Start a new **Project** Save it to the folder where you upzipped the data for the workshop, as `Areal_Interpolation`
 2. In the Browser Panel, expand the Project Home folder, which should have your `CT_Watershed_Data.gdb` Geodatabase file, in it.  
 3. Expand the `CT_Watershed_Data.gdb` and **drag and drop** the following layers (**in order**) to the **Map Canvas**:
