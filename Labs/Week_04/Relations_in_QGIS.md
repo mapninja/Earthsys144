@@ -2,7 +2,7 @@
 
 Relations are special joins, with the ability to create connections between tables with different numbers of records. For instance, imagine that you are responsible for the rolling inventory of street trees in your city.
 
-Creating a new point every time you revisit a tree to re-survey isn't the presents all sorts of problems for querying and maintaining the data. Ideally, you might want to create a spatial dataset of `locations`, with a single point geometry for each tree site. Keeping in mind that each tree site can have multiple "states" (such as: Tree, Dead Tree, Stump, Planting Site, New Planting, etc...), you create a separate table to store the `survey_records` for the `locations` as you revisit the locations, year-over-year.
+Creating a new point every time you revisit a tree to re-survey presents all sorts of problems for querying and maintaining the data. Ideally, you might want to create a spatial dataset of `locations`, with a single point geometry for each tree site. Keeping in mind that each tree site can have multiple "states" (such as: Tree, Dead Tree, Stump, Planting Site, New Planting, etc...), you create a separate table to store the `survey_records` for the `locations` as you revisit the locations, year-over-year.
 
 This is the simplest meaning of _normalizing tables_, in the context of relational databases. The object is to remove redundancy of data, and here we would be removing the need to record the coordinates, address, property ID and other properties of the `locations`, with every subsequent `survey_records` revisit.
 
