@@ -241,6 +241,6 @@ Create a Map Layout:
 1. With only the school you ran the Chemical Report on visible in the map (Hint: Use a filter on `schools_stateplane` like you did with the Distance Matrix, above).
 2. All TRI Sites from `toxic_sites_stateplane` visible
 3. A basemap of your choice (but a choice that makes sense for your operational layers, above)
-4. Insert the Chemical Report Table using the Add FIxed Table tool ![](images/Relations_in_QGIS-06630c7d.png)
+4. Insert the Chemical Report Table using the **Add Attribute Table tool**
 
 ![](images/Relations_in_QGIS-a7f16abc.png)
