@@ -22,10 +22,13 @@ There are a few resources you'll need to get started:
 
 You will need to use a **Plain-text** Text Editor to write and edit your code.‍ **THIS IS IMPORTANT! DO NOT USE A DOCUMENT EDITOR, LIKE WORD OR TextEdit OR Notepad, etc... it will destroy your code by putting invisible formatting characters everywhere!**
 
-Plain-text Editors, I like:
-* [Atom](https://atom.io/) for MacOS or Windows,
-* [Sublime](https://www.sublimetext.com/) is also very popular with Mac users,
-* [Notepad++](https://notepad-plus-plus.org/downloads/) is also a good one I used to use for Windows
+## Plain-text Editors, I like:
+
+All of these editors feature things like Code Highlighting (color coding of parts of your code. )
+
+* [Sublime](https://www.sublimetext.com/) is very popular with Mac users, and has versions for Windows & Linux, as well. It's very simple, and a great first "code" editor. 
+* [Visual Studio Code](https://code.visualstudio.com/) for MacOS or Windows, is the new "Developer's Choice" with a million integrations, including ChatGPT Assisted coding, etc.... It can be a little intimidating for new users. 
+* [Notepad++](https://notepad-plus-plus.org/downloads/) is also a good one I used when I was a Windows user.
 
 ## Did you READ ^^ THIS ^^ carefully?
 
