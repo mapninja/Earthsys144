@@ -267,21 +267,28 @@ Note that because of something called **Cross-Origin Resource Sharing (CORS)** y
 So you’ve made a web map! But it isn’t a web page yet… and, in fact, you probably can’t see the full functionality until the page is published to the web, and accessible, publicly (again, the cross origin resource sharing thing is the culprit, here). To do that we need some way to host a webpage. There are many different ways to host a webpage. GitHub Pages is one good solution, but Stanford students have access to a service called `afs.stanford.edu`, which allows them to publish simple webpages.
 
 ## Publish your map with your AFS Web Space Pages:
+**note that AFS Web Interface has been discontinued and it is now necessary to use a SecureFTP Client to login to your AFS Web Server Space**
 
-1. Go to [https://afs.stanford.edu](https://afs.stanford.edu) and login with your **SUNetID** and **password**.
+I am in the process of rewriting this section of the Lab Instructions. Here are the University IT Instructions, which are not great, and need to have their screenshots updated, but are sufficient if you are brave and resourceful (you are):
 
-![](images/Haunted_Sheetmapper-c8ee9f3b.png)
+### Download the SecureFX Client:
+https://uit.stanford.edu/software/scrt_sfx
 
-2. Browse into your `WWW` folder and use “**Create a New Folder**” in the sidebar under “**Actions**” to make a new folder called `sheetmapper`.
+### Instructions for Installing and Licensing SecureFX Client, for Mac:
+https://uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install
 
-![](images/Haunted_Sheetmapper-4d1c047c.png)
+### Instructions for Installing and Licensing SecureFX Client, for Windows (Bundled with SecureCRT):  
+https://uit.stanford.edu/service/ess/scrt_sfx/install 
 
-4. Browse into your `sheetmapper` folder and use **"Upload File(s)"**, again in the **"Actions"** sidebar to upload your `index.html` page into the `sheetmapper` folder.
+![](images/Screenshot 2024-05-07 at 12.08.43 PM.png)
 
-![](images/Haunted_Sheetmapper-e5b0d7c8.png)
+1. Connect to https://cardinal.stanford.edu and login with your SUNetID and password.
 
+2. Browse into your WWW folder and use “Create a New Folder” in the sidebar under “Actions” to make a new folder called sheetmapper.
 
-5. Test your sheetmapper page replacing `SUNETID` with your own `SUNetID` in the following URL: `http://web.stanford.edu/~SUNETID/sheetmapper/index.html`
+3. Browse into your sheetmapper folder and use "Upload File(s)", again in the "Actions" sidebar to upload your index.html page into the sheetmapper folder.
+
+4. Test your sheetmapper page replacing `SUNETID` with your own `SUNetID` in the following URL: `http://web.stanford.edu/~SUNETID/sheetmapper/index.html`
 
 Here’s the finished version of the example map:
 
