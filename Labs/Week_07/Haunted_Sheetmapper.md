@@ -24,7 +24,7 @@ You will need to use a **Plain-text** Text Editor to write and edit your code.�
 
 ## Plain-text Editors, I like:
 
-All of these editors feature things like Code Highlighting (color coding of parts of your code. )
+All of these editors feature things like Code Highlighting (color coding of parts of your code), directory browsing and preview capabilities. 
 
 * [Sublime](https://www.sublimetext.com/) is very popular with Mac users, and has versions for Windows & Linux, as well. It's very simple, and a great first "code" editor. 
 * [Visual Studio Code](https://code.visualstudio.com/) for MacOS or Windows, is the new "Developer's Choice" with a million integrations, including ChatGPT Assisted coding, etc.... It can be a little intimidating for new users. 
@@ -305,11 +305,11 @@ If you are a Safari or Chrome user, you shouldn't have any trouble viewing your 
 
 # BONUS (or if AFS doesn’t seem to work for you):
 
-You don’t need to do this for the homework unless AFS doesn’t work for you (it seems finicky for some students for some reason), but it’s nice to know that the following is an option for web publishing this type of application:
+You don’t need to do this for the homework unless AFS doesn’t work for you (it seems finicky for some students for some reason), but it’s nice to know that the following is an option for web publishing this type of application. This option also means that your access to the material won't end when your time at Stanford does.:
 
 ## Publish your map with GitHub Pages:
 
-1. Create an account at [GitHub.com](https://github.com/) if you don’t have one.
+1. Create a Github account if you don’t have one. I suggest taking advantage of the GitHub Student Developer Pack: https://education.github.com/pack 
 2. Create a new [GitHub repository](https://help.github.com/articles/create-a-repo/):  
 
 ![](images/Haunted_Sheetmapper-726465ac.png)
