@@ -111,7 +111,7 @@ For a video demonstrating how to setup the plugin, please see [https://www.youtu
 
 1. First, **download** the appropriate version of **Whiteboxtools** for your operating system from <https://www.whiteboxgeo.com/download-redirect/> and  
 
-2. **upzip** the resulting archive to somewhere stable on your hard drive (I put mine at `/Users/maples/WBT`).  
+2. **unzip** the resulting archive to somewhere stable on your hard drive (I put mine at `/Users/maples/WBT`).  
 
     If you are a **Windows User**, I would consider putting it in a folder somewhere like `C:/WBT`
 
