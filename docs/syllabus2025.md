@@ -104,15 +104,36 @@ Students must register for a lab section in addition to the lecture:
 - **Due:** June 9th, 11:59 p.m.  
 - **Requirements:** A StoryMap or report demonstrating the application of course concepts to a spatial question using one to two datasets.  
 
----
-
-## **Textbook:**  
-- **Required:**  
-  - Bolstad, Paul. *GIS Fundamentals: A First Text on Geographic Information Systems*. 6th Edition. [Amazon](https://smile.amazon.com/GIS-Fundamentals-Geographic-Information-Systems/dp/1593995520) | [Stanford Library](https://searchworks.stanford.edu/view/9724907)  
-- **Recommended:**  
-  - Tomlin, C. Dana. *GIS and Cartographic Modeling* (Available on [Internet Archive](https://archive.org/details/geographicinform00toml)).  
 
 ---
+
+## **Textbook Requirements**  
+
+### **Required Text:**  
+1. **Bolstad, Paul.**  
+   *GIS Fundamentals: A First Text on Geographic Information Systems.* 4th Edition. White Bear Lake, MN: Eider Press, 2012.  
+   - *Availability:* 2 print copies will be on **2-hour reserve** at Branner library, courtesy of the instructor.  
+   - [*Read-only Online Copy*](https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link)
+
+---
+
+### **Recommended Texts:**  
+
+1. **Tomlin, C. Dana.**  
+   *GIS and Cartographic Modeling.* Redlands, CA: Esri Press, 2013.  
+   - *Availability:* 1 print copy will be on **2-hour reserve** at Branner library, courtesy of the instructor.  
+   - [*Chapter 1, Read-only Copy*](https://drive.google.com/file/d/1hbccbdCkNZyppvGy8vDlJVR_lBca7jqO/view?usp=drive_link)
+
+2. **Cardille, Jeffrey A., Morgan A. Crowley, David Saah, and Nicholas E. Clinton, Editors.**  
+   *Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications.* Cham: Springer, 2024.  
+   - *Availability:* *[Full text available online](https://link.springer.com/book/10.1007/978-3-031-26588-4)*. No print copies will be provided.  
+
+3. **Graser, Anita, and Gretchen N. Peterson.**  
+   *QGIS Map Design.* 2nd Edition. Chugiak, AK: Locate Press, 2018.  
+   - *Availability:* 1 print copy will be on **2-hour reserve** at Branner library, courtesy of the instructor.  
+
+---
+
 
 ## **Grading:**  
 - **Lab Exercises:** 50%  
@@ -128,6 +149,8 @@ Students must register for a lab section in addition to the lecture:
 - **Hardware Requirements:** Internet access, modern web browser, and a laptop or desktop. Mobile phone needed for field data collection labs.  
 
 ---
+---
+
 
 # **Tentative Course Schedule: Spring 2025**
 
@@ -139,17 +162,19 @@ Students must register for a lab section in addition to the lecture:
 | **April 21 & 23**     | 4        | Basic Spatial Analysis                 | M: *Video* - Basic Spatial Analysis<br>Slides: [Basic Spatial Analysis](https://slides.com/staceymaples/basicaspatialanalysis) <br>W: *Video* - Basic Spatial Analysis (Cont')<br>Slides: [Continued](https://slides.com/staceymaples/basicaspatialanalysis)                                                                                             | Bolstad, Ch. 9, 12                    |
 | **April 25 (Fri)**    | 4        | Mini-Project Proposal Due              | Mini-project proposal due by midnight.                                                                                                                                                      |                                      |
 | **April 28**          | 5        | Guest Lecture: Rachel Olney, Earth Daily | *Guest Speaker*: Rachel Olney, Co-Founder of Geosite and current Earth Daily leader, on remote sensing and global monitoring.                                                                |                                      |
-| **April 30**          | 5        | Guest Lecture: Ben Gitai, Atlas of Paris & Midterm Released | *Guest Speaker*: Ben Gitai, creator of the Atlas of Paris, discussing cartographic storytelling and urban mapping.<br>**Midterm Released:** (Remote, Open Book) |                                      |
+| **April 30**          | 5        | Guest Lecture: Ben Gitai, Atlas of Paris | *Guest Speaker*: Ben Gitai, creator of the Atlas of Paris, discussing cartographic storytelling and urban mapping.                                                                           |                                      |
+| **April 30 (Wed)**    | 5        | **Midterm Exam Released**              | **Midterm Exam** (Remote, Open Book)                                                                                                                                                        |                                      |
 | **May 5 & 7**         | 6        | Raster Analysis, Sampling & Interpolation | M: *Video* - Basic Raster Analysis, Terrain & Map Algebra<br>Slides: [Raster & Terrain Analysis](https://slides.com/staceymaples/rasterterrainanalysis) <br>W: *Video* - Sampling & Interpolation<br>Slides: [Interpolation](https://slides.com/staceymaples/interpolation)                                                                          | Bolstad, Ch. 10, 11, 12               |
-| **May 12 & 14**       | 7        | Remote Sensing & Web Maps              | M: *Video* - Introduction to Remote Sensing<br>Slides: [Remote Sensing](https://slides.com/staceymaples/remotesensing) <br>W: **Midterm Due** (by 11:59 p.m.)<br>*Video* - Web Maps: How they work and how to build them.<br>Slides: [Web Maps](https://slides.com/staceymaples/webmaps)                                                                                                  | Bolstad, Ch. 6<br>[Mapschool.io](http://Mapschool.io), [Leaflet Docs](https://leafletjs.com/), [Mapbox API](https://docs.mapbox.com/mapbox-gl-js/api/) |
+| **May 12 & 14**       | 7        | Remote Sensing & Web Maps              | M: *Video* - Introduction to Remote Sensing<br>Slides: [Remote Sensing](https://slides.com/staceymaples/remotesensing) <br>W: *Video* - Web Maps: How they work and how to build them.<br>Slides: [Web Maps](https://slides.com/staceymaples/webmaps)                                                                                                  | Bolstad, Ch. 6<br>[Mapschool.io](http://Mapschool.io), [Leaflet Docs](https://leafletjs.com/), [Mapbox API](https://docs.mapbox.com/mapbox-gl-js/api/) |
+| **May 14 (Wed)**      | 7        | **Midterm Exam Due**                   | **Midterm must be submitted by 11:59 p.m.**                                                                                                                                                 |                                      |
 | **May 19 & 21**       | 8        | Guest Lecture Week (Instructor Out of Town) | M: **Guest Speaker: TBD** <br>W: *Guest Speaker*: Andria Olson, Esri StoryMaps Team, discussing effective storytelling with maps and geospatial narratives.                                    |                                      |
 | **May 26 (Mon)**      | -        | Memorial Day (Holiday, No Classes)     |                                                                                                                                                                                             |                                      |
 | **May 28 (Wed)**      | 9        | Analytic Models                        | M: *Video* - Analytic Models<br>Slides: [Analytic Models](https://slides.com/staceymaples/analyticmodels) <br>W: *Video* - Analytic Models (Continued)                                                                                                                                          | Bolstad, Ch. 15                       |
 | **June 2 & 4**        | 10       | Final Week                             | M: *Video* - Advanced Spatial Techniques<br>W: *Review Session* - Preparing for Final Exam                                                                                                                                                            |                                      |
-| **June 2 (Mon)**      | -        | Final Exam Released                    | Final exam released (Remote, Open Book)                                                                                                                                                     |                                      |
+| **June 2 (Mon)**      | -        | **Final Exam Released**                | **Final Exam** (Remote, Open Book)                                                                                                                                                           |                                      |
 | **June 8 (Sun)**      | -        | Mini-Project Due                       | Mini-Project due by 11:59 p.m.                                                                                                                                                              |                                      |
-| **June 9 (Mon)**      | -        | Final Exam Due                         | **Final Exam due by 11:59 p.m.** on the scheduled final exam day                                                                                                                             |                                      |
-
+| **June 9 (Mon)**      | -        | **Final Exam Due**                     | **Final Exam must be submitted by 11:59 p.m.**                                                                                                                                                |                                      |
+---
 ---
 
 ## **Access & Accommodations:**  
