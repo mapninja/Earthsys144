@@ -24,7 +24,7 @@ This workflow will guide you through:
 
 We will be using the latest Pre-Release version of QGIS, which should have all the latest tools and functionality we want. If you have previously installed QGIS PR, you will need to delete the QGIS.app from your Applications Folder, before installing with the directions, below.
 
-`Note: QGIS PR and QGIS LTR (Long-Term Release) are released with different *.app names, so that you can run the LTR and PR versions of the software on the same machine. If the *.app in your Applications Folder is named QGIS-LTR.app, you will not need to delete it, since the PR version installs as QGIS.app`
+```Note: QGIS PR and QGIS LTR (Long-Term Release) are released with different *.app names, so that you can run the LTR and PR versions of the software on the same machine. If the *.app in your Applications Folder is named QGIS-LTR.app, you will not need to delete it, since the PR version installs as QGIS.app```  
 
 1. Browse to your Application folder, in Finder
 2. Right-click on the QGIS.app app, and 'Move to Trash'
@@ -33,7 +33,7 @@ We will be using the latest Pre-Release version of QGIS, which should have all t
 
 ## Install QGIS PR
 
-1. **Download** the latest **PR** from: <https://www.qgis.org/en/site/forusers/download.html>
+1. **Download** the latest release (**PR**) from: <https://www.qgis.org/en/site/forusers/download.html>
 2. **Right-click** the **DMG** File and select **Open**
 3. It will take a few minutes to decompress and validate the DMG file.
 4. Once the Installation Package opens, **Drag-and-drop the QGIS app icon, into the Applications Folder icon**, to install the app.
@@ -44,24 +44,26 @@ We will be using the latest Pre-Release version of QGIS, which should have all t
 
 QGIS is not yet notarized as required by macOS Catalina+ (10.15) security rules.
 
-1. On first launch, please **right-click on the QGIS app icon, hold down the Option key, then choose Open**. This should result in a warning pop-up:
+1. On first launch, please **right-click on the QGIS app icon, hold down the Option key, then choose Open**. This should result in a warning pop-up:  
 
-![](images/Screenshot 2024-03-04 at 1.11.56 PM.png)
+![alt text](./images/image.png)  
 
 
-2.**Click Cancel**, to dismiss the error.  
-3. Open your **Mac System Preferences**, and go to the **Security & Privacy settings**.  
-4. Click on the **General tab** at the top, and you should see something like this:
+2.**Click Done**, to dismiss the error.  
+3. Open your **Mac System Settings**, and go to the **Security & Privacy settings**.  
+4. Scroll to the bottom of the page, and you should see something like this:
 
-![](images/Screenshot 2024-03-04 at 1.12.50 PM.png)
+![alt text](./images/image2.png)  
 
-5. Click **Open Anyway**, then click **Open** at the next warning:
+5. Click **Open Anyway**, then click **Open** at the next warning:    
 
-![](images/CleanQGISInstallationforMac-e1f199b4_reduce-drop-shadow.png)
 
-6. QGIS should launch, at this point, but if not, return to your Applications folder and try opening QGIS.app, again. This time, it should work.
+![alt text](images/image3.png)    
 
-![](images/Screenshot 2024-03-04 at 1.32.51 PM.png)
+1. QGIS should launch, at this point, but if not, return to your Applications folder and try opening QGIS.app, again. This time, it should work.  
+
+![alt text](images/firstlaunch.png)
+
 
 ## Getting QGIS ready to use
 

@@ -114,6 +114,7 @@ Students must register for a lab section in addition to the lecture:
    *GIS Fundamentals: A First Text on Geographic Information Systems.* 4th Edition. White Bear Lake, MN: Eider Press, 2012.  
    - *Availability:* 2 print copies will be on **2-hour reserve** at Branner library, courtesy of the instructor.  
    - [*Read-only Online Copy*](https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link)
+   - Stanford Bookstore: On Order
 
 ---
 
