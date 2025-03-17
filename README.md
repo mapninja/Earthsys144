@@ -7,12 +7,13 @@ Please note that exercises in this repo that have not yet been released in Canva
 ## Week 01 Introductions & Cartographic Design
 
 1. [Installing QGIS (dealing with security warnings for MacOS), and adding plugins we will use for the course.](Labs/Week_01/CleanQGISInstallationforMac.md)
-1a. [Confirming access to Google Earth Engine](Labs/Week_01/gee_account_test.md)
+   1a. [Confirming access to Google Earth Engine](Labs/Week_01/gee_account_test.md)
 2. [Cartography Exercise](https://github.com/mapninja/Earthsys144/raw/master/Labs/Week_01/earthquake%20lab%20QGIS%203_10.pdf) (David Medeiros) & [Exercise Data (_click link to download_)](https://github.com/mapninja/Earthsys144/raw/master/data/CartographyExerciseMaterials.zip)
 
 ## Week 02 Coordinate Systems & Geodesy
 
-1. [Coordinate Systems, Projections, Geodesy & Measurement](Labs/Week_02/Coordinate_Systems_Geodesy.md)
+1. [Projections & Distortion of Measurements in QGIS](https://github.com/mapninja/Earthsys144/blob/917e507cfe4b30659c2dfbcd8b7a81e68897c718/Labs/Week_02/Projection_Distortions_QGIS.md)
+2. [Ellipsoid vs Geoid Heights in Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/917e507cfe4b30659c2dfbcd8b7a81e68897c718/Labs/Week_02/Ellipsoid_vs_Geoid_GEE.md)
 
 ## Week 03 Creating & Collecting data
 
@@ -34,13 +35,11 @@ Please note that exercises in this repo that have not yet been released in Canva
 3. [Network Analysis in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Network_Analysis.md)
 4. [Remote Sensing with Google Earth Engine](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Remote_Sensing.md)
 
-
 ## Week 06 Basic Raster, Watersheds, Spatial Sampling & Satellite Remote Sensing
 
 1. [Basic Raster & Terrain Analysis](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Raster_and_Terrain.md)
 2. [Watershed Delineation (cont' from Basic Raster & Terrain)](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_05/Watershed_Modeling.md)
-2. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Sampling_Interpolation.md)
-
+3. [Sampling and Interpolation Methods](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_06/Sampling_Interpolation.md)
 
 ## Week 07 APIs & Web Mapping
 
