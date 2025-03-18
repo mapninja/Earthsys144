@@ -324,7 +324,7 @@ A quick comparison of the two variables, `ORIG_SQKM` (calculated above, before y
 
 ![](images/50_Coordinate_Systems_Geodesy-55365511.png)
 
-### Calculate Error Introduced by Projection
+### Calculate % Error Introduced by Projection
 
 Now we will calculate a new variable in the attribute table, `ERROR_PCT`, which will reveal the spatial distribution of error in our planar measurements, as well as illustrating a **foundational concept** about **projected coordinate systems**, in general.
 
