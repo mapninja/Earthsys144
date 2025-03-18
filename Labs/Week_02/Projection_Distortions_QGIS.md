@@ -351,8 +351,6 @@ We'll use the following equations, which returns the **Absolute Value** of the p
 
 ## Apply Symbology Using the New `ERROR_PCT` Field
 
-# Creating a Custom a CRS for a Specific Region
-
 Now, we'll apply a simple symbology, based upon our ERROR_PCT field, that will reveal how errors in measurement are propagating when using projected coordinates and planar measurements.
 
 1. Return to the Layer Styling Panel, and use the following options to create a symbology:
