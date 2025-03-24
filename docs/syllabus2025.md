@@ -31,7 +31,7 @@ By the end of this course, students will be able to:
 
 ### **Instructor:**
 
-- **Stace Maples** (maples@stanford.edu) | Slack: mapninja
+- **Stace ~~Maples~~** (maples@stanford.edu) | Slack: mapninja
 
 ### **Teaching Assistants:**
 
@@ -60,11 +60,11 @@ For support, email all instructors and TAs at once: [Click here to email](mailto
 Students must register for a lab section in addition to the lecture:
 
 
-| **Section** | **Day & Time**              | **Room**                                                          | **Enrollment Cap** |
+| **Section** | **Day & Time**              | **Room**                                                          | **Section Leader** |
 | ------------- | ----------------------------- | ------------------------------------------------------------------- | -------------------- |
-| Section 02  | Friday, 1:30 PM - 4:20 PM   | [Econ 139](http://campus-map.stanford.edu/?srch=Econ+139)         | 20 students        |
-| Section 03  | Tuesday, 1:30 PM - 4:20 PM  | [160-124](http://campus-map.stanford.edu/?srch=160-124)           | 20 students        |
-| Section 04  | Thursday, 1:30 PM - 4:20 PM | [Thornton 211](http://campus-map.stanford.edu/?srch=Thornton+211) | 20 students        |
+| Section 02  | Friday, 1:30 PM - 4:20 PM   | [Econ 139](http://campus-map.stanford.edu/?srch=Econ+139)         | Marielle           |
+| Section 03  | Tuesday, 1:30 PM - 4:20 PM  | [160-124](http://campus-map.stanford.edu/?srch=160-124)           | Maya               |
+| Section 04  | Thursday, 1:30 PM - 4:20 PM | [Thornton 211](http://campus-map.stanford.edu/?srch=Thornton+211) | Nona               |
 
 **Lab Content:**
 
