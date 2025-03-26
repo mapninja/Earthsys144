@@ -1,15 +1,18 @@
-
-
-# FieldMaps for ArcGIS 101:
-
+# ArcGIS FieldMaps & ArcGIS Online for Data Collection:
 
 ## Collecting Field Data with ArcGIS Online & Fieldmaps
 
-ArcGIS Online is becoming the fully functional online GIS that it has always promised. This exercise is designed as an introduction to ArcGIS.com and Collector/FieldMaps  for ArcGIS, and assumes some familiarity with spatial data and basic GIS terminology. You will explore a workflow for creating and managing multi-user spatial field data collection projects using nothing but a browser and consumer-grade mobile phone (iOS or Android).
+### Overview
+
+This exercise is designed as an introduction to ArcGIS.com and ArcGIS FieldMaps, and assumes some familiarity with spatial data and basic GIS terminology. You will explore a workflow for creating and managing multi-user spatial field data collection projects using nothing but a browser and consumer-grade mobile phone (iOS or Android).
+
+Combining FieldMaps & ArcGIS Online provides a powerful and intuitive way to manage multi-user data collection projects. FieldMaps provides a free app download for distributing you field data collection maps with your field workers, manages their data collection and aggregates and updates multi-user edits, in real-time.
+
+### Objective
+
+The objective of this lab is to provide hands-on experience with ArcGIS Online and FieldMaps, enabling students to design and deploy a field data collection application. By the end of the lab, students will have created feature layers, customized data schemas, configured offline editing, and shared their applications for multi-user collaboration, gaining practical skills in managing spatial data collection projects.
 
 You will learn to:
-
-
 
 * Create empty "feature classes" to hold spatial data
 * Customize the data schema to the field data need
@@ -26,35 +29,34 @@ You will learn to:
 
 By the end of the exercise, you should be familiar enough to create your own field data collection applications, customized to your research needs.
 
-**_Note that the examples and many of the features you will need for your Data Collection app require the use of the Classic Map Viewer/Editor in ArcGIS Online. Anytime you are asked to open or create a map, be sure that you are using the Classic Map Viewer. If you find yourself in the new Map Viewer (Beta), you should be able to switch at the top of the page_**
-
 ## Part 1: Create a Feature Layer
 
-
 ### Login to arcgis.com
-
-
 
 1. Go to [https://stanford.maps.arcgis.com/home/signin.html](https://stanford.maps.arcgis.com/home/signin.html) and Login using your SUNetID & Password using the Stanford University option.
 
 
-![](images/ArcGIS_Online_FieldMaps-a63c7544.png)
+![](images/20250326_114007_image.png)
+
+At this point, you should see our Stanford Geospatial Center landing page, on ArcGIS Online. Take a moment to look at the resources, there, as they include information on using our lab, resources, and the software and data we support.
 
 ### Create an empty feature layer
 
-1. Go to Content, and in My Content click Create (New Item) and choose Feature Layer to open the Create a feature layer dialog.
+
+1. Find the **Content** link at the top of the page and clik it to go to **Content**
+2. In **My Content** click **Create (New Item)** and choose **Feature Layer** to open the **Create a feature layer** dialog.
 
 ![](images/ArcGIS_Online_FieldMaps-b8fcdba2.png)
 
-2. Select the Feature Layer item.
+2. Select the **Feature Layer** item.
 
 ![](images/ArcGIS_Online_FieldMaps-54402a17.png)
 
-3. Select **Define your own layer**, and click Next.
+3. Select **Define your own layer**, and click **Next**.
 
 ![](images/ArcGIS_Online_FieldMaps-aeadde9f.png)
 
-3. Use the + Add to create individual point, line and polygon layers and name them, as shown in the table, below:
+3. Use the **+ Add** to create individual **point, line and polygon layers** and name them, as shown in the table, below:
 
 <table>
   <tr>
@@ -84,51 +86,33 @@ By the end of the exercise, you should be familiar enough to create your own fie
   </tr>
 </table>
 
-
-
-4. Provide a title, like "Walking Tour (SDM)". _Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise_. Click Save.
-
+4. Provide a title, like `"Walking Tour (SDM)"`. _Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise_. Click **Save**.
 
 ![./images/image3.gif](./images/image3.gif)
-
 
 Your Walking Tour layer is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places layer.
 
 
-![](images/ArcGIS_Online_FieldMaps-1a5442e0.png)
-
-
-
 ### Add fields to the feature class
 
+1. Go to the **Data tab** of the item page and go to **Fields**. If you created layers for **points, lines, and polygons**, verify that _Place_ is chosen in the **Layer** list.
 
 
-1. Go to the Data tab of the item page and go to Fields. If you created layers for points, lines, and polygons, verify that _Place_ is chosen in the list of layers.
-
-
-![](images/ArcGIS_Online_FieldMaps-15b22d4c.png)
-
-
-
+![](images/20250326_115131_image.png)
 
 1. Click Add. Give a name _PlaceType_ and an alias _Point of Interest Type_. Choose type: String. Accept the other defaults and click Add New Field.
 
-
 ![](images/ArcGIS_Online_FieldMaps-3ae82aac.png)
-
-
 
 ### Create a Domain (values list) for the places layer
 
+1. Click _`Point of Interest`_ in the **Display Name** list to open the details page for the field.
+2. Click **Create List** to create a list of choices for the **POI Types**. Type a label of `Art` with a code of 0.
+
+![](images/20250326_115317_image.png)
 
 
-1. Click _Point of Interest_ in the Display Name list and click Create List to create a list of choices for the POI Types. Type a label of Art with a code of 0.
-
-
-![](images/ArcGIS_Online_FieldMaps-22b34451.png)
-
-
-
+![](images/20250326_115423_image.png)
 
 1. Add entries for the following:
 
@@ -173,38 +157,53 @@ Your Walking Tour layer is created and its item details page should open. In the
 </table>
 
 
-
-![](images/ArcGIS_Online_FieldMaps-d74a183a.png)
-
-
-
+![](images/20250326_115516_image.png)
 
 1. Click Save.
 2. Create another field named _Label_ that is a String.
 3. Create another field named _Notes_ that is a String.
 
-
 ![](images/ArcGIS_Online_FieldMaps-153e6cbe.png)
 
 
+![](images/20250326_115650_image.png)
 
 ### Enable offline editing for Collector/FieldMaps
 
-This is a step that MUST be done before adding your feature layers to an ArcGIS Online map for creating your editing app.
+**This is a step that MUST be done before adding your feature layers to an ArcGIS Online map** for creating your editing app.
 
-
-
-1. Click on the Settings tab at the top of the Feature Layer's Details page.
-2. Make sure that settings under the Editing section at the top are all enabled, in particular that "Enable Sync" is checked.
+1. Click on the **Settings tab** at the top of the **Feature Layer's Details page**.
+2. Make sure that settings under the **Editing** section at the top are **all enabled**, in particular that "**Enable Sync**" is checked.
 3. Note the other settings for controlling who and how data can be edited.
 
-![](images/ArcGIS_Online_FieldMaps-bae26f51.png)
 
+
+| **Setting Category**                 | **Option**                                  | **Selected / Notes**       |
+| -------------------------------------- | --------------------------------------------- | ---------------------------- |
+| **Editing**                          | Enable editing                              | ✅ Enabled                 |
+|                                      | Track changes to data (add, update, delete) | ✅ Enabled                 |
+|                                      | Track editor name and time                  | ✅ Enabled                 |
+|                                      | Enable Sync                                 | ✅ Enabled                 |
+| **Who can edit features?**           | Share layer to specific users/groups/org    | Not shared yet (info only) |
+| **What kind of editing is allowed?** | Add                                         | ✅ Allowed                 |
+|                                      | Delete                                      | ✅ Allowed                 |
+|                                      | Update                                      | ✅ Allowed                 |
+|                                      | Update type                                 | Attributes and geometry    |
+| **True curves**                      | Allow update of true curves                 | ✅ Enabled                 |
+|                                      | Only allow updates by true curve clients    | ⬜ Not selected            |
+| **Feature visibility for editors**   | Editors can see all features                | ✅ Selected (default)      |
+|                                      | Editors can only see their own features     | ⬜ Not selected            |
+| **Feature editability for editors**  | Editors can edit all features               | ⬜ Not selected            |
+|                                      | Editors can only edit their own features    | ✅ Selected                |
+| **Anonymous editor access**          | Same as signed-in editors                   | ⬜ Not selected            |
+|                                      | Only add new features (if allowed)          | ✅ Selected                |
+|                                      |                                             |                            |
+
+![](images/20250326_120013_image.png)
 
 1. Click Save to save these settings.
 
 ## Part 2: Make a map
-
 
 Now you will add the feature layers you created to an ArcGIS.com map. This map will drive the functionality in the Collector/FieldMaps  for ArcGIS application, so everything we do from this point will be to improve the simplicity of use for our data collectors in the field.
 
@@ -216,64 +215,44 @@ _You may see a pop-up prompting you to update the symbology for one of your laye
 
 1. Save your map, giving it a title "Walking Tour [_SUNetID_]" and a tag.
 
-
 ![](images/ArcGIS_Online_FieldMaps-41b39077.png)
 
 ![](images/ArcGIS_Online_FieldMaps-e89307d8.png)
 
 Shortening the names of our layers in the Map will simplify the appearance of those items in the resulting Collector/FieldMaps  application.
 
-
 1. In the Contents pane, hover over the layer of places, click More Options (ellipsis), choose Rename, and rename the layer of places to Places.
 2. Repeat for the Paths & Areas layers.
-
-
-
-1. Click **Change Style** button ![](images/ArcGIS_Online_FieldMaps-a950f14d.png) for the Places layer.
+3. Click **Change Style** button ![](images/ArcGIS_Online_FieldMaps-a950f14d.png) for the Places layer.
 
 ![](images/ArcGIS_Online_FieldMaps-edcf3f1f.png)
-
 
 1. Change the "Attribute to Show" option to `Point of Interest Type`
 
 ![](images/ArcGIS_Online_FieldMaps-41bf521b.png)
 
 2. Click Options for the **Types (Unique symbols)** drawing style.
-
-2. Click the symbol next to the Art POI Type, click Shape, choose an appropriate symbol and set it to a size of 20, then click OK.
-
+3. Click the symbol next to the Art POI Type, click Shape, choose an appropriate symbol and set it to a size of 20, then click OK.
 
 ![](images/ArcGIS_Online_FieldMaps-ceab2706.png)
-
 
 1. Configure the symbols for the each of your other POI Types. Explore the various symbology categories available. I've used the National Park Service Symbols, here, but you should feel free to explore and experiment.
 
 ![](images/ArcGIS_Online_FieldMaps-1a81e0cb.png)
 
-
-
 1. Click OK and click Done.
-
 
 ![](images/ArcGIS_Online_FieldMaps-71d326d7.png)
 
-
-
-
 1. Click Edit, click Manage, and click Save Changes.
-
 
 ![](images/ArcGIS_Online_FieldMaps-4c4b6f51.png)
 
-
 _This creates feature templates that Collector/FieldMaps  will use as the POI types available in the app_.
-
-
 
 1. Click on the ellipsis (...) at the end of the Places layer item and go to "Configure Pop-up"
 
 ![](images/ArcGIS_Online_FieldMaps-b305d13e.png)
-
 
 1. Click on the "Configure Attributes" link, about half way down the "Configure Pop-up Panel."
 2. Check, then uncheck, the Display checkbox, to turn off the display of all attributes in the Pop-up.
@@ -284,27 +263,21 @@ _This creates feature templates that Collector/FieldMaps  will use as the POI ty
 1. Click OK, twice, to commit your changes and close the Configure Pop-ups panel.
 2. Change the basemap to OpenStreetMap
 
-
 ![](images/ArcGIS_Online_FieldMaps-1f7c6a7d.png)
-
 
 1. Save the map.
 
 ![](images/ArcGIS_Online_FieldMaps-d551ec77.png)
 
-
-
-### Enable Offline Editing  
+### Enable Offline Editing
 
 1. At the top of the Table of Contents in your map, click on the Details
-![](images/ArcGIS_Online_FieldMaps-a4c2b9d7.png)
- button and then on the More Details... link to go to the Details page of your webmap.
+   ![](images/ArcGIS_Online_FieldMaps-a4c2b9d7.png)
+   button and then on the More Details... link to go to the Details page of your webmap.
 2. Click on the Settings tab at the top of the page and scroll down to the section labeled "Offline."
-3. Make sure that "Enable offline mode" is active.  
-
+3. Make sure that "Enable offline mode" is active.
 
 ![](images/ArcGIS_Online_FieldMaps-b0f66e9c.png)
-
 
 1. Save your map settings, if necessary.
 
@@ -314,10 +287,9 @@ For this part of the exercise, you will need to download "ArcGIS FIeld Maps" for
 
 Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID and password.
 
-
 1. Choose the map you just made.
 
-![](images/ArcGIS_Online_FieldMaps-53af99e6.png)  
+![](images/ArcGIS_Online_FieldMaps-53af99e6.png)
 
 2. To add a feature, touch the + sign and follow the prompts.
 
@@ -327,40 +299,28 @@ Note: Either sign in with the same account you used to make the map, or share th
 
 3. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...). **Collect at least 12+ points, with Photo or Video attachments.**
 
-
 ## Part 4: Multi-user editing
 
 Management of multiple field workers can be easily implemented through the use of Groups, in ArcGIS.com. You can create a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your Collector/FieldMaps  app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
 
-
 ### Join the Earthsys144 - Fundamentals of GISci - Spring 2024
-
-
 
 1. From The Map, on ArcGIS.com, click on the Home button and go to Groups
 2. Click on the My Organization's Groups tab at the top, left
 3. Search for `earthsys144` and click on the resulting **Earthsys144 - Fundamentals of GISci - Spring 2024** link
 
-
 ![](images/ArcGIS_Online_FieldMaps-95409c2e.png)
-
 
 1. Click on the Join This Group button
 
 ### Share the map and feature layer with the group
 
-
 Now that you are a member of the **Earthsys144 - Fundamentals of GISci - Spring 2024**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
-
-
 
 1. Click on the Content Tab a the top of the page, to go to the My Content page
 2. Find your Mapping App (it's Item Type will be Web Map) and check it's checkbox, then click on the Share icon that appears
 
 ![](images/ArcGIS_Online_FieldMaps-b1878202.png)
-
-
-
 
 1. Click the option to Set sharing level to organization
 2. **Click on the Edit group sharing button, select the Earthsys144 - Fundamentals of GISci - Spring 2024 and click OK**
@@ -372,19 +332,13 @@ Now that you are a member of the **Earthsys144 - Fundamentals of GISci - Spring 
 ![](images/ArcGIS_Online_FieldMaps-5aad5a9b.png)
 
 1. Click OK, then go to the Details Page for your Feature Layer and share it with the **Earthsys144 FieldMaps app Group 2022**, as well (this is necessary).
-
-
-
-
-1. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 - Fundamentals of GISci - Spring 2024
+2. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 - Fundamentals of GISci - Spring 2024
 
 ## Working with the data
-
 
 #### Creating a "View Layer"
 
 You may want to share the collected data through a visualization, though obviously you won't want to share your "Full Editing Control" Map, with everyone. Creating a View Layer is a way to safely share visualizations of the data being collected, with anyone you want, without exposing the data to editing.
-
 
 1. Return to your Content page, and find your Walking Tour feature layer item and click on it to go to the Details page.
 2. Click on the Create View Layer button
@@ -392,7 +346,6 @@ You may want to share the collected data through a visualization, though obvious
 4. Click on the Share Button in the resulting Details Page, and change the Sharing to Public.
 
 The resulting Feature Layer is a read-only view of the data being collected in your Mapping App that can be added to a New Map, filtered, symbolized, pushed to a web application and shared publicly, within the Stanford Org, or with a controlled Group, but without editing permissions.
-
 
 ![alt![](images/ArcGIS_Online_FieldMaps-29b43640.png)
 

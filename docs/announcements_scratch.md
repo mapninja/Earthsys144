@@ -30,3 +30,7 @@ StacelPlease give the following (some of them fun!) items your attention:
 QGIS' flexibility and accessibility make it a great choice for us, for most of our desktop spatial data carpentry. We will also work with ArcGIS Online, ArcGIS Pro, Leaflet, CARTO, Google Earth Engine, and other platforms, exploring their strengths and identifying appropriate tools for the tasks at hand.
 
 The QGIS Windows installation is pretty straightforward. I've [documented the Mac setup, here](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_01/CleanQGISInstallationforMac.md), since there are some security settings that have to be updated for QGIS to run. The [setup document](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_01/CleanQGISInstallationforMac.md) also has instructions for setting up QGIS plugins that we will use in our labs.
+
+
+
+![](assets/20250325_161955_image.png)
