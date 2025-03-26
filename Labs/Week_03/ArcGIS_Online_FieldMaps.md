@@ -35,13 +35,11 @@ By the end of the exercise, you should be familiar enough to create your own fie
 
 1. Go to [https://stanford.maps.arcgis.com/home/signin.html](https://stanford.maps.arcgis.com/home/signin.html) and Login using your SUNetID & Password using the Stanford University option.
 
-
 ![](images/20250326_114007_image.png)
 
 At this point, you should see our Stanford Geospatial Center landing page, on ArcGIS Online. Take a moment to look at the resources, there, as they include information on using our lab, resources, and the software and data we support.
 
 ### Create an empty feature layer
-
 
 1. Find the **Content** link at the top of the page and clik it to go to **Content**
 2. In **My Content** click **Create (New Item)** and choose **Feature Layer** to open the **Create a feature layer** dialog.
@@ -90,13 +88,11 @@ At this point, you should see our Stanford Geospatial Center landing page, on Ar
 
 ![./images/image3.gif](./images/image3.gif)
 
-Your Walking Tour layer is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places layer.
-
+Your **Walking Tour layer** is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places layer.
 
 ### Add fields to the feature class
 
 1. Go to the **Data tab** of the item page and go to **Fields**. If you created layers for **points, lines, and polygons**, verify that _Place_ is chosen in the **Layer** list.
-
 
 ![](images/20250326_115131_image.png)
 
@@ -110,7 +106,6 @@ Your Walking Tour layer is created and its item details page should open. In the
 2. Click **Create List** to create a list of choices for the **POI Types**. Type a label of `Art` with a code of 0.
 
 ![](images/20250326_115317_image.png)
-
 
 ![](images/20250326_115423_image.png)
 
@@ -156,7 +151,6 @@ Your Walking Tour layer is created and its item details page should open. In the
   </tr>
 </table>
 
-
 ![](images/20250326_115516_image.png)
 
 1. Click Save.
@@ -164,7 +158,6 @@ Your Walking Tour layer is created and its item details page should open. In the
 3. Create another field named _Notes_ that is a String.
 
 ![](images/ArcGIS_Online_FieldMaps-153e6cbe.png)
-
 
 ![](images/20250326_115650_image.png)
 
@@ -175,7 +168,6 @@ Your Walking Tour layer is created and its item details page should open. In the
 1. Click on the **Settings tab** at the top of the **Feature Layer's Details page**.
 2. Make sure that settings under the **Editing** section at the top are **all enabled**, in particular that "**Enable Sync**" is checked.
 3. Note the other settings for controlling who and how data can be edited.
-
 
 
 | **Setting Category**                 | **Option**                                  | **Selected / Notes**       |
@@ -207,93 +199,168 @@ Your Walking Tour layer is created and its item details page should open. In the
 
 Now you will add the feature layers you created to an ArcGIS.com map. This map will drive the functionality in the Collector/FieldMaps  for ArcGIS application, so everything we do from this point will be to improve the simplicity of use for our data collectors in the field.
 
-1. Return to the Overview tab the item page of your layer, in the drop-down list for **Open in Map Viewer** use the **Open in Classic Map Viewer with Full Editing Control** to start making your map.
+1. Return to the **Overview tab** the **Item Details** of your layer and click on **Open in Map Viewer**.
 
-![](images/ArcGIS_Online_FieldMaps-15144885.png)
+![](images/20250326_121217_image.png)
 
-_You may see a pop-up prompting you to update the symbology for one of your layers. You can click cancel to dismiss the symbology panel_
 
-1. Save your map, giving it a title "Walking Tour [_SUNetID_]" and a tag.
+![](images/20250326_121316_image.png)
 
-![](images/ArcGIS_Online_FieldMaps-41b39077.png)
+1. Use the `>>` and `<<` arrows at the bottom left and right of the **Map Viewer** to expand the toolbars to include their text descriptions, for your convenience.
 
-![](images/ArcGIS_Online_FieldMaps-e89307d8.png)
+   ![](images/20250326_121454_image.png)
+2. Click on Save and open, to save your map...
 
-Shortening the names of our layers in the Map will simplify the appearance of those items in the resulting Collector/FieldMaps  application.
 
-1. In the Contents pane, hover over the layer of places, click More Options (ellipsis), choose Rename, and rename the layer of places to Places.
-2. Repeat for the Paths & Areas layers.
-3. Click **Change Style** button ![](images/ArcGIS_Online_FieldMaps-a950f14d.png) for the Places layer.
+![](images/20250326_121740_image.png)
 
-![](images/ArcGIS_Online_FieldMaps-edcf3f1f.png)
+3. Use the Arrow next to your Walking Tour Layer to expand the layer, so you can see the indiviual feature layers
 
-1. Change the "Attribute to Show" option to `Point of Interest Type`
 
-![](images/ArcGIS_Online_FieldMaps-41bf521b.png)
+![](images/20250326_121926_image.png)
 
-2. Click Options for the **Types (Unique symbols)** drawing style.
-3. Click the symbol next to the Art POI Type, click Shape, choose an appropriate symbol and set it to a size of 20, then click OK.
+1. Click on the Places feature layer in the Layers panel to select it, and update teh Properties Panel on the right.
+2. Click on **Edit layer Style** link for the Places layer, in the Symbology box of the Properties panel.
 
-![](images/ArcGIS_Online_FieldMaps-ceab2706.png)
+![](images/20250326_122229_image.png)
 
-1. Configure the symbols for the each of your other POI Types. Explore the various symbology categories available. I've used the National Park Service Symbols, here, but you should feel free to explore and experiment.
+3. Click on the **+ Field** button to select the `Point of Interest Type` as the **field** to base symbology on.
 
-![](images/ArcGIS_Online_FieldMaps-1a81e0cb.png)
+![](images/20250326_122321_image.png)
 
-1. Click OK and click Done.
 
-![](images/ArcGIS_Online_FieldMaps-71d326d7.png)
+![](images/20250326_122445_image.png)
 
-1. Click Edit, click Manage, and click Save Changes.
 
-![](images/ArcGIS_Online_FieldMaps-4c4b6f51.png)
+4. Click Add.
+5. In the resulting `Pick a style` box, click on Style options to open the layer style editing options.
 
-_This creates feature templates that Collector/FieldMaps  will use as the POI types available in the app_.
+![](images/20250326_122749_image.png)
 
-1. Click on the ellipsis (...) at the end of the Places layer item and go to "Configure Pop-up"
+1. Configure the symbols for the each of your other POI Types. Explore the various symbology categories available. I've used the default simple symbols here, but you should feel free to explore and experiment.
 
-![](images/ArcGIS_Online_FieldMaps-b305d13e.png)
+![](images/20250326_122829_image.png)
 
-1. Click on the "Configure Attributes" link, about half way down the "Configure Pop-up Panel."
-2. Check, then uncheck, the Display checkbox, to turn off the display of all attributes in the Pop-up.
-3. Scroll down until you see the attributes you created [{Label},{notes},{PlaceType}] and check the Edit checkboxes (which will also check the Display checkbox)
+1. Click Done and done to apply the symbology to your feature layer.
 
-![](images/ArcGIS_Online_FieldMaps-0e949c7c.png)
 
-1. Click OK, twice, to commit your changes and close the Configure Pop-ups panel.
-2. Change the basemap to OpenStreetMap
+![](images/20250326_123016_image.png)
 
-![](images/ArcGIS_Online_FieldMaps-1f7c6a7d.png)
+## Customize visibility of fields
+
+We don't need to change any of the settings in this section, but it is useful to know where it is, in case you want to customize the visibility of certain fields in your feature layer. 
+
+1. With the Places layer still selected, click on the "Pop-ups" button on the right side of the page.
+
+![](images/20250326_123129_image.png)
+
+1. Click on the "Configure Attributes" icon in the Fields list box, to expand it and note that the fileds you added to your Places feautre layer, are already added to the Fields list.
+
+![](images/20250326_124426_image.png)
+
+
+![](images/20250326_124613_image.png)
+
+1. Click on **Select fields** in the **Fields list**.
+2. Scroll down and note the fields that are unchecked. These are automated fields, that will contain the Editor Tracking data that you checked the options for, in your Feature Layer Edit settings.
+
+
+![](images/20250326_124716_image.png)
+
+1. Click **Done** to close the **Select fields** panel, and click the **X** at the top of the Properties Panel, to close it.
+2. In the map, Zoom and Pan until you can see the entire Stanford Campus
+
+![](images/20250326_125042_image.png)
+
+1. Click on the Basemap button on the left side of the page, and change the basemap to OpenStreetMap.
+
+![](images/20250326_125136_image.png)
 
 1. Save the map.
 
-![](images/ArcGIS_Online_FieldMaps-d551ec77.png)
+![](images/20250326_125212_image.png)
 
 ### Enable Offline Editing
 
-1. At the top of the Table of Contents in your map, click on the Details
-   ![](images/ArcGIS_Online_FieldMaps-a4c2b9d7.png)
+1. Click on the **Map Properties** button ![](images/20250326_125443_image.png) on the left side of the page, then click on the **item details**.
+
+   ![](images/20250326_125414_image.png)
+
    button and then on the More Details... link to go to the Details page of your webmap.
-2. Click on the Settings tab at the top of the page and scroll down to the section labeled "Offline."
-3. Make sure that "Enable offline mode" is active.
+2. Click on the **Settings tab** at the top of the page and scroll down to the section labeled "Offline."
+3. Make sure that "**Offline enabled**" is at the top right corner of teh panel.
 
-![](images/ArcGIS_Online_FieldMaps-b0f66e9c.png)
 
-1. Save your map settings, if necessary.
+![](images/20250326_125606_image.png)
+
+4. Click on **Manage Offline Areas**.
+
+![](images/20250326_125800_image.png)
+
+5. Click on the **+ Create offline area** button.
+6. Use the **Sketch rectangular map area** tool in the map toolbar, and draw a box around the main Stanford Campus.
+
+![](images/20250326_130046_image.png)
+
+7. Leave the remaining setting as their default values and click Save.
+8. Click the **X** at the top right corner to dismiss the **Manage Offline Areas** page.
+
+### Using FieldMaps Designer to finish up your Editing Form!
+
+1. Click on the 3x3 icon at the top right of the page, next to your User Name, and look for the FieldMaps Designer (NOT the Beta version, if you see it), and launch it.
+
+![](images/20250326_131551_image.png)
+
+2. The resulting list should be sorted by "**Last Modified**" so your **Walking Tour map** should be the first item in the resulting gallery list. Click to open it in **FieldMaps Designer**.
+
+![](images/20250326_131711_image.png)
+
+3. On the resulting page, make sure Place is selected, and click on the Convert pop-up button to import the pop-up fields to your editing form.
+
+![](images/20250326_132037_image.png)
+
+4. This should result in a basic form design, with your custom fields, like this:
+
+   ![](images/20250326_132123_image.png)
+5. Drag and drop the Date and time Form Element into the form designer, underneath all other fields.
+
+![](images/20250326_132227_image.png)
+
+6. Add a Display name and Field name for the Date and time form element.
+
+![](images/20250326_132632_image.png)
+
+8. Note that certain field names are reserved, including the default one that is created when you drop the Date and time form element into the Form Designer. You will need to append '_collect' to the end of the Field name* in the FOrmatting panel:
+
+![](images/20250326_132521_image.png)
+
+9. Once you have added the `Date/Time` field to the form designer, click on the **Save button** at the top right corner of the Form panel.
+
+![](images/20250326_132806_image.png)
+
+10. Click on the **App settings** button ![](images/20250326_133042_image.png)  on the left side of the page, and expand each section to familiarize yourself with the options. We won't change any, but pay particular attention to you options in the **Collection** section.
+11. You can now close the form designer.
 
 ## Part 3: Record Points of Interest with Collector/FieldMaps
 
-For this part of the exercise, you will need to download "ArcGIS FIeld Maps" for iPhone of Android, from the respective app stores.
+For this part of the exercise, you will need to download "ArcGIS Field Maps" for iPhone of Android, from the respective app stores.
 
 Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID and password.
 
 1. Choose the map you just made.
 
-![](images/ArcGIS_Online_FieldMaps-53af99e6.png)
+![](images/20250326_130737_image.png)
 
-2. To add a feature, touch the + sign and follow the prompts.
+2. You should see the Online Map (for use when connected to thenetwork) and the "Map Areas" you created for offline use (when there is no consistent network connectivity).
 
-![](images/ArcGIS_Online_FieldMaps-c1f41a38.png)
+![](images/20250326_130923_image.png)
+
+3. Click on the **+** icon in Online Map to begin adding a point.
+
+![](images/20250326_131029_image.png)
+
+5. To add a feature, touch the + sign and follow the prompts.
+
 
 Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group.
 
