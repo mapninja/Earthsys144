@@ -338,8 +338,13 @@ We don't need to change any of the settings in this section, but it is useful to
 
 ![](images/20250326_132806_image.png)
 
-10. Click on the **App settings** button ![](images/20250326_133042_image.png)  on the left side of the page, and expand each section to familiarize yourself with the options. We won't change any, but pay particular attention to you options in the **Collection** section.
-11. You can now close the form designer.
+10. Click on the **App settings** button ![](images/20250326_133042_image.png)  on the left side of the page, and expand each section to familiarize yourself with the options. We won't change any, but pay particular attention to you options in the **Collection** section for controlling how the app interacts with the GPS in the device.
+
+
+![](images/20250326_150703_image.png)
+
+12. If you do make changes, be sure to Save your form.
+13. You can now close the form designer.
 
 ## Part 3: Record Points of Interest with Collector/FieldMaps
 
@@ -359,22 +364,21 @@ Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID
 
 ![](images/20250326_131029_image.png)
 
-5. To add a feature, touch the + sign and follow the prompts.
+5. To add a feature, touch the + Icon, select **New Feature** and follow the prompts.![](images/20250326_153428_image.png)
+6. You can fill out the form, or click the 'Add Point' button, first. Sometimes it's useful to wait and **Add Point** after the form, to allow your **GPS accuracy** to improve.
 
 
-Note: Either sign in with the same account you used to make the map, or share the map with a group and sign in as a user that is a member of that group.
-
-3. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...). **Collect at least 12+ points, with Photo or Video attachments.**
+7. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...). **Collect at least 12+ points, with Photo or Video attachments.**
 
 ## Part 4: Multi-user editing
 
 Management of multiple field workers can be easily implemented through the use of Groups, in ArcGIS.com. You can create a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your Collector/FieldMaps  app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
 
-### Join the Earthsys144 - Fundamentals of GISci - Spring 2024
+### Join the Earthsys144 - Spring 2025
 
 1. From The Map, on ArcGIS.com, click on the Home button and go to Groups
 2. Click on the My Organization's Groups tab at the top, left
-3. Search for `earthsys144` and click on the resulting **Earthsys144 - Fundamentals of GISci - Spring 2024** link
+3. Search for `earthsys144` and click on the resulting **Earthsys144 - Spring 2025** link
 
 ![](images/ArcGIS_Online_FieldMaps-95409c2e.png)
 
@@ -382,7 +386,7 @@ Management of multiple field workers can be easily implemented through the use o
 
 ### Share the map and feature layer with the group
 
-Now that you are a member of the **Earthsys144 - Fundamentals of GISci - Spring 2024**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
+Now that you are a member of the **Earthsys144 - Spring 2025**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
 
 1. Click on the Content Tab a the top of the page, to go to the My Content page
 2. Find your Mapping App (it's Item Type will be Web Map) and check it's checkbox, then click on the Share icon that appears
