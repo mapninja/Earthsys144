@@ -93,7 +93,10 @@ The first step in creating a new spatial dataset using “heads up digitizing”
 
 ![](images/20250328_133740_image.png)
 
-1. Leave the remainder of the options blank and click **OK**.
+5. Leave the remainder of the options blank and click **OK**.
+6. You should now see 3 new layers in you Layers panel
+
+![](images/20250328_134452_image.png)
 
 ---
 
@@ -112,12 +115,112 @@ By using WGS84, you ensure that your spatial data is stored in a universally acc
 
 ## Step 4: Digitizing Features
 
+### Understanding Heads-Up Digitizing
+
+Heads-up digitizing is the process of defining the coordinate pairs of the vertices that outline spatial features by visually interpreting a reference image or basemap. This technique involves manually tracing features such as points, lines, or polygons directly on a digital map using GIS software. It is a fundamental method for creating spatial datasets from aerial imagery, satellite data, or scanned maps.
+
+Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the [Humanitarian OpenStreetMap Team (HOT)](https://tasks.hotosm.org/learn/map). In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.
+
 ### Points: Digitizing Trees
 
-1. Load the **trees** shapefile into the project and toggle editing mode.
-2. Use the **Add Point Feature** tool to place a point on each tree within the Farm property:
+1. Right-click the **trees** layer in the Layers panel, and toggle editing mode.
+
+![](images/20250328_152205_image.png)
+
+1. Use the **Add Point Feature** tool ![](images/20250328_152927_image.png) to place a point on each tree within the Farm property:
    - Toggle between the COG and Google Hybrid imagery for better identification.
-   - Assign a unique `Tree_ID` to each tree.
+   - Assign a unique `Tree_ID` to each tree (keeping in mind you set the field type to `Integer`).
+
+### Adjusting symbology
+
+Often it is useful to adjust the symbology of your layers to better contrast with the basemap, so that your progress is immediately apparent.
+
+To adjust the symbology of the features:
+
+1. Click on the **Styling Button** (represented by a paintbrush) ![](images/20250328_153740_image.png) to open the **Styling Panel**.
+2. Adjust the basic symbology:
+   - In the Layer Styling Panel, select the layer you want to modify.
+   - Select the Yellow circle.
+
+![](images/20250328_154252_image.png)
+
+These adjustments improve the visibility of features, making them easier to analyze and interpret in the context of the basemap.
+
+### Dismissing the attribute editor pop-up
+
+![](images/20250328_154457_image.png)
+
+You've noted by now that the **Feature Attributes Editing pop-up** appears after every point is placed. If you aren't adding variables, this can slow the workflow, considerably.
+
+To suppress the Feature Attribute Editing pop-up:
+
+1. Go to **Settings > Options** in the QGIS menu.
+
+![](images/20250328_155431_image.png)
+
+1. Navigate to the **Digitizing** tab.
+2. Under the **Feature creation** section, uncheck the box labeled **Open feature form after adding a new feature**.
+
+![](images/20250328_155519_image.png)
+
+1. Click **OK** to save the changes.
+
+This will prevent the attribute editor from appearing after each point is placed, streamlining your digitizing workflow.
+
+### Editing features after you've placed them
+
+### Using the Vertex Tool for Editing Features
+
+The **Vertex Tool** in QGIS allows you to modify features by interacting with their vertices. This tool is particularly useful if you have placed a feature incorrectly during an edit session.
+
+#### A) Deleting a Feature
+
+1. Ensure you are in an active edit session for the layer you are working on.
+2. Activate the **Select Features by Area or Single Click** tool ![](images/20250328_161010_image.png) from the toolbar.
+3. Click on the feature you want to delete to select it.
+4. Press the **Delete** key on your keyboard.
+5. Dismiss the warning pop-up
+   y
+   ![](images/20250328_161247_image.png)
+
+#### B) Moving a Feature
+
+1. Ensure you are in an active edit session for the layer you are working on.
+2. Activate the **Vertex Tool** from the toolbar.
+
+![](images/20250328_160913_image.png)
+
+1. Click on the feature you want to move. The vertices of the feature will become visible.
+2. Drag the feature to the correct location by clicking and holding anywhere within the feature's boundary.
+3. Release the mouse button to place the feature in its new position.
+
+Remember to save your edits by toggling off editing mode and confirming the changes when prompted.
+
+### Setting up keyboard shortcuts for navigating the map while editing
+
+Keyboard shortcuts can significantly streamline workflows like digitizing by reducing the need to switch between tools using the mouse. Efficient navigation shortcuts allow you to pan and zoom quickly, enabling seamless transitions between editing and navigating the map. This can save time and improve focus, especially when working on large or detailed datasets.
+
+To set up custom keyboard shortcuts for navigation in QGIS:
+
+1. Go to **Settings > Keyboard Shortcuts** in the QGIS menu.
+
+![](images/20250328_170319_image.png)
+
+1. Search for the following actions and assign the corresponding keys by clicking on the **Change button** and then the key combination you want to assign to the action.
+
+   - **Pan**: Assign the key `C`.
+
+     ![](images/20250328_170434_image.png)
+   - **Zoom In**: Assign the key `Z`.
+
+     ![](images/20250328_170632_image.png)
+   - **Zoom Out**: Assign the key `X`.
+
+     ![](images/20250328_170709_image.png)
+2. Click **Close** to save your changes.
+3. **Save** your Project and restart **QGIS**.
+
+Once configured, you can use these shortcuts to quickly pan and zoom while digitizing. For example, press `C` to pan the map, then switch back to your editing tool without needing to click on the toolbar. This allows for a smoother workflow and minimizes interruptions during the digitizing process.
 
 ### Lines: Digitizing Paths and Sidewalks
 
