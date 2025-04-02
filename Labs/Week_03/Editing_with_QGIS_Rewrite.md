@@ -1,8 +1,8 @@
 # Week 3 Lab: Digitizing in QGIS
 
-**_What You’ll Learn_:** In this Lab, you’ll be introduced to basic digitizing techniques in QGIS, including creating vector datasets from a reference image, working with Cloud Optimized GeoTIFFs (COGs), and using snapping for topological accuracy.
+**_What You’ll Learn_:** In this Lab, you’ll be introduced to basic digitizing techniques in QGIS, including creating vector datasets from a (geo)referenced image, working with Cloud Optimized GeoTIFFs (COGs), and using snapping for topological accuracy.
 
-**You should read** Chapter 4 in the GIS Fundamentals textbook before starting this lab, as the chapter covers the basics of data entry and digitizing mechanics. You will digitize and edit features based on a digital aerial photo.
+**You should read** Chapter 4 in the GIS Fundamentals textbook before starting this lab, as the chapter covers the basics of data entry and digitizing mechanics. You will digitize and edit features based on a digital aerial photo of the [O'Donohue Family Stanford Educational Farm](https://farm.stanford.edu/).
 
 ---
 
@@ -119,7 +119,7 @@ By using WGS84, you ensure that your spatial data is stored in a universally acc
 
 Heads-up digitizing is the process of defining the coordinate pairs of the vertices that outline spatial features by visually interpreting a reference image or basemap. This technique involves manually tracing features such as points, lines, or polygons directly on a digital map using GIS software. It is a fundamental method for creating spatial datasets from aerial imagery, satellite data, or scanned maps.
 
-Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the [Humanitarian OpenStreetMap Team (HOT)](https://tasks.hotosm.org/learn/map). In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.
+Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the [Humanitarian OpenStreetMap Team (HOT)](https://tasks.hotosm.org/learn/map). In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between (thousands of) remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.
 
 ### Points: Digitizing Trees
 
@@ -232,13 +232,17 @@ Once configured, you can use these shortcuts to quickly pan and zoom while digit
 
 ## Digitizing continued...
 
+### Understanding Lines in GIS
+
+Lines in GIS are essentially a series of points connected in sequence, forming a continuous path. Each point, or vertex, represents a coordinate pair that defines the shape and direction of the line. When digitizing lines, it is important to place vertices at key locations, such as intersections, curves, or changes in direction, to accurately represent the feature being mapped. Careful placement of vertices ensures that the line follows the intended path and aligns with other features, especially when snapping is enabled. Digitizing lines requires attention to detail and a balance between precision and efficiency, as overly dense vertices can complicate data management, while too few may result in a loss of accuracy.
+
 ### Lines: Digitizing Paths and Sidewalks
 
 1. With the **paths** layer selected in the Layers Panel, toggle editing on. into the project and toggle editing mode.
 2. Enable snapping for topological accuracy:
    - Go to **Project > Snapping Options**.
    - Enable snapping for the line layer and set the tolerance to 10 pixels.
-   - Check **Avoid Overlaps** and **Enable Topological Editing**.
+   - Check **Avoid Overlaps** and **Enable Topological Editing, snapping on intersection and self-snapping**.
 
      ![](images/20250328_184220_image.png)
 
@@ -249,57 +253,51 @@ Once configured, you can use these shortcuts to quickly pan and zoom while digit
 
 Snapping ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.
 
-4. Use the **Add Line Feature** tool to trace paths and sidewalks:
+4. Use the **Add Line Feature** tool  ![](images/20250402_101713_image.png) to trace paths and sidewalks:
 
 - Place vertices at intersections to ensure proper snapping for network integration.
-
+- To **FINISH DRAWING A LINE**, right-click (two-finger click on Mac) **AFTER** you place the final vertex (coordinate pair).
+- Don't forget to save your edits using the **Save Edits button** ![](images/20250402_101940_image.png), periodically.
+- Once you have digitized the paths, try digitizing one block of the planting rows. Harder than it seems, at first? There are many judgement calls involved in digitizing data from satellite and aerial imagery, since we are usually limited to the one instantatneous snapshot, without other data to refer to.
 
 ### Polygons: Digitizing Structures
 
-1. Load the **structures** shapefile into the project and toggle editing mode.
+### Generalization and Digitizing Complex Shapes
+
+When digitizing complex shapes and curves, the level of detail captured can significantly affect the accuracy of measurements such as area and length. This concept is closely related to the idea of generalization in GIS, where the complexity of a feature is simplified to make it more manageable or to fit the scale of the map. However, over-generalization can lead to a loss of critical detail, while under-generalization can result in overly complex datasets that are difficult to work with.
+
+A classic example of this phenomenon is illustrated in Benoit Mandelbrot's "How Long Is the Coast of Britain?" paper. Mandelbrot demonstrated that the measured length of a coastline depends on the scale of measurement and the level of detail captured. When using a finer scale (smaller measurement units), more intricate details of the coastline are included, resulting in a longer measured length. Conversely, using a coarser scale (larger measurement units) smooths out smaller features, leading to a shorter measured length. This paradox highlights the fractal nature of natural features and the challenges of accurately representing them in a digital format.
+
+In the context of digitizing, this means that the placement of vertices and the resolution of the reference imagery can greatly influence the resulting dataset. For example:
+
+- **High Detail**: Capturing every curve and nuance of a feature may produce a highly accurate representation but can lead to large file sizes and increased processing time.
+- **Low Detail**: Simplifying the shape by reducing the number of vertices can make the dataset more manageable but may omit important features or distort the true shape.
+
+When digitizing complex shapes such as curved paths, irregular boundaries, or natural features like rivers and coastlines, it is essential to strike a balance between accuracy and efficiency. Consider the purpose of the dataset and the scale at which it will be used. For large-scale maps, finer details may be necessary, while for small-scale maps, generalization may be more appropriate.
+
+By understanding the trade-offs involved in digitizing complex shapes, you can make informed decisions about the level of detail to capture, ensuring that your datasets are both accurate and fit for purpose.
+
+#### Steps for Digitizing Polygons
+
+1. With the **structures** layer selected in the Layers Panel, toggle editing mode.
 2. Enable snapping for polygons:
-   - Use the same snapping settings as for lines.
-3. Use the **Add Polygon Feature** tool to trace the outlines of buildings and other structures.
 
----
-
-5. Use the **Add Point Feature** tool to place a point on each tree within the Farm property:
-
-   - Toggle between the COG and Google Hybrid imagery for better identification.
-   - Assign a unique `Tree_ID` to each tree.
-
----
-
-### Lines: Digitizing Paths and Sidewalks
-
-1. Create a new line shapefile:
-   - Go to **Layer > Create Layer > New Shapefile Layer**.
-   - Set **Geometry Type** to "Line".
-   - Add an attribute field named `Path_Type` (type: Text).
-2. Enable snapping for topological accuracy:
    - Go to **Project > Snapping Options**.
-   - Enable snapping for the line layer and set the tolerance to 10 pixels.
+   - Enable snapping for the polygon layer and set the tolerance to 10 pixels.
    - Check **Avoid Overlaps** and **Enable Topological Editing**.
-3. Digitize paths and sidewalks:
-   - Use the **Add Line Feature** tool to trace paths and sidewalks.
-   - Place vertices at intersections to ensure proper snapping for network integration.
 
-#### Sidenote: What is Snapping?
+   ![](images/20250328_184220_image.png)
+3. Use the **Add Polygon Feature** tool  ![](images/20250402_103802_image.png) to trace the outlines of buildings and other structures:
 
-Snapping ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.
+   - Place vertices at key points along the boundary of the structure, such as corners or changes in direction.
+   - Note that the polygon appears closed as you add vertices, with a straight line connecting your first point, and the cursor, as soon as you place your 3rd point. To finish each feature, right-click (or two-finger click) anywhere in the map, after you place the last vertex. QGIS will automatically place a final vertex at the same location at the first, closing the polygon, for you.
+4. Once you have digitized all of the features on the farm, save your edits using the **Save Edits button** ![](images/20250402_101940_image.png).
 
----
+#### Tips for Accurate Polygon Digitization
 
-### Polygons: Digitizing Structures
-
-1. Create a new polygon shapefile:
-   - Go to **Layer > Create Layer > New Shapefile Layer**.
-   - Set **Geometry Type** to "Polygon".
-   - Add an attribute field named `Structure_Name` (type: Text).
-2. Enable snapping for polygons:
-   - Use the same snapping settings as for lines.
-3. Digitize all structures on the property:
-   - Use the **Add Polygon Feature** tool to trace the outlines of buildings and other structures.
+- **Snapping**: Use snapping to align polygon edges with adjacent features, ensuring there are no gaps or overlaps.
+- **Zooming**: Zoom in to capture fine details and ensure precise placement of vertices.
+- **Symbology**: Adjust the symbology of the polygon layer to make it easier to distinguish from the basemap.
 
 ---
 
@@ -308,25 +306,11 @@ Snapping ensures that vertices and edges of features align precisely, preventing
 1. Save your edits for each shapefile by toggling off editing mode.
 2. Export the shapefiles if needed:
    - Right-click the layer in the **Layers Panel** and select **Export > Save Features As**.
+   -
 
 ---
 
-## Finishing Up
+## To turn in:
 
-**Digitize all the features in the image and save them into their respective layers.**
-
-- For trees, include all visible trees within the Farm property.
-- For paths and sidewalks, ensure vertices are placed at intersections for snapping.
-- For structures, include all buildings and permanent structures.
-
----
-
-## Conclusion
-
-By completing this lab, you have learned how to:
-
-- Add and work with a COG in QGIS.
-- Digitize points, lines, and polygons with topological accuracy.
-- Use snapping and caching to improve performance and data quality.
-
-These skills are foundational for creating high-quality geospatial datasets and will be valuable in various GIS applications.
+1. Using your skills as a cartographer, and your creativity, create a reference map that displays the features you have digitize, with appropriate symbologies, cartographic elements, descriptive text (Title, Date, CRS, Your Name, and any additional explanatory text necessary, etc...).
+2. Export your map as a PDF and submit it in Canvas.
