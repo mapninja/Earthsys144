@@ -130,6 +130,9 @@ Heads-up digitization is not only a valuable skill for individual projects but a
 1. Use the **Add Point Feature** tool ![](images/20250328_152927_image.png) to place a point on each tree within the Farm property:
    - Toggle between the COG and Google Hybrid imagery for better identification.
    - Assign a unique `Tree_ID` to each tree (keeping in mind you set the field type to `Integer`).
+   - Remember to **save your edits** by toggling off editing mode and confirming the changes when prompted.
+
+## Tips & Tricks
 
 ### Adjusting symbology
 
@@ -151,6 +154,8 @@ These adjustments improve the visibility of features, making them easier to anal
 ![](images/20250328_154457_image.png)
 
 You've noted by now that the **Feature Attributes Editing pop-up** appears after every point is placed. If you aren't adding variables, this can slow the workflow, considerably.
+
+Remember to save your edits by toggling off editing mode and confirming the changes when prompted.
 
 To suppress the Feature Attribute Editing pop-up:
 
@@ -217,24 +222,37 @@ To set up custom keyboard shortcuts for navigation in QGIS:
    - **Zoom Out**: Assign the key `X`.
 
      ![](images/20250328_170709_image.png)
+   - **Add Point**: Assign the key `v`.
+
+     ![](images/20250328_172159_image.png)
 2. Click **Close** to save your changes.
 3. **Save** your Project and restart **QGIS**.
 
-Once configured, you can use these shortcuts to quickly pan and zoom while digitizing. For example, press `C` to pan the map, then switch back to your editing tool without needing to click on the toolbar. This allows for a smoother workflow and minimizes interruptions during the digitizing process.
+Once configured, you can use these shortcuts to quickly pan and zoom while digitizing. For example, press `C` to pan the map, then switch back to your editing tool using the `V` key without needing to click on the toolbar. This allows for a smoother workflow and minimizes interruptions during the digitizing process.
+
+## Digitizing continued...
 
 ### Lines: Digitizing Paths and Sidewalks
 
-1. Load the **paths** shapefile into the project and toggle editing mode.
+1. With the **paths** layer selected in the Layers Panel, toggle editing on. into the project and toggle editing mode.
 2. Enable snapping for topological accuracy:
    - Go to **Project > Snapping Options**.
    - Enable snapping for the line layer and set the tolerance to 10 pixels.
    - Check **Avoid Overlaps** and **Enable Topological Editing**.
-3. Use the **Add Line Feature** tool to trace paths and sidewalks:
-   - Place vertices at intersections to ensure proper snapping for network integration.
+
+     ![](images/20250328_184220_image.png)
+
+     ![](images/20250328_184430_image.png)
+3. You can dismiss the Project Snapping Settings dialog, once you have made the change to settings.
 
 #### Sidenote: What is Snapping?
 
 Snapping ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.
+
+4. Use the **Add Line Feature** tool to trace paths and sidewalks:
+
+- Place vertices at intersections to ensure proper snapping for network integration.
+
 
 ### Polygons: Digitizing Structures
 
