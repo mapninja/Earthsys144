@@ -1,36 +1,79 @@
-## Welcome to Earthsys144 - Fundamentals of Geographic Information Sciences!!!
+**Subject:** Welcome to ESS 164 / EARTHSYS 144: Fundamentals of GIScience
 
-Some Important things to do before March 31st!
+Dear Students,
 
-Welcome, everyone! In the interest of "hitting the ground running," I've got a couple of things that you can do to get prepared for the course, now. We've got 70+ in this course, so much of my communications with the class will come through announcements, and and you may get a few per week, or even at a time, when I think certain topics deserve specific attention. Please be sure to set up your class alerts for **Earthsys144** because if it's important enough for me to write one of these, it's going to be useful for you in the course, and beyond. I link out to resources heavily, and if I have something linked it's because I think it's important that you see it. Please be a clicker, and bookmark things. I'm looking forward to meeting y'all in person!
+Welcome to **ESS 164 / EARTHSYS 144: Fundamentals of Geographic Information Science (GIS)** for Spring Quarter! We’re excited to have you join us as we explore how *“everything is somewhere, and that somewhere matters.”* This course will give you hands-on experience with spatial data, geographic analysis, field methods, remote sensing, and geospatial tools like QGIS, ArcGIS, and Google Earth Engine.
 
-StacelPlease give the following (some of them fun!) items your attention:
+To help us get to know you and better support your learning this quarter, please take a few minutes to complete our **Initial Student Survey** :
 
-* If you have not yet registered for a Lab section, please do so. Don't worry about which, too much, as we will try to accommodate people changing sections if they turn out to work better for them.
-* You've all been added to the [Stanford Geospatial Center's GIS Lab](http://gis.stanford.edu/) Group, which gives you:
+**Student Survey:** [https://forms.gle/rq9jH6CPubxfpcFq6](https://forms.gle/rq9jH6CPubxfpcFq6)
 
-  * Access to the SGC Lab Machines, at [Branner Earth Sciences Library](https://www.openstreetmap.org/search?query=stanford+geospatial+center#map=19/37.426467/-122.172572)
-  * a flexible "R: Drive" to store data,...
-  * You can find out more about [using the SGC Lab, here](https://arcg.is/LmnT9).
-* You've all been given access to the Stanford account for [Google Earth Engine](https://earthengine.google.com/) Javascript Sandbox & CodeEditor.  [Use this link to load the GEE101 Sample Scripts](https://code.earthengine.google.com/?accept_repo=users/stacemaples/SGC-EE101), and test your access. If you have trouble getting into the platform, please [email me. ](mailto:maples@stanford.edu)
-* You all have **instant access** to ArcGIS Online, through Stanford SSO (Single Sign-on), at[https://stanford.maps.arcgis.com](https://stanford.maps.arcgis.com).  Feel free to explore ArcGIS Online, at your leisure. We'll make use of the[StoryMaps Platform](https://learn.arcgis.com/en/gallery/#?p=storymaps), which is part of the ArcGIS Online ecosystem of cloud GIS applications, as well as the field data collection system,[FieldMaps](https://learn.arcgis.com/en/gallery/#?p=fieldmaps). You should feel free to explore the many other parts of ArcGIS Online, at your leisure. For some great "Getting started" and task-based tutorials, check out[https://learn.arcgis.com
-* You're all going to be invited to the Stanford/Planet.com E&R account, which gives you access to [Planetscope imagery products](https://www.planet.com/products/monitoring/), as well as grant access to [SkySat Archive](https://forms.gle/18YC2yYcjtVQDtoF9), and [SkySat Tasking](https://forms.gle/NPUuwwUDrHc2mSfLA), for small student research projects. You will need to look for your invite from planet.com, and complete the registration process. Once that is done, take a look at [this search in the Planet Imagery Explorer](https://www.planet.com/explorer/?s=l1qNAXtFSIOtHVq0c3yl5Q) (start at the bottom of the search results, and click on the images to enable them, working your way up through the global shipping drama!). Later in the quarter, we will search, access and analyze Planet.com imagery, using a [Python Notebook](https://github.com/StanfordGeospatialCenter/Planet_API_101) and the [Planet.com APIs](https://developers.planet.com/docs/apis/) (Don't Panic! All of the programming we will use in this class is designed for non-programmers!).
-* I've invited all of you to the [#earthsys144_fundamentals_of_gisci channel](https://stanford.enterprise.slack.com/archives/C043G4HSP5E) on the Stanford Slack space. This is the single best place to get help, outside of class, labs and office hours. Drop screenshots of problems, cut&paste error messages, link out to your Google Earth Engine code, etc... If you are having problems, chances are good others are, too, so this is where we can help each other get through the speedbumps!
-* Please go ahead and get yourself set up with [QGIS PR (Preview Release, look for the "Latest Version Button](http://qgis.org/).
+---
 
-  ![](assets/20250324_112053_image.png)
+**Course Announcements**
 
-  We primarily use QGIS Desktop in this course for these reasons:
+All official course announcements will be posted to **Canvas Course Announcements** . Be sure that your Canvas notification settings are configured so you don’t miss important updates about lectures, labs, deadlines, and resources.
 
-  1. QGIS is Free & Open Source Software for Geospatial ( [FOSS4G](https://www.osgeo.org/)).
-  2. QGIS is comparable in analysis capabilities to ArcGIS Desktop, or Pro.
-  3. QGIS is performant on a wide range of hardware.
-  4. It is possible to install it on Windows, Mac, Linux and there are even some experimental Android versions.
+**Canvas Course Site:** [https://canvas.stanford.edu/courses/208610](https://canvas.stanford.edu/courses/208610)
 
-QGIS' flexibility and accessibility make it a great choice for us, for most of our desktop spatial data carpentry. We will also work with ArcGIS Online, ArcGIS Pro, Leaflet, CARTO, Google Earth Engine, and other platforms, exploring their strengths and identifying appropriate tools for the tasks at hand.
+---
 
-The QGIS Windows installation is pretty straightforward. I've [documented the Mac setup, here](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_01/CleanQGISInstallationforMac.md), since there are some security settings that have to be updated for QGIS to run. The [setup document](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_01/CleanQGISInstallationforMac.md) also has instructions for setting up QGIS plugins that we will use in our labs.
+**How to Reach the Teaching Team**
 
+For questions or help throughout the course, we recommend emailing the full teaching team through our group email address:
 
+**Teaching Team Email:** [Click here to email](mailto:maples@stanford.edu,nhungate@stanford.edu,mariell@stanford.edu,marykwas@stanford.edu?subject=Earthsys144:%20Support%20Request%20-)
 
-![](assets/20250325_161955_image.png)
+You’re also welcome to reach out to us individually:
+
+**Instructor**
+
+Stace Maples – [maples@stanford.edu](mailto:maples@stanford.edu)
+
+Slack: @mapninja
+
+**Teaching Assistants**
+
+Nona Sara Hungate – [nhungate@stanford.edu](mailto:nhungate@stanford.edu)
+
+Marielle Ina Baumgartner – [mariell@stanford.edu](mailto:mariell@stanford.edu)
+
+Maya Rose Marykwas Passmore – [marykwas@stanford.edu](mailto:marykwas@stanford.edu)
+
+---
+
+**Slack (Community Q&A and Quick Support)**
+
+We encourage all students to use our dedicated Slack channel for informal discussion, technical help, and quick check-ins. This is often the fastest way to get help from peers or the teaching team.
+
+**Slack Channel:** [https://stanford.enterprise.slack.com/archives/C043G4HSP5E](https://stanford.enterprise.slack.com/archives/C043G4HSP5E)
+
+---
+
+**Join the Stanford GIS Listserv**
+
+Want to stay connected to the broader Stanford geospatial community? Subscribe to the **[stanfordgis@lists.stanford.edu](mailto:stanfordgis@lists.stanford.edu)** listserv for updates on events, workshops, job opportunities, and more.
+
+**Subscribe here:** [https://mailman.stanford.edu/mailman/listinfo/stanfordgis](https://mailman.stanford.edu/mailman/listinfo/stanfordgis)
+
+---
+
+**Anonymous Feedback**
+
+If at any point during the quarter you'd like to share feedback, ideas, or concerns but prefer to do so anonymously, we invite you to use the form below. It **does not require sign-in** and **does not collect identifying information** , even if you're logged into your browser.
+
+**Anonymous Feedback Form:** [Link to Feedback Form](https://forms.gle/zcEoDxB5ZxNjPnmk8)
+
+---
+
+We’re looking forward to working with you this quarter. Please don’t hesitate to reach out with questions, and we’ll see you in class soon!
+
+In F,L&T,
+
+**Stace Maples**
+
+Assistant Director of Geospatial Collections & Services, Stanford Libraries
+
+Head, Stanford Geospatial Center at Branner Earth Sciences Library & Map Collection
+
+Lecturer, The Stanford Doerr School of Sustainability
