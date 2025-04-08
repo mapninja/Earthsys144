@@ -30,12 +30,14 @@ The datasets for this exercise include the County Boundaries as polygons and a 1
 
 2. Download the following datasets from Earthworks, into your **Project Folder**.
 
-* Please **Download** the **original shapefile**, using the **Zipped Object** button, for the _1:1,000,000-Scale County Boundaries of the United States, 2014_ - https://earthworks.stanford.edu/catalog/stanford-wg010mf7692
-* Please **Download** the **GeoJSON** version, using the **Export Formats>GeoJSON** button for the _10-Degree Graticule Grid, World, 1:10 million, 2012_ - https://earthworks.stanford.edu/catalog/stanford-fr122tq8910
+* Please **Download** the **Zipped Object**, using the **Zipped Object** button, for the _1:1,000,000-Scale County Boundaries of the United States, 2014_ - [https://earthworks.stanford.edu/catalog/stanford-wg010mf7692](https://earthworks.stanford.edu/catalog/stanford-wg010mf7692).
+* Please **Download** the **GeoJSON** version, using the **Export Formats>GeoJSON** button for the _10-Degree Graticule Grid, World, 1:10 million, 2012_ - [https://earthworks.stanford.edu/catalog/stanford-fr122tq8910](https://earthworks.stanford.edu/catalog/stanford-fr122tq8910)
 
-![](images/50_Coordinate_Systems_Geodesy-85bbc2cc-drop-shadow.png)
+![](images/20250408_124031_image.png)
 
-3. **Browse** to where you saved these **files**, and **unzip them**, if necessary.
+3. **Browse** to where you saved these **files**, and **unzip the County Boundary data** `stanford-wg010mf7692](https://earthworks.stanford.edu/catalog/stanford-wg010mf7692)`, if necessary. When you unzip the resulting file, there will be two additional zip files, inside. You want to use the `data.zip` version of the data, which is the archival version of the file, in it's orginal **Coordinate Reference System (CRS)**
+
+![](images/20250408_124436_image.png)
 
 ### Create a New Project
 
