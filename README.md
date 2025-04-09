@@ -19,7 +19,7 @@ Please note that exercises in this repo that have not yet been released in Canva
 
 1. [Editing Basics in QGIS](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/Editing_with_QGIS.md)
 2. [Building a Field Data Collection app with ArcGIS Online](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/ArcGIS_Online_FieldMaps.md)
-3. [Georeferencing and Creating a Custom Projection](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md)
+3. [Georeferencing and Creating a Custom Projection]([https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_04/GeoreferencingImages.md](https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_03/GeoreferencingImages.md)
 
 ## Week 04 Attributes, Tables, Relational Databases
 
