@@ -203,7 +203,6 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
 
 ![](images/20250326_121217_image.png)
 
-
 ![](images/20250326_121316_image.png)
 
 1. Use the `>>` and `<<` arrows at the bottom left and right of the **Map Viewer** to expand the toolbars to include their text descriptions, for your convenience.
@@ -211,11 +210,9 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
    ![](images/20250326_121454_image.png)
 2. Click on Save and open, to save your map...
 
-
 ![](images/20250326_121740_image.png)
 
 3. Use the Arrow next to your Walking Tour Layer to expand the layer, so you can see the indiviual feature layers
-
 
 ![](images/20250326_121926_image.png)
 
@@ -228,9 +225,7 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
 
 ![](images/20250326_122321_image.png)
 
-
 ![](images/20250326_122445_image.png)
-
 
 4. Click Add.
 5. In the resulting `Pick a style` box, click on Style options to open the layer style editing options.
@@ -243,12 +238,11 @@ Now you will add the feature layers you created to an ArcGIS.com map. This map w
 
 1. Click Done and done to apply the symbology to your feature layer.
 
-
 ![](images/20250326_123016_image.png)
 
 ## Customize visibility of fields
 
-We don't need to change any of the settings in this section, but it is useful to know where it is, in case you want to customize the visibility of certain fields in your feature layer. 
+We don't need to change any of the settings in this section, but it is useful to know where it is, in case you want to customize the visibility of certain fields in your feature layer.
 
 1. With the Places layer still selected, click on the "Pop-ups" button on the right side of the page.
 
@@ -258,12 +252,10 @@ We don't need to change any of the settings in this section, but it is useful to
 
 ![](images/20250326_124426_image.png)
 
-
 ![](images/20250326_124613_image.png)
 
 1. Click on **Select fields** in the **Fields list**.
 2. Scroll down and note the fields that are unchecked. These are automated fields, that will contain the Editor Tracking data that you checked the options for, in your Feature Layer Edit settings.
-
 
 ![](images/20250326_124716_image.png)
 
@@ -289,7 +281,6 @@ We don't need to change any of the settings in this section, but it is useful to
    button and then on the More Details... link to go to the Details page of your webmap.
 2. Click on the **Settings tab** at the top of the page and scroll down to the section labeled "Offline."
 3. Make sure that "**Offline enabled**" is at the top right corner of teh panel.
-
 
 ![](images/20250326_125606_image.png)
 
@@ -340,7 +331,6 @@ We don't need to change any of the settings in this section, but it is useful to
 
 10. Click on the **App settings** button ![](images/20250326_133042_image.png)  on the left side of the page, and expand each section to familiarize yourself with the options. We won't change any, but pay particular attention to you options in the **Collection** section for controlling how the app interacts with the GPS in the device.
 
-
 ![](images/20250326_150703_image.png)
 
 12. If you do make changes, be sure to Save your form.
@@ -366,8 +356,6 @@ Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID
 
 5. To add a feature, touch the + Icon, select **New Feature** and follow the prompts.![](images/20250326_153428_image.png)
 6. You can fill out the form, or click the 'Add Point' button, first. Sometimes it's useful to wait and **Add Point** after the form, to allow your **GPS accuracy** to improve.
-
-
 7. Walk around campus, adding public art, historically significant locations, various technology around campus, and "other" locations (picnic tables, restrooms, water fountains, etc...). **Collect at least 12+ points, with Photo or Video attachments.**
 
 ## Part 4: Multi-user editing
@@ -418,11 +406,11 @@ You may want to share the collected data through a visualization, though obvious
 
 The resulting Feature Layer is a read-only view of the data being collected in your Mapping App that can be added to a New Map, filtered, symbolized, pushed to a web application and shared publicly, within the Stanford Org, or with a controlled Group, but without editing permissions.
 
-![alt![](images/ArcGIS_Online_FieldMaps-29b43640.png)
+![](images/ArcGIS_Online_FieldMaps-29b43640.png)
 
 ![](images/ArcGIS_Online_FieldMaps-0305aa70.png)
 
 # To Turn In:
 
-1. Join the "**Earthsys144 - Fundamentals of GISci - Spring 2024** Group" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 - Fundamentals of GISci - Spring 2024 Group**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
+1. Join the "**Earthsys144 - Spring 2025** Group" and **Share your data collection map app** (the one you are using in Collector/FieldMaps) with the **Earthsys144 - Spring 2025**. (you should have already done this, see above). Return to the Details Page of your **MAP**  and copy the URL that is in the Browser URL Bar, and paste it into the Homework URL submission text box, in canvas.
 2. Go to the Details Page for the View Layer you created and scroll to the bottom of the page to find the URL. Copy the URL and paste it into the Homework URL submission text box, in Canvas.
