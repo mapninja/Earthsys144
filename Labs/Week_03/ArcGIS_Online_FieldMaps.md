@@ -360,38 +360,39 @@ Open ArcGIS Field Maps , using "stanford" as your organization, and your SUNetID
 
 ## Part 4: Multi-user editing
 
-Management of multiple field workers can be easily implemented through the use of Groups, in ArcGIS.com. You can create a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the reset of this exercise, I provide instructions for submitting your Collector/FieldMaps  app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
+Management of multiple field workers can be easily implemented through the use of Groups, in ArcGIS.com. You can create a Group with appropriate permissions (Public, Org, Members), so that anyone in that Group can access and use the deployed Map for data collection. For the rest of this exercise, I provide instructions for submitting your Collector/FieldMaps  app Map, for credit, by sharing it and the data layers in it, through an ArcGIS.com group.
 
 ### Join the Earthsys144 - Spring 2025
 
+First, you will join the course group so that you can share and submit your Maps and Feature Layers.
+
 1. From The Map, on ArcGIS.com, click on the Home button and go to Groups
-2. Click on the My Organization's Groups tab at the top, left
-3. Search for `earthsys144` and click on the resulting **Earthsys144 - Spring 2025** link
+2. Click on the **My Organization's Groups** tab at the top, right
+3. Search for `earthsys144 2025` and click on the resulting **Earthsys144 - Spring 2025** link
+4. Click on the Join This Group button
 
-![](images/ArcGIS_Online_FieldMaps-95409c2e.png)
-
-1. Click on the Join This Group button
+![](images/20250412_091049_image.png)
 
 ### Share the map and feature layer with the group
 
-Now that you are a member of the **Earthsys144 - Spring 2025**, you can share content with it. Note that that content will be shared with ANYONE who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps  app.
+Now that you are a member of the **Earthsys144 - Spring 2025**, you can share content with it. Note that that content will be shared with **ANYONE** who is a member of that group, and that anyone in the Group will be able to use your app for data collection. When implementing for yourself, you would obviously limit your group to only those people YOU add, to control access to the Collector/FieldMaps app.
 
 1. Click on the Content Tab a the top of the page, to go to the My Content page
-2. Find your Mapping App (it's Item Type will be Web Map) and check it's checkbox, then click on the Share icon that appears
+2. Find your Mapping App (it's Item Type will be Web Map) and feature layer and check their checkboxes, then click on the Share above them.
 
-![](images/ArcGIS_Online_FieldMaps-b1878202.png)
+![](images/20250412_091633_image.png)
 
-1. Click the option to Set sharing level to organization
-2. **Click on the Edit group sharing button, select the Earthsys144 - Fundamentals of GISci - Spring 2024 and click OK**
+1. Click on the **Edit group sharing** button, select the `Earthsys144 - Spring 2025` and click OK
 
-![](images/ArcGIS_Online_FieldMaps-6dc16a0a.png)
+![](images/20250412_091737_image.png)
 
-![](images/ArcGIS_Online_FieldMaps-dd56ec20.png)
+![](images/20250412_091814_image.png)
 
-![](images/ArcGIS_Online_FieldMaps-5aad5a9b.png)
+1. Click Apply, then click Save to apply the Share settings
 
-1. Click OK, then go to the Details Page for your Feature Layer and share it with the **Earthsys144 FieldMaps app Group 2022**, as well (this is necessary).
-2. Your Mapping app, and Feature Layer should now be visible to the members of the Earthsys144 - Fundamentals of GISci - Spring 2024
+![](images/20250412_092139_image.png)
+
+1. Your Mapping app, and Feature Layer should now be visible to the members of the **Earthsys144 - Spring 2025**
 
 ## Working with the data
 
@@ -399,10 +400,10 @@ Now that you are a member of the **Earthsys144 - Spring 2025**, you can share co
 
 You may want to share the collected data through a visualization, though obviously you won't want to share your "Full Editing Control" Map, with everyone. Creating a View Layer is a way to safely share visualizations of the data being collected, with anyone you want, without exposing the data to editing.
 
-1. Return to your Content page, and find your Walking Tour feature layer item and click on it to go to the Details page.
-2. Click on the Create View Layer button
-3. Give it an appropriate name like My Mapping App Data Public View (_SUNetID_) and click OK
-4. Click on the Share Button in the resulting Details Page, and change the Sharing to Public.
+1. Return to your **Content page**, and find your **Walking Tour feature layer** item and click on it to go to the **Details page**.
+2. Click on the **Create View Layer** button
+3. Give it an appropriate name like `My Mapping App Data Public View (_SUNetID_)` and click OK
+4. Click on the **Share** Button in the resulting **Details Page**, and change the Sharing to `Public`.
 
 The resulting Feature Layer is a read-only view of the data being collected in your Mapping App that can be added to a New Map, filtered, symbolized, pushed to a web application and shared publicly, within the Stanford Org, or with a controlled Group, but without editing permissions.
 
