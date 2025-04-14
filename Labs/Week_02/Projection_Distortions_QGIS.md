@@ -31,7 +31,7 @@ The datasets for this exercise include the County Boundaries as polygons and a 1
 2. Download the following datasets from Earthworks, into your **Project Folder**.
 
 * Please **Download** the **Zipped Object**, using the **Zipped Object** button, for the _1:1,000,000-Scale County Boundaries of the United States, 2014_ - [https://earthworks.stanford.edu/catalog/stanford-wg010mf7692](https://earthworks.stanford.edu/catalog/stanford-wg010mf7692).
-* Please **Download** the **GeoJSON** version, using the **Export Formats>GeoJSON** button for the _10-Degree Graticule Grid, World, 1:10 million, 2012_ - [https://earthworks.stanford.edu/catalog/stanford-fr122tq8910](https://earthworks.stanford.edu/catalog/stanford-fr122tq8910)  
+* Please **Download** the **GeoJSON** version, using the **Export Formats>GeoJSON** button for the _10-Degree Graticule Grid, World, 1:10 million, 2012_ - [https://earthworks.stanford.edu/catalog/stanford-fr122tq8910](https://earthworks.stanford.edu/catalog/stanford-fr122tq8910)
 
 ![](images/20250408_124031_image.png)
 
@@ -347,7 +347,8 @@ We'll use the following equations, which returns the **Absolute Value** of the p
 
 7. Click OK to calculate the field.
 8. Toggle off Editing ![](images/50_50_Coordinate_Systems_Geodesy-787c7591.png) and save.
-9. Examine you results in the attribute table to be sure that they make sense:
+9. Click on the `ERROR_PCT` field header, twice, to sort the table with the largest errors at the top.
+10. Examine you results in the attribute table to be sure that they make sense:
 
 ![](images/50_Coordinate_Systems_Geodesy-32c3229e.png)
 
