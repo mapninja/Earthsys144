@@ -91,6 +91,8 @@ This approach is particularly useful for GIS analysts and developers who need to
 
 ### Loading the "pre-baked" SQL Queries for the lab
 
+QGIS conveniently allows you to save your queries in the DB Manager. Here, we will use SQL queries that I have previously created and tested for you. Your task will be to review and run these scripts, observe the results, and in some cases, alter the scripts to see new behaviors. You will also alter a few of these scripts for your final assignent, to turn in. ***Be sure to give your versions UNIQUE NAMES when you SAVE them in DB Manager, or you will overwrite the scripts I have provided you.***
+
 1. In the SQL query window, review the loaded queries using the **Saved query** dropdown.
 2. ***NOTE THAT THE QUERIES ARE NOT NECESSARILY IN NUMERIC ORDER. THIS IS BECAUSE QGIS DOESN'T ALWAYS SORT THE LIST AUTOMATICALLY SO IT IS UP TO YOU TO ENSURE YOU ARE USING THE RIGHT QUERY SCRIPT!!***
 
@@ -113,7 +115,7 @@ FROM chemicals;  	-- Specifies the table 'chemicals' as the source of the data. 
 
 This query is particularly useful for gaining a comprehensive view of the dataset, especially during the initial stages of data exploration or when preparing for more specific analyses.
 
-6. Press the **Execute (F5)** button or click the **Execute** icon to run the query.
+6. Press the **Execute** button to run the query.
 7. Review the results displayed in the output panel to confirm that all records are shown as expected.
 
 ![](images/20250420_150425_image.png)
