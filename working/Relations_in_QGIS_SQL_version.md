@@ -91,11 +91,8 @@ This approach is particularly useful for GIS analysts and developers who need to
 
 ### Loading the "pre-baked" SQL Queries for the lab
 
-1. In the SQL query window, click on the **Load File** button
-2. Browse to the `queries.sql` file in the `Tox2SchoolsLab/Toxic/` folder and select it.
-3. Click **Open** to load the SQL scripts into the query window.
-4. Review the loaded queries using the **Saved query** dropdown.
-5. ***NOTE THAT THE QUERIES ARE NOT NECESSARILY IN NUMERIC ORDER. THIS IS BECAUSE QGIS DOESN'T SORT THE LIST AUTOMATICALLY SO IT IS UP TO YOU TO ENSURE YOU ARE USING THE RIGHT QUERY SCRIPT!!***
+1. In the SQL query window, review the loaded queries using the **Saved query** dropdown.
+2. ***NOTE THAT THE QUERIES ARE NOT NECESSARILY IN NUMERIC ORDER. THIS IS BECAUSE QGIS DOESN'T ALWAYS SORT THE LIST AUTOMATICALLY SO IT IS UP TO YOU TO ENSURE YOU ARE USING THE RIGHT QUERY SCRIPT!!***
 
 ![](images/20250420_150212_image.png)
 
