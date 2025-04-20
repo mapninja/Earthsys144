@@ -47,7 +47,7 @@ This exercise demonstrates how SQL and relational database concepts can be appli
 
 1. Right-click on the `toxic_sites_stateplane` layer and **>Zoom to Layer...**
 
-![](images/20250417_135205_image.png)
+![](images/20250420_142036_image.png)
 
 ### Examine the data
 
@@ -59,7 +59,7 @@ Note that the data for this lab is contained in a File Geodatabase. This is prop
 
 ### Opening the DB Manager, to interact with your data, using SQL.
 
-This exercise demonstrates the use of QGIS' DB Manager and the concept of Virtual Layers.
+This exercise demonstrates the use of QGIS' DB Manager and the concept of **Virtual Layers**.
 QGIS' DB Manager provides a powerful interface for managing spatial databases and executing SQL queries.
 Virtual Layers in QGIS allow users to treat layers in their project as if they were part of a database, enabling
 the use of SQL to query and manipulate spatial data without requiring an external database.
@@ -95,10 +95,11 @@ This approach is particularly useful for GIS analysts and developers who need to
 2. Browse to the `queries.sql` file in the `Tox2SchoolsLab/Toxic/` folder and select it.
 3. Click **Open** to load the SQL scripts into the query window.
 4. Review the loaded queries using the **Saved query** dropdown.
+5. ***NOTE THAT THE QUERIES ARE NOT NECESSARILY IN NUMERIC ORDER. THIS IS BECAUSE QGIS DOESN'T SORT THE LIST AUTOMATICALLY SO IT IS UP TO YOU TO ENSURE YOU ARE USING THE RIGHT QUERY SCRIPT!!***
 
-![](images/20250417_143507_image.png)
+![](images/20250420_150212_image.png)
 
-5. Load the first SQL QUery `0 - Show all records` by selecting it from the dropdown.
+5. Load the first SQL QUery `01 - Show all records` by selecting it from the dropdown.
 
 ### The first SELECT statement
 
@@ -118,7 +119,7 @@ This query is particularly useful for gaining a comprehensive view of the datase
 6. Press the **Execute (F5)** button or click the **Execute** icon to run the query.
 7. Review the results displayed in the output panel to confirm that all records are shown as expected.
 
-![](images/20250417_143902_image.png)
+![](images/20250420_150425_image.png)
 
 ### Using WHERE to limit what SELECT returns
 
@@ -128,24 +129,16 @@ The `WHERE` clause in SQL is a powerful tool for filtering data based on specifi
 -- This query retrieves all records from the 'toxic_sites_stateplane' table
 -- where the facility is located in the city of New Haven.
 
-SELECT *  						-- The asterisk (*) means "select all columns." This will retrieve every column of data for each row that meets the condition.
-FROM toxic_sites_stateplane  	-- Specifies the table from which to retrieve data, in this case, 'toxic_sites_stateplane' which contains information about toxic sites.
--- WHERE FCITY = 'NEW HAVEN';  	-- The WHERE clause filters the results to include only those rows where the value of the FCITY column is 'NEW HAVEN'.
-
+SELECT *  -- The asterisk (*) means "select all columns." 
+FROM toxic_sites_stateplane  	-- Specifies the table from which to retrieve data
+WHERE FCITY = 'NEW HAVEN';  	-- The WHERE clause filters the results to include only those rows where the value of the FCITY column is 'NEW HAVEN'.
 ```
 
-1. Execute the query by clicking the **Execute** button.
-2. Observe the results in the output panel, which should display 338 rows of data representing all Toxic Release Inventory Facilities.
-3. Edit the query by removing the `--` in front of the `WHERE` clause to activate the filter for facilities located in New Haven, CT:
-   ```sql
-   SELECT *  
-   FROM toxic_sites_stateplane  
-   WHERE FCITY = 'NEW HAVEN';
-   ```
-4. Rerun the query by pressing the **Execute** button.
-5. Observe the updated results, which should now display only the facilities located in New Haven, CT, or 11 rows.
+1. Load the `02 - Filter with WHERE` script from the Saved Query dropdown
+2. Execute the query by clicking the **Execute** button.
+3. Observe the updated results, which should now display only the facilities located in New Haven, CT, or 11 rows.
 
-![](images/20250417_144951_image.png)
+![](images/20250420_150618_image.png)
 
 ### Using an Aggregate function to summarize Chemical releases
 
@@ -154,6 +147,8 @@ FROM toxic_sites_stateplane  	-- Specifies the table from which to retrieve data
 The `GROUP BY` clause in SQL is a powerful tool used to organize data into groups based on one or more columns. It is often used in conjunction with aggregate functions like `SUM`, `COUNT`, `AVG`, `MAX`, and `MIN` to perform calculations on each group of data. For example, the following query groups the data by `CHEMNAME` and calculates the total air and water releases for each chemical:
 
 ```sql
+-- This query calculates the total releases of chemicals into the air and water, grouped by each chemical name.
+
 SELECT 
     CHEMNAME,  									-- Selects the name of the chemical from the 'chemicals' table.
     SUM(TTLAIR) AS TotalAirRelease,  			-- Sums up all air release amounts for each chemical and labels this sum as 'TotalAirRelease'.
@@ -168,12 +163,12 @@ This query is particularly useful for summarizing data and identifying patterns 
 
 ### Steps to Load and Execute the Saved Query "01 - summarize releases by CHEMNAME"
 
-1. Click on the **Saved query** dropdown and select the query titled "01 - summarize releases by CHEMNAME."
+1. Click on the **Saved query** dropdown and select the query titled `03 - summarize releases by CHEMNAME`
 2. Review the query to understand its structure and purpose.
 3. Press the **Execute** button to run the query.
 4. Observe the results in the output panel, which should display the total air and water releases grouped by each chemical name, in 128 rows.
 
-![](images/20250417_152543_image.png)
+![](images/20250420_150720_image.png)
 
 ### Joining Tables
 
@@ -186,28 +181,26 @@ Joins in SQL allow you to combine data from multiple tables based on a related c
 -- It includes all columns from toxic_sites_stateplane and specific chemical release data for each site.
 
 SELECT 
-    t.FNAME,  					-- Selects the FNAME column from the 'toxic_sites_stateplane' table. 
-    c.CHEMNAME,  				-- Selects the 'CHEMNAME' column from the 'chemicals' table, which contains the names of the chemicals.
-    c.TTLAIR,  					-- Selects the 'TTLAIR' column from the 'chemicals' table, indicating the total air releases of chemicals.
-    c.TTLSURFWAT  				-- Selects the 'TTLSURFWAT' column from the 'chemicals' table, indicating the total releases into surface water.
+    toxic_sites_stateplane.FNAME,  					-- Selects the FNAME column from the 'toxic_sites_stateplane' table. 
+    chemicals.CHEMNAME,  				-- Selects the 'CHEMNAME' column from the 'chemicals' table, which contains the names of the chemicals.
+    chemicals.TTLAIR,  					-- Selects the 'TTLAIR' column from the 'chemicals' table, indicating the total air releases of chemicals.
+    chemicals.TTLSURFWAT  				-- Selects the 'TTLSURFWAT' column from the 'chemicals' table, indicating the total releases into surface water.
 FROM 
-    toxic_sites_stateplane AS t -- Specifies the 'toxic_sites_stateplane' table as the primary source of data, aliased as 't'.
+    toxic_sites_stateplane -- Specifies the 'toxic_sites_stateplane' table as the primary source of data.
 JOIN 
-    chemicals AS c  			-- Performs a JOIN operation with the 'chemicals' table, aliased as 'c'.
+    chemicals  			-- Performs a JOIN operation with the 'chemicals' table.
 ON 
-    t.TRIFID = c.TRIFID;  		-- Uses 'TRIFID' as the joining condition. This means the join occurs where the 'TRIFID' values in both tables match.
-
-
+    toxic_sites_stateplane.TRIFID = chemicals.TRIFID;  		-- Uses 'TRIFID' as the joining condition. This means the join occurs where the 'TRIFID' values in both tables match.
 ```
 
 This query performs an **INNER JOIN**, meaning it only includes rows where there is a match in both tables based on the `TRIFID` column.
 
-1. Click on the **Saved query** dropdown and select the query titled `"02 - sites to chemicals join"`.
+1. Click on the **Saved query** dropdown and select the query titled `04 - sites to chemicals join`.
 2. Review the query to understand its purpose and structure.
 3. Press the **Execute** button to run the query.
 4. Observe the results in the output panel, which should display 1029 rows. These rows represent the joined data from `toxic_sites_stateplane` and `chemicals`.
 
-![](images/20250417_154152_image.png)
+![](images/20250420_150849_image.png)
 
 Again, this query performs an **INNER JOIN**, meaning it only includes rows where there is a match in both tables based on the `TRIFID` column.
 
@@ -222,23 +215,22 @@ The following query demonstrates how to use `ST_Distance()` to perform this anal
 ```sql
 -- Return all toxic sites within 5 km of any school
 SELECT DISTINCT
-    ts.* -- Selects all columns from the 'toxic_sites_stateplane' table, ensuring no duplicate rows in the result.
+    toxic_sites_stateplane.* -- Selects all columns from the 'toxic_sites_stateplane' table, ensuring no duplicate rows in the result.
 FROM 
-    toxic_sites_stateplane ts, -- Specifies the 'toxic_sites_stateplane' table, aliased as 'ts', which contains information about toxic sites.
-    schools_stateplane s -- Specifies the 'schools_stateplane' table, aliased as 's', which contains information about schools.
+    toxic_sites_stateplane, -- Specifies the 'toxic_sites_stateplane' table
+    schools_stateplane -- Specifies the 'schools_stateplane' table
 WHERE 
-    ST_Distance(ts.Geometry, s.Geometry) <= 5000; -- Filters the results to include only rows where the distance between the geometries of toxic sites and schools is 5 km (5000 meters) or less.
+    ST_Distance(toxic_sites_stateplane.Geometry, schools_stateplane.Geometry) <= 5000; -- Filters the results to include only rows where the distance between the geometries of toxic sites and schools is 5 km (5000 meters) or less.
 ```
 
-This query retrieves all unique toxic sites (`ts`) that are within 5 kilometers (5000 meters) of any school (`s`) by comparing their geometries.
+This query retrieves all unique toxic sites that are within 5 kilometers (5000 meters) of any school by comparing their geometries.
 
-1. In the **Saved query** dropdown, select the query titled `"03 - Toxic sites within 5km of a school"`.
+1. In the **Saved query** dropdown, select the query titled `05 - Toxic sites within 5km of a school`.
 2. Review the query to understand its purpose and structure.
 3. Press the **Execute** button to run the query.
 4. Observe the results in the output panel, which should display all toxic sites within 5 kilometers of any school.
-5. Optionally, save the query results as a new layer by right-clicking on the result set and selecting **Export to Layer**.
 
-![](images/20250417_160628_image.png)
+![](images/20250420_151048_image.png)
 
 ### Using ST_Buffer() to create a visual representation of our 5km query and loading it as a layer
 
@@ -247,18 +239,18 @@ In QGIS, SQL queries that generate geometries can be loaded directly as layers, 
 ```sql
 -- This SQL query creates a 5km buffer around a specified school
 SELECT
-    s.NAME, 									-- Select the name of the school
-    ST_Buffer(s.geometry, 5000) AS geometry 	-- Create a new geometry representing a 5km buffer around the school's location
+    schools_stateplane.NAME, 		-- Select the name of the school
+    ST_Buffer(schools_stateplane.geometry, 5000) AS geometry 	-- Create a new geometry representing a 5km buffer around the school's location
 FROM 
-    schools_stateplane AS s 					-- From the schools_stateplane table
+    schools_stateplane 		-- From the schools_stateplane table
 WHERE 
-s.NAME = "Edgewood Magnet School (K-8) "; 	-- Filter to include only the school with the specified name
+schools_stateplane.NAME = "Edgewood Magnet School (K-8) "; 	-- Filter to include only the school with the specified name
 ```
 
-1. From the **Saved query** dropdown, select the query titled `"04 - 5km Buffer on all schools"`.
+1. From the **Saved query** dropdown, select the query titled `07 - 5km Buffer on a school`.
 2. Review the query to understand its purpose and structure.
 3. Check the **Load as new layer** checkbox at the bottom of the SQL Query Window.
-4. Provide a meaningful name for the new layer, such as `5km Buffer on Edwood Magnet school`.
+4. Provide a meaningful name for the new layer, such as `5km Buffer on Edgewood Magnet school`.
 5. Click the **Load** button to execute the query and load the buffer as a new layer in your QGIS project.
 
 ![](images/20250417_161313_image.png)
@@ -313,18 +305,17 @@ WHERE
             schools_stateplane  -- Use the schools table.
         WHERE 
             schools_stateplane.NAME = 'Jepson Magnet School (PreK-8) '  -- Specify the school of interest.
-            AND ST_Distance(schools_stateplane.geometry, toxic_sites_stateplane_inner.geometry) <= 5000  -- Include toxic sites within 5km of the school.
+            AND ST_Distance(schools_stateplane.geometry, toxic_sites_stateplane_inner.geometry) <= 1000  -- Include toxic sites within 5km of the school.
     )
 GROUP BY 
     chemicals.CHEMNAME  -- Group the results by chemical name to summarize release amounts.
 -- ORDER BY TotalAirRelease DESC;  -- Uncomment to sort by the highest total air release.
 -- ORDER BY TotalSurfaceWaterRelease DESC;  -- Uncomment to sort by the highest total surface water release.
-
 ```
 
 ### Steps to Run and Explore the Query
 
-1. Open the **Saved query** dropdown and select the query titled `"06 - Chemical Catalog within 1km of school"`.
+1. Open the **Saved query** dropdown and select the query titled `"09 - Chemical Catalog within 1km of school"`.
 2. Review the query structure and purpose.
 3. Execute teh query to see the initial results.
 4. Uncomment the line `-- ORDER BY TotalAirRelease DESC;` to sort the results by the highest total air release.
@@ -338,8 +329,10 @@ GROUP BY
 
 Create a Map Layout:
 
-1. With *only the school you ran the Chemical Report on* visible in the map (Hint: Use a simple SELECT statement on `schools_stateplane`with a WHERE clause that asks for only the school you queried, with appropriate symbology. Use the "*Load as new layer*" feature in **DB Manager**.
-2. A 1km buffer, underneath that school, with appropriate symbology. (Hint: Use the ST_Buffer query you used earlier, and simply change the query values)
+1. With *only the school you ran the Chemical Report on* `'Jepson Magnet School (PreK-8) '` visible in the map (Hint: Use script `02 - Filter with WHERE` as a model to create a simple SELECT statement on `schools_stateplane` with a WHERE clause that asks for only `'Jepson Magnet School (PreK-8) '`, the school you queried). Use the "*Load as new layer*" feature in **DB Manager** to add the layer to your QGIS project and apply appropriate symbology.
+2. Create a 1km buffer, underneath that school, with appropriate symbology. (Hint: Use the `07 - 5km Buffer on a school` query you used earlier, and simply change the query value to the 'Jepson Magnet School (PreK-8) ')
 3. All TRI Sites from `toxic_sites_stateplane`  within the buffer visible. (You don't need to make a new layer, just "Zoom to layer" on your Buffer Layer from above, and
 4. A basemap of your choice (but a choice that makes sense for your operational layers, above)
 5. Insert the Chemical Catalog Table you created in the last step of the exercise, using the **Add Attribute Table tool** in the QGIS Layout Editor.
+6. Add appropriate cartographic elements, including title, scale, CRS, your name, and the date.
+7. Export to PDF for your submission.
