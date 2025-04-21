@@ -14,17 +14,15 @@ Understanding how these formats manage attributes is essential for effective GIS
 
 **_Data_**: are in the `L7.zip`, with
 
-* census data `demographics.shp` in decimal degree coordinates,
+* census data `demographics.shp` in WGS84 decimal degree coordinates EPSG:4326,
 * a table `more_data.dbf`, and
-* `soils.shp`
-
-All are in `UTM Zone 17, NAD83 coordinates, and the units are meters`.
+* `soils.shp`in UTM Zone 17, NAD83 coordinates, and the units are meters EPSG:26917.
 
 [Download the data from this link](https://github.com/mapninja/Earthsys144/raw/master/data/L7.zip)
 
 ### What You’ll Produce
 
-**Three maps, two of selections based on census data**, and **one of a soils dataset**.
+**Three maps, two of selections based on census data**, and **one of the soils dataset**.
 
 ### Background
 
@@ -52,16 +50,18 @@ QGIS provides a rich set of tools for viewing and displaying attribute data.  Ho
 
 ![](images/Table_Operations_in_QGIS-dc8a46a0.png)
 
-* Are the variables ordinal, nominal, or interval/ratio?
 * Which variables are found in both tables?
 * Which variables might serve as ***key fields*** for the table, and which would be inappropriate as keys?
-  _(See Chapter 8 in the Bolstad textbook, if you’re unsure on these concepts)_
+  (See Chapter 8 in the Bolstad textbook, if you’re unsure on these concepts)
 
-**Close** this window, and **Open the Attribute Table** for `demographics.shp`, again.
+7. **Close** this window, and **Open the Attribute Table** for `demographics.shp`, again.
 
 Each record (row) in each table corresponds to each polygon in this US Census Bureau demographic data, displayed in `demographics.shp`.  These files were produced from U.S. Census data, which uses a variable named `Blkgrp` as a unique identifier.  Each record in our tables corresponds to a **US Census block group**.
 
-**Inspect the Field properties**, as you did above, for the `moredata.dbf` table. Note that the `BLKGRP` variable is defined in the same way as the `BLKGRP` variable in the `demographics.shp` table. We should be able to use this as our joining variable.
+8. **Inspect the Field properties**, as you did above, for the `moredata.dbf` table
+
+
+   Note that the `BLKGRP` variable is defined in the same way as the `BLKGRP` variable in the `demographics.shp` table. We should be able to use this as our joining variable.
 
 ![](images/Table_Operations_in_QGIS-16a038bf.png)
 
@@ -98,7 +98,7 @@ It’s important to note a few things about this Join:
 
 ### Selecting on a (Joined) Table & Calculating a Field
 
-_IMPORTANT NOTE: It appears that there is a slight difference in the way some versions of QGIS (LTR vs Nightly Build, etc…) prepend the name of source tables to fields in a join. In the Nightly build, which I am editing this workshop with, an underscore ‘_’ is used, and in the LTR version, it appears that a decimal ‘.’ is used. Please keep these types of differences in mind when building queries. It is for this reason that using the Search in the Expression Editor is a good idea, then you are using YOUR field names, as your version of QGIS has built them._
+*IMPORTANT NOTE: It appears that there is a slight difference in the way some versions of QGIS (LTR vs Nightly Build, etc…) prepend the name of source tables to fields in a join. In the Nightly build, which I am editing this workshop with, an underscore `_` is used, and in the LTR version, it appears that a decimal ‘.’ is used. Please keep these types of differences in mind when building queries. It is for this reason that using the Search in the Expression Editor is a good idea, then you are using YOUR field names, as your version of QGIS has built them.*
 
 Now, let’s select items based on the joined tables.
 
@@ -109,7 +109,7 @@ From the popup window (see below), we will now build the following selection equ
 
 `"more_data_HHPCTGROWT">0`
 
-![](images/Table_Operations_in_QGIS-8527df8b.png)
+![](images/20250420_181934_image.png)
 
 3. Begin typing “`more_data_HHPCTGROWT`” in the search box at the top of the Select by Expression window, but only until you see the variable you are interested in, then **double-click** on  it to place it in the **Expression window**
 4. Type the rest of the query:  `>0`
@@ -121,7 +121,8 @@ This should select most of the rows in the table, probably displaying them in a 
 
 **Examine your selected block groups on the map and in the table, making sure that you have only selected the block groups with positive population growth.**
 
-![](images/Table_Operations_in_QGIS-ae4def0d.png)
+
+![](images/20250420_182033_image.png)
 
 1. With the `demographics` layer attribute table open, click on the button at the bottom left that currently should read “**Show All Features**” and change it to “**Show Selected Features**” and note the effect on the **attribute table**.
 
@@ -146,7 +147,7 @@ This should select most of the rows in the table, probably displaying them in a 
 
 6. Use the Search in the **Expression Editor** to build the expression for **your specific dataset** and **examine** your selection.
 
-![](images/Table_Operations_in_QGIS-ab55d995.png)
+![](images/20250420_182306_image.png)
 
 7. Activate the **Move Selected to Top** button ![](images/Table_Operations_in_QGIS-523af5bc.png), at the top of the attribute table, to only focus on your selected features.
 
@@ -168,17 +169,21 @@ Here we will use a simple method of calculating a binary field to identify our s
 4. Use `Integer (32 bit)` as the **Output Field Type**
 5. Assign the value of `1` to these **17 selected records**, by simply typing the number `1` in the **Expression panel** and click **OK**
 
-![](images/Table_Operations_in_QGIS-f6147816.png)
+![](images/20250420_182509_image.png)
 
 4. **Check** that `1` was written to a new Column called `Grow_Low` in the **attribute table**.
 
-![](images/Table_Operations_in_QGIS-9ee03865.png)
+![](images/20250420_182614_image.png)
+
 
 5. **Invert** the **selection** with the **Invert Selection button** ![](images/Table_Operations_in_QGIS-f8b811d0.png)
 6. Return to the **Field calculator**, and use “**Update Existing Field**” to assign the value of `0` to the `Grow_Low` field for the **remaining 150 records**.
-7. Be sure to **toggle off Editing**, and **save your edits**.
-8. You can clear the selection now, using the Deselect all features... button ![](images/Table_Operations_in_QGIS-547ecfaa.png)
-9. **Save your Project and retain it for the next section.**
+
+![](images/20250420_182705_image.png)
+
+8. Be sure to **toggle off Editing**, and **save your edits**.
+9. You can clear the selection now, using the Deselect all features... button ![](images/Table_Operations_in_QGIS-547ecfaa.png)
+10. **Save your Project and retain it for the next section.**
 
 ## To turn in:
 
