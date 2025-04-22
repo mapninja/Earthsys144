@@ -86,7 +86,7 @@ We would like to know **total per capita income**.  We calculate this by multipl
 
 After the calculation, inspect the `TotIncome` column you just updated.
 
-7. Use the **Field Calculator**, and the same field settings as the previous TotIncome  to **Create a new field** called `PERCAPINC` and **calculate** the per capita income as:
+7. Use the **Field Calculator**, and the same field settings as the previous `TotIncome`  to **Create a new field** called `PERCAPINC` and **calculate** the per capita income as:
 
    `TotIncome / POPBASE`
 
@@ -106,6 +106,6 @@ Refer to [John Nelson’s blog post](http://uxblog.idvsolutions.com/2011/10/tell
 
 ![](images/Table_Operations_in_QGIS_pt2-b720c6ef.png)
 
-Note that you can view the **Histogram tab** for your Field Values in the Layer Styling Panel, when your layer is selected to explore your options. To activate the Layer Styling Panel, on the **Main Menu:** **View>Panels>Layer Styling**
+Note that you can view the **Histogram tab** for your **Field Values** in the **Layer Styling Panel**, when your layer is selected to explore your options.
 
 ![](images/Table_Operations_in_QGIS_pt2-0ddfe5ef.png)
