@@ -324,7 +324,7 @@ GROUP BY
 8. Rerun the query and observe the updated results, focusing on the chemicals with the highest water release amounts.
 9. Use the "Load as new layer" option in DB Manager to add the table to your QGIS PRoject.
 
-![](images/20250418_131357_image.png)
+![](images/20250424_104614_image.png)
 
 Create a Map Layout:
 
