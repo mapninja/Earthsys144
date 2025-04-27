@@ -156,12 +156,14 @@ Check that your table is correct, e.g., similar to the example figure, below.  N
 
 This allows us to open a sequence of dropdowns:
 
-![](images/20250422_204941_image.png)
+
+![](images/20250427_114203_image.png)
 
 4. Choose **Field type**: `int, double, string...` , and then `buffdist` as the variable that contains the buffer distance (see figure below).
-5. Specify a name for the **Buffered** output layer, something like `VarBuffLakes`, and run the tool.
+5. Check the option to Dissolve result.
+6. Specify a name for the **Buffered** output layer, something like `VarBuffLakes`, and run the tool.
 
-![](images/20250422_205611_image.png)
+![](images/20250425_121047_image.png)
 
 This should create a layer similar to that below.  Note the buffers are larger for the larger lakes, as per our specified buffer distance variable.
 
@@ -194,21 +196,32 @@ You have already created your starting layers.  These are the variable distance 
 
 We need to modify input layers prior to overlay so that we may easily interpret the results after overlay.
 
+## Save a new copy of your project file
+
+1. Return to the project you used in the previous exercise, if you don't already have it open.
+2. Save the project to a new folder (named something like `EX02`) and rename it `Overlay_Analysis`
+
+You've just made a copy of your project file, which is very small. No other changes have been made, which is important, because it means that the project file from your previous exercise remains untouched, and you can return to it, if needed
+
+### Creating single-part features from multi-part features.
+
 First, we must turn the buffer output to *single part features*.  Buffer returns multipart features, which means there may be multiple polygons for a single row.
 
 1. Open the attribute table for `VarBuffLake`, you should see just one row, while the layer obviously has many polygons.
 
-![](images/Burrering_Overlay-9ffdb9a0.png)
+![](images/20250425_121210_image.png)
 
-2. To convert this multipart layer to single parts, use **Vector->Geometry Tools-> Multipart to Singleparts**, naming the output something useful, like: `SingleLakeBuffers`
+2. To convert this multipart layer to single parts, open the Processing Toolbox, and search for "multipart", and open the Multipart to singleparts tool,
 
-![](images/Buffering_Overlay-867d82dd.png)
+![](images/20250425_121408_image.png)
 
-![](images/Buffering_Overlay-83f06bb0.png)
+3. Selec the `VarBuffLakes` layer as the **Input layer** and save the **Single parts output** as `SingleLakeBuffers.shp`
+
+![](images/20250425_121538_image.png)
 
 3. After running the tool, **open the attribute table** for the output.  Note that there are now multiple entries, one for each polygon.
 
-![](images/Buffering_Overlay-8cfa349a.png)
+![](images/20250425_121739_image.png)
 
 Also note that the `buffdist` is now wrong, it has a value of `50` for all the polygons (or perhaps one of the other values, `150` or `500` is repeated, the one it saves appears somewhat random), even though the medium and large sized lakes had different buffer distances. Since the columns we have in this layer aren’t useful, it’s helpful to delete them:
 
@@ -219,16 +232,21 @@ Also note that the `buffdist` is now wrong, it has a value of `50` for all the p
 
 6. Now, create a new column called `inlakebuff` in the `SingleLakeBuffers` table, with a **value** of `1` for all the lake buffer polygons, using the **Field Calculator**.
 
-![](images/Buffering_Overlay-8d687317.png)
+![](images/20250425_121947_image.png)
 
 ![](images/Buffering_Overlay-a7f6a6f6.png)
 
-7. Repeat the same steps for the `road buffer layer`:
-   1. **Convert to SinglePart** features, as `singlepartroadsBuffer300m.shp`
-   2. Clean the attribute table, **deleting all the current fields**
-   3. **Add a new attribute** named something like `inroadbuff`, and assign it a **value** of `1` to indicate it is inside the road buffer.
+7. Repeat the same steps for the `road buffer layer`, which you will note is also **multiple polygons, with a single table entry**, or "**multipart**" features:
 
-![](images/Buffering_Overlay-cc6906d3.png)
+   ![](images/20250425_122525_image.png)
+8. Use **Convert to SingleParts** to convert the features to singlepart, as `singlepartroadsBuffer300m.shp`
+
+   ![](images/20250425_122913_image.png)
+
+   1. Clean the attribute table, **deleting all the current fields**
+   2. **Add a new attribute** named something like `inroadbuff`, and assign it a **value** of `1` to indicate it is inside the road buffer.
+
+![](images/20250425_123835_image.png)
 
 8. Remember to **toggle off editing and save** for each layer when complete.
 
@@ -238,31 +256,35 @@ Before we overlay the two layers with the “**Union**” command, we need one m
 
 The `SingleLakeBuffers` layer we created has buffered areas that include the lake as well as the land near shore. Campsites will be on dry ground, so we will use the **Difference** tool to remove the lake from the lake buffer layer.
 
-9. Open the **Vector>Geoprocessing Tools>Difference**
+9. Open the **Processing Tools** and search for "Erase". Note that the equivalent tool in QGIS is referred to as "**Difference**"
+
+   ![](images/20250425_124648_image.png)
 10. Specify Input Vector Layer as the `SingleLakeBuffers`
 11. Specify the Difference Layer as the `lakes` layer
 12. Set the output destination to something like `LakeBuffersOnly.shp`
 13. Click Run
 
-![](images/Buffering_Overlay-b5b5cc1d.png)
+![](images/20250425_124204_image.png)
 
 Display the output and verify that the results are the lakes buffer layer with the lakes area removed:
 
-![](images/Buffering_Overlay-9cb583b9.png)
+![](images/20250425_124252_image.png)
 
 ## Using Union to combine layers
 
-14. Select **Vector>GeoprocessingTools>Union**
+14. Open the **Processing Tools** and search for "Union". Open the **Union** tool
+
+    ![](images/20250425_124755_image.png)
 15. Specify the input layers – `LakesBuffersOnly` (as the input layer) and `singlepartRoadsBuffer300m` (as the overlay layer)
 16. Specify the output layer something like `BufferUnion`, and **Run**.
 
-![](images/Buffering_Overlay-f531e8b6.png)
+![](images/20250425_124841_image.png)
 
 17. Open the **attribute table** and examine the new `BufferUnion` layer.
 18. Scroll down the table and find a record for which `inlakebuff` and `inroadbuff` are both = `1`.
 19. Click on the Numbered Square to the left of the record to Select it,
 
-![](images/Buffering_Overlay-b58545cf.png)
+![](images/20250425_125057_image.png)
 
 20. Use the Zoom to Selected tool![](images/Buffering_Overlay-40d205af.png)
 21. Move or close the attribute table to view the selected polygon.
