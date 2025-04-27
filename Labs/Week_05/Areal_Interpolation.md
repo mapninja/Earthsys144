@@ -6,7 +6,16 @@ In this exercise, we will be performing what is referred to as “Areal Interpol
 
 ### Group Stats Plugin
 
-TO complete this lab, you will need to install the **Group Stats** plugin, from the QGIS Plugin Manager at **Main Menu>Plugins>** and Search for "Group Stats"
+The Group Stats plugin is a powerful tool for statistical analysis within QGIS. It allows users to create pivot tables from attribute data, enabling aggregation, grouping, and summarization of spatial datasets. This is particularly useful for tasks such as areal interpolation, where summarizing data by categories or spatial units is required.
+
+Usage:
+    - Install the plugin via QGIS's Plugin Manager.
+    - Access it from the Plugins menu after installation.
+    - Use it to group, sum, average, or otherwise analyze attribute data from vector layers.
+    - Results can be exported for further analysis or reporting.
+
+To complete this lab, you will need to install the **Group Stats** plugin. 
+1. From the QGIS Plugin Manager at **Main Menu>Plugins>** and Search for "Group Stats"
 
 ![](images/20250427_125204_image.png)
 
