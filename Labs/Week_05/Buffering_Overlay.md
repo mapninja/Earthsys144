@@ -156,7 +156,6 @@ Check that your table is correct, e.g., similar to the example figure, below.  N
 
 This allows us to open a sequence of dropdowns:
 
-
 ![](images/20250427_114203_image.png)
 
 4. Choose **Field type**: `int, double, string...` , and then `buffdist` as the variable that contains the buffer distance (see figure below).
@@ -298,7 +297,7 @@ QGIS groups polygons in the data files when performing analysis.  When we are fi
 21. Return to the attribute table of `BufferUnion`
 22. Use the **Select features using an expression ![](images/Buffering_Overlay-7a6534b1.png) tool**
 
-![](images/Buffering_Overlay-da1e7bd8.png)
+![](images/20250427_114754_image.png)
 
 to create an expression  that selects the features that have  a value of 1 for both the inlakebuff and inroadbuff columns:
 
@@ -306,33 +305,36 @@ to create an expression  that selects the features that have  a value of 1 for b
 
 This should yield the selection, below. (HINT: right-click and Zoom to Layer to see the whole layer selection)
 
-![](images/Buffering_Overlay-d77e80fe.png)
+![](images/20250427_114820_image.png)
 
 Upon visual inspection, these are the polygons within both the road and lake buffers.
 
 23. With the selection still active, right click on the `BufferUnion`, then
 24. **Export>Save Selected features as…** as something appropriate, like `Candidates.shp`, and verifying that the option to **Save only selected features** is checked.
 
-![](images/Buffering_Overlay-73baaa3f.png)
+![](images/20250427_114938_image.png)
 
 Display the data and verify that you have something like the following:
 
-![](images/Buffering_Overlay-09a78419.png)
+
+![](images/20250427_115004_image.png)
 
 25. Use the manual selection tool,![](images/Buffering_Overlay-209ecb06.png) and verify that some of these are still multipart, by clicking on a few polygons.
 
-![](images/Buffering_Overlay-b711073d.png)
+![](images/20250427_115037_image.png)
 
 26. Be sure to clear your selection.
 
 We have one final criteria to meet, that these campgrounds be on private land.
 
 1. Add the `Public.shp layer` to your project.
-2. Use the Difference tool, as above, to create a new layer called FinalCandidates that excludes all **Public.shp **features.
+2. Use the Difference tool, as above, to create a new layer called `FinalCandidates` that excludes all `Public.shp` features.
+
+![](images/20250427_115207_image.png)
 
 The westernmost lakes should look like the figure here, with the public bits carved out of the lower lake:
 
-![](images/Buffering_Overlay-dec0f45c.png)
+![](images/20250427_115321_image.png)
 
 ### To Turn In:
 
@@ -342,7 +344,7 @@ Create a Layout that includes:
 * lakes, and
 * lands suitable for campgrounds on private land
 
-Label each layer with descriptive text in the legend, and include a scale bar, north arrow, title and name.
+Label each layer with descriptive text in the legend, and include a basemap, scale bar, title and name.
 
 ![](images/Buffering_Overlay-ec20e840.png)
 
