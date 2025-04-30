@@ -101,7 +101,6 @@ So that DELETING THE `/*`   and the  `*/`   WILL UNCOMMENT THIS CODE AND CAUSE I
 
 Work your way through the **entire set of scripts**, then **go to the Google Earth Engine Data Catalog** by clicking IN the Search bar:
 
-
 ![](images/20250427_120506_image.png)
 
 1. **Explore as much of the data catalog as you are interested in, then select a dataset you are interested in and go to its page**
@@ -120,7 +119,7 @@ Some ideas include:
 
 * Alter the `setCenter()` function (most samples use it),
 * Change the date filters,
-* Change the vis params, etc...
+* Change the vis params, etc... (Use a different band combination, etc...)
 
 7. Once you have done this, **create single-line or block comments to highlight what changes you have made.**
 8. **Make sure the script works** as you expect it to.
