@@ -102,7 +102,7 @@ Again, check the results.
 
 Compose and export a map (PDF), with **5 Categories** using `PERCAPINC`.  Remember to include all the usual required map components, and note the classification method you used for the _**choropleth**_ map you are making.
 
-Refer to [John Nelson’s blog post](http://uxblog.idvsolutions.com/2011/10/telling-truth.html) on Classification in choropleth mapping for advice on determining the appropriate classification method for this data.
+Refer to [John Nelson’s blog post](https://web.archive.org/web/20241226082540/http://uxblog.idvsolutions.com/2011/10/telling-truth.html) on Classification in choropleth mapping for advice on determining the appropriate classification method for this data.
 
 ![](images/Table_Operations_in_QGIS_pt2-b720c6ef.png)
 
