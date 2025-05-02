@@ -126,7 +126,7 @@ Now we will resample our `valley9` layer to have the same pixel dimensions as ou
 `value != 0`
 
 [note that the above would read “value does not equal 0”]
-3. Value where **TRUE**: `valley3nonull`
+3. Value where **TRUE**: `valley3`
 4. Value where **FALSE**: `valley9_3m`
 5. **Save** to a File called: `valley_merged.tif`
 
