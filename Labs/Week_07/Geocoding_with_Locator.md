@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/SantaClara_Ta
 
 ### Download and Install [OpenRefine](https://openrefine.org/)
 
-https://openrefine.org/download.html
+[https://openrefine.org/download](https://openrefine.org/download)
 
 ![](images/Geocoding_with_Locator-6c1662fa.png)
 
@@ -32,17 +32,15 @@ You might also want to take a look at this page on **_Expressions_** in OpenRefi
 
 https://docs.openrefine.org/manual/expressions
 
-And, here’s the full **User Manual**:  
+And, here’s the full **User Manual**:
 
 https://docs.openrefine.org/
-
 
 ## What is an [Geocoding] API?
 
 An **API** (**Application Programming Interface**) is, essentially, a set of instructions that allows computer programs to pass data back and forth. In the following exercise, we will be using a REST API, hosted by Stanford Libraries, at https://locator.stanford.edu.
 
-Web APIs allow you to submit a URL just like when you type a URL into your browser address bar. The important difference is that the URL we are submitting has a bit of data (an add`ress or `coordinate pair`) that we want to know something about. Rather than giving us back an `HTML` file that instructs our browser to retrieve images, text and other objects and arrange them into a webpage, the Web API we will use gives us back information about the `address` data we submit.
-
+Web APIs allow you to submit a URL just like when you type a URL into your browser address bar. The important difference is that the URL we are submitting has a bit of data (an add`ress or `coordinate pair`) that we want to know something about. Rather than giving us back an `HTML`file that instructs our browser to retrieve images, text and other objects and arrange them into a webpage, the Web API we will use gives us back information about the`address` data we submit.
 
 ## Connecting to locator.stanford.edu Services
 
@@ -50,21 +48,21 @@ Web APIs allow you to submit a URL just like when you type a URL into your brows
 
 ## Building your template Query
 
-The easiest way for beginners to use APIs is to start by building a single URL query to quickly test that you have typed all of the parameters correctly and that https://locator.stanford.edu is returning valid data.
+The easiest way for beginners to use APIs is to start by building a single URL query to quickly test that you have typed all of the parameters correctly and that [https://locator.stanford.edu](https://locator.stanford.edu) is returning valid data.
 
 We'll be using the USA Street Address geocoding service. The service **endpoint** is a URL that you can submit your queries to. In this case, the USA Geocoder endpoint is at:
 
-https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer
+[https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer](https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer)
 
 This page will look rather terrifying to someone not yet familiar with these types of services, but fortunately, there is an easy way to get locator.stanford.edu to give us a `endpoint URL` we can begin altering to do what we want.
 
-1. Scroll to the bottom of the https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer page and look for the [Find Address Candidates](https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates) link and click on it.
+1. Scroll to the bottom of the [https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer](https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer) page and look for the [Find Address Candidates](https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates) link and click on it.
 
 ![](images/Geocoding_with_Locator-d2d737e6.png)
 
 The **Find Address Candidates: (geocode/USA)** page provides a convenient way to build a template `endpoint URL`, by filling out the information in the form that duplicates the data we want to feed to the service.
 
-2. Now, examine the data we will feed into the APIs, at https://github.com/mapninja/Earthsys144/blob/master/data/SantaClara_TattooParlors.csv
+2. Now, examine the data we will feed into the APIs, at [https://github.com/mapninja/Earthsys144/blob/master/data/SantaClara_TattooParlors.csv](https://github.com/mapninja/Earthsys144/blob/master/data/SantaClara_TattooParlors.csv)
 
 ![](images/Geocoding_with_Locator-11dfb04d.png)
 
@@ -77,7 +75,7 @@ Note that we have several columns with _Implicit Location Data_ in them, includi
 
 3. Use the values for these columns, from the first record in the table, to fill out the **Find Address Candidates: (geocode/USA)** form.
 4. For **Max Locations**: `1`
-5. Change the **Format** to `JSON`
+5. Change the **Format** dropdown to `JSON`
 6. Click **Find Address Candidates (GET)**
 
 ![](images/Geocoding_with_Locator-e4a947d4.png)
@@ -117,6 +115,7 @@ First, you should get a plain text result, in JSON (JavaScript Object Notation) 
 And second, you should get a `endpoint URL` in your browser's **URL Bar**:
 
 `https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&Address2=&Address3=&Neighborhood=&City=SAN+JOSE&Subregion=&Region=CA&Postal=951121527&PostalExt=&CountryCode=&SingleLine=&outFields=&maxLocations=1&matchOutOfRange=true&langCode=&locationType=&sourceCountry=&category=&location=&distance=&searchExtent=&outSR=&magicKey=&f=pjson`
+
 ### Reading the ``endpoint URL``
 
 That's probably alot to take in, all at once, so let's break it down:
@@ -125,9 +124,9 @@ That's probably alot to take in, all at once, so let's break it down:
 
 In the image, above, you can see the `endpoint URL`, broken down, as follows:
 
-- **Red** - This is the `base URL` of the locator.stanford.edu server  
-- **Orange** - This is the `resource path` of the specific _USA Geocode Service_   
-- **Yellow** - This is `resource path` of the specific **Operation** we want to run: "_Find Address Candidates_"   
+- **Red** - This is the `base URL` of the locator.stanford.edu server
+- **Orange** - This is the `resource path` of the specific _USA Geocode Service_
+- **Yellow** - This is `resource path` of the specific **Operation** we want to run: "_Find Address Candidates_"
 - **Green** - These are the `query parameters`, and their `values`, commonly referred to as a "`key-value`" `pair`. They structure the data that we want to process, so that the locator service understands what it is being given to work with.
 - **Gray** - These are `query parameters`, but they are `keys` with no `values`. In most cases, it isn't necessary to include these in the URL
 
@@ -146,7 +145,6 @@ or:
 1. Paste the new `endpoint URL` into your browser.
 
 This should result in the same result as before.
-
 
 ```
 {
@@ -176,7 +174,6 @@ This should result in the same result as before.
 }
 ```
 
-
 See them!? There are `X/Y` or `longitude/latitude` coordinates in there! That’s what we are after!
 
 ## Making Sense of our Returned JSON Data
@@ -194,11 +191,12 @@ You can make the JSON data even more readable with [http://jsonviewer.stack.hu/]
 1. Copy & Paste your JSON from the browser window into the [http://jsonviewer.stack.hu/](http://jsonviewer.stack.hu/) text tab
 2. **Click** on the **Format Button** in the Main Menu.
 3. **Switch** to the **Viewer Tab**…
-4. Expand all of the elements in the hierarchy so that you have something that looks like this:  
+4. Expand all of the elements in the hierarchy so that you have something that looks like this:
 
 ![](images/Geocoding_with_Locator-6a54e6cc.png)
 
 ### The Structure of JSON data
+
 The structure of a JSON object is as follows:
 
 - The **data** are in `key-value` pairs.
@@ -211,7 +209,7 @@ The structure of a JSON object is as follows:
 
 If you track forward through the hierarchy of our returned **JSON data**, you will find that it contains:
 
-* An `object` called `spatialReference`  
+* An `object` called `spatialReference`
 * And an `array` called `candidates` which contains:
   - numbered `candidate` `objects` (there is only one `candidate` `object`, whose index is `0` ( because we limited the number of results with `&maxLocations=1`, in the `endpoint URL`), which contains:
     - three `objects`, one of which is named `location`, which contains:
@@ -219,9 +217,9 @@ If you track forward through the hierarchy of our returned **JSON data**, you wi
 
 To refer to the `x`, or longitude, propertiy we would use the following:
 
-`candidates[0].location.x`  
+`candidates[0].location.x`
 
-**or:**  
+**or:**
 
 "the property named `x`, of the object named `location`, which is the first object named `[0]` in the array called `candidates`" reading backwards from the property we are interested in.
 
@@ -238,11 +236,8 @@ Now it’s time to start up OpenRefine and use the URL we’ve just created to s
 ![](images/Geocoding_with_Locator-963a18fe.png)
 
 2. Click on the **Create Project** link.
-
 3. Select the option to **Get data from this computer** and Click on the **Choose Files** button.
-
 4. **Browse** to the `SantaClara_TattooParlors.csv` and Select it. Click **Next**
-
 5. Make sure the data is properly formatted in the Preview, change the **Parse data as...** parameters until the data is properly formatted.
 
 ![](images/Geocoding_with_Locator-1b9651e5.png)
@@ -261,18 +256,18 @@ If you haven’t already, now is a good time to take a look at the basics of the
 
 1. Return to your URL you created, and Copy it from the Browser Address Bar, or your Text Editor. Again, it should be this:
 
-`https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&City=SAN+JOSE&Region=CA&Postal=951121527&maxLocations=1&f=pjson`  
+`https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&City=SAN+JOSE&Region=CA&Postal=951121527&maxLocations=1&f=pjson`
 
 2. Now Click on the **Drop-down Arrow** next to the `Street Address` field and go to **Edit Column>Add Column by Fetching URLs**
 
-![](images/Geocoding_with_Locator-4c8bc603.png)
+![](images/20250504_162626_image.png)
 
 3. Name the new column something like `locatorJSON`
 4. Paste your `endpoint URL` into the **Expression Window** (this will result in a error messages, which is fine)
 
 ![](images/Geocoding_with_Locator-418ccf1e.png)
 
-### Replacing the Query Parameter Values with Data from the table  
+### Replacing the Query Parameter Values with Data from the table
 
 Because we started this Expression from the `Street Address` column, we only need to refer to the column values as `value`, and convert them to **URL Encoded text**.
 
@@ -302,7 +297,7 @@ First, replace the `&City=` parameter value with the values in the `City` column
 
 ![](images/Geocoding_with_Locator-57ef4332.png)
 
-----
+---
 
 Next, replace the `&Region=` parameter value with the values in the `State Abbreviation` column:
 
@@ -316,7 +311,7 @@ Next, replace the `&Region=` parameter value with the values in the `State Abbre
 
 ![](images/Geocoding_with_Locator-06523969.png)
 
-----
+---
 
 Finally, replace the `&Postal=` parameter value with the values in the `Zip Code` column:
 
@@ -330,7 +325,7 @@ Finally, replace the `&Postal=` parameter value with the values in the `Zip Code
 
 ![](images/Geocoding_with_Locator-52b7fb45.png)
 
-----
+---
 
 It's not necessary to replace the value for the `&maxLocations=` or `&f=` parameters, since they are the same for every query we run.
 
@@ -347,16 +342,13 @@ Your first record should be identical to the original `endpoint URL` we started 
 ![](images/Geocoding_with_Locator-715dedda.png)
 
 7. Set the **Throttle Delay** value to `200` milliseconds (this will tell OpenRefine to submit 5 Geocode Requests per second).
-
-
 8. **Uncheck:** `Cache Responses`
 
 ![](images/Geocoding_with_Locator-c75f6cf8.png)
 
 9. **Click OK** to submit a custom `endpoint URL` for every record in your `SantaClara_TattooParlors.csv` table, once every 0.2 seconds.
 
-
-Wait for the geocoding to finish (a few seconds, HOORAY FOR PROGRESS MESSAGES!) and you should have something like this:  
+Wait for the geocoding to finish (a few seconds, HOORAY FOR PROGRESS MESSAGES!) and you should have something like this:
 
 ![](images/Geocoding_with_Locator-03bed4d7.png)
 
@@ -368,12 +360,11 @@ Recall that:
 
 "the property named `x`, of the object named `location`, which is the first object named `[0]` in the array called `candidates`"
 
-**or:**  
+**or:**
 
-`candidates[0].location.x`  
+`candidates[0].location.x`
 
 OpenRefine’s expression language has a function called **parseJson()**, that allows us to address `objects` and `properties` within JSON. We’ll use this to extract the exact value we are interested in and put them in new columns we can use to make a map!
-
 
 1. Click on the **Drop-down Arrow** next to the `locatorJSON` field and go to **Edit Column>Add column based on this column...**
 
@@ -387,7 +378,7 @@ The Longitude coordinate is at: `candidates[0].location.x`
 
 So, we want to:
 
- "take the `locatorJSON` column's `value`, _parse_ it as **JSON**, and access the `candidate` object's first, or `[0]`, object, calling `location`'s property `x`'s' `value`"
+"take the `locatorJSON` column's `value`, _parse_ it as **JSON**, and access the `candidate` object's first, or `[0]`, object, calling `location`'s property `x`'s' `value`"
 
 **or,**
 
@@ -398,7 +389,6 @@ So, we want to:
 ![](images/Geocoding_with_Locator-28203d5b.png)
 
 2. Confirm that the value in the **Preview Window** is a **valid longitude coordinate**
-
 3. Name the new column `Longitude` and **click OK** to write the longitude coordinates to the new column.
 
 ( _Note that in the image, below, I have used the **>View>Collapse this column** option to hide the rather large `locateJSON` column, to better display the new `Longitude` column._)
@@ -427,9 +417,8 @@ You always want to make sure you received valid `values` for every `record` in y
 # To Turn In:
 
 1. **Export** the resulting dataset as a **Comma-separated value (CSV) table**, naming it `YOURNAME_SantaClaraTattooShops.csv` using the **Export** button at the top of **OpenRefine**.
-
 2. Create a new **QGIS Project** and use the **Layer>Add Layer>Add Delimited Text Layer** to add your geocoded data to the project, using the `Latitude` and `Longitude` columns as the **Geometry Definition**, and `EPSG:4326 - WGS 84` as the **CRS**.
-3. Create a Map, showing the distribution of Tattoo Shops, in Santa Clara County, and displaying their `Company Name` as a **label** for each feature.
+3. Create a Map, showing the distribution of **Tattoo Shops, in Santa Clara County**, and displaying their `Company Name` as a **label** for each feature.
 4. Use your creativity to create a Map Layout, being sure to add the appropriate cartographic elements and **Upload** your **Map** as an **image or PDF** _**AND**_ your **CSV** of geocoded data.
 
 # More Learning and API Links:
