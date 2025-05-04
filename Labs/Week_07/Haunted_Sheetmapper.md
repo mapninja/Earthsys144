@@ -1,12 +1,10 @@
-
 Adapted from: [https://labs.mapbox.com/education/impact-tools/sheet-mapper/](https://labs.mapbox.com/education/impact-tools/sheet-mapper/)
-
 
 ## Haunted SheetMapper
 
 In this exercise, you will create a live-updating map that displays the locations of all your POIs or events, powered by a spreadsheet.
 
-![](images/Haunted_Sheetmapper-faf1c17d.png)
+![](images/20250504_160606_image.png)
 
 Everyone uses spreadsheets to collaborate and collect data, so we are often asked how to create a map from data in this format.
 
@@ -14,27 +12,27 @@ This blueprint is appropriate for any set of locations from a CSV or Google Shee
 
 Once you have completed this exercise, you should be able to link this basic code to ANY spreadsheet of data, and publish it to the web, for free, and with the most basic server infrastructure, with the added bonus of being able to update the data in the SpreadSheet, and have the map update, automagically!
 
-
 ### Getting started
 
 There are a few resources you'll need to get started:
+
 ## READ THIS PART CAREFULLY!!!
 
 You will need to use a **Plain-text** Text Editor to write and edit your code.‍ **THIS IS IMPORTANT! DO NOT USE A DOCUMENT EDITOR, LIKE WORD OR TextEdit OR Notepad, etc... it will destroy your code by putting invisible formatting characters everywhere!**
 
 ## Plain-text Editors, I like:
 
-All of these editors feature things like Code Highlighting (color coding of parts of your code), directory browsing and preview capabilities. 
+All of these editors feature things like Code Highlighting (color coding of parts of your code), directory browsing and preview capabilities.
 
-* [Sublime](https://www.sublimetext.com/) is very popular with Mac users, and has versions for Windows & Linux, as well. It's very simple, and a great first "code" editor. 
-* [Visual Studio Code](https://code.visualstudio.com/) for MacOS or Windows, is the new "Developer's Choice" with a million integrations, including ChatGPT Assisted coding, etc.... It can be a little intimidating for new users. 
+* [Sublime](https://www.sublimetext.com/) is very popular with Mac users, and has versions for Windows & Linux, as well. It's very simple, and a great first "code" editor.
+* [Visual Studio Code](https://code.visualstudio.com/) for MacOS or Windows, is the new "Developer's Choice" with a million integrations, including ChatGPT Assisted coding, etc.... It can be a little intimidating for new users, but it is worth the learning curve.
 * [Notepad++](https://notepad-plus-plus.org/downloads/) is also a good one I used when I was a Windows user.
 
 ## Did you READ ^^ THIS ^^ carefully?
 
-99.9% of any problems you have with this lab will be because you used a document editor, instead of plain text editor, designed for writing code.
+***99.9% of any problems you have with this lab will be because you used a document editor, instead of plain text editor, designed for writing code.***
 
-The other 0.1% will, no doubt, be my fault.
+The other 0.1% will, no doubt, be my fault for not being clear. I'm working on it.
 
 **Templates and Data:**
 
@@ -45,41 +43,37 @@ The other 0.1% will, no doubt, be my fault.
 **Tools we'll use:**
 
 * [Google Sheets](https://docs.google.com/spreadsheets/u/0/) to create and store your event data.
-* A **PLAIN TEXT EDITOR** like [Atom](https://atom.io/), [Sublime](https://www.sublimetext.com/) or [Notepad++](https://notepad-plus-plus.org/)
-* [Mapbox account](https://www.mapbox.com/signup/) to access: ‍‍‍   
- * [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create your map style.  
- * [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/api/) to add interactivity to your map and publish it on the web‍‍.
+* A **PLAIN TEXT EDITOR** (See above)
+* [MapLibre GL JS](https://maplibre.org) to add interactivity to your map and publish it on the web.
 * [Csv2geojson](https://github.com/mapbox/csv2geojson) JavaScript Library to convert CSV and TSV files to GeoJSON data suitable for maps‍
-* [Stanford’s AFS web server](https://afs.stanford.edu/) to publish your Mapbox GL JS map
-* Possibly a [Github Account](https://github.com/) to publish your map, in case AFS doesn’t work.
+* [Stanford’s AFS web server](https://afs.stanford.edu/) to publish your MapLibre GL JS map (If you want to see more about simple web services at Stanford, check out: [https://uit.stanford.edu/service/afs/intro](https://uit.stanford.edu/service/afs/intro)
+* A [Github Account](https://github.com/) to publish your map, should AFS not work.
 
 _Note: This tutorial demonstrates how to access data from a Google Sheet using csv2geojson.js, but this solution is also appropriate for users storing data as a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) or [TSV](https://en.wikipedia.org/wiki/Tab-separated_values). For more information read the [csv2geojson README.](https://github.com/mapbox/csv2geojson)_
-
 
 ## Getting started
 
 ### Create data in Google sheet
-
 
 1. For this exercise, you can [duplicate your sheet from this template](https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing)
 
 ![](images/Haunted_Sheetmapper-87ac1ea5.png)
 
 2. Make the table
-2. ...or make your own sheet from scratch, with any data you want. You will need the following columns:
+3. ...or make your own sheet from scratch, with any data you want. You will need the following columns:
+   1. longitude
+   2. latitude
+   3. Any additional fields you want to be displayed in the popups
 
-    1. longitude
-    2. latitude
-    3. Any additional fields you want to be displayed in the popups
+## Make your table PUBLIC!
 
-3. Once you have made your table, you will need to use the **Share Button**  to make the table accessible so that "**_Anyone on the internet with the link can view_**":
+5. Once you have made your table, you will need to use the **Share Button** to make the table accessible so that "**_Anyone on the internet with the link can view_**":
 
 ![](images/Haunted_Sheetmapper-8273bec6.png)
 
 ![](images/Haunted_Sheetmapper-242bf40a.png)
 
 4. To create an export link, copy the following link to your text editor for use, later:
-
 
 `https://docs.google.com/spreadsheets/d/{key}/gviz/tq?tqx=out:csv&sheet={sheetname}`
 
@@ -106,8 +100,8 @@ In the case of My `Sheet ID` and `Name` (In the images), they are the following 
 `https://docs.google.com/spreadsheets/d/{key}/gviz/tq?tqx=out:csv&sheet={sheetname}`
 
 4. Replace:
-   * `{key}` with your `Google Sheet ID`   
-   and
+   * `{key}` with your `Google Sheet ID`
+     and
    * `{sheet_name}` with the `name of your sheet`
 
 The newly constructed URL for my example would be:
@@ -122,49 +116,83 @@ If you click on the above link, it should start a download of the table, as `dat
 
 In this part, you will do what all programmers do: Steal someone else's code, and make it do what YOU want it to do!
 
-1. Open you chosen **plain text editor** and create a file called `index.html`.    
+1. Open you chosen **plain text editor** and create a file called `index.html`.
 
-     In _**Atom**_, you can go to **File>New File** to create a new file.
-
-9. Set up the document by copying and pasting [this template code](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html) into your new HTML file
+   In _**Atom**_, you can go to **File>New File** to create a new file.
+2. Set up the document by copying and pasting [this template code](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html) into your new HTML file
 
    (or, you can just save that webpage of html, as `index.html`), but make sure you add the `.html` extension, if necessary, when you **save as...**
 
 The next sections walk you through altering the above code to customize with your data and other parameters. Feel free to experiment, knowing that you can always come back to the above code and start again, fresh.
 
-## Add your Mapbox access token
+## Importing a Javascript library
 
-An `Access Token`, or `API key` is the credential that tells the Mapbox APIs that you are authorized to use them.  Without an access token, the rest of the code will not work.‍
+The following code uses the `<head>` tag to provide text in the HTML file that will not be rendered as text, but will import Javascript functions from another source, in this case:
 
-1. [Login](http://account.mapbox.com/) or [create a free Mapbox account](https://www.mapbox.com/signup/).
-2. Find your **Default public token** on your [Access tokens page](https://www.mapbox.com/account/access-tokens/) and copy it.
-3. From the Account Page, click **Tokens** at the top of the page, and you will see your **Default Public Token**.
+* The [MapLibre GL JS](https://maplibre.org) library, to add interactivity to your map and publish it on the web.
+* The [Csv2geojson](https://github.com/mapbox/csv2geojson) JavaScript Library to convert CSV and TSV files to GeoJSON data suitable for maps‍
+* The jQuery library for asynchronous updating within the browser.
 
-Note: Mapbox recommends using the URL restriction feature on the token to avoid token misuse and want to emphasize that only public tokens should be posted to public repositories. You can find out more information about how to securely manage your access tokens [here](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/).
+```html
+<head></head>
+    <meta charset="utf-8">
+    <title>CSV to Map Example</title>
+    <!-- Load MapLibre GL JS for the map -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <!-- Load jQuery for easy AJAX requests -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <!-- Load csv2geojson to convert CSV to GeoJSON -->
+    <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+```
 
-![](images/Haunted_Sheetmapper-fc07dd5e.png)
+## Change the Basemap Style
 
+MapLibre GL JS supports basemaps from various providers. For this exercise, the HTML file defaults to a free basemap from OpenStreetMap. You can update the style by simply replacing the link to the basemap JSON file:
 
-4. Find the above section of code in your **index.html** and replace the highlighted text with your own **Default public token**, copied from the **Mapbox** tokens page (see below).
+```javascript
+        // Create the map and set its starting position and zoom
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more
+            center: [-122.411, 37.785], // [longitude, latitude]
+            zoom: 8
+        });
+```
 
-![](images/Haunted_Sheetmapper-03c513c8.png)
+Here's a few basemaps you can try:
 
-## Add a Basemap Style
+# CartoCDN Basemaps
 
-There are several [Mapbox-designed map styles](https://docs.mapbox.com/api/maps/#styles) that you can choose "out of the box" or you can design your own using the [Mapbox Studio style editor](https://www.mapbox.com/mapbox-studio).
+Sources:
 
-1. Go to the [Mapbox API Documentation page for Styles](https://docs.mapbox.com/api/maps/styles/)
-2. Select one of the **Mapbox-owned styles**, and copy it's **Style URL**.
+* [Dark Matter](https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json) `https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json`
+* [Dark Matter No Labels](https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json) `https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json`
+* [Positron](https://basemaps.cartocdn.com/gl/positron-gl-style/style.json) `https://basemaps.cartocdn.com/gl/positron-gl-style/style.json`
+* [Positron No Labels](https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json) `https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json`
+* [Voyager](https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json) `https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json`
+* [Voyager No Labels](https://basemaps.cartocdn.com/gl/voyager-nolabels-gl-style/style.json) `https://basemaps.cartocdn.com/gl/voyager-nolabels-gl-style/style.json`
 
-For the example, we will use the **Mapbox Dark style**, whose **Style URL** is `mapbox://styles/mapbox/dark-v10`
-3. Return to the section of code that you pasted your Mapbox Token into, in your `index.html` file:
+# [Institut Cartogràfic i Geològic de Catalunya (ICGC) Basemaps](https://openicgc.github.io/)
 
-![](images/Haunted_Sheetmapper-af06be06.png)
+Sources:
 
-4. Look for the `'replace this code with a Mapbox Style URL'` piece of code, and replace it with your chosen **Mapbox Style URL**:
-
-![](images/Haunted_Sheetmapper-209d3743.png)
-
+* [ICGC Main](https://geoserveis.icgc.cat/contextmaps/icgc.json) `https://geoserveis.icgc.cat/contextmaps/icgc.json`
+* [ICGC Dark Base Map](https://geoserveis.icgc.cat/contextmaps/icgc_mapa_base_fosc.json) `https://geoserveis.icgc.cat/contextmaps/icgc_mapa_base_fosc.json`
+* [ICGC Shadow Hypsometry Contours](https://geoserveis.icgc.cat/contextmaps/icgc_ombra_hipsometria_corbes.json) `https://geoserveis.icgc.cat/contextmaps/icgc_ombra_hipsometria_corbes.json`
+* [ICGC Dark Shadow](https://geoserveis.icgc.cat/contextmaps/icgc_ombra_fosca.json) `https://geoserveis.icgc.cat/contextmaps/icgc_ombra_fosca.json`
+* [ICGC Standard Orthophoto](https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard.json) `https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard.json`
+* [ICGC Standard Orthophoto Gray](https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json) `https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json`
+* [ICGC Hybrid Orthophoto](https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json) `https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json`
+* [ICGC Geological Risks](https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json) `https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json`
+* [ICGC Standard Orthophoto](https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json) `https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json`
+* [ICGC Hybrid Orthophoto](https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json) `https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json`
+* [ICGC Geological Risks](https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json) `https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json`
 
 ## Connect your Google Sheet
 
@@ -172,93 +200,70 @@ The code in this html calls a Javascript Library called [csv2geojson](https://gi
 
 1. Find the following section in your `index.html` file (it's immediately after the section you just edited):
 
-![](images/Haunted_Sheetmapper-90f094f3.png)
+```javascript
+        // When the page is ready, get the CSV data
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                //YOUR TURN: Replace with csv export link
+                url: 'replace this text with the link to your CSV file within the single quotes',
+                dataType: "text",
+                success: function (csvData) { makeGeoJSON(csvData); }
+            });
+```
 
-2. To connect your Google Sheet, replace the `url:` value with your Google Sheet export link that you crafted, previously in the exercise, so that:  
- `url: 'paste the CSV download link you made, here',`  
- becomes something like:  
- `url: 'https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&sheet=cal_haunted_places',`
-
-![](images/Haunted_Sheetmapper-f83539be.png)
+2. To connect your Google Sheet, replace the following text with the Google Sheet export link that you crafted, previously in the exercise, so that:
+   `'replace this text with the link to your CSV file within the single quotes'`
+   becomes something like:
+   `'https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&sheet=cal_haunted_places'`
 
 That’s really the last of the coding you have to do. The remainder of the section about the code in your `index.html` is primarily for explanation, or if you are feeling adventurous and want to experiment with altering the look of your map.
 
-
 ## Changing Your Symbology
 
-The next part of the code in your index.html file adds the layer to the map and specifies how it will be styled. In this example, the layer is added as a `circle`  with a `5 px` **radius** and the **color** is set to `purple`.
+The next part of the code in your index.html file adds the layer to the map and specifies how it will be styled. In this example, the layer is added as a `circle`  with a `6 px` **radius** and the **color** is set to `purple`.
 
-Feel free to alter the following section of code in order to change the **size** or **color** of your symbols.  
+Feel free to alter the following section of code in order to change the (try:  **size** (`circle-radius`) or **color** (`circle-color`) of your symbols.
 
-You can read more about layer types and available paint and layout properties in the [Mapbox Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/#layers).
-
-
-```
-//Add the the layer to the map
- map.addLayer({
-     'id': 'csvData',
-     'type': 'circle',
-    'source': {
-        'type': 'geojson',
-        'data': data
-    },
-    'paint': {
-        'circle-radius': 5,
-        'circle-color': "purple"
-    }
-});
+```javascript
+                        // Add the GeoJSON data as a layer on the map
+                        map.on('load', function () {
+                            map.addLayer({
+                                id: 'points',
+                                type: 'circle',
+                                source: { type: 'geojson', data: geojson },
+                                paint: {
+                                    'circle-radius': 6,
+                                    'circle-color': 'purple'
+                                }
+                            });
 ```
 
+For more on customizing your circle markers see: [https://maplibre.org/maplibre-style-spec/layers/#circle](https://maplibre.org/maplibre-style-spec/layers/#circle)
 
-### Adding Popups
+### Popups
 
-When a user clicks a symbol we want to show a Popup containing more information about the locations stored in our spreadsheet. The text for each popup is assigned to the fields `city`, `description` and `location`.
+This section of code creates teh on-click pop-ups for the data in the csv. Note how the column names in the csv are referred to as `props.location` and `props.description`:
 
+```javascript
+                            // When a point is clicked, show a popup
+                            map.on('click', 'points', function (e) {
+                                var props = e.features[0].properties;
+                                // Create popup HTML: location as heading, description as text
+                                var html = `<h3>${props.location}</h3><p>${props.description}</p>`;
+                                new maplibregl.Popup()
+                                    .setLngLat(e.lngLat)
+                                    .setHTML(html)
+                                    .addTo(map);
+                            });
 
-```JavaScript
-// When a click event occurs on a feature in the csvData layer, open a popup at the
-// location of the feature, with description HTML from its properties.
-map.on('click', 'csvData', function (e) {
-  var coordinates = e.features[0].geometry.coordinates.slice();
-
-  //set popup text
-  //You can adjust the values of the popup to match the headers of your CSV.
-  // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-  var description = `<h3>` + e.features[0].properties.city + `</h3>` + `<h4>` + `<b>` + `Description: ` + `</b>` + e.features[0].properties.description + `</h4>` + `<h4>` + `<b>` + `Location: ` + `</b>` + e.features[0].properties.location + `</h4>`;
-
-  // Ensure that if the map is zoomed out such that multiple
-  // copies of the feature are visible, the popup appears
-  // over the copy being pointed to.
-  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  }
-
-  //add Popup to map
-
-  new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML(description)
-    .addTo(map);
-});
-
-// Change the cursor to a pointer when the mouse is over the places layer.
-map.on('mouseenter', 'csvData', function () {
-  map.getCanvas().style.cursor = 'pointer';
-});
-
-// Change it back to a pointer when it leaves.
-map.on('mouseleave', 'places', function () {
-  map.getCanvas().style.cursor = '';
-});
-
-var bbox = turf.bbox(data);
-map.fitBounds(bbox, { padding: 50 });
 ```
-In particular, this line of code crafts a bit of HTML that will be rendered as the popup content, using the `city`, `description` and `location` fields, in our data. :
 
-![](images/Haunted_Sheetmapper-1d84880f.png)
+If you want to add different fields, change the text in the following line to match the column names in your own CSV:
 
-If you want to add different fields, change the display text to match the column names in your own CSV.
+```javascript
+var html = `<h3>${props.location}</h3><p>${props.description}</p>`;
+```
 
 # Publish and Test Your Haunted Sheetmapper!
 
@@ -267,28 +272,39 @@ Note that because of something called **Cross-Origin Resource Sharing (CORS)** y
 So you’ve made a web map! But it isn’t a web page yet… and, in fact, you probably can’t see the full functionality until the page is published to the web, and accessible, publicly (again, the cross origin resource sharing thing is the culprit, here). To do that we need some way to host a webpage. There are many different ways to host a webpage. GitHub Pages is one good solution, but Stanford students have access to a service called `afs.stanford.edu`, which allows them to publish simple webpages.
 
 ## Publish your map with your AFS Web Space Pages:
-**note that AFS Web Interface has been discontinued and it is now necessary to use a SecureFTP Client to login to your AFS Web Server Space**
+
+**Note that AFS Web Interface has been discontinued and it is now necessary to use a SecureFTP Client to login to your AFS Web Server Space**
 
 I am in the process of rewriting this section of the Lab Instructions. Here are the University IT Instructions, which are not great, and need to have their screenshots updated, but are sufficient if you are brave and resourceful (you are):
 
 ### Download the SecureFX Client:
-https://uit.stanford.edu/software/scrt_sfx
+
+[https://uit.stanford.edu/software/scrt_sfx](https://uit.stanford.edu/software/scrt_sfx)
 
 ### Instructions for Installing and Licensing SecureFX Client, for Mac:
-https://uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install
 
-### Instructions for Installing and Licensing SecureFX Client, for Windows (Bundled with SecureCRT):  
-https://uit.stanford.edu/service/ess/scrt_sfx/install 
+[https://uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install](https://uit.stanford.edu/software/scrt_sfx)
 
-![](images/Screenshot 2024-05-07 at 12.08.43 PM.png)
+### Instructions for Installing and Licensing SecureFX Client, for Windows (Bundled with SecureCRT):
 
-1. Connect to https://cardinal.stanford.edu and login with your SUNetID and password.
+[https://uit.stanford.edu/service/ess/scrt_sfx/install](https://uit.stanford.edu/software/scrt_sfx)
 
-2. Browse into your WWW folder and use “Create a New Folder” in the sidebar under “Actions” to make a new folder called sheetmapper.
+## Using SecureFX to move files to your AFS space
 
-3. Browse into your sheetmapper folder and use "Upload File(s)", again in the "Actions" sidebar to upload your index.html page into the sheetmapper folder.
+Below is a screenshot of the Mac version of SecureFX. You can see on the left side of teh sofrtware, (behind the login screen) that you can browse files on your local machine, and on the right, you can browse folders and files on your remote AFS space. You can also drag and drop files from one place to another. THis is how we will use SecureFX.
 
-4. Test your sheetmapper page replacing `SUNETID` with your own `SUNetID` in the following URL: `http://web.stanford.edu/~SUNETID/sheetmapper/index.html`
+![](images/20250504_144608_image.png)
+
+1. Connect to `cardinal.stanford.edu` and login with your SUNetID and password.
+2. Browse into your `WWW` folder and right-click **New>Folder** to make a new folder called `sheetmapper`.
+
+![](images/20250504_145603_image.png)
+
+1. Find your `index.html` file in the view of your local drive, and **drag-and-drop** it into the `sheetmapper` folder.
+
+![](images/20250504_150023_image.png)
+
+1. Test your sheetmapper page replacing `SUNETID` with your own `SUNetID` in the following URL: `http://web.stanford.edu/~SUNETID/sheetmapper/index.html`
 
 Here’s the finished version of the example map:
 
@@ -299,31 +315,30 @@ Here’s the finished version of the example map:
 If you are a Safari or Chrome user, you shouldn't have any trouble viewing your sheetmapper index.html, but if you are a Firefox user, things may not work, at first, or sometimes at all. This is because Firefox is a bit alarmist about the **Cross-Origin Resource Sharing (CORS)** thing. If you are not able to see your map, or data, try the following:
 
 1. Hold the Shift Key and refresh the browser Page
-2. Clear your cache and cookies using the methods described, here: https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies
+2. Clear your cache and cookies using the methods described, here: [https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies](https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies)
 3. Try a different browser
 
-
-# BONUS (or if AFS doesn’t seem to work for you):
+# If AFS doesn’t seem to work for you:
 
 You don’t need to do this for the homework unless AFS doesn’t work for you (it seems finicky for some students for some reason), but it’s nice to know that the following is an option for web publishing this type of application. This option also means that your access to the material won't end when your time at Stanford does.:
 
 ## Publish your map with GitHub Pages:
 
-1. Create a Github account if you don’t have one. I suggest taking advantage of the GitHub Student Developer Pack: https://education.github.com/pack 
-2. Create a new [GitHub repository](https://help.github.com/articles/create-a-repo/):  
+1. Create a Github account if you don’t have one. I suggest taking advantage of the GitHub Student Developer Pack: https://education.github.com/pack
+2. Create a new [GitHub repository](https://help.github.com/articles/create-a-repo/):
 
 ![](images/Haunted_Sheetmapper-726465ac.png)
 
- 1. Name it for your map (this will be visible in the URL).    
- 2. Make it Public    
- 3. Click the box to ‘Initialize this repository with a README’
+1. Name it for your map (this will be visible in the URL).
+2. Make it Public
+3. Click the box to ‘Initialize this repository with a README’
 
 ![](images/Haunted_Sheetmapper-d67f7a1b.png)
 
 3. Either:
- 1. Upload your `index.html` file to your new repository, or...
- 2. Create a new file called `index.html`
- 3. In the blank `index.html` file, paste in the entire edited code that you built in your text editor and **commit** it.
+4. Upload your `index.html` file to your new repository, or...
+5. Create a new file called `index.html`
+6. In the blank `index.html` file, paste in the entire edited code that you built in your text editor and **commit** it.
 
 ![](images/Haunted_Sheetmapper-67ba8c5b.png)
 
@@ -339,3 +354,6 @@ Here’s the **GitHub URL** for the example:
 # To Turn In
 
 Post the `URL` for the **Stanford AFS** _**or**_ **Github Pages** version of your `index.html` page to **Canvas** for your submission.
+
+
+![](images/20250504_160617_image.png)
