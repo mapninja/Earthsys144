@@ -290,9 +290,9 @@ You might recall that the steps are to:
 1. Open the data table for editing (i.e., the **attribute table** from the `STRATA` layer),
 2. **Calculate** the area into a _new_ Decimal number (real)  column named: SqKm using:
 
-   `$area/ 1000000`
+   `$area/ 1000000`x
 
-![](images/Sampling_Interpolation-98fbefc8.png)
+![](images/20250503_174225_image.png)
 
 4. save edits and toggle off editing.
 
@@ -301,11 +301,16 @@ You might recall that the steps are to:
 We can then summarize the resulting column `SqKm` to get total square kilometers in the SqKm Field, or to get a total for a specific class/strata.  Previously we’ve had you use the Basic Statistics tool to calculate summary statistics for all records in a column, including the sum.
 
 1. Use the **Select features using an expression** tool in the **attribute table to select a class**, e.g., `class 1 (DN = 1)`
-2. Use the **Vector>Analysis>Basic Statistics for Fields** tool, checking the box for **Selected features only** (figure below), for a **sum** of that class area.
 
-![](images/Sampling_Interpolation-7588c603.png)
+![](images/20250503_174638_image.png)
 
-3. Record the **Total area** for your selected subset of features.
+1. Use the **Vector>Analysis>Basic Statistics for Fields** tool, checking the box for **Selected features only** (figure below), for a **sum** of that class area.
+
+![](images/20250503_174801_image.png)
+
+3. Record the **Total area** (SUM) for your selected subset of features.
+
+![](images/20250503_174817_image.png)
 
 You can then use these with the individual polygon table entries for `SqKm` to calculate the number of sample points to apply per polygon.
 
@@ -323,17 +328,19 @@ Your numbers may be slightly different, but should be within a few percent of th
 5. **Select** all the polygons for a given strata (e.g., first DN=1)
 6. **Multiply** the **total number of points** for each stratum (e.g., 100 for the flat strata, DN = 1) by the area of the polygon, divided by the total area of the strata (in this case 286.7), so:
 
-DN=1:  `100 *  "SqKm"  / 287.408`DN=2:  `650 *  "SqKm"  / 357.3539`DN=3:  `250 *  "SqKm"  / 25.1439`
+* DN=1:  `100 *  "SqKm"  / 287.408`
+* DN=2:  `650 *  "SqKm"  / 357.3539`
+* DN=3:  `250 *  "SqKm"  / 25.1439`
 
 7. Repeat for all three strata, selecting each DN, substituting the appropriate areas and number of samples for the strata, and calculating the number of points per strata.
 
-![](images/Sampling_Interpolation-5c24bde1.png)
+![](images/20250504_105257_image.png)
 
 8. Save your edits and toggle editing
 
 Note that your numbers for the strata area and relative number of samples may be different than those shown if you applied a somewhat different set of generalization parameters in the previous work. Substitute your specific summary numbers.
 
-![](images/Sampling_Interpolation-d0c2de31.png)
+![](images/20250504_105516_image.png)
 
 Now, to create the random points.  We use the same tool as before, but this time specifying our new `SampleNum` column to determine the number of points, per feature
 
@@ -351,31 +358,66 @@ This should generate a sample set that looks something like that below, with a h
 
 To add colors to your STRATA map, change symbology to “Categorized” and use “DN” for value.
 
-![](images/Sampling_Interpolation-c2e1fe19.png)
+![](images/20250504_110405_image.png)
 
 ### Spline Interpolation
 
 Now you will use this stratified random sample to produce one last interpolation method.
 
 1. First, use the methods previously described (**Processing> Toolbox>Raster Analysis>Sample raster values**) to once again sample/assign the `ChirDEM` **elevations** found at each sample point, and saving the Output as `StratRandElevationSamples.shp`
-2. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline**.
-3. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`SAMPLE_1`)
-4. **Output Extent**: **Calculate from Layer>**`ChirDEM`
-5. **Cellsize**: `30`
-6. **Refinement**: `[1]yes`
-7. **Threshold Error**: `default`
-8. **Maximum Level**: `11`
-9. **Output Grid**: Browse and name `SplineStratRand`
 
-![](images/Sampling_Interpolation-649d0a87.png)
+![](images/20250504_110829_image.png)
+
+1. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline**.
+2. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`STRATA_1`)
+3. **Output Extent**: **Calculate from Layer>**`ChirDEM`
+
+![](images/20250504_111040_image.png)
+
+1. **Cellsize**: `30`
+2. **Refinement**: `[1]yes`
+3. **Threshold Error**: `default`
+4. **Maximum Level**: `11`
+5. **Output Grid**: Browse and name `SplineStratRand`
+
+![](images/20250504_111210_image.png)
 
 9. After running the tool, **calculate contours**, Create a **hillshade** and _apply the same style_ as the other Interpolation Layers, including applying transparency to the hillshade, etc...
 10. “**Group**” the Spline layers in the **Layers panel**.
 
 ### To Turn In:
 
-Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours will not be the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF.
+Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours may not be exactly the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF.
 
-Hint: As you create each Map in your layout, uncheck the options to Auto-Update in the **Item Properties** for each of the four **Map Frames**, so that you can work on the next, without effecting the previous.
+#### Hint:
 
-![](images/Sampling_Interpolation-094645eb.png)
+As you create each Map in your layout, Lock each Item in the **Item Properties** list:
+
+![](images/20250504_120823_image.png)
+
+and check the option to **Lock the Layers** for each of the four **Map Frames**:
+
+![](images/20250504_120926_image.png)
+
+, so that you can work on the next, without effecting the previous.
+
+#### HINT:
+
+For the image, below, I used the following layer order and settings:
+
+1. Sample Points
+   1. Size: .4 points
+2. Countours
+   1. Stroke: 1 point
+3. DEM (Original or Interpolated)
+   1. Rendering: Multiply
+4. Hillshade
+
+#### Hint:
+
+You can easilty COPY your styles from one layer to another (so that your layers match exactly, across groups), by right-clicking on the layer you want to copy the style from, and going to **>Styles>Copy Style>All Style Categories**, then using **>Styles>Paste Style>All Style Categories** on the layer you want to duplicate the styling too.
+
+
+![](images/20250504_121923_image.png)
+
+![](images/FourUpLayout.png)
