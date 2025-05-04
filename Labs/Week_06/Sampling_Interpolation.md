@@ -34,7 +34,7 @@ We’ll apply both systematic and random sampling. We’ll also develop and appl
 
 ![](images/20250427_173837_image.png)
 
-3. When finished, make the hillshade 50% transparent, <span style="text-decoration:underline;">on top</span> of the DEM.
+3. When finished, put the `Hillshade` underneath the `ChirDEM` and set the `ChirDEM` **Rendering** to **Multiply**, in the Layer Styling Panel.
 
 ### Keeping Organized
 
