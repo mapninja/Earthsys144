@@ -202,10 +202,14 @@ The code in this html calls a Javascript Library called [csv2geojson](https://gi
 
 ```javascript
         // When the page is ready, get the CSV data
-        $(function () {
-            var sheetURL = 'replace this text with the link to your CSV file within the single quotes'; // URL of the Google Sheets CSV export
-            $.get(
-                sheetURL,
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                //YOUR TURN: Replace with csv export link
+                url: 'replace this text with the link to your CSV file within the single quotes',
+                dataType: "text",
+                success: function (csvData) { makeGeoJSON(csvData); }
+            });
 ```
 
 2. To connect your Google Sheet, replace the following text with the Google Sheet export link that you crafted, previously in the exercise, so that:
@@ -312,10 +316,10 @@ Here’s the finished version of the example map:
 If you are a Safari or Chrome user, you shouldn't have any trouble viewing your sheetmapper index.html, but if you are a Firefox user, things may not work, at first, or sometimes at all. This is because Firefox is a bit alarmist about the **Cross-Origin Resource Sharing (CORS)** thing. If you are not able to see your map, or data, try the following:
 
 1. Hold the Shift Key and refresh the browser Page
-2. Clear your cache and cookies using the methods described, here: https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies
+2. Clear your cache and cookies using the methods described, here: [https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies](https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies)
 3. Try a different browser
 
-# BONUS (or if AFS doesn’t seem to work for you):
+# If AFS doesn’t seem to work for you:
 
 You don’t need to do this for the homework unless AFS doesn’t work for you (it seems finicky for some students for some reason), but it’s nice to know that the following is an option for web publishing this type of application. This option also means that your access to the material won't end when your time at Stanford does.:
 

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +22,7 @@
         // Create the map and set its starting position and zoom
         var map = new maplibregl.Map({
             container: 'map',
-            style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more
+            style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more 
             center: [-122.411, 37.785], // [longitude, latitude]
             zoom: 8
         });
@@ -34,14 +32,14 @@
             $.ajax({
                 type: "GET",
                 //YOUR TURN: Replace with csv export link
-                url: 'https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&sheet=cal_haunted_places',
+                url: 'replace this text with the link to your CSV file within the single quotes', // replace the text in single quotes with the link to your CSV file
                 dataType: "text",
                 success: function (csvData) { makeGeoJSON(csvData); }
             });
             function makeGeoJSON(csvData) {
                 csv2geojson.csv2geojson(csvData, {
-                    latfield: 'latitude',
-                    lonfield: 'longitude',
+                    latfield: 'latitude', // replace with the actual column name for latitude in your CSV
+                    lonfield: 'longitude', // replace with the actual column name for longitude in your CSV
                     delimiter: ','
                 }, function (err, geojson) {
                     map.on('load', function () {
@@ -58,7 +56,7 @@
                         map.on('click', 'points', function (e) {
                             var props = e.features[0].properties;
                             // Create popup HTML: location as heading, description as text
-                            var html = `<h3>${props.location}</h3><p>${props.description}</p>`;
+                            var html = `<h3>${props.location}</h3><p>${props.description}</p>`; // replace 'location' and 'description' with the actual column names from your CSV
                             new maplibregl.Popup()
                                 .setLngLat(e.lngLat)
                                 .setHTML(html)
