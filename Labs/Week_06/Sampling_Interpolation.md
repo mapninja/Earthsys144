@@ -54,7 +54,7 @@ If you create a layer and it belongs to a group you don’t want it to belong to
 
 Maps will be done in Landscape view and arrange the layers as below for your final output.  You’ll need to set your print canvas to landscape orientation and make sure the map images don’t  overlap.
 
-![](images/Sampling_Interpolation-094645eb.png)
+![](images/FourUpLayout.png)
 
 ## **Systematic Sampling and IDW Interpolation**
 
