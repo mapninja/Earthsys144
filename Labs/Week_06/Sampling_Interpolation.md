@@ -34,7 +34,7 @@ We’ll apply both systematic and random sampling. We’ll also develop and appl
 
 ![](images/20250427_173837_image.png)
 
-3. When finished, make the hillshade 50% transparent, <span style="text-decoration:underline;">on top</span> of the DEM.
+3. When finished, put the `Hillshade` underneath the `ChirDEM` and set the `ChirDEM` **Rendering** to **Multiply**, in the Layer Styling Panel.
 
 ### Keeping Organized
 
@@ -54,7 +54,7 @@ If you create a layer and it belongs to a group you don’t want it to belong to
 
 Maps will be done in Landscape view and arrange the layers as below for your final output.  You’ll need to set your print canvas to landscape orientation and make sure the map images don’t  overlap.
 
-![](images/Sampling_Interpolation-094645eb.png)
+![](images/FourUpLayout.png)
 
 ## **Systematic Sampling and IDW Interpolation**
 
