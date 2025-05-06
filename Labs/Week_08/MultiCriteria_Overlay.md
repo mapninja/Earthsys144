@@ -49,7 +49,6 @@ First step in the overlay analysis, is to convert each data layer to raster. An 
 6. Set the resolution of the output raster to be `100 meters`. Select `100` as both **Width/Horizontal resolution** and **Height/Vertical resolution**.
 7. Next, click the **Option dropdown** next to **Output extent** and select **Calculate from Layer>**`boundary`. We'll use the same extent for the other layers, for consistency.
 
-
 ![](images/20250504_173949_image.png)
 
 4. Scroll down further and **click the arrow button** in the **Assign a specific nodata value to output bands** dialog. That field should now be set to `Not set`. This is important because when raster calculator (which we will use later) encounters a pixel with nodata value in any layer, it sets the output to nodata as well. We want to avoid this.
@@ -64,9 +63,7 @@ Once the processing finishes, you will see a new layer raster_roads loaded in th
 
 ## Batch processing in QGIS
 
-We want to convert other 4 vector layers to rasters as well. Rather than running the rasterize algorithm one-by-one, we can use the built-in batch-processing functionality to convert them all at once. See[ Batch Processing using Processing Framework (QGIS3)](https://www.qgistutorials.com/en/docs/3/batch_processing.html) tutorial to learn more about batch processing.
-
-
+We want to convert the other 4 vector layers to rasters as well. Rather than running the rasterize algorithm one-by-one, we can use the built-in batch-processing functionality to convert them all at once. See[ Batch Processing using Processing Framework (QGIS3)](https://www.qgistutorials.com/en/docs/3/batch_processing.html) tutorial to learn more about batch processing.
 
 1. **Right-click** the **Rasterize (vector to raster)** algorithm and select **Execute as Batch Process**.
 
@@ -75,9 +72,11 @@ We want to convert other 4 vector layers to rasters as well. Rather than running
 
    ![](images/20250504_175814_image.png)
 3. In the Batch Processing dialog, click the **Autofill…** button in the first row of the **Input layer** column and **Select from Open Layers...**
-4. Select `boundary`, `protected_regions`, `water_polygons` and `water_polylines` layers and **click OK**.
 
 ![](images/20250504_165521_image.png)
+
+1. Select `boundary`, `protected_regions`, `water_polygons` and `water_polylines` layers and **click OK**.
+
 
 ![](images/20250504_165746_image.png)
 
@@ -85,10 +84,10 @@ We want to convert other 4 vector layers to rasters as well. Rather than running
 
 ![](images/20250504_180106_image.png)
 
-8. Set the **Output Extent** using the **Calculate from Layer** menu option, using the `assam - boundary`.
+8. Set the **Output Extent** using the **Calculate from Layer** dropdown menu option, using the `assam - boundary`.
 
    ![](images/20250504_171255_image.png)
-9. Fill in the Advanced Parameters, as will the `digitized_roads` layer, Making sure you set the **Output data type** to `Int16` and the **Pre-initialized the output image with value** to `0`
+9. Fill in the Advanced Parameters, as with the `digitized_roads` layer, Making sure you set the **Output data type** to `Int16` and the **Pre-initialized the output image with value** to `0`
 
 ![](images/20250504_180230_image.png)
 
@@ -114,53 +113,66 @@ Once the processing finishes, you will have 4 new raster layers loaded in the La
 
 You will notice that we have 2 water related layers - both representing water. We can merge them to have a single layer representing water areas in the region.
 
-1. Search for and locate **Raster analysis ‣ Raster calculator** algorithm in the **Processing Toolbox**. Double-click to launch it.
+1. On the Main Menu, go to **Main Menu ‣ Raster ‣ Raster calculator**.
 
 ![](images/MultiCriteria_Overlay-1f7ec1e5.png)
 
-11. Enter the following expression in the Expression box. You can click on the appropriate layer in the Layers box to auto insert the layer names. This expression means that we want to sum the pixel values in the first band of both the water rasters. Click the … button next to Reference layer(s) and select ``raster_water_polygons` as the reference layer. Name the output raster_water_merged.tif and click Run.
+11. Enter the following expression in the **Expression box**. You can click on the appropriate layer in the **Raster Bands box** to auto insert the layer names. This expression means that we want to sum the pixel values in the first band of both the water rasters (there's only one band in each layer, but this is the QGIS convention for identifying bands in multi-band rasters).
 
 `"raster_water_polygons@1" + "raster_water_polylines@1"`
 
-![](images/MultiCriteria_Overlay-dfc19df6.png)
+12. Select `rasterized_boundary` in the **Raster Bands** panel, then click the **Use Selected Layer Extent** button next to Reference layer(s) and  as the reference layer.
+13. Name the output `raster_water_merged` and confirm that GeoTIFF is the selected **Output format** option click **OK**.
 
-12. The resulting merged raster will have pixels with value 1 for all areas with water. But you will notice that there are some regions where there was both a water polygon and a water polyline. Those areas will have pixels with value 2 - which is not correct. We can fix it with a simple expression. Open Raster analysis ‣ Raster calculator algorithm again.
+![](images/20250506_124330_image.png)
+
+The resulting `raster_water_merged` will have pixels with value `1` for all areas with water. But you will notice that there are some regions where there was both a water polygon and a water polyline. Those areas will have pixels with value `2` - which is not optimal. We can fix it with a simple expression. Open **Main Menu ‣ Raster ‣ Raster calculator** again.
 
 ![](images/MultiCriteria_Overlay-d88dcc03.png)
 
-13. Enter the following expression which will assign the value 1 that match the expression and 0 where it doesn’t. Click the … button next to Reference layer(s) and select ``raster_water_merged` layer. Name the output raster_water.tif and click Run.
+13. Enter the following conditional evaluation expression which will assign the value `1` that are `TRUE` the expression and `0` where evaluates as `FALSE`. Click the … button next to Reference layer(s) and select `raster_water_merged` layer. Name the output `raster_water`, use the `GeoTiff` option and click Run.
 
 `"raster_water_merged@1" > 0`
 
-![](images/MultiCriteria_Overlay-2399f03c.png)
+![](images/20250506_131137_image.png)
 
 14. The resulting layer raster_water now has pixels with only 0 and 1 values.
 
-![](images/MultiCriteria_Overlay-64e5ebe6.png)
+![](images/20250506_131159_image.png)
 
-15. Now that we have layers representing road and water pixels, we can generate proximity rasters. These are also known as Euclidean distances - where each pixel in the output raster represents the distance to the nearest pixel in the input raster. This resulting raster can be then used to determine suitable areas which are within certain distance from the input. Search for and locate the GDAL ‣ Raster analysis ‣ Proximity (raster distance) algorithm. Double-click to launch it.
+## Distance Rasters
 
-![](images/MultiCriteria_Overlay-0c0bafdb.png)
+Now that we have layers representing road and water pixels, we can generate proximity rasters. These are also known as Euclidean distances - where each pixel in the output raster represents the distance to the nearest pixel in the input raster. This resulting raster can be then used to determine suitable areas which are within certain distance from the input.
 
-16. In the Proximity (Raster Distance) dialog, select raster_roads as the Input layer. Choose Georeferenced coordinates as the Distance units. As the input layers are in a projected CRS with meters as the units, enter 5000 (5 kilometers) as the Maximum distance to be generated. Make sure the NoData value to use for the destination proximity raster value is Not set. Name the output file as roads_proximity.tif and click Run.
+1. **Search** for and locate the **GDAL ‣ Raster analysis ‣ Proximity (raster distance)** algorithm. **Double-click** to launch it.
+2. In the **Proximity (Raster Distance)** dialog, select raster_roads as the Input layer.
+3. Choose Georeferenced coordinates as the Distance units.
+4. As the input layers are in a projected CRS with meters as the units, enter 5000 (5 kilometers) as the Maximum distance to be generated.
+5. Make sure the **NoData value** to use for the destination proximity raster value is `Not set`.
+6. Under Advanced Parameters, set the Data Type to Int16
+7. Name the output file as `roads_proximity.tif` and click **Run**.
 
-![](images/MultiCriteria_Overlay-78b2288c.png)
+![](images/20250506_134001_image.png)
 
-_Note_:_It make take up to 15 minutes for this process to run. It is a computationally intensive algorithm that needs to compute distance for each pixel of the input raster and our input contains over 1 billion pixels._
+Once the processing is over, a new layer `roads_proximity` will be added to the Layers panel. To visualize it better, let’s change the default styling.
 
-17. Once the processing is over, a new layer roads_proximity will be added to the Layers panel. To visualize it better, let’s change the default styling. Click the Open the Layer Styling panel button in the Layers panel. Change the Max value to 5000 under Color gradient.
+1. Click the Open the **Layer Styling panel button** in the Layers panel.
+2. Change the **Max value** to 5000 `under` Color gradient.
 
-![](images/MultiCriteria_Overlay-6b82cf49.png)
+![](images/20250506_133533_image.png)
 
-18. Repeat the Proximity (Raster Distance) algorithm for the raster_water layer with same parameters and name the output water_proximity.tif.
+18. Repeat the **Proximity (Raster Distance) algorithm** for the `raster_water` layer with same parameters and name the output `water_proximity.tif`.
 
-![](images/MultiCriteria_Overlay-ac151986.png)
+![](images/20250506_134058_image.png)
 
-19. Once the processing finishes, you can apply the similar styling as before to visualize the results better. If you click around the resulting raster, you will see that it is a continuum of values from 0 to 5000. To use this raster in overlay analysis ,we must first re-classify it to create discrete values. Open Raster analysis ‣ Raster calculator algorithm again.
+## Classification
 
-![](images/MultiCriteria_Overlay-1090ea99.png)
+Once the processing finishes, you can apply the similar styling as before to visualize the results better. If you click around the resulting raster, you will see that it is a continuum of values from 0 to 5000. To use this raster in overlay analysis, we must first re-classify it to create discrete values.
 
-20. We want to give higher score to pixels that are near to roads. So let’s use the following scheme.
+![](images/20250506_134324_image.png)
+
+1. Open **Main Menu ‣ Raster ‣ Raster calculator** algorithm again.
+2. We want to give higher score to pixels that are near to roads. So let’s use the following scheme.
 
 * `0-1000m –> 100 `
 * `1000-5000m –> 50`

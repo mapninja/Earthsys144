@@ -9,12 +9,13 @@ In this exercise, we will be performing what is referred to as “Areal Interpol
 The Group Stats plugin is a powerful tool for statistical analysis within QGIS. It allows users to create pivot tables from attribute data, enabling aggregation, grouping, and summarization of spatial datasets. This is particularly useful for tasks such as areal interpolation, where summarizing data by categories or spatial units is required.
 
 Usage:
-    - Install the plugin via QGIS's Plugin Manager.
-    - Access it from the Plugins menu after installation.
-    - Use it to group, sum, average, or otherwise analyze attribute data from vector layers.
-    - Results can be exported for further analysis or reporting.
+- Install the plugin via QGIS's Plugin Manager.
+- Access it from the Plugins menu after installation.
+- Use it to group, sum, average, or otherwise analyze attribute data from vector layers.
+- Results can be exported for further analysis or reporting.
 
-To complete this lab, you will need to install the **Group Stats** plugin. 
+To complete this lab, you will need to install the **Group Stats** plugin.
+
 1. From the QGIS Plugin Manager at **Main Menu>Plugins>** and Search for "Group Stats"
 
 ![](images/20250427_125204_image.png)
@@ -46,7 +47,6 @@ Take a few seconds to **examine the data** available in this dataset.  This data
 3. Use the **Field Calculator** button ![](images/Areal_Interpolation-fc5900dd.png) to open **Field Calculator**
 4. **Create a _virtual_ field** with **Name** = `P_AREA`, and **Type** = `Integer`
 5. Use `$area` as the expression to calculate the value of `P_AREA`
-
 
 ![](images/20250427_123720_image.png)
 
@@ -86,7 +86,7 @@ Now we need to calculate the NEW AREA of those “Child” Block Groups that wer
 3. **Create a _NEW_ field** with **Name** = `CH_AREA`, and **Type** = `Integer`
 4. Use `$area` as the expression to calculate the value of `CH_AREA`
 
-![](images/Areal_Interpolation-bc241ee3.png)
+![](images/20250506_142043_image.png)
 
 ### Selecting "out" `NULL` values
 
@@ -100,7 +100,6 @@ Now we will calculate the proportion of the `CH_AREA` to `P_AREA`, as `WEIGHT`, 
 
 This will select only those **child polygons** that do not have an `P_AREA` calculated, because they do not overlap with the original `CT_Block_Groups` layer.
 
-
 ![](images/20250427_123951_image.png)
 
 5. Click **Select Features** ![](images/Areal_Interpolation-59224936.png)
@@ -108,7 +107,7 @@ This will select only those **child polygons** that do not have an `P_AREA` calc
 
 ![](images/20250427_124103_image.png)
 
-Note that, if you toggle off the visibility of your CT_Major_Basins layer, and zoom in, you can see that most of these "slivers" are coastal, and over water. 
+Note that, if you toggle off the visibility of your CT_Major_Basins layer, and zoom in, you can see that most of these "slivers" are coastal, and over water.
 
 7. Back in the `union` Attribute table, click on the Invert selection tool ![](images/Areal_Interpolation-94ba9a51.png) to switch to selecting all records that ARE NOT `NULL`
 
@@ -127,7 +126,8 @@ Note that, if you toggle off the visibility of your CT_Major_Basins layer, and z
 
 Note: Many of the values will be `1`, where there were no changes to the `CT_Block_Groups`, while many will be `< 1.0`, where they had boundary intersections.
 
-![](images/20250427_124606_image.png)
+
+![](images/20250506_142131_image.png)
 
 ### Calculating the Weighted Population `WT_POP` value
 
@@ -140,12 +140,13 @@ Note: Many of the values will be `1`, where there were no changes to the `CT_Blo
 
 ![](images/20250427_124708_image.png)
 
-![](images/20250427_124751_image.png)
-
 13. **Toggle** off **Editing** (Field calculator automatically starts an editing session) ![](images/Areal_Interpolation-0665525d.png)
 14. Clear your selection.
-15. **Save** your changes.
-16. **Save** your Project.
+
+![](images/20250506_142321_image.png)
+
+16. **Save** your changes.
+17. **Save** your Project.
 
 ### Dissolve with Summary Statistics
 
@@ -162,6 +163,5 @@ Now that we have a set of Census Boundary files that correspond to the watershed
 # To Turn In:
 
 Take a Screen Shot of your **Group Stats** window, showing your results, and upload it to Canvas:
-
 
 ![](images/20250427_125413_image.png)
