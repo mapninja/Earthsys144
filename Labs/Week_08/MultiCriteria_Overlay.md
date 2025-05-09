@@ -77,7 +77,6 @@ We want to convert the other 4 vector layers to rasters as well. Rather than run
 
 1. Select `boundary`, `protected_regions`, `water_polygons` and `water_polylines` layers and **click OK**.
 
-
 ![](images/20250504_165746_image.png)
 
 7. Fill in the parameters with the same values we used in the roads layer. *After filling the first-row* of the parameter, use the **Autofill ‣ Fill Down** button to add the same value for all layers.
@@ -178,29 +177,32 @@ Once the processing finishes, you can apply the similar styling as before to vis
 * `1000-5000m –> 50`
 * `>5000m –> 10`
 
-Enter the following expression that applies the above criteria on the input. Click the … button next to Reference layer(s) and select ``roads_proximity` layer. Name the output roads_reclass.tif and click Run.
+3. Enter the following expression that applies the above criteria on the input. Click the … button next to Reference layer(s) and select `roads_proximity`layer. Name the output`roads_reclass.tif` and click Run.
 
 `100*("roads_proximity@1"<=1000) + 50*("roads_proximity@1">1000)*("roads_proximity@1"<=5000) + 10*("roads_proximity@1">5000)`
 
-![](images/MultiCriteria_Overlay-307e4d66.png)
+![](images/20250506_144136_image.png)
 
-21. Once the re-classification process finishes, a new layer roads_reclass will be added to the Layers panel. This layer has only 3 different values, 10, 50 and 100 indicating relative suitability of the pixels with regards to distance from roads. Open Raster analysis ‣ Raster calculator algorithm again.
+Once the re-classification process finishes, a new layer roads_reclass will be added to the Layers panel. This layer has only 3 different values, 10, 50 and 100 indicating relative suitability of the pixels with regards to distance from roads. 
 
-![](images/MultiCriteria_Overlay-941f16b0.png)
+![](images/20250506_144431_image.png)
 
-22. Repeat the re-classification process for the water_proximity layer. Here the scheme will be reverse, where pixels that are further away from water shall have higher score.
+4. Open **Raster ‣ Raster** calculator algorithm again.
+5. Repeat the re-classification process for the `water_proximity` layer. Here the scheme will be reverse, where pixels that are further away from water shall have higher score.
 
 * `0-1000m –> 10`
 * `1000 -5000m —> 50`
 * `>5000m –> 100`
 
-Enter the following expression that applies the above criteria on the input. Click the … button next to Reference layer(s) and select ``water_proximity` layer. Name the output water_reclass.tif and click Run.
+Enter the following expression that applies the above criteria on the input:
 
 `100*("water_proximity@1">5000) + 50*("water_proximity@1">1000)*("water_proximity@1"<=5000) + 10*("water_proximity@1"<1000)`
 
-![](images/MultiCriteria_Overlay-06e680cb.png)
+6. Name the **Output layer** `water_reclass.tif` and use the `rasterized_boundary` layer, again, as the **Spatial Extent**.
 
-23. Now we are ready to do the final overlay analysis. Recall that our criteria for determining suitability is as follows - close to roads, away from water and not in a protected region. Open Raster analysis ‣ Raster calculator. Enter the following expression that applies these criteria. Note that we are multiplying the result with raster_boundary@1 at the end to discard pixel values outside of the state boundary. Click the … button next to Reference layer(s) and select raster_boundary layer. Name the output overlay.tif and click Run.
+![](images/20250506_144638_image.png)
+
+Now we are ready to do the final overlay analysis. Recall that our criteria for determining suitability is as follows - close to roads, away from water and not in a protected region. Open Raster analysis ‣ Raster calculator. Enter the following expression that applies these criteria. Note that we are multiplying the result with raster_boundary@1 at the end to discard pixel values outside of the state boundary. Click the … button next to Reference layer(s) and select raster_boundary layer. Name the output overlay.tif and click Run.
 
 `("roads_reclass@1" + "water_reclass@1")*("raster_protected_regions@1"  !=  1 )*"raster_boundary@1"`
 
