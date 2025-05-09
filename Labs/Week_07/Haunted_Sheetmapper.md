@@ -273,9 +273,9 @@ So you’ve made a web map! But it isn’t a web page yet… and, in fact, you p
 
 ## Publish your map with your AFS Web Space Pages:
 
-**Note that AFS Web Interface has been discontinued and it is now necessary to use a SecureFTP Client to login to your AFS Web Server Space**
+You can use Secure File Transfer Protocol (SFTP) to publish your index.html page to your Stanford AFS web hosting server space. 
 
-I am in the process of rewriting this section of the Lab Instructions. Here are the University IT Instructions, which are not great, and need to have their screenshots updated, but are sufficient if you are brave and resourceful (you are):
+University IT maintains Instructions, which are not great, and need to have their screenshots updated, but are sufficient if you are brave and resourceful (you are):
 
 ### Download the SecureFX Client:
 
@@ -354,6 +354,5 @@ Here’s the **GitHub URL** for the example:
 # To Turn In
 
 Post the `URL` for the **Stanford AFS** _**or**_ **Github Pages** version of your `index.html` page to **Canvas** for your submission.
-
 
 ![](images/20250504_160617_image.png)
