@@ -135,7 +135,7 @@ The resulting `raster_water_merged` will have pixels with value `1` for all area
 
 ![](images/20250506_131137_image.png)
 
-14. The resulting layer raster_water now has pixels with only 0 and 1 values.
+14. The resulting layer `raster_water` now has pixels with only `0` and `1` values.
 
 ![](images/20250506_131159_image.png)
 
@@ -144,11 +144,11 @@ The resulting `raster_water_merged` will have pixels with value `1` for all area
 Now that we have layers representing road and water pixels, we can generate proximity rasters. These are also known as Euclidean distances - where each pixel in the output raster represents the distance to the nearest pixel in the input raster. This resulting raster can be then used to determine suitable areas which are within certain distance from the input.
 
 1. **Search** for and locate the **GDAL ‣ Raster analysis ‣ Proximity (raster distance)** algorithm. **Double-click** to launch it.
-2. In the **Proximity (Raster Distance)** dialog, select raster_roads as the Input layer.
-3. Choose Georeferenced coordinates as the Distance units.
-4. As the input layers are in a projected CRS with meters as the units, enter 5000 (5 kilometers) as the Maximum distance to be generated.
+2. In the **Proximity (Raster Distance)** dialog, select `raster_roads` as the Input layer.
+3. Choose **Georeferenced** coordinates as the **Distance units**.
+4. As the input layers are in a projected CRS with `meters` as the units, enter `5000` (5 kilometers) as the **Maximum distance** to be generated.
 5. Make sure the **NoData value** to use for the destination proximity raster value is `Not set`.
-6. Under Advanced Parameters, set the Data Type to Int16
+6. Under **Advanced Parameters**, set the Data Type to `Int16`
 7. Name the output file as `roads_proximity.tif` and click **Run**.
 
 ![](images/20250506_134001_image.png)
@@ -156,7 +156,7 @@ Now that we have layers representing road and water pixels, we can generate prox
 Once the processing is over, a new layer `roads_proximity` will be added to the Layers panel. To visualize it better, let’s change the default styling.
 
 1. Click the Open the **Layer Styling panel button** in the Layers panel.
-2. Change the **Max value** to 5000 `under` Color gradient.
+2. Change the **Max value** to 5000 `under` **Color gradient**.
 
 ![](images/20250506_133533_image.png)
 
@@ -183,7 +183,7 @@ Once the processing finishes, you can apply the similar styling as before to vis
 
 ![](images/20250506_144136_image.png)
 
-Once the re-classification process finishes, a new layer roads_reclass will be added to the Layers panel. This layer has only 3 different values, 10, 50 and 100 indicating relative suitability of the pixels with regards to distance from roads. 
+Once the re-classification process finishes, a new layer roads_reclass will be added to the Layers panel. This layer has only 3 different values, 10, 50 and 100 indicating relative suitability of the pixels with regards to distance from roads.
 
 ![](images/20250506_144431_image.png)
 
@@ -202,39 +202,66 @@ Enter the following expression that applies the above criteria on the input:
 
 ![](images/20250506_144638_image.png)
 
-Now we are ready to do the final overlay analysis. Recall that our criteria for determining suitability is as follows - close to roads, away from water and not in a protected region. Open Raster analysis ‣ Raster calculator. Enter the following expression that applies these criteria. Note that we are multiplying the result with raster_boundary@1 at the end to discard pixel values outside of the state boundary. Click the … button next to Reference layer(s) and select raster_boundary layer. Name the output overlay.tif and click Run.
+## Calculating the final suitability overlay analysis layer
 
-`("roads_reclass@1" + "water_reclass@1")*("raster_protected_regions@1"  !=  1 )*"raster_boundary@1"`
+Now we are ready to do the final overlay analysis. Recall that our criteria for determining suitability is as follows
 
-![](images/MultiCriteria_Overlay-f74cbeff.png)
+- close to roads
+- away from water
+- and not in a protected region.
+
+1. Open **Main Menu ‣ Raster ‣ Raster calculator**. Enter the following expression that applies these criteria. Note that we are multiplying the result with `raster_boundary@1` at the end ***to discard pixel values outside of the state boundary***.
+2. Click the … button next to Reference layer(s) and select raster_boundary layer. Name the output overlay.tif and click Run.
+
+`("roads_reclass@1" + "water_reclass@1")*("rasterized_protected_regions@1"  !=  1 )*"rasterized_boundary@1"`
+
+#### Plain English Translation:
+
+* **Add together** the values from the `roads_reclass@1` and `water_reclass@1` raster layers
+* **Multiply** this sum by a mask that is `1` where `rasterized_protected_regions@1` **is NOT equal to 1 (and 0 where it is 1)**. This effectively *excludes protected regions from the result*.
+* **Multiply the result** by the values from the `rasterized_boundary@1 `layer, which further restricts the output to areas within the specified boundary.
+
+##### Summary:
+
+* This expression calculates the combined value of reclassified roads and water, but only in areas that are not protected regions and within the specified boundary. All other areas will be set to zero.
+
+![](images/20250509_120721_image.png)
 
 _Note:_
 
 _In this example, we are giving equal weight to both road and water proximity. In real-life scenario, you may have multiple criteria with different importance. You can simulate that by multiplying the rasters with appropriate weights in the above expression. For example, if proximity to roads is twice as importance as proximity away from water, you can multiply the roads_reclass raster with 2 in the expression above._
 
-24. Once the processing finishes, the resulting raster overlay will be added to the Layers panel. The pixel values in this raster range from 0 to 200 - where 0 is the least suitable and 200 is the most suitable area for development. Click the Open the Layer Styling panel button in the Layers panel.
+Once the processing finishes, the resulting raster overlay will be added to the Layers panel.
 
-![](images/MultiCriteria_Overlay-bc8321de.png)
+## THe Final result
 
-25. Select singleband_pseudocolor renderer and the Spectral color ramp. Click Classify to apply the color ramp to the raster.
+The pixel values in this raster range from `0 to 200` - where `0` *is the **least** suitable* and `200` *is the **most** suitable area* for development. ![](images/20250509_120929_image.png)
 
-![](images/MultiCriteria_Overlay-596d9dba.png)
+25. **Open the Layer Styling panel button**.
+26. Select `Singleband pseudocolor` renderer and select a **Color ramp** that does a good job of *visually separating* `Suitable` from `Non-suitable` classes (here, I'm using the `RdYlGr` color ramp).
+27. Click **Classify** to apply the **color ramp** to the `overlay` raster.
 
-26. Click on the default label values next to each color and enter appropriate labels. The labels will also appear as the legend under the overlay layer.
+![](images/20250509_121833_image.png)
 
-![](images/MultiCriteria_Overlay-24921927.png)
+26. Click on the default label values next to each color and enter appropriate labels. These labels will also appear as the **legend** under the overlay layer.
 
-27. Raster layers are rectangular grids. We want to hide pixels outside the state boundary. An easy way to achieve this is applying an Inverted Polygons rendered to the vector boundary layer. Scroll down in the Layers panel and locate the boundary layer. Select Inverted Polygons as the renderer and leave other options to default.
+![](images/20250509_122145_image.png)
 
-![](images/MultiCriteria_Overlay-90449c46.png)
+### Removing the background values for your layout
 
-28. For the effect of the renderer to show, it needs to be at the top of the Table of Contents. Right-click the boundary layer and select Move to Top.
+Raster layers are rectangular grids. We want to hide pixels outside the state boundary. An easy way to achieve this is applying an **Inverted Polygons renderer** to the `vector boundary layer`.
 
-![](images/MultiCriteria_Overlay-63fce31a.png)
+1. Scroll down in the **Layers panel** and locate the `boundary` layer.
+2. Select `Inverted Polygons` as the renderer and leave other options to default.
 
-29. Check the layer and the map canvas would update to show the overlay raster clipped to the boundary layer. This is the final output that shows areas within the state that are suitable for development.
+![](images/20250509_122825_image.png)
 
-![](images/MultiCriteria_Overlay-4152bfa4.png)
+28. For the effect of the renderer to show, it needs to be at the top of the **Layers panel**. **Right-click** the `boundary` layer and select **Move to Top**.
+29. **Toggle** on the `boundary` layer and the map canvas should update to show the `overlay` raster clipped to the `boundary` layer.
+
+This is the final output that shows areas within the state that are suitable for development.
+
+![](images/20250509_122854_image.png)
 
 # To Turn In:
 
