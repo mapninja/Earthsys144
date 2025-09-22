@@ -30,4 +30,4 @@ jobs:
           publish_dir: ./_book
           # Optional: Customize the branch and directory if needed 
           publish_branch: gh-pages # Default is gh-pages
-          # cname: yourdomain.com # Add a custom domain
+          # cname: yourdomain.com # Add a custom domain 
