@@ -267,6 +267,16 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 - Files should open properly in QGIS without errors
 - You should be able to view attribute tables completely
 
+
+## 3. Directory Navigation
+
+Master these essential directory skills:
+
+- Understand absolute vs. relative paths
+- Navigate using both GUI and command line
+- Create and organize folder hierarchies
+- Understand how different operating systems handle paths
+
 ## Next Steps
 
 With these fundamental computer skills in place, you're ready to learn about GIS data formats and naming conventions that will ensure your spatial data science work runs smoothly.

@@ -6,8 +6,9 @@
   - [01 - Things you need to know about GIS data on your computer](week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md)
   - [02 - Logging in to Google Earth Engine](week00/02_logging_in_to_google_earth_engine.md)
   - [03 - Installing QGIS and Plugins](week00/03_installing_qgis_and_plugins.md)
-  - [04 - Introducing QGIS with Basic Cartographic Design](week00/04_introducing_qgis_with_basic_cartographic_design.md)
-  - [05 - Submitting Homework and Getting Help](week00/05_submitting_homework_and_getting_help.md)
+  - [04 - Submitting Homework and Getting Help](week00/04_submitting_homework_and_getting_help.md)
+  - [05 - Help Fix the Labs](week00/05_help_fix_the_labs.md)
+  - [06 - Introducing QGIS with Basic Cartographic Design](week00/06_introducing_qgis_with_basic_cartographic_design.md)
 
 - [Week 01 - Lining it Up & Cartographic Presentation](week01/README.md)
 

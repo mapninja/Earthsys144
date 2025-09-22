@@ -243,15 +243,6 @@ Many datasets contain geographic information but aren't explicitly spatial forma
 - **Coordinate parsing**: Extract lat/long from text fields
 - **Spatial reference**: Assign appropriate coordinate systems
 
-## 3. Directory Navigation
-
-Master these essential directory skills:
-
-- Understand absolute vs. relative paths
-- Navigate using both GUI and command line
-- Create and organize folder hierarchies
-- Understand how different operating systems handle paths
-
 ## Next Steps
 
 With a solid understanding of GIS data formats and naming conventions, you're ready to begin installing and using the software tools we'll work with throughout the course.
