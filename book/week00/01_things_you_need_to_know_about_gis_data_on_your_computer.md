@@ -105,143 +105,52 @@ Esri has the strictest naming requirements in GIS. Following their official rule
 - **Project files**: Apply to .qgz, .aprx, and other project file names
 - **Folder names**: While less critical, consistency helps with scripting
 
-## 2. File Types
+## 2. Basic File Organization for GIS
 
-Understanding spatial data formats is crucial for choosing the right tool for each task.
+Understanding how to organize and recognize spatial data files is fundamental for efficient GIS work. While detailed format specifications are covered in Week 01, here are the basics you need to know for file management.
 
-### 2.1 Vector Data Formats
+### 2.1 Recognizing Spatial Data Files
 
-**Shapefiles (.shp) - The Multi-File Format:**
+**Multi-file formats** (keep together):
 
-- **Actually 3-15+ files** working together as one dataset
-- **Required files**: `.shp` (geometry), `.shx` (index), `.dbf` (attributes)
-- **Common optional files**: `.prj` (projection), `.cpg` (encoding), `.sbn/.sbx` (spatial index)
-- **Limitations**:
-  - 2GB file size limit per component
-  - Field names ≤ 10 characters
-  - 255 field limit
-  - No mixed geometry types
-- **Advantages**:
-  - **Spatially indexed** for fast queries
-  - **Supports topology** and advanced geometry operations
-  - **Universal compatibility** across all GIS software
-  - **Proven reliability** for complex spatial analysis
+- **Shapefiles**: Look for `.shp`, `.shx`, `.dbf` files with the same name
+- **Example**: `roads.shp`, `roads.shx`, `roads.dbf` all belong together
 
-**GeoJSON (.geojson) - The Web Standard:**
+**Single-file formats**:
 
-- **Single file** containing geometry and attributes
-- **Human-readable** text format (can edit in text editor)
-- **Advantages**:
-  - Web-friendly and lightweight
-  - No file size component limits
-  - Supports nested attributes and arrays
-  - Direct JavaScript compatibility
-- **Limitations**:
-  - **No spatial indexing** - slow for large datasets
-  - **Designed for web mapping** - not optimized for analysis
-  - **Size constraints** - becomes unwieldy over ~50MB
-  - **No projection file** - coordinate system embedded but harder to manage
+- **GeoJSON**: `.geojson` files
+- **GeoTIFF**: `.tif` or `.tiff` files with spatial information
+- **GeoPackage**: `.gpkg` files
 
-**Other Specialized Vector Formats:**
+**Folders that are actually datasets**:
 
-**KML/KMZ (.kml/.kmz) - Google Earth's Native Format:**
+- **File Geodatabase**: `.gdb` folders (treat as single units)
 
-- **Software-specific**: Designed primarily for Google Earth visualization
-- **KML**: XML-based, human-readable text format
-- **KMZ**: Compressed KML with embedded images/resources
-- **Strengths**: Excellent for 3D visualization, placemarks, and tours
-- **Limitations**: Limited analysis capabilities, Google Earth ecosystem dependency
-- **Common uses**: Public data sharing, field site visualization, storytelling
+### 2.2 File Organization Best Practices
 
-**GPX (.gpx) - The GPS Exchange Standard:**
+**Create a logical folder structure:**
 
-- **Activity tracking format**: Standard export from fitness and navigation apps
-- **Common sources**: Strava, Garmin Connect, AllTrails, iPhone Health, Android Fit
-- **Data types**: GPS tracks, waypoints, routes with timestamps
-- **Typical content**: Running/cycling routes, hiking trails, geocaching points
-- **Analysis potential**: Speed, elevation profiles, activity patterns
-- **Conversion needed**: Usually imported to GIS for spatial analysis
+```
+Project_Name/
+├── data/
+│   ├── raw/          (original downloads)
+│   ├── processed/    (cleaned/modified data)
+│   └── outputs/      (analysis results)
+├── maps/
+├── scripts/
+└── documentation/
+```
 
-**GeoPackage (.gpkg) - The Modern Multi-Purpose Format:**
+**Keep related files together:**
 
-- **SQLite-based**: Industry standard database with spatial extensions
-- **Multi-layer container**: Single file can hold multiple vector and raster datasets
-- **No shapefile limitations**: Unlimited field names, file sizes, geometry types
-- **Advanced features**: Complex queries, relationships, spatial indexes
-- **Growing adoption**: Becoming preferred format for complex projects
-- **OGC standard**: Open Geospatial Consortium approved specification
+- All shapefile components in the same folder
+- Metadata files with their datasets
+- Projection files (`.prj`) with their data
 
-### 2.2 Raster Data Formats
+**Document your data sources:**
 
-**GeoTIFF (.tif/.tiff) - The Traditional Standard:**
-
-- **Single file** with embedded spatial reference
-- **Lossless compression** options available
-- **Universal GIS compatibility**
-- **Supports multiple bands** (RGB, multispectral, etc.)
-
-**Cloud Optimized GeoTIFF (COG) - The Modern Evolution:**
-
-- **Built on GeoTIFF** but optimized for cloud/web access
-- **Internal tiling** enables efficient partial reading
-- **Multiple resolution overviews** for fast zooming
-- **HTTP range request compatible** - stream data without full download
-- **Becoming the new standard** for web-based raster analysis
-
-**Other Raster Formats:**
-
-- **.jpg/.png**: Web-friendly but lose spatial reference
-- **.nc**: NetCDF for scientific/climate data
-- **.hdf**: Hierarchical format for satellite data
-
-### 2.3 Spatial Databases
-
-**GeoPackage (.gpkg) - The Swiss Army Knife:**
-
-- **SQLite-based** single file containing multiple layers
-- **Combines vector and raster** data
-- **No size limits** like shapefiles
-- **Supports complex queries** and relationships
-
-**Other Database Formats:**
-
-- **.sqlite**: Spatial extension of SQLite
-- **.mdb/.accdb**: Microsoft Access (legacy, avoid if possible)
-
-### 2.4 Text Formats with Hidden Spatial Data
-
-**The "Spatial Data That Doesn't Know It's Spatial Yet":**
-
-Many datasets contain geographic information but aren't explicitly spatial formats:
-
-**CSV/Excel (.csv, .xlsx) with Geographic Encoding:**
-
-- **County names**: "Santa Clara County" (can be geocoded to boundaries)
-- **Addresses**: "123 Main St, Palo Alto, CA" (can be geocoded to points)
-- **Lat/Long columns**: Decimal degrees waiting to become geometry
-- **ZIP codes**: Postal codes that can be mapped to areas
-- **State abbreviations**: "CA" can become California polygon
-
-**JSON/Text (.json, .txt) with Embedded Locations:**
-
-- **Social media data**: Geotagged tweets with coordinates
-- **Sensor data**: Weather stations with lat/long metadata
-- **Survey responses**: Addresses or place names in text fields
-
-**Common Geographic Identifiers to Watch For:**
-
-- Administrative units (county, state, country names)
-- Postal codes (ZIP, postal codes)
-- Coordinate pairs (latitude/longitude, X/Y)
-- Place names (cities, landmarks, addresses)
-- Administrative codes (FIPS codes, ISO country codes)
-
-**Making Text Data Spatial:**
-
-- **Geocoding**: Convert addresses to coordinates
-- **Joining**: Link administrative names to boundary polygons
-- **Coordinate parsing**: Extract lat/long from text fields
-- **Spatial reference**: Assign appropriate coordinate systems
+- Keep a simple text file listing where data came from
+- Note download dates and any modifications made
 
 ## Next Steps
 
