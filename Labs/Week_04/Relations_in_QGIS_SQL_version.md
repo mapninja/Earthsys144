@@ -1,4 +1,4 @@
-## Using SQL to to complex queries in QGIS
+## Using SQL to create complex queries in QGIS
 
 ### Understanding Relations in SQL and QGIS
 
