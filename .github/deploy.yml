@@ -27,7 +27,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ../_book
+          publish_dir: ./_book
           # Optional: Customize the branch and directory if needed
           publish_branch: gh-pages # Default is gh-pages
           # cname: yourdomain.com # Add a custom domain
