@@ -8,32 +8,19 @@ Google Earth Engine (GEE) is a powerful cloud-based platform for planetary-scale
 
 By the end of this lab, you will be able to:
 
-- Create and activate a Google Earth Engine account
-- Navigate the Google Earth Engine Code Editor
+- Navigate to the Google Earth Engine Code Editor
+- Create your first Google Cloud Project and: 1. enable it for non-commercial use; 2. Set the Compute Tier to "Community" and; 3. Enable the Earth Engine API.
 - Share your work using proper link sharing protocols
-- Set up additional required online accounts for the course
 
-## 1. Google Earth Engine Login & Link Sharing
+## Google Earth Engine Login & Project Creation
 
-### 1.1 Account Setup
-
-Google Earth Engine requires approval for access:
-
-1. Visit [earthengine.google.com](https://earthengine.google.com)
-2. Click "Get Started"
-3. Sign in with your Google account (use your Stanford account if available)
-4. Request access by completing the application form
-5. Wait for approval (usually 1-2 days for educational use)
-
-### 1.2 First Login
-
-Once approved:
+### First Login
 
 1. Navigate to [code.earthengine.google.com](https://code.earthengine.google.com)
 2. Accept the terms of service
 3. Explore the interface: Code Editor, Console, Map, and Asset Manager
 
-### 1.3 Link Sharing Best Practices
+### Link Sharing Best Practices
 
 Sharing your Google Earth Engine scripts properly:
 
@@ -42,73 +29,39 @@ Sharing your Google Earth Engine scripts properly:
 - Test links in an incognito window to verify access
 - Include link sharing in all homework submissions
 
-## 2. Additional Account Setup
+## Additional Accounts Setup
 
-### 2.1 ArcGIS Online
+### ArcGIS Online
 
 ArcGIS Online provides web mapping and story mapping capabilities:
 
-1. Visit [arcgis.com](https://arcgis.com)
-2. Create a free public account
+1. Visit [stanford.maps.arcgis.com](https://stanford.maps.arcgis.com)
+2. Click on the Login
 3. Verify your email address
 4. Explore the interface and sample content
 
-### 2.2 Github.com
+### Github.com
 
-GitHub will host your code and documentation:
+We will primarily be using GitHub.com to host webmaps and experiments with 
 
 1. Visit [github.com](https://github.com)
-2. Create a free account with a professional username
-3. Apply for the GitHub Student Developer Pack
+2. Create a free account with your SUNetID credentials. Using your [*.edu credentials gives you access to many free extras](https://github.com/education/students)!
+3. Apply for the [GitHub Student Developer Pack](https://education.github.com/pack?sort=popularity&tag=All)!
 4. Verify your Stanford email for educational benefits
 
-### 2.3 Google Colab
+### Google Colab
 
-Google Colab provides cloud-based Python notebooks:
+Google Colab provides the ability to run cloud-based Python notebooks, using your SUNetID Credentials for login:
 
 1. Visit [colab.research.google.com](https://colab.research.google.com)
-2. Sign in with your Google account
+2. Sign in with your SUNetID & Password
 3. Create a test notebook to verify access
 4. Connect to runtime and test basic Python commands
 
-### 2.4 Stanford AFS Web Hosting
+### Stanford AFS Web Hosting
 
-Stanford's AFS system provides web hosting for students:
+Stanford's AFS system provides [web hosting for students](https://uit.stanford.edu/service/web/centralhosting/howto_user).  You can place basic HTML/JS/CSS applications on your AFS space and then access those applications at: `web.stanford.edu/~YOURSUNetID`
 
-1. Visit [accounts.stanford.edu](https://accounts.stanford.edu)
-2. Activate your AFS web space
-3. Learn the basics of FTP access
-4. Test by uploading a simple HTML file
-
-## 3. Account Management Best Practices
-
-### 3.1 Password Security
-
-- Use unique, strong passwords for each service
-- Consider using a password manager
-- Enable two-factor authentication where available
-
-### 3.2 Account Linking
-
-Some services work better when linked:
-
-- Connect GitHub to Google Colab for easy repository access
-- Link Google accounts across services for seamless integration
-
-## Troubleshooting Common Issues
-
-### Google Earth Engine Access Denied
-
-- Ensure you've been approved for access
-- Try signing out and back in
-- Clear browser cache and cookies
-
-### ArcGIS Online Limitations
-
-- Free accounts have usage limits
-- Educational accounts provide additional resources
-- Contact instructor for organizational access if needed
-
-## Next Steps
-
-With your accounts properly configured, you're ready to begin installing the desktop software tools that will complement these cloud-based platforms.
+1. Visit: [https://uit.stanford.edu/service/web/centralhosting/howto_user](https://uit.stanford.edu/service/web/centralhosting/howto_user) to find out more about your AFS Web Hosting.
+2. Use [Secure FTP](https://uit.stanford.edu/software/scrt_sfx) to transfer your files into your /WWW/ folder.
+3. Test by uploading a [simple HTML file](https://github.com/mapninja/Earthsys144/blob/gh-pages/data/test_afs.html)

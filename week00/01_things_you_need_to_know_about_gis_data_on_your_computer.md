@@ -13,11 +13,11 @@ By the end of this lab, you will be able to:
 - Recognize spatial data in non-spatial formats
 - Choose appropriate formats for different GIS tasks
 
-## 1. File Naming Conventions
+## File Naming Conventions
 
 **Use Esri Raster naming rules as your universal standard** - they represent the most restrictive (and finicky) naming requirements in GIS, so following them ensures compatibility across all software.
 
-### 1.1 The Esri Standard (Least Common Denominator)
+### The Esri Standard (Least Common Denominator)
 
 Esri has the strictest naming requirements in GIS. Following their official rules ([Esri Community: How to Name Things in ArcGIS](https://community.esri.com/t5/data-management-blog/how-to-name-things-in-arcgis/ba-p/897194)) ensures universal compatibility:
 
@@ -28,45 +28,40 @@ Esri has the strictest naming requirements in GIS. Following their official rule
    - No spaces, &, -, or other special characters
    - **Underscores (\_) are allowed and encouraged** as space replacements
    - These restrictions prevent cryptic failures in processing
-
 2. **Keep pathnames under 128 characters** total
 
    - Windows absolute pathname limit is 260 characters
    - Shorter paths prevent mysterious errors
-
 3. **Start with a letter** always
 
    - Never begin with numbers or non-alphabetic characters
    - Applies to files, folders, fields, and all GIS objects
-
 4. **Avoid SQL reserved words**
 
    - Skip: OBJECTID, VALUE, COUNT, NOT, OR, ON, IN, OVER, SELECT
    - Prevents confusion in database operations
-
 5. **Keep field names ≤ 10 characters**
 
    - This is a dBase (.dbf) limit affecting shapefiles
    - Use aliases for longer descriptive names
-
 6. **Raster names ≤ 14 characters**
 
    - Must start with letter (critical for raster datasets)
    - Special characters in paths cause export failures
    - Grid format compatibility requires this limit
-
 7. **Path length matters**
-   - Full file paths should stay well under 260 characters
+
+   - Full file paths should stay well under 256 characters
    - "Flatten" deep folder structures to avoid issues
 
-**✅ Good Esri-compatible names:**
+**Good Esri-compatible names:**
 
 - `Pop_Dens2020.tif` (uses underscore to replace space)
 - `Elev_12m.tif` (underscore separates words)
 - `Land_Cover.shp` (underscores allowed and encouraged)
 - `Roads_2024.gpkg` (follows all rules with underscores)
 
-**❌ Names that break Esri compatibility:**
+**Names that break Esri compatibility:**
 
 - `elevation-12m.tif` (hyphen causes raster export failures)
 - `2020_population.tif` (starts with number - will fail)
@@ -75,7 +70,7 @@ Esri has the strictest naming requirements in GIS. Following their official rule
 - `VeryLongRasterDatasetName.tif` (over 14 characters)
 - `pop&density.tif` (ampersand causes failures)
 
-### 1.2 Practical Implementation
+### Practical Implementation
 
 **When naming is out of your control:**
 
@@ -105,16 +100,22 @@ Esri has the strictest naming requirements in GIS. Following their official rule
 - **Project files**: Apply to .qgz, .aprx, and other project file names
 - **Folder names**: While less critical, consistency helps with scripting
 
-## 2. Basic File Organization for GIS
+## Basic File Organization for GIS
 
 Understanding how to organize and recognize spatial data files is fundamental for efficient GIS work. While detailed format specifications are covered in Week 01, here are the basics you need to know for file management.
 
-### 2.1 Recognizing Spatial Data Files
+### Recognizing Spatial Data Files
 
 **Multi-file formats** (keep together):
 
 - **Shapefiles**: Look for `.shp`, `.shx`, `.dbf` files with the same name
-- **Example**: `roads.shp`, `roads.shx`, `roads.dbf` all belong together
+- **For Example**:
+
+  `roads.shp`,
+  `roads.shx`,
+  `roads.dbf`
+
+  all belong together
 
 **Single-file formats**:
 
@@ -126,9 +127,9 @@ Understanding how to organize and recognize spatial data files is fundamental fo
 
 - **File Geodatabase**: `.gdb` folders (treat as single units)
 
-### 2.2 File Organization Best Practices
+### File Organization Best Practices
 
-**Create a logical folder structure:**
+**Create a logical folder structure:****
 
 ```
 Project_Name/
@@ -151,7 +152,3 @@ Project_Name/
 
 - Keep a simple text file listing where data came from
 - Note download dates and any modifications made
-
-## Next Steps
-
-With a solid understanding of GIS data formats and naming conventions, you're ready to begin installing and using the software tools we'll work with throughout the course.

@@ -13,15 +13,15 @@ By the end of this lab, you will be able to:
 - Work confidently with compressed files and extraction
 - Avoid common file management problems that plague GIS users
 
-## 1. Data Management and File Directory Systems
+## Data Management and File Directory Systems
 
 Effective data management is the foundation of successful spatial data science work. Understanding how your operating system organizes files and directories is crucial for avoiding lost work, confusion, and technical problems.
 
-### 1.1 Understanding File Directory Systems
+### Understanding File Directory Systems
 
 File directory systems organize your files in a hierarchical tree structure. Each operating system handles this differently, and understanding these differences is essential for effective file management.
 
-#### 1.1.1 macOS File System Structure
+#### macOS File System Structure
 
 **Root Directory:**
 
@@ -49,7 +49,9 @@ File directory systems organize your files in a hierarchical tree structure. Eac
 4. For copying paths: Right-click any file and hold the **Option key** to see "Copy [filename] as Pathname"
 5. Command-line method: Open **Terminal** and type `pwd` to see your current directory path
 
-#### 1.1.2 Windows File System Structure
+![](images/20260223_132418_image.png)
+
+#### Windows File System Structure
 
 **Drive Letters:**
 
@@ -78,11 +80,14 @@ File directory systems organize your files in a hierarchical tree structure. Eac
 5. Alternative: Click in the address bar (where it shows folder icons) and it will switch to text showing the full path
 6. Copy path method: Hold **Shift** and right-click any file, then select "Copy as path"
 
-### 1.2 Where NOT to Put Things (Critical - Read This First!)
+### Where NOT to Put Things (Critical - Read This First!)
 
-**⚠️ WARNING**: Choosing the wrong location for your GIS files can lead to data corruption, software crashes, and lost work. These locations MUST be avoided:
+**WARNING**: Choosing the wrong location for your GIS files can lead to data corruption, software crashes, and lost work. These locations MUST be avoided:
 
-#### 1.2.1 Cloud Sync Folders (Critical Warning)
+#### Cloud Sync Folders (Critical Warning)
+
+
+![](images/20260223_132649_image.png)
 
 **Problematic Locations:**
 
@@ -116,7 +121,7 @@ Modern cloud storage services like iCloud, OneDrive, and Dropbox use "storage op
 - **Universal approach**: Create a dedicated non-synced folder for all GIS work, then manually backup completed projects to cloud storage
 - **If you must use cloud folders**: Ensure "Keep on this device" or "Always available offline" is enabled for your GIS data folders
 
-#### 1.2.2 Other Locations to Avoid
+#### Other Locations to Avoid
 
 **System Folders:**
 
@@ -130,7 +135,7 @@ Modern cloud storage services like iCloud, OneDrive, and Dropbox use "storage op
 - Network interruptions can corrupt data
 - Performance is often slower than local storage
 
-### 1.3 Where to Put Things (Safe Locations)
+### Where to Put Things (Safe Locations)
 
 Now that you know where NOT to store your files, here are the recommended safe locations and organization strategies:
 
@@ -199,11 +204,11 @@ Earthsys144/                    # Main course folder
 - **Clean out `/working/` folders** periodically to save disk space
 - **Back up `/data/` and `/exports/`** regularly - `/working/` can be recreated if needed
 
-## 2. Unzipping Files
+## Unzipping Files
 
 Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), and how you handle these files differs significantly between operating systems. Understanding these differences is crucial for GIS work.
 
-### 2.1 macOS Behavior (Recommended)
+### macOS Behavior (Recommended)
 
 **What happens when you double-click a .zip file:**
 
@@ -219,7 +224,7 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 - No performance issues or access restrictions
 - Works seamlessly with all GIS software
 
-### 2.2 Windows Behavior (Problematic for GIS)
+### Windows Behavior (Problematic for GIS)
 
 **What happens when you double-click a .zip file:**
 
@@ -236,14 +241,14 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 - **Incomplete operations**: Some geoprocessing tools will fail
 - **File locking**: Multiple software packages may conflict when accessing compressed files
 
-**⚠️ Windows users must manually extract:**
+**Windows users must manually extract:**
 
 1. **Right-click** the .zip file
 2. Select **"Extract All..."** (not just double-click)
 3. Choose a destination folder
 4. Click **"Extract"** to fully uncompress files
 
-### 2.3 Universal Best Practices
+### Universal Best Practices
 
 **For all operating systems:**
 
@@ -267,8 +272,7 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 - Files should open properly in QGIS without errors
 - You should be able to view attribute tables completely
 
-
-## 3. Directory Navigation
+## Directory Navigation
 
 Master these essential directory skills:
 
