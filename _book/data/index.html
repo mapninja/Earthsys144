@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSV to Map Example</title>
+    <!-- Load MapLibre GL JS for the map -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <!-- Load jQuery for easy AJAX requests -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <!-- Load csv2geojson to convert CSV to GeoJSON -->
+    <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <!-- This div is where the map will appear -->
+    <div id="map"></div>
+    <script>
+        // Create the map and set its starting position and zoom
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more 
+            center: [-122.411, 37.785], // [longitude, latitude]
+            zoom: 8
+        });
+
+        // When the page is ready, get the CSV data
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                //YOUR TURN: Replace with csv export link
+                url: 'replace this text with the link to your CSV file within the single quotes', // replace the text in single quotes with the link to your CSV file
+                dataType: "text",
+                success: function (csvData) { makeGeoJSON(csvData); }
+            });
+            function makeGeoJSON(csvData) {
+                csv2geojson.csv2geojson(csvData, {
+                    latfield: 'latitude', // replace with the actual column name for latitude in your CSV
+                    lonfield: 'longitude', // replace with the actual column name for longitude in your CSV
+                    delimiter: ','
+                }, function (err, geojson) {
+                    map.on('load', function () {
+                        map.addLayer({
+                            id: 'points',
+                            type: 'circle',
+                            source: { type: 'geojson', data: geojson },
+                            paint: {
+                                'circle-radius': 6,
+                                'circle-color': 'purple'
+                            }
+                        });
+                        // When a point is clicked, show a popup
+                        map.on('click', 'points', function (e) {
+                            var props = e.features[0].properties;
+                            // Create popup HTML: location as heading, description as text
+                            var html = `<h3>${props.location}</h3><p>${props.description}</p>`; // replace 'location' and 'description' with the actual column names from your CSV
+                            new maplibregl.Popup()
+                                .setLngLat(e.lngLat)
+                                .setHTML(html)
+                                .addTo(map);
+                        });
+
+                        // Change cursor to pointer when hovering over points
+                        map.on('mouseenter', 'points', function () {
+                            map.getCanvas().style.cursor = 'pointer';
+                        });
+                        map.on('mouseleave', 'points', function () {
+                            map.getCanvas().style.cursor = '';
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
