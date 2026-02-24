@@ -1,190 +1,273 @@
 # Installing QGIS and Plugins
 
+![](images/20260224_105258_image.png)
+
 ## Introduction
 
-QGIS (Quantum Geographic Information System) is a free, open-source desktop GIS application that will serve as our primary tool for spatial data analysis and cartography. This lab will guide you through the installation process and setup of essential plugins and additional software tools.
+QGIS (Quantum Geographic Information System) is a free, open-source desktop GIS application that will serve as our primary tool for spatial data analysis and cartography. This lab will guide you through the installation process and setup of essential plugins that extend QGIS's functionality for terrain analysis, geoprocessing, and basemap integration.
 
 ## Learning Objectives
 
 By the end of this lab, you will be able to:
 
-- Install QGIS and verify proper functionality
+- Install QGIS on macOS, Windows, or Linux
+- Create a new user profile for course work
 - Install and configure essential QGIS plugins
-- Set up additional software tools for the course
-- Configure text editing and file transfer applications
+- Set up WhiteboxTools for advanced terrain analysis
+- Access basemap services through QuickMapServices
 
-## 1. QGIS Installation
+## Installing QGIS
 
-### 1.1 Download and Install QGIS
+### macOS Installation
 
-QGIS installation varies by operating system:
+![](images/20260224_105333_image.png)
 
-**Windows:**
+1. **Download** the latest **Regular** (AKA: PR or Preview Release) release from: [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)
+2. **Download** the **DMG** file for macOS
+3. **Double-click** the downloaded DMG file to open it
+4. It will take a few minutes to decompress and validate the DMG file
+5. Once the installation window opens, **drag and drop the QGIS app icon into the Applications folder icon**
+6. **Launch QGIS** from your Applications folder
+
+**Note:** As of 2024, QGIS is now properly registered with Apple, so you should not encounter security warnings during installation or first launch.
+
+### Windows Installation
 
 1. Visit [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)
-2. Download the Long Term Release (LTR) version
+2. Download the **QGIS Standalone Installer** (Regular release)
 3. Run the installer with administrator privileges
-4. Accept default installation options
+4. Accept the default installation options
+5. Launch QGIS from the Start menu
 
-**macOS:**
+For a detailed walkthrough, see: [How to Install QGIS on Windows](https://www.geeksforgeeks.org/how-to-install-qgis-on-windows/)
 
-1. Download the official QGIS installer for macOS
-2. Follow the installation instructions carefully
-3. Allow installation from identified developers in System Preferences
-4. Verify installation by launching QGIS
-
-**Linux:**
+### Linux Installation
 
 1. Use your distribution's package manager
-2. Add the official QGIS repository for latest versions
-3. Install using apt, yum, or equivalent package manager
+2. Add the official QGIS repository for the latest versions
+3. Install using `apt`, `yum`, or equivalent package manager
 
-### 1.2 First Launch and Verification
+For distribution-specific instructions, visit: [QGIS Installers](https://www.qgis.org/en/site/forusers/alldownloads.html)
 
-After installation:
+## Setting Up Your QGIS Profile
 
-1. Launch QGIS and wait for the splash screen
-2. Verify the interface loads properly
-3. Check the About dialog for version information
-4. Test basic functionality by creating a new project
+Creating a new user profile provides a clean workspace for the course and makes troubleshooting easier if issues arise.
 
-## 2. Essential QGIS Plugins
+### Create a New User Profile
 
-### 2.1 Quick Map Services
+1. Launch QGIS
+2. Go to **Settings > User Profiles > New Profile**
 
-Quick Map Services provides easy access to basemap layers:
+   ![](images/20260224_105708_image.png)
+3. Name the profile something like `Earthsys144` or `Earthsys144-Labs` to identify it
+4. Click **OK**
 
-1. Go to **Plugins → Manage and Install Plugins**
-2. Search for "QuickMapServices"
-3. Install and enable the plugin
-4. Access via **Web → QuickMapServices** menu
-5. Enable additional providers in settings for more basemap options
+QGIS will restart with your new profile. This creates a fresh configuration with default settings. Your old profile (if you had one) remains available and you can switch between profiles from **Settings > User Profiles**.
 
-### 2.2 WhiteBox Tools
+## Installing Essential Plugins
 
-WhiteBox Tools provides advanced terrain analysis capabilities:
+### QuickMapServices Plugin
 
-1. In the Plugin Manager, search for "WhiteboxTools Open-Core"
-2. Install the plugin
-3. The plugin will download the WhiteBox executable automatically
-4. Verify installation by checking the Processing Toolbox
-5. Test with a simple terrain analysis function
+QuickMapServices provides convenient access to basemap layers from various providers (Google, Esri, OpenStreetMap, and more).
 
-### 2.3 SAGA and SAGA Next Generation Plugin
+**Install the Plugin:**
 
-SAGA provides additional geoprocessing algorithms:
+1. Go to **Plugins > Manage and Install Plugins**
+2. In the search box, type **QuickMapServices**
+3. Select the plugin from the list and click **Install Plugin**
+4. Close the Plugin Manager
 
-1. Search for "SAGA NextGen" in the Plugin Manager
-2. Install the plugin
-3. SAGA tools will appear in the Processing Toolbox
-4. Verify installation by expanding the SAGA folder in Processing
-5. Note: Some tools may require additional configuration
+![](images/20260224_105811_image.png)
 
-## 3. Additional Software Installation
+**Load Additional Basemap Services:**
 
-### 3.1 OpenRefine
+1. Go to **Web > QuickMapServices > Settings**
+2. Click on the **More Services** tab
+3. Click **Get Contributed Pack**
+4. Close the Settings dialog
 
-OpenRefine is essential for data cleaning and transformation:
+![](images/20260224_105839_image.png)
 
-**Installation:**
+![](images/20260224_105937_image.png)
 
-1. Visit [openrefine.org](https://openrefine.org)
-2. Download the appropriate version for your OS
-3. Extract the downloaded file
-4. Launch according to your operating system instructions
-5. Verify by opening localhost:3333 in your browser
+**Test the Installation:**
 
-**Usage Notes:**
+1. Go to **Web > QuickMapServices**
+2. You should see many service providers listed (Google, Esri, NASA, etc.)
+3. Select **Google > Google Hybrid** to load a basemap
 
-- OpenRefine runs as a local web application
-- Keep the terminal/command window open while using
-- Works with CSV, JSON, XML, and other structured data formats
+![](images/20260224_110022_image.png)
 
-### 3.2 Secure FTP Client
+### SAGA NextGen Plugin
 
-For transferring files to Stanford's AFS system:
+SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.
 
-**FileZilla (Cross-platform):**
+**Install the Plugin:**
 
-1. Download from [filezilla-project.org](https://filezilla-project.org)
-2. Install using default settings
-3. Configure connection to myth.stanford.edu
-4. Test connection with your Stanford credentials
+1. Open **Plugins > Manage and Install Plugins**
+2. In the **All** tab, search for **SAGA**
+3. Find **Processing SAGA NextGen Provider** and click **Install Plugin**
+4. Close the Plugin Manager
 
-**Alternative Options:**
+![](images/20260224_110102_image.png)
 
-- **Windows:** WinSCP
-- **macOS:** Cyberduck or built-in Terminal
-- **Linux:** Command-line sftp or nautilus
+**Verify Installation:**
 
-### 3.3 Text Editor
+1. Go to **Processing > Toolbox** to open the Processing Toolbox panel
+2. You should now see **SAGA Next Gen** as a provider alongside the original **SAGA** provider
+3. When using SAGA tools, always prefer the **SAGA Next Gen** version for better compatibility
 
-A good text editor is essential for code and documentation:
+![](images/20260224_110200_image.png)
 
-**Recommended Options:**
+The SAGA Next Gen toolset duplicates the original SAGA provider but with improved integration for the latest QGIS versions.
 
-- **Visual Studio Code** (free, cross-platform, excellent for code)
-- **Atom** (free, highly customizable)
-- **Sublime Text** (fast, powerful, trial available)
-- **Notepad++** (Windows only, lightweight)
+### WhiteboxTools Plugin
 
-**Configuration Tips:**
+WhiteboxTools is an excellent, high-performance toolkit particularly useful for hydrological modeling, terrain analysis, and raster processing. Installing WhiteboxTools is a two-step process: downloading the executables and then installing the QGIS plugin.
 
-- Install syntax highlighting for common spatial data formats
-- Configure line endings for your operating system
-- Enable word wrap for markdown files
+#### Step 1: Download WhiteboxTools Executables
 
-## 4. Configuration and Testing
+1. **Download** the appropriate version for your operating system from: [whiteboxgeo.com/download-redirect/](https://www.whiteboxgeo.com/download-redirect/)
+2. **Unzip** the downloaded archive to a stable location on your hard drive:
+   - **macOS**: Consider `/Users/[username]/WBT` or `~/Applications/WBT`
+   - **Windows**: Consider `C:\WBT` or `C:\Program Files\WBT`
+   - **Linux**: Consider `~/WBT` or `/opt/WBT`
+3. **Remember this location** - you'll need to point the QGIS plugin to it
 
-### 4.1 QGIS Configuration
+For a video demonstration, see: [WhiteboxTools Setup Video](https://www.youtube.com/watch?v=xJXDBsNbcTg&t=3s)
 
-Optimize QGIS for course work:
+#### Step 2: Install the WhiteboxTools QGIS Plugin
 
-1. Set default coordinate reference system to WGS84
-2. Configure processing tools location
-3. Set up project templates
-4. Configure rendering and performance settings
+1. Return to **Plugins > Manage and Install Plugins**
+2. Search for **WhiteboxTools**
+3. Find **WhiteboxTools for QGIS** and click **Install Plugin**
+4. Close the Plugin Manager
 
-### 4.2 Plugin Testing
+#### Step 3: Configure WhiteboxTools in QGIS
 
-Verify all plugins work correctly:
+1. Go to **Processing > Toolbox** to open the Processing Toolbox
+2. Click the **wrench icon** at the top to open Processing Settings
+3. In the left panel, expand **Providers > WhiteboxTools**
+4. **Double-click** in the box next to **WhiteboxTools executable**
+5. Click the **...** button to browse to the folder where you unzipped WhiteboxTools
 
-1. Load a sample dataset
-2. Test Quick Map Services basemap loading
-3. Run a simple WhiteBox terrain analysis
-4. Verify SAGA tools appear in Processing Toolbox
+![](images/20260224_110439_image.png)
 
-### 4.3 Integration Testing
+1. Navigate to the **WhiteboxTools executable** inside the WBT folder:
 
-Test software integration:
+   - **macOS/Linux**: Select the `whitebox_tools` file (no extension)
+   - **Windows**: Select `whitebox_tools.exe`
 
-1. Create a simple dataset in QGIS
-2. Export to CSV and open in OpenRefine
-3. Clean data in OpenRefine and re-import to QGIS
-4. Save project and verify all components work together
+     ![](images/20260224_110633_image.png)
+
+     ![](images/20260224_110722_image.png)
+2. Click **Open**, then **OK** to save the settings
+
+**Verify Installation:**
+
+1. In the Processing Toolbox, expand the **WhiteboxTools** provider
+2. You should see hundreds of tools organized by category
+3. Try running a simple tool like **RandomSample** to verify functionality
+
+**Note on WhiteboxTools Plugins:** WhiteboxTools includes additional plugin executables in the `WBT/plugins/` directory. These specialized tools extend WhiteboxTools functionality and will be used later in the course.
+
+## Troubleshooting WhiteBox Tools
+
+### macOS Security Configuration for WhiteboxTools
+
+**Important for macOS users:** WhiteboxTools executables are not registered with Apple, which triggers macOS security warnings. You'll need to explicitly allow the executable to run.
+
+If you see an error like:
+
+```
+WhiteboxTools output:
+Process "whitebox_tools" failed to start. Either "whitebox_tools" is missing, 
+or you may have insufficient permissions to run the program.
+Execution failed after 0.04 seconds
+```
+
+![](images/20260224_111154_image.png)
+
+Follow these steps:
+
+1. **Navigate to your WhiteboxTools installation folder** (e.g., `/Users/[username]/WBT`)
+2. **Right-click** (or Control-click) on the `whitebox_tools` executable
+
+   ![](images/20260224_111855_image.png)
+3. Select **Open** from the context menu
+4. A security warning will appear - **DO NOT click "Move to Trash"**
+5. **Dismiss the warning dialog**
+6. Go to **System Settings > Privacy & Security**
+7. Scroll down to the Security section
+8. Click **Open Anyway** next to the message about `whitebox_tools`
+   ![](images/20260224_111449_image.png)
+9. **Confirm** through any additional security prompts
+   ![](images/20260224_111523_image.png)
+10. The executable will launch in Terminal - you can close the Terminal window once it opens
+11. **Return to QGIS** and retest the **RandomSample** tool
+
+This process only needs to be done once. After approval, WhiteboxTools will run normally from QGIS.
+
+### Configure Processing Toolbox Display
+
+1. Go to **Processing > Toolbox**
+2. Right-click in the toolbox panel
+3. Select **Reorganize by Type** to group similar tools together
 
 ## Troubleshooting Common Issues
 
 ### QGIS Won't Launch
 
-- Check system requirements
-- Run as administrator (Windows)
-- Clear QGIS settings folder
-- Reinstall with antivirus disabled
+- **Windows**: Try running as administrator
+- **macOS**: Check that the app is in your Applications folder
+- **All platforms**: Check system requirements at [qgis.org](https://qgis.org)
+- Clear QGIS settings by renaming the QGIS profile folder and creating a new profile
 
 ### Plugins Not Working
 
-- Verify QGIS version compatibility
-- Check internet connection for online plugins
-- Clear plugin cache
-- Reinstall problematic plugins
+- Verify QGIS version compatibility in the plugin description
+- Check your internet connection (required for plugin installation)
+- Try **Plugins > Manage and Install Plugins > Reinstall Plugin**
+- Clear the plugin cache and restart QGIS
 
-### Processing Tools Missing
+### WhiteboxTools Executable Not Found
 
-- Enable Processing plugin in Plugin Manager
-- Refresh Processing Toolbox
-- Check provider settings in Processing options
+- Verify you've downloaded and unzipped the WhiteboxTools executables
+- Double-check the path in **Processing > Options > Providers > WhiteboxTools**
+- Make sure you're pointing to the executable file, not just the folder
+- **macOS/Linux**: Ensure the executable has execute permissions (`chmod +x whitebox_tools`)
+
+### SAGA Tools Missing or Broken
+
+- Make sure you installed **Processing SAGA NextGen Provider**, not just the base SAGA
+- Try using tools from **SAGA Next Gen** instead of the original **SAGA** provider
+- Some tools may require specific data types or CRS - check tool documentation
+
+### QuickMapServices Shows No Basemaps
+
+- Make sure you clicked **Get Contributed Pack** in the settings
+- Check your internet connection
+- Try **Web > QuickMapServices > Settings > More Services > Reload** to refresh the list
+
+## Submission
+
+To verify your installation:
+
+1. Create a new QGIS project
+2. Load the **Google Hybrid** basemap from **Web > QuickMapServices > Google > Google Hybrid**
+3. Open the **Processing Toolbox** and expand it to show **SAGA Next Gen** and **WhiteboxTools** providers
+4. **Create a screenshot** showing:
+   - QGIS interface with the Google Hybrid basemap loaded
+   - Processing Toolbox panel visible with SAGA Next Gen and WhiteboxTools expanded
+5. **Upload the screenshot** to Canvas
 
 ## Next Steps
 
-With QGIS and essential plugins installed, you're ready to create your first maps and begin exploring the world of spatial data visualization and analysis.
+With QGIS and essential plugins installed, you're ready to:
+
+- Create your first maps with professional basemaps
+- Perform terrain analysis using WhiteboxTools
+- Apply geoprocessing algorithms from SAGA Next Gen
+- Begin exploring spatial data visualization and analysis
+
+These tools will form the foundation of all the desktop GIS work we'll do throughout the course.

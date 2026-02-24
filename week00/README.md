@@ -21,6 +21,7 @@ Throughout this course, we'll be using six main technological platforms that rep
 ### Cloud/API Services
 
 - **Planet.com** - Commercial satellite imagery provider offering high-resolution, high-frequency Earth observation data. Provides access to daily satellite imagery and APIs for monitoring environmental change, urban development, and agricultural patterns at unprecedented temporal and spatial resolution.
+- **locator.stanford.edu** - Stanford's ArcGIS Server-based geocoding service. 5 API-based regional geocoding services: North American, Latin America, Europe, Middle East & Africa, and Asia & Pacific.
 
 ### Code/Programming Environments
 
@@ -29,6 +30,18 @@ Throughout this course, we'll be using six main technological platforms that rep
 ## Week Overview
 
 This week covers the essential technical skills and setup procedures that will enable you to succeed in all subsequent weeks. Topics include computer management best practices, software installation, account setup, document creation, and getting help when you need it.
+
+## Lab Documents
+
+- [Things You Need to Know About Your Computer](00_things_you_need_to_know_about_your_computer.md)
+- [Things You Need to Know About GIS Data on Your Computer](01_things_you_need_to_know_about_gis_data_on_your_computer.md)
+- [Logging in to Google Earth Engine](02_logging_in_to_google_earth_engine.md)
+- [Installing QGIS and Plugins](03_installing_qgis_and_plugins.md)
+- [Introduction to Spatial Data Formats](04_introduction_to_spatial_data_formats.md)
+- [Introduction to Finding Data](05_introduction_to_finding_data.md)
+- [Submitting Homework and Getting Help](06_submitting_homework_and_getting_help.md)
+- [Help Fix the Labs](07_help_fix_the_labs.md)
+- [Introducing QGIS with Basic Cartographic Design](08_introducing_qgis_with_basic_cartographic_design.md)
 
 ## Learning Objectives
 
