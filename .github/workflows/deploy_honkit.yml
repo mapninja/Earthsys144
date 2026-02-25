@@ -3,7 +3,7 @@ name: Deploy HonKit Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this to your main branch if different
+      - master  # Change this to your main branch if different
 
 jobs:
   deploy:
