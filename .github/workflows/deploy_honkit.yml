@@ -1,0 +1,33 @@
+name: Deploy HonKit Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch if different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your desired Node.js version
+
+      - name: Install HonKit
+        run: npm install -g honkit
+
+      - name: Build HonKit site
+        run: honkit build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_book
+          # Optional: Customize the branch and directory if needed 
+          publish_branch: gh-pages # Default is gh-pages
+          # cname: yourdomain.com # Add a custom domain
