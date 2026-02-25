@@ -281,6 +281,3 @@ Master these essential directory skills:
 - Create and organize folder hierarchies
 - Understand how different operating systems handle paths
 
-## Next Steps
-
-With these fundamental computer skills in place, you're ready to learn about GIS data formats and naming conventions that will ensure your spatial data science work runs smoothly.

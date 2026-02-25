@@ -1,4 +1,4 @@
-# The People’s Guide to Spatial Data
+# Earthsys144: Fundamentals of Geographic Information Science
 
 ## *(a.k.a. Everything Is Somewhere, and That Somewhere Matters)*
 
