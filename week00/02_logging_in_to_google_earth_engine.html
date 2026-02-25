@@ -1019,62 +1019,193 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="logging-in-to-google-earth-engine">Logging in to Google Earth Engine</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Google Earth Engine (GEE) is a powerful cloud-based platform for planetary-scale geospatial analysis. Setting up your access properly is crucial for the cloud-based components of this course. This lab will guide you through the account setup process and teach you essential sharing practices.</p>
+<h2 id="what-is-google-earth-engine">What is Google Earth Engine?</h2>
+<p>Google Earth Engine (GEE) is a cloud-based platform that lets you access and analyze massive amounts of satellite imagery and geospatial data without needing a powerful computer. Think of it like a library in the cloud where you can browse and analyze global imagery from the past few decades in real-time.</p>
+<p><strong>Important concepts:</strong></p>
+<ul>
+<li><strong>Cloud-based</strong> means the computing happens on Google's servers, not your laptop</li>
+<li><strong>Satellite imagery</strong> is pictures of Earth taken from space</li>
+<li><strong>Geospatial analysis</strong> is analyzing data about locations on Earth</li>
+</ul>
+<h2 id="why-do-we-need-a-google-cloud-project">Why Do We Need a Google Cloud Project?</h2>
+<p>Google Earth Engine operates through something called a "Google Cloud Project" — this is essentially your account workspace within Google's cloud system. It's like opening a lab notebook where your GEE work gets organized and tracked. You need this project to:</p>
+<ol>
+<li>Access satellite data</li>
+<li>Run your analyses</li>
+<li>Keep track of your work</li>
+<li>Get compute resources (processing power) from Google</li>
+</ol>
 <h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you will be able to:</p>
+<p>By the end of this guide, you will be able to:</p>
 <ul>
-<li>Navigate to the Google Earth Engine Code Editor</li>
-<li>Create your first Google Cloud Project and: 1. enable it for non-commercial use; 2. Set the Compute Tier to "Community" and; 3. Enable the Earth Engine API.</li>
-<li>Share your work using proper link sharing protocols</li>
+<li>Log into Google Earth Engine</li>
+<li>Create your first Google Cloud Project</li>
+<li>Register your project for non-commercial educational use</li>
+<li>Enable the Earth Engine API (the tool that lets you use GEE)</li>
+<li>Select your project so you can start analyzing data</li>
+<li>Share your work with instructors and classmates</li>
 </ul>
-<h2 id="google-earth-engine-login--project-creation">Google Earth Engine Login &amp; Project Creation</h2>
-<h3 id="first-login">First Login</h3>
+<hr></hr>
+<h2 id="step-by-step-setting-up-your-google-earth-engine-account">Step-by-Step: Setting Up Your Google Earth Engine Account</h2>
+<h3 id="step-1-access-google-earth-engine">Step 1: Access Google Earth Engine</h3>
 <ol>
-<li>Navigate to <a href="https://code.earthengine.google.com" target="_blank">code.earthengine.google.com</a></li>
+<li>Go to <a href="https://code.earthengine.google.com/" target="_blank">https://code.earthengine.google.com/</a></li>
+<li>Log in using your Google account (or Stanford account if you're a Stanford student)<ul>
+<li>If you don't have a Google account, create one first at <a href="https://www.google.com" target="_blank">google.com</a></li>
+</ul>
+</li>
 <li>Accept the terms of service</li>
-<li>Explore the interface: Code Editor, Console, Map, and Asset Manager</li>
 </ol>
-<h3 id="link-sharing-best-practices">Link Sharing Best Practices</h3>
-<p>Sharing your Google Earth Engine scripts properly:</p>
+<p>You should now see the <strong>Code Editor</strong> interface. This is where you'll write scripts and analyze satellite data. The interface has several key areas:</p>
 <ul>
-<li>Use the "Get Link" button to create shareable URLs</li>
-<li>Set appropriate permissions (view vs. edit access)</li>
-<li>Test links in an incognito window to verify access</li>
-<li>Include link sharing in all homework submissions</li>
+<li><strong>Code Editor</strong> (left side) - where you write your code</li>
+<li><strong>Map</strong> (center/right) - where results are displayed</li>
+<li><strong>Console</strong> (bottom right) - where messages and results appear</li>
+<li><strong>Assets</strong> (left sidebar) - where you can store data</li>
 </ul>
-<h2 id="additional-accounts-setup">Additional Accounts Setup</h2>
-<h3 id="arcgis-online">ArcGIS Online</h3>
-<p>ArcGIS Online provides web mapping and story mapping capabilities:</p>
+<p><img src="images/20260220_110253_image.png" alt="Google Earth Engine Code Editor"></img></p>
+<h3 id="step-2-create-a-new-google-cloud-project">Step 2: Create a New Google Cloud Project</h3>
+<p>Now you need to create a Google Cloud Project. This is like creating a new workspace where your GEE account lives.</p>
 <ol>
-<li>Visit <a href="https://stanford.maps.arcgis.com" target="_blank">stanford.maps.arcgis.com</a></li>
-<li>Click on the Login</li>
-<li>Verify your email address</li>
-<li>Explore the interface and sample content</li>
+<li>Click on your <strong>Profile Icon</strong> in the top right corner of the Code Editor</li>
 </ol>
-<h3 id="githubcom">Github.com</h3>
-<p>We will primarily be using GitHub.com to host webmaps and experiments with </p>
+<p><img src="images/20260220_110446_image.png" alt="Profile Icon location"></img></p>
 <ol>
-<li>Visit <a href="https://github.com" target="_blank">github.com</a></li>
-<li>Create a free account with your SUNetID credentials. Using your <a href="https://github.com/education/students" target="_blank">*.edu credentials gives you access to many free extras</a>!</li>
-<li>Apply for the <a href="https://education.github.com/pack?sort=popularity&amp;tag=All" target="_blank">GitHub Student Developer Pack</a>!</li>
-<li>Verify your Stanford email for educational benefits</li>
+<li>Select <strong>Register a new Cloud Project</strong></li>
+<li>Enter a <strong>Project name</strong> (be descriptive, like "Earthsys144" or "GIS-Analysis-Spring2026")</li>
 </ol>
-<h3 id="google-colab">Google Colab</h3>
-<p>Google Colab provides the ability to run cloud-based Python notebooks, using your SUNetID Credentials for login:</p>
+<p><img src="images/20260220_110920_image.png" alt="Project naming dialog"></img></p>
 <ol>
-<li>Visit <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></li>
-<li>Sign in with your SUNetID &amp; Password</li>
-<li>Create a test notebook to verify access</li>
-<li>Connect to runtime and test basic Python commands</li>
+<li>Click on the <strong>Parent resource &gt; Browse</strong> link</li>
+<li>Select <strong>"GEE Student Projects"</strong> from the list</li>
 </ol>
-<h3 id="stanford-afs-web-hosting">Stanford AFS Web Hosting</h3>
-<p>Stanford's AFS system provides <a href="https://uit.stanford.edu/service/web/centralhosting/howto_user" target="_blank">web hosting for students</a>.  You can place basic HTML/JS/CSS applications on your AFS space and then access those applications at: <code>web.stanford.edu/~YOURSUNetID</code></p>
+<p><img src="images/20260220_110944_image.png" alt="Parent resource selection"></img></p>
 <ol>
-<li>Visit: <a href="https://uit.stanford.edu/service/web/centralhosting/howto_user" target="_blank">https://uit.stanford.edu/service/web/centralhosting/howto_user</a> to find out more about your AFS Web Hosting.</li>
-<li>Use <a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">Secure FTP</a> to transfer your files into your /WWW/ folder.</li>
-<li>Test by uploading a <a href="https://github.com/mapninja/Earthsys144/blob/gh-pages/data/test_afs.html" target="_blank">simple HTML file</a></li>
+<li>Click the <strong>Create</strong> button to mint your new project</li>
 </ol>
+<p><img src="images/20260220_111042_image.png" alt="Create button"></img></p>
+<p>The system will now create your project. This may take a moment.</p>
+<h3 id="step-3-access-the-configuration-dashboard">Step 3: Access the Configuration Dashboard</h3>
+<p>Once your project is created, you should automatically go to the Configuration Dashboard. If not:</p>
+<ol>
+<li>Click on your <strong>Profile Icon</strong> again</li>
+<li>Select <strong>Select Project</strong></li>
+<li>Choose the project you just created</li>
+<li>Click <strong>Select</strong></li>
+</ol>
+<p><img src="images/20260220_111231_image.png" alt="Select Project menu"></img></p>
+<p><strong>Note:</strong> The Configuration Dashboard is where you configure permissions and settings for your project. Make sure you're viewing the correct project name before proceeding.</p>
+<p><img src="images/20260220_111545_image.png" alt="Configuration Dashboard"></img></p>
+<h3 id="step-4-register-your-project-for-non-commercial-educational-use">Step 4: Register Your Project for Non-Commercial (Educational) Use</h3>
+<p>For this course, you'll register your project as a non-commercial educational project, which gives you access to GEE's data and computing power without needing a credit card.</p>
+<ol>
+<li>In the Configuration Dashboard, click on <strong>See if you are eligible for non-commercial use &gt; Get Started</strong></li>
+</ol>
+<p><img src="images/20260220_112130_image.png" alt="Non-commercial registration button"></img></p>
+<ol>
+<li>Fill out the registration form with information about your use case:<ul>
+<li>Select <strong>"Research &amp; Education"</strong> as your primary use case</li>
+<li>Confirm that your use is non-commercial</li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20260220_112335_image.png" alt="Registration form"></img></p>
+<ol>
+<li>Click <strong>Check Eligibility</strong></li>
+<li>When asked to choose a compute tier, select <strong>"Community"</strong> <ul>
+<li>Community tier is designed for students and small research projects</li>
+<li>It provides free access with reasonable computing limits</li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20260220_112550_image.png" alt="Compute tier selection"></img></p>
+<ol>
+<li>Complete the remaining registration steps by filling out any additional forms</li>
+</ol>
+<p><img src="images/20260220_112722_image.png" alt="Registration completion"></img></p>
+<p><img src="images/20260220_112807_image.png" alt="Final registration step"></img></p>
+<ol>
+<li>Click the <strong>Register</strong> button to complete the process</li>
+</ol>
+<h3 id="step-5-enable-the-earth-engine-api">Step 5: Enable the Earth Engine API</h3>
+<p>After registration completes, a pop-up window should appear asking you to enable the Earth Engine API. The API is what actually lets your project use Google Earth Engine.</p>
+<p><img src="images/20260220_112855_image.png" alt="API enablement pop-up"></img></p>
+<ol>
+<li>Click the <strong>Enable</strong> link in the pop-up window</li>
+</ol>
+<p><img src="images/20260220_112941_image.png" alt="Enable button detail"></img></p>
+<ol>
+<li>You may be taken to a Google Cloud Console page — this is normal</li>
+<li>If prompted, confirm the API enablement</li>
+</ol>
+<h3 id="step-6-select-your-project-in-earth-engine">Step 6: Select Your Project in Earth Engine</h3>
+<p>Now you need to tell the Code Editor which project to use.</p>
+<ol>
+<li>Return to the Code Editor window</li>
+<li>Click on your <strong>Profile Icon</strong> (top right)</li>
+<li>Select <strong>Select &gt; Choose a Cloud Project</strong></li>
+</ol>
+<p><img src="images/20260220_113116_image.png" alt="Profile menu for project selection"></img></p>
+<ol>
+<li>Find and select the project you just created</li>
+</ol>
+<p><img src="images/20260220_113340_image.png" alt="Project selection modal"></img></p>
+<ol>
+<li>Click the <strong>Select</strong> button</li>
+</ol>
+<p><img src="images/20260220_113402_image.png" alt="Selected project confirmation"></img></p>
+<p>Congratulations! Your project is now active in the Code Editor.</p>
+<h3 id="step-7-test-your-setup">Step 7: Test Your Setup</h3>
+<p>To verify everything is working:</p>
+<ol>
+<li>You should see your project name in the top-right corner of the Code Editor</li>
+<li>Try running a simple test script to confirm access</li>
+<li>If you don't have a script, you can use this sample: <a href="https://code.earthengine.google.com/f983a2d843739e23ffb77f336ad6d4fb" target="_blank">https://code.earthengine.google.com/f983a2d843739e23ffb77f336ad6d4fb</a><ul>
+<li>Click <strong>Run</strong> to execute the script</li>
+<li>You should see results appear on the map within a few seconds</li>
+</ul>
+</li>
+</ol>
+<hr></hr>
+<h2 id="sharing-your-work">Sharing Your Work</h2>
+<h3 id="how-to-share-your-gee-scripts">How to Share Your GEE Scripts</h3>
+<p>When submitting assignments, you'll need to share your GEE scripts with your instructor. Here's how:</p>
+<ol>
+<li>In the Code Editor, click the <strong>Share</strong> button (top menu)</li>
+<li>Copy the link that appears (or click "Get Link")</li>
+<li>By default, this creates a "view-only" link that lets others see your code but not edit it</li>
+<li>If you want others to edit, you can change permissions to "Editor" (not typically needed for homework)</li>
+<li>Test the link by opening it in an <strong>incognito window</strong> to make sure it's accessible</li>
+<li>Include this link in your homework submission</li>
+</ol>
+<h3 id="best-practices-for-sharing">Best Practices for Sharing</h3>
+<ul>
+<li>Always test your shared links before submitting</li>
+<li>Use view-only access for homework submissions</li>
+<li>Include a brief description in your script comments explaining what it does</li>
+<li>Make sure your project name is descriptive so instructors know it's your work</li>
+</ul>
+<hr></hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="i-dont-see-the-pop-up-to-enable-the-earth-engine-api">I don't see the pop-up to enable the Earth Engine API</h3>
+<ul>
+<li>Check your browser's pop-up blocker settings</li>
+<li>Try the process again</li>
+<li>Manually navigate to Google Cloud Console if needed</li>
+</ul>
+<h3 id="my-project-wont-initialize">My project won't initialize</h3>
+<ul>
+<li>Log out and log back in</li>
+<li>Try a different browser</li>
+<li>Clear your browser's cookies and cache</li>
+<li>Contact your instructor for help</li>
+</ul>
+<h3 id="i-cant-find-my-project-in-the-select-project-menu">I can't find my project in the "Select Project" menu</h3>
+<ul>
+<li>Make sure you completed the registration form</li>
+<li>Wait a few minutes and refresh the page</li>
+<li>Create a new project if the old one won't appear</li>
+</ul>
 
                                 
                                 </section>
@@ -1118,7 +1249,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - Logging in to Google Earth Engine","level":"1.2.3","depth":2,"next":{"title":"02b - Logging into accounts","level":"1.2.4","depth":2,"path":"week00/02_logging_into_accounts.md","ref":"week00/02_logging_into_accounts.md","articles":[]},"previous":{"title":"01 - Things you need to know about GIS data on your computer","level":"1.2.2","depth":2,"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","ref":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/02_logging_in_to_google_earth_engine.md","mtime":"2026-02-25T19:03:49.153Z","type":"markdown"},"gitbook":{"version":"6.1.6","time":"2026-02-25T19:03:59.552Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - Logging in to Google Earth Engine","level":"1.2.3","depth":2,"next":{"title":"02b - Logging into accounts","level":"1.2.4","depth":2,"path":"week00/02_logging_into_accounts.md","ref":"week00/02_logging_into_accounts.md","articles":[]},"previous":{"title":"01 - Things you need to know about GIS data on your computer","level":"1.2.2","depth":2,"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","ref":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/02_logging_in_to_google_earth_engine.md","mtime":"2026-02-25T19:25:50.098Z","type":"markdown"},"gitbook":{"version":"6.1.6","time":"2026-02-25T19:26:06.659Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
