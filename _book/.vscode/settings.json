@@ -1,8 +1,0 @@
-{
-    "workbench.colorTheme": "Default Light+",
-    "markdown.preview.typographer": false,
-    "editor.experimental.pasteActions.enabled": true,
-    "ipynb.experimental.pasteImages.enabled": true,
-    "editor.formatOnPaste": false,
-    "pasteImage.basePath": "${projectRoot}"
-}

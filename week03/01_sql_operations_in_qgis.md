@@ -1,1 +1,0 @@
-# SQL Operations in QGIS
