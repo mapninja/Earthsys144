@@ -1005,147 +1005,630 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="introducing-qgis-with-basic-cartographic-design">Introducing QGIS with Basic Cartographic Design</h1>
+                                <h1 id="labelling-tree-data-with-qgis">Labelling Tree Data with QGIS</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface and basic cartographic principles while teaching essential skills for document creation, file management, and homework submission that you'll use throughout the course.</p>
+<p>Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by digitizing individual tree crowns from high-resolution aerial imagery.</p>
+<p><strong>What you'll be doing:</strong>
+You'll work with a QGIS project that contains high-resolution NAIP (National Agriculture Imagery Program) imagery taken before or after a wildfire event. Your task is to randomly select an image tile, digitize tree crown boundaries as accurately as possible, and create a professional map documenting your work.</p>
+<p><strong>Why this matters:</strong>
+The data you create will be used to train machine learning models for automated tree detection and counting. Accurate tree crown delineation is fundamental to forest inventory, wildfire risk assessment, and ecosystem monitoring. This workflow teaches you core GIS skills while contributing to real research applications.</p>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this lab, you will be able to:</p>
 <ul>
-<li>Navigate the QGIS interface confidently</li>
-<li>Understand fundamental spatial data types (points, lines, polygons, pixels)</li>
-<li>Create and save various document types (Markdown, GeoJSON, screenshots)</li>
-<li>Apply basic cartographic design principles</li>
-<li>Create your first professional map layout in QGIS</li>
+<li>Navigate the QGIS interface and use essential navigation tools</li>
+<li>Work with layers, including reordering, toggling visibility, and exploring metadata</li>
+<li>Query attribute tables and select features based on attributes and location</li>
+<li>Use geoprocessing tools to create random points within features</li>
+<li>Create and edit scratch layers for digitizing new spatial data</li>
+<li>Digitize accurate polygon features (tree crowns) from aerial imagery</li>
+<li>Export spatial data in GeoJSON format with proper naming conventions</li>
+<li>Create and populate a professional map layout for documentation</li>
+<li>Submit completed spatial data and map products</li>
 </ul>
-<h2 id="point-lines-polygons--pixels-101">Point, Lines, Polygons &amp; Pixels 101</h2>
-<h3 id="understanding-spatial-data-types">Understanding Spatial Data Types</h3>
-<p>Before creating maps, understand the fundamental spatial data types:</p>
-<p><strong>Vector Data:</strong></p>
+<hr></hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="download-and-extract-the-project-package">Download and Extract the Project Package</h3>
+<p>Download the <code>Tree_Labelling.zip</code> file from Canvas or the course repository. This package contains everything you need to get started, with <strong>best-practice folder structure and naming conventions already set up for you</strong>.</p>
+<p><strong>What's included in the .zip file:</strong></p>
 <ul>
-<li><strong>Points</strong>: Discrete locations (cities, sample sites, GPS coordinates)</li>
-<li><strong>Lines</strong>: Linear features (roads, rivers, boundaries)</li>
-<li><strong>Polygons</strong>: Areas with defined boundaries (countries, lakes, parcels)</li>
+<li>Pre-configured QGIS project file (<code>.qgz</code>)</li>
+<li>Raw data files (NAIP imagery connection, grid layer)</li>
+<li>Pre-built folder structure following GIS best practices</li>
+<li>Empty directories ready for your work</li>
+<li>Map layout template</li>
 </ul>
-<p><strong>Raster Data:</strong></p>
-<ul>
-<li><strong>Pixels</strong>: Grid cells containing values (satellite imagery, elevation models, climate data)</li>
-<li>Each pixel represents a specific area on Earth's surface</li>
-<li>Resolution determines the size of each pixel</li>
-</ul>
-<h3 id="coordinate-reference-systems">Coordinate Reference Systems</h3>
-<p>All spatial data exists within a coordinate reference system (CRS):</p>
-<ul>
-<li><strong>Geographic CRS</strong>: Uses latitude/longitude (e.g., WGS84)</li>
-<li><strong>Projected CRS</strong>: Uses x/y coordinates in meters/feet (e.g., UTM)</li>
-<li>QGIS can reproject data on-the-fly for visualization</li>
-</ul>
-<h2 id="creating--naming-documents">Creating &amp; Naming Documents</h2>
-<h3 id="create-a-markdown-document">Create a Markdown Document</h3>
-<p>Markdown is essential for documentation and note-taking:</p>
-<p><strong>What is Markdown?</strong></p>
-<ul>
-<li>Lightweight markup language for formatting text</li>
-<li>Uses simple syntax for headers, lists, links, and emphasis</li>
-<li>Widely used in GitHub, web publishing, and technical documentation</li>
-</ul>
-<p><strong>Creating Your First Markdown File:</strong></p>
+<p><strong>Extract the .zip file:</strong></p>
 <ol>
-<li>Open your text editor</li>
-<li>Create a new file named <code>week00_notes.md</code></li>
-<li>Add basic content with headers, lists, and links</li>
-<li>Save and preview the formatting</li>
+<li>Download <code>Tree_Labelling.zip</code> </li>
+<li>Extract it to your Documents folder (or another location you can easily access)</li>
+<li>After extraction, you should have this structure:</li>
 </ol>
-<p><strong>Basic Markdown Syntax:</strong></p>
-<pre><code class="lang-markdown"><span class="hljs-section"># Main Header</span>
-
-<span class="hljs-section">## Sub Header</span>
-
-<span class="hljs-bullet">-</span> Bullet point
-<span class="hljs-bullet">-</span> Another point
-  <span class="hljs-strong">**Bold text**</span>
-  <span class="hljs-emphasis">_Italic text_</span>
-  [<span class="hljs-string">Link text</span>](<span class="hljs-link">http://example.com</span>)
-</code></pre>
-<h3 id="create-a-github-student-account-and-repository">Create a GitHub Student Account and Repository</h3>
-<p>GitHub will host your course portfolio:</p>
-<p><strong>Account Setup:</strong></p>
-<ol>
-<li>Visit <a href="https://github.com" target="_blank">github.com</a> and create account</li>
-<li>Apply for GitHub Student Developer Pack</li>
-<li>Verify your Stanford email address</li>
-</ol>
-<p><strong>Creating Your First Repository:</strong></p>
-<ol>
-<li>Click "New repository" on GitHub</li>
-<li>Name it <code>earthsys144-portfolio</code></li>
-<li>Initialize with README.md</li>
-<li>Clone to your local computer</li>
-<li>Add your first markdown file and push changes</li>
-</ol>
-<h3 id="create-a-geojson-file">Create a GeoJSON File</h3>
-<p>GeoJSON is a standard format for web-based spatial data:</p>
-<p><strong>Using an Online Editor:</strong></p>
-<ol>
-<li>Visit <a href="http://geojson.io" target="_blank">geojson.io</a></li>
-<li>Draw some points, lines, and polygons</li>
-<li>Add properties to each feature</li>
-<li>Export as GeoJSON file</li>
-<li>Open in QGIS to verify</li>
-</ol>
-<p><strong>Understanding GeoJSON Structure:</strong></p>
+<pre><code>Tree_Labelling/
+├── data/
+│   ├── raw/          (contains project file and base data)
+│   ├── processed/    (empty - for your selected grid cell)
+│   └── outputs/      (empty - for your digitized tree crowns)
+├── maps/             (empty - for your PDF map layout)
+└── documentation/    (empty - for notes about your work)
+</code></pre><p><strong>Recommended locations:</strong></p>
 <ul>
-<li>Human-readable text format</li>
-<li>Based on JavaScript Object Notation (JSON)</li>
-<li>Contains geometry and properties for each feature</li>
-<li>Widely supported by web mapping libraries</li>
+<li><strong>Windows:</strong> <code>C:\Users\YourName\Documents\Tree_Labelling\</code></li>
+<li><strong>Mac:</strong> <code>~/Documents/Tree_Labelling/</code></li>
 </ul>
-<h3 id="create-a-screenshot">Create a Screenshot</h3>
-<p>Screenshots are essential for documentation and homework:</p>
-<p><strong>Best Practices:</strong></p>
+<p><strong>Why this structure is already set up for you:</strong></p>
 <ul>
-<li>Use built-in tools (macOS: Cmd+Shift+4, Windows: Snipping Tool)</li>
-<li>Crop to show relevant content only</li>
-<li>Save in PNG format for crisp graphics</li>
-<li>Include sufficient context for understanding</li>
-<li>Name files descriptively</li>
+<li>Keeps original data separate from modified data</li>
+<li>Makes it easy to find files for submission</li>
+<li>Follows industry-standard GIS project organization</li>
+<li>Prevents accidentally overwriting original data</li>
+<li>Empty folders are ready for you to save your work in the right places</li>
 </ul>
-<p><strong>QGIS Screenshot Tips:</strong></p>
-<ul>
-<li>Clean up the interface before capturing</li>
-<li>Ensure legends and scale bars are visible</li>
-<li>Check that colors display correctly</li>
-<li>Consider the target audience and purpose</li>
-</ul>
-<h2 id="your-first-qgis-map">Your First QGIS Map</h2>
-<h3 id="loading-data">Loading Data</h3>
-<p>Practice with sample data:</p>
+<h3 id="understanding-the-pre-configured-naming-structure">Understanding the Pre-configured Naming Structure</h3>
+<p>The project folder follows <strong>Esri raster naming rules</strong> as the universal standard because they're the most restrictive and ensure compatibility across all GIS software. Throughout this lab, you'll save files using these same conventions.</p>
+<p><strong>Key naming rules you'll follow:</strong></p>
 <ol>
-<li>Download sample datasets (Natural Earth, OpenSteetMap extracts)</li>
-<li>Load vector layers using "Add Vector Layer"</li>
-<li>Load raster layers using "Add Raster Layer"</li>
-<li>Explore the attribute tables</li>
+<li><strong>Use underscores (_) instead of spaces or hyphens</strong></li>
+<li><strong>Always start with a letter, never a number</strong></li>
+<li><strong>Avoid special characters</strong> (no &amp;, -, @, #, etc.)</li>
+<li><strong>Keep names short but descriptive</strong></li>
+<li><strong>Use consistent patterns</strong> for related files</li>
 </ol>
-<h3 id="basic-styling">Basic Styling</h3>
-<p>Apply basic cartographic principles:</p>
+<p><strong>Examples of good GIS file naming:</strong></p>
 <ul>
-<li>Choose appropriate symbols for data type</li>
-<li>Use consistent color schemes</li>
-<li>Ensure sufficient contrast</li>
-<li>Consider colorblind accessibility</li>
-<li>Apply transparency judiciously</li>
+<li><code>grid_cell_18_42342_101234.geojson</code> ✓</li>
+<li><code>jsmith_18_42342_101234_20200815_RGB.geojson</code> ✓</li>
+<li><code>Tree_Crowns_Final.geojson</code> ✓</li>
 </ul>
-<h3 id="creating-a-layout">Creating a Layout</h3>
-<p>Design your first map layout:</p>
+<p><strong>Examples of bad naming (will cause errors):</strong></p>
+<ul>
+<li><code>grid-cell-18.geojson</code> ✗ (hyphens cause problems)</li>
+<li><code>18_42342_101234.geojson</code> ✗ (starts with number)</li>
+<li><code>my tree data.geojson</code> ✗ (contains spaces)</li>
+<li><code>grid&amp;cell.geojson</code> ✗ (special character)</li>
+</ul>
+<p>For more details on GIS naming conventions, review <a href="01_things_you_need_to_know_about_gis_data_on_your_computer.html">01 - Things You Need to Know About GIS Data on Your Computer</a>.</p>
+<h3 id="whats-in-the-raw-data-folder">What's in the Raw Data Folder</h3>
+<p>Inside <code>data/raw/</code> you'll find:</p>
+<ul>
+<li><strong>QGIS Project File:</strong> The main <code>.qgz</code> file you'll open (named following GIS conventions)</li>
+<li><strong>Grid Layer:</strong> Pre-loaded Web Mercator tile boundaries at zoom level 18</li>
+<li><strong>NAIP Imagery Connection:</strong> XYZ tile service configuration for aerial imagery</li>
+</ul>
+<p><strong>Important:</strong> Never modify or delete files in the <code>raw/</code> folder. These are your originals. All your work will be saved to the <code>processed/</code> and <code>outputs/</code> folders.</p>
+<hr></hr>
+<h2 id="part-1-open-and-explore-the-project">Part 1: Open and Explore the Project</h2>
+<h3 id="step-1-open-the-project-file">Step 1: Open the Project File</h3>
+<p>Now that you've extracted the project package, let's open the pre-configured QGIS project:</p>
 <ol>
-<li>Use Print Layout manager</li>
-<li>Add map canvas, legend, scale bar, and north arrow</li>
-<li>Include title and data sources</li>
-<li>Apply grid and guides for alignment</li>
-<li>Export as both PNG and PDF</li>
+<li>Launch QGIS</li>
+<li>Go to <strong>Project &gt; Open</strong> (or press <code>Ctrl+O</code> / <code>Cmd+O</code>)</li>
+<li>Navigate to your extracted <code>Tree_Labelling</code> folder, then to <code>data/raw/</code></li>
+<li>Select the QGIS project file (<code>.qgz</code>)<ul>
+<li>Example path: <code>~/Documents/Tree_Labelling/data/raw/Tree_Labelling_Project.qgz</code></li>
+</ul>
+</li>
+<li>Click <strong>Open</strong></li>
 </ol>
+<p>The project should load with the NAIP imagery layer and grid layer visible. Everything is pre-configured and ready to use!</p>
+<h3 id="step-2-explore-navigation-tools">Step 2: Explore Navigation Tools</h3>
+<p>QGIS provides several tools for navigating your map canvas. Let's get familiar with them:</p>
+<p><strong>Basic Navigation:</strong></p>
+<ol>
+<li><strong>Pan Tool</strong> (hand icon) - Click and drag to move around the map<ul>
+<li>Shortcut: Hold <code>Spacebar</code> and drag</li>
+</ul>
+</li>
+<li><strong>Zoom In/Out</strong> - Use the magnifying glass icons or mouse wheel</li>
+<li><strong>Zoom Full</strong> - Click the globe icon to see all layers</li>
+<li><strong>Zoom to Layer</strong> - Right-click the grid layer in the Layers Panel and select <strong>Zoom to Layer</strong><ul>
+<li>This is particularly useful for understanding the full extent of a layer</li>
+</ul>
+</li>
+</ol>
+<p><strong>Try this:</strong></p>
+<ul>
+<li>Use <strong>Zoom to Layer</strong> on the grid layer to see all tile boundaries</li>
+<li>Use your mouse wheel to zoom in and out</li>
+<li>Hold spacebar and drag to pan around the imagery</li>
+<li>Notice how the NAIP imagery loads different tiles as you navigate</li>
+</ul>
+<h3 id="step-3-explore-the-layers-panel">Step 3: Explore the Layers Panel</h3>
+<p>The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:</p>
+<p><strong>Layer Management:</strong></p>
+<ol>
+<li><p><strong>Reorder Layers:</strong> Click and drag layers up or down</p>
+<ul>
+<li>Layers higher in the list appear on top in the map</li>
+<li>Try moving the grid layer above and below the imagery layer</li>
+<li>See how this affects visibility</li>
+</ul>
+</li>
+<li><p><strong>Toggle Layer Visibility:</strong> Click the checkbox next to each layer name</p>
+<ul>
+<li>Turn the grid layer off and on</li>
+<li>Notice how you can see the imagery without the grid overlay</li>
+</ul>
+</li>
+<li><p><strong>Layer Properties:</strong> Right-click any layer and select <strong>Properties</strong></p>
+<ul>
+<li>Explore the different tabs (Source, Symbology, etc.)</li>
+<li>Don't make changes yet—just observe what's available</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-4-explore-layer-metadata">Step 4: Explore Layer Metadata</h3>
+<p>Metadata tells you important information about your spatial data:</p>
+<ol>
+<li>Right-click the <strong>grid layer</strong> and select <strong>Properties</strong></li>
+<li>Navigate to the <strong>Information</strong> tab</li>
+<li><p>Review the metadata including:</p>
+<ul>
+<li><strong>CRS (Coordinate Reference System):</strong> Should be Web Mercator (EPSG:3857)</li>
+<li><strong>Extent:</strong> The bounding box coordinates</li>
+<li><strong>Feature count:</strong> How many grid cells exist</li>
+<li><strong>Geometry type:</strong> Should be "Polygon"</li>
+</ul>
+</li>
+<li><p>Repeat for the NAIP imagery layer</p>
+<ul>
+<li>Note the source URL for the XYZ tiles</li>
+<li>Check the CRS (should also be EPSG:3857)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Why this matters:</strong> Understanding your data's coordinate system, extent, and properties is essential before any spatial analysis. Mismatched coordinate systems are one of the most common GIS errors.</p>
+<hr></hr>
+<h2 id="part-2-working-with-attributes-and-selections">Part 2: Working with Attributes and Selections</h2>
+<h3 id="step-5-open-and-explore-the-attribute-table">Step 5: Open and Explore the Attribute Table</h3>
+<p>Every vector layer has an attribute table containing information about each feature:</p>
+<ol>
+<li>Right-click the <strong>grid layer</strong> in the Layers Panel</li>
+<li>Select <strong>Open Attribute Table</strong></li>
+<li>Examine the table structure:<ul>
+<li>Each row represents one grid cell</li>
+<li>Columns contain attributes like tile coordinates (X, Y, Z)</li>
+<li>Note the field names—you'll need these for creating file names later</li>
+</ul>
+</li>
+</ol>
+<p><strong>Understanding the Grid:</strong></p>
+<ul>
+<li><strong>Z:</strong> Zoom level (should be 18)</li>
+<li><strong>X:</strong> Tile column number</li>
+<li><strong>Y:</strong> Tile row number</li>
+<li>These Z/X/Y values follow the Web Mercator tiling scheme used by web maps</li>
+</ul>
+<h3 id="step-6-select-features-by-attributes">Step 6: Select Features by Attributes</h3>
+<p>Now let's practice selecting specific features based on their attributes:</p>
+<ol>
+<li>In the attribute table, click the <strong>Select features using an expression</strong> button (looks like ε with a yellow highlight)</li>
+<li>The expression builder opens—this is where you can write queries</li>
+<li><p>Try a simple selection:</p>
+<ul>
+<li>In the expression field, type: <code>"X" = 100</code> (replace 100 with an actual X value from your table)</li>
+<li>Click <strong>Select Features</strong></li>
+<li>Notice the selected rows turn blue in the attribute table and yellow on the map</li>
+</ul>
+</li>
+<li>To clear the selection: Click the <strong>Deselect all features</strong> button in the attribute table toolbar</li>
+</ol>
+<p><strong>Practice:</strong> Try selecting grid cells that meet certain criteria (explore the AND/OR operators in expressions if you want to get fancy).</p>
+<hr></hr>
+<h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
+<h3 id="step-7-create-a-random-point">Step 7: Create a Random Point</h3>
+<p>Now we'll use geoprocessing tools to randomly select a grid cell for your tree annotation work:</p>
+<ol>
+<li>Go to <strong>Processing &gt; Toolbox</strong> (or press <code>Ctrl+Alt+T</code> / <code>Cmd+Option+T</code>)</li>
+<li>The Processing Toolbox panel opens—this contains hundreds of analysis tools</li>
+<li>In the search bar, type: <code>random points inside polygons</code></li>
+<li>Double-click <strong>Random points inside polygons (fixed)</strong> to open the tool</li>
+<li>Configure the tool:<ul>
+<li><strong>Input layer:</strong> Select your grid layer</li>
+<li><strong>Number of points:</strong> Set to <code>1</code></li>
+<li><strong>Minimum distance between points:</strong> Leave at 0</li>
+<li><strong>Random points:</strong> Click <code>...</code> and select <strong>Create Temporary Layer</strong> (or save to disk if you prefer)</li>
+</ul>
+</li>
+<li>Click <strong>Run</strong></li>
+</ol>
+<p>A new temporary layer called "Random points" should appear with a single point somewhere within the grid.</p>
+<p><strong>Troubleshooting:</strong> If you don't see the point, right-click the new layer and select <strong>Zoom to Layer</strong>.</p>
+<h3 id="step-8-select-grid-cell-by-location">Step 8: Select Grid Cell by Location</h3>
+<p>Now use the random point to select the grid cell it falls within:</p>
+<ol>
+<li>Make sure the <strong>grid layer</strong> is selected in the Layers Panel (click on it once)</li>
+<li>Go to <strong>Vector &gt; Research Tools &gt; Select by Location</strong></li>
+<li>Configure the selection:<ul>
+<li><strong>Select features from:</strong> Choose your grid layer</li>
+<li><strong>Where the features:</strong> Select "intersect"</li>
+<li><strong>By comparing to features from:</strong> Select the random points layer</li>
+</ul>
+</li>
+<li>Click <strong>Run</strong></li>
+</ol>
+<p>One grid cell should now be selected (highlighted in yellow on the map). This is your work area!</p>
+<p><strong>Check your selection:</strong></p>
+<ul>
+<li>Open the grid layer's attribute table</li>
+<li>You should see exactly 1 feature selected</li>
+<li>Note the Z, X, and Y values—you'll need these for naming your files</li>
+</ul>
+<h3 id="step-9-save-the-selected-grid-cell">Step 9: Save the Selected Grid Cell</h3>
+<p>Let's save this selected grid cell as a new file so you can easily work with it:</p>
+<ol>
+<li>Right-click the <strong>grid layer</strong> in the Layers Panel</li>
+<li>Select <strong>Export &gt; Save Selected Features As...</strong></li>
+<li><p>Configure the export:</p>
+<ul>
+<li><strong>Format:</strong> GeoJSON</li>
+<li><p><strong>File name:</strong> Click <code>...</code> and navigate to your <code>Tree_Labelling</code> folder, then to the <code>data/processed/</code> folder (this empty folder was already created for you in the project package). Name the file:</p>
+<pre><code>grid_cell_Z_X_Y.geojson
+</code></pre><p>Replace Z, X, Y with the actual tile coordinates from your selected cell.</p>
+<p><strong>Example:</strong> <code>grid_cell_18_42342_101234.geojson</code></p>
+<p><strong>Full path example (Mac):</strong> <code>~/Documents/Tree_Labelling/data/processed/grid_cell_18_42342_101234.geojson</code></p>
+<p><strong>Full path example (Windows):</strong> <code>C:\Users\YourName\Documents\Tree_Labelling\data\processed\grid_cell_18_42342_101234.geojson</code></p>
+</li>
+<li><p><strong>CRS:</strong> Leave as-is (should be EPSG:3857)</p>
+</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<p><strong>Note on naming:</strong> We use <code>grid_cell_</code> as a prefix (starts with a letter), underscores to separate parts (no hyphens or spaces), and embed the tile coordinates for easy identification. This follows the GIS naming best practices from Week 00.</p>
+<p>The new layer should automatically be added to your map.</p>
+<ol>
+<li>Right-click the new grid cell layer and select <strong>Zoom to Layer</strong></li>
+<li>Zoom in closer to see the NAIP imagery clearly within your grid cell</li>
+</ol>
+<p><strong>Important:</strong> If your selected grid cell has no trees, is completely obscured by clouds, or is otherwise "unlabellable," simply repeat Steps 7-9 to generate a new random point and select a different grid cell.</p>
+<hr></hr>
+<h2 id="part-4-digitizing-tree-crowns">Part 4: Digitizing Tree Crowns</h2>
+<h3 id="step-10-create-a-scratch-layer-for-digitizing">Step 10: Create a Scratch Layer for Digitizing</h3>
+<p>Now we'll create a new layer where you'll digitize tree crown polygons:</p>
+<ol>
+<li>Go to <strong>Layer &gt; Create Layer &gt; New Temporary Scratch Layer</strong></li>
+<li><p>Configure the layer:</p>
+<ul>
+<li><p><strong>Layer name:</strong> Enter a descriptive name using this convention:</p>
+<pre><code>SUNETID_Z_X_Y_NAIPDATE_RGBorIR
+</code></pre><p>For example: <code>jsmith_18_42342_101234_20200815_RGB</code></p>
+<p><strong>Naming convention breakdown:</strong></p>
+<ul>
+<li><code>SUNETID</code>: Your Stanford SUNetID (starts with letter ✓)</li>
+<li><code>Z_X_Y</code>: The tile coordinates from your selected grid cell</li>
+<li><code>NAIPDATE</code>: The date of the NAIP imagery in YYYYMMDD format (check layer properties or project documentation)</li>
+<li><code>RGBorIR</code>: Either <code>RGB</code> for true color or <code>IR</code> for infrared imagery</li>
+<li><strong>Use underscores (_) to separate each part</strong> (no hyphens or spaces)</li>
+</ul>
+<p><strong>Why this naming pattern:</strong></p>
+<ul>
+<li>Starts with your SUNetID (a letter) to meet Esri naming requirements</li>
+<li>Uses underscores for readability and GIS compatibility</li>
+<li>Embeds all key metadata in the filename</li>
+<li>Makes the file self-documenting and easy to identify</li>
+</ul>
+</li>
+<li><p><strong>Geometry type:</strong> Polygon</p>
+</li>
+<li><strong>CRS:</strong> EPSG:3857 (same as your other layers)</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<p>The new empty layer appears in your Layers Panel.</p>
+<h3 id="step-11-start-an-editing-session">Step 11: Start an Editing Session</h3>
+<p>Before you can digitize features, you need to enable editing:</p>
+<ol>
+<li>Select your new scratch layer in the Layers Panel</li>
+<li>Click the <strong>Toggle Editing</strong> button (pencil icon) in the toolbar<ul>
+<li>Or right-click the layer and select <strong>Toggle Editing</strong></li>
+</ul>
+</li>
+<li>The layer name should now have a small pencil icon next to it, indicating it's editable</li>
+</ol>
+<h3 id="step-12-digitize-tree-crowns">Step 12: Digitize Tree Crowns</h3>
+<p>Now for the main task—digitizing individual tree crowns as polygons:</p>
+<p><strong>Digitizing Guidelines:</strong></p>
+<ul>
+<li><strong>One polygon per tree:</strong> Each visible tree crown should be its own polygon</li>
+<li><strong>Accuracy matters:</strong> Trace the crown boundary as accurately as possible</li>
+<li><strong>Crown boundary:</strong> Follow the outer edge of the visible canopy</li>
+<li><strong>Overlapping crowns:</strong> If trees overlap, estimate the boundary between them</li>
+<li><strong>Include all visible trees:</strong> Within your grid cell, label every tree you can identify</li>
+<li><strong>Dead trees count:</strong> If you can see a tree crown structure, include it</li>
+</ul>
+<p><strong>Digitizing Process:</strong></p>
+<ol>
+<li>Click the <strong>Add Polygon Feature</strong> button (looks like a polygon shape) in the toolbar</li>
+<li><p>Click around the boundary of a tree crown to create vertices</p>
+<ul>
+<li>Left-click to place each vertex</li>
+<li>Right-click when you're done with the polygon to finish it</li>
+</ul>
+</li>
+<li><p>When you right-click to finish, an attribute form may appear</p>
+<ul>
+<li>You can leave attributes empty or add notes if desired</li>
+<li>Click <strong>OK</strong> to complete the feature</li>
+</ul>
+</li>
+<li>Repeat for each tree crown in your grid cell</li>
+<li><strong>Zoom in closely</strong> for accuracy—use your mouse wheel frequently</li>
+<li><strong>Pan often</strong> to see different parts of your grid cell</li>
+</ol>
+<p><strong>Pro Tips:</strong></p>
+<ul>
+<li>Use the <strong>Vertex Tool</strong> to adjust polygon shapes after creation</li>
+<li>Press <code>Ctrl+Z</code> (Cmd+Z on Mac) to undo mistakes</li>
+<li>Take breaks! Digitizing requires focus and can cause eye strain</li>
+<li>If a tree is partially outside your grid cell, still include it if most of the crown is inside</li>
+</ul>
+<h3 id="step-13-save-your-edits">Step 13: Save Your Edits</h3>
+<p>As you work, save your edits periodically:</p>
+<ol>
+<li>Click the <strong>Save Layer Edits</strong> button (floppy disk icon) in the toolbar<ul>
+<li>This saves your edits to the temporary scratch layer</li>
+</ul>
+</li>
+<li>Continue digitizing until you've labeled all visible trees in your grid cell</li>
+<li>When completely finished, click <strong>Toggle Editing</strong> again to stop the editing session</li>
+<li>If prompted, click <strong>Save</strong> to confirm saving your edits</li>
+</ol>
+<h3 id="step-14-export-as-geojson">Step 14: Export as GeoJSON</h3>
+<p>Now export your digitized tree crowns as a GeoJSON file:</p>
+<ol>
+<li>Right-click your scratch layer in the Layers Panel</li>
+<li>Select <strong>Export &gt; Save Features As...</strong></li>
+<li><p>Configure the export:</p>
+<ul>
+<li><strong>Format:</strong> GeoJSON</li>
+<li><p><strong>File name:</strong> Navigate to your <code>Tree_Labelling</code> folder, then to the <code>data/outputs/</code> folder (this empty folder was already created for you in the project package). Use the same naming convention as your layer:</p>
+<pre><code>SUNETID_Z_X_Y_NAIPDATE_RGBorIR.geojson
+</code></pre><p><strong>Example:</strong> <code>jsmith_18_42342_101234_20200815_RGB.geojson</code></p>
+<p><strong>Full path example (Mac):</strong> <code>~/Documents/Tree_Labelling/data/outputs/jsmith_18_42342_101234_20200815_RGB.geojson</code></p>
+<p><strong>Full path example (Windows):</strong> <code>C:\Users\YourName\Documents\Tree_Labelling\data\outputs\jsmith_18_42342_101234_20200815_RGB.geojson</code></p>
+</li>
+<li><p><strong>CRS:</strong> EPSG:4326 (WGS84 - this is standard for GeoJSON)</p>
+</li>
+<li>Leave other options as default</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong></li>
+</ol>
+<p><strong>Important:</strong> This file goes in your <code>outputs/</code> folder because it's your final analysis result. Keeping outputs separate from raw and processed data helps you stay organized and makes submission easier!</p>
+<hr></hr>
+<h2 id="part-5-create-a-map-layout">Part 5: Create a Map Layout</h2>
+<h3 id="step-15-open-the-map-layout-template">Step 15: Open the Map Layout Template</h3>
+<p>The project includes a pre-configured map layout template:</p>
+<ol>
+<li>Go to <strong>Project &gt; Layouts &gt; [Template Name]</strong><ul>
+<li>The template name will be provided in your project file</li>
+</ul>
+</li>
+<li>The Print Layout window opens</li>
+</ol>
+<p>You should see a layout with placeholders for:</p>
+<ul>
+<li>Map frame</li>
+<li>Title</li>
+<li>Legend</li>
+<li>Scale bar</li>
+<li>North arrow</li>
+<li>Text boxes for metadata</li>
+</ul>
+<h3 id="step-16-update-the-map-frame">Step 16: Update the Map Frame</h3>
+<p>First, make sure the map shows your work area:</p>
+<ol>
+<li>In the main QGIS window (not the layout), zoom to your selected grid cell with your digitized trees visible</li>
+<li>Return to the Print Layout window</li>
+<li>Select the map frame (click on it)</li>
+<li>In the <strong>Item Properties</strong> panel (right side):<ul>
+<li>Click <strong>Set Map Extent to Match Main Canvas</strong></li>
+<li>Your work area should now appear in the map frame</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-17-add-required-information">Step 17: Add Required Information</h3>
+<p>Update the text elements in the layout:</p>
+<p><strong>Title:</strong></p>
+<ol>
+<li>Click on the title text box</li>
+<li>In the <strong>Item Properties</strong> panel, update the text to something descriptive:<pre><code>Tree Crown Digitization - Grid Cell [Z/X/Y]
+</code></pre></li>
+</ol>
+<p><strong>Metadata Box:</strong>
+Add the following information (there should be a text box for this):</p>
+<ul>
+<li><strong>Your Name:</strong> [Your full name]</li>
+<li><strong>Date:</strong> [Today's date]</li>
+<li><strong>SUNetID:</strong> [Your SUNetID]</li>
+<li><strong>Grid Cell:</strong> Z/X/Y coordinates</li>
+<li><strong>NAIP Date:</strong> [Date of imagery]</li>
+<li><strong>Imagery Type:</strong> RGB or IR</li>
+<li><strong>Projection:</strong> EPSG:3857 (Web Mercator)</li>
+<li><strong>Tree Count:</strong> [Number of trees you digitized]</li>
+</ul>
+<p><strong>Notes Section:</strong>
+Add a notes text box or update an existing one with:</p>
+<ul>
+<li>Your experience with the labeling process (easy, challenging, observations)</li>
+<li>Any challenges (unclear boundaries, overlapping crowns, image quality issues)</li>
+<li>Confidence level in your digitization</li>
+<li>Any patterns you noticed (tree sizes, distribution, species if identifiable)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Notes: Digitizing this 256x256m grid cell took approximately 45 minutes. 
+Most tree crowns were clearly distinguishable, though several oaks had 
+overlapping canopies requiring estimation. Image quality was excellent. 
+Counted 37 individual trees ranging from approximately 5-15m crown diameter. 
+High confidence in accuracy of delineations.
+</code></pre><h3 id="step-18-verify-all-elements">Step 18: Verify All Elements</h3>
+<p>Check that your layout includes:</p>
+<ul>
+<li>[ ] Map showing your grid cell with digitized tree crowns</li>
+<li>[ ] Legend showing the layers</li>
+<li>[ ] Scale bar with appropriate units</li>
+<li>[ ] North arrow</li>
+<li>[ ] Title with grid cell coordinates</li>
+<li>[ ] Your name and date</li>
+<li>[ ] Projection information</li>
+<li>[ ] Notes about your labeling experience</li>
+<li>[ ] Tree count</li>
+</ul>
+<h3 id="step-19-export-the-map-layout">Step 19: Export the Map Layout</h3>
+<p>Export your finished map as a PDF:</p>
+<ol>
+<li>In the Print Layout window, go to <strong>Layout &gt; Export as PDF</strong></li>
+<li><p>Navigate to your <code>Tree_Labelling</code> folder, then to the <code>maps/</code> folder (this empty folder was already created for you in the project package). Save the file using this naming convention:</p>
+<pre><code>SUNETID_Z_X_Y_map.pdf
+</code></pre><p><strong>Example:</strong> <code>jsmith_18_42342_101234_map.pdf</code></p>
+<p><strong>Full path example (Mac):</strong> <code>~/Documents/Tree_Labelling/maps/jsmith_18_42342_101234_map.pdf</code></p>
+<p><strong>Full path example (Windows):</strong> <code>C:\Users\YourName\Documents\Tree_Labelling\maps\jsmith_18_42342_101234_map.pdf</code></p>
+</li>
+<li><p>Click <strong>Save</strong></p>
+</li>
+</ol>
+<p>Open the PDF to verify it looks correct before submitting.</p>
+<hr></hr>
+<h2 id="part-6-submission-and-validation">Part 6: Submission and Validation</h2>
+<h3 id="what-to-submit">What to Submit</h3>
+<p>You should submit <strong>three files</strong> from your organized folder structure:</p>
+<ol>
+<li><p><strong>Selected grid cell GeoJSON:</strong> From <code>data/processed/</code> folder</p>
+<ul>
+<li>Example: <code>grid_cell_18_42342_101234.geojson</code></li>
+</ul>
+</li>
+<li><p><strong>Digitized tree crowns GeoJSON:</strong> From <code>data/outputs/</code> folder</p>
+<ul>
+<li>Example: <code>jsmith_18_42342_101234_20200815_RGB.geojson</code></li>
+</ul>
+</li>
+<li><p><strong>Map layout PDF:</strong> From <code>maps/</code> folder</p>
+<ul>
+<li>Example: <code>jsmith_18_42342_101234_map.pdf</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>Submission checklist:</strong></p>
+<ul>
+<li>[ ] All three files use proper GIS naming conventions (underscores, no spaces, start with letter)</li>
+<li>[ ] All three files are saved in the correct folders of the pre-configured project structure</li>
+<li>[ ] File names match the required patterns</li>
+<li>[ ] You can easily locate all files for upload</li>
+</ul>
+<p><strong>Benefits of the pre-configured folder structure:</strong>
+The <code>Tree_Labelling.zip</code> package you downloaded already had all the folders set up correctly, making it easy to:</p>
+<ul>
+<li>Keep your work organized from the start</li>
+<li>Know exactly where to save each type of file</li>
+<li>Find your files quickly for submission</li>
+<li>Follow GIS industry best practices without extra setup</li>
+</ul>
+<h3 id="understanding-the-validation-process">Understanding the Validation Process</h3>
+<p><strong>Important:</strong> This assignment uses a validation workflow common in crowdsourced mapping and machine learning training data creation:</p>
+<ol>
+<li><strong>Your submission serves as training data</strong> for automated tree detection algorithms</li>
+<li><p><strong>Grading is a validation step:</strong> Your instructor or a TA will review your digitization for:</p>
+<ul>
+<li>Accuracy of crown boundaries</li>
+<li>Completeness (did you label all visible trees?)</li>
+<li>Consistency with labeling guidelines</li>
+<li>Quality of metadata and documentation</li>
+</ul>
+</li>
+<li><p><strong>Validation outcomes:</strong></p>
+<ul>
+<li><strong>Valid:</strong> Your work meets quality standards - full marks!</li>
+<li><strong>Invalid:</strong> Issues identified - you'll receive feedback and can relabel the same grid cell for full marks</li>
+</ul>
+</li>
+<li><p><strong>Common validation issues:</strong></p>
+<ul>
+<li>Missed trees</li>
+<li>Inaccurate boundaries</li>
+<li>Including non-tree objects</li>
+<li>Inconsistent methodology</li>
+<li>Missing or incorrect metadata</li>
+</ul>
+</li>
+</ol>
+<p><strong>The goal isn't perfection on the first try</strong>—it's to learn the process of creating quality geospatial data and understanding how validation improves dataset quality.</p>
+<h3 id="if-your-grid-cell-is-unlabellable">If Your Grid Cell is Unlabellable</h3>
+<p>Some grid cells may be impossible or impractical to label due to:</p>
+<ul>
+<li>Heavy cloud cover</li>
+<li>Poor image quality</li>
+<li>No trees present</li>
+<li>Complete obscuration by smoke</li>
+</ul>
+<p><strong>If this happens:</strong></p>
+<ol>
+<li>Document the issue in your map notes</li>
+<li>Return to Part 3, Step 7</li>
+<li>Generate a new random point and select a different grid cell</li>
+<li>Note in your submission that you had to select a new cell and why</li>
+</ol>
+<hr></hr>
 <h2 id="conclusion">Conclusion</h2>
-<p>Congratulations! You've now mastered the fundamentals of QGIS and created your first professional map. You understand the basic spatial data types, can create various document formats, and have applied essential cartographic design principles.</p>
-<p>These QGIS skills will be the foundation for all the spatial analysis work we'll do in the coming weeks. The interface navigation, data loading, styling, and layout creation skills you've learned here will be used in every subsequent lab. Keep practicing these fundamentals, and soon they'll become second nature.</p>
+<p>Congratulations! You've completed your first QGIS project and created valuable training data for tree detection research. Through this lab, you've learned:</p>
+<ul>
+<li>How to navigate the QGIS interface efficiently</li>
+<li>Layer management and metadata exploration</li>
+<li>Attribute and spatial selections</li>
+<li>Geoprocessing with random point generation</li>
+<li>Creating and editing vector data through digitizing</li>
+<li>Exporting data in standard formats (GeoJSON)</li>
+<li>Professional map layout design and documentation</li>
+</ul>
+<p><strong>These skills are foundational</strong> for everything we'll do in this course. You now understand the complete GIS workflow: opening data, analyzing it, creating new data, and communicating results through maps.</p>
+<h3 id="next-steps">Next Steps</h3>
+<ul>
+<li>Keep your QGIS project file—we may build on it in future labs</li>
+<li>Review the validation feedback when your assignment is graded</li>
+<li>If you need to relabel, use the feedback to improve your digitization</li>
+<li>Practice these skills—they'll be essential for upcoming assignments</li>
+</ul>
+<h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3>
+<p><strong>Can't see the imagery:</strong></p>
+<ul>
+<li>Check that the XYZ tile layer is above the grid in the Layers Panel</li>
+<li>Verify you have an internet connection (XYZ tiles load from the web)</li>
+<li>Try refreshing: right-click the layer and select Reload</li>
+</ul>
+<p><strong>Selection tools not working:</strong></p>
+<ul>
+<li>Make sure you've selected the correct layer first</li>
+<li>Check that features actually exist in your selected area</li>
+<li>Verify coordinate systems match (should all be EPSG:3857)</li>
+</ul>
+<p><strong>Can't edit/digitize:</strong></p>
+<ul>
+<li>Ensure Toggle Editing is enabled (pencil icon showing)</li>
+<li>Verify you've selected the correct scratch layer</li>
+<li>Check that the layer is editable (scratch/temporary layers are always editable)</li>
+</ul>
+<p><strong>Need to delete a polygon:</strong></p>
+<ul>
+<li>Click the <strong>Select Features</strong> tool</li>
+<li>Click on the polygon you want to delete</li>
+<li>Press the <code>Delete</code> key</li>
+<li>Remember to save your edits</li>
+</ul>
+<p><strong>Map layout looks wrong:</strong></p>
+<ul>
+<li>Return to the main QGIS window and adjust your map view</li>
+<li>Back in the layout, select the map frame and click "Set Map Extent to Match Main Canvas"</li>
+</ul>
+<hr></hr>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li>QGIS Documentation: <a href="https://docs.qgis.org" target="_blank">docs.qgis.org</a></li>
+<li>NAIP Imagery Information: <a href="https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/" target="_blank">USDA NAIP Program</a></li>
+<li>GeoJSON Specification: <a href="https://geojson.org" target="_blank">geojson.org</a></li>
+<li>Web Mercator Tile Scheme: <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames" target="_blank">Slippy Map Tilenames</a></li>
+</ul>
+<p>If you encounter issues not covered in the troubleshooting section, consult the course forum or office hours!</p>
 
                                 
                                 </section>
@@ -1189,7 +1672,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"09 - Introducing QGIS with Basic Cartographic Design","level":"1.2.10","depth":2,"next":{"title":"Week 01 - Lining it Up & Cartographic Presentation","level":"1.3","depth":1,"path":"week01/README.md","ref":"week01/README.md","articles":[{"title":"00 - Introduction to Data Formats & Finding Data","level":"1.3.1","depth":2,"path":"week01/00_introduction_to_formats_and_finding_data.md","ref":"week01/00_introduction_to_formats_and_finding_data.md","articles":[]},{"title":"01 - Coordinates & Pixels with Google Earth Engine","level":"1.3.2","depth":2,"path":"week01/01_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/01_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},{"title":"02 - Projection Error Measurement with QGIS","level":"1.3.3","depth":2,"path":"week01/02_projection_error_measurement_with_qgis.md","ref":"week01/02_projection_error_measurement_with_qgis.md","articles":[]},{"title":"03 - Great Circles and More Cartographic Tips & Tricks in QGIS","level":"1.3.4","depth":2,"path":"week01/03_great_circles_and_more_cartographic_tips_and_tricks_in_qgis.md","ref":"week01/03_great_circles_and_more_cartographic_tips_and_tricks_in_qgis.md","articles":[]}]},"previous":{"title":"08 - Help Fix the Labs","level":"1.2.9","depth":2,"path":"week00/08_help_fix_the_labs.md","ref":"week00/08_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_introducing_qgis_with_basic_cartographic_design.md","mtime":"2026-02-27T16:21:42.752Z","type":"markdown"},"gitbook":{"version":"6.1.6","time":"2026-02-27T16:21:54.422Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"09 - Introducing QGIS with Basic Cartographic Design","level":"1.2.10","depth":2,"next":{"title":"Week 01 - Lining it Up & Cartographic Presentation","level":"1.3","depth":1,"path":"week01/README.md","ref":"week01/README.md","articles":[{"title":"00 - Introduction to Data Formats & Finding Data","level":"1.3.1","depth":2,"path":"week01/00_introduction_to_formats_and_finding_data.md","ref":"week01/00_introduction_to_formats_and_finding_data.md","articles":[]},{"title":"01 - Coordinates & Pixels with Google Earth Engine","level":"1.3.2","depth":2,"path":"week01/01_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/01_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},{"title":"02 - Projection Error Measurement with QGIS","level":"1.3.3","depth":2,"path":"week01/02_projection_error_measurement_with_qgis.md","ref":"week01/02_projection_error_measurement_with_qgis.md","articles":[]},{"title":"03 - Great Circles and More Cartographic Tips & Tricks in QGIS","level":"1.3.4","depth":2,"path":"week01/03_great_circles_and_more_cartographic_tips_and_tricks_in_qgis.md","ref":"week01/03_great_circles_and_more_cartographic_tips_and_tricks_in_qgis.md","articles":[]}]},"previous":{"title":"08 - Help Fix the Labs","level":"1.2.9","depth":2,"path":"week00/08_help_fix_the_labs.md","ref":"week00/08_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_introducing_qgis_with_basic_cartographic_design.md","mtime":"2026-02-27T19:47:21.552Z","type":"markdown"},"gitbook":{"version":"6.1.6","time":"2026-02-27T19:47:33.636Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
