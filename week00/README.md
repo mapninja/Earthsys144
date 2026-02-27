@@ -26,6 +26,7 @@ Throughout this course, we'll be using six main technological platforms that rep
 ### Code/Programming Environments
 
 - **Google Colab with Python libraries** - Cloud-based Jupyter notebook environment with pre-installed geospatial Python libraries including GDAL, Shapely, GeoPandas, and jq. Enables reproducible spatial data science workflows, advanced analysis, and integration with cloud data sources without local software installation.
+- **Github.com** - 
 
 ## Week Overview
 
@@ -36,6 +37,7 @@ This week covers the essential technical skills and setup procedures that will e
 - [Things You Need to Know About Your Computer](00_things_you_need_to_know_about_your_computer.md)
 - [Things You Need to Know About GIS Data on Your Computer](01_things_you_need_to_know_about_gis_data_on_your_computer.md)
 - [Logging in to Google Earth Engine](02_logging_in_to_google_earth_engine.md)
+- [Logging Into Accounts and Installing Software](02b_logging_into_accounts_and_installing_software.md)
 - [Installing QGIS and Plugins](03_installing_qgis_and_plugins.md)
 - [Introduction to Spatial Data Formats](04_introduction_to_spatial_data_formats.md)
 - [Introduction to Finding Data](05_introduction_to_finding_data.md)
