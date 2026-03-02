@@ -1,4 +1,4 @@
-# Labelling Tree Data with QGIS
+# Introduction to QGIS: Labelling Tree Data with QGIS
 
 ## Introduction
 

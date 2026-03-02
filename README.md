@@ -2,6 +2,8 @@
 
 ## *(a.k.a. Everything Is Somewhere, and That Somewhere Matters)*
 
+This repository as a GitHub Book: https://mapninja.github.io/Earthsys144/ 
+
 Hi there, my name is Stace, and I do _Spatial Ed_. I wrote this Guide because I believe something simple but powerful:
 
 ### **Everything is somewhere, and that somewhere matters.**
@@ -29,6 +31,9 @@ No matter what, if your question involves the words **who, what, and when**, it 
 This isn’t a dry textbook, a user manual, or a sales pitch for expensive software. There’s no gatekeeping here. If you’ve ever stared at a shapefile and wondered what to do with it—or if you’ve never even heard the word “shapefile”—you’re in the right place.
 
 ![](https://etextzone.com/wp-content/uploads/2021/10/the-peoples-guide-to-mexico_6178079666e88.jpeg)
+
+
+<img src="![Image_URL](https://etextzone.com/wp-content/uploads/2021/10/the-peoples-guide-to-mexico_6178079666e88.jpeg)" alt="Cover of People's Guide to Mexico" width="200" height="300">
 
 This is a DIY guide inspired by books like *The People’s Guide to Mexico* and *How to Keep Your Volkswagen Alive for the Complete Idiot*. It’s fun, practical, and focused on **getting things done with spatial data** using tools that are **free, open source, and accessible**.
 
