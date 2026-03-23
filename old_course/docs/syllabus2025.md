@@ -50,7 +50,7 @@ For support, email all instructors and TAs at once: [Click here to email](mailto
 ### **Lecture Sessions:**
 
 - **When:** Monday & Wednesday, 1:30 PM – 2:50 PM
-- **Where:** Room 200-034
+- **Where:** Room 380-380Y
 - **Attendance:** Expected for all sessions. Guest lectures on selected lecture sections may be presented on Zoom.
 
 ---
@@ -62,9 +62,9 @@ Students must register for a lab section in addition to the lecture:
 
 | **Section** | **Day & Time**              | **Room**                                                          | **Section Leader** |
 | ------------- | ----------------------------- | ------------------------------------------------------------------- | -------------------- |
-| Section 02  | Friday, 1:30 PM - 4:20 PM   | [Econ 139](http://campus-map.stanford.edu/?srch=Econ+139)         | Marielle           |
-| Section 03  | Tuesday, 1:30 PM - 4:20 PM  | [160-124](http://campus-map.stanford.edu/?srch=160-124)           | Maya               |
-| Section 04  | Thursday, 1:30 PM - 4:20 PM | [Thornton 211](http://campus-map.stanford.edu/?srch=Thornton+211) | Nona               |
+| Section 02  | Friday, 12:30 PM - 3:20 PM   | Y2E2 Room 184 (Computer Lab)         |            |
+| Section 03  | Tuesday, 1:30 PM - 4:20 PM  | Y2E2 Room 184 (Computer Lab)           |                |
+| Section 04  | Thursday, 1:30 PM - 4:20 PM | Y2E2 Room 184 (Computer Lab) |                |
 
 **Lab Content:**
 

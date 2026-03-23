@@ -1,0 +1,1439 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>03 - Projection Error Measurement with QGIS · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../week02/" />
+    
+    
+    <link rel="prev" href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../week00/09_introduction_to_qgis.html">
+            
+                <a href="../week00/09_introduction_to_qgis.html">
+            
+                    
+                    09 - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../week00/10_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="02_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    02 - Coordinates & Pixels with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="03_projection_error_measurement_with_qgis.html">
+            
+                <a href="03_projection_error_measurement_with_qgis.html">
+            
+                    
+                    03 - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week02/00_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/00_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    00 - Georeferencing with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week02/01_basic_data_creation_with_geojsonio_and_qgis.html">
+            
+                <a href="../week02/01_basic_data_creation_with_geojsonio_and_qgis.html">
+            
+                    
+                    01 - Basic Data Creation with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week02/02_advanced_data_creation_with_qgis.html">
+            
+                <a href="../week02/02_advanced_data_creation_with_qgis.html">
+            
+                    
+                    02 - Advanced Data Creation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    03 - Introducing ArcGIS FieldMaps & ArcGIS Online for Data Collection
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    00 - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week03/01_sql_operations_in_qgis.html">
+            
+                <a href="../week03/01_sql_operations_in_qgis.html">
+            
+                    
+                    01 - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week03/02_tablular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week03/02_tablular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    02 - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                <a href="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                    
+                    03 - Using SQL to subset BIG DATA in the Stanford Data Farm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    00 - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    01 - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week04/02_network_analysis_with_qgis.html">
+            
+                <a href="../week04/02_network_analysis_with_qgis.html">
+            
+                    
+                    02 - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week04/03_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/03_introducing_simplyanalytics_com.html">
+            
+                    
+                    03 - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - Terrain & Visibility with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    02 - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    03 - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week06/">
+            
+                <a href="../week06/">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                <a href="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                    
+                    01 - Modeling Movement with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for data carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds&Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow,... in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping it all up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >03 - Projection Error Measurement with QGIS</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="projection-error-measurement-with-qgis">Projection Error Measurement with QGIS</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Maps are never neutral transformations of the Earth. Every time we represent the curved Earth on a flat surface, we make choices about how location, distance, area, direction, and shape will be handled. This lab is designed to make those choices visible.</p>
+<p>In Bolstad's treatment of geodesy and map projection, several foundational ideas matter here:</p>
+<ul>
+<li>An <strong>ellipsoid</strong> is a smooth mathematical model of the Earth used for horizontal positioning and geodetic measurement.</li>
+<li>A <strong>geoid</strong> is an irregular gravity-based surface that approximates mean sea level. It matters most for vertical reference. We will not calculate orthometric height in this lab, but it is important to distinguish the geoid from the ellipsoid because they solve different problems.</li>
+<li>A <strong>coordinate reference system (CRS)</strong> is the full set of rules that ties coordinates to real places on Earth.</li>
+<li>A <strong>geographic CRS</strong> stores positions with angular coordinates such as latitude and longitude.</li>
+<li>A <strong>projected CRS</strong> transforms those positions onto a flat surface so we can work in linear units such as meters or feet.</li>
+<li>Every projection introduces distortion. Some preserve area better, some preserve local shape better, and some balance several properties over a limited region.</li>
+<li>A <strong>line of true scale</strong> is a line along which the projection scale factor is exactly 1. Away from that line, distances and areas begin to drift. In a conic system such as State Plane California III, true scale occurs along standard parallels, and error changes as you move away from them.</li>
+</ul>
+<p>This lab turns those concepts into something measurable. You will calculate county area in two ways:</p>
+<ol>
+<li>As a geodetic measurement on the ellipsoid.</li>
+<li>As a planar measurement after the data are projected into a State Plane coordinate system.</li>
+</ol>
+<p>You will then calculate the percent difference between those two results and symbolize the error. The final map makes projection distortion visible, rather than treating it as an abstract idea.</p>
+<p><strong>Suggested reading:</strong> Bolstad, Chapters 3, 4, and 7.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>Distinguish among ellipsoids, geoids, geographic CRS, projected CRS, and projections.</li>
+<li>Explain the relationship between a QGIS project CRS and the CRS of the layers it contains.</li>
+<li>Identify when QGIS is reprojecting layers on the fly.</li>
+<li>Set measurement properties so ellipsoidal calculations use the intended earth model and units.</li>
+<li>Calculate ellipsoidal area and planar area in the QGIS Field Calculator.</li>
+<li>Export a reprojected copy of a layer into a new CRS.</li>
+<li>Compute and symbolize the percent error introduced by planar measurement.</li>
+<li>Interpret the resulting error pattern in relation to projection design and lines of true scale.</li>
+</ul>
+<h2 id="data">Data</h2>
+<p>This exercise uses two datasets downloaded from Stanford EarthWorks:</p>
+<ul>
+<li>County boundaries for the United States as polygons.</li>
+<li>A 10-degree graticule as lines.</li>
+</ul>
+<p>You will download one dataset as a shapefile and the other as GeoJSON so you can also review how QGIS handles different vector formats.</p>
+<ol>
+<li>Create a project folder on your computer, something like <code>Week02Labs</code>, where you will keep both the data and the QGIS project file.</li>
+<li><p>Download the following datasets into that folder:</p>
+</li>
+<li><p>Download the <strong>Zipped Object</strong> for <strong>1:1,000,000-Scale County Boundaries of the United States, 2014</strong> from <a href="https://earthworks.stanford.edu/catalog/stanford-wg010mf7692" target="_blank">https://earthworks.stanford.edu/catalog/stanford-wg010mf7692</a>.</p>
+</li>
+<li>Download the <strong>GeoJSON</strong> export for <strong>10-Degree Graticule Grid, World, 1:10 million, 2012</strong> from <a href="https://earthworks.stanford.edu/catalog/stanford-fr122tq8910" target="_blank">https://earthworks.stanford.edu/catalog/stanford-fr122tq8910</a>.</li>
+</ol>
+<p><img src="../week02/images/20250408_124031_image.png" alt=""></img></p>
+<ol>
+<li>Unzip the county boundary download if needed. Inside the first unzip, you will find additional zip files. Use the <code>data.zip</code> package, which preserves the archival data in its original CRS.</li>
+</ol>
+<p><img src="../week02/images/20250408_124436_image.png" alt=""></img></p>
+<h2 id="create-a-new-project">Create a New Project</h2>
+<p>Before you add data, create and save a new QGIS project.</p>
+<h3 id="a-note-on-project-organization">A note on project organization</h3>
+<p>A QGIS project file does <strong>not</strong> contain the datasets you add to it. It stores paths to those datasets. That means portability depends on keeping the project file and its data together in a well-organized folder structure.</p>
+<ol>
+<li>Open QGIS.</li>
+<li>Click the <strong>New Project</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-e1fd8eb8.png" alt=""></img>.</li>
+<li>Click the <strong>Save</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-c1847aa3.png" alt=""></img>.</li>
+<li>Save the project in your project folder with a name such as <code>week_02_projections.qgz</code>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e98f5463-drop-shadow.png" alt=""></img></p>
+<h2 id="add-the-data">Add the Data</h2>
+<p>You will add the data using two common QGIS workflows.</p>
+<h3 id="drag-and-drop-method">Drag-and-Drop Method</h3>
+<ol>
+<li>In the <strong>Browser</strong> panel, browse to your project folder and expand the location that contains the county shapefile.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4ed8aeab-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Drag <code>countyp010g.shp</code> into the map canvas.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-0804df1b-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Save the project.</li>
+</ol>
+<h3 id="data-source-manager-method">Data Source Manager Method</h3>
+<ol>
+<li>From the menu, go to <strong>Layer &gt; Add Layer &gt; Add Vector Layer</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e068b994-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Click the browse button <img src="../week02/images/50_Coordinate_Systems_Geodesy-9a4f6a5d.png" alt=""></img> and navigate to the downloaded graticule GeoJSON.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-23ac0858-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Select the GeoJSON file and click <strong>Open</strong>, then <strong>Add</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-ad437cf2-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>QGIS will prompt you to choose a transformation because the layers are in different geographic coordinate systems.</li>
+</ol>
+<p>Accept the default transformation from <code>EPSG:4326 - WGS 84</code> to <code>EPSG:4269 - NAD83</code>. QGIS will reproject the layer on the fly so both layers display together in the current project CRS.</p>
+<ol>
+<li>Click <strong>OK</strong>, then close the Data Source Manager.</li>
+<li>Save the project.</li>
+</ol>
+<h2 id="explore-the-data">Explore the Data</h2>
+<ol>
+<li>Use the zoom tool <img src="../week02/images/50_Coordinate_Systems_Geodesy-ab211db4-.png" alt=""></img> to draw a box around Alaska and the continental United States.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-3e28e699-drop-shadow.png" alt=""></img></p>
+<h3 id="open-the-attribute-table">Open the Attribute Table</h3>
+<ol>
+<li>Right-click the <code>countyp010g</code> layer and choose <strong>Open Attribute Table</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e22330eb-drop-shadow.png" alt=""></img></p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a8a89a47-drop-shadow.png" alt=""></img></p>
+<p>Notice that each county polygon has one row of attributes. The fields include properties such as county name, state, population, and area.</p>
+<h2 id="symbolize-the-data">Symbolize the Data</h2>
+<p>You will style the graticule with a single symbol and symbolize the counties with a calculated population-density value.</p>
+<h3 id="style-the-graticule-with-a-single-symbol">Style the Graticule with a Single Symbol</h3>
+<ol>
+<li>Right-click the graticule GeoJSON layer and choose <strong>Properties</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-0a61e22f-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Open the <strong>Symbology</strong> tab.</li>
+<li>Change the line color to something distinct.</li>
+<li>Set the line width to <code>0.4</code> millimeters.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-b1713a88-drop-shadow.png" alt=""></img></p>
+<h3 id="style-the-counties-with-a-calculated-quantity">Style the Counties with a Calculated Quantity</h3>
+<ol>
+<li>Turn on the <strong>Layer Styling</strong> panel from <strong>View &gt; Panels &gt; Layer Styling</strong>.</li>
+<li>Select the <code>countyp010g</code> layer.</li>
+<li>Change the symbology method from <strong>Single Symbol</strong> to <strong>Graduated</strong> using the dropdown <img src="../week02/images/50_Coordinate_Systems_Geodesy-386097d7.png" alt=""></img>.</li>
+<li>Click the expression button <img src="../week02/images/50_Coordinate_Systems_Geodesy-0ea8f44f.png" alt=""></img> next to the <strong>Value</strong> field.</li>
+<li>Build the expression:</li>
+</ol>
+<p><code>"POP" / "SQ_MILES"</code></p>
+<p>Use the division operator button <img src="../week02/images/50_Coordinate_Systems_Geodesy-d3cfd682.png" alt=""></img> if helpful.</p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-f0eb2a47-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Click <strong>OK</strong>.</li>
+<li>Set <strong>Mode</strong> to <strong>Equal Count (Quantile)</strong>.</li>
+<li>Set <strong>Classes</strong> to <code>5</code>.</li>
+<li>Click <strong>Classify</strong>.</li>
+<li>Choose a color ramp if desired.</li>
+<li>Save the project.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a1e4e5be-drop-shadow.png" alt=""></img></p>
+<h2 id="crs-measurement-and-why-this-matters">CRS, Measurement, and Why This Matters</h2>
+<p>This is the core conceptual section of the lab.</p>
+<p>The county boundaries are stored in a geographic CRS. That means their coordinates are angular, not planar. QGIS can still compute area, but the method matters:</p>
+<ul>
+<li>If you use ellipsoidal measurement, QGIS measures on the earth model you specify.</li>
+<li>If you use planar measurement, QGIS measures on the flat projected plane defined by the layer CRS.</li>
+</ul>
+<p>The whole point of this lab is to compare those two outcomes and then map the difference.</p>
+<h3 id="set-the-ellipsoid-and-measurement-units">Set the Ellipsoid and Measurement Units</h3>
+<ol>
+<li>Go to <strong>Project &gt; Properties</strong>.</li>
+<li>Open the <strong>General</strong> tab.</li>
+<li>In the <strong>Measurements</strong> section, set the ellipsoid to <strong>WGS 84 (EPSG:7030)</strong>.</li>
+<li>Set distance units to <strong>Meters</strong>.</li>
+<li>Set area units to <strong>Square Meters</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-25510999-drop-shadow.png" alt=""></img></p>
+<p>From this point forward, ellipsoidal measurements in the project will use WGS 84.</p>
+<h3 id="examine-the-project-crs">Examine the Project CRS</h3>
+<ol>
+<li>Look at the CRS indicator in the lower-right corner of the QGIS window <img src="../week02/images/50_Coordinate_Systems_Geodesy-456903cd.png" alt=""></img>.</li>
+<li>Notice that the project CRS is <code>EPSG:4269</code> (NAD83).</li>
+</ol>
+<p>Because the county shapefile was the first layer added, QGIS used that layer's CRS as the initial project CRS.</p>
+<h3 id="examine-layer-crs-values">Examine Layer CRS Values</h3>
+<p>Hover over a layer name in the Layers panel to see:</p>
+<ul>
+<li>The filename.</li>
+<li>The layer CRS.</li>
+<li>The source path.</li>
+</ul>
+<p>For the graticule layer, you should see <code>EPSG:4326</code>.</p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4045ea4f-drop-shadow.png" alt=""></img></p>
+<h3 id="set-the-project-crs-from-a-layer">Set the Project CRS from a Layer</h3>
+<ol>
+<li>Right-click the graticule layer.</li>
+<li>Choose <strong>Layer CRS &gt; Set Project CRS from Layer</strong>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-5bf40aa0-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Confirm that the project CRS indicator now shows <code>EPSG:4326</code>.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-9e74a09f.png" alt=""></img></p>
+<p>This should not dramatically change the map display because WGS 84 and NAD83 are very similar for this purpose.</p>
+<h3 id="change-the-project-crs-to-a-projected-system">Change the Project CRS to a Projected System</h3>
+<p>Now switch to a projected CRS so you can compare planar measurement against ellipsoidal measurement.</p>
+<ol>
+<li>Go to <strong>Project &gt; Properties</strong>.</li>
+<li>Open the <strong>CRS</strong> tab.</li>
+<li>Search for <code>StatePlane_California</code>.</li>
+<li>Review the results and note that some versions are in feet and some are in meters.</li>
+<li>Select <code>NAD_1983_2011_StatePlane_California_III_FIPS_0403 ESRI:102999</code>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Save the project.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-6c79f8b8-drop-shadow.png" alt=""></img></p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-c0b0d062-drop-shadow.png" alt=""></img></p>
+<h3 id="for-reflection">For Reflection</h3>
+<p>You do not need to turn these in, but think about them as you proceed:</p>
+<ul>
+<li>What happened to the shape of the map canvas display?</li>
+<li>What projection family are you using now?</li>
+<li>Where do you think this CRS is optimized, and why?</li>
+</ul>
+<h2 id="calculate-area-on-the-ellipsoid">Calculate Area on the Ellipsoid</h2>
+<p>The first area calculation uses the project ellipsoid and geodetic measurement.</p>
+<h3 id="calculate-origsqkm">Calculate <code>ORIG_SQKM</code></h3>
+<ol>
+<li>Open the attribute table for <code>countyp010g</code>.</li>
+<li>Click the <strong>Field Calculator</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-57fe9b67.png" alt=""></img>.</li>
+<li>Search for <code>area</code> and double-click <code>$area</code> under the geometry functions.</li>
+<li>Build this expression:</li>
+</ol>
+<p><code>$area / 1000000</code></p>
+<ol>
+<li><p>Use these options:</p>
+</li>
+<li><p><strong>Create New Field</strong>: checked</p>
+</li>
+<li><strong>Output Field Name</strong>: <code>ORIG_SQKM</code></li>
+<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
+<li><p><strong>Precision</strong>: <code>2</code></p>
+</li>
+<li><p>Click <strong>OK</strong>.</p>
+</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-bb0bbd46-drop-shadow.png" alt=""></img></p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-d8d3ac3c-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Click the <strong>Toggle Editing</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-787c7591.png" alt=""></img> to end the edit session.</li>
+<li>Sort the new <code>ORIG_SQKM</code> field and confirm the values look reasonable.</li>
+</ol>
+<p>This field stores ellipsoidal area in square kilometers.</p>
+<h2 id="reproject-the-layer-and-calculate-planar-area">Reproject the Layer and Calculate Planar Area</h2>
+<p>Next, you will export a reprojected copy of the counties layer into the current projected CRS and measure area on the plane.</p>
+<h3 id="export-a-reprojected-copy">Export a Reprojected Copy</h3>
+<ol>
+<li>Right-click <code>countyp010g</code> and choose <strong>Export &gt; Save Features As...</strong></li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a375d637-drop-shadow.png" alt=""></img></p>
+<ol>
+<li>Click the browse button <img src="../week02/images/50_Coordinate_Systems_Geodesy-12667624.png" alt=""></img> and save the file to your project folder.</li>
+<li><p>Use these settings:</p>
+</li>
+<li><p><strong>Format</strong>: <code>ESRI Shapefile</code></p>
+</li>
+<li><p><strong>CRS</strong>: <code>Project CRS: ESRI:102999 - NAD_1983_2011_StatePlane_California_III_FIPS_0403</code></p>
+</li>
+<li><p>Click <strong>OK</strong>.</p>
+</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-f215df9a-drop-shadow.png" alt=""></img></p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-eab8431d-drop-shadow.png" alt=""></img></p>
+<p>In some QGIS installations, the exported layer may report as <code>EPSG:6419</code> instead of <code>ESRI:102999</code>. For this lab, treat those as functionally equivalent representations of the same State Plane California III system in meters.</p>
+<h3 id="calculate-projsqkm">Calculate <code>PROJ_SQKM</code></h3>
+<p>Open the attribute table for the reprojected counties layer and repeat the area workflow, but use the planar <code>area()</code> function:</p>
+<p><code>area( $geometry ) / 1000000</code></p>
+<p>Use these options:</p>
+<ul>
+<li><strong>Create New Field</strong>: checked</li>
+<li><strong>Output Field Name</strong>: <code>PROJ_SQKM</code></li>
+<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
+<li><strong>Precision</strong>: <code>2</code></li>
+</ul>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-b5930102.png" alt=""></img></p>
+<p>When you compare <code>ORIG_SQKM</code> and <code>PROJ_SQKM</code>, the values will be close, but not identical.</p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-55365511.png" alt=""></img></p>
+<p>That difference is the lab's main point: even a well-designed projected CRS introduces measurable distortion once you move away from its ideal region and lines of true scale.</p>
+<h2 id="calculate-the-percent-error-introduced-by-projection">Calculate the Percent Error Introduced by Projection</h2>
+<p>Now calculate the percent difference between the ellipsoidal and planar results.</p>
+<h3 id="calculate-errorpct">Calculate <code>ERROR_PCT</code></h3>
+<ol>
+<li>Open the attribute table for the reprojected counties layer.</li>
+<li>Open the Field Calculator.</li>
+<li><p>Create a new field with these settings:</p>
+</li>
+<li><p><strong>Output Field Name</strong>: <code>ERROR_PCT</code></p>
+</li>
+<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
+<li><strong>Precision</strong>: <code>3</code></li>
+<li><strong>Expression</strong>:</li>
+</ol>
+<p><code>abs((("ORIG_SQKM" - "PROJ_SQKM") / "ORIG_SQKM") * 100)</code></p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4440f21f.png" alt=""></img></p>
+<ol>
+<li>Click <strong>OK</strong>.</li>
+<li>Turn off editing and save.</li>
+<li>Sort <code>ERROR_PCT</code> in descending order and inspect the largest values.</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-32c3229e.png" alt=""></img></p>
+<h2 id="symbolize-the-error-surface">Symbolize the Error Surface</h2>
+<p>Now map the distribution of measurement error.</p>
+<ol>
+<li>Open the <strong>Layer Styling</strong> panel for the reprojected counties layer.</li>
+<li><p>Use these settings:</p>
+</li>
+<li><p><strong>Method</strong>: <code>Graduated</code></p>
+</li>
+<li><strong>Value</strong>: <code>ERROR_PCT</code></li>
+<li><strong>Mode</strong>: <code>Equal Count (Quantile)</code></li>
+<li><p><strong>Classes</strong>: <code>50</code></p>
+</li>
+<li><p>Click <strong>Classify</strong>.</p>
+</li>
+</ol>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-57d459ef-drop-shadow.png" alt=""></img></p>
+<p>You should see a strong spatial pattern in the error values.</p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-7fd184da-drop-shadow.png" alt=""></img></p>
+<p>Zoom into the central United States and study where error is smallest and where it increases.</p>
+<h2 id="for-reflection">For Reflection</h2>
+<ol>
+<li>Where do you think the lines of true scale for <code>NAD_1983_2011_StatePlane_California_III_FIPS_0403</code> are located?</li>
+<li>How does the mapped error pattern help you infer those locations?</li>
+<li>Why is a California State Plane CRS a poor choice for measuring the entire United States, even though it is a carefully designed projected system?</li>
+</ol>
+<p>Use the <strong>Identify Features</strong> tool <img src="../week02/images/Coordinate_Systems_Geodesy-32507c2a.png" alt=""></img> on the graticule layer to inspect latitude values if that helps.</p>
+<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-786652bd-drop-shadow.png" alt=""></img></p>
+<h2 id="what-to-turn-in">What to Turn In</h2>
+<ol>
+<li>Create a QGIS layout with appropriate cartographic elements, including title, legend, scale bar, your name, date, and map CRS.</li>
+<li>Make design choices that clearly communicate the pattern of projection error.</li>
+<li>Export the layout as PDF or PNG and submit it to Canvas.</li>
+</ol>
+<h2 id="what-this-lab-demonstrates">What This Lab Demonstrates</h2>
+<p>By the end of the workflow, you should be able to connect the conceptual vocabulary to a concrete GIS result:</p>
+<ul>
+<li>The <strong>ellipsoid</strong> matters because geodetic area is calculated on it.</li>
+<li>The <strong>project CRS</strong> matters because planar area depends on the projected coordinate plane.</li>
+<li><strong>On-the-fly reprojection</strong> affects display, but not the stored geometry of a layer.</li>
+<li><strong>Projection choice</strong> affects measurement quality.</li>
+<li><strong>Lines of true scale</strong> are not just theoretical. They leave a visible signature in your error surface.</li>
+</ul>
+<p>That is the central lesson of the lab, and it is exactly why projection choice is never just a cartographic afterthought.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html" class="navigation navigation-prev " aria-label="Previous page: 02 - Coordinates & Pixels with Google Earth Engine">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../week02/" class="navigation navigation-next " aria-label="Next page: Week 02 - Making & Collecting Data">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"03 - Projection Error Measurement with QGIS","level":"1.3.2","depth":2,"next":{"title":"Week 02 - Making & Collecting Data","level":"1.4","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"00 - Georeferencing with QGIS and AllMaps.org","level":"1.4.1","depth":2,"path":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"01 - Basic Data Creation with GeoJSON.io","level":"1.4.2","depth":2,"path":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","ref":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","articles":[]},{"title":"02 - Advanced Data Creation with QGIS","level":"1.4.3","depth":2,"path":"week02/02_advanced_data_creation_with_qgis.md","ref":"week02/02_advanced_data_creation_with_qgis.md","articles":[]},{"title":"03 - Introducing ArcGIS FieldMaps & ArcGIS Online for Data Collection","level":"1.4.4","depth":2,"path":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]}]},"previous":{"title":"02 - Coordinates & Pixels with Google Earth Engine","level":"1.3.1","depth":2,"path":"week01/02_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/02_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/03_projection_error_measurement_with_qgis.md","mtime":"2026-03-23T20:30:43.758Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-23T20:30:57.208Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
