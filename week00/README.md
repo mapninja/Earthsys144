@@ -36,14 +36,14 @@ This week covers the essential technical skills and setup procedures that will e
 
 - [00 - Things You Need to Know About Your Computer](00_things_you_need_to_know_about_your_computer.md)
 - [01 - Things You Need to Know About GIS Data on Your Computer](01_things_you_need_to_know_about_gis_data_on_your_computer.md)
-- [02 - Logging in to Google Earth Engine](02_logging_in_to_google_earth_engine.md)
-- [03 - Logging Into Accounts and Installing Software](03_logging_into_accounts_and_installing_software.md)
-- [04 - Installing QGIS and Plugins](04_installing_qgis_and_plugins.md)
-- [05 - Introduction to Spatial Data Formats](05_introduction_to_spatial_data_formats.md)
-- [06 - Introduction to Finding Data](06_introduction_to_finding_data.md)
-- [07 - Submitting Homework and Getting Help](07_submitting_homework_and_getting_help.md)
-- [08 - Help Fix the Labs](08_help_fix_the_labs.md)
-- [09 - Introducing QGIS with Basic Cartographic Design](09_introducing_qgis_with_basic_cartographic_design.md)
+- [02 - Logging Into Accounts and Installing Software](02_logging_into_accounts_and_installing_software.md)
+- [03 - Introduction to Spatial Data Formats](03_introduction_to_spatial_data_formats.md)
+- [04 - Introduction to Finding Data](04_introduction_to_finding_data.md)
+- [05 - Submitting Homework and Getting Help](05_submitting_homework_and_getting_help.md)
+- [06 - Help Fix the Labs](06_help_fix_the_labs.md)
+- [07 - Installing QGIS and Plugins](07_installing_qgis_and_plugins.md)
+- [09 - Introduction to QGIS: Being John Snow](09_introduction_to_qgis.md)
+- [10 - Logging in to Google Earth Engine](10_logging_in_to_google_earth_engine.md)
 
 ## Learning Objectives
 
