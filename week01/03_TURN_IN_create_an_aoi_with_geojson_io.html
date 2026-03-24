@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>03 - Projection Error Measurement with QGIS · HonKit</title>
+        <title>03 - TURN IN - Create an Area of Interest with GeoJSON.io · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -59,7 +59,7 @@
     <link rel="next" href="../week02/" />
     
     
-    <link rel="prev" href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html" />
+    <link rel="prev" href="02_TURN_IN_projection_error_measurement_with_qgis.html" />
     
 
     </head>
@@ -219,9 +219,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.9" data-path="../week00/09_introduction_to_qgis.html">
+        <li class="chapter " data-level="1.2.9" data-path="../week00/09_introduction_to_qgis.md">
             
-                <a href="../week00/09_introduction_to_qgis.html">
+                <span>
             
                     
                     09 - Introduction to QGIS: Being John Snow
@@ -232,9 +232,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.10" data-path="../week00/10_logging_in_to_google_earth_engine.html">
+        <li class="chapter " data-level="1.2.10" data-path="../week00/10_logging_in_to_google_earth_engine.md">
             
-                <a href="../week00/10_logging_in_to_google_earth_engine.html">
+                <span>
             
                     
                     10 - Logging in to Google Earth Engine
@@ -264,12 +264,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="02_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+        <li class="chapter " data-level="1.3.1" data-path="01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
             
-                <a href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+                <a href="01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
             
                     
-                    02 - Coordinates & Pixels with Google Earth Engine
+                    01 - TURN IN - Coordinates & Pixels with Google Earth Engine
             
                 </a>
             
@@ -277,12 +277,25 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.2" data-path="03_projection_error_measurement_with_qgis.html">
+        <li class="chapter " data-level="1.3.2" data-path="02_TURN_IN_projection_error_measurement_with_qgis.html">
             
-                <a href="03_projection_error_measurement_with_qgis.html">
+                <a href="02_TURN_IN_projection_error_measurement_with_qgis.html">
             
                     
-                    03 - Projection Error Measurement with QGIS
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="03_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="03_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    03 - TURN IN - Create an Area of Interest with GeoJSON.io
             
                 </a>
             
@@ -322,9 +335,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../week02/01_basic_data_creation_with_geojsonio_and_qgis.html">
+        <li class="chapter " data-level="1.4.2" data-path="../week02/01_basic_data_creation_with_geojsonio_and_qgis.md">
             
-                <a href="../week02/01_basic_data_creation_with_geojsonio_and_qgis.html">
+                <span>
             
                     
                     01 - Basic Data Creation with GeoJSON.io
@@ -335,9 +348,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../week02/02_advanced_data_creation_with_qgis.html">
+        <li class="chapter " data-level="1.4.3" data-path="../week02/02_advanced_data_creation_with_qgis.md">
             
-                <a href="../week02/02_advanced_data_creation_with_qgis.html">
+                <span>
             
                     
                     02 - Advanced Data Creation with QGIS
@@ -964,7 +977,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >03 - Projection Error Measurement with QGIS</a>
+        <a href=".." >03 - TURN IN - Create an Area of Interest with GeoJSON.io</a>
     </h1>
 </div>
 
@@ -979,344 +992,216 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="projection-error-measurement-with-qgis">Projection Error Measurement with QGIS</h1>
+                                <h1 id="lab-03-create-an-area-of-interest-with-geojsonio">Lab 03: Create an Area of Interest with GeoJSON.io</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Export your AOI file using the naming convention below and submit it to Canvas.</p>
+</blockquote>
 <h2 id="introduction">Introduction</h2>
-<p>Maps are never neutral transformations of the Earth. Every time we represent the curved Earth on a flat surface, we make choices about how location, distance, area, direction, and shape will be handled. This lab is designed to make those choices visible.</p>
-<p>In Bolstad's treatment of geodesy and map projection, several foundational ideas matter here:</p>
+<p>Almost every spatial analysis project starts with defining a study area — an <strong>Area of Interest (AOI)</strong>. An AOI sets the geographic scope of your work: it tells your tools where to load data, where to clip rasters, and where to run calculations.</p>
+<p>In this lab you will use <strong><a href="https://geojson.io" target="_blank">geojson.io</a></strong>, a lightweight browser-based tool for creating and editing vector features without any software installation. You will draw a rectangular AOI that is at least as large as the Stanford campus, then relocate it to a place that is personally meaningful to you — a research site, hometown, field area, or any other location you want to study this quarter.</p>
+<p>The result is a single GeoJSON file that you will use again in later labs as your personal study area.</p>
+<h3 id="why-geojson">Why GeoJSON?</h3>
+<p>GeoJSON is a plain-text, open standard for encoding geographic features using JSON.</p>
 <ul>
-<li>An <strong>ellipsoid</strong> is a smooth mathematical model of the Earth used for horizontal positioning and geodetic measurement.</li>
-<li>A <strong>geoid</strong> is an irregular gravity-based surface that approximates mean sea level. It matters most for vertical reference. We will not calculate orthometric height in this lab, but it is important to distinguish the geoid from the ellipsoid because they solve different problems.</li>
-<li>A <strong>coordinate reference system (CRS)</strong> is the full set of rules that ties coordinates to real places on Earth.</li>
-<li>A <strong>geographic CRS</strong> stores positions with angular coordinates such as latitude and longitude.</li>
-<li>A <strong>projected CRS</strong> transforms those positions onto a flat surface so we can work in linear units such as meters or feet.</li>
-<li>Every projection introduces distortion. Some preserve area better, some preserve local shape better, and some balance several properties over a limited region.</li>
-<li>A <strong>line of true scale</strong> is a line along which the projection scale factor is exactly 1. Away from that line, distances and areas begin to drift. In a conic system such as State Plane California III, true scale occurs along standard parallels, and error changes as you move away from them.</li>
+<li>A single self-contained file (no sidecar files, unlike shapefiles).</li>
+<li>Human-readable — you can open it in any text editor and read the coordinates.</li>
+<li>Natively understood by QGIS, Google Earth Engine, Leaflet, Mapbox, GitHub, and most other modern GIS tools.</li>
+<li>Coordinates are always in <strong>WGS 84 (EPSG:4326)</strong> — the same geographic CRS you encountered in the projection error lab.</li>
 </ul>
-<p>This lab turns those concepts into something measurable. You will calculate county area in two ways:</p>
+<hr></hr>
+<h2 id="part-1-get-oriented-with-geojsonio">Part 1: Get Oriented with geojson.io</h2>
 <ol>
-<li>As a geodetic measurement on the ellipsoid.</li>
-<li>As a planar measurement after the data are projected into a State Plane coordinate system.</li>
+<li>Open <strong><a href="https://geojson.io" target="_blank">https://geojson.io</a></strong> in your browser. No login or installation is required.</li>
+<li>You will see two main areas:<ul>
+<li><strong>Left panel</strong> — a list of your features and panels for editing properties and raw JSON.</li>
+<li><strong>Right panel</strong> — an interactive map you can pan and zoom.</li>
+</ul>
+</li>
+<li>Take a moment to locate the <strong>drawing toolbar</strong> on the right side of the map. The tools, from top to bottom, are:<ul>
+<li>Select (keyboard shortcut: <code>1</code>)</li>
+<li>Draw point (<code>2</code>)</li>
+<li>Draw line (<code>3</code>)</li>
+<li>Draw polygon (<code>4</code>)</li>
+<li><strong>Draw rectangle (<code>5</code>)</strong> ← this is the one you will use</li>
+</ul>
+</li>
+<li>At the top of the page, notice the <strong>Export</strong> button — you will use this at the end to save your work.</li>
 </ol>
-<p>You will then calculate the percent difference between those two results and symbolize the error. The final map makes projection distortion visible, rather than treating it as an abstract idea.</p>
-<p><strong>Suggested reading:</strong> Bolstad, Chapters 3, 4, and 7.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you should be able to:</p>
+<hr></hr>
+<h2 id="part-2-draw-a-rectangle-around-the-stanford-campus">Part 2: Draw a Rectangle Around the Stanford Campus</h2>
+<p>You will use the Stanford campus as a size reference. Your final AOI must be <strong>at least this large</strong>.</p>
+<h3 id="step-1-navigate-to-the-stanford-campus">Step 1: Navigate to the Stanford Campus</h3>
+<ol>
+<li>In the map search bar (top-left of the map, <code>⌘+K</code> to open), type <strong>Stanford University, Palo Alto, CA</strong> and press Enter, or simply pan and zoom to the campus manually.</li>
+<li>Zoom to a level where you can see the full campus footprint including the Dish, the main quad, and the athletic facilities. A zoom level of 13–14 works well.</li>
+</ol>
+<h3 id="step-2-draw-a-rectangle">Step 2: Draw a Rectangle</h3>
+<ol>
+<li>Press <strong><code>5</code></strong> or click the <strong>Draw Rectangle</strong> tool in the toolbar.</li>
+<li>Click and drag across the map to draw a rectangle that covers the entire Stanford campus — from the Dish area in the southwest to the east edge of campus near El Camino Real.</li>
+<li>Release the mouse button to finish the rectangle.</li>
+<li>The rectangle will appear in the <strong>feature list</strong> in the left panel and as a polygon on the map.</li>
+</ol>
+<blockquote>
+<p><strong>Tip:</strong> If the rectangle is not quite right, select it with the Select tool (<code>1</code>), then drag individual vertices to reshape it, or press <code>⌘+Z</code> to undo and redraw.</p>
+</blockquote>
+<h3 id="step-3-check-the-size">Step 3: Check the Size</h3>
+<p>After drawing, look at the raw GeoJSON in the JSON panel on the left. You will see a <code>FeatureCollection</code> containing one <code>Feature</code> with a <code>Polygon</code> geometry. The four coordinate pairs define the corners of your rectangle in <code>[longitude, latitude]</code> order.</p>
+<p>This is the minimum size your final AOI must be. A rectangle covering the full Stanford campus is roughly <strong>3–4 km east-west by 5–6 km north-south</strong>.</p>
+<hr></hr>
+<h2 id="part-3-move-the-rectangle-to-your-place-of-significance">Part 3: Move the Rectangle to Your Place of Significance</h2>
+<p>Now you will relocate the rectangle you just drew to a place that is meaningful to you. This might be:</p>
 <ul>
-<li>Distinguish among ellipsoids, geoids, geographic CRS, projected CRS, and projections.</li>
-<li>Explain the relationship between a QGIS project CRS and the CRS of the layers it contains.</li>
-<li>Identify when QGIS is reprojecting layers on the fly.</li>
-<li>Set measurement properties so ellipsoidal calculations use the intended earth model and units.</li>
-<li>Calculate ellipsoidal area and planar area in the QGIS Field Calculator.</li>
-<li>Export a reprojected copy of a layer into a new CRS.</li>
-<li>Compute and symbolize the percent error introduced by planar measurement.</li>
-<li>Interpret the resulting error pattern in relation to projection design and lines of true scale.</li>
+<li>Your hometown, neighborhood, or campus back home.</li>
+<li>A research area or field site from another course or project.</li>
+<li>A place in the world you are studying or find interesting.</li>
 </ul>
-<h2 id="data">Data</h2>
-<p>This exercise uses two datasets downloaded from Stanford EarthWorks:</p>
+<p>The requirement is that the relocated rectangle is <strong>at least as large as the Stanford campus box</strong> you just drew. You may make it larger.</p>
+<h3 id="option-a-move-the-existing-rectangle-recommended">Option A: Move the Existing Rectangle (Recommended)</h3>
+<ol>
+<li>Select your rectangle with the Select tool (<code>1</code>).</li>
+<li>Navigate the map to your chosen location (pan while holding <code>Space</code> and dragging, or use search).</li>
+<li>Once the map is centered on your target location, hold <strong><code>Space</code></strong> and drag the selected rectangle to move it to the new location.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> If moving the feature is awkward at your current zoom level, try using Option B instead.</p>
+</blockquote>
+<h3 id="option-b-delete-and-redraw">Option B: Delete and Redraw</h3>
+<ol>
+<li>Right-click the rectangle in the feature list or on the map and choose <strong>Delete</strong>.</li>
+<li>Navigate to your chosen location using the search bar.</li>
+<li>Press <code>5</code> to activate the rectangle tool and draw a new rectangle of at least the same size.</li>
+</ol>
+<hr></hr>
+<h2 id="part-4-add-a-property-to-your-feature">Part 4: Add a Property to Your Feature</h2>
+<p>Adding descriptive properties to your features is good practice — it makes the file self-documenting and easier to use in downstream analysis.</p>
+<ol>
+<li>Select your rectangle (click it on the map or in the feature list).</li>
+<li>The <strong>Feature Editor</strong> panel will appear.</li>
+<li>Click <strong>Add property</strong> and add the following:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value (your entry)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>A short descriptive name for the place (e.g., <code>Bogotá Study Area</code>)</td>
+</tr>
+<tr>
+<td><code>sunetid</code></td>
+<td>Your Stanford SUNet ID</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>One sentence about why you chose this location</td>
+</tr>
+</tbody>
+</table>
+<hr></hr>
+<h2 id="part-5-export-your-aoi-as-geojson">Part 5: Export Your AOI as GeoJSON</h2>
+<ol>
+<li>Click the <strong>Export</strong> button at the top of the page.</li>
+<li>Choose <strong>GeoJSON</strong> as the format.</li>
+<li>Save the file. Your browser will likely save it as <code>map.geojson</code> — <strong>rename it immediately</strong> using the naming convention below.</li>
+</ol>
+<h3 id="file-naming-convention">File Naming Convention</h3>
+<pre><code>sunetid_week01_lab03_aoi.geojson
+</code></pre><p>Replace <code>sunetid</code> with your actual Stanford SUNet ID. For example:</p>
+<pre><code>jsmith_week01_lab03_aoi.geojson
+</code></pre><hr></hr>
+<h2 id="deliverable">Deliverable</h2>
+<p>Submit your exported GeoJSON file to the <strong>Week 01 Lab 03</strong> assignment on Canvas.</p>
+<p><strong>Checklist before submitting:</strong></p>
 <ul>
-<li>County boundaries for the United States as polygons.</li>
-<li>A 10-degree graticule as lines.</li>
+<li>[ ] The file is in GeoJSON format.</li>
+<li>[ ] The rectangle covers an area at least as large as the Stanford campus.</li>
+<li>[ ] The feature has <code>name</code>, <code>sunetid</code>, and <code>description</code> properties filled in.</li>
+<li>[ ] The filename follows the convention <code>sunetid_week01_lab03_aoi.geojson</code>.</li>
 </ul>
-<p>You will download one dataset as a shapefile and the other as GeoJSON so you can also review how QGIS handles different vector formats.</p>
-<ol>
-<li>Create a project folder on your computer, something like <code>Week02Labs</code>, where you will keep both the data and the QGIS project file.</li>
-<li><p>Download the following datasets into that folder:</p>
-</li>
-<li><p>Download the <strong>Zipped Object</strong> for <strong>1:1,000,000-Scale County Boundaries of the United States, 2014</strong> from <a href="https://earthworks.stanford.edu/catalog/stanford-wg010mf7692" target="_blank">https://earthworks.stanford.edu/catalog/stanford-wg010mf7692</a>.</p>
-</li>
-<li>Download the <strong>GeoJSON</strong> export for <strong>10-Degree Graticule Grid, World, 1:10 million, 2012</strong> from <a href="https://earthworks.stanford.edu/catalog/stanford-fr122tq8910" target="_blank">https://earthworks.stanford.edu/catalog/stanford-fr122tq8910</a>.</li>
-</ol>
-<p><img src="../week02/images/20250408_124031_image.png" alt=""></img></p>
-<ol>
-<li>Unzip the county boundary download if needed. Inside the first unzip, you will find additional zip files. Use the <code>data.zip</code> package, which preserves the archival data in its original CRS.</li>
-</ol>
-<p><img src="../week02/images/20250408_124436_image.png" alt=""></img></p>
-<h2 id="create-a-new-project">Create a New Project</h2>
-<p>Before you add data, create and save a new QGIS project.</p>
-<h3 id="a-note-on-project-organization">A note on project organization</h3>
-<p>A QGIS project file does <strong>not</strong> contain the datasets you add to it. It stores paths to those datasets. That means portability depends on keeping the project file and its data together in a well-organized folder structure.</p>
-<ol>
-<li>Open QGIS.</li>
-<li>Click the <strong>New Project</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-e1fd8eb8.png" alt=""></img>.</li>
-<li>Click the <strong>Save</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-c1847aa3.png" alt=""></img>.</li>
-<li>Save the project in your project folder with a name such as <code>week_02_projections.qgz</code>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e98f5463-drop-shadow.png" alt=""></img></p>
-<h2 id="add-the-data">Add the Data</h2>
-<p>You will add the data using two common QGIS workflows.</p>
-<h3 id="drag-and-drop-method">Drag-and-Drop Method</h3>
-<ol>
-<li>In the <strong>Browser</strong> panel, browse to your project folder and expand the location that contains the county shapefile.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4ed8aeab-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Drag <code>countyp010g.shp</code> into the map canvas.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-0804df1b-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Save the project.</li>
-</ol>
-<h3 id="data-source-manager-method">Data Source Manager Method</h3>
-<ol>
-<li>From the menu, go to <strong>Layer &gt; Add Layer &gt; Add Vector Layer</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e068b994-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Click the browse button <img src="../week02/images/50_Coordinate_Systems_Geodesy-9a4f6a5d.png" alt=""></img> and navigate to the downloaded graticule GeoJSON.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-23ac0858-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Select the GeoJSON file and click <strong>Open</strong>, then <strong>Add</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-ad437cf2-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>QGIS will prompt you to choose a transformation because the layers are in different geographic coordinate systems.</li>
-</ol>
-<p>Accept the default transformation from <code>EPSG:4326 - WGS 84</code> to <code>EPSG:4269 - NAD83</code>. QGIS will reproject the layer on the fly so both layers display together in the current project CRS.</p>
-<ol>
-<li>Click <strong>OK</strong>, then close the Data Source Manager.</li>
-<li>Save the project.</li>
-</ol>
-<h2 id="explore-the-data">Explore the Data</h2>
-<ol>
-<li>Use the zoom tool <img src="../week02/images/50_Coordinate_Systems_Geodesy-ab211db4-.png" alt=""></img> to draw a box around Alaska and the continental United States.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-3e28e699-drop-shadow.png" alt=""></img></p>
-<h3 id="open-the-attribute-table">Open the Attribute Table</h3>
-<ol>
-<li>Right-click the <code>countyp010g</code> layer and choose <strong>Open Attribute Table</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-e22330eb-drop-shadow.png" alt=""></img></p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a8a89a47-drop-shadow.png" alt=""></img></p>
-<p>Notice that each county polygon has one row of attributes. The fields include properties such as county name, state, population, and area.</p>
-<h2 id="symbolize-the-data">Symbolize the Data</h2>
-<p>You will style the graticule with a single symbol and symbolize the counties with a calculated population-density value.</p>
-<h3 id="style-the-graticule-with-a-single-symbol">Style the Graticule with a Single Symbol</h3>
-<ol>
-<li>Right-click the graticule GeoJSON layer and choose <strong>Properties</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-0a61e22f-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Open the <strong>Symbology</strong> tab.</li>
-<li>Change the line color to something distinct.</li>
-<li>Set the line width to <code>0.4</code> millimeters.</li>
-<li>Click <strong>OK</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-b1713a88-drop-shadow.png" alt=""></img></p>
-<h3 id="style-the-counties-with-a-calculated-quantity">Style the Counties with a Calculated Quantity</h3>
-<ol>
-<li>Turn on the <strong>Layer Styling</strong> panel from <strong>View &gt; Panels &gt; Layer Styling</strong>.</li>
-<li>Select the <code>countyp010g</code> layer.</li>
-<li>Change the symbology method from <strong>Single Symbol</strong> to <strong>Graduated</strong> using the dropdown <img src="../week02/images/50_Coordinate_Systems_Geodesy-386097d7.png" alt=""></img>.</li>
-<li>Click the expression button <img src="../week02/images/50_Coordinate_Systems_Geodesy-0ea8f44f.png" alt=""></img> next to the <strong>Value</strong> field.</li>
-<li>Build the expression:</li>
-</ol>
-<p><code>"POP" / "SQ_MILES"</code></p>
-<p>Use the division operator button <img src="../week02/images/50_Coordinate_Systems_Geodesy-d3cfd682.png" alt=""></img> if helpful.</p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-f0eb2a47-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Click <strong>OK</strong>.</li>
-<li>Set <strong>Mode</strong> to <strong>Equal Count (Quantile)</strong>.</li>
-<li>Set <strong>Classes</strong> to <code>5</code>.</li>
-<li>Click <strong>Classify</strong>.</li>
-<li>Choose a color ramp if desired.</li>
-<li>Save the project.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a1e4e5be-drop-shadow.png" alt=""></img></p>
-<h2 id="crs-measurement-and-why-this-matters">CRS, Measurement, and Why This Matters</h2>
-<p>This is the core conceptual section of the lab.</p>
-<p>The county boundaries are stored in a geographic CRS. That means their coordinates are angular, not planar. QGIS can still compute area, but the method matters:</p>
-<ul>
-<li>If you use ellipsoidal measurement, QGIS measures on the earth model you specify.</li>
-<li>If you use planar measurement, QGIS measures on the flat projected plane defined by the layer CRS.</li>
-</ul>
-<p>The whole point of this lab is to compare those two outcomes and then map the difference.</p>
-<h3 id="set-the-ellipsoid-and-measurement-units">Set the Ellipsoid and Measurement Units</h3>
-<ol>
-<li>Go to <strong>Project &gt; Properties</strong>.</li>
-<li>Open the <strong>General</strong> tab.</li>
-<li>In the <strong>Measurements</strong> section, set the ellipsoid to <strong>WGS 84 (EPSG:7030)</strong>.</li>
-<li>Set distance units to <strong>Meters</strong>.</li>
-<li>Set area units to <strong>Square Meters</strong>.</li>
-<li>Click <strong>OK</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-25510999-drop-shadow.png" alt=""></img></p>
-<p>From this point forward, ellipsoidal measurements in the project will use WGS 84.</p>
-<h3 id="examine-the-project-crs">Examine the Project CRS</h3>
-<ol>
-<li>Look at the CRS indicator in the lower-right corner of the QGIS window <img src="../week02/images/50_Coordinate_Systems_Geodesy-456903cd.png" alt=""></img>.</li>
-<li>Notice that the project CRS is <code>EPSG:4269</code> (NAD83).</li>
-</ol>
-<p>Because the county shapefile was the first layer added, QGIS used that layer's CRS as the initial project CRS.</p>
-<h3 id="examine-layer-crs-values">Examine Layer CRS Values</h3>
-<p>Hover over a layer name in the Layers panel to see:</p>
-<ul>
-<li>The filename.</li>
-<li>The layer CRS.</li>
-<li>The source path.</li>
-</ul>
-<p>For the graticule layer, you should see <code>EPSG:4326</code>.</p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4045ea4f-drop-shadow.png" alt=""></img></p>
-<h3 id="set-the-project-crs-from-a-layer">Set the Project CRS from a Layer</h3>
-<ol>
-<li>Right-click the graticule layer.</li>
-<li>Choose <strong>Layer CRS &gt; Set Project CRS from Layer</strong>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-5bf40aa0-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Confirm that the project CRS indicator now shows <code>EPSG:4326</code>.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-9e74a09f.png" alt=""></img></p>
-<p>This should not dramatically change the map display because WGS 84 and NAD83 are very similar for this purpose.</p>
-<h3 id="change-the-project-crs-to-a-projected-system">Change the Project CRS to a Projected System</h3>
-<p>Now switch to a projected CRS so you can compare planar measurement against ellipsoidal measurement.</p>
-<ol>
-<li>Go to <strong>Project &gt; Properties</strong>.</li>
-<li>Open the <strong>CRS</strong> tab.</li>
-<li>Search for <code>StatePlane_California</code>.</li>
-<li>Review the results and note that some versions are in feet and some are in meters.</li>
-<li>Select <code>NAD_1983_2011_StatePlane_California_III_FIPS_0403 ESRI:102999</code>.</li>
-<li>Click <strong>OK</strong>.</li>
-<li>Save the project.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-6c79f8b8-drop-shadow.png" alt=""></img></p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-c0b0d062-drop-shadow.png" alt=""></img></p>
-<h3 id="for-reflection">For Reflection</h3>
-<p>You do not need to turn these in, but think about them as you proceed:</p>
-<ul>
-<li>What happened to the shape of the map canvas display?</li>
-<li>What projection family are you using now?</li>
-<li>Where do you think this CRS is optimized, and why?</li>
-</ul>
-<h2 id="calculate-area-on-the-ellipsoid">Calculate Area on the Ellipsoid</h2>
-<p>The first area calculation uses the project ellipsoid and geodetic measurement.</p>
-<h3 id="calculate-origsqkm">Calculate <code>ORIG_SQKM</code></h3>
-<ol>
-<li>Open the attribute table for <code>countyp010g</code>.</li>
-<li>Click the <strong>Field Calculator</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-57fe9b67.png" alt=""></img>.</li>
-<li>Search for <code>area</code> and double-click <code>$area</code> under the geometry functions.</li>
-<li>Build this expression:</li>
-</ol>
-<p><code>$area / 1000000</code></p>
-<ol>
-<li><p>Use these options:</p>
-</li>
-<li><p><strong>Create New Field</strong>: checked</p>
-</li>
-<li><strong>Output Field Name</strong>: <code>ORIG_SQKM</code></li>
-<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
-<li><p><strong>Precision</strong>: <code>2</code></p>
-</li>
-<li><p>Click <strong>OK</strong>.</p>
-</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-bb0bbd46-drop-shadow.png" alt=""></img></p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-d8d3ac3c-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Click the <strong>Toggle Editing</strong> button <img src="../week02/images/50_Coordinate_Systems_Geodesy-787c7591.png" alt=""></img> to end the edit session.</li>
-<li>Sort the new <code>ORIG_SQKM</code> field and confirm the values look reasonable.</li>
-</ol>
-<p>This field stores ellipsoidal area in square kilometers.</p>
-<h2 id="reproject-the-layer-and-calculate-planar-area">Reproject the Layer and Calculate Planar Area</h2>
-<p>Next, you will export a reprojected copy of the counties layer into the current projected CRS and measure area on the plane.</p>
-<h3 id="export-a-reprojected-copy">Export a Reprojected Copy</h3>
-<ol>
-<li>Right-click <code>countyp010g</code> and choose <strong>Export &gt; Save Features As...</strong></li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-a375d637-drop-shadow.png" alt=""></img></p>
-<ol>
-<li>Click the browse button <img src="../week02/images/50_Coordinate_Systems_Geodesy-12667624.png" alt=""></img> and save the file to your project folder.</li>
-<li><p>Use these settings:</p>
-</li>
-<li><p><strong>Format</strong>: <code>ESRI Shapefile</code></p>
-</li>
-<li><p><strong>CRS</strong>: <code>Project CRS: ESRI:102999 - NAD_1983_2011_StatePlane_California_III_FIPS_0403</code></p>
-</li>
-<li><p>Click <strong>OK</strong>.</p>
-</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-f215df9a-drop-shadow.png" alt=""></img></p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-eab8431d-drop-shadow.png" alt=""></img></p>
-<p>In some QGIS installations, the exported layer may report as <code>EPSG:6419</code> instead of <code>ESRI:102999</code>. For this lab, treat those as functionally equivalent representations of the same State Plane California III system in meters.</p>
-<h3 id="calculate-projsqkm">Calculate <code>PROJ_SQKM</code></h3>
-<p>Open the attribute table for the reprojected counties layer and repeat the area workflow, but use the planar <code>area()</code> function:</p>
-<p><code>area( $geometry ) / 1000000</code></p>
-<p>Use these options:</p>
-<ul>
-<li><strong>Create New Field</strong>: checked</li>
-<li><strong>Output Field Name</strong>: <code>PROJ_SQKM</code></li>
-<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
-<li><strong>Precision</strong>: <code>2</code></li>
-</ul>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-b5930102.png" alt=""></img></p>
-<p>When you compare <code>ORIG_SQKM</code> and <code>PROJ_SQKM</code>, the values will be close, but not identical.</p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-55365511.png" alt=""></img></p>
-<p>That difference is the lab's main point: even a well-designed projected CRS introduces measurable distortion once you move away from its ideal region and lines of true scale.</p>
-<h2 id="calculate-the-percent-error-introduced-by-projection">Calculate the Percent Error Introduced by Projection</h2>
-<p>Now calculate the percent difference between the ellipsoidal and planar results.</p>
-<h3 id="calculate-errorpct">Calculate <code>ERROR_PCT</code></h3>
-<ol>
-<li>Open the attribute table for the reprojected counties layer.</li>
-<li>Open the Field Calculator.</li>
-<li><p>Create a new field with these settings:</p>
-</li>
-<li><p><strong>Output Field Name</strong>: <code>ERROR_PCT</code></p>
-</li>
-<li><strong>Output Field Type</strong>: <code>Decimal number (real)</code></li>
-<li><strong>Precision</strong>: <code>3</code></li>
-<li><strong>Expression</strong>:</li>
-</ol>
-<p><code>abs((("ORIG_SQKM" - "PROJ_SQKM") / "ORIG_SQKM") * 100)</code></p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-4440f21f.png" alt=""></img></p>
-<ol>
-<li>Click <strong>OK</strong>.</li>
-<li>Turn off editing and save.</li>
-<li>Sort <code>ERROR_PCT</code> in descending order and inspect the largest values.</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-32c3229e.png" alt=""></img></p>
-<h2 id="symbolize-the-error-surface">Symbolize the Error Surface</h2>
-<p>Now map the distribution of measurement error.</p>
-<ol>
-<li>Open the <strong>Layer Styling</strong> panel for the reprojected counties layer.</li>
-<li><p>Use these settings:</p>
-</li>
-<li><p><strong>Method</strong>: <code>Graduated</code></p>
-</li>
-<li><strong>Value</strong>: <code>ERROR_PCT</code></li>
-<li><strong>Mode</strong>: <code>Equal Count (Quantile)</code></li>
-<li><p><strong>Classes</strong>: <code>50</code></p>
-</li>
-<li><p>Click <strong>Classify</strong>.</p>
-</li>
-</ol>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-57d459ef-drop-shadow.png" alt=""></img></p>
-<p>You should see a strong spatial pattern in the error values.</p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-7fd184da-drop-shadow.png" alt=""></img></p>
-<p>Zoom into the central United States and study where error is smallest and where it increases.</p>
-<h2 id="for-reflection">For Reflection</h2>
-<ol>
-<li>Where do you think the lines of true scale for <code>NAD_1983_2011_StatePlane_California_III_FIPS_0403</code> are located?</li>
-<li>How does the mapped error pattern help you infer those locations?</li>
-<li>Why is a California State Plane CRS a poor choice for measuring the entire United States, even though it is a carefully designed projected system?</li>
-</ol>
-<p>Use the <strong>Identify Features</strong> tool <img src="../week02/images/Coordinate_Systems_Geodesy-32507c2a.png" alt=""></img> on the graticule layer to inspect latitude values if that helps.</p>
-<p><img src="../week02/images/50_Coordinate_Systems_Geodesy-786652bd-drop-shadow.png" alt=""></img></p>
-<h2 id="what-to-turn-in">What to Turn In</h2>
-<ol>
-<li>Create a QGIS layout with appropriate cartographic elements, including title, legend, scale bar, your name, date, and map CRS.</li>
-<li>Make design choices that clearly communicate the pattern of projection error.</li>
-<li>Export the layout as PDF or PNG and submit it to Canvas.</li>
-</ol>
-<h2 id="what-this-lab-demonstrates">What This Lab Demonstrates</h2>
-<p>By the end of the workflow, you should be able to connect the conceptual vocabulary to a concrete GIS result:</p>
-<ul>
-<li>The <strong>ellipsoid</strong> matters because geodetic area is calculated on it.</li>
-<li>The <strong>project CRS</strong> matters because planar area depends on the projected coordinate plane.</li>
-<li><strong>On-the-fly reprojection</strong> affects display, but not the stored geometry of a layer.</li>
-<li><strong>Projection choice</strong> affects measurement quality.</li>
-<li><strong>Lines of true scale</strong> are not just theoretical. They leave a visible signature in your error surface.</li>
-</ul>
-<p>That is the central lesson of the lab, and it is exactly why projection choice is never just a cartographic afterthought.</p>
+<hr></hr>
+<h2 id="reference-geojsonio-interface-summary">Reference: geojson.io Interface Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature list (left panel)</td>
+<td>Lists all your features; double-click to zoom to one; drag to reorder</td>
+</tr>
+<tr>
+<td>JSON panel (left panel)</td>
+<td>Shows the raw GeoJSON; editable directly</td>
+</tr>
+<tr>
+<td>Table panel</td>
+<td>Browse all features and properties in a spreadsheet view</td>
+</tr>
+<tr>
+<td>Drawing toolbar (right)</td>
+<td>Tools for point, line, polygon, rectangle drawing</td>
+</tr>
+<tr>
+<td>Export button (top)</td>
+<td>Save your data as GeoJSON, KML, CSV, or Shapefile</td>
+</tr>
+</tbody>
+</table>
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>Select</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Draw point</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>Draw line</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td>Draw polygon</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td><strong>Draw rectangle</strong></td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Exit drawing / clear selection</td>
+</tr>
+<tr>
+<td><code>⌘+Z</code></td>
+<td>Undo</td>
+</tr>
+<tr>
+<td><code>⌘+S</code></td>
+<td>Save (to geojson.io account if logged in)</td>
+</tr>
+<tr>
+<td><code>Space</code> + drag</td>
+<td>Move selected feature</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -1344,7 +1229,7 @@
 
             
                 
-                <a href="02_introducing_google_earth_engine_with_coordinates_and_pixels.html" class="navigation navigation-prev " aria-label="Previous page: 02 - Coordinates & Pixels with Google Earth Engine">
+                <a href="02_TURN_IN_projection_error_measurement_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 02 - TURN IN - Projection Error Measurement with QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1360,7 +1245,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - Projection Error Measurement with QGIS","level":"1.3.2","depth":2,"next":{"title":"Week 02 - Making & Collecting Data","level":"1.4","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"00 - Georeferencing with QGIS and AllMaps.org","level":"1.4.1","depth":2,"path":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"01 - Basic Data Creation with GeoJSON.io","level":"1.4.2","depth":2,"path":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","ref":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","articles":[]},{"title":"02 - Advanced Data Creation with QGIS","level":"1.4.3","depth":2,"path":"week02/02_advanced_data_creation_with_qgis.md","ref":"week02/02_advanced_data_creation_with_qgis.md","articles":[]},{"title":"03 - Introducing ArcGIS FieldMaps & ArcGIS Online for Data Collection","level":"1.4.4","depth":2,"path":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]}]},"previous":{"title":"02 - Coordinates & Pixels with Google Earth Engine","level":"1.3.1","depth":2,"path":"week01/02_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/02_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/03_projection_error_measurement_with_qgis.md","mtime":"2026-03-23T20:30:43.758Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-23T20:30:57.208Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.3.3","depth":2,"next":{"title":"Week 02 - Making & Collecting Data","level":"1.4","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"00 - Georeferencing with QGIS and AllMaps.org","level":"1.4.1","depth":2,"path":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/00_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"01 - Basic Data Creation with GeoJSON.io","level":"1.4.2","depth":2,"path":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","ref":"week02/01_basic_data_creation_with_geojsonio_and_qgis.md","articles":[]},{"title":"02 - Advanced Data Creation with QGIS","level":"1.4.3","depth":2,"path":"week02/02_advanced_data_creation_with_qgis.md","ref":"week02/02_advanced_data_creation_with_qgis.md","articles":[]},{"title":"03 - Introducing ArcGIS FieldMaps & ArcGIS Online for Data Collection","level":"1.4.4","depth":2,"path":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]}]},"previous":{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.3.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/03_TURN_IN_create_an_aoi_with_geojson_io.md","mtime":"2026-03-24T17:12:56.103Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-24T17:13:07.374Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
