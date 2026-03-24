@@ -9,8 +9,8 @@
   * [05 - Submitting Homework and Getting Help](week00/05_submitting_homework_and_getting_help.md)
   * [06 - Help Fix the Labs](week00/06_help_fix_the_labs.md)
   * [07 - Installing QGIS and Plugins](week00/07_installing_qgis_and_plugins.md)
-  * [09 - Introduction to QGIS: Being John Snow](week00/09_introduction_to_qgis.md)
-  * [10 - Logging in to Google Earth Engine](week00/10_logging_in_to_google_earth_engine.md)
+  * [09 - TURN IN - Introduction to QGIS: Being John Snow](week00/09_TURN_IN_introduction_to_qgis.md)
+  * [10 - TURN IN - Logging in to Google Earth Engine](week00/10_TURN_IN_logging_in_to_google_earth_engine.md)
 
 * [Week 01 - Lining it Up & Cartographic Presentation](week01/README.md)
   * [01 - TURN IN - Coordinates & Pixels with Google Earth Engine](week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
