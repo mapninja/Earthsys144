@@ -1,5 +1,7 @@
 # Lab 1: Introduction to QGIS — Being John Snow
 
+> **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
+
 ## The Broad Street Outbreak: A Story of Spatial Thinking
 
 In late August 1854, a devastating cholera outbreak erupted in the Soho neighborhood of London. Within three days, 127 people were dead. Within a week, three-quarters of the residents had fled the area, and the death toll would eventually climb to over 600.

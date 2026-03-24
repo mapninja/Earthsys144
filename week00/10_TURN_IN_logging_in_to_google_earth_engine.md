@@ -1,5 +1,7 @@
 # Logging in to Google Earth Engine
 
+> **Turn-in for grading:** This guide includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
+
 ## What is Google Earth Engine?
 
 Google Earth Engine (GEE) is a cloud-based platform that lets you access and analyze massive amounts of satellite imagery and geospatial data without needing a powerful computer. Think of it like a library in the cloud where you can browse and analyze global imagery from the past few decades in real-time.

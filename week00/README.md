@@ -42,8 +42,15 @@ This week covers the essential technical skills and setup procedures that will e
 - [05 - Submitting Homework and Getting Help](05_submitting_homework_and_getting_help.md)
 - [06 - Help Fix the Labs](06_help_fix_the_labs.md)
 - [07 - Installing QGIS and Plugins](07_installing_qgis_and_plugins.md)
-- [09 - Introduction to QGIS: Being John Snow](09_introduction_to_qgis.md)
-- [10 - Logging in to Google Earth Engine](10_logging_in_to_google_earth_engine.md)
+- [09 - TURN IN - Introduction to QGIS: Being John Snow](09_TURN_IN_introduction_to_qgis.md)
+- [10 - TURN IN - Logging in to Google Earth Engine](10_TURN_IN_logging_in_to_google_earth_engine.md)
+
+## Grading Note
+
+These two Week 00 items include material that must be turned in for grading:
+
+- [09 - TURN IN - Introduction to QGIS: Being John Snow](09_TURN_IN_introduction_to_qgis.md)
+- [10 - TURN IN - Logging in to Google Earth Engine](10_TURN_IN_logging_in_to_google_earth_engine.md)
 
 ## Learning Objectives
 
