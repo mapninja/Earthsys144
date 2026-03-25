@@ -77,7 +77,6 @@ Here is a quick refresher on the three main parts of the QGIS interface:
 * **Layers Panel** — Lists all the data layers currently loaded in your project. The order matters: layers at the top are drawn on top of layers below them.
 * **Layer Styling Panel** — A quick way to change how a layer looks (colors, symbols, labels) without opening the full Properties dialog. Enable it from **View > Panels > Layer Styling**.
 
-
 ![](images/20260325_152030_image.png)
 
 **Toolbars** (across the top):
@@ -117,7 +116,7 @@ If you already installed QuickMapServices and downloaded the contributed pack du
 2. Go to **Web > QuickMapServices > Settings**, select the **More Services** tab, and click **Get contributed pack**.
    ![](images/contribpack.png)
 3. Click **Save** to close the Settings dialog.
-4. Go to **Web > QuickMapServices > Stamen > Stamen Toner Lite** to add a simple black-and-white basemap.
+4. Go to **Web > QuickMapServices > CartoDB > Stamen Toner Lite** to add a simple black-and-white basemap.
 5. **Save** your project.
 
 ![](images/stamenbasemap.png)
@@ -131,12 +130,18 @@ Now we'll add our first real data layer — a **shapefile** that defines our stu
 > **Reminder:** A shapefile is actually a bundle of files (`.shp`, `.shx`, `.dbf`, `.prj`, etc.) that must stay together in the same folder. You only need to open the `.shp` file — QGIS will find the others automatically. See [Introduction to Spatial Data Formats](03_introduction_to_spatial_data_formats.md) for more detail.
 
 1. In the **Browser panel**, find the data folder for this lab (look for **Project Home**) and double-click on **Study_Area.shp** to add it to your project.
+
+   ![](images/20260325_153830_image.png)
 2. In the **Layers panel**, right-click on **Study_Area** and select **Zoom to Layer**.
-3. Open the **Layer Styling panel** (if not already visible, enable it from **View > Panels > Layer Styling**).
+3. Open the **Layer Styling panel** (if not already visible, enable it from **View > Panels > Layer Styling**), or click on the **Styling Icon**
+
+   ![](images/20260325_154005_image.png)
 4. In the Layer Styling panel, click on **Simple Fill**, then change the **Fill style** to **No Brush** so the polygon is just an outline. Optionally adjust the **Stroke color** and **Stroke width** to make it stand out against the basemap.
+
+   ![](images/20260325_154049_image.png)
 5. **Save** your project.
 
-![](images/studyareaadd.png)
+   ![](images/20260325_154123_image.png)
 
 ### Explore Navigation Tools
 
@@ -172,10 +177,11 @@ The naming is counterintuitive: *large* scale = *small* area. Think of it this w
 **Spatial bookmarks** save a specific map extent (location + zoom level) so you can return to it quickly. This is useful when you need to zoom around the map but want to snap back to your study area.
 
 1. Right-click in any empty area of the toolbar and enable the **Spatial Bookmarks** panel.
-2. Right-click on your **Study_Area** layer and select **Zoom to Layer**.
-3. In the Spatial Bookmarks panel, click **Add Bookmark** and name it **SOHO**.
-   ![](images/spatialbookmark.png)
-4. Now click **Zoom Full** to zoom out to the world. Then use the **Zoom to Bookmark** button to jump back to your study area — much faster than panning and zooming manually.
+2. Right-click on your **Study_Area** layer in the **Layers Panel** and select **Zoom to Layer**.
+3. In the Spatial Bookmarks panel, click **Add Bookmark** and name it **SOHO**, and save it in your **Project Bookmarks**.
+
+   ![](images/20260325_154452_image.png)
+4. Now use your Scroll Wheel or the Zoom Out tool to zoom out to the world. Then use the **Zoom to Bookmark** button to jump back to your study area — much faster than panning and zooming manually.
 
 ## Working with Coordinate Reference Systems (CRS)
 
@@ -190,29 +196,32 @@ In QGIS, the **Project CRS** controls how all layers are displayed on screen. QG
 
    `EPSG:32630 — WGS 84 / UTM zone 30N`
 
-   ![](images/layercrs.png)
+   ![](images/20260325_154830_image.png)
 
    > **What is UTM?** Universal Transverse Mercator (UTM) is a **projected coordinate system** that divides the world into 60 zones. Each zone uses meters as its unit, which makes it ideal for measuring distances and areas. London falls in UTM Zone 30N. The "WGS 84" part tells you which model of the Earth's shape (**datum**) is being used.
    >
 3. Click **OK** to close the Properties dialog.
-4. Now check the **Project CRS**: go to **Project > Properties** and click the **CRS** tab. It should currently show:
+4. Now check the **Project CRS**: go to **Main Menu > Project > Properties** and click the **CRS** tab. It should currently show:
 
    `EPSG:3857 — WGS 84 / Pseudo-Mercator`
 
-   This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.
+   ***This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.***
 
-   ![](images/projectcrs.png)
+   ![](images/20260325_155002_image.png)
 
 ### Change the Project CRS
 
 For spatial analysis, we want our project in the same **projected (meter-based)** CRS as our Study Area layer. Let's change it:
 
 1. In the CRS tab of Project Properties, type `32630` into the **Filter** box, or find it under "Recently used coordinate reference systems."
-   ![](images/newprojectcrs.png)
+
+   ![](images/20260325_155147_image.png)
 2. Select `EPSG:32630 — WGS 84 / UTM zone 30N` and click **OK**.
 3. Save your project by clicking the **Save** button ![](images/savebutton.png) on the toolbar.
 
 You should see the study area rectangle rotate slightly — it is now oriented true north-south, because UTM Zone 30N aligns its grid to the north in this part of the world.
+
+![](images/20260325_155212_image.png)
 
 ## Adding and Visualizing Data
 
@@ -223,8 +232,8 @@ As you learned in [Week 00](03_introduction_to_spatial_data_formats.md), spatial
 > **Key concept:** Creating points from a CSV produces a **temporary, dynamic layer** — it references the original CSV file on disk. If you move or delete the CSV, the layer breaks. To make it permanent, you would export it to a spatial format like GeoJSON or shapefile. (We'll practice exporting later in this lab.)
 
 1. Click the **Data Source Manager** button ![](images/ReadMe-d41c0b7e.png) on the toolbar (or go to **Layer > Add Layer > Add Delimited Text Layer**).
-2. For **File Name**, browse to the **data** folder and select **deathAddresses.csv**.
-3. Click the **Delimited Text** tab ![](images/ReadMe-7d3a93bd.png) and configure the settings as follows:
+2. Click the **Delimited Text** tab ![](images/ReadMe-7d3a93bd.png) and configure the settings as follows:
+3. For **File Name**, browse to the **data** folder and select **deathAddresses.csv**.
 
 
 |                  Setting | Value                                                                    |
@@ -234,19 +243,21 @@ As you learned in [Week 00](03_introduction_to_spatial_data_formats.md), spatial
 |      Geometry Definition | Point coordinates:**X field** = `xcoord`, **Y field** = `ycoord`         |
 |             Geometry CRS | `EPSG:4326 - WGS 84`                                                     |
 
-![](images/datasourcemanager.png)
+![](images/20260325_155503_image.png)
 
 4. Click **Add & Close** to import the layer.
 
 You should now see a cluster of points in the Soho area — these are the addresses where cholera deaths occurred.
 
-![](images/addedpoints-drop-shadow.png)
+![](images/20260325_155526_image.png)
 
-> **Why EPSG:4326?** The coordinates in this CSV are in **latitude and longitude** (decimal degrees), which is the WGS 84 geographic coordinate system (`EPSG:4326`). Even though our project is now in UTM (`EPSG:32630`), QGIS reprojects the points on-the-fly so everything lines up.
+> **Why EPSG:4326?** The coordinates in this CSV are in **latitude and longitude** (decimal degrees), which is the WGS 84 geographic coordinate system (`EPSG:4326`). It is necessary to tell QGIS what the coordinates ACTUALLY ARE, not what we WANT them to be, in this step. Even though our project is now in UTM (`EPSG:32630`), QGIS reprojects the points on-the-fly so everything lines up.
 
 ### Layer Symbology — Proportional Symbols
 
-**Symbology** is how you control the visual appearance of your data on the map. Right now, all the death address points look the same, but the data includes a `Num_Cases` field — the number of deaths at each address. Let's make the symbol size reflect this value.
+**Symbology** is how you control the visual appearance of your data on the map. You've already applied a symbology to the Study Area polygon layer, so now let's get a little more complex.
+
+Right now, all the death address points look the same, but the data includes a `Num_Cases` field — the number of deaths at each address. Let's make the symbol size reflect this value.
 
 1. Click on the **deathAddresses** layer in the Layers panel to ensure it's selected in the **Layer Styling panel**.
 2. Apply the following symbology settings:
@@ -255,7 +266,7 @@ You should now see a cluster of points in the Soho area — these are the addres
 |          Setting | Value                                   |
 | -----------------: | :---------------------------------------- |
 |   Symbology Type | Graduated                               |
-|           Column | Num_Cases                               |
+|            Value | Num_Cases                               |
 |           Symbol | *click to change the color if you like* |
 | Legend Precision | 1                                       |
 |           Method | Size                                    |
@@ -265,14 +276,17 @@ You should now see a cluster of points in the Soho area — these are the addres
 
 Because QGIS updates symbology live, you should see the changes apply as you adjust each setting.
 
-![](images/deathsymbol-drop-shadow.png)
+![](images/20260325_155956_image.png)
 
 > **What is "Graduated" symbology?** Unlike **Single Symbol** (all features look the same) or **Categorized** (one symbol per unique value), **Graduated** symbology maps a continuous numeric field to a visual variable like size or color. This is also called a **proportional symbol** map — a core technique in cartography.
 
 #### Bonus: Adding Drop Shadows
 
 1. At the bottom of the Layer Styling panel, check the **Draw Effects** option, then click the star icon that becomes active.
+
+   ![](images/20260325_160044_image.png)
 2. Enable **Drop Shadow** and experiment with the settings.
+3. Save your project.
 
 ![](images/dropshadowdeaths-drop-shadow.png)
 
@@ -281,18 +295,37 @@ Because QGIS updates symbology live, you should see the changes apply as you adj
 Every vector layer has an **attribute table** — a spreadsheet-like table where each row is a geographic feature and each column is an attribute (a piece of information about that feature). This is the non-spatial side of your spatial data.
 
 1. Right-click on the **deathAddresses** layer in the Layers panel and select **Open Attribute Table**.
+
+   ![](images/20260325_160220_image.png)
 2. Explore the table: you can sort columns by clicking on their headers, scroll through records, and select features by clicking on row numbers. Notice how selected rows highlight the corresponding points on the map.
 3. Close the Attribute Table when you're done.
 
+## Analysis Tools in QGIS
+
+Many of the actual "workhorse" tools in QGIS are accessed through **tool dialogs** like the ones you are about to use. These dialog windows are where you tell QGIS what data to work on, which fields or parameters to use, and what to call the output.
+
+This is an important pattern to recognize early:
+
+- You choose one or more **input layers**.
+- You set any needed **parameters** or analysis options.
+- You decide whether the output should be **temporary** or saved as a new file.
+- You click **Run** and then inspect the result.
+
+Some QGIS tool dialogs include helpful short explanations of what the tool does and what each option means. Sometimes the help text is excellent; sometimes it is minimal or missing. When a tool is unclear, that is normal. It is often useful to search the web, look at the official QGIS documentation, or read forum discussions to better understand what a tool expects and what kind of output it will produce.
+
 ### Statistics on a Field
 
-The `Num_Cases` field records the number of cholera deaths at each address. Let's get a quick statistical summary to understand the distribution.
+The `Num_Cases` field records the number of cholera deaths at each address. Let's get a quick statistical summary to understand the distribution of deaths, by household, and give ourselves an example of a typical processing tool workflow.
 
 1. Go to **Vector > Analysis Tools > Basic Statistics for Fields**.
 2. Set **Input layer** to **deathAddresses** and **Field to calculate statistics on** to **Num_Cases**.
-3. Click **Run**, then **Close**.
-4. Look for the **Results Viewer** panel (it should appear automatically) and click the **hyperlink** to open the summary report.
-   ![](images/resultsviewer-drop-shadow.png)
+3. You can use the convenient `[Create temporary layer]` option, for the outputs, which creates reports/layers/outputs that disappear if you don't make them permanent before closing the Project Document.
+
+   ![](images/20260325_162748_image.png)
+4. Click **Run**, then **Close**.
+5. Look for the **Results Viewer** panel (it should appear automatically) and click the **hyperlink** to open the summary report.
+
+   ![](images/20260325_162837_image.png)
 
 > **What do these statistics tell you?** The mean, max, and standard deviation give you a sense of whether deaths were evenly spread across addresses or concentrated at a few locations. This kind of exploratory summary is often the first step in any spatial analysis.
 
@@ -307,18 +340,40 @@ Now let's add the water pump data. Snow's original map marked 13 public water pu
 
 ![](images/ReadMe-90b7e76d.png)
 
+### Change the Water Pump Symbology
+
+Before labeling the pumps, change their symbol so they stand out clearly against both the basemap and the historic Snow map.
+
+1. Select the **Water_Pumps** layer in the Layers panel.
+2. In the **Layer Styling panel**, make sure you are on the **Symbology** tab.
+3. Leave the symbol type as **Single Symbol**.
+4. Click the symbol preview to edit the marker.
+5. Change the marker **color** to **blue**.
+6. Change the marker **size** to **25 Map Units**.
+7. Apply **Drop Shadow** effect, as before.
+8. Click **Apply** if needed, and save your project.
+
+This will make the pumps much easier to see as important reference points in the rest of the lab.
+
+![](images/20260325_164204_image.png)
+
 ### Add Labels to the Water Pumps
 
 1. Select the **Water_Pumps** layer in the Layers panel.
 2. In the **Layer Styling panel**, click the **Labels** tab ![](images/ReadMe-b6c4286c.png).
 3. Change the dropdown from **No Labels** to **Single Labels**.
-4. Set **Label with** to the `Label` field.
+4. Set **Value** to the `Name` field.
 5. Increase **Text Size** to **14**.
-6. Click the **Buffer** tab and enable **Draw text buffer** to add a halo around the text for readability.
+6. Click the **Buffer**
 
-![](images/labels.png)
+   ![](images/20260325_164328_image.png)
 
-![](images/ReadMe-e68895da.png)
+   tab and enable **Draw text buffer** to add a halo around the text for readability.
+
+![](images/20260325_164443_image.png)
+
+
+![](images/20260325_164415_image.png)
 
 ### Add the Georeferenced Snow Map
 
