@@ -59,7 +59,7 @@ Now you need to create a Google Cloud Project. This is like creating a new works
 ![Profile Icon location](images/20260220_110446_image.png)
 
 2. Select **Register a new Cloud Project**
-3. Enter a **Project name** (be descriptive, like "Earthsys144" or "GIS-Analysis-Spring2026")
+3. Enter a **Project name** (be descriptive, like "Earthsys144" or "GIS-Analysis-Spring2026", as well as your SUNetID, so that it is easy to search for in the GCP Folder!)
 
 ![Project naming dialog](images/20260220_110920_image.png)
 

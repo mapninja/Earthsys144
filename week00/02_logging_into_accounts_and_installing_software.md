@@ -32,6 +32,7 @@ GitHub is the industry standard for sharing code and data work. Learning to use 
 **Testing Your Account:**
 
 Once created, log in and explore:
+
 - Visit the course repository at [github.com/mapninja/Earthsys144](https://github.com/mapninja/Earthsys144) to see examples of projects similar to ones you'll create
 - Star the repository (click the star icon) to bookmark it
 - Familiarize yourself with the interface
@@ -55,7 +56,7 @@ Google Colab provides cloud-based Python notebook environments, perfect for work
 **Getting Started:**
 
 1. Navigate to [colab.research.google.com](https://colab.research.google.com)
-2. Sign in using your Google account (or create one if you don't have one)
+2. Sign in using your SUNetID credentials
 3. Create a test notebook:
    - Click **New notebook**
    - Run a simple command to verify it works
@@ -71,6 +72,7 @@ Google Colab provides cloud-based Python notebook environments, perfect for work
 OpenRefine is an essential tool for data cleaning and transformation. It helps you clean messy data, fix inconsistencies, and prepare datasets for spatial analysis.
 
 **When you'd use it:**
+
 - Cleaning address data before geocoding
 - Standardizing place names or category names
 - Fixing inconsistent formatting in spreadsheets
@@ -101,6 +103,7 @@ OpenRefine is an essential tool for data cleaning and transformation. It helps y
 Stanford's AFS (Andrew File System) provides free web hosting for students. You can place HTML, CSS, and JavaScript files on your AFS space and access web applications at: `web.stanford.edu/~YOURSUNetID`
 
 **Why use AFS web hosting:**
+
 - Free, permanent home for your projects
 - Accessible from anywhere
 - Good for hosting simple web maps and interactive visualizations
@@ -121,11 +124,12 @@ SecureFX is an SFTP (Secure File Transfer Protocol) client that lets you upload 
 **Installation:**
 
 1. **For Windows:**
+
    - Visit [uit.stanford.edu/service/ess/scrt_sfx/securefx](https://uit.stanford.edu/service/ess/scrt_sfx/securefx)
    - Download SecureFX for Windows
    - Run the installer and use all default settings
-
 2. **For macOS:**
+
    - Visit [uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install](https://uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install)
    - Follow the installation instructions for Mac
 
@@ -141,8 +145,9 @@ SecureFX is an SFTP (Secure File Transfer Protocol) client that lets you upload 
    - **Password:** Your Stanford SUNetID password
    - **Port:** 22 (for SFTP)
 4. Click **Connect**
-5. You should see two folders: `Private` and `WWW`
-6. Navigate to the `WWW` folder - this is your public web space
+5. Choose your Dual Auth method and complete it
+6. You should see two folders: `Private` and `WWW`
+7. Navigate to the `WWW` folder - this is your public web space
 
 **Uploading Files to AFS:**
 
@@ -168,7 +173,7 @@ SecureFX is an SFTP (Secure File Transfer Protocol) client that lets you upload 
    ```
 2. Upload it to your WWW folder using SecureFX
 3. Visit `web.stanford.edu/~YOURSUNETID/test_afs.html` in your browser to verify it works
-4. You can also view the [course test example](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/test_afs.html)
+4. You can also use the [course test example](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/test_afs.html)
 
 ---
 
@@ -179,22 +184,19 @@ A good text editor is essential for writing code and editing web files. While yo
 **Recommended Options:**
 
 - **[Visual Studio Code](https://code.visualstudio.com/download)** (Recommended)
+
   - Free and open-source
   - Cross-platform (Windows, Mac, Linux)
   - Excellent for code editing and file tree navigation
   - Great plugin ecosystem for extensions
   - Built-in terminal
   - Good for HTML, CSS, JavaScript, Python, and more
-  
 - **[Sublime Text](https://www.sublimetext.com/)**
+
   - Free or paid version available
   - Clean, minimal interface
   - Good for those who find VS Code overwhelming
   - Faster startup than VS Code
-
-- **[Notepad++](https://notepad-plus-plus.org/)** (Windows only)
-  - Free and lightweight
-  - Good for quick edits
 
 ![Text Editor comparison](images/20260224_112727_image.png)
 
@@ -229,28 +231,26 @@ By the end of this guide, you should have:
 ## Troubleshooting
 
 ### Can't connect to AFS with SecureFX
+
 - Verify your SUNetID and password are correct
 - Make sure you're connecting to `cardinal.stanford.edu`
 - Try updating SecureFX to the latest version
 - Contact Stanford UIT if connection issues persist
 
 ### GitHub account creation issues
+
 - Make sure you're using a valid Stanford email address ending in @stanford.edu
 - Check your email for a verification link
 - Try using a different browser if having issues
 
 ### OpenRefine won't start
+
 - Make sure Java is installed on your computer
 - Try right-clicking the application and running as administrator (Windows)
 - Check that port 3333 is not blocked by your firewall
 
 ### Can't see AFS folders in SecureFX
+
 - Verify you successfully connected (check the status bar)
 - Make sure you're in the home directory
 - Try refreshing the file list (press F5)
-
----
-
-## Next Steps
-
-Once you've completed all of these steps, you're ready to move on to learning specific tools and techniques. Keep your AFS web space active—you'll be using it throughout the course to host projects and webmaps!

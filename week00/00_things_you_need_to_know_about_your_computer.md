@@ -47,7 +47,6 @@ File directory systems organize your files in a hierarchical tree structure. Eac
 2. Go to **View → Show Path Bar** (this shows the path at the bottom of the window)
 3. Alternative: **View → Show Status Bar** and then **View → Customize Toolbar** and add the Path button
 4. For copying paths: Right-click any file and hold the **Option key** to see "Copy [filename] as Pathname"
-5. Command-line method: Open **Terminal** and type `pwd` to see your current directory path
 
 ![](images/20260223_132418_image.png)
 
@@ -80,12 +79,13 @@ File directory systems organize your files in a hierarchical tree structure. Eac
 5. Alternative: Click in the address bar (where it shows folder icons) and it will switch to text showing the full path
 6. Copy path method: Hold **Shift** and right-click any file, then select "Copy as path"
 
+![](images/20260324_105314_image.png)
+
 ### Where NOT to Put Things (Critical - Read This First!)
 
 **WARNING**: Choosing the wrong location for your GIS files can lead to data corruption, software crashes, and lost work. These locations MUST be avoided:
 
 #### Cloud Sync Folders (Critical Warning)
-
 
 ![](images/20260223_132649_image.png)
 
@@ -97,7 +97,7 @@ File directory systems organize your files in a hierarchical tree structure. Eac
 
 **Why These Cause Problems:**
 
-Modern cloud storage services like iCloud, OneDrive, and Dropbox use "storage optimization" features that automatically move large files to the cloud to save local disk space. While this seems helpful, it creates serious problems for GIS software:
+Modern cloud storage services like iCloud, OneDrive, and Dropbox use "storage optimization" features that *automatically move large files to the cloud to save local disk space*. While this seems helpful, it creates serious problems for GIS software:
 
 **Storage Optimization Issues:**
 
@@ -228,7 +228,7 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 
 **What happens when you double-click a .zip file:**
 
-- Windows **treats the zip file as a folder** that can be browsed
+- *Windows **treats the zip file as a folder** that can be browsed*
 - Files appear to be accessible but are **still compressed**
 - You can view files but they're not truly extracted
 - The original .zip file remains intact
@@ -271,13 +271,3 @@ Spatial data is often distributed in compressed formats (.zip, .tar.gz, .7z), an
 - File sizes should be reasonable (not 0 bytes)
 - Files should open properly in QGIS without errors
 - You should be able to view attribute tables completely
-
-## Directory Navigation
-
-Master these essential directory skills:
-
-- Understand absolute vs. relative paths
-- Navigate using both GUI and command line
-- Create and organize folder hierarchies
-- Understand how different operating systems handle paths
-

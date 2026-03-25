@@ -150,5 +150,5 @@ Project_Name/
 
 **Document your data sources:**
 
-- Keep a simple text file listing where data came from
+- Keep a simple text file listing where data came from, or get REALLY motivated and use Zotero!
 - Note download dates and any modifications made

@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Effective communication is crucial in spatial data science - both when submitting your work and when seeking assistance. This lab teaches you the essential skills for properly formatting and submitting various types of assignments, as well as how to effectively seek help when you encounter technical problems.
+Effective communication is crucial in a course with nearly 100 students - both when submitting your work and when seeking assistance. This guide teaches you the essential skills for properly formatting and submitting various types of assignments, as well as how to effectively seek help when you encounter technical problems.
 
 ## Learning Objectives
 
-By the end of this lab, you will be able to:
+By the end of this guide, you will be able to:
 
 - Submit homework in proper formats (images, PDFs, links)
 - Create high-quality screenshots and documentation
@@ -36,7 +36,7 @@ By the end of this lab, you will be able to:
 
 - PNG for maps and screenshots (lossless compression)
 - JPEG for photographs (smaller file size)
-- Avoid proprietary formats (TIFF, BMP)
+- Avoid data & proprietary formats (TIFF, jp2)
 
 **Quality Standards:**
 
@@ -45,7 +45,7 @@ By the end of this lab, you will be able to:
 - Descriptive filenames
 - Capture only the relevant content area
 
-#### Creating Screenshots on macOS
+#### [Creating Screenshots on macOS](https://support.apple.com/en-us/102646)
 
 **Method 1: Keyboard Shortcuts (Recommended)**
 
@@ -53,15 +53,14 @@ By the end of this lab, you will be able to:
 
   - Saves to Desktop as PNG automatically
   - Files named with timestamp (e.g., "Screenshot 2024-09-22 at 2.30.45 PM.png")
-
 - **Selected area**: `Command + Shift + 4`
 
   - Cursor changes to crosshairs
   - Click and drag to select area
   - Release to capture
   - Press `Escape` to cancel
+- **Specific window**: `Command + Shift + 5`
 
-- **Specific window**: `Command + Shift + 4`, then `Spacebar`
   - Cursor changes to camera icon
   - Click on any window to capture it with drop shadow
   - Great for capturing QGIS interface cleanly
@@ -81,7 +80,7 @@ By the end of this lab, you will be able to:
 - **Save to different location**: Screenshot app > Options > Save to [location]
 - **Change format**: Screenshot app > Options > Format (default PNG is best for GIS work)
 
-#### Creating Screenshots on Windows
+#### [Creating Screenshots on Windows](https://www.microsoft.com/en-us/windows/learning-center/how-to-screenshot-windows-11)
 
 **Method 1: Snipping Tool / Snip & Sketch (Recommended)**
 
@@ -104,13 +103,6 @@ By the end of this lab, you will be able to:
 - **Entire screen**: `Print Screen` (copies to clipboard)
 - **Active window**: `Alt + Print Screen`
 - **Save directly**: `Windows + Print Screen` (saves to Pictures > Screenshots folder)
-
-**Method 3: Game Bar (Windows 10/11)**
-
-- Press `Windows + G` to open Game Bar
-- Click camera icon or press `Windows + Alt + Print Screen`
-- Automatically saves to Videos > Captures folder
-- Good for capturing full-screen applications
 
 **Windows Screenshot Tips:**
 
@@ -162,7 +154,7 @@ Many assignments require link submission. You have two main submission methods:
 **Canvas Link Submission Tips:**
 
 - **Test first**: Open link in private/incognito browser window before submitting
-- **Check permissions**: Ensure link is publicly accessible or properly shared
+- **Check permissions**: Ensure link is publicly accessible or properly shared, if it is a Github, Google Drive or Earth Engine Get Link.
 - **Complete URL**: Include `https://` prefix for external links
 - **No spaces**: Ensure no extra spaces at beginning or end of URL
 
@@ -182,7 +174,6 @@ Many assignments require link submission. You have two main submission methods:
    - Go to docs.google.com
    - Click "Blank document"
    - Title your document: "[Your Name] - [Assignment Name] Links"
-
 2. **Add your links with context**:
 
    ```
@@ -197,7 +188,6 @@ Many assignments require link submission. You have two main submission methods:
    https://code.earthengine.google.com/abcd1234efgh5678
    (Interactive script showing precipitation analysis)
    ```
-
 3. **Make links clickable (hyperlinked)**:
 
    - **Automatic method**: Google Docs usually auto-formats URLs as hyperlinks
@@ -206,8 +196,8 @@ Many assignments require link submission. You have two main submission methods:
      - Press `Ctrl/Cmd + K` or click Insert → Link
      - Ensure URL is correct and click "Apply"
    - **Verify**: Hyperlinks should appear blue and underlined
-
 4. **Download as PDF**:
+
    - Click **File → Download → PDF Document (.pdf)**
    - Save with descriptive filename: `Smith_Jane_Week01_Links.pdf`
    - Upload the PDF file to Canvas assignment submission
@@ -264,30 +254,26 @@ NOT: "Help!" or "QGIS problem"
 
    - "I'm working on Week 2, Lab 1, Step 8"
    - "I'm trying to load the population shapefile into QGIS"
-
 2. **What I expected to happen:**
 
    - "The shapefile should load and display as a map layer"
    - "Based on the lab instructions, I should see a choropleth map"
-
 3. **What actually happened:**
 
    - "QGIS immediately crashes with no error message"
    - "The layer loads but appears completely blank"
-
 4. **My system information:**
 
    - Operating System: macOS Sonoma 14.1 / Windows 11
    - QGIS Version: 3.34 (check Help → About)
    - File location: Where your data files are stored
-
 5. **What I've already tried:**
 
    - "Restarted QGIS"
    - "Tried a different shapefile"
    - "Checked that all files (.shp, .shx, .dbf, .prj) are present"
-
 6. **Screenshots or error messages:**
+
    - Include full error messages (copy exact text)
    - Screenshots showing the problem
    - Before/after screenshots if relevant
@@ -383,9 +369,3 @@ Effective strategies for managing coursework:
 - Keep organized records of your work process
 - Document problems as they occur
 - Seek help promptly rather than struggling alone
-
-## Conclusion
-
-Mastering these communication and submission skills will serve you well throughout the course and in your future career. Remember that asking for help is a sign of engagement, not weakness, and that clear documentation of your work process is valuable both for getting assistance and for your own learning.
-
-Practice these skills consistently, and you'll find that both giving and receiving technical help becomes much more effective and efficient.
