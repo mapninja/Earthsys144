@@ -41,7 +41,7 @@ Before starting this lab, you should have already completed the **Week 00** setu
 
 ### Data
 
-Download the data package from: [https://github.com/mapninja/QGIS-101/archive/master.zip](https://github.com/mapninja/Earthsys144/blob/17dead3dcb6ce05858236394d412085fcf43ccd1/data/snow_data.zip)
+Download the data package from: [https://github.com/mapninja/Earthsys144/blob/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip](https://github.com/mapninja/Earthsys144/blob/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip)
 
 Extract the zip file and place it in your local GIS working folder (remember — **not** in a cloud-synced folder like iCloud, OneDrive, or Dropbox! See the [Week 00 guide](../week00/00_things_you_need_to_know_about_your_computer.md) if you need a reminder about why).
 
