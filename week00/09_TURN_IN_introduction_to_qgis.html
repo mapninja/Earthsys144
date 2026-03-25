@@ -1087,7 +1087,7 @@
 <li>Go to <strong>Web &gt; QuickMapServices &gt; Settings</strong>, select the <strong>More Services</strong> tab, and click <strong>Get contributed pack</strong>.
 <img src="images/contribpack.png" alt=""></img></li>
 <li>Click <strong>Save</strong> to close the Settings dialog.</li>
-<li>Go to <strong>Web &gt; QuickMapServices &gt; Stamen &gt; Stamen Toner Lite</strong> to add a simple black-and-white basemap.</li>
+<li>Go to <strong>Web &gt; QuickMapServices &gt; CartoDB &gt; Stamen Toner Lite</strong> to add a simple black-and-white basemap.</li>
 <li><strong>Save</strong> your project.</li>
 </ol>
 <p><img src="images/stamenbasemap.png" alt=""></img></p>
@@ -1100,13 +1100,20 @@
 <p><strong>Reminder:</strong> A shapefile is actually a bundle of files (<code>.shp</code>, <code>.shx</code>, <code>.dbf</code>, <code>.prj</code>, etc.) that must stay together in the same folder. You only need to open the <code>.shp</code> file — QGIS will find the others automatically. See <a href="03_introduction_to_spatial_data_formats.html">Introduction to Spatial Data Formats</a> for more detail.</p>
 </blockquote>
 <ol>
-<li>In the <strong>Browser panel</strong>, find the data folder for this lab (look for <strong>Project Home</strong>) and double-click on <strong>Study_Area.shp</strong> to add it to your project.</li>
+<li><p>In the <strong>Browser panel</strong>, find the data folder for this lab (look for <strong>Project Home</strong>) and double-click on <strong>Study_Area.shp</strong> to add it to your project.</p>
+<p><img src="images/20260325_153830_image.png" alt=""></img></p>
+</li>
 <li>In the <strong>Layers panel</strong>, right-click on <strong>Study_Area</strong> and select <strong>Zoom to Layer</strong>.</li>
-<li>Open the <strong>Layer Styling panel</strong> (if not already visible, enable it from <strong>View &gt; Panels &gt; Layer Styling</strong>).</li>
-<li>In the Layer Styling panel, click on <strong>Simple Fill</strong>, then change the <strong>Fill style</strong> to <strong>No Brush</strong> so the polygon is just an outline. Optionally adjust the <strong>Stroke color</strong> and <strong>Stroke width</strong> to make it stand out against the basemap.</li>
-<li><strong>Save</strong> your project.</li>
+<li><p>Open the <strong>Layer Styling panel</strong> (if not already visible, enable it from <strong>View &gt; Panels &gt; Layer Styling</strong>), or click on the <strong>Styling Icon</strong></p>
+<p><img src="images/20260325_154005_image.png" alt=""></img></p>
+</li>
+<li><p>In the Layer Styling panel, click on <strong>Simple Fill</strong>, then change the <strong>Fill style</strong> to <strong>No Brush</strong> so the polygon is just an outline. Optionally adjust the <strong>Stroke color</strong> and <strong>Stroke width</strong> to make it stand out against the basemap.</p>
+<p><img src="images/20260325_154049_image.png" alt=""></img></p>
+</li>
+<li><p><strong>Save</strong> your project.</p>
+<p><img src="images/20260325_154123_image.png" alt=""></img></p>
+</li>
 </ol>
-<p><img src="images/studyareaadd.png" alt=""></img></p>
 <h3 id="explore-navigation-tools">Explore Navigation Tools</h3>
 <p>The <strong>Map Navigation Toolbar</strong> provides the main tools for moving around the Map Canvas. Take a moment to try each one:</p>
 <table>
@@ -1175,10 +1182,11 @@
 <p><strong>Spatial bookmarks</strong> save a specific map extent (location + zoom level) so you can return to it quickly. This is useful when you need to zoom around the map but want to snap back to your study area.</p>
 <ol>
 <li>Right-click in any empty area of the toolbar and enable the <strong>Spatial Bookmarks</strong> panel.</li>
-<li>Right-click on your <strong>Study_Area</strong> layer and select <strong>Zoom to Layer</strong>.</li>
-<li>In the Spatial Bookmarks panel, click <strong>Add Bookmark</strong> and name it <strong>SOHO</strong>.
-<img src="images/spatialbookmark.png" alt=""></img></li>
-<li>Now click <strong>Zoom Full</strong> to zoom out to the world. Then use the <strong>Zoom to Bookmark</strong> button to jump back to your study area — much faster than panning and zooming manually.</li>
+<li>Right-click on your <strong>Study_Area</strong> layer in the <strong>Layers Panel</strong> and select <strong>Zoom to Layer</strong>.</li>
+<li><p>In the Spatial Bookmarks panel, click <strong>Add Bookmark</strong> and name it <strong>SOHO</strong>, and save it in your <strong>Project Bookmarks</strong>.</p>
+<p><img src="images/20260325_154452_image.png" alt=""></img></p>
+</li>
+<li>Now use your Scroll Wheel or the Zoom Out tool to zoom out to the world. Then use the <strong>Zoom to Bookmark</strong> button to jump back to your study area — much faster than panning and zooming manually.</li>
 </ol>
 <h2 id="working-with-coordinate-reference-systems-crs">Working with Coordinate Reference Systems (CRS)</h2>
 <p>Every spatial dataset has a <strong>Coordinate Reference System (CRS)</strong> that defines how its coordinates map to locations on Earth. Each CRS is identified by an <strong>EPSG code</strong> — a unique numeric identifier (e.g., <code>EPSG:4326</code> for standard latitude/longitude). If this concept is fuzzy, review the CRS section above in this lab.</p>
@@ -1188,27 +1196,29 @@
 <li>Right-click on the <strong>Study_Area</strong> layer and select <strong>Properties</strong>.</li>
 <li><p>Click on the <strong>Source</strong> tab and note the <strong>Coordinate Reference System</strong> listed:</p>
 <p><code>EPSG:32630 — WGS 84 / UTM zone 30N</code></p>
-<p><img src="images/layercrs.png" alt=""></img></p>
+<p><img src="images/20260325_154830_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>What is UTM?</strong> Universal Transverse Mercator (UTM) is a <strong>projected coordinate system</strong> that divides the world into 60 zones. Each zone uses meters as its unit, which makes it ideal for measuring distances and areas. London falls in UTM Zone 30N. The "WGS 84" part tells you which model of the Earth's shape (<strong>datum</strong>) is being used.</p>
 </blockquote>
 </li>
 <li>Click <strong>OK</strong> to close the Properties dialog.</li>
-<li><p>Now check the <strong>Project CRS</strong>: go to <strong>Project &gt; Properties</strong> and click the <strong>CRS</strong> tab. It should currently show:</p>
+<li><p>Now check the <strong>Project CRS</strong>: go to <strong>Main Menu &gt; Project &gt; Properties</strong> and click the <strong>CRS</strong> tab. It should currently show:</p>
 <p><code>EPSG:3857 — WGS 84 / Pseudo-Mercator</code></p>
-<p>This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.</p>
-<p><img src="images/projectcrs.png" alt=""></img></p>
+<p><strong><em>This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.</em></strong></p>
+<p><img src="images/20260325_155002_image.png" alt=""></img></p>
 </li>
 </ol>
 <h3 id="change-the-project-crs">Change the Project CRS</h3>
 <p>For spatial analysis, we want our project in the same <strong>projected (meter-based)</strong> CRS as our Study Area layer. Let's change it:</p>
 <ol>
-<li>In the CRS tab of Project Properties, type <code>32630</code> into the <strong>Filter</strong> box, or find it under "Recently used coordinate reference systems."
-<img src="images/newprojectcrs.png" alt=""></img></li>
+<li><p>In the CRS tab of Project Properties, type <code>32630</code> into the <strong>Filter</strong> box, or find it under "Recently used coordinate reference systems."</p>
+<p><img src="images/20260325_155147_image.png" alt=""></img></p>
+</li>
 <li>Select <code>EPSG:32630 — WGS 84 / UTM zone 30N</code> and click <strong>OK</strong>.</li>
 <li>Save your project by clicking the <strong>Save</strong> button <img src="images/savebutton.png" alt=""></img> on the toolbar.</li>
 </ol>
 <p>You should see the study area rectangle rotate slightly — it is now oriented true north-south, because UTM Zone 30N aligns its grid to the north in this part of the world.</p>
+<p><img src="images/20260325_155212_image.png" alt=""></img></p>
 <h2 id="adding-and-visualizing-data">Adding and Visualizing Data</h2>
 <h3 id="create-a-point-layer-from-a-csv-table">Create a Point Layer from a CSV Table</h3>
 <p>As you learned in <a href="03_introduction_to_spatial_data_formats.html">Week 00</a>, spatial data doesn't always come in a spatial format. A very common scenario is receiving a <strong>CSV (comma-separated values)</strong> file that has columns for latitude and longitude. QGIS can convert these coordinates into map points.</p>
@@ -1217,8 +1227,8 @@
 </blockquote>
 <ol>
 <li>Click the <strong>Data Source Manager</strong> button <img src="images/ReadMe-d41c0b7e.png" alt=""></img> on the toolbar (or go to <strong>Layer &gt; Add Layer &gt; Add Delimited Text Layer</strong>).</li>
-<li>For <strong>File Name</strong>, browse to the <strong>data</strong> folder and select <strong>deathAddresses.csv</strong>.</li>
 <li>Click the <strong>Delimited Text</strong> tab <img src="images/ReadMe-7d3a93bd.png" alt=""></img> and configure the settings as follows:</li>
+<li>For <strong>File Name</strong>, browse to the <strong>data</strong> folder and select <strong>deathAddresses.csv</strong>.</li>
 </ol>
 <table>
 <thead>
@@ -1246,17 +1256,18 @@
 </tr>
 </tbody>
 </table>
-<p><img src="images/datasourcemanager.png" alt=""></img></p>
+<p><img src="images/20260325_155503_image.png" alt=""></img></p>
 <ol>
 <li>Click <strong>Add &amp; Close</strong> to import the layer.</li>
 </ol>
 <p>You should now see a cluster of points in the Soho area — these are the addresses where cholera deaths occurred.</p>
-<p><img src="images/addedpoints-drop-shadow.png" alt=""></img></p>
+<p><img src="images/20260325_155526_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Why EPSG:4326?</strong> The coordinates in this CSV are in <strong>latitude and longitude</strong> (decimal degrees), which is the WGS 84 geographic coordinate system (<code>EPSG:4326</code>). Even though our project is now in UTM (<code>EPSG:32630</code>), QGIS reprojects the points on-the-fly so everything lines up.</p>
+<p><strong>Why EPSG:4326?</strong> The coordinates in this CSV are in <strong>latitude and longitude</strong> (decimal degrees), which is the WGS 84 geographic coordinate system (<code>EPSG:4326</code>). It is necessary to tell QGIS what the coordinates ACTUALLY ARE, not what we WANT them to be, in this step. Even though our project is now in UTM (<code>EPSG:32630</code>), QGIS reprojects the points on-the-fly so everything lines up.</p>
 </blockquote>
 <h3 id="layer-symbology-—-proportional-symbols">Layer Symbology — Proportional Symbols</h3>
-<p><strong>Symbology</strong> is how you control the visual appearance of your data on the map. Right now, all the death address points look the same, but the data includes a <code>Num_Cases</code> field — the number of deaths at each address. Let's make the symbol size reflect this value.</p>
+<p><strong>Symbology</strong> is how you control the visual appearance of your data on the map. You've already applied a symbology to the Study Area polygon layer, so now let's get a little more complex.</p>
+<p>Right now, all the death address points look the same, but the data includes a <code>Num_Cases</code> field — the number of deaths at each address. Let's make the symbol size reflect this value.</p>
 <ol>
 <li>Click on the <strong>deathAddresses</strong> layer in the Layers panel to ensure it's selected in the <strong>Layer Styling panel</strong>.</li>
 <li>Apply the following symbology settings:</li>
@@ -1274,7 +1285,7 @@
 <td style="text-align:left">Graduated</td>
 </tr>
 <tr>
-<td style="text-align:right">Column</td>
+<td style="text-align:right">Value</td>
 <td style="text-align:left">Num_Cases</td>
 </tr>
 <tr>
@@ -1304,31 +1315,50 @@
 </tbody>
 </table>
 <p>Because QGIS updates symbology live, you should see the changes apply as you adjust each setting.</p>
-<p><img src="images/deathsymbol-drop-shadow.png" alt=""></img></p>
+<p><img src="images/20260325_155956_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>What is "Graduated" symbology?</strong> Unlike <strong>Single Symbol</strong> (all features look the same) or <strong>Categorized</strong> (one symbol per unique value), <strong>Graduated</strong> symbology maps a continuous numeric field to a visual variable like size or color. This is also called a <strong>proportional symbol</strong> map — a core technique in cartography.</p>
 </blockquote>
 <h4 id="bonus-adding-drop-shadows">Bonus: Adding Drop Shadows</h4>
 <ol>
-<li>At the bottom of the Layer Styling panel, check the <strong>Draw Effects</strong> option, then click the star icon that becomes active.</li>
+<li><p>At the bottom of the Layer Styling panel, check the <strong>Draw Effects</strong> option, then click the star icon that becomes active.</p>
+<p><img src="images/20260325_160044_image.png" alt=""></img></p>
+</li>
 <li>Enable <strong>Drop Shadow</strong> and experiment with the settings.</li>
+<li>Save your project.</li>
 </ol>
 <p><img src="images/dropshadowdeaths-drop-shadow.png" alt=""></img></p>
 <h3 id="viewing-the-attribute-table">Viewing the Attribute Table</h3>
 <p>Every vector layer has an <strong>attribute table</strong> — a spreadsheet-like table where each row is a geographic feature and each column is an attribute (a piece of information about that feature). This is the non-spatial side of your spatial data.</p>
 <ol>
-<li>Right-click on the <strong>deathAddresses</strong> layer in the Layers panel and select <strong>Open Attribute Table</strong>.</li>
+<li><p>Right-click on the <strong>deathAddresses</strong> layer in the Layers panel and select <strong>Open Attribute Table</strong>.</p>
+<p><img src="images/20260325_160220_image.png" alt=""></img></p>
+</li>
 <li>Explore the table: you can sort columns by clicking on their headers, scroll through records, and select features by clicking on row numbers. Notice how selected rows highlight the corresponding points on the map.</li>
 <li>Close the Attribute Table when you're done.</li>
 </ol>
+<h2 id="analysis-tools-in-qgis">Analysis Tools in QGIS</h2>
+<p>Many of the actual "workhorse" tools in QGIS are accessed through <strong>tool dialogs</strong> like the ones you are about to use. These dialog windows are where you tell QGIS what data to work on, which fields or parameters to use, and what to call the output.</p>
+<p>This is an important pattern to recognize early:</p>
+<ul>
+<li>You choose one or more <strong>input layers</strong>.</li>
+<li>You set any needed <strong>parameters</strong> or analysis options.</li>
+<li>You decide whether the output should be <strong>temporary</strong> or saved as a new file.</li>
+<li>You click <strong>Run</strong> and then inspect the result.</li>
+</ul>
+<p>Some QGIS tool dialogs include helpful short explanations of what the tool does and what each option means. Sometimes the help text is excellent; sometimes it is minimal or missing. When a tool is unclear, that is normal. It is often useful to search the web, look at the official QGIS documentation, or read forum discussions to better understand what a tool expects and what kind of output it will produce.</p>
 <h3 id="statistics-on-a-field">Statistics on a Field</h3>
-<p>The <code>Num_Cases</code> field records the number of cholera deaths at each address. Let's get a quick statistical summary to understand the distribution.</p>
+<p>The <code>Num_Cases</code> field records the number of cholera deaths at each address. Let's get a quick statistical summary to understand the distribution of deaths, by household, and give ourselves an example of a typical processing tool workflow.</p>
 <ol>
 <li>Go to <strong>Vector &gt; Analysis Tools &gt; Basic Statistics for Fields</strong>.</li>
 <li>Set <strong>Input layer</strong> to <strong>deathAddresses</strong> and <strong>Field to calculate statistics on</strong> to <strong>Num_Cases</strong>.</li>
+<li><p>You can use the convenient <code>[Create temporary layer]</code> option, for the outputs, which creates reports/layers/outputs that disappear if you don't make them permanent before closing the Project Document.</p>
+<p><img src="images/20260325_162748_image.png" alt=""></img></p>
+</li>
 <li>Click <strong>Run</strong>, then <strong>Close</strong>.</li>
-<li>Look for the <strong>Results Viewer</strong> panel (it should appear automatically) and click the <strong>hyperlink</strong> to open the summary report.
-<img src="images/resultsviewer-drop-shadow.png" alt=""></img></li>
+<li><p>Look for the <strong>Results Viewer</strong> panel (it should appear automatically) and click the <strong>hyperlink</strong> to open the summary report.</p>
+<p><img src="images/20260325_162837_image.png" alt=""></img></p>
+</li>
 </ol>
 <blockquote>
 <p><strong>What do these statistics tell you?</strong> The mean, max, and standard deviation give you a sense of whether deaths were evenly spread across addresses or concentrated at a few locations. This kind of exploratory summary is often the first step in any spatial analysis.</p>
@@ -1341,17 +1371,34 @@
 <li>You should see 13 pump points appear on the map, scattered across the Soho neighborhood.</li>
 </ol>
 <p><img src="images/ReadMe-90b7e76d.png" alt=""></img></p>
+<h3 id="change-the-water-pump-symbology">Change the Water Pump Symbology</h3>
+<p>Before labeling the pumps, change their symbol so they stand out clearly against both the basemap and the historic Snow map.</p>
+<ol>
+<li>Select the <strong>Water_Pumps</strong> layer in the Layers panel.</li>
+<li>In the <strong>Layer Styling panel</strong>, make sure you are on the <strong>Symbology</strong> tab.</li>
+<li>Leave the symbol type as <strong>Single Symbol</strong>.</li>
+<li>Click the symbol preview to edit the marker.</li>
+<li>Change the marker <strong>color</strong> to <strong>blue</strong>.</li>
+<li>Change the marker <strong>size</strong> to <strong>25 Map Units</strong>.</li>
+<li>Apply <strong>Drop Shadow</strong> effect, as before.</li>
+<li>Click <strong>Apply</strong> if needed, and save your project.</li>
+</ol>
+<p>This will make the pumps much easier to see as important reference points in the rest of the lab.</p>
+<p><img src="images/20260325_164204_image.png" alt=""></img></p>
 <h3 id="add-labels-to-the-water-pumps">Add Labels to the Water Pumps</h3>
 <ol>
 <li>Select the <strong>Water_Pumps</strong> layer in the Layers panel.</li>
 <li>In the <strong>Layer Styling panel</strong>, click the <strong>Labels</strong> tab <img src="images/ReadMe-b6c4286c.png" alt=""></img>.</li>
 <li>Change the dropdown from <strong>No Labels</strong> to <strong>Single Labels</strong>.</li>
-<li>Set <strong>Label with</strong> to the <code>Label</code> field.</li>
+<li>Set <strong>Value</strong> to the <code>Name</code> field.</li>
 <li>Increase <strong>Text Size</strong> to <strong>14</strong>.</li>
-<li>Click the <strong>Buffer</strong> tab and enable <strong>Draw text buffer</strong> to add a halo around the text for readability.</li>
+<li><p>Click the <strong>Buffer</strong></p>
+<p><img src="images/20260325_164328_image.png" alt=""></img></p>
+<p>tab and enable <strong>Draw text buffer</strong> to add a halo around the text for readability.</p>
+</li>
 </ol>
-<p><img src="images/labels.png" alt=""></img></p>
-<p><img src="images/ReadMe-e68895da.png" alt=""></img></p>
+<p><img src="images/20260325_164443_image.png" alt=""></img></p>
+<p><img src="images/20260325_164415_image.png" alt=""></img></p>
 <h3 id="add-the-georeferenced-snow-map">Add the Georeferenced Snow Map</h3>
 <p>The data folder also includes a georeferenced version of John Snow's original cholera map. Let's add it as a visual reference layer.</p>
 <blockquote>
@@ -1450,7 +1497,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-25T22:28:08.209Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-25T22:28:17.832Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-25T23:46:03.829Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-25T23:46:15.879Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
