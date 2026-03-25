@@ -1053,14 +1053,21 @@
 <li><strong>Layers Panel</strong> — Lists all the data layers currently loaded in your project. The order matters: layers at the top are drawn on top of layers below them.</li>
 <li><strong>Layer Styling Panel</strong> — A quick way to change how a layer looks (colors, symbols, labels) without opening the full Properties dialog. Enable it from <strong>View &gt; Panels &gt; Layer Styling</strong>.</li>
 </ul>
+<p><img src="images/20260325_152030_image.png" alt=""></img></p>
 <p><strong>Toolbars</strong> (across the top):</p>
 <ul>
-<li><strong>Project</strong> — New, Open, Save, Save As, and Print Layout tools.<br></br><img src="images/ReadMe-6810db2c.png" alt=""></img></li>
-<li><strong>Map Navigation</strong> — Pan, Zoom In/Out, Zoom to Full Extent, Zoom to Layer, and Refresh.<br></br><img src="images/ReadMe-585c24b9.png" alt=""></img></li>
-<li><strong>Attributes</strong> — Identify features, open the attribute table, measure distances/areas, and manage spatial bookmarks.<br></br><img src="images/ReadMe-f10f6c32.png" alt=""></img></li>
-<li><strong>Data Source Manager</strong> — Add vector, raster, or delimited text layers.<br></br><img src="images/ReadMe-644f8ba0.png" alt=""></img></li>
-<li><strong>Editing</strong> — Tools for creating and modifying features. These are grayed out until you start an edit session.<br></br><img src="images/ReadMe-5eaeebc5.png" alt=""></img>  </li>
-<li><strong>Selection</strong> — Select or deselect features by clicking, by attribute value, or by spatial location.<br></br><img src="images/ReadMe-01c70046.png" alt=""></img></li>
+<li><strong>Project</strong> — New, Open, Save, Save As, and Print Layout tools.
+<img src="images/ReadMe-6810db2c.png" alt=""></img></li>
+<li><strong>Map Navigation</strong> — Pan, Zoom In/Out, Zoom to Full Extent, Zoom to Layer, and Refresh.
+<img src="images/ReadMe-585c24b9.png" alt=""></img></li>
+<li><strong>Attributes</strong> — Identify features, open the attribute table, measure distances/areas, and manage spatial bookmarks.
+<img src="images/ReadMe-f10f6c32.png" alt=""></img></li>
+<li><strong>Data Source Manager</strong> — Add vector, raster, or delimited text layers.
+<img src="images/ReadMe-644f8ba0.png" alt=""></img></li>
+<li><strong>Editing</strong> — Tools for creating and modifying features. These are grayed out until you start an edit session.
+<img src="images/ReadMe-5eaeebc5.png" alt=""></img></li>
+<li><strong>Selection</strong> — Select or deselect features by clicking, by attribute value, or by spatial location.
+<img src="images/ReadMe-01c70046.png" alt=""></img></li>
 </ul>
 <blockquote>
 <p><strong>Tip:</strong> You can show or hide any toolbar or panel by right-clicking in the toolbar area, or from the <strong>View</strong> menu.</p>
@@ -1077,7 +1084,8 @@
 <p>If you already installed QuickMapServices and downloaded the contributed pack during <a href="07_installing_qgis_and_plugins.html">Week 00</a>, skip to step 4. Otherwise:</p>
 <ol>
 <li>Go to <strong>Plugins &gt; Manage and Install Plugins</strong>, search for <strong>QuickMapServices</strong>, and click <strong>Install Plugin</strong>.</li>
-<li>Go to <strong>Web &gt; QuickMapServices &gt; Settings</strong>, select the <strong>More Services</strong> tab, and click <strong>Get contributed pack</strong>.<br></br><img src="images/contribpack.png" alt=""></img>  </li>
+<li>Go to <strong>Web &gt; QuickMapServices &gt; Settings</strong>, select the <strong>More Services</strong> tab, and click <strong>Get contributed pack</strong>.
+<img src="images/contribpack.png" alt=""></img></li>
 <li>Click <strong>Save</strong> to close the Settings dialog.</li>
 <li>Go to <strong>Web &gt; QuickMapServices &gt; Stamen &gt; Stamen Toner Lite</strong> to add a simple black-and-white basemap.</li>
 <li><strong>Save</strong> your project.</li>
@@ -1168,7 +1176,8 @@
 <ol>
 <li>Right-click in any empty area of the toolbar and enable the <strong>Spatial Bookmarks</strong> panel.</li>
 <li>Right-click on your <strong>Study_Area</strong> layer and select <strong>Zoom to Layer</strong>.</li>
-<li>In the Spatial Bookmarks panel, click <strong>Add Bookmark</strong> and name it <strong>SOHO</strong>.<br></br><img src="images/spatialbookmark.png" alt=""></img></li>
+<li>In the Spatial Bookmarks panel, click <strong>Add Bookmark</strong> and name it <strong>SOHO</strong>.
+<img src="images/spatialbookmark.png" alt=""></img></li>
 <li>Now click <strong>Zoom Full</strong> to zoom out to the world. Then use the <strong>Zoom to Bookmark</strong> button to jump back to your study area — much faster than panning and zooming manually.</li>
 </ol>
 <h2 id="working-with-coordinate-reference-systems-crs">Working with Coordinate Reference Systems (CRS)</h2>
@@ -1177,25 +1186,25 @@
 <h3 id="examine-the-crs-of-a-data-layer">Examine the CRS of a Data Layer</h3>
 <ol>
 <li>Right-click on the <strong>Study_Area</strong> layer and select <strong>Properties</strong>.</li>
-<li><p>Click on the <strong>Source</strong> tab and note the <strong>Coordinate Reference System</strong> listed:  </p>
-<p> <code>EPSG:32630 — WGS 84 / UTM zone 30N</code>  </p>
-<p> <img src="images/layercrs.png" alt=""></img></p>
+<li><p>Click on the <strong>Source</strong> tab and note the <strong>Coordinate Reference System</strong> listed:</p>
+<p><code>EPSG:32630 — WGS 84 / UTM zone 30N</code></p>
+<p><img src="images/layercrs.png" alt=""></img></p>
 <blockquote>
 <p><strong>What is UTM?</strong> Universal Transverse Mercator (UTM) is a <strong>projected coordinate system</strong> that divides the world into 60 zones. Each zone uses meters as its unit, which makes it ideal for measuring distances and areas. London falls in UTM Zone 30N. The "WGS 84" part tells you which model of the Earth's shape (<strong>datum</strong>) is being used.</p>
 </blockquote>
 </li>
-<li><p>Click <strong>OK</strong> to close the Properties dialog.</p>
-</li>
-<li><p>Now check the <strong>Project CRS</strong>: go to <strong>Project &gt; Properties</strong> and click the <strong>CRS</strong> tab. It should currently show:  </p>
-<p> <code>EPSG:3857 — WGS 84 / Pseudo-Mercator</code>  </p>
-<p> This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.  </p>
-<p> <img src="images/projectcrs.png" alt=""></img></p>
+<li>Click <strong>OK</strong> to close the Properties dialog.</li>
+<li><p>Now check the <strong>Project CRS</strong>: go to <strong>Project &gt; Properties</strong> and click the <strong>CRS</strong> tab. It should currently show:</p>
+<p><code>EPSG:3857 — WGS 84 / Pseudo-Mercator</code></p>
+<p>This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.</p>
+<p><img src="images/projectcrs.png" alt=""></img></p>
 </li>
 </ol>
 <h3 id="change-the-project-crs">Change the Project CRS</h3>
 <p>For spatial analysis, we want our project in the same <strong>projected (meter-based)</strong> CRS as our Study Area layer. Let's change it:</p>
 <ol>
-<li>In the CRS tab of Project Properties, type <code>32630</code> into the <strong>Filter</strong> box, or find it under "Recently used coordinate reference systems."<br></br><img src="images/newprojectcrs.png" alt=""></img></li>
+<li>In the CRS tab of Project Properties, type <code>32630</code> into the <strong>Filter</strong> box, or find it under "Recently used coordinate reference systems."
+<img src="images/newprojectcrs.png" alt=""></img></li>
 <li>Select <code>EPSG:32630 — WGS 84 / UTM zone 30N</code> and click <strong>OK</strong>.</li>
 <li>Save your project by clicking the <strong>Save</strong> button <img src="images/savebutton.png" alt=""></img> on the toolbar.</li>
 </ol>
@@ -1229,7 +1238,7 @@
 </tr>
 <tr>
 <td style="text-align:right">Geometry Definition</td>
-<td style="text-align:left">Point coordinates: <strong>X field</strong> = <code>xcoord</code>, <strong>Y field</strong> = <code>ycoord</code></td>
+<td style="text-align:left">Point coordinates:<strong>X field</strong> = <code>xcoord</code>, <strong>Y field</strong> = <code>ycoord</code></td>
 </tr>
 <tr>
 <td style="text-align:right">Geometry CRS</td>
@@ -1237,7 +1246,7 @@
 </tr>
 </tbody>
 </table>
-<p><img src="images/datasourcemanager.png" alt=""></img>  </p>
+<p><img src="images/datasourcemanager.png" alt=""></img></p>
 <ol>
 <li>Click <strong>Add &amp; Close</strong> to import the layer.</li>
 </ol>
@@ -1318,7 +1327,8 @@
 <li>Go to <strong>Vector &gt; Analysis Tools &gt; Basic Statistics for Fields</strong>.</li>
 <li>Set <strong>Input layer</strong> to <strong>deathAddresses</strong> and <strong>Field to calculate statistics on</strong> to <strong>Num_Cases</strong>.</li>
 <li>Click <strong>Run</strong>, then <strong>Close</strong>.</li>
-<li>Look for the <strong>Results Viewer</strong> panel (it should appear automatically) and click the <strong>hyperlink</strong> to open the summary report.<br></br><img src="images/resultsviewer-drop-shadow.png" alt=""></img></li>
+<li>Look for the <strong>Results Viewer</strong> panel (it should appear automatically) and click the <strong>hyperlink</strong> to open the summary report.
+<img src="images/resultsviewer-drop-shadow.png" alt=""></img></li>
 </ol>
 <blockquote>
 <p><strong>What do these statistics tell you?</strong> The mean, max, and standard deviation give you a sense of whether deaths were evenly spread across addresses or concentrated at a few locations. This kind of exploratory summary is often the first step in any spatial analysis.</p>
@@ -1360,7 +1370,8 @@
 <h3 id="spatial-mean-mean-center">Spatial Mean (Mean Center)</h3>
 <p>The <strong>mean center</strong> (or spatial mean) is simply the average x-coordinate and average y-coordinate of all features — the geographic "center of gravity" of the distribution.</p>
 <ol>
-<li>Go to <strong>Vector &gt; Analysis &gt; Mean Coordinate(s)</strong>.<br></br><img src="images/image010-drop-shadow.png" alt=""></img></li>
+<li>Go to <strong>Vector &gt; Analysis &gt; Mean Coordinate(s)</strong>.
+<img src="images/image010-drop-shadow.png" alt=""></img></li>
 <li>Set <strong>Input layer</strong> to <strong>deathAddresses</strong>.</li>
 <li>Leave <strong>Weight field</strong> and <strong>Unique ID field</strong> blank (optional).</li>
 <li>Save the output as <code>Deaths_Spatial_Mean.shp</code> in your data folder.</li>
@@ -1439,7 +1450,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-25T22:05:30.058Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-25T22:05:37.860Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-25T22:28:08.209Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-25T22:28:17.832Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
