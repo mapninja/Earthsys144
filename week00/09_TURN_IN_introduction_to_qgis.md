@@ -52,7 +52,7 @@ The project data folder contains the following datasets:
 * **John_Snow_Map.tif** — A **georeferenced** image of the map from John Snow's original report on the cholera outbreak of 1854. Georeferencing means that real-world coordinates have already been assigned to this image, so QGIS knows exactly where on Earth it belongs.
 * **Study_Area.shp** — A rectangular polygon that describes our area of interest. This is a **shapefile**, which as you learned in [Week 00](03_introduction_to_spatial_data_formats.md), is actually a collection of multiple files (`.shp`, `.shx`, `.dbf`, `.prj`, etc.) that must stay together in the same folder.
 
-## Getting Started on a Project  
+## Getting Started on a Project
 
 In this section you will create a new QGIS project, get oriented to the interface, add a basemap, and load your first data layer.
 
@@ -77,20 +77,23 @@ Here is a quick refresher on the three main parts of the QGIS interface:
 * **Layers Panel** — Lists all the data layers currently loaded in your project. The order matters: layers at the top are drawn on top of layers below them.
 * **Layer Styling Panel** — A quick way to change how a layer looks (colors, symbols, labels) without opening the full Properties dialog. Enable it from **View > Panels > Layer Styling**.
 
+
+![](images/20260325_152030_image.png)
+
 **Toolbars** (across the top):
 
-* **Project** — New, Open, Save, Save As, and Print Layout tools.  
-![](images/ReadMe-6810db2c.png)
-* **Map Navigation** — Pan, Zoom In/Out, Zoom to Full Extent, Zoom to Layer, and Refresh.  
-![](images/ReadMe-585c24b9.png)
-* **Attributes** — Identify features, open the attribute table, measure distances/areas, and manage spatial bookmarks.  
-![](images/ReadMe-f10f6c32.png)
-* **Data Source Manager** — Add vector, raster, or delimited text layers.  
-![](images/ReadMe-644f8ba0.png)
-* **Editing** — Tools for creating and modifying features. These are grayed out until you start an edit session.  
-![](images/ReadMe-5eaeebc5.png)  
-* **Selection** — Select or deselect features by clicking, by attribute value, or by spatial location.  
-![](images/ReadMe-01c70046.png)
+* **Project** — New, Open, Save, Save As, and Print Layout tools.
+  ![](images/ReadMe-6810db2c.png)
+* **Map Navigation** — Pan, Zoom In/Out, Zoom to Full Extent, Zoom to Layer, and Refresh.
+  ![](images/ReadMe-585c24b9.png)
+* **Attributes** — Identify features, open the attribute table, measure distances/areas, and manage spatial bookmarks.
+  ![](images/ReadMe-f10f6c32.png)
+* **Data Source Manager** — Add vector, raster, or delimited text layers.
+  ![](images/ReadMe-644f8ba0.png)
+* **Editing** — Tools for creating and modifying features. These are grayed out until you start an edit session.
+  ![](images/ReadMe-5eaeebc5.png)
+* **Selection** — Select or deselect features by clicking, by attribute value, or by spatial location.
+  ![](images/ReadMe-01c70046.png)
 
 > **Tip:** You can show or hide any toolbar or panel by right-clicking in the toolbar area, or from the **View** menu.
 
@@ -111,8 +114,8 @@ A **basemap** is a background reference map (streets, satellite imagery, terrain
 If you already installed QuickMapServices and downloaded the contributed pack during [Week 00](07_installing_qgis_and_plugins.md), skip to step 4. Otherwise:
 
 1. Go to **Plugins > Manage and Install Plugins**, search for **QuickMapServices**, and click **Install Plugin**.
-2. Go to **Web > QuickMapServices > Settings**, select the **More Services** tab, and click **Get contributed pack**.  
-![](images/contribpack.png)  
+2. Go to **Web > QuickMapServices > Settings**, select the **More Services** tab, and click **Get contributed pack**.
+   ![](images/contribpack.png)
 3. Click **Save** to close the Settings dialog.
 4. Go to **Web > QuickMapServices > Stamen > Stamen Toner Lite** to add a simple black-and-white basemap.
 5. **Save** your project.
@@ -139,16 +142,17 @@ Now we'll add our first real data layer — a **shapefile** that defines our stu
 
 The **Map Navigation Toolbar** provides the main tools for moving around the Map Canvas. Take a moment to try each one:
 
-| Tool | Name | What it does |
-|------|------|--------------|
-| ![](images/image14.png) | **Pan Map** | Click and drag to move around the map without changing the zoom level. |
-| ![](images/image15.png) | **Pan to Selection** | Centers the map on the currently selected feature(s). |
-| ![](images/image16.png) ![](images/image17.png) | **Zoom In / Zoom Out** | Click or drag a box to zoom. You can also use your scroll wheel. |
-| ![](images/image18.png) | **Zoom Full** | Zooms out to show all layers. (This sometimes zooms too far out if you have a global basemap loaded.) |
-| ![](images/image19.png) | **Zoom to Selection** | Zooms to fit the currently selected feature(s) in the canvas. |
-| ![](images/image22.png) | **Zoom to Layer** | Zooms to fit a specific layer's extent. |
-| ![](images/image23.png) ![](images/image24.png) | **Zoom Last / Zoom Next** | Undo/redo your zoom and pan history — very useful if you accidentally zoom to the wrong place. |
-| ![](images/image25.png) | **Refresh** | Redraws the map canvas. |
+
+| Tool                                            | Name                      | What it does                                                                                          |
+| ------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------- |
+| ![](images/image14.png)                         | **Pan Map**               | Click and drag to move around the map without changing the zoom level.                                |
+| ![](images/image15.png)                         | **Pan to Selection**      | Centers the map on the currently selected feature(s).                                                 |
+| ![](images/image16.png) ![](images/image17.png) | **Zoom In / Zoom Out**    | Click or drag a box to zoom. You can also use your scroll wheel.                                      |
+| ![](images/image18.png)                         | **Zoom Full**             | Zooms out to show all layers. (This sometimes zooms too far out if you have a global basemap loaded.) |
+| ![](images/image19.png)                         | **Zoom to Selection**     | Zooms to fit the currently selected feature(s) in the canvas.                                         |
+| ![](images/image22.png)                         | **Zoom to Layer**         | Zooms to fit a specific layer's extent.                                                               |
+| ![](images/image23.png) ![](images/image24.png) | **Zoom Last / Zoom Next** | Undo/redo your zoom and pan history — very useful if you accidentally zoom to the wrong place.       |
+| ![](images/image25.png)                         | **Refresh**               | Redraws the map canvas.                                                                               |
 
 > **Keyboard shortcut:** You can also pan by holding the **spacebar** and dragging, and zoom with your **scroll wheel**, regardless of which tool is active.
 
@@ -163,15 +167,14 @@ The naming is counterintuitive: *large* scale = *small* area. Think of it this w
 
 ![](images/image20-drop-shadow.png)
 
-
 ### Spatial Bookmarks
 
 **Spatial bookmarks** save a specific map extent (location + zoom level) so you can return to it quickly. This is useful when you need to zoom around the map but want to snap back to your study area.
 
 1. Right-click in any empty area of the toolbar and enable the **Spatial Bookmarks** panel.
 2. Right-click on your **Study_Area** layer and select **Zoom to Layer**.
-3. In the Spatial Bookmarks panel, click **Add Bookmark** and name it **SOHO**.  
-![](images/spatialbookmark.png)
+3. In the Spatial Bookmarks panel, click **Add Bookmark** and name it **SOHO**.
+   ![](images/spatialbookmark.png)
 4. Now click **Zoom Full** to zoom out to the world. Then use the **Zoom to Bookmark** button to jump back to your study area — much faster than panning and zooming manually.
 
 ## Working with Coordinate Reference Systems (CRS)
@@ -183,29 +186,29 @@ In QGIS, the **Project CRS** controls how all layers are displayed on screen. QG
 ### Examine the CRS of a Data Layer
 
 1. Right-click on the **Study_Area** layer and select **Properties**.
-2. Click on the **Source** tab and note the **Coordinate Reference System** listed:  
+2. Click on the **Source** tab and note the **Coordinate Reference System** listed:
 
-    `EPSG:32630 — WGS 84 / UTM zone 30N`  
+   `EPSG:32630 — WGS 84 / UTM zone 30N`
 
-    ![](images/layercrs.png)
+   ![](images/layercrs.png)
 
-    > **What is UTM?** Universal Transverse Mercator (UTM) is a **projected coordinate system** that divides the world into 60 zones. Each zone uses meters as its unit, which makes it ideal for measuring distances and areas. London falls in UTM Zone 30N. The "WGS 84" part tells you which model of the Earth's shape (**datum**) is being used.
-
+   > **What is UTM?** Universal Transverse Mercator (UTM) is a **projected coordinate system** that divides the world into 60 zones. Each zone uses meters as its unit, which makes it ideal for measuring distances and areas. London falls in UTM Zone 30N. The "WGS 84" part tells you which model of the Earth's shape (**datum**) is being used.
+   >
 3. Click **OK** to close the Properties dialog.
-4. Now check the **Project CRS**: go to **Project > Properties** and click the **CRS** tab. It should currently show:  
+4. Now check the **Project CRS**: go to **Project > Properties** and click the **CRS** tab. It should currently show:
 
-    `EPSG:3857 — WGS 84 / Pseudo-Mercator`  
+   `EPSG:3857 — WGS 84 / Pseudo-Mercator`
 
-    This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.  
+   This is the CRS of the basemap (the first layer added to the project), and it has become the default Project CRS.
 
-    ![](images/projectcrs.png)
+   ![](images/projectcrs.png)
 
 ### Change the Project CRS
 
 For spatial analysis, we want our project in the same **projected (meter-based)** CRS as our Study Area layer. Let's change it:
 
-1. In the CRS tab of Project Properties, type `32630` into the **Filter** box, or find it under "Recently used coordinate reference systems."  
-![](images/newprojectcrs.png)
+1. In the CRS tab of Project Properties, type `32630` into the **Filter** box, or find it under "Recently used coordinate reference systems."
+   ![](images/newprojectcrs.png)
 2. Select `EPSG:32630 — WGS 84 / UTM zone 30N` and click **OK**.
 3. Save your project by clicking the **Save** button ![](images/savebutton.png) on the toolbar.
 
@@ -223,14 +226,15 @@ As you learned in [Week 00](03_introduction_to_spatial_data_formats.md), spatial
 2. For **File Name**, browse to the **data** folder and select **deathAddresses.csv**.
 3. Click the **Delimited Text** tab ![](images/ReadMe-7d3a93bd.png) and configure the settings as follows:
 
-| Setting | Value |
-|---:|:---|
-| File Format | CSV |
-| Record and Field Options | "First record has field names" = checked; "Detect field types" = checked |
-| Geometry Definition | Point coordinates: **X field** = `xcoord`, **Y field** = `ycoord` |
-| Geometry CRS | `EPSG:4326 - WGS 84` |
 
-![](images/datasourcemanager.png)  
+|                  Setting | Value                                                                    |
+| -------------------------: | :------------------------------------------------------------------------- |
+|              File Format | CSV                                                                      |
+| Record and Field Options | "First record has field names" = checked; "Detect field types" = checked |
+|      Geometry Definition | Point coordinates:**X field** = `xcoord`, **Y field** = `ycoord`         |
+|             Geometry CRS | `EPSG:4326 - WGS 84`                                                     |
+
+![](images/datasourcemanager.png)
 
 4. Click **Add & Close** to import the layer.
 
@@ -247,16 +251,17 @@ You should now see a cluster of points in the Soho area — these are the addres
 1. Click on the **deathAddresses** layer in the Layers panel to ensure it's selected in the **Layer Styling panel**.
 2. Apply the following symbology settings:
 
-| Setting | Value |
-|---:|:---|
-| Symbology Type | Graduated |
-| Column | Num_Cases |
-| Symbol | *click to change the color if you like* |
-| Legend Precision | 1 |
-| Method | Size |
-| Size from | 10, 50, 'Map Units' |
-| Classes > Mode | Equal Interval |
-| Classes | 3 |
+
+|          Setting | Value                                   |
+| -----------------: | :---------------------------------------- |
+|   Symbology Type | Graduated                               |
+|           Column | Num_Cases                               |
+|           Symbol | *click to change the color if you like* |
+| Legend Precision | 1                                       |
+|           Method | Size                                    |
+|        Size from | 10, 50, 'Map Units'                     |
+|   Classes > Mode | Equal Interval                          |
+|          Classes | 3                                       |
 
 Because QGIS updates symbology live, you should see the changes apply as you adjust each setting.
 
@@ -286,8 +291,8 @@ The `Num_Cases` field records the number of cholera deaths at each address. Let'
 1. Go to **Vector > Analysis Tools > Basic Statistics for Fields**.
 2. Set **Input layer** to **deathAddresses** and **Field to calculate statistics on** to **Num_Cases**.
 3. Click **Run**, then **Close**.
-4. Look for the **Results Viewer** panel (it should appear automatically) and click the **hyperlink** to open the summary report.  
-![](images/resultsviewer-drop-shadow.png)
+4. Look for the **Results Viewer** panel (it should appear automatically) and click the **hyperlink** to open the summary report.
+   ![](images/resultsviewer-drop-shadow.png)
 
 > **What do these statistics tell you?** The mean, max, and standard deviation give you a sense of whether deaths were evenly spread across addresses or concentrated at a few locations. This kind of exploratory summary is often the first step in any spatial analysis.
 
@@ -335,8 +340,8 @@ Now that we have the death addresses and water pump locations on our map, let's 
 
 The **mean center** (or spatial mean) is simply the average x-coordinate and average y-coordinate of all features — the geographic "center of gravity" of the distribution.
 
-1. Go to **Vector > Analysis > Mean Coordinate(s)**.  
-![](images/image010-drop-shadow.png)
+1. Go to **Vector > Analysis > Mean Coordinate(s)**.
+   ![](images/image010-drop-shadow.png)
 2. Set **Input layer** to **deathAddresses**.
 3. Leave **Weight field** and **Unique ID field** blank (optional).
 4. Save the output as `Deaths_Spatial_Mean.shp` in your data folder.
@@ -373,5 +378,6 @@ In future labs, we'll build on these skills with georeferencing, digitizing, spa
 ---
 
 **Further reading on QGIS cartography and map layouts:**
+
 * [QGIS Cartography Workshop](https://sites.google.com/stanford.edu/qgis-101?usp=sharing)
 * [Maps for Academic Journals](https://sites.google.com/stanford.edu/gis-cartography/workshops/maps-for-academic-journals?authuser=0)
