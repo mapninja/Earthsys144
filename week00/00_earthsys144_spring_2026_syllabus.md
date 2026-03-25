@@ -49,13 +49,14 @@ By the end of the course, students should be able to:
 
 ### Lab Sections
 
-Students should enroll in one lab section. If you have conflicts with the current Lab Section offerings. TA Lab assignments are subject to adjustment.  
+Students should enroll in one lab section. If you have conflicts with the current Lab Section offerings. TA Lab assignments are subject to adjustment.
 
-| Section | Day/Time | Location | TA |
-| --- | --- | --- | --- |
-| 02 | Tuesday, 1:30 PM - 4:20 PM | Y2E2, Room 184 | Zoie Chang |
-| 03 | Thursday, 1:30 PM - 4:20 PM | Y2E2, Room 184 | Maya Passmore |
-| 04 | Friday, 12:30 PM - 3:20 PM | Y2E2, Room 184 | Serena Turner |
+
+| Section | Day/Time                    | Location       | TA            |
+| --------- | ----------------------------- | ---------------- | --------------- |
+| 02      | Tuesday, 1:30 PM - 4:20 PM  | Y2E2, Room 184 | Zoie Chang    |
+| 03      | Thursday, 1:30 PM - 4:20 PM | Y2E2, Room 184 | Maya Passmore |
+| 04      | Friday, 12:30 PM - 3:20 PM  | Y2E2, Room 184 | Serena Turner |
 
 Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times and spaces.
 
@@ -63,7 +64,7 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 
 - Date: Monday, June 8, 2026
 - Time: 3:30 PM - 6:30 PM
-- Location: Building 380, Room 380Y
+- Location: TBD
 
 ### Office Hours and Contact
 
@@ -117,22 +118,23 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 
 ## Tentative 10-Week Course Schedule (Spring 2026)
 
-| Dates | Week | Topic | Lecture Focus | Suggested Reading |
-| --- | --- | --- | --- | --- |
-| Mar 30 & Apr 1 | 1 | Intro to GISci and Cartographic Design | Spatial data models, map purpose, design basics | Bolstad Ch. 1-2 |
-| Apr 6 & Apr 8 | 2 | Coordinates, Projections, and Data Creation | Geodesy, projection choice, digitizing workflows; Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping) | Bolstad Ch. 3-4, 7 |
-| Apr 13 & Apr 15 | 3 | Tables, SQL, and Data Structure | Relational tables, joins, filters, query logic | Bolstad Ch. 5, 8 |
-| Apr 20 & Apr 22 | 4 | Vector Analysis Fundamentals | Buffer, overlay, proximity, areal workflows; Apr 22 guest lecture: TBD | Bolstad Ch. 9, 12 |
-| Apr 27 & Apr 29 | 5 | Applied GIS Workflows | Case studies, domain applications, project design | Supplemental readings |
-| May 4 & May 6 | 6 | Raster Analysis and Terrain | Raster algebra, sampling, interpolation concepts | Bolstad Ch. 10-12 |
-| May 11 & May 13 | 7 | Remote Sensing and Web Mapping | Sensor basics, imagery interpretation, web maps | Bolstad Ch. 6 |
-| May 18 & May 20 | 8 | Storytelling and Communication | Story maps, narrative structure, visual argument | Supplemental readings |
-| May 27 (Mon holiday week) | 9 | Analytic Models and Synthesis | Model logic, assumptions, and interpretation | Bolstad Ch. 15 |
-| Jun 1 & Jun 3 | 10 | Final Integration and Review | Advanced examples, review, project support; Jun 1 guest lecture: TBD | Instructor-provided resources |
+
+| Dates                     | Week | Topic                                       | Lecture Focus                                                                                                                              | Suggested Reading             |
+| --------------------------- | ------ | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| Mar 30 & Apr 1            | 1    | Intro to GISci and Cartographic Design      | Spatial data models, map purpose, design basics                                                                                            | Bolstad Ch. 1-2               |
+| Apr 6 & Apr 8             | 2    | Coordinates, Projections, and Data Creation | Geodesy, projection choice, digitizing workflows; <br /><br />Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping) | Bolstad Ch. 3-4, 7            |
+| Apr 13 & Apr 15           | 3    | Tables, SQL, and Data Structure             | Relational tables, joins, filters, query logic                                                                                             | Bolstad Ch. 5, 8              |
+| Apr 20 & Apr 22           | 4    | Vector Analysis Fundamentals                | Buffer, overlay, proximity, areal workflows; <br /><br />Apr 22 guest lecture: TBD                                                         | Bolstad Ch. 9, 12             |
+| Apr 27 & Apr 29           | 5    | Applied GIS Workflows                       | Case studies, domain applications, project design                                                                                          | Supplemental readings         |
+| May 4 & May 6             | 6    | Raster Analysis and Terrain                 | Raster algebra, sampling, interpolation concepts                                                                                           | Bolstad Ch. 10-12             |
+| May 11 & May 13           | 7    | Remote Sensing and Web Mapping              | Sensor basics, imagery interpretation, web maps                                                                                            | Bolstad Ch. 6                 |
+| May 18 & May 20           | 8    | Storytelling and Communication              | Story maps, narrative structure, visual argument                                                                                           | Supplemental readings         |
+| May 27 (Mon holiday week) | 9    | Analytic Models and Synthesis               | Model logic, assumptions, and interpretation                                                                                               | Bolstad Ch. 15                |
+| Jun 1 & Jun 3             | 10   | Final Integration and Review                | Advanced examples, review, project support; <br /><br />Jun 1 guest lecture: TBD                                                           | Instructor-provided resources |
 
 ## Software and Materials
 
-- Required: QGIS (latest stable release)
+- Required: QGIS (latest release)
 - Used in course: Google Earth Engine, ArcGIS Online, and selected open-source tools
 - Hardware: Laptop computer with reliable internet access
 
