@@ -31,6 +31,23 @@ By the end of this guide, you will be able to:
 - Select your project so you can start analyzing data
 - Share your work with instructors and classmates
 
+## Required Turn-In for Week 00
+
+For Week 00, you are not being asked to write a full Earth Engine analysis from scratch. Instead, the goal is to confirm that you can open, run, annotate, and share a script in the Earth Engine Code Editor.
+
+You must submit:
+
+- A working Google Earth Engine "Get Link" URL
+
+That link must point to a script that:
+
+- Was opened from a sample script in the Google Earth Engine Data Catalog
+- Includes a comment with your name
+- Includes at least one comment explaining what you did
+- Includes inline comments describing any changes you made, if you chose to modify the sample script
+
+> If you are feeling adventurous, you are welcome to change visualization settings, dates, map location, or other parts of the sample script. If you do, add inline comments so your instructor can easily see what you changed.
+
 ---
 
 ## Step-by-Step: Setting Up Your Google Earth Engine Account
@@ -156,10 +173,29 @@ Congratulations! Your project is now active in the Code Editor.
 To verify everything is working:
 
 1. You should see your project name in the top-right corner of the Code Editor
-2. Try running a simple test script to confirm access
-3. If you don't have a script, you can use this sample: [https://code.earthengine.google.com/f983a2d843739e23ffb77f336ad6d4fb](https://code.earthengine.google.com/f983a2d843739e23ffb77f336ad6d4fb)
-   - Click **Run** to execute the script
+2. Open the Google Earth Engine Data Catalog: [https://developers.google.com/earth-engine/datasets](https://developers.google.com/earth-engine/datasets)
+3. Choose any dataset page that includes example code
+   - Good beginner options include Landsat, Sentinel-2, MODIS, or NAIP datasets
+4. Open the sample script in the Code Editor
+5. Add a short comment near the top of the script with your name, for example:
+
+   ```javascript
+   // Your Name
+   // Week 00 Earth Engine check-in script
+   // I opened this from the Earth Engine Data Catalog and ran it successfully.
+   ```
+
+6. If you make any changes to the sample script, add inline comments directly above the lines you changed so the changes are easy to identify, for example:
+
+   ```javascript
+   // I changed the map center to look at California instead of the default location.
+   Map.setCenter(-120.0, 37.0, 6);
+   ```
+
+7. Click **Run** to execute the script
    - You should see results appear on the map within a few seconds
+8. Save the script if prompted
+9. This annotated sample script is what you will share for credit
 
 ---
 
@@ -176,11 +212,18 @@ When submitting assignments, you'll need to share your GEE scripts with your ins
 5. Test the link by opening it in an **incognito window** to make sure it's accessible
 6. Include this link in your homework submission
 
+For this Week 00 submission, make sure the shared script includes:
+
+- Your name in a comment
+- A brief note that you opened and ran a sample from the Earth Engine Data Catalog
+- Inline comments marking any changes you made to the original sample
+
 ### Best Practices for Sharing
 
 - Always test your shared links before submitting
 - Use view-only access for homework submissions
 - Include a brief description in your script comments explaining what it does
+- Keep your comments simple and direct so a grader can quickly see your name and any edits
 - Make sure your project name is descriptive so instructors know it's your work
 
 ---
@@ -202,4 +245,3 @@ When submitting assignments, you'll need to share your GEE scripts with your ins
 - Make sure you completed the registration form
 - Wait a few minutes and refresh the page
 - Create a new project if the old one won't appear
-
