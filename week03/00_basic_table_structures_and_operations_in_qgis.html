@@ -992,41 +992,41 @@
                                 
                                 <h1 id="basic-table-structures--operations-in-qgis-draft">Basic Table Structures &amp; Operations in QGIS (DRAFT)</h1>
 <h2 id="overview">Overview</h2>
-<p>This lab begins with one of the most useful ideas in GIS: spatial data does not have to store every piece of information directly inside the feature layer itself.</p>
-<p>Very often, you already have a layer of mapped features such as parcels, census units, soil polygons, school locations, or sampling sites. The geometry is already there. What you need to add is more information about those features, and that information often lives in a separate table.</p>
-<p>Being able to join tabular data to preexisting spatial features is powerful because it lets you:</p>
+<p>This lab begins with one of the most useful ideas in GIS: spatial data does not have to store every piece of information directly inside the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> itself.</p>
+<p>Very often, you already have a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> of mapped features such as parcels, census units, soil polygons, school locations, or sampling sites. The geometry is already there. What you need to add is more information about those features, and that information often lives in a separate <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p>Being able to <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> tabular data to preexisting spatial features is powerful because it lets you:</p>
 <ul>
 <li>Keep spatial data and descriptive data organized separately when that makes sense</li>
 <li>Avoid storing the same descriptive information over and over again</li>
-<li>Enrich an existing layer without redrawing or recreating the geometry</li>
-<li>Reuse the same boundary or feature dataset with many different kinds of attribute information</li>
+<li>Enrich an existing <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> without redrawing or recreating the geometry</li>
+<li>Reuse the same boundary or <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> dataset with many different kinds of <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> information</li>
 <li>Build new maps and analyses from data that may not have started as "GIS data" at all</li>
 </ul>
 <p>In other words, a lot of GIS work involves connecting geometry to attributes that come from somewhere else.</p>
 <h2 id="conceptual-focus">Conceptual Focus</h2>
-<p>This section is not just about clicking through a join in QGIS. It is about understanding how tabular structure shapes what you can do with spatial data.</p>
+<p>This section is not just about clicking through a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> in QGIS. It is about understanding how tabular structure shapes what you can do with spatial data.</p>
 <p>The central ideas are:</p>
 <ul>
-<li>A GIS layer is both a map and a table</li>
-<li>A separate non-spatial table can still become geographically useful if it can be connected to mapped features</li>
+<li>A GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is both a map and a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
+<li>A separate non-spatial <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> can still become geographically useful if it can be connected to mapped features</li>
 <li>Shared fields, often called key fields, make those connections possible</li>
-<li>Different table relationships imply different kinds of joins and different analytic possibilities</li>
-<li>Careful field design and matching data types are part of spatial analysis, not just clerical cleanup</li>
+<li>Different <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> relationships imply different kinds of joins and different analytic possibilities</li>
+<li>Careful <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> design and matching data types are part of <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>, not just clerical cleanup</li>
 </ul>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this section, you should be able to:</p>
 <ul>
-<li>Explain why joining a table to an existing spatial layer is often more efficient than manually adding attributes feature by feature</li>
-<li>Explain what a key field is and why it matters in GIS</li>
+<li>Explain why joining a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to an existing spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is often more efficient than manually adding attributes <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> by <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+<li>Explain what a key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is and why it matters in GIS</li>
 <li>Distinguish between primary keys and foreign keys</li>
-<li>Describe common table relationships, including one-to-one, one-to-many, many-to-one, and many-to-many</li>
-<li>Explain why many GIS joins are many-to-one from the perspective of the feature layer</li>
-<li>Recognize why field type, formatting, and consistency matter before attempting a join</li>
-<li>Use QGIS to inspect a layer's fields and think critically about whether a join is likely to work</li>
+<li>Describe common <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> relationships, including one-to-one, one-to-many, many-to-one, and many-to-many</li>
+<li>Explain why many GIS joins are many-to-one from the perspective of the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li>Recognize why <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type, formatting, and consistency matter before attempting a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a></li>
+<li>Use QGIS to inspect a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s fields and think critically about whether a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is likely to work</li>
 </ul>
 <h2 id="why-joins-matter-in-gis">Why Joins Matter in GIS</h2>
-<p>Imagine that you already have a polygon layer of soils for a county. Each polygon represents a mapped soil area, but the layer may only store a short code such as <code>SOIL_TYPE</code>. That code is useful, but by itself it is not very informative.</p>
-<p>Now imagine you also have a separate table listing what each soil code means, along with properties such as:</p>
+<p>Imagine that you already have a polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> of soils for a county. Each polygon represents a mapped soil area, but the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> may only store a short code such as <code>SOIL_TYPE</code>. That code is useful, but by itself it is not very informative.</p>
+<p>Now imagine you also have a separate <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> listing what each soil code means, along with properties such as:</p>
 <ul>
 <li>soil name</li>
 <li>drainage characteristics</li>
@@ -1034,73 +1034,73 @@
 <li>engineering behavior</li>
 <li>moisture or erosion characteristics</li>
 </ul>
-<p>If you can connect that table to the polygon layer, then every soil polygon can be symbolized, queried, and analyzed using those richer descriptive attributes.</p>
-<p>That is the practical value of a join: it lets you attach useful descriptive information to mapped features without remaking the map layer itself.</p>
-<p>This is extremely common in GIS. The spatial layer is often the stable geographic framework, while the joined table holds the thematic information you care about for a particular question.</p>
+<p>If you can connect that <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, then every soil polygon can be symbolized, queried, and analyzed using those richer descriptive attributes.</p>
+<p>That is the practical value of a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>: it lets you attach useful descriptive information to mapped features without remaking the map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> itself.</p>
+<p>This is extremely common in GIS. The spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is often the stable geographic framework, while the joined <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> holds the thematic information you care about for a particular question.</p>
 <h2 id="key-fields-the-bridge-between-tables">Key Fields: The Bridge Between Tables</h2>
-<p>A join works because both datasets contain a field with values that can be matched.</p>
-<p>That shared field is often called a <strong>key field</strong>.</p>
+<p>A <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> works because both datasets contain a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> with values that can be matched.</p>
+<p>That shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is often called a <strong>key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>.</p>
 <p>In this lab's soil example, the shared value is <code>SOIL_TYPE</code>.</p>
 <h3 id="primary-keys">Primary keys</h3>
-<p>A <strong>primary key</strong> is a field whose values uniquely identify records in a table.</p>
-<p>For example, in a soil properties table, each soil type code may appear only once. If so, <code>SOIL_TYPE</code> can function as a primary key for that table because each row represents one unique soil category.</p>
+<p>A <strong><a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a></strong> is a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> whose values uniquely identify records in a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p>For example, in a soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, each soil type code may appear only once. If so, <code>SOIL_TYPE</code> can function as a <a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a> for that <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> because each row represents one unique soil category.</p>
 <h3 id="foreign-keys">Foreign keys</h3>
-<p>A <strong>foreign key</strong> is a field in another table that stores values referring back to that primary key.</p>
-<p>In the soils polygon layer, many polygons may share the same <code>SOIL_TYPE</code> code. That means <code>SOIL_TYPE</code> in the polygon layer behaves like a foreign key: it points to the matching soil type record in the soil properties table.</p>
+<p>A <strong><a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a></strong> is a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in another <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> that stores values referring back to that <a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a>.</p>
+<p>In the soils polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, many polygons may share the same <code>SOIL_TYPE</code> code. That means <code>SOIL_TYPE</code> in the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> behaves like a <a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a>: it points to the matching soil type record in the soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
 <blockquote>
-<p><strong>Concept note:</strong> A foreign key does not have to be called anything special. What matters is its role. If a field in one table refers to the unique identifier in another table, it is functioning as a foreign key.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a> does not have to be called anything special. What matters is its role. If a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> refers to the unique identifier in another <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, it is functioning as a <a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a>.</p>
 </blockquote>
 <h2 id="common-relationship-types">Common Relationship Types</h2>
 <p>When two tables are connected by keys, the pattern of that relationship matters.</p>
 <h3 id="one-to-one">One-to-one</h3>
-<p>Each record in Table A matches exactly one record in Table B, and vice versa.</p>
-<p>This is less common in introductory GIS because if the records always line up perfectly, the information could often be stored in a single table. Still, one-to-one relationships can be useful when data is being managed in separate systems.</p>
+<p>Each record in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> A matches exactly one record in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> B, and vice versa.</p>
+<p>This is less common in introductory GIS because if the records always line up perfectly, the information could often be stored in a single <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. Still, one-to-one relationships can be useful when data is being managed in separate systems.</p>
 <h3 id="one-to-many">One-to-many</h3>
-<p>One record in Table A can match many records in Table B.</p>
-<p>For example, one soil type in a lookup table may correspond to many soil polygons on the map.</p>
+<p>One record in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> A can match many records in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> B.</p>
+<p>For example, one soil type in a lookup <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> may correspond to many soil polygons on the map.</p>
 <h3 id="many-to-one">Many-to-one</h3>
-<p>Many records in Table A match one record in Table B.</p>
-<p>This is the same relationship viewed from the opposite side. From the perspective of the spatial layer in this lab, many polygons match one soil-properties record. That means this join is usefully described as <strong>many-to-one</strong> from the feature layer to the lookup table.</p>
-<p>This is one of the most common join patterns in GIS:</p>
+<p>Many records in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> A match one record in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> B.</p>
+<p>This is the same relationship viewed from the opposite side. From the perspective of the spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in this lab, many polygons match one soil-properties record. That means this <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is usefully described as <strong>many-to-one</strong> from the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the lookup <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p>This is one of the most common <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> patterns in GIS:</p>
 <ul>
 <li>many parcels to one zoning code description</li>
-<li>many census polygons to one county name table</li>
-<li>many observation points to one species table</li>
+<li>many census polygons to one county name <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
+<li>many observation points to one species <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li>many soil polygons to one soil properties row</li>
 </ul>
 <h3 id="many-to-many">Many-to-many</h3>
-<p>Many records in Table A match many records in Table B.</p>
-<p>These relationships are more complex and usually require an intermediate table, sometimes called a <strong>bridge table</strong> or <strong>junction table</strong>.</p>
-<p>For example, if one environmental site could be associated with many chemicals, and one chemical could occur at many sites, the relationship is many-to-many. In practice, that relationship is often stored through a third table listing each site-chemical pairing.</p>
+<p>Many records in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> A match many records in <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> B.</p>
+<p>These relationships are more complex and usually require an intermediate <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, sometimes called a <strong>bridge <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong> or <strong>junction <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong>.</p>
+<p>For example, if one environmental site could be associated with many chemicals, and one chemical could occur at many sites, the relationship is many-to-many. In practice, that relationship is often stored through a third <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> listing each site-chemical pairing.</p>
 <blockquote>
-<p><strong>Concept note:</strong> Many-to-many relationships are common in real data, but direct joins in beginner GIS workflows are often easiest when you are working with lookup-style tables that behave as one-to-many or many-to-one.</p>
+<p><strong>Concept note:</strong><a href="../GLOSSARY.html#many-to-many-relationship" class="glossary-term" title="A table relationship in which many records in one table can relate to many records in another table. These relationships often require an intermediate bridge or junction table.">Many-to-many relationship</a>s are common in real data, but direct joins in beginner GIS workflows are often easiest when you are working with lookup-style tables that behave as one-to-many or many-to-one.</p>
 </blockquote>
 <h2 id="what-kind-of-join-is-this-lab-using">What Kind of Join Is This Lab Using?</h2>
 <p>In the soil example adapted from the older course materials:</p>
 <ul>
-<li>the <strong>soil properties table</strong> has one row per soil type</li>
-<li>the <strong>soils polygon layer</strong> has many polygons for each soil type</li>
+<li>the <strong>soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong> has one row per soil type</li>
+<li>the <strong>soils polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> has many polygons for each soil type</li>
 </ul>
 <p>So the relationship is:</p>
 <ul>
-<li><strong>one-to-many</strong> from the soil properties table to the polygons</li>
-<li><strong>many-to-one</strong> from the polygons to the soil properties table</li>
+<li><strong>one-to-many</strong> from the soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the polygons</li>
+<li><strong>many-to-one</strong> from the polygons to the soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 </ul>
 <p>Both descriptions are correct. They simply describe the same relationship from different directions.</p>
-<p>In practice, when students perform this join in QGIS, they often experience it as:</p>
+<p>In practice, when students perform this <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> in QGIS, they often experience it as:</p>
 <ol>
-<li>start with the spatial layer</li>
-<li>join in a lookup table</li>
+<li>start with the spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> in a lookup <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li>gain extra fields for mapping and analysis</li>
 </ol>
-<p>Because of that workflow, it is often especially helpful to say: <strong>many spatial features are joining to one descriptive table record.</strong></p>
+<p>Because of that workflow, it is often especially helpful to say: <strong>many spatial features are joining to one descriptive <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> record.</strong></p>
 <h2 id="why-this-is-so-useful">Why This Is So Useful</h2>
-<p>This kind of join is worth learning well because it appears everywhere in GIS.</p>
+<p>This kind of <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is worth learning well because it appears everywhere in GIS.</p>
 <p>You will often begin with a preexisting spatial dataset and then attach:</p>
 <ul>
 <li>demographic summaries</li>
 <li>land use classes</li>
-<li>field observations</li>
+<li><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> observations</li>
 <li>administrative labels</li>
 <li>environmental measurements</li>
 <li>lookup descriptions for coded values</li>
@@ -1108,69 +1108,69 @@
 <p>That means joins are not a side topic. They are one of the main ways GIS becomes flexible and reusable.</p>
 <p>Instead of remaking geometry every time your question changes, you can keep the geometry and change the attributes you connect to it.</p>
 <h2 id="preparing-for-a-join-in-qgis">Preparing for a Join in QGIS</h2>
-<p>Before you actually perform a join, it is good practice to inspect the fields carefully.</p>
+<p>Before you actually perform a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>, it is good practice to inspect the fields carefully.</p>
 <p>In particular, ask:</p>
 <ul>
-<li>Do both tables contain the field needed for the join?</li>
+<li>Do both tables contain the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> needed for the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>?</li>
 <li>Do those fields represent the same thing conceptually?</li>
 <li>Are the values formatted consistently?</li>
-<li>Are the field types compatible, such as integer to integer rather than integer to text?</li>
-<li>Is one table acting like a lookup table with unique key values?</li>
+<li>Are the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> types compatible, such as integer to integer rather than integer to text?</li>
+<li>Is one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> acting like a lookup <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> with unique key values?</li>
 </ul>
-<p>QGIS can sometimes be forgiving, but that does not mean mismatched fields are harmless. Good join habits reduce subtle errors and make your work easier to explain, debug, and share.</p>
+<p>QGIS can sometimes be forgiving, but that does not mean mismatched fields are harmless. Good <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> habits reduce subtle errors and make your work easier to explain, debug, and share.</p>
 <h2 id="in-this-section">In This Section</h2>
 <p>In the next part of the lab, you will work through a concrete example in QGIS by:</p>
 <ol>
-<li>loading a soils layer and a separate soil properties table</li>
+<li>loading a soils <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and a separate soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li>examining the proposed key fields</li>
 <li>checking whether the key fields match in type and meaning</li>
-<li>joining the tabular data to the spatial layer</li>
+<li>joining the tabular data to the spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 <li>confirming that the joined attributes behave as expected</li>
 </ol>
-<p>By the end, the important idea should be clear: a table does not need geometry to become useful in GIS, as long as it can be connected to features that do.</p>
+<p>By the end, the important idea should be clear: a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> does not need geometry to become useful in GIS, as long as it can be connected to features that do.</p>
 <h2 id="hands-on-joining-a-soil-properties-table-to-a-soil-polygon-layer">Hands-On: Joining a Soil Properties Table to a Soil Polygon Layer</h2>
-<p>This exercise gives you a concrete example of the ideas above. You will start with a spatial layer of soil polygons and then join in a separate CSV table containing descriptions and properties for each soil type.</p>
+<p>This exercise gives you a concrete example of the ideas above. You will start with a spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> of soil polygons and then <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> in a separate CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> containing descriptions and properties for each soil type.</p>
 <p>By the end of the workflow, you will have enriched a preexisting spatial dataset with new tabular attributes that can be used for mapping, analysis, and layout design.</p>
 <h2 id="data-for-this-exercise">Data for This Exercise</h2>
 <p>You will need:</p>
 <ul>
-<li>the <code>soils.shp</code> layer from the previous lab materials</li>
-<li>the <code>Soil Properties.csv</code> table linked in this lab</li>
+<li>the <code>soils.shp</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> from the previous lab materials</li>
+<li>the <code>Soil Properties.csv</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> linked in this lab</li>
 </ul>
 <blockquote>
-<p><strong>Concept note:</strong> This is a classic lookup-table workflow. The polygons already exist. The new table supplies additional meaning for the coded values already stored in the layer.</p>
+<p><strong>Concept note:</strong> This is a classic lookup-<a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> workflow. The polygons already exist. The new <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> supplies additional meaning for the coded values already stored in the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 </blockquote>
 <h2 id="part-1-open-the-soils-layer-and-inspect-its-key-field">Part 1: Open the Soils Layer and Inspect Its Key Field</h2>
 <ol>
 <li>Open a new blank QGIS project.</li>
 <li>Save it in the same folder as the soils data if possible.</li>
-<li>Add the <code>soils.shp</code> layer.</li>
-<li>Right-click the <code>soils</code> layer and choose <strong>Layer CRS &gt; Set Project CRS from Layer</strong>.</li>
+<li>Add the <code>soils.shp</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Right-click the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> CRS &gt; Set Project CRS from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
 </ol>
 <p><img src="images/Table_Operations_in_QGIS_pt3-9b3f50ab.png" alt=""></img></p>
 <ol>
-<li>Open the <strong>Layer Properties</strong> for <code>soils</code>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties</strong> for <code>soils</code>.</li>
 <li>Go to the <strong>Fields</strong> tab and locate <code>SOIL_TYPE</code>.</li>
 </ol>
 <p><img src="images/20250422_094708_image.png" alt=""></img></p>
-<p>This <code>SOIL_TYPE</code> field is the key field already present in the spatial data. It stores a short code for each polygon.</p>
+<p>This <code>SOIL_TYPE</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is the key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> already present in the spatial data. It stores a short code for each polygon.</p>
 <blockquote>
-<p><strong>Concept note:</strong> At this stage, the polygons know their soil type code, but they do not yet contain the descriptive information that code refers to. That descriptive information will come from a separate table.</p>
+<p><strong>Concept note:</strong> At this stage, the polygons know their soil type code, but they do not yet contain the descriptive information that code refers to. That descriptive information will come from a separate <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
 </blockquote>
 <h2 id="part-2-symbolize-the-existing-layer">Part 2: Symbolize the Existing Layer</h2>
 <ol>
-<li>Open the <strong>Symbology</strong> tab for the <code>soils</code> layer.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a></strong> tab for the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li>Set the renderer to <strong>Categorized</strong>.</li>
-<li>Use <code>SOIL_TYPE</code> as the value field.</li>
+<li>Use <code>SOIL_TYPE</code> as the value <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 <li>Click <strong>Classify</strong>.</li>
 </ol>
 <p><img src="images/Table_Operations_in_QGIS_pt3-9918960f.png" alt=""></img></p>
 <p>You should now see multiple soil classes on the map.</p>
 <blockquote>
-<p><strong>Why do this now?</strong> It helps you see that many polygons share the same <code>SOIL_TYPE</code> value. That is your visual clue that the spatial layer contains repeated foreign-key values rather than one unique record per soil type.</p>
+<p><strong>Why do this now?</strong> It helps you see that many polygons share the same <code>SOIL_TYPE</code> value. That is your visual clue that the spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> contains repeated foreign-key values rather than one unique record per soil type.</p>
 </blockquote>
 <h2 id="part-3-download-and-add-the-soil-properties-table">Part 3: Download and Add the Soil Properties Table</h2>
-<p>Download the CSV table here:</p>
+<p>Download the CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> here:</p>
 <ul>
 <li><p><a href="https://docs.google.com/spreadsheets/d/1iD5DjOD3nREz_jGUGGMMLikyvq23z9LrmB6zJWiJBjM/edit?usp=sharing" target="_blank">Soil Properties Google Sheet</a></p>
 </li>
@@ -1182,39 +1182,39 @@
 <ol>
 <li>Save the downloaded CSV in the same folder as your soils data.</li>
 <li>In QGIS, use the <strong>Browser</strong> panel to find that CSV.</li>
-<li>Right-click it and choose <strong>Add Layer to Project</strong>.</li>
-<li>Open the table and inspect its fields and rows.</li>
+<li>Right-click it and choose <strong>Add <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> to Project</strong>.</li>
+<li>Open the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and inspect its fields and rows.</li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> This table has no geometry, but it still matters spatially because it is designed to connect to mapped features through a shared code.</p>
+<p><strong>Concept note:</strong> This <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> has no geometry, but it still matters spatially because it is designed to connect to mapped features through a shared code.</p>
 </blockquote>
 <h2 id="part-4-check-whether-the-join-fields-match">Part 4: Check Whether the Join Fields Match</h2>
-<p>Now compare the join field in both datasets.</p>
+<p>Now compare the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in both datasets.</p>
 <ol>
-<li>Open the <code>Soil Properties.csv</code> table.</li>
+<li>Open the <code>Soil Properties.csv</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Notice that the values are left-justified.</li>
 </ol>
 <p><img src="images/20250422_095927_image.png" alt=""></img></p>
 <p>That is a clue that QGIS is reading them as text.</p>
 <ol>
-<li>Open the <strong>Properties</strong> of the CSV table.</li>
+<li>Open the <strong>Properties</strong> of the CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Go to the <strong>Fields</strong> tab.</li>
 </ol>
 <p><img src="images/20250422_101553_image.png" alt=""></img></p>
 <ol>
-<li>Compare the type of the CSV's <code>SOIL_TYPE</code> field to the type of <code>SOIL_TYPE</code> in the <code>soils</code> layer.</li>
+<li>Compare the type of the CSV's <code>SOIL_TYPE</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to the type of <code>SOIL_TYPE</code> in the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Why this matters:</strong> A join is not only about matching names. The fields should also match in type and formatting. Integer-to-integer is much safer than integer-to-text.</p>
+<p><strong>Why this matters:</strong> A <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is not only about matching names. The fields should also match in type and formatting. Integer-to-integer is much safer than integer-to-text.</p>
 </blockquote>
 <h2 id="part-5-create-a-matching-integer-key-field">Part 5: Create a Matching Integer Key Field</h2>
-<p>Because CSV files often import fields as text, you will create a new integer version of the key field.</p>
+<p>Because CSV files often import fields as text, you will create a new integer version of the key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
 <ol>
-<li>Open the CSV table's attribute table.</li>
+<li>Open the CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>'s <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Toggle editing on if needed.</li>
-<li>Open the <strong>Field Calculator</strong>.</li>
-<li>Choose <strong>Create a new field</strong>.</li>
-<li>Name the field <code>SOIL_TYPE_INT</code>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
+<li>Choose <strong>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>.</li>
+<li>Name the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>SOIL_TYPE_INT</code>.</li>
 <li>Search for the <code>to_int</code> function.</li>
 <li>Build this expression:</li>
 </ol>
@@ -1223,70 +1223,70 @@
 <p><img src="images/20250422_104901_image.png" alt=""></img></p>
 <ol>
 <li>Confirm that the preview looks correct.</li>
-<li>Click <strong>OK</strong> to create the new field.</li>
+<li>Click <strong>OK</strong> to create the new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 <li>Save your edits and toggle editing off.</li>
 </ol>
 <p><img src="images/20250422_110520_image.png" alt=""></img></p>
 <ol>
-<li>Reopen the table properties and confirm that <code>SOIL_TYPE_INT</code> is now a numeric field.</li>
+<li>Reopen the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> properties and confirm that <code>SOIL_TYPE_INT</code> is now a numeric <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 </ol>
 <p><img src="images/20250422_113422_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Concept note:</strong> This kind of cleanup is sometimes called data carpentry. It may feel small, but it is part of good GIS practice. Clean keys make joins more reliable, and reliable joins make your analysis easier to trust.</p>
 </blockquote>
 <h2 id="part-6-join-the-table-to-the-spatial-layer">Part 6: Join the Table to the Spatial Layer</h2>
-<p>Now you are ready to connect the lookup table to the polygon layer.</p>
+<p>Now you are ready to connect the lookup <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
-<li>Open the <strong>Properties</strong> for the <code>soils</code> layer.</li>
+<li>Open the <strong>Properties</strong> for the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li>Go to the <strong>Joins</strong> tab.</li>
-<li>Add a new join.</li>
-<li>Join the CSV table to <code>soils</code>.</li>
-<li>Use the matching soil-type fields as the join fields.
-If needed, use <code>SOIL_TYPE</code> from the soils layer and <code>SOIL_TYPE_INT</code> from the CSV table.</li>
+<li>Add a new <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>.</li>
+<li><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> the CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to <code>soils</code>.</li>
+<li>Use the matching soil-type fields as the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> fields.
+If needed, use <code>SOIL_TYPE</code> from the soils <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and <code>SOIL_TYPE_INT</code> from the CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 </ol>
 <p><img src="images/20250422_114223_image.png" alt=""></img></p>
 <ol>
-<li>Apply the join and close the dialog.</li>
-<li>Open the attribute table for the <code>soils</code> layer.</li>
+<li>Apply the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> and close the dialog.</li>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li>Scroll to confirm that the new soil-property fields have been added.</li>
 </ol>
 <p><img src="images/20250422_114331_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>What kind of join is this?</strong> Many polygons in the <code>soils</code> layer are matching to one row in the soil-properties table for each soil type. From the perspective of the feature layer, this is a <strong>many-to-one join</strong>.</p>
-<p><strong>What is happening conceptually?</strong> QGIS is not redrawing your polygons. It is enriching them by connecting each polygon's foreign key to a lookup record whose primary key defines the soil type.</p>
+<p><strong>What kind of <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is this?</strong> Many polygons in the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> are matching to one row in the soil-properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for each soil type. From the perspective of the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, this is a <strong>many-to-one <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a></strong>.</p>
+<p><strong>What is happening conceptually?</strong> QGIS is not redrawing your polygons. It is enriching them by connecting each polygon's <a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a> to a lookup record whose <a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a> defines the soil type.</p>
 </blockquote>
 <h2 id="part-7-make-the-join-useful">Part 7: Make the Join Useful</h2>
-<p>Once the join is in place, you can use the added fields for mapping.</p>
+<p>Once the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is in place, you can use the added fields for mapping.</p>
 <ol>
-<li>Open the symbology for the <code>soils</code> layer again.</li>
-<li>Create a <strong>Categorized</strong> map using the joined <code>NAME</code> field from the soil-properties table instead of the numeric <code>SOIL_TYPE</code> code.</li>
+<li>Open the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> for the <code>soils</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> again.</li>
+<li>Create a <strong>Categorized</strong> map using the joined <code>NAME</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> from the soil-properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> instead of the numeric <code>SOIL_TYPE</code> code.</li>
 </ol>
-<p>This is one of the main reasons to perform a join: coded data becomes more human-readable and more useful for communication.</p>
+<p>This is one of the main reasons to perform a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>: coded data becomes more human-readable and more useful for communication.</p>
 <h2 id="part-8-turn-the-joined-data-into-a-map">Part 8: Turn the Joined Data into a Map</h2>
-<p>After you have completed the join, create a map layout as a PDF.</p>
+<p>After you have completed the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>, create a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> as a PDF.</p>
 <p>Your map should:</p>
 <ul>
-<li>display the soils layer categorized by the joined <code>NAME</code> field</li>
-<li>include the joined soil properties table in the layout</li>
-<li>include standard map elements such as title, name, CRS, scale, and basemap where appropriate</li>
+<li>display the soils <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> categorized by the joined <code>NAME</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+<li>include the joined soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> in the layout</li>
+<li>include standard map elements such as title, name, CRS, <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>, and <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> where appropriate</li>
 </ul>
 <p>To insert the tabular information:</p>
 <ol>
 <li>Open a new QGIS layout.</li>
-<li>Use the <strong>Add Attribute Table</strong> tool <img src="images/Table_Operations_in_QGIS_pt3-b59904a2.png" alt=""></img> to place the soil properties table in the layout.</li>
-<li>Use the table's <strong>Item Properties</strong> to clean up field names and formatting.</li>
+<li>Use the <strong>Add <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong> tool <img src="images/Table_Operations_in_QGIS_pt3-b59904a2.png" alt=""></img> to place the soil properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> in the layout.</li>
+<li>Use the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>'s <strong>Item Properties</strong> to clean up <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names and formatting.</li>
 </ol>
-<p>For the legend:</p>
+<p>For the <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a>:</p>
 <ol>
 <li>Uncheck <strong>Auto update</strong> if needed.</li>
-<li>Click individual legend items to edit or remove them.</li>
+<li>Click individual <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> items to edit or remove them.</li>
 <li>Use the edit control <img src="images/Table_Operations_in_QGIS_pt3-afc821e7.png" alt=""></img> if you want to improve labels.</li>
 </ol>
 <p>The final result should look something like this:</p>
 <p><img src="images/Table_Operations_in_QGIS_pt3-078c73d6.png" alt=""></img></p>
 <h2 id="why-this-workflow-matters">Why This Workflow Matters</h2>
 <p>I want to stress the usefulness of what you have just done.</p>
-<p>In GIS, you will often start with a preexisting boundary or feature layer and then join new tabular data to it. That joined data may represent:</p>
+<p>In GIS, you will often start with a preexisting boundary or <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and then <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> new tabular data to it. That joined data may represent:</p>
 <ul>
 <li>properties</li>
 <li>measurements</li>
@@ -1296,7 +1296,7 @@ If needed, use <code>SOIL_TYPE</code> from the soils layer and <code>SOIL_TYPE_I
 <li>demographic summaries</li>
 </ul>
 <p>Once joined, those attributes can be symbolized, filtered, summarized, and laid out on maps. This makes a single spatial dataset far more flexible than it would be on its own.</p>
-<p>That is why table joins are such a foundational GIS skill: they are one of the main ways that the spatial dimensions of the things we are interested in become explicit, and analytically and communicatively useful.</p>
+<p>That is why <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> joins are such a foundational GIS skill: they are one of the main ways that the spatial dimensions of the things we are interested in become explicit, and analytically and communicatively useful.</p>
 
                                 
                                 </section>
@@ -1336,7 +1336,7 @@ If needed, use <code>SOIL_TYPE</code> from the soils layer and <code>SOIL_TYPE_I
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"next":{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},"previous":{"title":"Week 03 - Tables & Queries","level":"1.5","depth":1,"ref":"","articles":[{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},{"title":"03 - Using SQL to Subset Big Data in the Stanford Data Farm","level":"1.5.4","depth":2,"ref":"","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","mtime":"2026-03-26T16:52:04.801Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"next":{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},"previous":{"title":"Week 03 - Tables & Queries","level":"1.5","depth":1,"ref":"","articles":[{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},{"title":"03 - Using SQL to Subset Big Data in the Stanford Data Farm","level":"1.5.4","depth":2,"ref":"","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","mtime":"2026-03-26T17:46:36.875Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T17:46:44.927Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

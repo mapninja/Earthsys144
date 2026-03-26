@@ -995,9 +995,9 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces some of the most important ideas in raster-based remote sensing and analysis in Google Earth Engine:</p>
+<p>This lab introduces some of the most important ideas in <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>-based <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> and analysis in Google Earth Engine:</p>
 <ul>
-<li><strong>Image collections</strong></li>
+<li><strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">Image</a> collections</strong></li>
 <li><strong>Images</strong></li>
 <li><strong>Bands</strong></li>
 <li><strong>Pixels</strong></li>
@@ -1006,16 +1006,16 @@
 <ul>
 <li>one of many images collected over time</li>
 <li>made of multiple bands that measure different parts of the electromagnetic spectrum</li>
-<li>built from pixels, where each pixel stores a value</li>
+<li>built from pixels, where each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores a value</li>
 </ul>
 <p>In this exercise, you will progressively narrow your analysis by:</p>
 <ol>
-<li>starting with an image collection</li>
+<li>starting with an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection</li>
 <li>filtering it by area of interest and date</li>
-<li>selecting individual bands and pixel values</li>
+<li>selecting individual bands and <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values</li>
 <li>masking data with <code>updateMask()</code></li>
-<li>thresholding pixel values to isolate a condition of interest</li>
-<li>visualizing imagery using natural color and false color band combinations</li>
+<li>thresholding <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values to isolate a condition of interest</li>
+<li>visualizing imagery using natural color and false color <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combinations</li>
 </ol>
 <p>You will work with:</p>
 <ul>
@@ -1026,13 +1026,13 @@
 <p>By the end of this lab, you should be able to:</p>
 <ul>
 <li>Explain the difference between an <code>ImageCollection</code> and an <code>Image</code> in Earth Engine</li>
-<li>Explain what a band is and why multi-band imagery is useful</li>
-<li>Explain what a pixel value represents in a raster dataset</li>
-<li>Filter an image collection by area of interest and date</li>
+<li>Explain what a <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> is and why multi-<a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> imagery is useful</li>
+<li>Explain what a <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value represents in a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> dataset</li>
+<li>Filter an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection by area of interest and date</li>
 <li>Use <code>updateMask()</code> to hide pixels that do not meet a condition</li>
-<li>Select and inspect the values of a single land cover probability band in Dynamic World</li>
-<li>Threshold a raster to isolate deforestation during a chosen ten-year period</li>
-<li>Create both RGB and color-infrared image visualizations from Sentinel-2 bands</li>
+<li>Select and inspect the values of a single land cover probability <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> in Dynamic World</li>
+<li><a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">Threshold</a> a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> to isolate deforestation during a chosen ten-year period</li>
+<li>Create both RGB and color-infrared <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> visualizations from Sentinel-2 bands</li>
 <li>Explain how Dynamic World images are linked to their source Sentinel-2 images through dataset naming</li>
 </ul>
 <h2 id="before-you-start">Before You Start</h2>
@@ -1046,12 +1046,12 @@
 <p>If needed, review the Week 00 Earth Engine setup guide first.</p>
 <h2 id="a-few-core-ideas-before-the-code">A Few Core Ideas Before the Code</h2>
 <h3 id="what-is-an-image-collection">What is an image collection?</h3>
-<p>An <strong>image collection</strong> is a stack or library of images. Each image usually represents a different date, time, or scene.</p>
+<p>An <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection</strong> is a stack or library of images. Each <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> usually represents a different date, time, or scene.</p>
 <p>For example, if a satellite passes over the same area many times, Earth Engine may store all of those scenes together as an <code>ImageCollection</code>.</p>
 <h3 id="what-is-an-image">What is an image?</h3>
-<p>An <strong>image</strong> is one item from that collection. It may still contain many bands, but it represents a single scene or observation.</p>
+<p>An <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a></strong> is one item from that collection. It may still contain many bands, but it represents a single scene or observation.</p>
 <h3 id="what-is-a-band">What is a band?</h3>
-<p>A <strong>band</strong> is one layer inside an image. Different bands measure different parts of the electromagnetic spectrum, such as:</p>
+<p>A <strong><a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a></strong> is one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> inside an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. Different bands measure different parts of the electromagnetic spectrum, such as:</p>
 <ul>
 <li>blue light</li>
 <li>green light</li>
@@ -1060,16 +1060,16 @@
 </ul>
 <p>Some datasets also include bands that are not raw reflectance, but instead represent classifications or modeled probabilities.</p>
 <h3 id="what-is-a-pixel">What is a pixel?</h3>
-<p>A <strong>pixel</strong> is the smallest unit in a raster image. Each pixel stores a value.</p>
+<p>A <strong><a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a></strong> is the smallest unit in a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. Each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores a value.</p>
 <p>That value might represent:</p>
 <ul>
-<li>reflectance in a spectral band</li>
+<li>reflectance in a spectral <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a></li>
 <li>a land cover class</li>
 <li>the probability of a class</li>
 <li>the year of forest loss</li>
 </ul>
 <blockquote>
-<p><strong>Concept note:</strong> In raster GIS, analysis often means asking meaningful questions about pixel values. The map is visual, but the underlying data is numeric.</p>
+<p><strong>Concept note:</strong> In <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> GIS, analysis often means asking meaningful questions about <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values. The map is visual, but the underlying data is numeric.</p>
 </blockquote>
 <h2 id="data-used-in-this-lab">Data Used in This Lab</h2>
 <h3 id="dynamic-world-v1">Dynamic World V1</h3>
@@ -1080,15 +1080,15 @@
 <li><code>built</code></li>
 <li><code>crops</code></li>
 </ul>
-<p>That makes it useful for talking about both classification and pixel-level confidence.</p>
+<p>That makes it useful for talking about both <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> and <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>-level confidence.</p>
 <h3 id="hansen-global-forest-change">Hansen Global Forest Change</h3>
-<p>The Hansen dataset includes forest change information derived from Landsat imagery. In this lab, you will use the <code>lossyear</code> band to identify pixels where forest loss occurred during a chosen ten-year period.</p>
+<p>The Hansen dataset includes forest change information derived from Landsat imagery. In this lab, you will use the <code>lossyear</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> to identify pixels where forest loss occurred during a chosen ten-year period.</p>
 <h3 id="sentinel-2">Sentinel-2</h3>
 <p>Sentinel-2 provides the underlying multispectral imagery that supports both visual interpretation and products such as Dynamic World.</p>
 <p>In the final section of this lab, you will visualize Sentinel-2 using:</p>
 <ul>
 <li><strong>RGB</strong> for natural color</li>
-<li><strong>CIR / IRG</strong> for near-infrared-enhanced visualization of vegetation</li>
+<li><strong>CIR / IRG</strong> for near-infrared-enhanced <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> of vegetation</li>
 </ul>
 <h2 id="part-1-define-an-area-of-interest">Part 1: Define an Area of Interest</h2>
 <p>You should begin almost every Earth Engine workflow by deciding where you are looking.</p>
@@ -1129,7 +1129,7 @@
 <p><strong>Concept note:</strong> This is a very common Earth Engine pattern. You usually start with a large collection and progressively narrow it until it matches your place and time of interest.</p>
 </blockquote>
 <h2 id="part-3-move-from-a-collection-to-a-single-image">Part 3: Move from a Collection to a Single Image</h2>
-<p>Many operations become easier to understand if you work with one image at a time.</p>
+<p>Many operations become easier to understand if you work with one <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> at a time.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Sort the filtered collection by time so the newest image is first.</span>
 <span class="hljs-keyword">var</span> dwSorted = dwByDate.<span class="hljs-title function_">sort</span>(<span class="hljs-string">'system:time_start'</span>, <span class="hljs-literal">false</span>);
 
@@ -1141,8 +1141,8 @@
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'One Dynamic World image:'</span>, dwImage);
 </code></pre>
 <h2 id="part-4-look-at-bands-and-pixel-values">Part 4: Look at Bands and Pixel Values</h2>
-<p>Dynamic World contains a labeled class band and several probability bands.</p>
-<p>For beginning raster analysis, it is very useful to select one band and think carefully about what its pixel values mean.</p>
+<p>Dynamic World contains a labeled class <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> and several probability bands.</p>
+<p>For beginning <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis, it is very useful to select one <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> and think carefully about what its <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values mean.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Select the 'trees' probability band from the Dynamic World image.</span>
 <span class="hljs-comment">// This produces a new single-band image.</span>
 <span class="hljs-keyword">var</span> trees = dwImage.<span class="hljs-title function_">select</span>(<span class="hljs-string">'trees'</span>);
@@ -1159,18 +1159,18 @@
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Trees probability band:'</span>, trees);
 </code></pre>
 <blockquote>
-<p><strong>Concept note:</strong> In this case, each pixel value is not simply "tree" or "not tree." It is a probability value between 0 and 1. That is a nice reminder that not all raster pixels are direct categories. Some are modeled values.</p>
+<p><strong>Concept note:</strong> In this case, each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value is not simply "tree" or "not tree." It is a probability value between 0 and 1. That is a nice reminder that not all <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels are direct categories. Some are modeled values.</p>
 </blockquote>
 <h2 id="part-5-use-the-inspector-to-read-a-single-pixel">Part 5: Use the Inspector to Read a Single Pixel</h2>
 <p>After running the script:</p>
 <ol>
 <li>Open the <strong>Inspector</strong> tab in Earth Engine.</li>
 <li>Click on the map inside your AOI.</li>
-<li>Read the value reported for the <code>trees</code> band.</li>
+<li>Read the value reported for the <code>trees</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a>.</li>
 </ol>
-<p>That clicked value is the single-pixel value at that location.</p>
+<p>That clicked value is the single-<a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value at that location.</p>
 <blockquote>
-<p><strong>Why this matters:</strong> This is one of the key conceptual moves in remote sensing. A map may look like an image, but analysis often depends on understanding that each cell has a numeric value you can query, compare, threshold, and mask.</p>
+<p><strong>Why this matters:</strong> This is one of the key conceptual moves in <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a>. A map may look like an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, but analysis often depends on understanding that each cell has a numeric value you can <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>, compare, <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a>, and <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>.</p>
 </blockquote>
 <h2 id="part-6-use-updatemask-to-show-only-strong-tree-pixels">Part 6: Use <code>updateMask()</code> to Show Only Strong Tree Pixels</h2>
 <p><code>updateMask()</code> is used to hide pixels that do not meet a condition.</p>
@@ -1191,18 +1191,18 @@
 );
 </code></pre>
 <blockquote>
-<p><strong>Concept note:</strong> A mask does not necessarily change the underlying pixel values. It changes which pixels are visible or available for subsequent analysis.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> does not necessarily change the underlying <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values. It changes which pixels are visible or available for subsequent analysis.</p>
 </blockquote>
 <h2 id="part-7-threshold-the-hansen-forest-loss-dataset">Part 7: Threshold the Hansen Forest Loss Dataset</h2>
-<p>Now you will move from class probabilities to a different kind of pixel value.</p>
-<p>In the Hansen dataset, the <code>lossyear</code> band stores the year of forest loss as a coded value:</p>
+<p>Now you will move from class probabilities to a different kind of <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value.</p>
+<p>In the Hansen dataset, the <code>lossyear</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> stores the year of forest loss as a coded value:</p>
 <ul>
 <li><code>0</code> means no recorded loss</li>
 <li><code>1</code> means loss in 2001</li>
 <li><code>2</code> means loss in 2002</li>
 <li>and so on</li>
 </ul>
-<p>So if you want all forest loss during a ten-year period, you can threshold those values.</p>
+<p>So if you want all forest loss during a ten-year period, you can <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> those values.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Load the Hansen Global Forest Change image.</span>
 <span class="hljs-comment">// This dataset is a single multi-band image.</span>
 <span class="hljs-keyword">var</span> hansen = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'UMD/hansen/global_forest_change_2023_v1_11'</span>);
@@ -1229,7 +1229,7 @@
 );
 </code></pre>
 <blockquote>
-<p><strong>Concept note:</strong> This is a thresholding workflow. You are turning a broad range of pixel values into a narrower condition of interest. This is one of the most common operations in raster analysis.</p>
+<p><strong>Concept note:</strong> This is a thresholding workflow. You are turning a broad range of <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values into a narrower condition of interest. This is one of the most common operations in <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis.</p>
 </blockquote>
 <h2 id="part-8-natural-color-rgb-visualization-with-sentinel-2">Part 8: Natural Color RGB Visualization with Sentinel-2</h2>
 <p>Now you will work with Sentinel-2 imagery directly so you can compare analysis products to the source imagery.</p>
@@ -1261,7 +1261,7 @@
 <li><code>B3</code> for green</li>
 <li><code>B2</code> for blue</li>
 </ul>
-<p>This gives an image that looks relatively close to what our eyes expect from a color photograph.</p>
+<p>This gives an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> that looks relatively close to what our eyes expect from a color photograph.</p>
 <h2 id="part-9-false-color-irg--cir-visualization">Part 9: False Color IRG / CIR Visualization</h2>
 <p>Near infrared is especially useful for vegetation analysis because healthy vegetation reflects strongly in that part of the spectrum.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Add a false-color image using near infrared, red, and green.</span>
@@ -1277,11 +1277,11 @@
 <p>RGB is useful for familiar visual interpretation.</p>
 <p>CIR is useful because vegetation becomes much easier to distinguish, often appearing bright red or pink, while built surfaces and water appear very different.</p>
 <blockquote>
-<p><strong>Concept note:</strong> Visualization is not just cosmetic. Changing band combinations helps you see different physical properties in the landscape.</p>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">Visualization</a> is not just cosmetic. Changing <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combinations helps you see different physical properties in the landscape.</p>
 </blockquote>
 <h2 id="part-10-how-dynamic-world-and-sentinel-2-are-connected">Part 10: How Dynamic World and Sentinel-2 Are Connected</h2>
 <p>Dynamic World is derived from Sentinel-2 imagery. That means the land cover probabilities you viewed earlier are tied to a specific Sentinel-2 acquisition.</p>
-<p>In many cases, the image identifiers are closely related, and the Dynamic World image name reflects the Sentinel-2 scene it was built from.</p>
+<p>In many cases, the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> identifiers are closely related, and the Dynamic World <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> name reflects the Sentinel-2 scene it was built from.</p>
 <p>Here is a simple way to inspect that relationship:</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Get the system index for the selected Dynamic World image.</span>
 <span class="hljs-comment">// This is often the easiest way to examine how the image is identified.</span>
@@ -1290,9 +1290,9 @@
 <span class="hljs-comment">// Print the identifier to the Console so we can compare it to Sentinel-2 scene names.</span>
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Dynamic World system:index'</span>, dwId);
 </code></pre>
-<p>When you inspect the metadata for Dynamic World images and Sentinel-2 scenes, you can often see that they correspond to the same underlying acquisition.</p>
+<p>When you inspect the <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> for Dynamic World images and Sentinel-2 scenes, you can often see that they correspond to the same underlying acquisition.</p>
 <blockquote>
-<p><strong>Why this matters:</strong> Dynamic World is not an unrelated map product floating in space. It is tied to specific Sentinel-2 imagery. That means you can move back and forth between the classified product and the source multispectral image when interpreting what you see.</p>
+<p><strong>Why this matters:</strong> Dynamic World is not an unrelated map product floating in space. It is tied to specific Sentinel-2 imagery. That means you can move back and forth between the classified product and the source multispectral <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> when interpreting what you see.</p>
 </blockquote>
 <h2 id="suggested-turn-in">Suggested Turn-In</h2>
 <p>For this lab, students should submit:</p>
@@ -1305,10 +1305,10 @@
 <ul>
 <li>an AOI</li>
 <li>collection filtering by place and date</li>
-<li>selection of a single Dynamic World probability band</li>
+<li>selection of a single Dynamic World probability <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a></li>
 <li>use of <code>updateMask()</code></li>
 <li>thresholding of Hansen forest loss for a ten-year period</li>
-<li>RGB and CIR visualization using Sentinel-2 bands</li>
+<li>RGB and CIR <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> using Sentinel-2 bands</li>
 </ul>
 <h2 id="a-good-script-header-example">A Good Script Header Example</h2>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Your Name</span>
@@ -1323,10 +1323,10 @@
 <ul>
 <li>collections contain many images</li>
 <li>images contain bands</li>
-<li>bands contain pixel values</li>
-<li>pixel values can be filtered, masked, thresholded, and visualized</li>
+<li>bands contain <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values</li>
+<li><a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values can be filtered, masked, thresholded, and visualized</li>
 </ul>
-<p>That way of thinking is the foundation of remote sensing and raster analysis in Earth Engine.</p>
+<p>That way of thinking is the foundation of <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> and <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis in Earth Engine.</p>
 
                                 
                                 </section>
@@ -1366,7 +1366,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.4.4","depth":2,"next":{"title":"Week 03 - Tables & Queries","level":"1.5","depth":1,"ref":"","articles":[{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},{"title":"03 - Using SQL to Subset Big Data in the Stanford Data Farm","level":"1.5.4","depth":2,"ref":"","articles":[]}]},"previous":{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.4.3","depth":2,"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","mtime":"2026-03-26T16:52:04.654Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.4.4","depth":2,"next":{"title":"Week 03 - Tables & Queries","level":"1.5","depth":1,"ref":"","articles":[{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},{"title":"03 - Using SQL to Subset Big Data in the Stanford Data Farm","level":"1.5.4","depth":2,"ref":"","articles":[]}]},"previous":{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.4.3","depth":2,"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","mtime":"2026-03-26T17:46:36.713Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T17:46:44.927Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

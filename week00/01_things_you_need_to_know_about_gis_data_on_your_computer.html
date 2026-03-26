@@ -1004,7 +1004,7 @@
 <li>Choose appropriate formats for different GIS tasks</li>
 </ul>
 <h2 id="file-naming-conventions">File Naming Conventions</h2>
-<p><strong>Use Esri Raster naming rules as your universal standard</strong> - they represent the most restrictive (and finicky) naming requirements in GIS, so following them ensures compatibility across all software.</p>
+<p><strong>Use Esri <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> naming rules as your universal standard</strong> - they represent the most restrictive (and finicky) naming requirements in GIS, so following them ensures compatibility across all software.</p>
 <h3 id="the-esri-standard-least-common-denominator">The Esri Standard (Least Common Denominator)</h3>
 <p>Esri has the strictest naming requirements in GIS. Following their official rules (<a href="https://community.esri.com/t5/data-management-blog/how-to-name-things-in-arcgis/ba-p/897194" target="_blank">Esri Community: How to Name Things in ArcGIS</a>) ensures universal compatibility:</p>
 <p><strong>The Official Esri Rules:</strong></p>
@@ -1028,21 +1028,21 @@
 <li>Applies to files, folders, fields, and all GIS objects</li>
 </ul>
 </li>
-<li><p><strong>Avoid SQL reserved words</strong></p>
+<li><p><strong>Avoid <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> reserved words</strong></p>
 <ul>
 <li>Skip: OBJECTID, VALUE, COUNT, NOT, OR, ON, IN, OVER, SELECT</li>
 <li>Prevents confusion in database operations</li>
 </ul>
 </li>
-<li><p><strong>Keep field names ≤ 10 characters</strong></p>
+<li><p><strong>Keep <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names ≤ 10 characters</strong></p>
 <ul>
 <li>This is a dBase (.dbf) limit affecting shapefiles</li>
 <li>Use aliases for longer descriptive names</li>
 </ul>
 </li>
-<li><p><strong>Raster names ≤ 14 characters</strong></p>
+<li><p><strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> names ≤ 14 characters</strong></p>
 <ul>
-<li>Must start with letter (critical for raster datasets)</li>
+<li>Must start with letter (critical for <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> datasets)</li>
 <li>Special characters in paths cause export failures</li>
 <li>Grid format compatibility requires this limit</li>
 </ul>
@@ -1063,10 +1063,10 @@
 </ul>
 <p><strong>Names that break Esri compatibility:</strong></p>
 <ul>
-<li><code>elevation-12m.tif</code> (hyphen causes raster export failures)</li>
+<li><code>elevation-12m.tif</code> (hyphen causes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> export failures)</li>
 <li><code>2020_population.tif</code> (starts with number - will fail)</li>
 <li><code>land cover data.shp</code> (spaces cause cryptic errors)</li>
-<li><code>COUNT.shp</code> (SQL reserved word causes confusion)</li>
+<li><code>COUNT.shp</code> (<a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> reserved word causes confusion)</li>
 <li><code>VeryLongRasterDatasetName.tif</code> (over 14 characters)</li>
 <li><code>pop&amp;density.tif</code> (ampersand causes failures)</li>
 </ul>
@@ -1087,15 +1087,15 @@
 </ol>
 <p><strong>Why this matters (from Esri's official warning):</strong></p>
 <ul>
-<li><strong>Prevents cryptic error messages</strong>: Raster tools fail with "999999" errors</li>
-<li><strong>Avoids export failures</strong>: Special characters break raster processing</li>
+<li><strong>Prevents cryptic error messages</strong>: <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> tools fail with "999999" errors</li>
+<li><strong>Avoids export failures</strong>: Special characters break <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> processing</li>
 <li><strong>Enables reliable scripting</strong>: ArcPy validates names automatically</li>
 <li><strong>Prevents "tempting fate"</strong>: As Esri warns - violations "may work" but cause unpredictable failures</li>
 <li><strong>Universal compatibility</strong>: These rules work across all GIS software</li>
 </ul>
 <p><strong>Special considerations:</strong></p>
 <ul>
-<li><strong>Database fields</strong>: Same rules apply to column names in attribute tables</li>
+<li><strong>Database fields</strong>: Same rules apply to column names in <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables</li>
 <li><strong>Project files</strong>: Apply to .qgz, .aprx, and other project file names</li>
 <li><strong>Folder names</strong>: While less critical, consistency helps with scripting</li>
 </ul>
@@ -1114,13 +1114,13 @@
 </ul>
 <p><strong>Single-file formats</strong>:</p>
 <ul>
-<li><strong>GeoJSON</strong>: <code>.geojson</code> files</li>
-<li><strong>GeoTIFF</strong>: <code>.tif</code> or <code>.tiff</code> files with spatial information</li>
+<li><strong><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a></strong>: <code>.geojson</code> files</li>
+<li><strong><a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a></strong>: <code>.tif</code> or <code>.tiff</code> files with spatial information</li>
 <li><strong>GeoPackage</strong>: <code>.gpkg</code> files</li>
 </ul>
 <p><strong>Folders that are actually datasets</strong>:</p>
 <ul>
-<li><strong>File Geodatabase</strong>: <code>.gdb</code> folders (treat as single units)</li>
+<li><strong>File <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">Geodatabase</a></strong>: <code>.gdb</code> folders (treat as single units)</li>
 </ul>
 <h3 id="file-organization-best-practices">File Organization Best Practices</h3>
 <p><strong>Create a logical folder structure:**</strong></p>
@@ -1134,11 +1134,11 @@
 └── documentation/
 </code></pre><p><strong>Keep related files together:</strong></p>
 <ul>
-<li>All shapefile components in the same folder</li>
-<li>Metadata files with their datasets</li>
+<li>All <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> components in the same folder</li>
+<li><a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> files with their datasets</li>
 <li>Projection files (<code>.prj</code>) with their data</li>
 </ul>
-<p><strong>Document your data sources:</strong></p>
+<p><strong>Document your data <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>:</strong></p>
 <ul>
 <li>Keep a simple text file listing where data came from, or get REALLY motivated and use Zotero!</li>
 <li>Note download dates and any modifications made</li>
@@ -1186,7 +1186,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - Things you need to know about GIS data on your computer","level":"1.2.2","depth":2,"next":{"title":"02 - Logging Into Accounts and Installing Software","level":"1.2.3","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},"previous":{"title":"00 - Things you need to know about your computer","level":"1.2.1","depth":2,"path":"week00/00_things_you_need_to_know_about_your_computer.md","ref":"week00/00_things_you_need_to_know_about_your_computer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","mtime":"2026-03-26T16:52:04.175Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - Things you need to know about GIS data on your computer","level":"1.2.2","depth":2,"next":{"title":"02 - Logging Into Accounts and Installing Software","level":"1.2.3","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},"previous":{"title":"00 - Things you need to know about your computer","level":"1.2.1","depth":2,"path":"week00/00_things_you_need_to_know_about_your_computer.md","ref":"week00/00_things_you_need_to_know_about_your_computer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","mtime":"2026-03-26T17:46:36.184Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T17:46:44.927Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

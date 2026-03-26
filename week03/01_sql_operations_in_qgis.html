@@ -995,8 +995,8 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces <strong>SQL inside QGIS</strong> through the <strong>DB Manager</strong> and <strong>Virtual Layers</strong> tools. Up to this point in the course, you have mostly interacted with data through menus, tool dialogs, and map layers. In this exercise, you will begin asking questions of your data directly using SQL.</p>
-<p>That matters because GIS is not only about geometry. It is also about <strong>tables</strong>, <strong>relationships</strong>, and <strong>queries</strong>. SQL gives you a precise language for asking questions like:</p>
+<p>This lab introduces <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> inside QGIS</strong> through the <strong>DB Manager</strong> and <strong>Virtual Layers</strong> tools. Up to this point in the course, you have mostly interacted with data through menus, tool dialogs, and map layers. In this exercise, you will begin asking questions of your data directly using <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>.</p>
+<p>That matters because GIS is not only about geometry. It is also about <strong>tables</strong>, <strong>relationships</strong>, and <strong>queries</strong>. <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> gives you a precise language for asking questions like:</p>
 <ul>
 <li>Which records match a condition?</li>
 <li>How do two tables connect to one another?</li>
@@ -1006,35 +1006,35 @@
 <p>You will use those ideas to answer a concrete question:</p>
 <p><strong>What chemicals are being released near a school, and how much air and water release is associated with them?</strong></p>
 <h2 id="conceptual-focus">Conceptual Focus</h2>
-<p>This lab is about more than memorizing SQL syntax. The larger ideas are:</p>
+<p>This lab is about more than memorizing <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> syntax. The larger ideas are:</p>
 <ul>
-<li>A GIS layer is also a table.</li>
+<li>A GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Related tables let you avoid storing the same information over and over again.</li>
-<li>SQL lets you be explicit about what you want from the data.</li>
-<li>Spatial SQL extends those same ideas into geographic space.</li>
+<li><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> lets you be explicit about what you want from the data.</li>
+<li>Spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> extends those same ideas into geographic space.</li>
 <li>QGIS can treat project layers as if they were database tables through <strong>Virtual Layers</strong>.</li>
 </ul>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this lab, you should be able to:</p>
 <ul>
 <li>Explain why relational data structure matters in GIS</li>
-<li>Explain what a key field does in a table relationship</li>
+<li>Explain what a key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> does in a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> relationship</li>
 <li>Explain the purpose of <code>SELECT</code>, <code>WHERE</code>, <code>GROUP BY</code>, and <code>JOIN</code></li>
-<li>Explain how spatial SQL functions such as <code>ST_Distance()</code> and <code>ST_Buffer()</code> extend tabular SQL into GIS analysis</li>
-<li>Open and use the QGIS <strong>DB Manager</strong> and <strong>SQL Window</strong></li>
-<li>Run saved SQL queries against project layers through <strong>Virtual Layers</strong></li>
-<li>Interpret the results of attribute and spatial SQL queries</li>
-<li>Load SQL results back into QGIS as layers or tables</li>
-<li>Create a final map layout that communicates the result of an SQL-driven spatial analysis</li>
+<li>Explain how spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> functions such as <code>ST_Distance()</code> and <code>ST_Buffer()</code> extend tabular <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> into GIS analysis</li>
+<li>Open and use the QGIS <strong>DB Manager</strong> and <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> Window</strong></li>
+<li>Run saved <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries against project layers through <strong>Virtual Layers</strong></li>
+<li>Interpret the results of <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> and spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries</li>
+<li>Load <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> results back into QGIS as layers or tables</li>
+<li>Create a final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> that communicates the result of an <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>-driven <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a></li>
 </ul>
 <h2 id="a-relational-data-idea-why-separate-tables">A Relational Data Idea: Why Separate Tables?</h2>
 <p>Before you begin clicking through the lab, it is worth pausing to understand why this data is structured the way it is.</p>
 <p>Imagine a city tree inventory. If you revisit the same tree over many years, you do not want to create a brand new point every time just to record a new inspection. Instead, you would usually separate the data into:</p>
 <ol>
-<li>A <strong>locations</strong> table holding the stable information about each site, such as coordinates or address.</li>
-<li>A <strong>survey records</strong> table holding the changing information from each visit, such as condition, date, or notes.</li>
+<li>A <strong>locations</strong> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> holding the stable information about each site, such as coordinates or address.</li>
+<li>A <strong>survey records</strong> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> holding the changing information from each visit, such as condition, date, or notes.</li>
 </ol>
-<p>These two tables are connected through a shared <strong>key field</strong>. That relationship is often called <strong>one-to-many</strong> because one location can be linked to many survey records.</p>
+<p>These two tables are connected through a shared <strong>key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>. That relationship is often called <strong>one-to-many</strong> because one location can be linked to many survey records.</p>
 <p>This is a core relational database idea: <strong>store stable information once, and connect it to changing information through a shared identifier.</strong></p>
 <p>The data in this lab works in a similar way:</p>
 <ul>
@@ -1052,7 +1052,7 @@
 <li><code>toxic_sites_stateplane</code></li>
 <li><code>chemicals</code></li>
 <li><code>schools_stateplane</code></li>
-<li>A QGIS project file with saved SQL queries for the lab</li>
+<li>A QGIS project file with saved <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries for the lab</li>
 </ul>
 <h2 id="before-you-start">Before You Start</h2>
 <ul>
@@ -1061,7 +1061,7 @@
 <li>Expect to move between the QGIS main window and the DB Manager window.</li>
 </ul>
 <blockquote>
-<p><strong>Important idea:</strong> In this lab, QGIS is acting a bit like a database client. You are not writing SQL against a remote PostgreSQL server or a full external database. You are using QGIS' <strong>Virtual Layers</strong> system to query project layers as though they were database tables.</p>
+<p><strong>Important idea:</strong> In this lab, QGIS is acting a bit like a database client. You are not writing <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> against a remote PostgreSQL server or a full external database. You are using QGIS' <strong>Virtual Layers</strong> system to <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> project layers as though they were database tables.</p>
 </blockquote>
 <h2 id="part-1-open-the-project-and-examine-the-data">Part 1: Open the Project and Examine the Data</h2>
 <h3 id="open-the-project">Open the project</h3>
@@ -1070,22 +1070,22 @@
 </ol>
 <p><img src="images/20250417_135442_image.png" alt=""></img></p>
 <ol>
-<li>Right-click on the <code>toxic_sites_stateplane</code> layer and choose <strong>Zoom to Layer</strong>.</li>
+<li>Right-click on the <code>toxic_sites_stateplane</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Zoom to <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
 </ol>
 <p><img src="images/20250420_142036_image.png" alt=""></img></p>
 <h3 id="examine-the-source-data">Examine the source data</h3>
 <ol>
-<li>Open the <strong>Layer Properties</strong> for the layers in the project.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties</strong> for the layers in the project.</li>
 <li>Examine their CRS and their source paths.</li>
 </ol>
 <p><img src="images/20250417_140833_image.png" alt=""></img></p>
-<p>You should notice that the data is stored in a <strong>File Geodatabase</strong>.</p>
+<p>You should notice that the data is stored in a <strong>File <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">Geodatabase</a></strong>.</p>
 <blockquote>
-<p><strong>Concept note:</strong> A File Geodatabase is an Esri format. QGIS can read it, which is useful, but read access is not the same thing as full editing support. This is a good reminder that GIS software often works across many file formats, but not every format is equally flexible in every program.</p>
+<p><strong>Concept note:</strong> A File <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">Geodatabase</a> is an Esri format. QGIS can read it, which is useful, but read access is not the same thing as full editing support. This is a good reminder that GIS software often works across many file formats, but not every format is equally flexible in every program.</p>
 </blockquote>
 <h2 id="part-2-open-db-manager-and-the-sql-window">Part 2: Open DB Manager and the SQL Window</h2>
 <h3 id="why-db-manager-matters">Why DB Manager matters</h3>
-<p>The <strong>DB Manager</strong> gives QGIS a database-like interface for working with project layers and spatial tables. In this lab, you will use it as the place where SQL queries are written, saved, run, and optionally loaded back into the project.</p>
+<p>The <strong>DB Manager</strong> gives QGIS a database-like interface for working with project layers and spatial tables. In this lab, you will use it as the place where <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries are written, saved, run, and optionally loaded back into the project.</p>
 <h3 id="open-the-db-manager">Open the DB Manager</h3>
 <ol>
 <li>In the main menu, go to <strong>Database &gt; DB Manager</strong>.</li>
@@ -1097,47 +1097,47 @@
 <p><img src="images/20250417_142200_image.png" alt=""></img></p>
 <ol>
 <li>Select your project layers in the Virtual Layers area.</li>
-<li>Click the <strong>SQL Window</strong> button <img src="images/20250417_140957_image.png" alt=""></img>, or press <code>Ctrl+Q</code>, to open the SQL window.</li>
+<li>Click the <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> Window</strong> button <img src="images/20250417_140957_image.png" alt=""></img>, or press <code>Ctrl+Q</code>, to open the <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> window.</li>
 </ol>
 <p><img src="images/20250417_141104_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Why use Virtual Layers?</strong> Virtual Layers let QGIS treat layers already in your project as if they were database tables. That means you can use SQL without first exporting everything to an external database.</p>
+<p><strong>Why use Virtual Layers?</strong> Virtual Layers let QGIS treat layers already in your project as if they were database tables. That means you can use <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> without first exporting everything to an external database.</p>
 </blockquote>
 <h2 id="part-3-load-the-saved-queries">Part 3: Load the Saved Queries</h2>
-<p>QGIS allows saved queries to be stored in DB Manager. In this lab, you will use prepared SQL queries as examples, then alter some of them to see how the results change.</p>
+<p>QGIS allows saved queries to be stored in DB Manager. In this lab, you will use prepared <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries as examples, then alter some of them to see how the results change.</p>
 <blockquote>
-<p><strong>Important workflow note:</strong> When you save a modified version of a query, give it a unique name. Otherwise you may overwrite the original saved query provided for the lab.</p>
+<p><strong>Important workflow note:</strong> When you save a modified version of a <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>, give it a unique name. Otherwise you may overwrite the original saved <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> provided for the lab.</p>
 </blockquote>
 <ol>
-<li>In the SQL window, look at the <strong>Saved query</strong> dropdown.</li>
+<li>In the <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> window, look at the <strong>Saved <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a></strong> dropdown.</li>
 <li>Load queries from that dropdown as directed below.</li>
-<li>Pay attention to the query names. QGIS does not always sort them in a helpful order.</li>
+<li>Pay attention to the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> names. QGIS does not always sort them in a helpful order.</li>
 </ol>
 <p><img src="images/20250420_150212_image.png" alt=""></img></p>
 <h2 id="part-4-start-with-select">Part 4: Start with <code>SELECT</code></h2>
 <h3 id="what-select-does">What <code>SELECT</code> does</h3>
-<p>The <code>SELECT</code> statement is the core of SQL. It tells the database what data you want returned.</p>
-<p>Load the query:</p>
+<p>The <code>SELECT</code> statement is the core of <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>. It tells the database what data you want returned.</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>01 - Show all records</code></li>
 </ul>
 <pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>
 <span class="hljs-keyword">FROM</span> chemicals;
 </code></pre>
-<p>This query returns all columns and all rows from the <code>chemicals</code> table.</p>
+<p>This <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> returns all columns and all rows from the <code>chemicals</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
 <ol>
 <li>Load <code>01 - Show all records</code>.</li>
 <li>Click <strong>Execute</strong>.</li>
-<li>Review the output table.</li>
+<li>Review the output <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 </ol>
 <p><img src="images/20250420_150425_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> <code>SELECT *</code> is useful for exploration, but it is usually not the most thoughtful long-term query. As your work becomes more precise, you will usually choose only the columns you actually need.</p>
+<p><strong>Concept note:</strong> <code>SELECT *</code> is useful for exploration, but it is usually not the most thoughtful long-term <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>. As your work becomes more precise, you will usually choose only the columns you actually need.</p>
 </blockquote>
 <h2 id="part-5-use-where-to-filter-rows">Part 5: Use <code>WHERE</code> to Filter Rows</h2>
 <h3 id="what-where-does">What <code>WHERE</code> does</h3>
 <p>The <code>WHERE</code> clause limits what <code>SELECT</code> returns. It filters rows based on a condition.</p>
-<p>Load the query:</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>02 - Filter with WHERE</code></li>
 </ul>
@@ -1147,17 +1147,17 @@
 </code></pre>
 <ol>
 <li>Load <code>02 - Filter with WHERE</code>.</li>
-<li>Execute the query.</li>
+<li>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
 <li>Notice that the result now includes only facilities in New Haven.</li>
 </ol>
 <p><img src="images/20250420_150618_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> <code>WHERE</code> is the bridge between "show me the table" and "show me only the part of the table that matters to my question."</p>
+<p><strong>Concept note:</strong> <code>WHERE</code> is the bridge between "show me the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>" and "show me only the part of the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> that matters to my question."</p>
 </blockquote>
 <h2 id="part-6-use-group-by-and-aggregate-functions">Part 6: Use <code>GROUP BY</code> and Aggregate Functions</h2>
 <h3 id="why-summarize-data">Why summarize data?</h3>
 <p>Sometimes you do not want every individual row. Sometimes you want a summary. That is where aggregate functions such as <code>SUM()</code> become useful.</p>
-<p>Load the query:</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>03 - summarize releases by CHEMNAME</code></li>
 </ul>
@@ -1170,7 +1170,7 @@
 </code></pre>
 <ol>
 <li>Load <code>03 - summarize releases by CHEMNAME</code>.</li>
-<li>Execute the query.</li>
+<li>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
 <li>Review the output.</li>
 </ol>
 <p><img src="images/20250420_150720_image.png" alt=""></img></p>
@@ -1179,8 +1179,8 @@
 </blockquote>
 <h2 id="part-7-join-tables">Part 7: Join Tables</h2>
 <h3 id="why-join">Why join?</h3>
-<p>The <code>toxic_sites_stateplane</code> table has the facility geometry and site information. The <code>chemicals</code> table has release information. Neither table alone fully answers our question. We need to combine them.</p>
-<p>Load the query:</p>
+<p>The <code>toxic_sites_stateplane</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> has the facility geometry and site information. The <code>chemicals</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> has release information. Neither <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> alone fully answers our question. We need to combine them.</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>04 - sites to chemicals join</code></li>
 </ul>
@@ -1195,18 +1195,18 @@
 </code></pre>
 <ol>
 <li>Load <code>04 - sites to chemicals join</code>.</li>
-<li>Execute the query.</li>
+<li>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
 <li>Review the result.</li>
 </ol>
 <p><img src="images/20250420_150849_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> A join does not magically "merge everything forever." It creates a result set by matching rows from two tables based on a key field. Here, <code>TRIFID</code> is the key that allows those tables to relate to one another.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> does not magically "merge everything forever." It creates a result set by matching rows from two tables based on a key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. Here, <code>TRIFID</code> is the key that allows those tables to relate to one another.</p>
 </blockquote>
 <p>Because one site can have multiple chemical records, a single site may appear multiple times in the joined result.</p>
 <h2 id="part-8-ask-a-spatial-question-with-stdistance">Part 8: Ask a Spatial Question with <code>ST_Distance()</code></h2>
 <h3 id="why-use-spatial-sql">Why use spatial SQL?</h3>
-<p>So far the SQL has treated the data as tables. Spatial SQL lets us treat geometry as something that can also be queried mathematically.</p>
-<p>Load the query:</p>
+<p>So far the <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> has treated the data as tables. Spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> lets us treat geometry as something that can also be queried mathematically.</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>05 - Toxic sites within 5km of a school</code></li>
 </ul>
@@ -1220,17 +1220,17 @@
 </code></pre>
 <ol>
 <li>Load <code>05 - Toxic sites within 5km of a school</code>.</li>
-<li>Execute the query.</li>
+<li>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
 <li>Review the result set.</li>
 </ol>
 <p><img src="images/20250420_151048_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> <code>ST_Distance()</code> is doing the same kind of proximity reasoning you might do with a buffering tool or a spatial selection tool, but here you are expressing it directly in SQL.</p>
+<p><strong>Concept note:</strong> <code>ST_Distance()</code> is doing the same kind of proximity reasoning you might do with a buffering tool or a spatial selection tool, but here you are expressing it directly in <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>.</p>
 </blockquote>
 <h2 id="part-9-create-and-load-a-buffer-with-stbuffer">Part 9: Create and Load a Buffer with <code>ST_Buffer()</code></h2>
 <h3 id="why-load-sql-results-as-layers">Why load SQL results as layers?</h3>
-<p>Some SQL queries return ordinary tables. Others return geometry. When a query returns geometry, QGIS can load that result as a new layer.</p>
-<p>Load the query:</p>
+<p>Some <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries return ordinary tables. Others return geometry. When a <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> returns geometry, QGIS can load that result as a new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>07 - 5km Buffer on a school</code></li>
 </ul>
@@ -1242,8 +1242,8 @@
 </code></pre>
 <ol>
 <li>Load <code>07 - 5km Buffer on a school</code>.</li>
-<li>Review the query.</li>
-<li>Check <strong>Load as new layer</strong>.</li>
+<li>Review the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
+<li>Check <strong>Load as new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong>.</li>
 <li>Name the result something meaningful, such as <code>Edgewood_5km_Buffer</code>.</li>
 <li>Click <strong>Load</strong>.</li>
 </ol>
@@ -1251,75 +1251,75 @@
 <h3 id="style-the-buffer-layer">Style the buffer layer</h3>
 <ol>
 <li>Return to the main QGIS window.</li>
-<li>Select the new buffer layer.</li>
-<li>Open the <strong>Layer Styling</strong> panel using the button <img src="images/20250417_161446_image.png" alt=""></img>.</li>
-<li>Style the buffer with a transparent red fill and a visible outline.</li>
-<li>Drag the buffer layer below <code>schools_stateplane</code> so the school remains visible on top.</li>
+<li>Select the new <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel using the button <img src="images/20250417_161446_image.png" alt=""></img>.</li>
+<li>Style the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> with a transparent red fill and a visible outline.</li>
+<li>Drag the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> below <code>schools_stateplane</code> so the school remains visible on top.</li>
 </ol>
 <p><img src="images/20250418_101314_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> SQL results do not have to stay trapped in a table. In QGIS, a spatial SQL query can become a real map layer that you can symbolize and analyze further.</p>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> results do not have to stay trapped in a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. In QGIS, a spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> can become a real map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> that you can symbolize and analyze further.</p>
 </blockquote>
 <h2 id="part-10-build-a-chemical-catalog-near-a-school">Part 10: Build a Chemical Catalog Near a School</h2>
 <p>Now you will move from example queries toward the main analytic task.</p>
-<p>Load the query:</p>
+<p>Load the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ul>
 <li><code>09 - Chemical Catalog within 1km of school</code></li>
 </ul>
-<p>This query:</p>
+<p>This <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>:</p>
 <ol>
 <li>Identifies toxic sites within 1 km of a specific school</li>
-<li>Joins those sites to the chemicals table</li>
+<li>Joins those sites to the chemicals <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li><p>Summarizes total air and water releases by chemical</p>
 </li>
 <li><p>Load <code>09 - Chemical Catalog within 1km of school</code>.</p>
 </li>
-<li>Review the query.</li>
+<li>Review the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
 <li>Execute it to see the initial results.</li>
 <li><p>Uncomment:</p>
 <pre><code class="lang-sql"><span class="hljs-comment">-- ORDER BY TotalAirRelease DESC;</span>
 </code></pre>
 </li>
-<li><p>Execute the query again and notice how the result changes.</p>
+<li><p>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> again and notice how the result changes.</p>
 </li>
 <li><p>Then comment that line back out and instead uncomment:</p>
 <pre><code class="lang-sql"><span class="hljs-comment">-- ORDER BY TotalSurfaceWaterRelease DESC;</span>
 </code></pre>
 </li>
-<li><p>Execute the query again and compare the ranking.</p>
+<li><p>Execute the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> again and compare the ranking.</p>
 </li>
-<li>Use <strong>Load as new layer</strong> to add the result table to your QGIS project.</li>
+<li>Use <strong>Load as new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> to add the result <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to your QGIS project.</li>
 </ol>
 <p><img src="images/20250424_104614_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Concept note:</strong> The same data can support multiple interpretations depending on how you sort and summarize it. "Largest air release" and "largest water release" are related questions, but they are not identical questions.</p>
 </blockquote>
 <h2 id="part-11-create-the-final-map-layout">Part 11: Create the Final Map Layout</h2>
-<p>Use the SQL results to build a final map layout showing the school, its 1 km context, and the summarized chemical catalog.</p>
+<p>Use the <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> results to build a final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> showing the school, its 1 km context, and the summarized chemical catalog.</p>
 <h3 id="build-the-layers-you-need">Build the layers you need</h3>
 <ol>
 <li>Make only the school you queried visible in the map.
-Hint: Use the <code>02 - Filter with WHERE</code> query as a model to create a <code>SELECT</code> statement on <code>schools_stateplane</code> for the school you analyzed.</li>
-<li>Load that school as a new layer.</li>
-<li>Create a 1 km buffer for that school by adapting the earlier buffer query.</li>
-<li>Make sure the toxic sites within that buffer are visible.</li>
-<li>Add a basemap that supports the operational layers clearly.</li>
+Hint: Use the <code>02 - Filter with WHERE</code> <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> as a model to create a <code>SELECT</code> statement on <code>schools_stateplane</code> for the school you analyzed.</li>
+<li>Load that school as a new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Create a 1 km <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> for that school by adapting the earlier <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a>.</li>
+<li>Make sure the toxic sites within that <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> are visible.</li>
+<li>Add a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> that supports the operational layers clearly.</li>
 </ol>
 <h3 id="add-the-chemical-catalog-table-to-the-layout">Add the chemical catalog table to the layout</h3>
 <ol>
 <li>Open the QGIS Layout window.</li>
-<li>Insert the chemical catalog table using the <strong>Add Attribute Table</strong> tool.</li>
-<li>Arrange the layout so the map and table support one another.</li>
+<li>Insert the chemical catalog <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> using the <strong>Add <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong> tool.</li>
+<li>Arrange the layout so the map and <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> support one another.</li>
 </ol>
 <h3 id="include-standard-layout-elements">Include standard layout elements</h3>
 <p>Be sure your map includes:</p>
 <ul>
 <li>Title</li>
-<li>Scale</li>
+<li><a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">Scale</a></li>
 <li>CRS</li>
 <li>Your name</li>
 <li>Date</li>
-<li>A readable legend if useful</li>
+<li>A readable <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> if useful</li>
 </ul>
 <h3 id="export">Export</h3>
 <p>Export the final layout as a PDF for submission.</p>
@@ -1327,23 +1327,23 @@ Hint: Use the <code>02 - Filter with WHERE</code> query as a model to create a <
 <p>Your final submission should include:</p>
 <ul>
 <li>A map focused on the school you analyzed</li>
-<li>A 1 km buffer around that school</li>
-<li>The relevant toxic sites in that buffer</li>
-<li>The summarized chemical catalog table in the map layout</li>
+<li>A 1 km <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around that school</li>
+<li>The relevant toxic sites in that <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a></li>
+<li>The summarized chemical catalog <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> in the <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a></li>
 <li>Standard cartographic elements, including your name and date</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
-<p>In this lab, you used SQL in QGIS not just to view data, but to ask structured questions of it. You:</p>
+<p>In this lab, you used <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> in QGIS not just to view data, but to ask structured questions of it. You:</p>
 <ul>
 <li>Explored project layers through the DB Manager</li>
 <li>Used <code>SELECT</code> and <code>WHERE</code> to retrieve and filter rows</li>
 <li>Used <code>GROUP BY</code> and <code>SUM()</code> to summarize data</li>
 <li>Used <code>JOIN</code> to connect related tables through a shared key</li>
-<li>Used <code>ST_Distance()</code> and <code>ST_Buffer()</code> to ask spatial questions in SQL</li>
-<li>Loaded query results back into QGIS as layers and tables</li>
-<li>Built a final map from SQL-driven analysis</li>
+<li>Used <code>ST_Distance()</code> and <code>ST_Buffer()</code> to ask spatial questions in <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a></li>
+<li>Loaded <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> results back into QGIS as layers and tables</li>
+<li>Built a final map from <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>-driven analysis</li>
 </ul>
-<p>This is an important step in GIS fluency. Once you understand that spatial layers are also tables, and that those tables can be queried with SQL, you gain a much more flexible way to explore, summarize, and analyze data.</p>
+<p>This is an important step in GIS fluency. Once you understand that spatial layers are also tables, and that those tables can be queried with <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>, you gain a much more flexible way to explore, summarize, and analyze data.</p>
 
                                 
                                 </section>
@@ -1383,7 +1383,7 @@ Hint: Use the <code>02 - Filter with WHERE</code> query as a model to create a <
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"next":{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},"previous":{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/01_sql_operations_in_qgis.md","mtime":"2026-03-26T16:52:04.802Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"next":{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},"previous":{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/01_sql_operations_in_qgis.md","mtime":"2026-03-26T17:46:36.876Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T17:46:44.927Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

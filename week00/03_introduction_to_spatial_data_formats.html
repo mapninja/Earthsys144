@@ -994,14 +994,14 @@
                                 
                                 <h1 id="introduction-to-spatial-data-formats">Introduction to Spatial Data Formats</h1>
 <h2 id="overview">Overview</h2>
-<p>Spatial analysis depends on choosing the right data format for the job. In this guide, you will learn the most common GIS formats you will encounter in EarthSys 144, what each format is good at, and where each one can create problems.</p>
+<p><a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">Spatial analysis</a> depends on choosing the right data format for the job. In this guide, you will learn the most common GIS formats you will encounter in EarthSys 144, what each format is good at, and where each one can create problems.</p>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this guide, you should be able to:</p>
 <ul>
-<li>Distinguish vector, raster, and tabular sources with spatial information.</li>
+<li>Distinguish <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a>, <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>, and tabular <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a> with spatial information.</li>
 <li>Explain the structure and constraints of shapefiles.</li>
-<li>Compare shapefile, GeoJSON, GeoPackage, and geodatabase workflows.</li>
-<li>Identify when to use GeoTIFF versus Cloud Optimized GeoTIFF.</li>
+<li>Compare <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a>, <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>, GeoPackage, and <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">geodatabase</a> workflows.</li>
+<li>Identify when to use <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> versus Cloud Optimized <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a>.</li>
 <li>Recognize web service formats such as WMS and WFS.</li>
 <li>Detect "spatial data that does not know it is spatial yet" in CSV/Excel tables.</li>
 </ul>
@@ -1009,22 +1009,22 @@
 <h3 id="shapefiles-shp-the-multi-file-classic">Shapefiles (.shp): the multi-file classic</h3>
 <p><img src="images/20260223_123357_image.png" alt=""></img></p>
 <ul>
-<li><strong>What it is</strong>: The long-standing Esri vector format used across almost all GIS software.</li>
+<li><strong>What it is</strong>: The long-standing Esri <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> format used across almost all GIS software.</li>
 <li><strong>How it is stored</strong>: A set of files with the same name prefix.</li>
 <li><strong>Required files</strong>: <code>.shp</code> (geometry), <code>.shx</code> (index), <code>.dbf</code> (attributes).</li>
 <li><strong>Common optional files</strong>: <code>.prj</code> (CRS), <code>.cpg</code> (encoding), <code>.sbn/.sbx</code> (spatial index).</li>
 <li><strong>Core limitations</strong>:<ul>
 <li>2GB limit per component file.</li>
-<li>Field names are limited to 10 characters.</li>
+<li><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> names are limited to 10 characters.</li>
 <li>255 fields max in <code>.dbf</code>.</li>
-<li>One geometry type per layer.</li>
+<li>One geometry type per <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ul>
 </li>
 <li><strong>When to use</strong>: Interoperability, legacy workflows, and simple exchange.</li>
 </ul>
 <h3 id="geojson-geojson-the-web-friendly-standard">GeoJSON (.geojson): the web-friendly standard</h3>
 <ul>
-<li><strong>What it is</strong>: JSON-based format for vector features and attributes.</li>
+<li><strong>What it is</strong>: JSON-based format for <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features and attributes.</li>
 <li><strong>How it is stored</strong>: A single text file.</li>
 <li><strong>Strengths</strong>:<ul>
 <li>Human-readable and easy to version control.</li>
@@ -1033,7 +1033,7 @@
 </ul>
 </li>
 <li><strong>Tradeoffs</strong>:<ul>
-<li>Can become slow or heavy for large feature collections.</li>
+<li>Can become slow or heavy for large <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> collections.</li>
 <li>Not ideal for very large analytical workflows.</li>
 </ul>
 </li>
@@ -1048,11 +1048,11 @@
 </ul>
 <h3 id="geopackage-gpkg-modern-portable-container">GeoPackage (.gpkg): modern, portable container</h3>
 <ul>
-<li><strong>What it is</strong>: SQLite-based OGC standard for vector and raster layers.</li>
+<li><strong>What it is</strong>: SQLite-based OGC standard for <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> and <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> layers.</li>
 <li><strong>How it is stored</strong>: One file can hold many layers and tables.</li>
 <li><strong>Strengths</strong>:<ul>
-<li>No shapefile naming limits.</li>
-<li>Better support for complex workflows and multi-layer projects.</li>
+<li>No <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> naming limits.</li>
+<li>Better support for complex workflows and multi-<a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> projects.</li>
 <li>Portable and open standard.</li>
 </ul>
 </li>
@@ -1060,20 +1060,20 @@
 </ul>
 <h3 id="other-vector-formats-you-will-see">Other vector formats you will see</h3>
 <ul>
-<li><strong>KML/KMZ</strong>: Strong for Google Earth visualization and sharing, weaker for analysis.</li>
+<li><strong>KML/KMZ</strong>: Strong for Google Earth <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> and sharing, weaker for analysis.</li>
 <li><strong>GPX</strong>: Common for GPS tracks, routes, and waypoints from mobile devices.</li>
 </ul>
 <h2 id="raster-data-formats">Raster Data Formats</h2>
 <h3 id="geotiff-tiftiff-analysis-baseline">GeoTIFF (.tif/.tiff): analysis baseline</h3>
 <ul>
-<li><strong>What it is</strong>: Raster image format with embedded georeferencing.</li>
+<li><strong>What it is</strong>: <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> format with embedded <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a>.</li>
 <li><strong>Typical uses</strong>: Satellite imagery, scanned maps, elevation models.</li>
-<li><strong>When to use</strong>: General-purpose raster analysis and archival storage.</li>
+<li><strong>When to use</strong>: General-purpose <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis and archival storage.</li>
 </ul>
 <h3 id="cloud-optimized-geotiff-cog-cloud-native-geotiff">Cloud Optimized GeoTIFF (COG): cloud-native GeoTIFF</h3>
 <p><img src="images/20260223_124956_image.png" alt=""></img></p>
 <ul>
-<li><strong>What it is</strong>: A GeoTIFF structured for efficient remote access.</li>
+<li><strong>What it is</strong>: A <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> structured for efficient remote access.</li>
 <li><strong>Why it matters</strong>:<ul>
 <li>Internal tiling and overviews support fast zoom and streaming.</li>
 <li>Works well in cloud and web environments.</li>
@@ -1083,24 +1083,24 @@
 </ul>
 <h3 id="other-raster-formats">Other raster formats</h3>
 <ul>
-<li><strong>.jpg/.png</strong>: Useful for display, but often missing robust georeferencing metadata.</li>
+<li><strong>.jpg/.png</strong>: Useful for display, but often missing robust <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a>.</li>
 <li><strong>.nc (NetCDF)</strong>: Strong for climate/ocean time-series data cubes.</li>
-<li><strong>.hdf</strong>: Common in scientific remote sensing products.</li>
+<li><strong>.hdf</strong>: Common in scientific <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> products.</li>
 </ul>
 <h2 id="web-services-and-live-data">Web Services and Live Data</h2>
 <h3 id="wms-web-map-service">WMS (Web Map Service)</h3>
 <ul>
 <li>Returns rendered map images.</li>
-<li>Best for visualization and context layers.</li>
+<li>Best for <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> and context layers.</li>
 </ul>
 <h3 id="wfs-web-feature-service">WFS (Web Feature Service)</h3>
 <ul>
-<li>Returns actual vector features.</li>
+<li>Returns actual <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features.</li>
 <li>Best for querying, downloading, and analysis-ready geometry access.</li>
 </ul>
 <h2 id="spatial-databases">Spatial Databases</h2>
 <ul>
-<li><strong>GeoPackage (.gpkg)</strong> and <strong>SQLite (.sqlite)</strong> support richer querying and multi-layer organization than standalone files.</li>
+<li><strong>GeoPackage (.gpkg)</strong> and <strong>SQLite (.sqlite)</strong> support richer querying and multi-<a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> organization than standalone files.</li>
 <li><strong>Access (.mdb/.accdb)</strong> appears in older projects, but should generally be treated as legacy.</li>
 </ul>
 <h2 id="tabular-data-that-can-become-spatial">Tabular Data That Can Become Spatial</h2>
@@ -1119,23 +1119,23 @@
 <ul>
 <li>Sensor records with coordinates.</li>
 <li>Survey responses with place names.</li>
-<li>Geotagged social or field observations.</li>
+<li>Geotagged social or <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> observations.</li>
 </ul>
 <h3 id="converting-tabular-data-into-spatial-layers">Converting tabular data into spatial layers</h3>
 <ul>
-<li><strong>Geocoding</strong>: Convert addresses to points.</li>
-<li><strong>Join by code/name</strong>: Attach rows to polygons via administrative IDs.</li>
+<li><strong><a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a></strong>: Convert addresses to points.</li>
+<li><strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> by code/name</strong>: Attach rows to polygons via administrative IDs.</li>
 <li><strong>Assign CRS</strong>: Explicitly set the coordinate reference system after import.</li>
 </ul>
 <h2 id="format-selection-cheat-sheet">Format Selection Cheat Sheet</h2>
 <ul>
-<li>Use <strong>Shapefile</strong> when compatibility is your top priority.</li>
-<li>Use <strong>GeoJSON</strong> for lightweight web exchange.</li>
-<li>Use <strong>GeoPackage</strong> for multi-layer modern desktop projects.</li>
-<li>Use <strong>GeoTIFF/COG</strong> for raster analysis.</li>
+<li>Use <strong><a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a></strong> when compatibility is your top priority.</li>
+<li>Use <strong><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a></strong> for lightweight web exchange.</li>
+<li>Use <strong>GeoPackage</strong> for multi-<a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> modern desktop projects.</li>
+<li>Use <strong><a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a>/COG</strong> for <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis.</li>
 <li>Use <strong>WMS/WFS</strong> when you need live remote services.</li>
 </ul>
-<p>In the next lab, you will focus specifically on where to find quality spatial data and how to evaluate sources.</p>
+<p>In the next lab, you will focus specifically on where to find quality spatial data and how to evaluate <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>.</p>
 
                                 
                                 </section>
@@ -1179,7 +1179,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - Introduction to Spatial Data Formats","level":"1.2.4","depth":2,"next":{"title":"04 - Introduction to Finding Data","level":"1.2.5","depth":2,"path":"week00/04_introduction_to_finding_data.md","ref":"week00/04_introduction_to_finding_data.md","articles":[]},"previous":{"title":"02 - Logging Into Accounts and Installing Software","level":"1.2.3","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/03_introduction_to_spatial_data_formats.md","mtime":"2026-03-26T16:52:04.175Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - Introduction to Spatial Data Formats","level":"1.2.4","depth":2,"next":{"title":"04 - Introduction to Finding Data","level":"1.2.5","depth":2,"path":"week00/04_introduction_to_finding_data.md","ref":"week00/04_introduction_to_finding_data.md","articles":[]},"previous":{"title":"02 - Logging Into Accounts and Installing Software","level":"1.2.3","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/03_introduction_to_spatial_data_formats.md","mtime":"2026-03-26T17:46:36.184Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T17:46:44.927Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
