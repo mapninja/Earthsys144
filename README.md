@@ -27,9 +27,7 @@ No matter what, if your question involves the words **who, what, and when**, it 
 This is a DIY course inspired by books like *The People’s Guide to Mexico* and *How to Keep Your Volkswagen Alive for the Complete Idiot*. It’s fun, practical, and focused on **getting things done with spatial data** using tools that are **free, open source, and accessible**.
 
 
-![](images/20260324_103331_91v6hxlaRKL._SL1500_.jpg)
-
-![](images/20260324_103354_the-peoples-guide-to-mexico_6178079666e88.jpeg)
+![](images/20260324_103331_91v6hxlaRKL._SL1500_.jpg)![](images/20260324_103354_the-peoples-guide-to-mexico_6178079666e88.jpeg)
 
 Because in the context of capacity building—whether you're part of a grassroots collective, a student with a tight budget, or just someone who wants to understand their world better—**free and open source tools aren’t just “good enough.” They’re *better*.**
 
