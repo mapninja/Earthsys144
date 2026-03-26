@@ -6,7 +6,10 @@
 
 Google Earth Engine (GEE) is a cloud-based platform that lets you access and analyze massive amounts of satellite imagery and geospatial data without needing a powerful computer. Think of it like a library in the cloud where you can browse and analyze global imagery from the past few decades in real-time.
 
+![](images/20260325_184624_image.png)
+
 **Important concepts:**
+
 - **Cloud-based** means the computing happens on Google's servers, not your laptop
 - **Satellite imagery** is pictures of Earth taken from space
 - **Geospatial analysis** is analyzing data about locations on Earth
@@ -55,15 +58,15 @@ That link must point to a script that:
 ### Step 1: Access Google Earth Engine
 
 1. Go to [https://code.earthengine.google.com/](https://code.earthengine.google.com/)
-2. Log in using your Google account (or Stanford account if you're a Stanford student)
-   - If you don't have a Google account, create one first at [google.com](https://www.google.com)
+2. Log in using your Stanford SUNetID credentials
 3. Accept the terms of service
 
 You should now see the **Code Editor** interface. This is where you'll write scripts and analyze satellite data. The interface has several key areas:
-- **Code Editor** (left side) - where you write your code
-- **Map** (center/right) - where results are displayed
-- **Console** (bottom right) - where messages and results appear
-- **Assets** (left sidebar) - where you can store data
+
+- **Code Editor** (center/top) - where you write your code
+- **Map** (center/bottom) - where results are displayed
+- **Inspector,Console,Tasks** (right/top) - where messages and results appear
+- **Scripts,Docs,Assets** (left/top) - where you can store data
 
 ![Google Earth Engine Code Editor](images/20260220_110253_image.png)
 
@@ -76,7 +79,7 @@ Now you need to create a Google Cloud Project. This is like creating a new works
 ![Profile Icon location](images/20260220_110446_image.png)
 
 2. Select **Register a new Cloud Project**
-3. Enter a **Project name** (be descriptive, like "Earthsys144" or "GIS-Analysis-Spring2026", as well as your SUNetID, so that it is easy to search for in the GCP Folder!)
+3. Enter a **Project name** (be descriptive, like `SUNetID_Earthsys144` or `SUNetID_GIS-Analysis-Spring2026`, and use your **SUNetID**, so that it is easy to search for in the GCP Folder!)
 
 ![Project naming dialog](images/20260220_110920_image.png)
 
@@ -121,7 +124,7 @@ For this course, you'll register your project as a non-commercial educational pr
 ![Registration form](images/20260220_112335_image.png)
 
 3. Click **Check Eligibility**
-4. When asked to choose a compute tier, select **"Community"** 
+4. When asked to choose a compute tier, select **"Community"**
    - Community tier is designed for students and small research projects
    - It provides free access with reasonable computing limits
 
@@ -175,8 +178,11 @@ To verify everything is working:
 1. You should see your project name in the top-right corner of the Code Editor
 2. Open the Google Earth Engine Data Catalog: [https://developers.google.com/earth-engine/datasets](https://developers.google.com/earth-engine/datasets)
 3. Choose any dataset page that includes example code
+
    - Good beginner options include Landsat, Sentinel-2, MODIS, or NAIP datasets
-4. Open the sample script in the Code Editor
+4. Open the sample script in the Code Editor, using the **Open In Code Editor** button
+
+   ![](images/20260325_185457_image.png)
 5. Add a short comment near the top of the script with your name, for example:
 
    ```javascript
@@ -184,18 +190,18 @@ To verify everything is working:
    // Week 00 Earth Engine check-in script
    // I opened this from the Earth Engine Data Catalog and ran it successfully.
    ```
-
 6. If you make any changes to the sample script, add inline comments directly above the lines you changed so the changes are easy to identify, for example:
 
    ```javascript
    // I changed the map center to look at California instead of the default location.
    Map.setCenter(-120.0, 37.0, 6);
    ```
-
 7. Click **Run** to execute the script
+
    - You should see results appear on the map within a few seconds
 8. Save the script if prompted
 9. This annotated sample script is what you will share for credit
+10. If things stop working and you can't figure out why, just reload teh script from the Data Catalog and try again!
 
 ---
 
@@ -205,43 +211,47 @@ To verify everything is working:
 
 When submitting assignments, you'll need to share your GEE scripts with your instructor. Here's how:
 
-1. In the Code Editor, click the **Share** button (top menu)
-2. Copy the link that appears (or click "Get Link")
-3. By default, this creates a "view-only" link that lets others see your code but not edit it
-4. If you want others to edit, you can change permissions to "Editor" (not typically needed for homework)
-5. Test the link by opening it in an **incognito window** to make sure it's accessible
-6. Include this link in your homework submission
+1. In the Code Editor, click the **Get Link** button (top menu)
+2. Copy the link that appears
+
+   ![](images/20260325_185639_image.png)
+3. By default, this creates a "frozen" copy of your script that lets others see and troubleshoot your code.
+4. Test the link by opening it in an **incognito window** to make sure it's accessible
+5. **Use this link for your homework submission**
 
 For this Week 00 submission, make sure the shared script includes:
 
-- Your name in a comment
-- A brief note that you opened and ran a sample from the Earth Engine Data Catalog
-- Inline comments marking any changes you made to the original sample
+- **Your name in a comment**
+- **A brief note** that you opened and ran a sample from the Earth Engine Data Catalog
+- **Inline comments marking any changes** you made to the original sample
 
 ### Best Practices for Sharing
 
 - Always test your shared links before submitting
-- Use view-only access for homework submissions
 - Include a brief description in your script comments explaining what it does
 - Keep your comments simple and direct so a grader can quickly see your name and any edits
-- Make sure your project name is descriptive so instructors know it's your work
+
+![](images/20260325_190101_image.png)
 
 ---
 
 ## Troubleshooting
 
 ### I don't see the pop-up to enable the Earth Engine API
+
 - Check your browser's pop-up blocker settings
 - Try the process again
 - Manually navigate to Google Cloud Console if needed
 
 ### My project won't initialize
+
 - Log out and log back in
 - Try a different browser
 - Clear your browser's cookies and cache
 - Contact your instructor for help
 
 ### I can't find my project in the "Select Project" menu
+
 - Make sure you completed the registration form
 - Wait a few minutes and refresh the page
 - Create a new project if the old one won't appear
