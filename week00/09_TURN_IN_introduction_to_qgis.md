@@ -12,6 +12,8 @@ At the time, the prevailing scientific theory — known as **miasma theory** —
 
 Snow began by doing something deceptively simple: **he made a map**. He went door to door in the Soho neighborhood, recording the address and number of deaths at each household. He then plotted these locations on a map of the neighborhood alongside the locations of the public water pumps that served the area. The spatial pattern was striking — the deaths clustered tightly around a single pump at the intersection of Broad Street and Cambridge Street (now Broadwick and Lexington Streets).
 
+![](images/snow_map.png)
+
 But Snow didn't work alone. **Reverend Henry Whitehead**, the curate of St. Luke's Church in Soho, initially set out to *disprove* Snow's water theory. Whitehead knew the neighborhood intimately — he had visited hundreds of parishioners during the outbreak — and he was skeptical that a single pump could be responsible. However, as Whitehead conducted his own investigation, interviewing families and tracing the movements of victims, his evidence increasingly *supported* Snow's hypothesis.
 
 Whitehead made a critical discovery: he identified what was likely the **index case** — a baby at 40 Broad Street whose soiled diapers had been emptied into a cesspool just three feet from the Broad Street pump well. The cesspool's brick lining had decayed, allowing sewage to seep into the well water. This was the spatial connection between the source of contamination and the deaths that Snow's map had revealed.
