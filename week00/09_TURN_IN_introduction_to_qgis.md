@@ -338,8 +338,6 @@ Now let's add the water pump data. Snow's original map marked 13 public water pu
 1. In the **Browser panel**, navigate to your project's **data** folder and double-click on **Water_Pumps.geojson** to add it to your project.
 2. You should see 13 pump points appear on the map, scattered across the Soho neighborhood.
 
-![](images/ReadMe-90b7e76d.png)
-
 ### Change the Water Pump Symbology
 
 Before labeling the pumps, change their symbol so they stand out clearly against both the basemap and the historic Snow map.
@@ -372,20 +370,24 @@ This will make the pumps much easier to see as important reference points in the
 
 ![](images/20260325_164443_image.png)
 
-
 ![](images/20260325_164415_image.png)
 
 ### Add the Georeferenced Snow Map
 
 The data folder also includes a georeferenced version of John Snow's original cholera map. Let's add it as a visual reference layer.
 
-> **What is a georeferenced image?** A georeferenced image is a picture (like a scanned map or satellite photo) that has been assigned real-world coordinates so QGIS knows where on Earth it belongs. Without georeferencing, a map image is just a picture with no spatial information. We'll cover the georeferencing process itself in a later lab — for now, we're using a map that has already been georeferenced for you.
+> **What is a georeferenced image?** A georeferenced image is a picture (like a [scanned map](https://davidrumsey.com) or satellite photo) that has been assigned real-world coordinates so QGIS knows where on Earth it belongs. Without georeferencing, a map image is just a picture with no spatial information. We'll cover the georeferencing process itself in a later lab — for now, we're using a map that has already been georeferenced for you.
 
 1. In the **Browser panel**, double-click on **John_Snow_Map.tif** to add it to your project.
 2. The georeferenced map should appear overlaid on your basemap, aligned with the study area. If it's covering your other layers, drag it below the **deathAddresses** and **Water_Pumps** layers in the **Layers panel**.
+
+> **Important note about drawing order:** The order in which layers are displayed in the map is controlled by the order of the layer list in the **Layers panel**. Layers at the top of the list draw on top of layers below them. The default order in which data is added is not always the best order for visibility, so one of the first things you often need to do in QGIS is reorder layers so the most important information is not hidden.
+
 3. Use the navigation tools to zoom in and explore — you should be able to see street names, building outlines, and the pump locations marked on Snow's original map lining up with the GeoJSON points.
 
 > **Tip:** You can adjust the transparency of the Snow map layer to see both the historic map and the modern basemap at the same time. In the **Layer Styling panel**, look for the **Opacity** slider.
+
+![](images/20260325_170118_image.png)
 
 ## Exploring Spatial Patterns
 
@@ -396,12 +398,17 @@ Now that we have the death addresses and water pump locations on our map, let's 
 The **mean center** (or spatial mean) is simply the average x-coordinate and average y-coordinate of all features — the geographic "center of gravity" of the distribution.
 
 1. Go to **Vector > Analysis > Mean Coordinate(s)**.
-   ![](images/image010-drop-shadow.png)
 2. Set **Input layer** to **deathAddresses**.
 3. Leave **Weight field** and **Unique ID field** blank (optional).
-4. Save the output as `Deaths_Spatial_Mean.shp` in your data folder.
+4. Save the output as `Deaths_Spatial_Mean.shp` (change the Save As type dropdown) in your data folder.
+
+   ![](images/20260325_170305_image.png)
+
+   ![](images/20260325_170439_image.png)![](images/20260325_170531_image.png)
 5. Click **Run**, then **Close**.
 6. Style the resulting point with a distinctive symbol so it stands out.
+
+![](images/20260325_170816_image.png)
 
 ### Weighted Spatial Mean
 
@@ -409,12 +416,189 @@ A simple mean center treats every address equally, but addresses with more death
 
 1. Run the **Mean Coordinate(s)** tool again.
 2. This time, set **Weight field** to `Num_Cases`.
-3. Save the output as `Deaths_Weighted_Spatial_Mean.shp`.
-4. Style the result with a different symbol.
+
+![](images/20260325_170935_image.png)
+
+1. Save the output as `Deaths_Weighted_Spatial_Mean.shp`.
+2. Style the result with a different symbol.
+
+![](images/20260325_171028_image.png)
 
 Notice how the weighted mean center shifts toward the Broad Street pump — addresses with more deaths pull the center in that direction.
 
-> **Bonus:** Try running the tool with different weight values or subsets of the data to see how the mean center shifts.
+## Making a Map layout
+
+Now that your data and analysis layers are in place, the last step is to turn your project into a simple map layout for export. A **layout** is the printable page version of your map. It lets you combine the map itself with cartographic elements like a title, legend, scale bar, credits, and your name.
+
+> **Important idea:** The map canvas is where you explore and edit your data. The **Layout Manager** is where you compose a finished page for presentation or submission.
+
+### Create a New Layout
+
+1. Save your project.
+2. Go to **Project > New Print Layout**.
+3. Give the layout a name such as `John_Snow_Layout`.
+
+   ![](images/20260325_171755_image.png)
+4. Click **OK**.
+
+You should now see a blank page in the Layout window
+
+![](images/20260325_171822_image.png)
+
+### Add a Map Frame
+
+The **Map Frame** is the actual map on the page. It displays whatever area is currently visible in your main QGIS map canvas.
+
+1. In the Layout window, click **Add Item > Add Map** or use the Add Map  ![](images/20260325_171909_image.png)
+
+   tool
+2. Click and drag a rectangle on the page to create the map frame.
+
+   ![](images/20260325_172155_image.png)
+3. If needed, click the map frame to select it, then in the **Item Properties** panel click **Set to map canvas extent** so the layout matches the area you were viewing in the main QGIS window.
+
+   ![](images/20260325_172126_image.png)
+
+> If the map frame does not look right at first, do not worry. This is normal. You can go back to the main QGIS window, change the zoom or pan position, and then use **Set to map canvas extent** again.
+
+### Clean Up the Map Before Adding Layout Elements
+
+Before you start adding titles, legends, and other layout elements, return to the main QGIS window and make one more decision about what should actually be visible in the final map.
+
+1. In the **Layers panel**, turn off the visibility of the **Study_Area** polygon.
+2. If you want a cleaner, simpler final map, you can also turn off the visibility of the historic **John_Snow_Map** raster layer.
+3. Return to the Layout window.
+4. Select the map frame and use **Set to map canvas extent** or the layout refresh![](images/20260325_173449_image.png)controls so the map frame updates to match the current map view.
+
+> **Window-switching tip:** On a Mac, you can usually switch between open QGIS windows with **Command + `**. On Windows, use **Alt + Tab** to move between open windows, or use the **Window** menu inside QGIS if needed.
+
+Doing this now will save you time later. It is much better to decide what belongs in the map before you spend time cleaning up the legend, because layers that are turned off or removed may not need legend entries at all.
+
+![](images/20260325_173544_image.png)
+
+### Add a Title
+
+1. Click **Add Item > Add Label** or use the Add Label![](images/20260325_173631_image.png)tool.
+2. Click near the top of the page and drag a text box.
+3. Enter a title such as `John Snow Cholera Outbreak, Soho, 1854`.
+4. In **Item Properties**, click on the **Appearance > Font tool**![](images/20260325_173850_image.png)
+
+   to increase the font size and adjust the styling so the title stands out clearly.
+
+![](images/20260325_174006_image.png)
+
+### Add a Legend
+
+1. Click **Add Item > Add Legend**, or use the Legend tool.
+2. Click on the page to place the legend.
+3. In the **Item Properties** panel, review the legend entries.
+4. Uncheck the `Auto update` feature
+5. Check the `Only show items inside linked maps` option and note that some of teh legend items disappear from the Legend Items panel, as well as your Legend in the Layout
+
+![](images/20260325_174449_image.png)
+
+You will probably notice that some layer names come into the legend exactly as they appear in the Layers panel, including underscores or file-like naming. This is very common, and part of making a clean map is fixing that.
+
+### Clean Up the Legend
+
+1. Click on the legend in the Layout window so its **Item Properties** appear.
+2. In the **Legend Items** panel, edit the labels so they read cleanly.
+3. Double-click each item you want to rename.
+
+   - For example, double-click `Water_Pumps` and change it to `Water Pumps`.
+   - You can also change something like `Deaths_Weighted_Spatial_Mean` to `Deaths: Weighted Spatial Mean`.
+
+     ![](images/20260325_175248_image.png)
+4. Remove items that do not help the reader understand the map.
+
+   - For example, `Positron` usually does not need to appear in the legend, and it often does not have a useful legend patch because it is the basemap.
+5. Use the **minus ![](images/20260325_175349_image.png)icon** in the Legend Items panel to select and remove unneeded legend entries.
+
+> **Cartographic tip:** File names are for computers. Legend labels are for people.
+
+![](images/20260325_175542_image.png)
+
+### Add a Scale Bar
+
+1. Click **Add Item > Add Scale Bar** or use the Scale Bar![](images/20260325_175616_image.png)tool.
+2. Click on the page to place it below or in an unused area of the map.
+
+   ![](images/20260325_175743_image.png)
+3. In **Item Properties**, make sure it is linked to your map frame.
+4. Choose a style that is simple and easy to read.
+
+   ![](images/20260325_175833_image.png)
+5. Experiment with the **Scalebar Styling** options to find one you like. If you make everything horrible, you can always just delete the current **Scalebar**, and place a new one!
+
+![](images/20260325_180019_image.png)
+
+### Add the CRS
+
+Including the Coordinate Reference System helps document how your map is referenced.
+
+1. Using the same method you use to place your **Map Title**, place a small text box near the bottom of the page.
+2. Type the CRS information for your project, for example:
+
+   `CRS: EPSG:32630 - WGS 84 / UTM zone 30N`
+3. Explore the options for Appearance, especially the very useful alignment tools.
+
+![](images/20260325_180309_image.png)
+
+### Add Your Name and the Date
+
+1. Again, use the Add Labe tools to place a text box.
+2. Add your **name**.
+3. Add the **date** on the same label or in a second label nearby.
+
+These details are important because they identify the map as your work and document when it was produced.
+
+![](images/20260325_180521_image.png)
+
+### Bonus: Add the Statistical Summary
+
+If you want to add a bit more analytical context to your map, you can include a short text summary of the statistics you calculated earlier for the `Num_Cases` field.
+
+1. Return to the main QGIS window.
+2. If needed, open the **Results Viewer** panel and click the **hyperlink** to the statistics summary report.
+
+   ![](images/20260325_181345_image.png)
+3. Copy a few useful values from the report, such as the **mean**, **maximum**, or **standard deviation**.
+4. Return to the Layout window.
+5. Use the **Add Label** tool to draw a text box in an open area of the layout.
+6. Paste or type a short summary, for example:
+
+   `Deaths per address summary: mean = ..., max = ..., standard deviation = ...`
+7. Resize and position the text box so it supports the layout without covering important content.
+
+This is optional, but it is a nice way to connect the analysis step to the final map you are turning in.
+
+![](images/20260325_180858_image.png)
+
+### Review and Adjust the Layout
+
+Before exporting, take a minute to clean things up:
+
+- Make sure the map frame is large enough to be readable.
+- Make sure labels are not covering important map content.
+- Make sure the legend is readable and uses clean names.
+- Make sure the scale bar is connected to the map.
+- Make sure the title, CRS, name, and date are all present.
+- The **Move Item Content![](images/20260325_181507_image.png)** tool is useful for *nudging* the map content within the **Map Frame**.
+
+![](images/20260325_181731_image.png)
+
+### Export the Layout
+
+1. In the Layout window, go to **Layout > Export as PDF**.
+2. **Save the file** with a clear name such as `sunetid_week00_john_snow_map.pdf`.
+3. Dismiss the warning about WMS services, if it pops up.
+4. Use the default **Export Options**, but explore the other options, for later.
+5. Open the PDF to check the Export.
+6. Keep the exported PDF in your project folder so it stays with the rest of your work.
+
+This exported Map PDF is the map you will submit for the Week 00 assignment.
+
+![](images/20260325_182241_image.png)
 
 ## Conclusion
 
