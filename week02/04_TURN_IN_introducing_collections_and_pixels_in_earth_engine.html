@@ -1,0 +1,1445 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    01 - TURN IN - Coordinates & Pixels with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week01/03_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/03_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    03 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="01_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="01_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Creating Vector Data by Digitizing in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.4" data-path="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    00 - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week03/01_sql_operations_in_qgis.html">
+            
+                <a href="../week03/01_sql_operations_in_qgis.html">
+            
+                    
+                    01 - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    02 - Tabular/Vector Data in Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" >
+            
+                <span>
+            
+                    
+                    03 - Using SQL to Subset Big Data in the Stanford Data Farm
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <span>
+            
+                    
+                    00 - Buffering & Overlay Analysis in QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" >
+            
+                <span>
+            
+                    
+                    01 - Areal Interpolation of Attributes with QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" >
+            
+                <span>
+            
+                    
+                    02 - Network Analysis with QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing SimplyAnalytics.com
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    00 - Basic Raster Analysis with Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    01 - Terrain & Visibility with QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    02 - Watershed with QGIS & WhiteBox Tools
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing StoryMaps on ArcGIS Online
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <span>
+            
+                    
+                    00 - Basic Remote Sensing with Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" >
+            
+                <span>
+            
+                    
+                    01 - Modeling Movement with Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" >
+            
+                <span>
+            
+                    
+                    02 - Sampling & Interpolation with QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing Planet.com Satellite Imagery
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <span>
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" >
+            
+                <span>
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" >
+            
+                <span>
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <span>
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" >
+            
+                <span>
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" >
+            
+                <span>
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" >
+            
+                <span>
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" >
+            
+                <span>
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" >
+            
+                <span>
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" >
+            
+                <span>
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" >
+            
+                <span>
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introducing-collections-images-bands-and-pixels-in-google-earth-engine-draft">Introducing Collections, Images, Bands, and Pixels in Google Earth Engine (DRAFT)</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces some of the most important ideas in raster-based remote sensing and analysis in Google Earth Engine:</p>
+<ul>
+<li><strong>Image collections</strong></li>
+<li><strong>Images</strong></li>
+<li><strong>Bands</strong></li>
+<li><strong>Pixels</strong></li>
+</ul>
+<p>These ideas matter because most Earth observation data is not a single picture. Instead, it is usually:</p>
+<ul>
+<li>one of many images collected over time</li>
+<li>made of multiple bands that measure different parts of the electromagnetic spectrum</li>
+<li>built from pixels, where each pixel stores a value</li>
+</ul>
+<p>In this exercise, you will progressively narrow your analysis by:</p>
+<ol>
+<li>starting with an image collection</li>
+<li>filtering it by area of interest and date</li>
+<li>selecting individual bands and pixel values</li>
+<li>masking data with <code>updateMask()</code></li>
+<li>thresholding pixel values to isolate a condition of interest</li>
+<li>visualizing imagery using natural color and false color band combinations</li>
+</ol>
+<p>You will work with:</p>
+<ul>
+<li><strong>Dynamic World V1</strong>, a near-real-time land cover dataset derived from Sentinel-2 imagery</li>
+<li><strong>Hansen Global Forest Change</strong>, a widely used dataset for forest loss and gain analysis</li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>Explain the difference between an <code>ImageCollection</code> and an <code>Image</code> in Earth Engine</li>
+<li>Explain what a band is and why multi-band imagery is useful</li>
+<li>Explain what a pixel value represents in a raster dataset</li>
+<li>Filter an image collection by area of interest and date</li>
+<li>Use <code>updateMask()</code> to hide pixels that do not meet a condition</li>
+<li>Select and inspect the values of a single land cover probability band in Dynamic World</li>
+<li>Threshold a raster to isolate deforestation during a chosen ten-year period</li>
+<li>Create both RGB and color-infrared image visualizations from Sentinel-2 bands</li>
+<li>Explain how Dynamic World images are linked to their source Sentinel-2 images through dataset naming</li>
+</ul>
+<h2 id="before-you-start">Before You Start</h2>
+<p>This lab assumes that you can:</p>
+<ul>
+<li>log in to Google Earth Engine</li>
+<li>open the Code Editor</li>
+<li>create or paste a script</li>
+<li>run a script and view the map</li>
+</ul>
+<p>If needed, review the Week 00 Earth Engine setup guide first.</p>
+<h2 id="a-few-core-ideas-before-the-code">A Few Core Ideas Before the Code</h2>
+<h3 id="what-is-an-image-collection">What is an image collection?</h3>
+<p>An <strong>image collection</strong> is a stack or library of images. Each image usually represents a different date, time, or scene.</p>
+<p>For example, if a satellite passes over the same area many times, Earth Engine may store all of those scenes together as an <code>ImageCollection</code>.</p>
+<h3 id="what-is-an-image">What is an image?</h3>
+<p>An <strong>image</strong> is one item from that collection. It may still contain many bands, but it represents a single scene or observation.</p>
+<h3 id="what-is-a-band">What is a band?</h3>
+<p>A <strong>band</strong> is one layer inside an image. Different bands measure different parts of the electromagnetic spectrum, such as:</p>
+<ul>
+<li>blue light</li>
+<li>green light</li>
+<li>red light</li>
+<li>near infrared</li>
+</ul>
+<p>Some datasets also include bands that are not raw reflectance, but instead represent classifications or modeled probabilities.</p>
+<h3 id="what-is-a-pixel">What is a pixel?</h3>
+<p>A <strong>pixel</strong> is the smallest unit in a raster image. Each pixel stores a value.</p>
+<p>That value might represent:</p>
+<ul>
+<li>reflectance in a spectral band</li>
+<li>a land cover class</li>
+<li>the probability of a class</li>
+<li>the year of forest loss</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> In raster GIS, analysis often means asking meaningful questions about pixel values. The map is visual, but the underlying data is numeric.</p>
+</blockquote>
+<h2 id="data-used-in-this-lab">Data Used in This Lab</h2>
+<h3 id="dynamic-world-v1">Dynamic World V1</h3>
+<p>Dynamic World is a global land cover dataset produced from Sentinel-2 imagery. Instead of only assigning a single class, it also provides per-class probability bands such as:</p>
+<ul>
+<li><code>trees</code></li>
+<li><code>water</code></li>
+<li><code>built</code></li>
+<li><code>crops</code></li>
+</ul>
+<p>That makes it useful for talking about both classification and pixel-level confidence.</p>
+<h3 id="hansen-global-forest-change">Hansen Global Forest Change</h3>
+<p>The Hansen dataset includes forest change information derived from Landsat imagery. In this lab, you will use the <code>lossyear</code> band to identify pixels where forest loss occurred during a chosen ten-year period.</p>
+<h3 id="sentinel-2">Sentinel-2</h3>
+<p>Sentinel-2 provides the underlying multispectral imagery that supports both visual interpretation and products such as Dynamic World.</p>
+<p>In the final section of this lab, you will visualize Sentinel-2 using:</p>
+<ul>
+<li><strong>RGB</strong> for natural color</li>
+<li><strong>CIR / IRG</strong> for near-infrared-enhanced visualization of vegetation</li>
+</ul>
+<h2 id="part-1-define-an-area-of-interest">Part 1: Define an Area of Interest</h2>
+<p>You should begin almost every Earth Engine workflow by deciding where you are looking.</p>
+<p>For this lab, you can use a rectangle, polygon, or imported AOI from earlier work.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Create a simple rectangular Area of Interest (AOI).</span>
+<span class="hljs-comment">// The coordinates are in longitude, latitude order.</span>
+<span class="hljs-comment">// This AOI is around part of the San Francisco Peninsula.</span>
+<span class="hljs-keyword">var</span> aoi = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Rectangle</span>([-<span class="hljs-number">122.55</span>, <span class="hljs-number">37.05</span>, -<span class="hljs-number">121.95</span>, <span class="hljs-number">37.55</span>]);
+
+<span class="hljs-comment">// Center the map on the AOI so we can see where we are working.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(aoi, <span class="hljs-number">10</span>);
+
+<span class="hljs-comment">// Add the AOI to the map as an outline.</span>
+<span class="hljs-comment">// The color setting here controls the display color only.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(aoi, {<span class="hljs-attr">color</span>: <span class="hljs-string">'red'</span>}, <span class="hljs-string">'AOI'</span>);
+</code></pre>
+<blockquote>
+<p><strong>Why start here?</strong> An AOI keeps your work focused. Instead of working with the whole Earth, you are limiting your analysis to the place that matters to your question.</p>
+</blockquote>
+<h2 id="part-2-start-with-a-collection-then-filter-it">Part 2: Start with a Collection, Then Filter It</h2>
+<p>Dynamic World is an <code>ImageCollection</code>, which means there are many images available across dates and locations.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Load the Dynamic World Version 1 image collection.</span>
+<span class="hljs-comment">// This is a collection, not a single image.</span>
+<span class="hljs-keyword">var</span> dwCollection = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'GOOGLE/DYNAMICWORLD/V1'</span>);
+
+<span class="hljs-comment">// Filter the collection to images that intersect our AOI.</span>
+<span class="hljs-comment">// This keeps only scenes that touch the place we care about.</span>
+<span class="hljs-keyword">var</span> dwByPlace = dwCollection.<span class="hljs-title function_">filterBounds</span>(aoi);
+
+<span class="hljs-comment">// Filter again by date so we work with a manageable time period.</span>
+<span class="hljs-comment">// Here we limit to the 2023 calendar year.</span>
+<span class="hljs-keyword">var</span> dwByDate = dwByPlace.<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-01-01'</span>, <span class="hljs-string">'2023-12-31'</span>);
+
+<span class="hljs-comment">// Print the filtered collection so we can inspect it in the Console.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Dynamic World images in AOI and date range:'</span>, dwByDate);
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> This is a very common Earth Engine pattern. You usually start with a large collection and progressively narrow it until it matches your place and time of interest.</p>
+</blockquote>
+<h2 id="part-3-move-from-a-collection-to-a-single-image">Part 3: Move from a Collection to a Single Image</h2>
+<p>Many operations become easier to understand if you work with one image at a time.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Sort the filtered collection by time so the newest image is first.</span>
+<span class="hljs-keyword">var</span> dwSorted = dwByDate.<span class="hljs-title function_">sort</span>(<span class="hljs-string">'system:time_start'</span>, <span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">// Convert the first image in the sorted collection into a single ee.Image.</span>
+<span class="hljs-comment">// This gives us one scene to inspect and visualize.</span>
+<span class="hljs-keyword">var</span> dwImage = ee.<span class="hljs-title class_">Image</span>(dwSorted.<span class="hljs-title function_">first</span>());
+
+<span class="hljs-comment">// Print the image metadata so we can see its bands and properties.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'One Dynamic World image:'</span>, dwImage);
+</code></pre>
+<h2 id="part-4-look-at-bands-and-pixel-values">Part 4: Look at Bands and Pixel Values</h2>
+<p>Dynamic World contains a labeled class band and several probability bands.</p>
+<p>For beginning raster analysis, it is very useful to select one band and think carefully about what its pixel values mean.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Select the 'trees' probability band from the Dynamic World image.</span>
+<span class="hljs-comment">// This produces a new single-band image.</span>
+<span class="hljs-keyword">var</span> trees = dwImage.<span class="hljs-title function_">select</span>(<span class="hljs-string">'trees'</span>);
+
+<span class="hljs-comment">// Add the band to the map.</span>
+<span class="hljs-comment">// Values closer to 1 mean higher model confidence that a pixel is trees.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  trees,
+  {<span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: [<span class="hljs-string">'white'</span>, <span class="hljs-string">'darkgreen'</span>]},
+  <span class="hljs-string">'Dynamic World trees probability'</span>
+);
+
+<span class="hljs-comment">// Print the selected band so we can inspect it in the Console.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Trees probability band:'</span>, trees);
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> In this case, each pixel value is not simply "tree" or "not tree." It is a probability value between 0 and 1. That is a nice reminder that not all raster pixels are direct categories. Some are modeled values.</p>
+</blockquote>
+<h2 id="part-5-use-the-inspector-to-read-a-single-pixel">Part 5: Use the Inspector to Read a Single Pixel</h2>
+<p>After running the script:</p>
+<ol>
+<li>Open the <strong>Inspector</strong> tab in Earth Engine.</li>
+<li>Click on the map inside your AOI.</li>
+<li>Read the value reported for the <code>trees</code> band.</li>
+</ol>
+<p>That clicked value is the single-pixel value at that location.</p>
+<blockquote>
+<p><strong>Why this matters:</strong> This is one of the key conceptual moves in remote sensing. A map may look like an image, but analysis often depends on understanding that each cell has a numeric value you can query, compare, threshold, and mask.</p>
+</blockquote>
+<h2 id="part-6-use-updatemask-to-show-only-strong-tree-pixels">Part 6: Use <code>updateMask()</code> to Show Only Strong Tree Pixels</h2>
+<p><code>updateMask()</code> is used to hide pixels that do not meet a condition.</p>
+<p>Here, you will keep only pixels where the Dynamic World <code>trees</code> probability is high.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Create a Boolean mask where pixels are true if tree probability is above 0.6.</span>
+<span class="hljs-comment">// Pixels below that threshold will be hidden when the mask is applied.</span>
+<span class="hljs-keyword">var</span> treesMask = trees.<span class="hljs-title function_">gt</span>(<span class="hljs-number">0.6</span>);
+
+<span class="hljs-comment">// Apply the mask to the original trees probability image.</span>
+<span class="hljs-comment">// Only pixels passing the condition remain visible.</span>
+<span class="hljs-keyword">var</span> treesMasked = trees.<span class="hljs-title function_">updateMask</span>(treesMask);
+
+<span class="hljs-comment">// Add the masked image to the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  treesMasked,
+  {<span class="hljs-attr">min</span>: <span class="hljs-number">0.6</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: [<span class="hljs-string">'yellow'</span>, <span class="hljs-string">'green'</span>]},
+  <span class="hljs-string">'Trees probability &gt; 0.6'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> A mask does not necessarily change the underlying pixel values. It changes which pixels are visible or available for subsequent analysis.</p>
+</blockquote>
+<h2 id="part-7-threshold-the-hansen-forest-loss-dataset">Part 7: Threshold the Hansen Forest Loss Dataset</h2>
+<p>Now you will move from class probabilities to a different kind of pixel value.</p>
+<p>In the Hansen dataset, the <code>lossyear</code> band stores the year of forest loss as a coded value:</p>
+<ul>
+<li><code>0</code> means no recorded loss</li>
+<li><code>1</code> means loss in 2001</li>
+<li><code>2</code> means loss in 2002</li>
+<li>and so on</li>
+</ul>
+<p>So if you want all forest loss during a ten-year period, you can threshold those values.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Load the Hansen Global Forest Change image.</span>
+<span class="hljs-comment">// This dataset is a single multi-band image.</span>
+<span class="hljs-keyword">var</span> hansen = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'UMD/hansen/global_forest_change_2023_v1_11'</span>);
+
+<span class="hljs-comment">// Select the lossyear band, which stores the coded year of forest loss.</span>
+<span class="hljs-keyword">var</span> lossYear = hansen.<span class="hljs-title function_">select</span>(<span class="hljs-string">'lossyear'</span>);
+
+<span class="hljs-comment">// Clip the data to the AOI so the display focuses on our study area.</span>
+<span class="hljs-keyword">var</span> lossYearClipped = lossYear.<span class="hljs-title function_">clip</span>(aoi);
+
+<span class="hljs-comment">// Create a mask for forest loss that happened from 2005 through 2014.</span>
+<span class="hljs-comment">// In the Hansen coding, 2001 = 1, so 2005 = 5 and 2014 = 14.</span>
+<span class="hljs-keyword">var</span> loss2005to2014 = lossYearClipped.<span class="hljs-title function_">gte</span>(<span class="hljs-number">5</span>).<span class="hljs-title function_">and</span>(lossYearClipped.<span class="hljs-title function_">lte</span>(<span class="hljs-number">14</span>));
+
+<span class="hljs-comment">// Apply the mask so only pixels with loss in that ten-year window remain visible.</span>
+<span class="hljs-keyword">var</span> lossMasked = lossYearClipped.<span class="hljs-title function_">updateMask</span>(loss2005to2014);
+
+<span class="hljs-comment">// Add the masked forest loss image to the map.</span>
+<span class="hljs-comment">// The palette is arbitrary, but warm colors help the loss stand out.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  lossMasked,
+  {<span class="hljs-attr">min</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">14</span>, <span class="hljs-attr">palette</span>: [<span class="hljs-string">'yellow'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'red'</span>]},
+  <span class="hljs-string">'Forest loss 2005-2014'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> This is a thresholding workflow. You are turning a broad range of pixel values into a narrower condition of interest. This is one of the most common operations in raster analysis.</p>
+</blockquote>
+<h2 id="part-8-natural-color-rgb-visualization-with-sentinel-2">Part 8: Natural Color RGB Visualization with Sentinel-2</h2>
+<p>Now you will work with Sentinel-2 imagery directly so you can compare analysis products to the source imagery.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Load the Sentinel-2 surface reflectance collection.</span>
+<span class="hljs-keyword">var</span> s2 = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>);
+
+<span class="hljs-comment">// Filter Sentinel-2 to the same AOI and date range used above.</span>
+<span class="hljs-keyword">var</span> s2Filtered = s2
+  .<span class="hljs-title function_">filterBounds</span>(aoi)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-01-01'</span>, <span class="hljs-string">'2023-12-31'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>));
+
+<span class="hljs-comment">// Make a median composite so we get one representative image.</span>
+<span class="hljs-comment">// This reduces the impact of clouds and scene-to-scene variation.</span>
+<span class="hljs-keyword">var</span> s2Image = s2Filtered.<span class="hljs-title function_">median</span>().<span class="hljs-title function_">clip</span>(aoi);
+
+<span class="hljs-comment">// Add a natural color RGB visualization.</span>
+<span class="hljs-comment">// B4 is red, B3 is green, and B2 is blue.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  s2Image,
+  {<span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>], <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>},
+  <span class="hljs-string">'Sentinel-2 RGB'</span>
+);
+</code></pre>
+<h3 id="what-is-rgb">What is RGB?</h3>
+<p>RGB uses:</p>
+<ul>
+<li><code>B4</code> for red</li>
+<li><code>B3</code> for green</li>
+<li><code>B2</code> for blue</li>
+</ul>
+<p>This gives an image that looks relatively close to what our eyes expect from a color photograph.</p>
+<h2 id="part-9-false-color-irg--cir-visualization">Part 9: False Color IRG / CIR Visualization</h2>
+<p>Near infrared is especially useful for vegetation analysis because healthy vegetation reflects strongly in that part of the spectrum.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Add a false-color image using near infrared, red, and green.</span>
+<span class="hljs-comment">// This is often called CIR or false-color infrared visualization.</span>
+<span class="hljs-comment">// Vegetation usually appears bright red in this display.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  s2Image,
+  {<span class="hljs-attr">bands</span>: [<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>], <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>},
+  <span class="hljs-string">'Sentinel-2 CIR'</span>
+);
+</code></pre>
+<h3 id="why-does-this-help">Why does this help?</h3>
+<p>RGB is useful for familiar visual interpretation.</p>
+<p>CIR is useful because vegetation becomes much easier to distinguish, often appearing bright red or pink, while built surfaces and water appear very different.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Visualization is not just cosmetic. Changing band combinations helps you see different physical properties in the landscape.</p>
+</blockquote>
+<h2 id="part-10-how-dynamic-world-and-sentinel-2-are-connected">Part 10: How Dynamic World and Sentinel-2 Are Connected</h2>
+<p>Dynamic World is derived from Sentinel-2 imagery. That means the land cover probabilities you viewed earlier are tied to a specific Sentinel-2 acquisition.</p>
+<p>In many cases, the image identifiers are closely related, and the Dynamic World image name reflects the Sentinel-2 scene it was built from.</p>
+<p>Here is a simple way to inspect that relationship:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Get the system index for the selected Dynamic World image.</span>
+<span class="hljs-comment">// This is often the easiest way to examine how the image is identified.</span>
+<span class="hljs-keyword">var</span> dwId = dwImage.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:index'</span>);
+
+<span class="hljs-comment">// Print the identifier to the Console so we can compare it to Sentinel-2 scene names.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Dynamic World system:index'</span>, dwId);
+</code></pre>
+<p>When you inspect the metadata for Dynamic World images and Sentinel-2 scenes, you can often see that they correspond to the same underlying acquisition.</p>
+<blockquote>
+<p><strong>Why this matters:</strong> Dynamic World is not an unrelated map product floating in space. It is tied to specific Sentinel-2 imagery. That means you can move back and forth between the classified product and the source multispectral image when interpreting what you see.</p>
+</blockquote>
+<h2 id="suggested-turn-in">Suggested Turn-In</h2>
+<p>For this lab, students should submit:</p>
+<ul>
+<li>a Google Earth Engine <strong>Get Link</strong> URL</li>
+<li>a script that includes their name in a comment near the top</li>
+<li>inline comments marking any changes they made</li>
+</ul>
+<p>Their script should demonstrate:</p>
+<ul>
+<li>an AOI</li>
+<li>collection filtering by place and date</li>
+<li>selection of a single Dynamic World probability band</li>
+<li>use of <code>updateMask()</code></li>
+<li>thresholding of Hansen forest loss for a ten-year period</li>
+<li>RGB and CIR visualization using Sentinel-2 bands</li>
+</ul>
+<h2 id="a-good-script-header-example">A Good Script Header Example</h2>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Your Name</span>
+<span class="hljs-comment">// Earthsys 144 Week 02</span>
+<span class="hljs-comment">// Collections, images, bands, and pixels in Google Earth Engine</span>
+<span class="hljs-comment">// I filtered Dynamic World and Sentinel-2 by my AOI and dates,</span>
+<span class="hljs-comment">// masked high tree-probability pixels, and mapped forest loss for a ten-year period.</span>
+</code></pre>
+<h2 id="conclusion">Conclusion</h2>
+<p>This lab is meant to make a very important transition feel manageable.</p>
+<p>You are moving from "satellite imagery is a picture" toward a stronger understanding:</p>
+<ul>
+<li>collections contain many images</li>
+<li>images contain bands</li>
+<li>bands contain pixel values</li>
+<li>pixel values can be filtered, masked, thresholded, and visualized</li>
+</ul>
+<p>That way of thinking is the foundation of remote sensing and raster analysis in Earth Engine.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.4.4","depth":2,"next":{"title":"Week 03 - Tables & Queries","level":"1.5","depth":1,"ref":"","articles":[{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.5.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"01 - SQL Operations in QGIS","level":"1.5.2","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},{"title":"02 - Tabular/Vector Data in Google Earth Engine","level":"1.5.3","depth":2,"ref":"","articles":[]},{"title":"03 - Using SQL to Subset Big Data in the Stanford Data Farm","level":"1.5.4","depth":2,"ref":"","articles":[]}]},"previous":{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.4.3","depth":2,"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","mtime":"2026-03-26T16:52:04.654Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T16:52:16.095Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
