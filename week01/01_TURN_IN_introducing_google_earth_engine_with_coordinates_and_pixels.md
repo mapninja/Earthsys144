@@ -1,4 +1,4 @@
-# Lab 01: Coordinates & Geometries with Google Earth Engine
+# Lab 01: Coordinates & Geometries with Google Earth Engine (DRAFT)
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 

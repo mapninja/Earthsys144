@@ -14,15 +14,16 @@ The data you create will be used to train machine learning models for automated 
 
 By the end of this lab, you will be able to:
 
+- Explain why digitizing is a form of data creation, not just tracing
+- Explain why consistent naming and folder structure matter in GIS workflows
 - Navigate the QGIS interface and use essential navigation tools
 - Work with layers, including reordering, toggling visibility, and exploring metadata
 - Query attribute tables and select features based on attributes and location
 - Use geoprocessing tools to create random points within features
 - Create and edit scratch layers for digitizing new spatial data
-- Digitize accurate polygon features (tree crowns) from aerial imagery
+- Digitize accurate polygon features from aerial imagery while making reasonable interpretive decisions about feature boundaries
 - Export spatial data in GeoJSON format with proper naming conventions
 - Create and populate a professional map layout for documentation
-- Submit completed spatial data and map products
 
 ---
 
@@ -235,6 +236,8 @@ A new temporary layer called "Random points" should appear with a single point s
 
 **Troubleshooting:** If you don't see the point, right-click the new layer and select **Zoom to Layer**.
 
+> **Why random selection?** Random selection is a simple but important idea in data collection. It helps reduce the temptation to choose only the easiest, cleanest, or most interesting-looking locations. In many research workflows, that kind of convenience sampling can bias the resulting dataset.
+
 ### Step 8: Select Grid Cell by Location
 
 Now use the random point to select the grid cell it falls within:
@@ -286,6 +289,8 @@ The new layer should automatically be added to your map.
 6. Zoom in closer to see the NAIP imagery clearly within your grid cell
 
 **Important:** If your selected grid cell has no trees, is completely obscured by clouds, or is otherwise "unlabellable," simply repeat Steps 7-9 to generate a new random point and select a different grid cell.
+
+> **Concept note:** Saving the selected cell as its own file is not just a convenience step. It creates a clearly bounded unit of work. In GIS projects, separating a manageable study unit from a larger dataset often makes editing, quality control, and later review much easier.
 
 ---
 
@@ -366,6 +371,8 @@ Now for the main task—digitizing individual tree crowns as polygons:
 - Take breaks! Digitizing requires focus and can cause eye strain
 - If a tree is partially outside your grid cell, still include it if most of the crown is inside
 
+> **Important concept:** Digitizing is an interpretive act. The tree crown boundary is not always perfectly visible, and different people may draw it slightly differently. The goal is not magical certainty. The goal is to make careful, consistent, and defensible decisions based on the imagery.
+
 ### Step 13: Save Your Edits
 
 As you work, save your edits periodically:
@@ -400,6 +407,8 @@ Now export your digitized tree crowns as a GeoJSON file:
 4. Click **OK**
 
 **Important:** This file goes in your `outputs/` folder because it's your final analysis result. Keeping outputs separate from raw and processed data helps you stay organized and makes submission easier!
+
+> **Why export to GeoJSON?** GeoJSON is a simple, portable, open format that works across many GIS tools. Exporting your final features into a standard exchange format makes them easier to validate, share, and reuse.
 
 ---
 
@@ -474,6 +483,8 @@ overlapping canopies requiring estimation. Image quality was excellent.
 Counted 37 individual trees ranging from approximately 5-15m crown diameter. 
 High confidence in accuracy of delineations.
 ```
+
+> **Why include notes and metadata?** Spatial data without context is much less useful. The map layout is not just a decorative final step. It documents what was created, by whom, under what conditions, and with what level of confidence.
 
 ### Step 18: Verify All Elements
 
@@ -563,6 +574,8 @@ The `Tree_Labelling.zip` package you downloaded already had all the folders set 
    - Missing or incorrect metadata
 
 **The goal isn't perfection on the first try**—it's to learn the process of creating quality geospatial data and understanding how validation improves dataset quality.
+
+> **Concept note:** Validation is part of data creation, not something separate from it. A dataset becomes more useful when its creators and reviewers have a shared understanding of what "good enough" looks like and how consistency is maintained across many contributors.
 
 ### If Your Grid Cell is Unlabellable
 
