@@ -18,10 +18,9 @@
   * [03 - TURN IN - Create an Area of Interest with GeoJSON.io](week01/03_TURN_IN_create_an_aoi_with_geojson_io.md)
 
 * [Week 02 - Making & Collecting Data](week02/README.md)
-  * [00 - Georeferencing with QGIS and AllMaps.org](week02/00_georeferencing_with_qgis_and_allmaps_org.md)
-  * [01 - Basic Data Creation with GeoJSON.io](week02/01_basic_data_creation_with_geojsonio_and_qgis.md)
-  * [02 - Advanced Data Creation with QGIS](week02/02_advanced_data_creation_with_qgis.md)
-  * [03 - Introducing ArcGIS FieldMaps & ArcGIS Online for Data Collection](week02/03_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
+  * [01 - TURN IN - Data Creation in QGIS](week02/01_TURN_IN_data_creation_in_qgis.md)
+  * [02 - TURN IN - Georeferencing with QGIS and AllMaps.org](week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md)
+  * [03 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
 
 * [Week 03 - Tables & Queries](week03/README.md)
   * [00 - Basic Table Structures & Operations in QGIS](week03/00_basic_table_structures_and_operations_in_qgis.md)
@@ -70,4 +69,3 @@
   * [01 - StoryMaps Support Materials](week10/01_storymaps_support_materials.md)
   * [02 - Guide to Citation of Spatial Data & Software](week10/02_guide_to_citation_of_spatial_data_and_software.md)
   * [03 - Stace's Crazy List of Additional GISci Resources](week10/03_staces_crazy_list.md)
-
