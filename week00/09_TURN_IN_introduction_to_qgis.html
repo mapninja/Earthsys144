@@ -1370,7 +1370,6 @@
 <li>In the <strong>Browser panel</strong>, navigate to your project's <strong>data</strong> folder and double-click on <strong>Water_Pumps.geojson</strong> to add it to your project.</li>
 <li>You should see 13 pump points appear on the map, scattered across the Soho neighborhood.</li>
 </ol>
-<p><img src="images/ReadMe-90b7e76d.png" alt=""></img></p>
 <h3 id="change-the-water-pump-symbology">Change the Water Pump Symbology</h3>
 <p>Before labeling the pumps, change their symbol so they stand out clearly against both the basemap and the historic Snow map.</p>
 <ol>
@@ -1402,41 +1401,209 @@
 <h3 id="add-the-georeferenced-snow-map">Add the Georeferenced Snow Map</h3>
 <p>The data folder also includes a georeferenced version of John Snow's original cholera map. Let's add it as a visual reference layer.</p>
 <blockquote>
-<p><strong>What is a georeferenced image?</strong> A georeferenced image is a picture (like a scanned map or satellite photo) that has been assigned real-world coordinates so QGIS knows where on Earth it belongs. Without georeferencing, a map image is just a picture with no spatial information. We'll cover the georeferencing process itself in a later lab — for now, we're using a map that has already been georeferenced for you.</p>
+<p><strong>What is a georeferenced image?</strong> A georeferenced image is a picture (like a <a href="https://davidrumsey.com" target="_blank">scanned map</a> or satellite photo) that has been assigned real-world coordinates so QGIS knows where on Earth it belongs. Without georeferencing, a map image is just a picture with no spatial information. We'll cover the georeferencing process itself in a later lab — for now, we're using a map that has already been georeferenced for you.</p>
 </blockquote>
 <ol>
 <li>In the <strong>Browser panel</strong>, double-click on <strong>John_Snow_Map.tif</strong> to add it to your project.</li>
 <li>The georeferenced map should appear overlaid on your basemap, aligned with the study area. If it's covering your other layers, drag it below the <strong>deathAddresses</strong> and <strong>Water_Pumps</strong> layers in the <strong>Layers panel</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>Important note about drawing order:</strong> The order in which layers are displayed in the map is controlled by the order of the layer list in the <strong>Layers panel</strong>. Layers at the top of the list draw on top of layers below them. The default order in which data is added is not always the best order for visibility, so one of the first things you often need to do in QGIS is reorder layers so the most important information is not hidden.</p>
+</blockquote>
+<ol>
 <li>Use the navigation tools to zoom in and explore — you should be able to see street names, building outlines, and the pump locations marked on Snow's original map lining up with the GeoJSON points.</li>
 </ol>
 <blockquote>
 <p><strong>Tip:</strong> You can adjust the transparency of the Snow map layer to see both the historic map and the modern basemap at the same time. In the <strong>Layer Styling panel</strong>, look for the <strong>Opacity</strong> slider.</p>
 </blockquote>
+<p><img src="images/20260325_170118_image.png" alt=""></img></p>
 <h2 id="exploring-spatial-patterns">Exploring Spatial Patterns</h2>
 <p>Now that we have the death addresses and water pump locations on our map, let's use a simple spatial analysis tool to quantify <em>where</em> the center of the outbreak is. The <strong>mean center</strong> helps you see whether the deaths are clustered near a particular pump.</p>
 <h3 id="spatial-mean-mean-center">Spatial Mean (Mean Center)</h3>
 <p>The <strong>mean center</strong> (or spatial mean) is simply the average x-coordinate and average y-coordinate of all features — the geographic "center of gravity" of the distribution.</p>
 <ol>
-<li>Go to <strong>Vector &gt; Analysis &gt; Mean Coordinate(s)</strong>.
-<img src="images/image010-drop-shadow.png" alt=""></img></li>
+<li>Go to <strong>Vector &gt; Analysis &gt; Mean Coordinate(s)</strong>.</li>
 <li>Set <strong>Input layer</strong> to <strong>deathAddresses</strong>.</li>
 <li>Leave <strong>Weight field</strong> and <strong>Unique ID field</strong> blank (optional).</li>
-<li>Save the output as <code>Deaths_Spatial_Mean.shp</code> in your data folder.</li>
+<li><p>Save the output as <code>Deaths_Spatial_Mean.shp</code> (change the Save As type dropdown) in your data folder.</p>
+<p><img src="images/20260325_170305_image.png" alt=""></img></p>
+<p><img src="images/20260325_170439_image.png" alt=""></img><img src="images/20260325_170531_image.png" alt=""></img></p>
+</li>
 <li>Click <strong>Run</strong>, then <strong>Close</strong>.</li>
 <li>Style the resulting point with a distinctive symbol so it stands out.</li>
 </ol>
+<p><img src="images/20260325_170816_image.png" alt=""></img></p>
 <h3 id="weighted-spatial-mean">Weighted Spatial Mean</h3>
 <p>A simple mean center treats every address equally, but addresses with more deaths should "pull" the center more strongly. A <strong>weighted spatial mean</strong> accounts for this.</p>
 <ol>
 <li>Run the <strong>Mean Coordinate(s)</strong> tool again.</li>
 <li>This time, set <strong>Weight field</strong> to <code>Num_Cases</code>.</li>
+</ol>
+<p><img src="images/20260325_170935_image.png" alt=""></img></p>
+<ol>
 <li>Save the output as <code>Deaths_Weighted_Spatial_Mean.shp</code>.</li>
 <li>Style the result with a different symbol.</li>
 </ol>
+<p><img src="images/20260325_171028_image.png" alt=""></img></p>
 <p>Notice how the weighted mean center shifts toward the Broad Street pump — addresses with more deaths pull the center in that direction.</p>
+<h2 id="making-a-map-layout">Making a Map layout</h2>
+<p>Now that your data and analysis layers are in place, the last step is to turn your project into a simple map layout for export. A <strong>layout</strong> is the printable page version of your map. It lets you combine the map itself with cartographic elements like a title, legend, scale bar, credits, and your name.</p>
 <blockquote>
-<p><strong>Bonus:</strong> Try running the tool with different weight values or subsets of the data to see how the mean center shifts.</p>
+<p><strong>Important idea:</strong> The map canvas is where you explore and edit your data. The <strong>Layout Manager</strong> is where you compose a finished page for presentation or submission.</p>
 </blockquote>
+<h3 id="create-a-new-layout">Create a New Layout</h3>
+<ol>
+<li>Save your project.</li>
+<li>Go to <strong>Project &gt; New Print Layout</strong>.</li>
+<li><p>Give the layout a name such as <code>John_Snow_Layout</code>.</p>
+<p><img src="images/20260325_171755_image.png" alt=""></img></p>
+</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>You should now see a blank page in the Layout window</p>
+<p><img src="images/20260325_171822_image.png" alt=""></img></p>
+<h3 id="add-a-map-frame">Add a Map Frame</h3>
+<p>The <strong>Map Frame</strong> is the actual map on the page. It displays whatever area is currently visible in your main QGIS map canvas.</p>
+<ol>
+<li><p>In the Layout window, click <strong>Add Item &gt; Add Map</strong> or use the Add Map  <img src="images/20260325_171909_image.png" alt=""></img></p>
+<p>tool</p>
+</li>
+<li><p>Click and drag a rectangle on the page to create the map frame.</p>
+<p><img src="images/20260325_172155_image.png" alt=""></img></p>
+</li>
+<li><p>If needed, click the map frame to select it, then in the <strong>Item Properties</strong> panel click <strong>Set to map canvas extent</strong> so the layout matches the area you were viewing in the main QGIS window.</p>
+<p><img src="images/20260325_172126_image.png" alt=""></img></p>
+</li>
+</ol>
+<blockquote>
+<p>If the map frame does not look right at first, do not worry. This is normal. You can go back to the main QGIS window, change the zoom or pan position, and then use <strong>Set to map canvas extent</strong> again.</p>
+</blockquote>
+<h3 id="clean-up-the-map-before-adding-layout-elements">Clean Up the Map Before Adding Layout Elements</h3>
+<p>Before you start adding titles, legends, and other layout elements, return to the main QGIS window and make one more decision about what should actually be visible in the final map.</p>
+<ol>
+<li>In the <strong>Layers panel</strong>, turn off the visibility of the <strong>Study_Area</strong> polygon.</li>
+<li>If you want a cleaner, simpler final map, you can also turn off the visibility of the historic <strong>John_Snow_Map</strong> raster layer.</li>
+<li>Return to the Layout window.</li>
+<li>Select the map frame and use <strong>Set to map canvas extent</strong> or the layout refresh<img src="images/20260325_173449_image.png" alt=""></img>controls so the map frame updates to match the current map view.</li>
+</ol>
+<blockquote>
+<p><strong>Window-switching tip:</strong> On a Mac, you can usually switch between open QGIS windows with <strong>Command + `</strong>. On Windows, use <strong>Alt + Tab</strong> to move between open windows, or use the <strong>Window</strong> menu inside QGIS if needed.</p>
+</blockquote>
+<p>Doing this now will save you time later. It is much better to decide what belongs in the map before you spend time cleaning up the legend, because layers that are turned off or removed may not need legend entries at all.</p>
+<p><img src="images/20260325_173544_image.png" alt=""></img></p>
+<h3 id="add-a-title">Add a Title</h3>
+<ol>
+<li>Click <strong>Add Item &gt; Add Label</strong> or use the Add Label<img src="images/20260325_173631_image.png" alt=""></img>tool.</li>
+<li>Click near the top of the page and drag a text box.</li>
+<li>Enter a title such as <code>John Snow Cholera Outbreak, Soho, 1854</code>.</li>
+<li><p>In <strong>Item Properties</strong>, click on the <strong>Appearance &gt; Font tool</strong><img src="images/20260325_173850_image.png" alt=""></img></p>
+<p>to increase the font size and adjust the styling so the title stands out clearly.</p>
+</li>
+</ol>
+<p><img src="images/20260325_174006_image.png" alt=""></img></p>
+<h3 id="add-a-legend">Add a Legend</h3>
+<ol>
+<li>Click <strong>Add Item &gt; Add Legend</strong>, or use the Legend tool.</li>
+<li>Click on the page to place the legend.</li>
+<li>In the <strong>Item Properties</strong> panel, review the legend entries.</li>
+<li>Uncheck the <code>Auto update</code> feature</li>
+<li>Check the <code>Only show items inside linked maps</code> option and note that some of teh legend items disappear from the Legend Items panel, as well as your Legend in the Layout</li>
+</ol>
+<p><img src="images/20260325_174449_image.png" alt=""></img></p>
+<p>You will probably notice that some layer names come into the legend exactly as they appear in the Layers panel, including underscores or file-like naming. This is very common, and part of making a clean map is fixing that.</p>
+<h3 id="clean-up-the-legend">Clean Up the Legend</h3>
+<ol>
+<li>Click on the legend in the Layout window so its <strong>Item Properties</strong> appear.</li>
+<li>In the <strong>Legend Items</strong> panel, edit the labels so they read cleanly.</li>
+<li><p>Double-click each item you want to rename.</p>
+<ul>
+<li>For example, double-click <code>Water_Pumps</code> and change it to <code>Water Pumps</code>.</li>
+<li><p>You can also change something like <code>Deaths_Weighted_Spatial_Mean</code> to <code>Deaths: Weighted Spatial Mean</code>.</p>
+<p><img src="images/20260325_175248_image.png" alt=""></img></p>
+</li>
+</ul>
+</li>
+<li><p>Remove items that do not help the reader understand the map.</p>
+<ul>
+<li>For example, <code>Positron</code> usually does not need to appear in the legend, and it often does not have a useful legend patch because it is the basemap.</li>
+</ul>
+</li>
+<li>Use the <strong>minus <img src="images/20260325_175349_image.png" alt=""></img>icon</strong> in the Legend Items panel to select and remove unneeded legend entries.</li>
+</ol>
+<blockquote>
+<p><strong>Cartographic tip:</strong> File names are for computers. Legend labels are for people.</p>
+</blockquote>
+<p><img src="images/20260325_175542_image.png" alt=""></img></p>
+<h3 id="add-a-scale-bar">Add a Scale Bar</h3>
+<ol>
+<li>Click <strong>Add Item &gt; Add Scale Bar</strong> or use the Scale Bar<img src="images/20260325_175616_image.png" alt=""></img>tool.</li>
+<li><p>Click on the page to place it below or in an unused area of the map.</p>
+<p><img src="images/20260325_175743_image.png" alt=""></img></p>
+</li>
+<li>In <strong>Item Properties</strong>, make sure it is linked to your map frame.</li>
+<li><p>Choose a style that is simple and easy to read.</p>
+<p><img src="images/20260325_175833_image.png" alt=""></img></p>
+</li>
+<li>Experiment with the <strong>Scalebar Styling</strong> options to find one you like. If you make everything horrible, you can always just delete the current <strong>Scalebar</strong>, and place a new one!</li>
+</ol>
+<p><img src="images/20260325_180019_image.png" alt=""></img></p>
+<h3 id="add-the-crs">Add the CRS</h3>
+<p>Including the Coordinate Reference System helps document how your map is referenced.</p>
+<ol>
+<li>Using the same method you use to place your <strong>Map Title</strong>, place a small text box near the bottom of the page.</li>
+<li><p>Type the CRS information for your project, for example:</p>
+<p><code>CRS: EPSG:32630 - WGS 84 / UTM zone 30N</code></p>
+</li>
+<li>Explore the options for Appearance, especially the very useful alignment tools.</li>
+</ol>
+<p><img src="images/20260325_180309_image.png" alt=""></img></p>
+<h3 id="add-your-name-and-the-date">Add Your Name and the Date</h3>
+<ol>
+<li>Again, use the Add Labe tools to place a text box.</li>
+<li>Add your <strong>name</strong>.</li>
+<li>Add the <strong>date</strong> on the same label or in a second label nearby.</li>
+</ol>
+<p>These details are important because they identify the map as your work and document when it was produced.</p>
+<p><img src="images/20260325_180521_image.png" alt=""></img></p>
+<h3 id="bonus-add-the-statistical-summary">Bonus: Add the Statistical Summary</h3>
+<p>If you want to add a bit more analytical context to your map, you can include a short text summary of the statistics you calculated earlier for the <code>Num_Cases</code> field.</p>
+<ol>
+<li>Return to the main QGIS window.</li>
+<li><p>If needed, open the <strong>Results Viewer</strong> panel and click the <strong>hyperlink</strong> to the statistics summary report.</p>
+<p><img src="images/20260325_181345_image.png" alt=""></img></p>
+</li>
+<li>Copy a few useful values from the report, such as the <strong>mean</strong>, <strong>maximum</strong>, or <strong>standard deviation</strong>.</li>
+<li>Return to the Layout window.</li>
+<li>Use the <strong>Add Label</strong> tool to draw a text box in an open area of the layout.</li>
+<li><p>Paste or type a short summary, for example:</p>
+<p><code>Deaths per address summary: mean = ..., max = ..., standard deviation = ...</code></p>
+</li>
+<li>Resize and position the text box so it supports the layout without covering important content.</li>
+</ol>
+<p>This is optional, but it is a nice way to connect the analysis step to the final map you are turning in.</p>
+<p><img src="images/20260325_180858_image.png" alt=""></img></p>
+<h3 id="review-and-adjust-the-layout">Review and Adjust the Layout</h3>
+<p>Before exporting, take a minute to clean things up:</p>
+<ul>
+<li>Make sure the map frame is large enough to be readable.</li>
+<li>Make sure labels are not covering important map content.</li>
+<li>Make sure the legend is readable and uses clean names.</li>
+<li>Make sure the scale bar is connected to the map.</li>
+<li>Make sure the title, CRS, name, and date are all present.</li>
+<li>The <strong>Move Item Content<img src="images/20260325_181507_image.png" alt=""></img></strong> tool is useful for <em>nudging</em> the map content within the <strong>Map Frame</strong>.</li>
+</ul>
+<p><img src="images/20260325_181731_image.png" alt=""></img></p>
+<h3 id="export-the-layout">Export the Layout</h3>
+<ol>
+<li>In the Layout window, go to <strong>Layout &gt; Export as PDF</strong>.</li>
+<li><strong>Save the file</strong> with a clear name such as <code>sunetid_week00_john_snow_map.pdf</code>.</li>
+<li>Dismiss the warning about WMS services, if it pops up.</li>
+<li>Use the default <strong>Export Options</strong>, but explore the other options, for later.</li>
+<li>Open the PDF to check the Export.</li>
+<li>Keep the exported PDF in your project folder so it stays with the rest of your work.</li>
+</ol>
+<p>This exported Map PDF is the map you will submit for the Week 00 assignment.</p>
+<p><img src="images/20260325_182241_image.png" alt=""></img></p>
 <h2 id="conclusion">Conclusion</h2>
 <p>In this lab, you retraced the spatial investigation that helped establish germ theory and modern epidemiology. You:</p>
 <ul>
@@ -1497,7 +1664,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-25T23:54:20.774Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-25T23:54:29.972Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.2.9","depth":2,"next":{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.2.10","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.2.8","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/09_TURN_IN_introduction_to_qgis.md","mtime":"2026-03-26T01:25:55.398Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T01:26:06.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
