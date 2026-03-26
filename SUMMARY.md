@@ -1,6 +1,9 @@
 # Summary
 
+* [Glossary](GLOSSARY.md)
+
 * [Week 00 - Getting Ready for the Course](week00/README.md)
+  * [Syllabus - Spring 2026](week00/00_earthsys144_spring_2026_syllabus.md)
   * [00 - Things you need to know about your computer](week00/00_things_you_need_to_know_about_your_computer.md)
   * [01 - Things you need to know about GIS data on your computer](week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md)
   * [02 - Logging Into Accounts and Installing Software](week00/02_logging_into_accounts_and_installing_software.md)
@@ -66,7 +69,7 @@
   * 03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
 
 * Week 10 - Wrapping It All Up
-  * 00 - Final Project Guidelines
+  * [00 - Final Project Guidelines](week10/00_final_project_guidelines.md)
   * 01 - StoryMaps Support Materials
-  * 02 - Guide to Citation of Spatial Data & Software
+  * [02 - Guide to Citation of Spatial Data & Software](week10/02_guide_to_citation_of_spatial_data_and_software.md)
   * 03 - Stace's Crazy List of Additional GISci Resources
