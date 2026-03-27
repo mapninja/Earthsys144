@@ -25,15 +25,17 @@ GeoJSON is a plain-text, open standard for encoding geographic features using JS
 
 1. Open **[https://geojson.io](https://geojson.io)** in your browser. No login or installation is required.
 2. You will see two main areas:
-   - **Left panel** — a list of your features and panels for editing properties and raw JSON.
-   - **Right panel** — an interactive map you can pan and zoom.
-3. Take a moment to locate the **drawing toolbar** on the right side of the map. The tools, from top to bottom, are:
-   - Select (keyboard shortcut: `1`)
-   - Draw point (`2`)
-   - Draw line (`3`)
-   - Draw polygon (`4`)
-   - **Draw rectangle (`5`)** ← this is the one you will use
-4. At the top of the page, notice the **Export** button — you will use this at the end to save your work.
+   - **Right panel** — a list of your features and panels for editing properties and raw JSON.
+   - **Left panel** — an interactive map you can pan and zoom.
+
+![](images/20260327_150415_image.png)
+
+1. Take a moment to locate the **drawing toolbar** on the right side of the map. The tools, from top to bottom, are:
+   - Draw point (![](images/20260327_150643_image.png))
+   - Draw line (![](images/20260327_150719_image.png))
+   - Draw polygon (![](images/20260327_150757_image.png))
+   - **Draw rectangle (![](images/20260327_150822_image.png))** ← this is the one you will use
+2. At the top of the page, notice the **Save** button — you will use this at the end to save your work.
 
 ---
 
@@ -43,17 +45,23 @@ You will use the Stanford campus as a size reference. Your final AOI must be **a
 
 ### Step 1: Navigate to the Stanford Campus
 
-1. In the map search bar (top-left of the map, `⌘+K` to open), type **Stanford University, Palo Alto, CA** and press Enter, or simply pan and zoom to the campus manually.
+1. In the map search bar (top-left of the map, `⌘+K` to open), type **Stanford University, Palo Alto, CA** and press Enter, or simply pan and zoom to the campus manually
+
+   ![](images/20260327_151044_image.png)
 2. Zoom to a level where you can see the full campus footprint including the Dish, the main quad, and the athletic facilities. A zoom level of 13–14 works well.
+
+![](images/20260327_151106_image.png)
 
 ### Step 2: Draw a Rectangle
 
-1. Press **`5`** or click the **Draw Rectangle** tool in the toolbar.
-2. Click and drag across the map to draw a rectangle that covers the entire Stanford campus — from the Dish area in the southwest to the east edge of campus near El Camino Real.
-3. Release the mouse button to finish the rectangle.
-4. The rectangle will appear in the **feature list** in the left panel and as a polygon on the map.
+1. Click the **Draw Rectangle** tool in the toolbar.
+2. Click and then move across the map to draw a rectangle that covers the entire Stanford campus — from the Dish area in the southwest to the east edge of campus near El Camino Real.
+3. Click again to finish the rectangle.
+4. The rectangle's will appear in the </>JSON Panel panel and as a polygon on the map.
 
-> **Tip:** If the rectangle is not quite right, select it with the Select tool (`1`), then drag individual vertices to reshape it, or press `⌘+Z` to undo and redraw.
+![](images/20260327_151411_image.png)
+
+> **Tip:** If the rectangle is not quite right, click on the Edit Geometries tool ![](images/20260327_151606_image.png), then drag individual vertices to reshape it. Click Save to save your changes
 
 ### Step 3: Check the Size
 
@@ -63,7 +71,7 @@ This is the minimum size your final AOI must be. A rectangle covering the full S
 
 ---
 
-## Part 3: Move the Rectangle to Your Place of Significance
+## Part 3: Now Create a Rectangle at Your Place of Significance
 
 Now you will relocate the rectangle you just drew to a place that is meaningful to you. This might be:
 
@@ -73,19 +81,11 @@ Now you will relocate the rectangle you just drew to a place that is meaningful 
 
 The requirement is that the relocated rectangle is **at least as large as the Stanford campus box** you just drew. You may make it larger.
 
-### Option A: Move the Existing Rectangle (Recommended)
-
-1. Select your rectangle with the Select tool (`1`).
-2. Navigate the map to your chosen location (pan while holding `Space` and dragging, or use search).
-3. Once the map is centered on your target location, hold **`Space`** and drag the selected rectangle to move it to the new location.
-
-> **Note:** If moving the feature is awkward at your current zoom level, try using Option B instead.
-
-### Option B: Delete and Redraw
+### Delete and Redraw
 
 1. Right-click the rectangle in the feature list or on the map and choose **Delete**.
 2. Navigate to your chosen location using the search bar.
-3. Press `5` to activate the rectangle tool and draw a new rectangle of at least the same size.
+3. Activate the rectangle tool and draw a new rectangle of at least the same size.
 
 ---
 
@@ -94,70 +94,71 @@ The requirement is that the relocated rectangle is **at least as large as the St
 Adding descriptive properties to your features is good practice — it makes the file self-documenting and easier to use in downstream analysis.
 
 1. Select your rectangle (click it on the map or in the feature list).
-2. The **Feature Editor** panel will appear.
-3. Click **Add property** and add the following:
+2. The **Feature Editor** popup will appear.
+3. Type the propery: `name` into the first cell, and the value: `your location label` into the second cell.
+   ![](images/20260327_153213_image.png)
+4. Click **Add row** and create property/vlue pairs for the following:
 
-| Property | Value (your entry) |
-|---|---|
-| `name` | A short descriptive name for the place (e.g., `Bogotá Study Area`) |
-| `sunetid` | Your Stanford SUNet ID |
-| `description` | One sentence about why you chose this location |
+
+| Property      | Value (your entry)                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| `name`        | A short descriptive name for the place (e.g.,`Bogotá Study Area`) |
+| `sunetid`     | Your Stanford SUNet ID                                             |
+| `description` | One sentence about why you chose this location                     |
+
+![](images/20260327_153310_image.png)
+
+5. Click Save to Save the Properties of the feature.
+6. Note how the `properties` look in the </>JSON Panel.
+
+   ![](images/20260327_153626_image.png)
+7. Click on the Table Tab for a more familiar spreadsheet view.
+
+   ![](images/20260327_153543_image.png)
 
 ---
 
 ## Part 5: Export Your AOI as GeoJSON
 
-1. Click the **Export** button at the top of the page.
+1. Click **Save** at the top of the page.
 2. Choose **GeoJSON** as the format.
 3. Save the file. Your browser will likely save it as `map.geojson` — **rename it immediately** using the naming convention below.
+
+![](images/20260327_153717_image.png)
 
 ### File Naming Convention
 
 ```
-sunetid_week01_lab03_aoi.geojson
+sunetid_week01_lab01_aoi.geojson
 ```
 
 Replace `sunetid` with your actual Stanford SUNet ID. For example:
 
 ```
-jsmith_week01_lab03_aoi.geojson
+jsmith_week01_lab01_aoi.geojson
 ```
 
 ---
 
 ## Deliverable
 
-Submit your exported GeoJSON file to the **Week 01 Lab 01** assignment on Canvas.
+**Submit your exported GeoJSON file to the **Week 01 Lab 01** assignment on Canvas.**
 
 **Checklist before submitting:**
 
 - [ ] The file is in GeoJSON format.
 - [ ] The rectangle covers an area at least as large as the Stanford campus.
 - [ ] The feature has `name`, `sunetid`, and `description` properties filled in.
-- [ ] The filename follows the convention `sunetid_week01_lab03_aoi.geojson`.
+- [ ] The filename follows the convention `sunetid_week01_lab01_aoi.geojson`.
 
 ---
 
 ## Reference: geojson.io Interface Summary
 
-| Area | What it does |
-|---|---|
-| Feature list (left panel) | Lists all your features; double-click to zoom to one; drag to reorder |
-| JSON panel (left panel) | Shows the raw GeoJSON; editable directly |
-| Table panel | Browse all features and properties in a spreadsheet view |
-| Drawing toolbar (right) | Tools for point, line, polygon, rectangle drawing |
-| Export button (top) | Save your data as GeoJSON, KML, CSV, or Shapefile |
 
-### Keyboard Shortcuts
-
-| Key | Action |
-|---|---|
-| `1` | Select |
-| `2` | Draw point |
-| `3` | Draw line |
-| `4` | Draw polygon |
-| `5` | **Draw rectangle** |
-| `Esc` | Exit drawing / clear selection |
-| `⌘+Z` | Undo |
-| `⌘+S` | Save (to geojson.io account if logged in) |
-| `Space` + drag | Move selected feature |
+| Area                    | What it does                                             |
+| ------------------------- | ---------------------------------------------------------- |
+| JSON panel (left panel) | Shows the raw GeoJSON; editable directly                 |
+| Table panel             | Browse all features and properties in a spreadsheet view |
+| Drawing toolbar (right) | Tools for point, line, polygon, rectangle drawing        |
+| Export button (top)     | Save your data as GeoJSON, KML, CSV, or Shapefile        |
