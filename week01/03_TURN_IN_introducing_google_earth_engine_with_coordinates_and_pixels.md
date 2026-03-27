@@ -1,4 +1,4 @@
-# Lab 01: Coordinates & Geometries with Google Earth Engine (DRAFT)
+# Lab 03: Coordinates & Geometries with Google Earth Engine (DRAFT)
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
@@ -20,12 +20,14 @@ As you work through these scripts, pay attention to these panels:
 - **Layers** — where mapped layers appear. Use this to toggle visibility and adjust display.
 - **Scripts** and **Assets** (left panel) — where your saved code and uploaded data files live.
 
+![](images/20260327_131644_image.png)
+
 ### Load the Earthsys144 Script Repository
 
 Before you start coding, connect the shared course script repository to your Earth Engine account:
 
 1. Open this URL while logged into your Earth Engine account:
-  https://code.earthengine.google.com/?accept_repo=users/maplesstanford/earthsys144_2026
+   https://code.earthengine.google.com/?accept_repo=users/maplesstanford/earthsys144_2026
 2. Click **Accept** (or equivalent prompt) to add the repository to your **Scripts** panel.
 3. In the left **Scripts** panel, expand `users/maplesstanford/earthsys144_2026`.
 4. Open the script for this week and run it from there, or copy sections into your own working script as instructed.
@@ -36,7 +38,11 @@ New scripts will be added weekly. Once you have accepted the repository, Earth E
 
 ## Part 1: Basic JavaScript Objects
 
+#### Script: 00 - Intro to Javascript Syntax
+
 Earth Engine scripts are written in JavaScript. Before creating spatial objects you need to understand a handful of data types and structures that show up in every script. This section covers the essentials; keep them in mind as you move into the geometry sections that follow.
+
+![](images/20260327_131822_image.png)
 
 ### Variables
 
@@ -138,7 +144,11 @@ Before moving on, explore the interface:
 
 ## Part 2: A Point Geometry
 
+#### Script: 01 - Intro to Geometries (Points)
+
 Every location on Earth can be described with two numbers: **longitude** (east-west position) and **latitude** (north-south position). These are the angular coordinates of a geographic coordinate system. Together with a CRS, they form a **point geometry** — the simplest spatial object in GIS.
+
+![](images/20260327_132140_image.png)
 
 In Earth Engine, coordinate pairs are always ordered **`[longitude, latitude]`** — that is, **`[x, y]`**. This matches the GeoJSON convention and most spatial APIs. It is the **opposite** of the traditional written convention of "lat/lon." Swapping the two values will silently place your point in the wrong location — often somewhere in the ocean — so pay close attention to order.
 
@@ -158,9 +168,17 @@ Map.centerObject(stanfordPoint, 16); // Second argument is zoom level (larger = 
 After running the script:
 
 - Open the **Layers** panel and confirm the layer named "Stanford point" appears.
+
+  ![](images/20260327_132221_image.png)
 - Open the **Console** and inspect the printed geometry. It reports type `Point` and lists the coordinates.
+
+  ![](images/20260327_132235_image.png)
 - Click the **Inspector** tab and then click anywhere on the map. The Inspector reports what is at that location.
+
+  ![](images/20260327_132320_image.png)
 - Find the **geometry drawing tools** above the map canvas. Try drawing a point manually. This creates an **imported geometry** — more on that distinction in Part 5.
+
+  ![](images/20260327_132409_image.png)
 
 ### Try This
 
@@ -177,7 +195,11 @@ Map.addLayer(anotherPoint, {}, 'Another point');
 
 ## Part 3: Lines and Polygons
 
+#### Script: 02 - Intro to More Geometries
+
 Points represent locations. Lines and polygons represent extent. Together, these three types — **point**, **line (LineString)**, and **polygon** — are the fundamental vector geometry types in GIS, and Earth Engine supports all of them.
+
+![](images/20260327_132605_image.png)
 
 ### LineString
 
@@ -224,6 +246,8 @@ Map.centerObject(campusPolygon, 16);
 
 Open the **Console** and compare the printed point, line, and polygon objects. Each reports a different geometry type. Try the geometry drawing tools on the map and draw your own versions, then compare your hand-drawn shapes with what the script created in code.
 
+![](images/20260327_132805_image.png)
+
 ### Try This
 
 `ee.Geometry.Rectangle()` is a shortcut that creates a polygon from just four numbers: west, south, east, north — the same bounding box format used in many spatial data standards.
@@ -240,6 +264,8 @@ Map.addLayer(campusBounds, {}, 'Rectangle');
 ## Part 4: Visualizing Geometries with Color
 
 When you add a raw geometry to the map with `Map.addLayer()`, Earth Engine mainly respects the **`color`** parameter. You can display points, lines, and polygons in different colors, but raw geometries do not give full control over fill color, line width, or point size. Full style control requires converting geometries to **Features**, which we cover in a later lab.
+
+![](images/20260327_133129_image.png)
 
 Within those limits there is a useful workaround: to display only the **outline** of a polygon, extract its outer ring and convert it to a `LineString`.
 
@@ -305,6 +331,8 @@ Map.addLayer(lineBounds, {color: 'white'}, 'Bounding box around line');
 
 ## Part 5: Inline Geometries vs. Imported Geometries
 
+####
+
 There are two ways to get a geometry into an Earth Engine script: write it directly in the script code, or create it through the Code Editor interface.
 
 **Inline geometries** live in the script text as `ee.Geometry` declarations. Editing them means changing coordinate values in the code. This makes scripts fully reproducible — anyone who runs the script gets exactly the same geometry.
@@ -312,6 +340,8 @@ There are two ways to get a geometry into an Earth Engine script: write it direc
 **Imported geometries** appear in the **Imports** section at the top of the script editor. They are linked to a geometry layer in the map interface, and you can reshape them with the drawing tools by clicking and dragging vertices directly on the map. Any time you use the drawing tools in Earth Engine, you create an imported geometry automatically.
 
 You can also convert an inline geometry to an import: hover over an `ee.Geometry` declaration in the editor and look for the conversion prompt. Once converted, an imported geometry can be configured as a raw geometry, a `Feature`, or a `FeatureCollection`.
+
+![](images/20260327_133343_image.png)
 
 ```javascript
 var stanfordPoint = ee.Geometry.Point([-122.1700, 37.4275]); // Inline — edit by changing coordinates in code.
@@ -345,11 +375,12 @@ Map.centerObject(stanfordPolygon, 14);
 
 ### Inline vs. Imported: Summary
 
-| | Inline geometry | Imported geometry |
-|---|---|---|
-| Where it lives | Script text | Imports section |
-| How to edit | Change coordinates in code | Drag vertices in the map |
-| Best for | Reproducible, shareable scripts | Quick interactive adjustments |
+
+|                | Inline geometry                 | Imported geometry             |
+| ---------------- | --------------------------------- | ------------------------------- |
+| Where it lives | Script text                     | Imports section               |
+| How to edit    | Change coordinates in code      | Drag vertices in the map      |
+| Best for       | Reproducible, shareable scripts | Quick interactive adjustments |
 
 In this course you will mostly work with inline geometries in scripts and drawn geometries for exploration. Understanding the difference helps you recognize when a geometry is tied to your code versus controlled through the interface.
 
@@ -369,3 +400,163 @@ Earth Engine avoids that planar drift by default because its geometry calculatio
 As we move into imagery in later sessions, keep asking the same question you ask in QGIS: *what CRS is this data in, and how does that affect my analysis and measurements?*
 
 **Suggested reading:** Bolstad, Chapters 3, 4, and 7.
+
+---
+
+## Final Turn-In Exercise: Build a Rectangle Around a Place You Choose
+
+Now that you have worked with points, lines, polygons, rectangles, and the Earth Engine interface, your turn-in task is to make a very simple script from scratch.
+
+The goal is to show that you can:
+
+- navigate the map
+- use the **Inspector**
+- read coordinates from the map
+- enter those coordinates into code
+- create a rectangle geometry
+- share a working Earth Engine script
+
+### Step 1: Reset to a Blank Script
+
+1. In Earth Engine, **clear the current script window** so you are starting fresh.
+
+   ![](images/20260327_135046_image.png)
+2. Create a new **Repository** to keep your homework scripts in.
+
+   ![](images/20260327_135156_image.png)
+3. Give your repo a name.
+
+   ![](images/20260327_135351_image.png)
+
+### Step 2: Navigate to a Place You Choose
+
+4. Pan and zoom the map to a location of your choosing.
+5. You may also use the **search bar** to jump to a place quickly.
+
+   ![](images/20260327_140224_image.png)
+6. Choose a location that is meaningful to you, interesting to you, or possibly relevant to your final project.
+
+   ![](images/20260327_140244_image.png)
+
+### Step 3: Use the Inspector to Get Two Corner Coordinates
+
+To make a rectangle, you need two opposite corners:
+
+- one **southwest** corner
+- one **northeast** corner
+
+1. Open the **Inspector** tab.
+2. Click once on the map where you want the **southwest corner** of your rectangle.
+3. **Copy & Paste** the longitude and latitude values to a text document.
+
+   ![](images/20260327_140934_image.png)
+4. Click again where you want the **northeast corner** of your rectangle.
+5. **Copy & Paste** that longitude and latitude as well.
+
+Be careful with coordinate order. In Earth Engine, coordinates are always:
+
+`[longitude, latitude]`
+
+not:
+
+`[latitude, longitude]`
+
+### Step 4: Paste in the Boilerplate Script
+
+Use the script below, (or load the script `TURN_IN Week01 - Make Your Own Geometry` from this week's folder in the repo ) replacing the placeholder numbers with the coordinates you got from the Inspector.
+
+```javascript
+// Your Name
+// EARTHSYS 144 / ESS 164
+// Week 01 Turn-In: Rectangle from inspected coordinates
+// I chose a place that matters to me and used the Inspector
+// to get two opposite corner coordinates for a rectangle.
+
+// Create a rectangle from two opposite corner coordinate pairs.
+// Replace the first pair with the southwest corner you clicked.
+// Replace the second pair with the northeast corner you clicked.
+// Each pair must stay in [longitude, latitude] order.
+var myRectangle = ee.Geometry.Rectangle([
+  [-122.20, 37.40],  // Paste your southwest corner here.
+  [-122.10, 37.48]   // Paste your northeast corner here.
+]);
+
+// Print the rectangle to the Console so you can inspect it.
+print('My rectangle geometry:', myRectangle);
+
+// Add the rectangle to the map.
+// The color parameter controls the display color of the outline/fill.
+Map.addLayer(myRectangle, {color: 'red'}, 'My rectangle');
+
+// Center the map on the rectangle so it fills the view more clearly.
+Map.centerObject(myRectangle, 12);
+```
+
+### Step 5: Add One More Comment of Your Own
+
+Add at least one short inline comment of your own to the script explaining:
+
+- why you chose that place, or
+- what the two points represent, or
+- what part of the code you changed
+
+For example:
+
+```javascript
+// I chose this area because it is my hometown.
+```
+
+or:
+
+```javascript
+// These are the southwest and northeast corners I clicked with the Inspector.
+```
+
+> **Why add comments?** Comments help another person understand what your script is doing, and they help you remember your own thinking when you come back to the script later.
+
+### Step 6: Run and Check the Script
+
+1. Click **Run**.
+2. Make sure the rectangle appears on the map.
+3. Confirm that the rectangle is centered on the location you intended.
+4. Check the **Console** to make sure the geometry prints correctly.
+
+If the rectangle appears in the wrong place, double-check:
+
+- that you did not switch latitude and longitude
+- that your west value is smaller than your east value
+- that your south value is smaller than your north value
+
+### Save the Script
+
+1. Save the script with a clear name, such as:
+   `week01_rectangle_yourSUNetID`
+
+![](images/20260327_145057_image.png)
+
+> **Why do this?** This makes it clear that the final turn-in is your own small script, not just the shared example script from the course repository.
+
+## To Turn In
+
+For grading, submit a **Get Link** URL to the frozen copy of your script.
+
+### How to Get the Submission URL
+
+1. In the Earth Engine Code Editor, click the **Get Link** button.
+2. Copy the URL Earth Engine creates.
+3. This link points to a frozen copy of your script that can be opened by your instructor.
+4. It's never a bad idea to test the URL in an Incognito/Private Window.
+5. Submit that URL in Canvas for the Week 01 assignment.
+
+![](images/20260327_145402_image.png)
+
+### Your final submitted script should show:
+
+- your name in a comment near the top
+- a location you chose yourself and why
+- two coordinate pairs pasted from the Inspector
+- an `ee.Geometry.Rectangle()` built from those coordinates
+- at least one additional inline comment written by you
+- a working map layer and centered view
+
+![](images/20260327_145518_image.png)

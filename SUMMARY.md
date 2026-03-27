@@ -16,9 +16,9 @@
   * [10 - TURN IN - Logging in to Google Earth Engine](week00/10_TURN_IN_logging_in_to_google_earth_engine.md)
 
 * [Week 01 - Lining it Up & Cartographic Presentation](week01/README.md)
-  * [01 - TURN IN - Coordinates & Pixels with Google Earth Engine](week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
+  * [01 - TURN IN - Create an Area of Interest with GeoJSON.io](week01/01_TURN_IN_create_an_aoi_with_geojson_io.md)
   * [02 - TURN IN - Projection Error Measurement with QGIS](week01/02_TURN_IN_projection_error_measurement_with_qgis.md)
-  * [03 - TURN IN - Create an Area of Interest with GeoJSON.io](week01/03_TURN_IN_create_an_aoi_with_geojson_io.md)
+  * [03 - TURN IN - Coordinates and Geometries with Google Earth Engine](week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
 
 * [Week 02 - Making & Collecting Data](week02/README.md)
   * [01 - TURN IN - Creating Vector Data by Digitizing in QGIS](week02/01_TURN_IN_data_creation_in_qgis.md)

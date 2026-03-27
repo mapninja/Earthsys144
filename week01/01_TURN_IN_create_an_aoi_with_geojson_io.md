@@ -1,4 +1,4 @@
-# Lab 03: Create an Area of Interest with GeoJSON.io (DRAFT)
+# Lab 01: Create an Area of Interest with GeoJSON.io (DRAFT)
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Export your AOI file using the naming convention below and submit it to Canvas.
 
@@ -127,7 +127,7 @@ jsmith_week01_lab03_aoi.geojson
 
 ## Deliverable
 
-Submit your exported GeoJSON file to the **Week 01 Lab 03** assignment on Canvas.
+Submit your exported GeoJSON file to the **Week 01 Lab 01** assignment on Canvas.
 
 **Checklist before submitting:**
 
