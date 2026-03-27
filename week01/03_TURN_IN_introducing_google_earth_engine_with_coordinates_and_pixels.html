@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>01 - TURN IN - Coordinates & Pixels with Google Earth Engine · HonKit</title>
+        <title>03 - TURN IN - Coordinates and Geometries with Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="02_TURN_IN_projection_error_measurement_with_qgis.html" />
+    <link rel="next" href="../week02/" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="02_TURN_IN_projection_error_measurement_with_qgis.html" />
     
 
     </head>
@@ -290,12 +290,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.1" data-path="01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+        <li class="chapter " data-level="1.4.1" data-path="01_TURN_IN_create_an_aoi_with_geojson_io.html">
             
-                <a href="01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+                <a href="01_TURN_IN_create_an_aoi_with_geojson_io.html">
             
                     
-                    01 - TURN IN - Coordinates & Pixels with Google Earth Engine
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
             
                 </a>
             
@@ -316,12 +316,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="03_TURN_IN_create_an_aoi_with_geojson_io.html">
+        <li class="chapter active" data-level="1.4.3" data-path="03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
             
-                <a href="03_TURN_IN_create_an_aoi_with_geojson_io.html">
+                <a href="03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
             
                     
-                    03 - TURN IN - Create an Area of Interest with GeoJSON.io
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
             
                 </a>
             
@@ -1003,7 +1003,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >01 - TURN IN - Coordinates & Pixels with Google Earth Engine</a>
+        <a href=".." >03 - TURN IN - Coordinates and Geometries with Google Earth Engine</a>
     </h1>
 </div>
 
@@ -1018,7 +1018,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="lab-01-coordinates--geometries-with-google-earth-engine-draft">Lab 01: Coordinates &amp; Geometries with Google Earth Engine (DRAFT)</h1>
+                                <h1 id="lab-03-coordinates--geometries-with-google-earth-engine-draft">Lab 03: Coordinates &amp; Geometries with Google Earth Engine (DRAFT)</h1>
 <blockquote>
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
@@ -1035,6 +1035,7 @@
 <li><strong>Layers</strong> — where mapped layers appear. Use this to toggle visibility and adjust display.</li>
 <li><strong>Scripts</strong> and <strong>Assets</strong> (left panel) — where your saved code and uploaded data files live.</li>
 </ul>
+<p><img src="images/20260327_131644_image.png" alt=""></img></p>
 <h3 id="load-the-earthsys144-script-repository">Load the Earthsys144 Script Repository</h3>
 <p>Before you start coding, connect the shared course script repository to your Earth Engine account:</p>
 <ol>
@@ -1047,7 +1048,9 @@
 <p>New scripts will be added weekly. Once you have accepted the repository, Earth Engine should show the most recent updates each time you refresh the repository view or log in again.</p>
 <hr></hr>
 <h2 id="part-1-basic-javascript-objects">Part 1: Basic JavaScript Objects</h2>
+<h4 id="script-00---intro-to-javascript-syntax">Script: 00 - Intro to Javascript Syntax</h4>
 <p>Earth Engine scripts are written in JavaScript. Before creating spatial objects you need to understand a handful of data types and structures that show up in every script. This section covers the essentials; keep them in mind as you move into the geometry sections that follow.</p>
+<p><img src="images/20260327_131822_image.png" alt=""></img></p>
 <h3 id="variables">Variables</h3>
 <p>A variable stores a value so you can use it later. Use <code>var</code> to declare one. This keyword is common in older Earth Engine examples and tutorials you will encounter throughout the course.</p>
 <p>JavaScript supports several basic value types: numbers, text strings, lists (arrays), and objects (key-value pairs). <code>print()</code> sends any value to the Console so you can inspect it.</p>
@@ -1121,7 +1124,9 @@ print(place.name);
 </ul>
 <hr></hr>
 <h2 id="part-2-a-point-geometry">Part 2: A Point Geometry</h2>
+<h4 id="script-01---intro-to-geometries-points">Script: 01 - Intro to Geometries (Points)</h4>
 <p>Every location on Earth can be described with two numbers: <strong>longitude</strong> (east-west position) and <strong>latitude</strong> (north-south position). These are the angular coordinates of a geographic <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>. Together with a CRS, they form a <strong>point geometry</strong> — the simplest spatial object in GIS.</p>
+<p><img src="images/20260327_132140_image.png" alt=""></img></p>
 <p>In Earth Engine, coordinate pairs are always ordered <strong><code>[longitude, latitude]</code></strong> — that is, <strong><code>[x, y]</code></strong>. This matches the <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> convention and most spatial APIs. It is the <strong>opposite</strong> of the traditional written convention of "lat/lon." Swapping the two values will silently place your point in the wrong location — often somewhere in the ocean — so pay close attention to order.</p>
 <p><code>ee.Geometry.Point()</code> creates a point geometry from a coordinate pair. <code>Map.addLayer()</code> adds any Earth Engine object to the map display. <code>Map.centerObject()</code> centers and zooms the view on any object.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> stanfordPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1700</span>, <span class="hljs-number">37.4275</span>]); <span class="hljs-comment">// [longitude, latitude]</span>
@@ -1134,10 +1139,18 @@ print(place.name);
 <h3 id="exploring-the-interface">Exploring the Interface</h3>
 <p>After running the script:</p>
 <ul>
-<li>Open the <strong>Layers</strong> panel and confirm the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> named "Stanford point" appears.</li>
-<li>Open the <strong>Console</strong> and inspect the printed geometry. It reports type <code>Point</code> and lists the coordinates.</li>
-<li>Click the <strong>Inspector</strong> tab and then click anywhere on the map. The Inspector reports what is at that location.</li>
-<li>Find the <strong>geometry drawing tools</strong> above the map canvas. Try drawing a point manually. This creates an <strong>imported geometry</strong> — more on that distinction in Part 5.</li>
+<li><p>Open the <strong>Layers</strong> panel and confirm the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> named "Stanford point" appears.</p>
+<p><img src="images/20260327_132221_image.png" alt=""></img></p>
+</li>
+<li><p>Open the <strong>Console</strong> and inspect the printed geometry. It reports type <code>Point</code> and lists the coordinates.</p>
+<p><img src="images/20260327_132235_image.png" alt=""></img></p>
+</li>
+<li><p>Click the <strong>Inspector</strong> tab and then click anywhere on the map. The Inspector reports what is at that location.</p>
+<p><img src="images/20260327_132320_image.png" alt=""></img></p>
+</li>
+<li><p>Find the <strong>geometry drawing tools</strong> above the map canvas. Try drawing a point manually. This creates an <strong>imported geometry</strong> — more on that distinction in Part 5.</p>
+<p><img src="images/20260327_132409_image.png" alt=""></img></p>
+</li>
 </ul>
 <h3 id="try-this">Try This</h3>
 <p>Uncomment the block below to add a second point nearby, then run the script again. Watch the Layers panel.</p>
@@ -1148,7 +1161,9 @@ Map.addLayer(anotherPoint, {}, 'Another point');
 </code></pre>
 <hr></hr>
 <h2 id="part-3-lines-and-polygons">Part 3: Lines and Polygons</h2>
+<h4 id="script-02---intro-to-more-geometries">Script: 02 - Intro to More Geometries</h4>
 <p>Points represent locations. Lines and polygons represent extent. Together, these three types — <strong>point</strong>, <strong>line (LineString)</strong>, and <strong>polygon</strong> — are the fundamental <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> geometry types in GIS, and Earth Engine supports all of them.</p>
+<p><img src="images/20260327_132605_image.png" alt=""></img></p>
 <h3 id="linestring">LineString</h3>
 <p>A line is constructed from an ordered list of coordinate pairs called <strong>vertices</strong>. Earth Engine connects them in the order provided. Each vertex is a <code>[longitude, latitude]</code> pair.</p>
 <h3 id="polygon">Polygon</h3>
@@ -1187,6 +1202,7 @@ Map.addLayer(anotherPoint, {}, 'Another point');
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(campusPolygon, <span class="hljs-number">16</span>);
 </code></pre>
 <p>Open the <strong>Console</strong> and compare the printed point, line, and polygon objects. Each reports a different geometry type. Try the geometry drawing tools on the map and draw your own versions, then compare your hand-drawn shapes with what the script created in code.</p>
+<p><img src="images/20260327_132805_image.png" alt=""></img></p>
 <h3 id="try-this">Try This</h3>
 <p><code>ee.Geometry.Rectangle()</code> is a shortcut that creates a polygon from just four numbers: west, south, east, north — the same bounding box format used in many spatial data standards.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">/* &lt;-- Delete this line
@@ -1197,6 +1213,7 @@ Map.addLayer(campusBounds, {}, 'Rectangle');
 <hr></hr>
 <h2 id="part-4-visualizing-geometries-with-color">Part 4: Visualizing Geometries with Color</h2>
 <p>When you add a raw geometry to the map with <code>Map.addLayer()</code>, Earth Engine mainly respects the <strong><code>color</code></strong> parameter. You can display points, lines, and polygons in different colors, but raw geometries do not give full control over fill color, line width, or point size. Full style control requires converting geometries to <strong>Features</strong>, which we cover in a later lab.</p>
+<p><img src="images/20260327_133129_image.png" alt=""></img></p>
 <p>Within those limits there is a useful workaround: to display only the <strong>outline</strong> of a polygon, extract its outer ring and convert it to a <code>LineString</code>.</p>
 <p><code>Polygon.coordinates()</code> returns all coordinate rings. For a simple polygon:</p>
 <ul>
@@ -1250,10 +1267,12 @@ Map.addLayer(lineBounds, {color: 'white'}, 'Bounding box around line');
 </code></pre>
 <hr></hr>
 <h2 id="part-5-inline-geometries-vs-imported-geometries">Part 5: Inline Geometries vs. Imported Geometries</h2>
+<h3 id="">#</h3>
 <p>There are two ways to get a geometry into an Earth Engine script: write it directly in the script code, or create it through the Code Editor interface.</p>
 <p><strong>Inline geometries</strong> live in the script text as <code>ee.Geometry</code> declarations. Editing them means changing coordinate values in the code. This makes scripts fully reproducible — anyone who runs the script gets exactly the same geometry.</p>
 <p><strong>Imported geometries</strong> appear in the <strong>Imports</strong> section at the top of the script editor. They are linked to a geometry <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the map interface, and you can reshape them with the drawing tools by clicking and dragging vertices directly on the map. Any time you use the drawing tools in Earth Engine, you create an imported geometry automatically.</p>
 <p>You can also convert an inline geometry to an import: hover over an <code>ee.Geometry</code> declaration in the editor and look for the conversion prompt. Once converted, an imported geometry can be configured as a raw geometry, a <code>Feature</code>, or a <code>FeatureCollection</code>.</p>
+<p><img src="images/20260327_133343_image.png" alt=""></img></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> stanfordPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1700</span>, <span class="hljs-number">37.4275</span>]); <span class="hljs-comment">// Inline — edit by changing coordinates in code.</span>
 
 <span class="hljs-keyword">var</span> stanfordPolygon = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Polygon</span>([
@@ -1321,6 +1340,145 @@ Map.addLayer(lineBounds, {color: 'white'}, 'Bounding box around line');
 <p>Earth Engine avoids that planar drift by default because its geometry calculations operate on the <a href="../GLOSSARY.html#ellipsoid" class="glossary-term" title="A smooth mathematical model of the earth used in coordinate systems and geodesy. Unlike the geoid, an ellipsoid is simplified so it can be used for measurement and calculation.">ellipsoid</a>. But the projection you choose for <em>displaying</em> data still shapes what people see and how they interpret distances and areas visually — which is why understanding coordinate systems matters even in a cloud platform that abstracts much of the projection machinery away from you.</p>
 <p>As we move into imagery in later sessions, keep asking the same question you ask in QGIS: <em>what CRS is this data in, and how does that affect my analysis and measurements?</em></p>
 <p><strong>Suggested reading:</strong> Bolstad, Chapters 3, 4, and 7.</p>
+<hr></hr>
+<h2 id="final-turn-in-exercise-build-a-rectangle-around-a-place-you-choose">Final Turn-In Exercise: Build a Rectangle Around a Place You Choose</h2>
+<p>Now that you have worked with points, lines, polygons, rectangles, and the Earth Engine interface, your turn-in task is to make a very simple script from scratch.</p>
+<p>The goal is to show that you can:</p>
+<ul>
+<li>navigate the map</li>
+<li>use the <strong>Inspector</strong></li>
+<li>read coordinates from the map</li>
+<li>enter those coordinates into code</li>
+<li>create a rectangle geometry</li>
+<li>share a working Earth Engine script</li>
+</ul>
+<h3 id="step-1-reset-to-a-blank-script">Step 1: Reset to a Blank Script</h3>
+<ol>
+<li><p>In Earth Engine, <strong>clear the current script window</strong> so you are starting fresh.</p>
+<p><img src="images/20260327_135046_image.png" alt=""></img></p>
+</li>
+<li><p>Create a new <strong>Repository</strong> to keep your homework scripts in.</p>
+<p><img src="images/20260327_135156_image.png" alt=""></img></p>
+</li>
+<li><p>Give your repo a name.</p>
+<p><img src="images/20260327_135351_image.png" alt=""></img></p>
+</li>
+</ol>
+<h3 id="step-2-navigate-to-a-place-you-choose">Step 2: Navigate to a Place You Choose</h3>
+<ol>
+<li>Pan and zoom the map to a location of your choosing.</li>
+<li><p>You may also use the <strong>search bar</strong> to jump to a place quickly.</p>
+<p><img src="images/20260327_140224_image.png" alt=""></img></p>
+</li>
+<li><p>Choose a location that is meaningful to you, interesting to you, or possibly relevant to your final project.</p>
+<p><img src="images/20260327_140244_image.png" alt=""></img></p>
+</li>
+</ol>
+<h3 id="step-3-use-the-inspector-to-get-two-corner-coordinates">Step 3: Use the Inspector to Get Two Corner Coordinates</h3>
+<p>To make a rectangle, you need two opposite corners:</p>
+<ul>
+<li>one <strong>southwest</strong> corner</li>
+<li><p>one <strong>northeast</strong> corner</p>
+</li>
+<li><p>Open the <strong>Inspector</strong> tab.</p>
+</li>
+<li>Click once on the map where you want the <strong>southwest corner</strong> of your rectangle.</li>
+<li><p><strong>Copy &amp; Paste</strong> the longitude and latitude values to a text document.</p>
+<p><img src="images/20260327_140934_image.png" alt=""></img></p>
+</li>
+<li>Click again where you want the <strong>northeast corner</strong> of your rectangle.</li>
+<li><strong>Copy &amp; Paste</strong> that longitude and latitude as well.</li>
+</ul>
+<p>Be careful with coordinate order. In Earth Engine, coordinates are always:</p>
+<p><code>[longitude, latitude]</code></p>
+<p>not:</p>
+<p><code>[latitude, longitude]</code></p>
+<h3 id="step-4-paste-in-the-boilerplate-script">Step 4: Paste in the Boilerplate Script</h3>
+<p>Use the script below, (or load the script <code>TURN_IN Week01 - Make Your Own Geometry</code> from this week's folder in the repo ) replacing the placeholder numbers with the coordinates you got from the Inspector.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Your Name</span>
+<span class="hljs-comment">// EARTHSYS 144 / ESS 164</span>
+<span class="hljs-comment">// Week 01 Turn-In: Rectangle from inspected coordinates</span>
+<span class="hljs-comment">// I chose a place that matters to me and used the Inspector</span>
+<span class="hljs-comment">// to get two opposite corner coordinates for a rectangle.</span>
+
+<span class="hljs-comment">// Create a rectangle from two opposite corner coordinate pairs.</span>
+<span class="hljs-comment">// Replace the first pair with the southwest corner you clicked.</span>
+<span class="hljs-comment">// Replace the second pair with the northeast corner you clicked.</span>
+<span class="hljs-comment">// Each pair must stay in [longitude, latitude] order.</span>
+<span class="hljs-keyword">var</span> myRectangle = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Rectangle</span>([
+  [-<span class="hljs-number">122.20</span>, <span class="hljs-number">37.40</span>],  <span class="hljs-comment">// Paste your southwest corner here.</span>
+  [-<span class="hljs-number">122.10</span>, <span class="hljs-number">37.48</span>]   <span class="hljs-comment">// Paste your northeast corner here.</span>
+]);
+
+<span class="hljs-comment">// Print the rectangle to the Console so you can inspect it.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'My rectangle geometry:'</span>, myRectangle);
+
+<span class="hljs-comment">// Add the rectangle to the map.</span>
+<span class="hljs-comment">// The color parameter controls the display color of the outline/fill.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(myRectangle, {<span class="hljs-attr">color</span>: <span class="hljs-string">'red'</span>}, <span class="hljs-string">'My rectangle'</span>);
+
+<span class="hljs-comment">// Center the map on the rectangle so it fills the view more clearly.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(myRectangle, <span class="hljs-number">12</span>);
+</code></pre>
+<h3 id="step-5-add-one-more-comment-of-your-own">Step 5: Add One More Comment of Your Own</h3>
+<p>Add at least one short inline comment of your own to the script explaining:</p>
+<ul>
+<li>why you chose that place, or</li>
+<li>what the two points represent, or</li>
+<li>what part of the code you changed</li>
+</ul>
+<p>For example:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// I chose this area because it is my hometown.</span>
+</code></pre>
+<p>or:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// These are the southwest and northeast corners I clicked with the Inspector.</span>
+</code></pre>
+<blockquote>
+<p><strong>Why add comments?</strong> Comments help another person understand what your script is doing, and they help you remember your own thinking when you come back to the script later.</p>
+</blockquote>
+<h3 id="step-6-run-and-check-the-script">Step 6: Run and Check the Script</h3>
+<ol>
+<li>Click <strong>Run</strong>.</li>
+<li>Make sure the rectangle appears on the map.</li>
+<li>Confirm that the rectangle is centered on the location you intended.</li>
+<li>Check the <strong>Console</strong> to make sure the geometry prints correctly.</li>
+</ol>
+<p>If the rectangle appears in the wrong place, double-check:</p>
+<ul>
+<li>that you did not switch latitude and longitude</li>
+<li>that your west value is smaller than your east value</li>
+<li>that your south value is smaller than your north value</li>
+</ul>
+<h3 id="save-the-script">Save the Script</h3>
+<ol>
+<li>Save the script with a clear name, such as:
+<code>week01_rectangle_yourSUNetID</code></li>
+</ol>
+<p><img src="images/20260327_145057_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Why do this?</strong> This makes it clear that the final turn-in is your own small script, not just the shared example script from the course repository.</p>
+</blockquote>
+<h2 id="to-turn-in">To Turn In</h2>
+<p>For grading, submit a <strong>Get Link</strong> URL to the frozen copy of your script.</p>
+<h3 id="how-to-get-the-submission-url">How to Get the Submission URL</h3>
+<ol>
+<li>In the Earth Engine Code Editor, click the <strong>Get Link</strong> button.</li>
+<li>Copy the URL Earth Engine creates.</li>
+<li>This link points to a frozen copy of your script that can be opened by your instructor.</li>
+<li>It's never a bad idea to test the URL in an Incognito/Private Window.</li>
+<li>Submit that URL in Canvas for the Week 01 assignment.</li>
+</ol>
+<p><img src="images/20260327_145402_image.png" alt=""></img></p>
+<h3 id="your-final-submitted-script-should-show">Your final submitted script should show:</h3>
+<ul>
+<li>your name in a comment near the top</li>
+<li>a location you chose yourself and why</li>
+<li>two coordinate pairs pasted from the Inspector</li>
+<li>an <code>ee.Geometry.Rectangle()</code> built from those coordinates</li>
+<li>at least one additional inline comment written by you</li>
+<li>a working map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and centered view</li>
+</ul>
+<p><img src="images/20260327_145518_image.png" alt=""></img></p>
 
                                 
                                 </section>
@@ -1348,12 +1506,12 @@ Map.addLayer(lineBounds, {color: 'white'}, 'Bounding box around line');
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Week 01 - Lining it Up & Cartographic Presentation">
+                <a href="02_TURN_IN_projection_error_measurement_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 02 - TURN IN - Projection Error Measurement with QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02_TURN_IN_projection_error_measurement_with_qgis.html" class="navigation navigation-next " aria-label="Next page: 02 - TURN IN - Projection Error Measurement with QGIS">
+                <a href="../week02/" class="navigation navigation-next " aria-label="Next page: Week 02 - Making & Collecting Data">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1364,7 +1522,7 @@ Map.addLayer(lineBounds, {color: 'white'}, 'Bounding box around line');
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - TURN IN - Coordinates & Pixels with Google Earth Engine","level":"1.4.1","depth":2,"next":{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},"previous":{"title":"Week 01 - Lining it Up & Cartographic Presentation","level":"1.4","depth":1,"path":"week01/README.md","ref":"week01/README.md","articles":[{"title":"01 - TURN IN - Coordinates & Pixels with Google Earth Engine","level":"1.4.1","depth":2,"path":"week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.4.3","depth":2,"path":"week01/03_TURN_IN_create_an_aoi_with_geojson_io.md","ref":"week01/03_TURN_IN_create_an_aoi_with_geojson_io.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/01_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","mtime":"2026-03-26T19:18:25.477Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-26T19:18:38.776Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Coordinates and Geometries with Google Earth Engine","level":"1.4.3","depth":2,"next":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"01 - TURN IN - Creating Vector Data by Digitizing in QGIS","level":"1.5.1","depth":2,"path":"week02/01_TURN_IN_data_creation_in_qgis.md","ref":"week02/01_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}]},"previous":{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","mtime":"2026-03-27T22:03:47.573Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-03-27T22:03:58.858Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
