@@ -2,7 +2,9 @@
 
 ## *(a.k.a. Everything Is Somewhere, and That Somewhere Matters)*
 
-This repository as a GitHub Book: https://mapninja.github.io/Earthsys144/
+This repository as a GitHub Book: [https://mapninja.github.io/Earthsys144/](https://mapninja.github.io/Earthsys144/)
+
+THe Course Canvas Site is accessible (with SUNetID) at: [https://canvas.stanford.edu/courses/224871](https://canvas.stanford.edu/courses/224871)
 
 Hi there, my name is Stace, and I do _Spatial Ed_. I teach this course because I believe something simple but powerful:
 
@@ -25,7 +27,6 @@ You don’t need to be trying to map cholera outbreaks in Haiti (though you migh
 No matter what, if your question involves the words **who, what, and when**, it probably also involves **where**. That’s where spatial data comes in. And this class is your friendly, slightly irreverent, guide to getting started.
 
 This is a DIY course inspired by books like *The People’s Guide to Mexico* and *How to Keep Your Volkswagen Alive for the Complete Idiot*. It’s fun, practical, and focused on **getting things done with spatial data** using tools that are ***mostly* free, open source, and accessible**.
-
 
 ![](images/20260324_103331_91v6hxlaRKL._SL1500_.jpg)  ![](images/20260324_103354_the-peoples-guide-to-mexico_6178079666e88.jpeg)
 
