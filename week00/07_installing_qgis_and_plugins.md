@@ -22,7 +22,7 @@ By the end of this lab, you will be able to:
 
 ![](images/20260224_105333_image.png)
 
-1. **Download** the latest **Regular** (AKA: PR or Preview Release) release from: [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)
+1. **Download** the latest **Regular** release from: [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)
 2. **Download** the **DMG** file for macOS
 3. **Double-click** the downloaded DMG file to open it
 4. It will take a few minutes to decompress and validate the DMG file
