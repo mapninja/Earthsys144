@@ -1,5 +1,10 @@
 # Week 00 - Getting Ready for the Course
 
+### This Week's Slides:
+
+* [Course Logistics](https://slides.com/staceymaples/earthsys144-logistics)
+* [Week00 - Introduction to Spatial Data](https://slides.com/staceymaples/spatial101a)
+
 ## Introduction to Spatial Data Science
 
 Welcome to Week 00 of the course! This week is all about getting your technical foundation set up properly and understanding the basic skills you'll need throughout the quarter. We'll be working with several foundational platforms that form the core of modern spatial data science workflows.
@@ -26,7 +31,7 @@ Throughout this course, we'll be using six main technological platforms that rep
 ### Code/Programming Environments
 
 - **Google Colab with Python libraries** - Cloud-based Jupyter notebook environment with pre-installed geospatial Python libraries including GDAL, Shapely, GeoPandas, and jq. Enables reproducible spatial data science workflows, advanced analysis, and integration with cloud data sources without local software installation.
-- **Github.com** - 
+- **Github.com** -
 
 ## Week Overview
 
