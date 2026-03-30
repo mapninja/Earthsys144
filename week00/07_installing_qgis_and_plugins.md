@@ -22,7 +22,9 @@ By the end of this lab, you will be able to:
 
 ![](images/20260224_105333_image.png)
 
-1. **Download** the latest **Regular** release from: [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)
+> ***NOTE: Avoid*** the use of the new "VERY EARLY RELEASE" version 4.0.0. Most of the plugins that we will need to use have not been updated for this version. At some point, soon, I expect that to change, but until then, **please use the Long-term Release (LTR) Version 3.44
+
+1. **Download** the latest **Regular** release from: [qgis.org/en/site/forusers/download.html](https://qgis.org/en/site/forusers/download.html)**
 2. **Download** the **DMG** file for macOS
 3. **Double-click** the downloaded DMG file to open it
 4. It will take a few minutes to decompress and validate the DMG file
