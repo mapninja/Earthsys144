@@ -137,6 +137,8 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 - Required: QGIS (latest release)
 - Used in course: Google Earth Engine, ArcGIS Online, and selected open-source tools
 - Hardware: Laptop computer with reliable internet access
+- Optional reference text: Bolstad, 6th edition (read-only link): https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=sharing
+- Optional reference text: Tomlin textbook on Archive.org: https://archive.org/details/geographicinform00toml
 
 ## Access and Accommodations
 
