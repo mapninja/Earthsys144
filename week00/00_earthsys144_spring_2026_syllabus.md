@@ -1,12 +1,12 @@
-# Fundamentals of Geographic Information Science (ESS 164 / EARTHSYS 144)
+# EarthSys144: Fundamentals of GIScience
 
-## Spring 2026 Syllabus (Boilerplate Draft)
+## Spring 2026 Lab Syllabus
 
 ## Course Description
 
 "Everything is somewhere, and that somewhere matters."
 
-This course introduces core ideas and methods in Geographic Information Science (GISci), with an emphasis on practical workflows for creating, managing, analyzing, and presenting spatial data. Students work with contemporary GIS tools and real-world datasets to build spatial reasoning and technical fluency.
+EarthSys144: Fundamentals of GIScience introduces core ideas and methods in Geographic Information Science (GIScience), with an emphasis on practical workflows for creating, managing, analyzing, and presenting spatial data. Students work with contemporary GIS tools and real-world datasets to build spatial reasoning and technical fluency.
 
 Primary topics include:
 
@@ -70,7 +70,7 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 
 - Office hours: Weekly times will be announced in Week 1 and posted on Canvas.
 - Format: Office hours will be held in person and by Zoom.
-- Quick help: Use the Earthsys144 Slack workspace for short questions.
+- Quick help: Use the EarthSys144 Slack workspace for short questions.
 - Email: For course support, email the instructor and TAs together and include `EARTHSYS 144` in the subject line.
 
 ## Grading (Boilerplate)

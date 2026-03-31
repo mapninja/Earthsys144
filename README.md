@@ -1,12 +1,14 @@
-# Earthsys144: Fundamentals of Geographic Information Science
+# Lab Section Guide for EarthSys144: Fundamentals of GIScience
 
 ## *(a.k.a. Everything Is Somewhere, and That Somewhere Matters)*
 
-This repository as a GitHub Book: [https://mapninja.github.io/Earthsys144/](https://mapninja.github.io/Earthsys144/)
+This GitHub repository is the Lab Section Guide for **EarthSys144: Fundamentals of GIScience**, updated for **Spring 2026**.
 
-THe Course Canvas Site is accessible (with SUNetID) at: [https://canvas.stanford.edu/courses/224871](https://canvas.stanford.edu/courses/224871)
+You can read it as a GitHub Book here: [https://mapninja.github.io/Earthsys144/](https://mapninja.github.io/Earthsys144/)
 
-Hi there, my name is Stace, and I do _Spatial Ed_. I teach this course because I believe something simple but powerful:
+The course Canvas site is accessible with SUNetID here: [https://canvas.stanford.edu/courses/224871](https://canvas.stanford.edu/courses/224871)
+
+Hi there, my name is Stace, and I do _Spatial Ed_. I teach **EarthSys144: Fundamentals of GIScience** because I believe something simple but powerful:
 
 ### **Everything is somewhere, and that somewhere matters.**
 

@@ -1,8 +1,8 @@
-# Welcome to ESS 164 / EARTHSYS 144: Fundamentals of Geographic Information Science
+# Welcome to EarthSys144: Fundamentals of GIScience
 
 Dear Coordi-nauts!
 
-Welcome to **ESS 164 / EARTHSYS 144: Fundamentals of Geographic Information Science** for Spring Quarter 2026! We are excited to have you with us as we explore a very simple idea that turns out to matter a lot:
+Welcome to **EarthSys144: Fundamentals of GIScience** for Spring Quarter 2026! This lab section guide and the course materials for Spring 2026 are designed to support you as we explore a very simple idea that turns out to matter a lot:
 
 **Everything is somewhere, and that somewhere matters.**
 
@@ -51,7 +51,7 @@ If you have a serious conflict with your lab section, please get in touch early.
 
 - **Office hours:** Times will be announced in Week 1 and posted on Canvas.
 - **Format:** Office hours will be held in person and by Zoom.
-- **Quick help:** Please use the Earthsys144 Slack workspace for short questions and troubleshooting.
+- **Quick help:** Please use the EarthSys144 Slack workspace for short questions and troubleshooting.
 
 ## Slack (Community Q&A and Quick Support)
 

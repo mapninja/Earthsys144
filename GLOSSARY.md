@@ -1,6 +1,6 @@
 # Glossary
 
-This glossary is for **EARTHSYS 144 / ESS 164** and is aimed at students who are new to spatial data, GIS, and remote sensing.
+This glossary is part of the **Lab Section Guide for EarthSys144: Fundamentals of GIScience**, updated for **Spring 2026**. It is aimed at students who are new to spatial data, GIS, and remote sensing.
 
 Many of the definitions below are course-oriented paraphrases of foundational GIS terminology, with special attention to terms commonly used in QGIS, ArcGIS Online, Google Earth Engine, and introductory cartography. Several core definitions are informed by the **Esri GIS Dictionary**.
 

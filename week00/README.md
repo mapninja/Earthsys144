@@ -1,4 +1,4 @@
-# Week 00 - Getting Ready for the Course
+# Week 00 - Getting Ready for EarthSys144
 
 ### This Week's Slides:
 
@@ -7,7 +7,7 @@
 
 ## Introduction to Spatial Data Science
 
-Welcome to Week 00 of the course! This week is all about getting your technical foundation set up properly and understanding the basic skills you'll need throughout the quarter. We'll be working with several foundational platforms that form the core of modern spatial data science workflows.
+Welcome to Week 00 of the **Lab Section Guide for EarthSys144: Fundamentals of GIScience**, updated for **Spring 2026**. This week is all about getting your technical foundation set up properly and understanding the basic skills you'll need throughout the quarter. We'll be working with several foundational platforms that form the core of modern spatial data science workflows.
 
 ## Foundational Platforms
 

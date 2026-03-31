@@ -402,7 +402,7 @@ First, join the current course group so that you can share and submit your map a
 
 1. From the map, click the **Home** button and go to **Groups**.
 2. Click on the **My Organization's Groups** tab.
-3. Search for the current Earthsys144 course group announced on Canvas.
+3. Search for the current EarthSys144 course group announced on Canvas.
 4. Click **Join This Group**.
 
 ![](images/20250412_091049_image.png)
@@ -449,7 +449,7 @@ The resulting feature layer is a read-only view of the data being collected in y
 
 ## To Turn In
 
-1. Join the current Earthsys144 ArcGIS Online course group and share your data collection map app with that group.
+1. Join the current EarthSys144 ArcGIS Online course group and share your data collection map app with that group.
 2. Return to the details page of your **web map** and copy the URL from the browser URL bar. Submit that URL in Canvas.
 3. Go to the details page for the **view layer** you created and find its URL. Submit that URL in Canvas as well.
 

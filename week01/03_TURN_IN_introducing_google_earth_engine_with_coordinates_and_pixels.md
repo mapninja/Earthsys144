@@ -22,7 +22,7 @@ As you work through these scripts, pay attention to these panels:
 
 ![](images/20260327_131644_image.png)
 
-### Load the Earthsys144 Script Repository
+### Load the EarthSys144 Script Repository
 
 Before you start coding, connect the shared course script repository to your Earth Engine account:
 
@@ -467,7 +467,7 @@ Use the script below, (or load the script `TURN_IN Week01 - Make Your Own Geomet
 
 ```javascript
 // Your Name
-// EARTHSYS 144 / ESS 164
+// EarthSys144 / ESS 164
 // Week 01 Turn-In: Rectangle from inspected coordinates
 // I chose a place that matters to me and used the Inspector
 // to get two opposite corner coordinates for a rectangle.

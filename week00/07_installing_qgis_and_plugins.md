@@ -61,7 +61,7 @@ Creating a new user profile provides a clean workspace for the course and makes 
 2. Go to **Settings > User Profiles > New Profile**
 
    ![](images/20260224_105708_image.png)
-3. Name the profile something like `Earthsys144` or `Earthsys144-Labs` to identify it
+3. Name the profile something like `EarthSys144` or `EarthSys144-Labs` to identify it
 4. Click **OK**
 
 QGIS will restart with your new profile. This creates a fresh configuration with default settings. Your old profile (if you had one) remains available and you can switch between profiles from **Settings > User Profiles**.
@@ -257,7 +257,7 @@ To verify your installation:
 
 1. Create a new QGIS project
 2. Load the **Google Hybrid** basemap from **Web > QuickMapServices > Google > Google Hybrid**
-3. Open the **Processing Toolbox** and expand it to show **SAGA Next Gen** and **WhiteboxTools** providers
+3. Open the **Processing Toolbox** and expand it to show **SAGA Next Gen** and **WhiteboxTools** providers and the Scripts under their sections.
 4. **Create a screenshot** showing:
    - QGIS interface with the Google Hybrid basemap loaded
    - Processing Toolbox panel visible with SAGA Next Gen and WhiteboxTools expanded

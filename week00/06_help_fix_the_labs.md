@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to Earthsys144! This course is an ever-evolving educational experience that tries to incorporate new technology and techniques every quarter. As spatial data science rapidly advances, we continuously update our labs to include the latest tools, methods, and best practices.
+Welcome to EarthSys144! This course is an ever-evolving educational experience that tries to incorporate new technology and techniques every quarter. As spatial data science rapidly advances, we continuously update our labs to include the latest tools, methods, and best practices.
 
 **You can help make this course better for future students!**
 
