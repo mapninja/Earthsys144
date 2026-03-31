@@ -12,7 +12,7 @@ If you are attending lab in `Y2E2-184` (access code: `839090`), please remember 
 
 We also invite you to join the course Slack space for quick questions, troubleshooting, and informal course communication. This is often the fastest place to get help from the teaching team or from classmates.
 
-Two optional reference texts are also available if you would like additional background reading. The Bolstad textbook is available through a read-only Google Drive link, and the Tomlin textbook is available through Archive.org (links below).
+The two reference texts are also available for online reading. The Bolstad textbook is available through a read-only Google Drive link, and the Tomlin textbook is available through Archive.org (links below).
 
 ## Action Items
 
