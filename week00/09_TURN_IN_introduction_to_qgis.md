@@ -43,11 +43,11 @@ Before starting this lab, you should have already completed the **Week 00** setu
 
 ### Data
 
-Download the data package from: [https://github.com/mapninja/Earthsys144/blob/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip](https://github.com/mapninja/Earthsys144/blob/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip)
+Download the data package from: [https://github.com/mapninja/Earthsys144/blob/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip](https://github.com/mapninja/Earthsys144/raw/86e25f6d3ccfe42a312c920b002abb6819fa2cd9/data/Being_John_Snow.zip)
 
 Extract the zip file and place it in your local GIS working folder (remember — **not** in a cloud-synced folder like iCloud, OneDrive, or Dropbox! See the [Week 00 guide](../week00/00_things_you_need_to_know_about_your_computer.md) if you need a reminder about why).
 
-The project data folder contains the following datasets:
+The project `data/raw/` folder contains the following datasets:
 
 * **deathAddresses.csv** — A table of latitude and longitude coordinates for addresses affected by the cholera outbreak. This table also contains the number of deaths at each address. This is an example of **tabular data with embedded spatial information** — it's not a spatial format by itself, but we can turn it into one using the coordinate columns.
 * **Water_Pumps.geojson** — A **GeoJSON** file containing the locations of all 13 water pumps from Snow's original map. As you learned in [Week 00](03_introduction_to_spatial_data_formats.md), GeoJSON is a single-file spatial format (unlike shapefiles), which makes it convenient for sharing.
