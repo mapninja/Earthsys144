@@ -2,6 +2,16 @@
 
 ![](images/20260224_105258_image.png)
 
+## Test Data
+
+Download the test data for this lab: [stanford_art_data.zip](../data/stanford_art_data.zip)
+
+This zip file contains the following layers:
+
+- `stanford_public_art.geojson` — Point locations of public art installations on Stanford campus
+- `stanford_campus_irg.tif` — Infrared raster image of the Stanford campus
+- `stanford_campus.geojson` — Stanford campus boundary polygon
+
 ## Introduction
 
 QGIS (Quantum Geographic Information System) is a free, open-source desktop GIS application that will serve as our primary tool for spatial data analysis and cartography. This lab will guide you through the installation process and setup of essential plugins that extend QGIS's functionality for terrain analysis, geoprocessing, and basemap integration.
@@ -91,9 +101,26 @@ QuickMapServices provides convenient access to basemap layers from various provi
 
 ### SAGA NextGen Plugin
 
-SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.
+SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. SAGA is no longer included with QGIS and must be installed separately as a standalone application. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.
 
-**Install the Plugin:**
+#### Step 1: Install SAGA GIS
+
+1. Download the SAGA GIS installer for your platform:
+   - **macOS**: [saga-9.11.3_mac.zip](https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/saga-9.11.3_mac.zip/download)
+   - **Windows**: [SAGA 9.11.3 Downloads](https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/)
+2. Follow the instructions provided by the SAGA GIS installer. It should install as a standalone application in your **Applications** folder (macOS) or **Program Files** (Windows).
+
+#### Step 2: Configure QGIS to Find SAGA
+
+1. Open **Finder** and navigate to your **Applications** folder
+2. Locate the **"SAGA.app"** application bundle
+3. Right-click on **"SAGA.app"** and select **"Show Package Contents"**
+4. Navigate to **Contents > MacOS** — this is your SAGA folder
+5. Open **QGIS** and go to **Processing > Options > Providers > SAGA**
+6. In the **"SAGA folder"** field, paste the path you found above. Example: `/Applications/SAGA.app/Contents/MacOS/`
+7. Save the changes and restart QGIS
+
+#### Step 3: Install the Plugin
 
 1. Open **Plugins > Manage and Install Plugins**
 2. In the **All** tab, search for **SAGA**
@@ -158,7 +185,25 @@ For a video demonstration, see: [WhiteboxTools Setup Video](https://www.youtube.
 
 1. In the Processing Toolbox, expand the **WhiteboxTools** provider
 2. You should see hundreds of tools organized by category
-3. Try running a simple tool like **RandomSample** to verify functionality
+3. Test the installation by running the **RandomSample** tool:
+   - Search for **RandomSample** in the Processing Toolbox
+   - For the **Input Raster File**, select `stanford_campus_irg.tif` from the test data you downloaded earlier
+   - Set **Num. Samples** to **100**
+   - For the **Output File**, click the **...** button and **browse to an actual folder** on your computer, then type a filename (e.g., `random_sample_test.shp`). **Important:** WhiteboxTools does not work well with temporary layers. You must save the output to a real file path. If you only type a filename without browsing to a folder first, QGIS will error because it needs a full path (e.g., `/Users/yourname/Documents/random_sample_test.shp`), not just a filename.
+
+     ![](images/20260401_103355_image.png)
+   - Click **Run**
+
+> Note that the output file will likely appear to be solid black. This is becasue the RandomSamples are single pixels, likely too small to be seen on your screen resolution. Also note that the values of those pixels are sequential identifiers, from `1` to `100`, with `0` the background value.
+
+1. Now use the output to create a distance map with the **EuclideanDistance** tool:
+   - Search for **EuclideanDistance** in the Processing Toolbox
+   - For the **Input Vector File**, select the `random_sample_test.shp` output you just created
+   - For the **Output File**, click the **...** button, browse to the same folder, and save as `euclidean_distance_test.tif`
+   - Click **Run**
+2. If both tools complete successfully, WhiteboxTools is properly configured. You should see a raster layer showing the distance from each pixel to the nearest random sample point.
+
+![](images/20260401_103306_image.png)
 
 **Note on WhiteboxTools Plugins:** WhiteboxTools includes additional plugin executables in the `WBT/plugins/` directory. These specialized tools extend WhiteboxTools functionality and will be used later in the course.
 
@@ -230,8 +275,12 @@ This process only needs to be done once. After approval, WhiteboxTools will run 
 
 ### SAGA Tools Missing or Broken
 
+- SAGA is no longer bundled with QGIS — you must install it separately as a standalone application (see the SAGA NextGen Plugin section above)
 - Make sure you installed **Processing SAGA NextGen Provider**, not just the base SAGA
+- Verify the **SAGA folder** path is set correctly in **Processing > Options > Providers > SAGA** (e.g., `/Applications/SAGA.app/Contents/MacOS/`)
 - Try using tools from **SAGA Next Gen** instead of the original **SAGA** provider
+- **Conflicting installations**: If you had older versions of SAGA installed, ensure they are removed to avoid conflicts
+- **Permissions**: Rarely, you might need to adjust file permissions on the SAGA folder to allow QGIS to access it
 - Some tools may require specific data types or CRS - check tool documentation
 
 ### QuickMapServices Shows No Basemaps
