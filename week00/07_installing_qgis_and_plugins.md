@@ -132,8 +132,7 @@ SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessi
 **Verify Installation:**
 
 1. Go to **Processing > Toolbox** to open the Processing Toolbox panel
-2. You should now see **SAGA Next Gen** as a provider alongside the original **SAGA** provider
-3. When using SAGA tools, always prefer the **SAGA Next Gen** version for better compatibility
+2. You should now see **SAGA Next Gen** as a provider alongside the others
 
 ![](images/20260224_110200_image.png)
 
