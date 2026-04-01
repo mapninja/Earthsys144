@@ -1020,6 +1020,14 @@
                                 
                                 <h1 id="installing-qgis-and-plugins">Installing QGIS and Plugins</h1>
 <p><img src="images/20260224_105258_image.png" alt=""></img></p>
+<h2 id="test-data">Test Data</h2>
+<p>Download the test data for this lab: <a href="../data/stanford_art_data.zip">stanford_art_data.zip</a></p>
+<p>This zip file contains the following layers:</p>
+<ul>
+<li><code>stanford_public_art.geojson</code> — Point locations of public art installations on Stanford campus</li>
+<li><code>stanford_campus_irg.tif</code> — Infrared <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> of the Stanford campus</li>
+<li><code>stanford_campus.geojson</code> — Stanford campus boundary polygon</li>
+</ul>
 <h2 id="introduction">Introduction</h2>
 <p>QGIS (Quantum Geographic Information System) is a free, open-source desktop GIS application that will serve as our primary tool for spatial data analysis and <a href="../GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">cartography</a>. This lab will guide you through the installation process and setup of essential plugins that extend QGIS's functionality for terrain analysis, <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a>, and <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> integration.</p>
 <h2 id="learning-objectives">Learning Objectives</h2>
@@ -1093,8 +1101,27 @@
 </ol>
 <p><img src="images/20260224_110022_image.png" alt=""></img></p>
 <h3 id="saga-nextgen-plugin">SAGA NextGen Plugin</h3>
-<p>SAGA (System for Automated Geoscientific Analyses) provides powerful <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.</p>
-<p><strong>Install the Plugin:</strong></p>
+<p>SAGA (System for Automated Geoscientific Analyses) provides powerful <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools. SAGA is no longer included with QGIS and must be installed separately as a standalone application. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.</p>
+<h4 id="step-1-install-saga-gis">Step 1: Install SAGA GIS</h4>
+<ol>
+<li>Download the SAGA GIS installer for your platform:<ul>
+<li><strong>macOS</strong>: <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/saga-9.11.3_mac.zip/download" target="_blank">saga-9.11.3_mac.zip</a></li>
+<li><strong>Windows</strong>: <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/" target="_blank">SAGA 9.11.3 Downloads</a></li>
+</ul>
+</li>
+<li>Follow the instructions provided by the SAGA GIS installer. It should install as a standalone application in your <strong>Applications</strong> folder (macOS) or <strong>Program Files</strong> (Windows).</li>
+</ol>
+<h4 id="step-2-configure-qgis-to-find-saga">Step 2: Configure QGIS to Find SAGA</h4>
+<ol>
+<li>Open <strong>Finder</strong> and navigate to your <strong>Applications</strong> folder</li>
+<li>Locate the <strong>"SAGA.app"</strong> application bundle</li>
+<li>Right-click on <strong>"SAGA.app"</strong> and select <strong>"Show Package Contents"</strong></li>
+<li>Navigate to <strong>Contents &gt; MacOS</strong> — this is your SAGA folder</li>
+<li>Open <strong>QGIS</strong> and go to <strong>Processing &gt; Options &gt; Providers &gt; SAGA</strong></li>
+<li>In the <strong>"SAGA folder"</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>, paste the path you found above. Example: <code>/Applications/SAGA.app/Contents/MacOS/</code></li>
+<li>Save the changes and restart QGIS</li>
+</ol>
+<h4 id="step-3-install-the-plugin">Step 3: Install the Plugin</h4>
 <ol>
 <li>Open <strong>Plugins &gt; Manage and Install Plugins</strong></li>
 <li>In the <strong>All</strong> tab, search for <strong>SAGA</strong></li>
@@ -1156,8 +1183,32 @@
 <ol>
 <li>In the Processing Toolbox, expand the <strong>WhiteboxTools</strong> provider</li>
 <li>You should see hundreds of tools organized by category</li>
-<li>Try running a simple tool like <strong>RandomSample</strong> to verify functionality</li>
+<li><p>Test the installation by running the <strong>RandomSample</strong> tool:</p>
+<ul>
+<li>Search for <strong>RandomSample</strong> in the Processing Toolbox</li>
+<li>For the <strong>Input <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> File</strong>, select <code>stanford_campus_irg.tif</code> from the test data you downloaded earlier</li>
+<li>Set <strong>Num. Samples</strong> to <strong>100</strong></li>
+<li><p>For the <strong>Output File</strong>, click the <strong>...</strong> button and <strong>browse to an actual folder</strong> on your computer, then type a filename (e.g., <code>random_sample_test.shp</code>). <strong>Important:</strong> WhiteboxTools does not work well with temporary layers. You must save the output to a real file path. If you only type a filename without browsing to a folder first, QGIS will error because it needs a full path (e.g., <code>/Users/yourname/Documents/random_sample_test.shp</code>), not just a filename.</p>
+<p><img src="images/20260401_103355_image.png" alt=""></img></p>
+</li>
+<li>Click <strong>Run</strong></li>
+</ul>
+</li>
 </ol>
+<blockquote>
+<p>Note that the output file will likely appear to be solid black. This is becasue the RandomSamples are single pixels, likely too small to be seen on your screen <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a>. Also note that the values of those pixels are sequential identifiers, from <code>1</code> to <code>100</code>, with <code>0</code> the background value.</p>
+</blockquote>
+<ol>
+<li>Now use the output to create a distance map with the <strong>EuclideanDistance</strong> tool:<ul>
+<li>Search for <strong>EuclideanDistance</strong> in the Processing Toolbox</li>
+<li>For the <strong>Input <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> File</strong>, select the <code>random_sample_test.shp</code> output you just created</li>
+<li>For the <strong>Output File</strong>, click the <strong>...</strong> button, browse to the same folder, and save as <code>euclidean_distance_test.tif</code></li>
+<li>Click <strong>Run</strong></li>
+</ul>
+</li>
+<li>If both tools complete successfully, WhiteboxTools is properly configured. You should see a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> showing the distance from each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to the nearest random sample point.</li>
+</ol>
+<p><img src="images/20260401_103306_image.png" alt=""></img></p>
 <p><strong>Note on WhiteboxTools Plugins:</strong> WhiteboxTools includes additional plugin executables in the <code>WBT/plugins/</code> directory. These specialized tools extend WhiteboxTools functionality and will be used later in the course.</p>
 <h2 id="troubleshooting-whitebox-tools">Troubleshooting WhiteBox Tools</h2>
 <h3 id="macos-security-configuration-for-whiteboxtools">macOS Security Configuration for WhiteboxTools</h3>
@@ -1217,8 +1268,12 @@ Execution failed after 0.04 seconds
 </ul>
 <h3 id="saga-tools-missing-or-broken">SAGA Tools Missing or Broken</h3>
 <ul>
+<li>SAGA is no longer bundled with QGIS — you must install it separately as a standalone application (see the SAGA NextGen Plugin section above)</li>
 <li>Make sure you installed <strong>Processing SAGA NextGen Provider</strong>, not just the base SAGA</li>
+<li>Verify the <strong>SAGA folder</strong> path is set correctly in <strong>Processing &gt; Options &gt; Providers &gt; SAGA</strong> (e.g., <code>/Applications/SAGA.app/Contents/MacOS/</code>)</li>
 <li>Try using tools from <strong>SAGA Next Gen</strong> instead of the original <strong>SAGA</strong> provider</li>
+<li><strong>Conflicting installations</strong>: If you had older versions of SAGA installed, ensure they are removed to avoid conflicts</li>
+<li><strong>Permissions</strong>: Rarely, you might need to adjust file permissions on the SAGA folder to allow QGIS to access it</li>
 <li>Some tools may require specific data types or CRS - check tool documentation</li>
 </ul>
 <h3 id="quickmapservices-shows-no-basemaps">QuickMapServices Shows No Basemaps</h3>
@@ -1292,7 +1347,7 @@ Execution failed after 0.04 seconds
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.10","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-04-01T15:50:45.443Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-01T15:50:58.650Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.10","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-04-01T17:35:00.251Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-01T17:35:18.703Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
