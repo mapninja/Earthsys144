@@ -112,16 +112,15 @@ The default QGIS layout includes many toolbars that you may not need right away.
 
 A **basemap** is a background reference map (streets, satellite imagery, terrain, etc.) that gives geographic context to your data. We will use the **QuickMapServices** plugin to add one.
 
-If you already installed QuickMapServices and downloaded the contributed pack during [Week 00](07_installing_qgis_and_plugins.md), skip to step 4. Otherwise:
+If you already installed **QuickMapServices** during [Week 00](07_installing_qgis_and_plugins.md), skip to step 2. Otherwise:
 
 1. Go to **Plugins > Manage and Install Plugins**, search for **QuickMapServices**, and click **Install Plugin**.
-2. Go to **Web > QuickMapServices > Settings**, select the **More Services** tab, and click **Get contributed pack**.
-   ![](images/contribpack.png)
-3. Click **Save** to close the Settings dialog.
-4. Go to **Web > QuickMapServices > CartoDB > Stamen Toner Lite** to add a simple black-and-white basemap.
-5. **Save** your project.
+2. Go to **Web > QuickMapServices > CartoDB > Positron** to add a simple light grayscale basemap.
+3. **Save** your project.
 
 ![](images/stamenbasemap.png)
+
+> **Note:** Some screenshots or image file names in older materials may still reflect an earlier basemap example, but for this guide you should use **CartoDB > Positron**. The Stamen basemaps, while still available, are now behind a paywall that prevents their free use. 
 
 > **What is a basemap service?** Unlike the data files on your hard drive, a basemap is streamed from the internet as a set of pre-rendered image tiles. You can see it but you can't edit it or query its attributes. It's purely for visual reference.
 

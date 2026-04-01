@@ -81,17 +81,6 @@ QuickMapServices provides convenient access to basemap layers from various provi
 
 ![](images/20260224_105811_image.png)
 
-**Load Additional Basemap Services:**
-
-1. Go to **Web > QuickMapServices > Settings**
-2. Click on the **More Services** tab
-3. Click **Get Contributed Pack**
-4. Close the Settings dialog
-
-![](images/20260224_105839_image.png)
-
-![](images/20260224_105937_image.png)
-
 **Test the Installation:**
 
 1. Go to **Web > QuickMapServices**
