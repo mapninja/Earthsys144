@@ -4,7 +4,7 @@
 
 ## Test Data
 
-Download the test data for this lab: [stanford_art_data.zip](https://github.com/mapninja/Earthsys144/blob/121b8e17d7ae12f07ce9d4af9f8f0619ec05ff1a/data/stanford_art_data.zip)
+Download the test data for this lab: [stanford_art_data.zip](https://raw.githubusercontent.com/mapninja/Earthsys144/refs/heads/master/data/stanford_art_data.zip)
 
 This zip file contains the following layers:
 
