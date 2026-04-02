@@ -62,9 +62,10 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 
 ### Final Exam (Registrar Scheduled)
 
-- Date: Monday, June 8, 2026
-- Time: 3:30 PM - 6:30 PM
-- Location: TBD
+- Opens: Wed, June 5, 2026
+- Closes: Jun 10, 11:59pm
+- Location: Online/Canvas
+- Format: Open/Resubmits allowed
 
 ### Office Hours and Contact
 
@@ -79,6 +80,33 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 - Midterm Assessment: 20%
 - Final Assessment: 20%
 - Mini-Project: 10%
+
+## Grading Philosophy and Policies
+
+**Everyone can get an A+ in this course**, simply by making use of the resources we provide you with.
+
+### Late Work and Resubmissions
+
+- We have due dates, but **we do not dock points for late submissions**.
+- **Resubmissions are allowed** and can regain any points docked from a previous submission. Take the feedback, learn from it, and resubmit.
+
+### Exams
+
+- Exams are **open notes, open slides, open book, open internet** — use whatever resources you have.
+- Exams are released in Canvas and **open for one week**.
+- Exams may be **resubmitted an unlimited number of times** for perfect marks. Exam resubmissions are really my final opportunity to teach you the things I think you need to know.
+
+### Hard Deadlines
+
+There are a few deadlines that must be met for final grading purposes and for the sanity of the teaching team. These will be clearly marked. Otherwise, you are free to pace yourself.
+
+### Why?
+
+I do this because I would rather give you the opportunity to go back and correct, or learn what you missed, rather than having you move along without it. My job is to teach you — not to be your supervisor — and I don't believe in punitive grading as a pedagogical tool.
+
+### A Word of Advice
+
+**Don't let things get away from you.** While everyone is capable of doing the lab work ahead of us, it is time-consuming and often iterative. Waiting until the last week is a terrible strategy for success. Use the due dates as a guide to keep yourself on track.
 
 ## Assignments and Assessments
 
@@ -119,18 +147,18 @@ Cross-listed sections (ESS 164 and EARTHSYS 144) share the same meeting times an
 ## Tentative 10-Week Course Schedule (Spring 2026)
 
 
-| Dates                     | Week | Topic                                       | Lecture Focus                                                                                                                             | Suggested Reading             |
-| --------------------------- | ------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| Mar 30 & Apr 1            | 1    | Intro to GISci and Cartographic Design      | Spatial data models, map purpose, design basics                                                                                           | Bolstad Ch. 1-2               |
-| Apr 6 & Apr 8             | 2    | Coordinates, Projections, and Data Creation | Geodesy, projection choice, digitizing workflows;<br /><br />Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping) | Bolstad Ch. 3-4, 7            |
-| Apr 13 & Apr 15           | 3    | Tables, SQL, and Data Structure             | Relational tables, joins, filters, query logic                                                                                            | Bolstad Ch. 5, 8              |
-| Apr 20 & Apr 22           | 4    | Vector Analysis Fundamentals                | Buffer, overlay, proximity, areal workflows;<br /><br />Apr 22 guest lecture: TBD                                                         | Bolstad Ch. 9, 12             |
-| Apr 27 & Apr 29           | 5    | Applied GIS Workflows                       | Case studies, domain applications, project design                                                                                         | Supplemental readings         |
-| May 4 & May 6             | 6    | Raster Analysis and Terrain                 | Raster algebra, sampling, interpolation concepts                                                                                          | Bolstad Ch. 10-12             |
-| May 11 & May 13           | 7    | Remote Sensing and Web Mapping              | Sensor basics, imagery interpretation, web maps                                                                                           | Bolstad Ch. 6                 |
-| May 18 & May 20           | 8    | Storytelling and Communication              | Story maps, narrative structure, visual argument                                                                                          | Supplemental readings         |
-| May 27 (Mon holiday week) | 9    | Analytic Models and Synthesis               | Model logic, assumptions, and interpretation                                                                                              | Bolstad Ch. 15                |
-| Jun 1 & Jun 3             | 10   | Final Integration and Review                | Advanced examples, review, project support;<br /><br />Jun 1 guest lecture: TBD                                                           | Instructor-provided resources |
+| Dates                     | Week | Topic                                                              | Lecture Focus                                                                                                         | Suggested Reading             | Slides & Videos              |
+| --------------------------- | ------ | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------ |
+| Mar 30 & Apr 1            | 0    | Intro to GISci,                                                    | Spatial data models, map purpose, Geodesy & Coordinate Systems                                                        | Bolstad Ch. 1-2               | Week00 Slides; Week00 Videos |
+| Apr 6 & Apr 8             | 1    | Geodesy, Coordinates & Projections                                 | Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping)                                          | Bolstad Ch. 3-4, 7            | Week01 Slides; Week01 Videos |
+| Apr 13 & Apr 15           | 2    | Creating and Collecting Data                                       | digitizing and Field Data Collection workflows;<br /><br />                                                           | Bolstad Ch. 5, 8              | Week02 Slides; Week02 Videos |
+| Apr 20 & Apr 22           | 3    | Tables, SQL, and Data Structures; Cartographic Design Fundamentals | <br />Relational tables, joins, filters, query logic;<br /> Apr 22 guest lecture: David Medieros: Cartographic Design | Bolstad Ch. 9, 12             | Week03 Slides; Week03 Videos |
+| Apr 27 & Apr 29           | 4    | Vector Analysis Fundamentals, Applied GIS Workflows                | Buffer, overlay, proximity, areal workflows;Case studies, domain applications, project design                         | Supplemental readings         | Week04 Slides; Week04 Videos |
+| May 4 & May 6             | 5    | Raster Analysis and Terrain                                        | Raster algebra, sampling, interpolation concepts                                                                      | Bolstad Ch. 10-12             | Week05 Slides; Week05 Videos |
+| May 11 & May 13           | 6    | Remote Sensing and Web Mapping                                     | Sensor basics, imagery interpretation, web maps                                                                       | Bolstad Ch. 6                 | Week06 Slides; Week06 Videos |
+| May 18 & May 20           | 7    | Storytelling and Communication                                     | Story maps, narrative structure, visual argument                                                                      | Supplemental readings         | Week07 Slides; Week07 Videos |
+| May 27 (Mon holiday week) | 8    | Analytic Models and Synthesis                                      | Model logic, assumptions, and interpretation                                                                          | Bolstad Ch. 15                | Week08 Slides; Week08 Videos |
+| Jun 1 & Jun 3             | 9    | Final Integration and Review                                       | Advanced examples, review, project support;<br /><br />Jun 1 guest lecture: TBD                                       | Instructor-provided resources | Week09 Slides; Week09 Videos |
 
 ## Software and Materials
 
