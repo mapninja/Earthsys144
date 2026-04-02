@@ -19,7 +19,7 @@ By the end of this guide, you should be able to:
 
 ### Shapefiles (.shp): the multi-file classic
 
-![](images/20260223_123357_image.png)
+![](images/shapefiles-720825048.jpg)
 
 - **What it is**: The long-standing Esri vector format used across almost all GIS software.
 - **How it is stored**: A set of files with the same name prefix.
@@ -33,6 +33,8 @@ By the end of this guide, you should be able to:
 - **When to use**: Interoperability, legacy workflows, and simple exchange.
 
 ### GeoJSON (.geojson): the web-friendly standard
+
+![](images/20260223_123357_image.png)
 
 - **What it is**: JSON-based format for vector features and attributes.
 - **How it is stored**: A single text file.
