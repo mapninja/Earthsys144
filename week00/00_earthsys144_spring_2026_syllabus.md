@@ -147,18 +147,18 @@ I do this because I would rather give you the opportunity to go back and correct
 ## Tentative 10-Week Course Schedule (Spring 2026)
 
 
-| Dates                     | Week | Topic                                                              | Lecture Focus                                                                                                         | Suggested Reading             | Slides & Videos              |
-| --------------------------- | ------ | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------ |
-| Mar 30 & Apr 1            | 0    | Intro to GISci,                                                    | Spatial data models, map purpose, Geodesy & Coordinate Systems                                                        | Bolstad Ch. 1-2               | Week00 Slides; Week00 Videos |
-| Apr 6 & Apr 8             | 1    | Geodesy, Coordinates & Projections                                 | Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping)                                          | Bolstad Ch. 3-4, 7            | Week01 Slides; Week01 Videos |
-| Apr 13 & Apr 15           | 2    | Creating and Collecting Data                                       | digitizing and Field Data Collection workflows;<br /><br />                                                           | Bolstad Ch. 5, 8              | Week02 Slides; Week02 Videos |
-| Apr 20 & Apr 22           | 3    | Tables, SQL, and Data Structures; Cartographic Design Fundamentals | <br />Relational tables, joins, filters, query logic;<br /> Apr 22 guest lecture: David Medieros: Cartographic Design | Bolstad Ch. 9, 12             | Week03 Slides; Week03 Videos |
-| Apr 27 & Apr 29           | 4    | Vector Analysis Fundamentals, Applied GIS Workflows                | Buffer, overlay, proximity, areal workflows;Case studies, domain applications, project design                         | Supplemental readings         | Week04 Slides; Week04 Videos |
-| May 4 & May 6             | 5    | Raster Analysis and Terrain                                        | Raster algebra, sampling, interpolation concepts                                                                      | Bolstad Ch. 10-12             | Week05 Slides; Week05 Videos |
-| May 11 & May 13           | 6    | Remote Sensing and Web Mapping                                     | Sensor basics, imagery interpretation, web maps                                                                       | Bolstad Ch. 6                 | Week06 Slides; Week06 Videos |
-| May 18 & May 20           | 7    | Storytelling and Communication                                     | Story maps, narrative structure, visual argument                                                                      | Supplemental readings         | Week07 Slides; Week07 Videos |
-| May 27 (Mon holiday week) | 8    | Analytic Models and Synthesis                                      | Model logic, assumptions, and interpretation                                                                          | Bolstad Ch. 15                | Week08 Slides; Week08 Videos |
-| Jun 1 & Jun 3             | 9    | Final Integration and Review                                       | Advanced examples, review, project support;<br /><br />Jun 1 guest lecture: TBD                                       | Instructor-provided resources | Week09 Slides; Week09 Videos |
+| Dates                     | Week | Topic                                                              | Lecture Focus                                                                                             | Suggested Reading             | Lecture Slides                                                                                                                                                    |
+| --------------------------- | ------ | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mar 30 & Apr 1            | 0    | Intro to GISci, Geodesy, Coordinates & Projections                 | Spatial data models, map purpose, geodesy, and coordinate systems                                         | Bolstad Ch. 1 & 3             | [Course Logistics](https://slides.com/staceymaples/earthsys144-logistics); [Intro to Spatial Data Science](https://slides.com/staceymaples/spatial101a)           |
+| Apr 6 & Apr 8             | 1    | Spatial Data Models and Guest Lecture                              | Apr 8 guest lecture: Ben Gitai (Atlas of Paris Landscapes, SF Chronomapping)                              | Bolstad Ch. 2                 | [Spatial Data Models](https://slides.com/staceymaples/thedatamodels)                                                                                              |
+| Apr 13 & Apr 15           | 2    | Creating and Collecting Data                                       | Digitizing and field data collection workflows                                                            | Bolstad Ch. 4, 5              | [Digitizing Basics](https://slides.com/staceymaples/digitizingdata); [GPS/GNSS Survey](https://slides.com/staceymaples/gnss)                                      |
+| Apr 20 & Apr 22           | 3    | Tables, SQL, and Data Structures; Cartographic Design Fundamentals | Relational tables, joins, filters, query logic; Apr 22 guest lecture: David Medieros, Cartographic Design | Bolstad Ch. 8                 | [Map Design Slides](https://docs.google.com/presentation/d/1FAFDL4JCY130b-kVLumN31pTzU6T98qfBXn7pbnU0is/edit?slide=id.g53700ddb75_2_53#slide=id.g53700ddb75_2_53) |
+| Apr 27 & Apr 29           | 4    | Vector Analysis Fundamentals, Applied GIS Workflows                | Buffer, overlay, proximity, and areal workflows; case studies, domain applications, and project design    | Bolstad Ch. 9                 | Week04 Slides                                                                                                                                                     |
+| May 4 & May 6             | 5    | Raster Analysis and Terrain                                        | Raster algebra, sampling, and interpolation concepts                                                      | Bolstad Ch. 10-12             | Week05 Slides                                                                                                                                                     |
+| May 11 & May 13           | 6    | Remote Sensing and Web Mapping                                     | Sensor basics, imagery interpretation, and web maps                                                       | Bolstad Ch. 6                 | Week06 Slides                                                                                                                                                     |
+| May 18 & May 20           | 7    | Storytelling and Communication                                     | Story maps, narrative structure, and visual argument                                                      | Supplemental readings         | Week07 Slides                                                                                                                                                     |
+| May 27 (Mon holiday week) | 8    | Analytic Models and Synthesis                                      | Model logic, assumptions, and interpretation                                                              | Bolstad Ch. 15                | Week08 Slides                                                                                                                                                     |
+| Jun 1 & Jun 3             | 9    | Final Integration and Review                                       | Advanced examples, review, project support; Jun 1 guest lecture: TBD                                      | Instructor-provided resources | Week09 Slides                                                                                                                                                     |
 
 ## Software and Materials
 
@@ -172,22 +172,28 @@ I do this because I would rather give you the opportunity to go back and correct
 
 1. Bolstad, Paul. *GIS Fundamentals: A First Text on Geographic Information Systems.* 4th Edition. White Bear Lake, MN: Eider Press, 2012.
    - Availability: 2 print copies will be on 2-hour reserve at Branner library, courtesy of the instructor.
-   - Read-only Online Copy: https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link
+   - Read-only Online Copy: [https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link](https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link)
    - Stanford Bookstore: Available
 
 ### Recommended Texts
 
 1. Tomlin, C. Dana. *GIS and Cartographic Modeling.* Redlands, CA: Esri Press, 2013.
    - Availability: 1 print copy will be on 2-hour reserve at Branner library, courtesy of the instructor.
-   - Chapter 1, Read-only Copy: https://drive.google.com/file/d/1hbccbdCkNZyppvGy8vDlJVR_lBca7jqO/view?usp=drive_link
+   - Chapter 1, Read-only Copy: [https://drive.google.com/file/d/1hbccbdCkNZyppvGy8vDlJVR_lBca7jqO/view?usp=drive_link](https://drive.google.com/file/d/1hbccbdCkNZyppvGy8vDlJVR_lBca7jqO/view?usp=drive_link)
 2. Cardille, Jeffrey A., Morgan A. Crowley, David Saah, and Nicholas E. Clinton, editors. *Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications.* Cham: Springer, 2024.
-   - Availability: Full text available online https://link.springer.com/book/10.1007/978-3-031-26588-4. No print copies will be provided.
+   - Availability: Full text available online [https://link.springer.com/book/10.1007/978-3-031-26588-4](https://link.springer.com/book/10.1007/978-3-031-26588-4). No print copies will be provided.
 3. Graser, Anita, and Gretchen N. Peterson. *QGIS Map Design.* 2nd Edition. Chugiak, AK: Locate Press, 2018.
    - Availability: 1 print copy will be on 2-hour reserve at Branner library, courtesy of the instructor.
 
 ## Access and Accommodations
 
-Students needing academic accommodations should register with the Office of Accessible Education (OAE) and share accommodation letters as early as possible.
+I work hard to make this course accessible to as many students as possible. Because the course has very flexible homework and exam submission policies, most students should have ample time to complete and submit all work comfortably. My goal is to ensure that any Stanford student can take this class and succeed in it, because I strongly believe these technologies can meaningfully improve the work you go on to do in the future.
+
+If you feel you need additional accommodations beyond the flexibility already built into the course, please contact me directly. I am happy to work with you to support your learning
+
+#### Stanford's Access and Accommodations Statement
+
+Stanford is committed to providing equal educational opportunities for disabled students. Disabled students are a valued and essential part of the Stanford community. We welcome you to our class.If you experience disability, please register with the Office of Accessible Education (OAE). Professional staff will evaluate your needs, support appropriate and reasonable accommodations, and prepare an Academic Accommodation Letter for faculty. [To get started, or to re-initiate services, please visit oae.stanford.edu.](http://oae.stanford.edu/) If you already have an Academic Accommodation Letter, we invite you to share your letter with us. Academic Accommodation Letters should be shared at the earliest possible opportunity so we may partner with you and OAE to identify any barriers to access and inclusion that might be encountered in your experience of this course.
 
 ## Notes
 
