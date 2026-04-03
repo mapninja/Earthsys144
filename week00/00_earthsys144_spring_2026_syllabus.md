@@ -1,6 +1,6 @@
 # EarthSys144: Fundamentals of GIScience
 
-## Spring 2026 Lab Syllabus
+## Spring 2026 Lab Syllabus (Draft Mode)
 
 ## Course Description
 
@@ -165,8 +165,25 @@ I do this because I would rather give you the opportunity to go back and correct
 - Required: QGIS (latest release)
 - Used in course: Google Earth Engine, ArcGIS Online, and selected open-source tools
 - Hardware: Laptop computer with reliable internet access
-- Optional reference text: Bolstad, 6th edition (read-only link): https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=sharing
-- Optional reference text: Tomlin textbook on Archive.org: https://archive.org/details/geographicinform00toml
+
+## Textbook Requirements
+
+### Required Text
+
+1. Bolstad, Paul. *GIS Fundamentals: A First Text on Geographic Information Systems.* 4th Edition. White Bear Lake, MN: Eider Press, 2012.
+   - Availability: 2 print copies will be on 2-hour reserve at Branner library, courtesy of the instructor.
+   - Read-only Online Copy: https://drive.google.com/file/d/1CaigAPkcnFoKh2-gbWq_-y04REdYIyTE/view?usp=drive_link
+   - Stanford Bookstore: Available
+
+### Recommended Texts
+
+1. Tomlin, C. Dana. *GIS and Cartographic Modeling.* Redlands, CA: Esri Press, 2013.
+   - Availability: 1 print copy will be on 2-hour reserve at Branner library, courtesy of the instructor.
+   - Chapter 1, Read-only Copy: https://drive.google.com/file/d/1hbccbdCkNZyppvGy8vDlJVR_lBca7jqO/view?usp=drive_link
+2. Cardille, Jeffrey A., Morgan A. Crowley, David Saah, and Nicholas E. Clinton, editors. *Cloud-Based Remote Sensing with Google Earth Engine: Fundamentals and Applications.* Cham: Springer, 2024.
+   - Availability: Full text available online https://link.springer.com/book/10.1007/978-3-031-26588-4. No print copies will be provided.
+3. Graser, Anita, and Gretchen N. Peterson. *QGIS Map Design.* 2nd Edition. Chugiak, AK: Locate Press, 2018.
+   - Availability: 1 print copy will be on 2-hour reserve at Branner library, courtesy of the instructor.
 
 ## Access and Accommodations
 
