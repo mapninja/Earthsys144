@@ -132,8 +132,8 @@ I do this because I would rather give you the opportunity to go back and correct
 ### Course and Exam Milestones
 
 - Mini-project proposal due: Friday, April 24, 2026 (11:59 PM)
-- Midterm released: Wednesday, May 6, 2026 (12:00 AM)
-- Midterm due: Monday, May 11, 2026 (11:59 PM)
+- **Midterm released: Wednesday, May 6, 2026** (12:00 AM)
+- **Midterm due: Monday, May 11, 2026** (11:59 PM)
 - June 8 (Mon, 3:30-6:30 PM): Scheduled final exam slot
 - Finals week: Final assessment due (if take-home format is used)
 - Mini-project final deliverable due: Sunday, June 7, 2026 (11:59 PM)
