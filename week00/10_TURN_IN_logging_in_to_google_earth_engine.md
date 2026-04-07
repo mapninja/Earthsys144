@@ -1,5 +1,7 @@
 # Logging in to Google Earth Engine
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 > **Turn-in for grading:** This guide includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
 ## What is Google Earth Engine?

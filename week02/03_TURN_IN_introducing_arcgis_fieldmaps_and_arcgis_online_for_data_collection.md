@@ -1,5 +1,7 @@
 # Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 ## Collecting Field Data with ArcGIS Online and Field Maps
 
 ### Overview

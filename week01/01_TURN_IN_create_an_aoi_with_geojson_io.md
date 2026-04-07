@@ -1,5 +1,7 @@
 # Lab 01: Create an Area of Interest with GeoJSON.io (DRAFT)
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Export your AOI file using the naming convention below and submit it to Canvas.
 
 ## Introduction
@@ -65,7 +67,7 @@ You will use the Stanford campus as a size reference. Your final AOI must be **a
 
 ### Step 3: Check the Size
 
-After drawing, look at the raw GeoJSON in the JSON panel on the left. You will see a `FeatureCollection` containing one `Feature` with a `Polygon` geometry. The four coordinate pairs define the corners of your rectangle in `[longitude, latitude]` order.
+After drawing, look at the raw GeoJSON in the JSON panel on the right. You will see a `FeatureCollection` containing one `Feature` with a `Polygon` geometry. The four coordinate pairs define the corners of your rectangle in `[longitude, latitude]` order.
 
 This is the minimum size your final AOI must be. A rectangle covering the full Stanford campus is roughly **3–4 km east-west by 5–6 km north-south**.
 

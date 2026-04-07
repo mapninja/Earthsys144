@@ -1,5 +1,7 @@
 # Lab 1: Introduction to QGIS — Being John Snow
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
 ## The Broad Street Outbreak: A Story of Spatial Thinking

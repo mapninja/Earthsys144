@@ -1,5 +1,7 @@
 # Lab 02: Projection Error Measurement with QGIS (DRAFT)
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
 ## Introduction
@@ -47,11 +49,11 @@ This exercise uses two datasets downloaded from Stanford EarthWorks:
 
 You will download one dataset as a shapefile and the other as GeoJSON so you can also review how QGIS handles different vector formats.
 
-1. Create a project folder on your computer, something like `Week02Labs`, where you will keep both the data and the QGIS project file.
+1. Create a project folder on your computer, something like `Week01Labs`, where you will keep both the data and the QGIS project file.
 2. Download the following datasets into that folder:
 
 - Download the **Zipped Object** for **1:1,000,000-Scale County Boundaries of the United States, 2014** from https://earthworks.stanford.edu/catalog/stanford-wg010mf7692.
-- Download the **GeoJSON** export for **10-Degree Graticule Grid, World, 1:10 million, 2012** from https://earthworks.stanford.edu/catalog/stanford-fr122tq8910.
+- Download the **GeoJSON** for **10-Degree Graticule Grid, World, 1:10 million, 2012** from [https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/stanford-fr122tq8910-geojson.json](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/stanford-fr122tq8910-geojson.json). *(EarthWorks is currently unable to generate GeoJSON derivatives, so use this course data copy instead.)*
 
 ![](../week02/images/20250408_124031_image.png)
 
@@ -70,7 +72,7 @@ A QGIS project file does **not** contain the datasets you add to it. It stores p
 1. Open QGIS.
 2. Click the **New Project** button ![](../week02/images/50_Coordinate_Systems_Geodesy-e1fd8eb8.png).
 3. Click the **Save** button ![](../week02/images/50_Coordinate_Systems_Geodesy-c1847aa3.png).
-4. Save the project in your project folder with a name such as `week_02_projections.qgz`.
+4. Save the project in your project folder with a name such as `week_01_projections.qgz`.
 
 ![](../week02/images/50_Coordinate_Systems_Geodesy-e98f5463-drop-shadow.png)
 

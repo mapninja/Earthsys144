@@ -1,5 +1,7 @@
 # Georeferencing with QGIS and AllMaps.org
 
+> **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
 ## Overview
