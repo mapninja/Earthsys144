@@ -55,6 +55,8 @@ You will download one dataset as a shapefile and the other as GeoJSON so you can
 - Download the **Zipped Object** for **1:1,000,000-Scale County Boundaries of the United States, 2014** from https://earthworks.stanford.edu/catalog/stanford-wg010mf7692.
 - Download the **GeoJSON** for **10-Degree Graticule Grid, World, 1:10 million, 2012** from [https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/stanford-fr122tq8910-geojson.json](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/stanford-fr122tq8910-geojson.json). *(EarthWorks is currently unable to generate GeoJSON derivatives, so use this course data copy instead.)*
 
+> **Note:** The GeoJSON file may open in your browser instead of downloading. If this happens, go to **File > Save** (or ⌘+S on Mac) to save the file to your computer.
+
 ![](../week02/images/20250408_124031_image.png)
 
 3. Unzip the county boundary download if needed. Inside the first unzip, you will find additional zip files. Use the `data.zip` package, which preserves the archival data in its original CRS.

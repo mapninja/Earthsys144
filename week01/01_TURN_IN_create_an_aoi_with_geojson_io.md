@@ -123,6 +123,9 @@ Adding descriptive properties to your features is good practice — it makes the
 ## Part 5: Export Your AOI as GeoJSON
 
 1. Click **Save** at the top of the page.
+
+> **Note:** The GeoJSON file may open in your browser instead of downloading. If this happens, go to **File > Save** (or ⌘+S on Mac) to save the file to your computer.
+
 2. Choose **GeoJSON** as the format.
 3. Save the file. Your browser will likely save it as `map.geojson` — **rename it immediately** using the naming convention below.
 
