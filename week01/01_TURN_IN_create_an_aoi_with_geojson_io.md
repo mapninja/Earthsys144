@@ -1,4 +1,4 @@
-# Lab 01: Create an Area of Interest with GeoJSON.io (DRAFT)
+# Lab 01: Create an Area of Interest with GeoJSON.io (Ready!)
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 

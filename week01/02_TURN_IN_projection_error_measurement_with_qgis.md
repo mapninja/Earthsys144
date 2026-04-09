@@ -1,4 +1,4 @@
-# Lab 02: Projection Error Measurement with QGIS (DRAFT)
+# Lab 02: Projection Error Measurement with QGIS (Ready!!)
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 

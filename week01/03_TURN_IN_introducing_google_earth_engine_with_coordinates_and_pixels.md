@@ -1,4 +1,4 @@
-# Lab 03: Coordinates & Geometries with Google Earth Engine (DRAFT)
+# Lab 03: Coordinates & Geometries with Google Earth Engine (Ready!!)
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
