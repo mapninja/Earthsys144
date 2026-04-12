@@ -1,4 +1,4 @@
-# Introduction to QGIS: Labelling Tree Data with QGIS
+# Introduction to QGIS: Labelling Tree Data with QGIS (DRAFT)
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 

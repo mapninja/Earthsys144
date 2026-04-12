@@ -30,19 +30,19 @@ These Week 02 labs include material that must be turned in for grading.
 
 This lab introduces georeferencing through a historical map of Wyoming. You will work with a scanned map image, a PLSS reference layer, and the QGIS Georeferencer to align the historical map to real-world coordinates. The lab emphasizes not only the mechanics of the tool, but the conceptual ideas behind reference data, projection choice, and control point placement.
 
-### 01 - TURN IN - Data Creation in QGIS
+### [01 - TURN IN - Data Creation in QGIS](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_data_creation_in_qgis.html)
 
 [Open the lab](01_TURN_IN_data_creation_in_qgis.md)
 
 This lab introduces vector data creation through a tree crown labeling exercise in QGIS. You will work from aerial imagery, create new polygon features, and document your work in a map layout. The main lesson is that digitizing is an interpretive act: you are making decisions about where features begin and end, and those decisions affect the quality of the resulting dataset.
 
-### 03 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection
+### [03 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
 
 [Open the lab](03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
 
 This lab introduces mobile field data collection. You will create hosted feature layers in ArcGIS Online, design a field form, configure offline use, and collect data with ArcGIS Field Maps. The purpose is to help you think carefully about field schema design, controlled vocabularies, usability, and the realities of collecting data away from a desktop GIS.
 
-### 04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine
+### [04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine](https://mapninja.github.io/Earthsys144/week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html)
 
 [Open the lab](04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md)
 
