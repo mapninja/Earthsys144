@@ -1,4 +1,4 @@
-# Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection
+# Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection (Ready)
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
@@ -66,7 +66,6 @@ At this point, you should see Stanford's ArcGIS Online landing page. Take a mome
 
 3. Use **+ Add** to create individual **point, line, and polygon layers** and name them as shown in the table below.
 
-
    ![](images/20260412_131007_image.png)
 
 <table>
@@ -106,7 +105,6 @@ Your **Walking Tour layer** is created and its item details page should open. In
 ### Add fields to the feature class
 
 1. Go to the **Data tab** of the item page and go to **Fields**. If you created layers for **points, lines, and polygons**, verify that _Place_ is chosen in the **Layer** list.
-
 
 ![](images/20260412_131745_image.png)
 
@@ -184,10 +182,10 @@ Your **Walking Tour layer** is created and its item details page should open. In
 
 ### A couple more fields
 
-Now use what you just learned to add a few more fields for information about your features. 
+Now use what you just learned to add a few more fields for information about your features.
 
 1. Create another field named _Label_ that is a String.
-4. Create another field named _Notes_ that is a String.
+2. Create another field named _Notes_ that is a String.
 
 > **Why use a list of values?** Controlled vocabularies make field data cleaner. If users must choose from a short list like `Art`, `Architecture`, or `History`, you avoid messy spelling differences and one-off labels that are hard to summarize later.
 
@@ -415,7 +413,8 @@ Open ArcGIS Field Maps, using `stanford` as your organization, and log in with y
 
 5. To add a feature, touch the **+** icon, select **New Feature**, and follow the prompts.
 
-![](images/20250326_153428_image.png)
+![](images/20260412_141940_image.png)
+
 6. You can fill out the form before placing the point, or click **Add Point** first. Sometimes it is useful to wait and place the point after filling the form, to allow your GPS accuracy to improve.
 7. Walk around campus, adding public art, historically significant locations, technology, or other useful features such as picnic tables, restrooms, or water fountains. **Collect at least 12 points, with photo or video attachments.**
 
@@ -433,10 +432,13 @@ First, join the current course group so that you can share and submit your map a
 
 1. From the map, click the **Home** button and go to **Groups**.
 2. Click on the **My Organization's Groups** tab.
-3. Search for the current EarthSys144 course group announced on Canvas.
+3. Search for the current `EarthSys144 Fundamentals of GISci - Spring 2026` course group.
 4. Click **Join This Group**.
 
-![](images/20250412_091049_image.png)
+
+![](images/20260412_142229_image.png)
+
+![]()
 
 ### Share the map and feature layer with the group
 
@@ -451,13 +453,21 @@ Now that you are a member of the course group, you can share content with it. No
 
 ![](images/20250412_091737_image.png)
 
-![](images/20250412_091814_image.png)
+![](images/20260412_142806_image.png)
 
 1. Click Apply, then click Save to apply the Share settings
 
 ![](images/20250412_092139_image.png)
 
 1. Your mapping app and feature layer should now be visible to members of the course group.
+
+### Update SHaring on your Feature Layer
+
+1. You will be prompted to **Review sharing**, since your Feature Layer is probably not shared int he same way as your Map Document.
+
+![](images/20260412_143031_image.png)
+
+2. Click **Update sharing** button to apply the Share Settings to your **Feature layer**.
 
 ## Working with the data
 
@@ -468,7 +478,7 @@ You may want to share the collected data through a visualization, but you usuall
 > **Important concept:** In GIS, sharing and editing are not the same thing. Separating editable data from read-only views is a core part of responsible data management.
 
 1. Return to your **Content page**, and find your **Walking Tour feature layer** item and click on it to go to the **Details page**.
-2. Click on the **Create View Layer** button
+2. Click on **Show More** button and then the **Create View Layer** button
 3. Give it an appropriate name like `My Mapping App Data Public View (_SUNetID_)` and click OK
 4. Click on the **Share** Button in the resulting **Details Page**, and change the Sharing to `Public`.
 
@@ -480,7 +490,7 @@ The resulting feature layer is a read-only view of the data being collected in y
 
 ## To Turn In
 
-1. Join the current EarthSys144 ArcGIS Online course group and share your data collection map app with that group.
+1. Join the current **EarthSys144 ArcGIS Online course group** if you didn't as part of the above steps, and share your data collection map app with that group.
 2. Return to the details page of your **web map** and copy the URL from the browser URL bar. Submit that URL in Canvas.
 3. Go to the details page for the **view layer** you created and find its URL. Submit that URL in Canvas as well.
 
