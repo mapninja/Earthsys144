@@ -66,6 +66,9 @@ At this point, you should see Stanford's ArcGIS Online landing page. Take a mome
 
 3. Use **+ Add** to create individual **point, line, and polygon layers** and name them as shown in the table below.
 
+
+   ![](images/20260412_131007_image.png)
+
 <table>
   <tr>
    <td>
@@ -98,32 +101,42 @@ At this point, you should see Stanford's ArcGIS Online landing page. Take a mome
 
 > **Why are we creating three geometry types?** Real field projects often need more than one kind of feature. A point might represent a single object like a sculpture or water fountain. A line might represent a path or curb. A polygon might represent a garden, building footprint, or other area. Even if you only use one layer heavily in this exercise, it is useful to see how a field project can be structured to collect multiple kinds of geometry.
 
-![./images/image3.gif](./images/image3.gif)
-
 Your **Walking Tour layer** is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places layer.
 
 ### Add fields to the feature class
 
 1. Go to the **Data tab** of the item page and go to **Fields**. If you created layers for **points, lines, and polygons**, verify that _Place_ is chosen in the **Layer** list.
 
-![](images/20250326_115131_image.png)
 
-1. Click **Add**. Give the field the name `PlaceType` and the alias `Point of Interest Type`. Choose type: **String**. Accept the other defaults and click **Add New Field**.
+![](images/20260412_131745_image.png)
+
+1. Click **Add Field** at the top right side of the page.
+2. Select **Text > String**
+
+   ![](images/20260412_131916_image.png)
+3. Give the field the name `PlaceType` and the alias `Point of Interest Type`.
+4. Accept the other defaults and click **Add New Field**.
+
+![](images/20260412_132104_image.png)
 
 > **Why add fields now?** A hosted feature layer is not just geometry. It is also a table. The fields you create here become the structure of the form people fill out in the field. Thinking carefully about fields early helps prevent messy, inconsistent data later.
-
-![](images/ArcGIS_Online_FieldMaps-3ae82aac.png)
 
 ### Create a Domain (values list) for the places layer
 
 1. Click _`Point of Interest`_ in the **Display Name** list to open the details page for the field.
-2. Click **Create List** to create a list of choices for the **POI Types**. Type a label of `Art` with a code of 0.
+2. Click **Get Started** to create a list of choices, or **Domain**, for the **POI Types**.
 
-![](images/20250326_115317_image.png)
+![](images/20260412_132533_image.png)
 
-![](images/20250326_115423_image.png)
+3. Select **Enter values** and **Next**...
 
-1. Add entries for the following:
+![](images/20260412_132850_image.png)
+
+3. Type a label of `Art` with a code of `0`.
+
+![](images/20260412_133012_image.png)
+
+1. Add entries for the rest of the values, as follow:
 
 <table>
   <tr>
@@ -165,17 +178,20 @@ Your **Walking Tour layer** is created and its item details page should open. In
   </tr>
 </table>
 
-![](images/20250326_115516_image.png)
+![](images/20260412_133251_image.png)
 
 1. Click Save.
-2. Create another field named _Label_ that is a String.
-3. Create another field named _Notes_ that is a String.
+
+### A couple more fields
+
+Now use what you just learned to add a few more fields for information about your features. 
+
+1. Create another field named _Label_ that is a String.
+4. Create another field named _Notes_ that is a String.
 
 > **Why use a list of values?** Controlled vocabularies make field data cleaner. If users must choose from a short list like `Art`, `Architecture`, or `History`, you avoid messy spelling differences and one-off labels that are hard to summarize later.
 
-![](images/ArcGIS_Online_FieldMaps-153e6cbe.png)
-
-![](images/20250326_115650_image.png)
+![](images/20260412_133528_image.png)
 
 ### Enable Offline Editing for Field Maps
 
@@ -183,6 +199,8 @@ Your **Walking Tour layer** is created and its item details page should open. In
 
 1. Click on the **Settings tab** at the top of the **Feature Layer's Details page**.
 2. Make sure that settings under the **Editing** section at the top are **all enabled**, in particular that "**Enable Sync**" is checked.
+
+   ![](images/20260412_133716_image.png)
 3. Note the other settings for controlling who and how data can be edited.
 
 
@@ -207,8 +225,6 @@ Your **Walking Tour layer** is created and its item details page should open. In
 |                                      | Only add new features (if allowed)          | ✅ Selected                |
 |                                      |                                             |                            |
 
-![](images/20250326_120013_image.png)
-
 1. Click Save to save these settings.
 
 > **Why offline editing matters:** Even on a well-connected campus, field conditions are unpredictable. If your map can work offline, the data collection workflow is much more resilient. This is even more important for environmental fieldwork, archaeology, disaster response, and any site where network access is weak or inconsistent.
@@ -230,7 +246,7 @@ Now you will add the feature layers you created to an ArcGIS Online web map. Thi
    ![](images/20250326_121454_image.png)
 2. Click **Save and open** to save your map.
 
-![](images/20250326_121740_image.png)
+![](images/20260412_134139_image.png)
 
 3. Use the arrow next to your Walking Tour layer to expand the layer group so you can see the individual feature layers.
 
@@ -272,7 +288,7 @@ We do not need to change any settings in this section for the assignment, but it
 
 ![](images/20250326_123129_image.png)
 
-1. Click on the "Configure Attributes" icon in the Fields list box to expand it and note that the fields you added to your Places feature layer are already included in the Fields list.
+1. Click on the **Fields list** box to expand it and note that the fields you added to your Places feature layer are already included in the Fields list.
 
 ![](images/20250326_124426_image.png)
 
@@ -295,6 +311,19 @@ We do not need to change any settings in this section for the assignment, but it
 1. Save the map.
 
 ![](images/20250326_125212_image.png)
+
+### Update the Editing Template
+
+1. On the right side of the Map Viewer, click **Configure Editing > Templates**
+
+![](images/20260412_134956_image.png)
+
+2. Click Update in the Banner at the top
+
+   ![](images/20260412_135111_image.png)
+3. CLick OK to Save the Template Update, and close the Template Editor
+
+   ![](images/20260412_135153_image.png)
 
 ### Enable Offline Editing
 
@@ -380,7 +409,7 @@ Open ArcGIS Field Maps, using `stanford` as your organization, and log in with y
 
 ![](images/20250326_130923_image.png)
 
-3. Click on the **+** icon in Online Map to begin adding a point.
+3. Click on the **Online Map to open it.
 
 ![](images/20250326_131029_image.png)
 
