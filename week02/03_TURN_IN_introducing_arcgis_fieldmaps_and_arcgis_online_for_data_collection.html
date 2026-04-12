@@ -1078,6 +1078,7 @@
 <ol>
 <li>Use <strong>+ Add</strong> to create individual <strong>point, line, and polygon layers</strong> and name them as shown in the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> below.</li>
 </ol>
+<p>   <img src="images/20260412_131007_image.png" alt=""></img></p>
 <table>
   <tr>
    <td>
@@ -1112,29 +1113,40 @@
 <blockquote>
 <p><strong>Why are we creating three geometry types?</strong> Real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> projects often need more than one kind of <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. A point might represent a single object like a sculpture or water fountain. A line might represent a path or curb. A polygon might represent a garden, building footprint, or other area. Even if you only use one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> heavily in this exercise, it is useful to see how a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> project can be structured to collect multiple kinds of geometry.</p>
 </blockquote>
-<p><img src="images/image3.gif" alt="./images/image3.gif"></img></p>
 <p>Your <strong>Walking Tour <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <h3 id="add-fields-to-the-feature-class">Add fields to the feature class</h3>
 <ol>
 <li>Go to the <strong>Data tab</strong> of the item page and go to <strong>Fields</strong>. If you created layers for <strong>points, lines, and polygons</strong>, verify that <em>Place</em> is chosen in the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> list.</li>
 </ol>
-<p><img src="images/20250326_115131_image.png" alt=""></img></p>
+<p><img src="images/20260412_131745_image.png" alt=""></img></p>
 <ol>
-<li>Click <strong>Add</strong>. Give the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> the name <code>PlaceType</code> and the alias <code>Point of Interest Type</code>. Choose type: <strong>String</strong>. Accept the other defaults and click <strong>Add New <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong>.</li>
+<li>Click <strong>Add <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong> at the top right side of the page.</li>
+<li><p>Select <strong>Text &gt; String</strong></p>
+<p><img src="images/20260412_131916_image.png" alt=""></img></p>
+</li>
+<li>Give the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> the name <code>PlaceType</code> and the alias <code>Point of Interest Type</code>.</li>
+<li>Accept the other defaults and click <strong>Add New <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong>.</li>
 </ol>
+<p><img src="images/20260412_132104_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Why add fields now?</strong> A hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is not just geometry. It is also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. The fields you create here become the structure of the form people fill out in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. Thinking carefully about fields early helps prevent messy, inconsistent data later.</p>
 </blockquote>
-<p><img src="images/ArcGIS_Online_FieldMaps-3ae82aac.png" alt=""></img></p>
 <h3 id="create-a-domain-values-list-for-the-places-layer">Create a Domain (values list) for the places layer</h3>
 <ol>
 <li>Click <em><code>Point of Interest</code></em> in the <strong>Display Name</strong> list to open the details page for the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
-<li>Click <strong>Create List</strong> to create a list of choices for the <strong>POI Types</strong>. Type a <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> of <code>Art</code> with a code of 0.</li>
+<li>Click <strong>Get Started</strong> to create a list of choices, or <strong>Domain</strong>, for the <strong>POI Types</strong>.</li>
 </ol>
-<p><img src="images/20250326_115317_image.png" alt=""></img></p>
-<p><img src="images/20250326_115423_image.png" alt=""></img></p>
+<p><img src="images/20260412_132533_image.png" alt=""></img></p>
 <ol>
-<li>Add entries for the following:</li>
+<li>Select <strong>Enter values</strong> and <strong>Next</strong>...</li>
+</ol>
+<p><img src="images/20260412_132850_image.png" alt=""></img></p>
+<ol>
+<li>Type a <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> of <code>Art</code> with a code of <code>0</code>.</li>
+</ol>
+<p><img src="images/20260412_133012_image.png" alt=""></img></p>
+<ol>
+<li>Add entries for the rest of the values, as follow:</li>
 </ol>
 <table>
   <tr>
@@ -1176,22 +1188,27 @@
   </tr>
 </table>
 
-<p><img src="images/20250326_115516_image.png" alt=""></img></p>
+<p><img src="images/20260412_133251_image.png" alt=""></img></p>
 <ol>
 <li>Click Save.</li>
+</ol>
+<h3 id="a-couple-more-fields">A couple more fields</h3>
+<p>Now use what you just learned to add a few more fields for information about your features. </p>
+<ol>
 <li>Create another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <em><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">Label</a></em> that is a String.</li>
 <li>Create another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <em>Notes</em> that is a String.</li>
 </ol>
 <blockquote>
 <p><strong>Why use a list of values?</strong> Controlled vocabularies make <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data cleaner. If users must choose from a short list like <code>Art</code>, <code>Architecture</code>, or <code>History</code>, you avoid messy spelling differences and one-off labels that are hard to summarize later.</p>
 </blockquote>
-<p><img src="images/ArcGIS_Online_FieldMaps-153e6cbe.png" alt=""></img></p>
-<p><img src="images/20250326_115650_image.png" alt=""></img></p>
+<p><img src="images/20260412_133528_image.png" alt=""></img></p>
 <h3 id="enable-offline-editing-for-field-maps">Enable Offline Editing for Field Maps</h3>
 <p><strong>This is a step that MUST be done before adding your <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers to an ArcGIS Online map</strong> for creating your editing app.</p>
 <ol>
 <li>Click on the <strong>Settings tab</strong> at the top of the <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a>'s Details page</strong>.</li>
-<li>Make sure that settings under the <strong>Editing</strong> section at the top are <strong>all enabled</strong>, in particular that "<strong>Enable Sync</strong>" is checked.</li>
+<li><p>Make sure that settings under the <strong>Editing</strong> section at the top are <strong>all enabled</strong>, in particular that "<strong>Enable Sync</strong>" is checked.</p>
+<p><img src="images/20260412_133716_image.png" alt=""></img></p>
+</li>
 <li>Note the other settings for controlling who and how data can be edited.</li>
 </ol>
 <table>
@@ -1294,7 +1311,6 @@
 </tr>
 </tbody>
 </table>
-<p><img src="images/20250326_120013_image.png" alt=""></img></p>
 <ol>
 <li>Click Save to save these settings.</li>
 </ol>
@@ -1317,7 +1333,7 @@
 </li>
 <li>Click <strong>Save and open</strong> to save your map.</li>
 </ol>
-<p><img src="images/20250326_121740_image.png" alt=""></img></p>
+<p><img src="images/20260412_134139_image.png" alt=""></img></p>
 <ol>
 <li>Use the arrow next to your Walking Tour <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to expand the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> group so you can see the individual <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers.</li>
 </ol>
@@ -1358,7 +1374,7 @@
 </ol>
 <p><img src="images/20250326_123129_image.png" alt=""></img></p>
 <ol>
-<li>Click on the "Configure Attributes" icon in the Fields list box to expand it and note that the fields you added to your Places <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> are already included in the Fields list.</li>
+<li>Click on the <strong>Fields list</strong> box to expand it and note that the fields you added to your Places <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> are already included in the Fields list.</li>
 </ol>
 <p><img src="images/20250326_124426_image.png" alt=""></img></p>
 <p><img src="images/20250326_124613_image.png" alt=""></img></p>
@@ -1380,6 +1396,19 @@
 <li>Save the map.</li>
 </ol>
 <p><img src="images/20250326_125212_image.png" alt=""></img></p>
+<h3 id="update-the-editing-template">Update the Editing Template</h3>
+<ol>
+<li>On the right side of the Map Viewer, click <strong>Configure Editing &gt; Templates</strong></li>
+</ol>
+<p><img src="images/20260412_134956_image.png" alt=""></img></p>
+<ol>
+<li><p>Click Update in the Banner at the top</p>
+<p><img src="images/20260412_135111_image.png" alt=""></img></p>
+</li>
+<li><p>CLick OK to Save the Template Update, and close the Template Editor</p>
+<p><img src="images/20260412_135153_image.png" alt=""></img></p>
+</li>
+</ol>
 <h3 id="enable-offline-editing">Enable Offline Editing</h3>
 <ol>
 <li><p>Click on the <strong>Map Properties</strong> button <img src="images/20250326_125443_image.png" alt=""></img> on the left side of the page, then click on the <strong>item details</strong>.</p>
@@ -1462,7 +1491,7 @@
 </ol>
 <p><img src="images/20250326_130923_image.png" alt=""></img></p>
 <ol>
-<li>Click on the <strong>+</strong> icon in Online Map to begin adding a point.</li>
+<li>Click on the **Online Map to open it.</li>
 </ol>
 <p><img src="images/20250326_131029_image.png" alt=""></img></p>
 <ol>
@@ -1590,7 +1619,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","mtime":"2026-04-09T20:31:51.593Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-09T20:32:02.114Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","mtime":"2026-04-12T21:07:01.334Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-12T21:07:09.923Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
