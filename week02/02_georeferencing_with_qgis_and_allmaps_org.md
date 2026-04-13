@@ -319,15 +319,67 @@ Look for:
 
 > **Important GIS habit:** Always evaluate your result visually and conceptually. Do not assume a tool output is correct just because the software completed successfully.
 
+## Part 8: Create the Final Map Layout
+
+Your final deliverable for this lab is not just the georeferenced image inside the QGIS project. You should create a clear map layout that communicates the result of your georeferencing work.
+
+### Build the layout
+
+1. In the main QGIS window, make sure the georeferenced historical map is visible.
+2. Keep the PLSS layer turned on and symbolized so it can be seen clearly on top of the historical map.
+3. Keep a basemap visible underneath for geographic context.
+4. Go to **Project > New Print Layout** and create a new layout.
+5. Add a map frame that shows the georeferenced Wyoming map clearly.
+6. Add the usual cartographic elements:
+   - title
+   - legend
+   - scale bar
+   - your name
+   - date
+   - map CRS
+7. Make sure the final composition clearly shows:
+   - the georeferenced historical map
+   - the PLSS grid superimposed on top of it
+   - a basemap underneath or around it for reference
+
+> **Why make a layout?** Georeferencing is not only a technical operation. It is also a way of communicating spatial alignment and historical context. A good layout makes it much easier to evaluate and explain the result.
+
+### Export the layout
+
+1. In the layout window, go to **Layout > Export as PDF**.
+2. Save the PDF with a clear file name such as:
+
+   ```
+   sunetid_wyoming_georeferencing_layout.pdf
+   ```
+
+3. Open the PDF after export and confirm that all map elements are visible and legible.
+
 ## Turn-In Guidance
 
-Be sure your final QGIS project includes:
+The deliverable for this lab is:
+
+- A **map layout exported to PDF**
+
+That PDF should show:
+
+- The georeferenced historical Wyoming map
+- The PLSS grid superimposed on the map
+- A basemap for geographic context
+- A title
+- A legend
+- A scale bar
+- Your name
+- The date
+- The map CRS
+
+Your working QGIS project should still include:
 
 - The filtered PLSS reference layer
 - The custom Wyoming-centered CRS
 - The georeferenced historical image loaded back into QGIS
 
-Submit the lab deliverable as instructed by the course.
+Submit the exported PDF as instructed by the course.
 
 ## Conclusion
 
@@ -339,5 +391,6 @@ In this lab, you took a scanned historical map and turned it into usable spatial
 - Created a custom CRS suited to the geography of the map
 - Used the QGIS Georeferencer to place control points and transform the image
 - Evaluated the resulting alignment against modern spatial reference data
+- Created a map layout that communicates the georeferenced result clearly
 
 This workflow is foundational for historical GIS and archival cartography. Once a scanned map is georeferenced, it can be compared to modern layers, digitized for further analysis, and used as part of larger spatial research workflows.
