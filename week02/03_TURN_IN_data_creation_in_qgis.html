@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>03 - TURN IN - Creating Vector Data by Digitizing in QGIS · HonKit</title>
+        <title>03 - TURN IN - Editing with QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -59,7 +59,7 @@
     <link rel="next" href="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html" />
     
     
-    <link rel="prev" href="02_georeferencing_with_qgis_and_allmaps_org.html" />
+    <link rel="prev" href="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html" />
     
 
     </head>
@@ -348,12 +348,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+        <li class="chapter " data-level="1.5.1" data-path="01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
             
-                <a href="01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+                <a href="01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
             
                     
-                    01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
             
                 </a>
             
@@ -361,12 +361,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="02_georeferencing_with_qgis_and_allmaps_org.html">
+        <li class="chapter " data-level="1.5.2" data-path="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
             
-                <a href="02_georeferencing_with_qgis_and_allmaps_org.html">
+                <a href="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
             
                     
-                    02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
             
                 </a>
             
@@ -379,7 +379,7 @@
                 <a href="03_TURN_IN_data_creation_in_qgis.html">
             
                     
-                    03 - TURN IN - Creating Vector Data by Digitizing in QGIS
+                    03 - TURN IN - Editing with QGIS
             
                 </a>
             
@@ -897,6 +897,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.12.5" data-path="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1003,7 +1016,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >03 - TURN IN - Creating Vector Data by Digitizing in QGIS</a>
+        <a href=".." >03 - TURN IN - Editing with QGIS</a>
     </h1>
 </div>
 
@@ -1018,457 +1031,289 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="introduction-to-qgis-labelling-tree-data-with-qgis-draft">Introduction to QGIS: Labelling Tree Data with QGIS (DRAFT)</h1>
+                                <h1 id="03---turn-in---editing-with-qgis">03 - TURN IN - Editing with QGIS</h1>
 <blockquote>
 <p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
-<h2 id="introduction">Introduction</h2>
-<p>Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> individual tree crowns from high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> aerial imagery.</p>
-<p><strong>What you'll be doing:</strong>
-You'll work with a QGIS project that contains high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> NAIP (National Agriculture Imagery Program) imagery from before and after the Castle Fire. Your task is to generate random sample locations, use them to select a subset of grid cells, and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery so the results can support machine learning validation work.</p>
-<p><strong>Why this matters:</strong>
-The data you create will be used to train machine learning models for automated tree detection and counting. Accurate tree crown delineation is fundamental to forest inventory, wildfire risk assessment, and ecosystem monitoring. This workflow teaches you core GIS skills while contributing to real research applications.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you will be able to:</p>
-<ul>
-<li>Navigate the QGIS interface and use essential navigation tools</li>
-<li>Work with layers, including reordering, toggling visibility, and exploring <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
-<li><a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables and select features based on attributes and location</li>
-<li>Use <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools to create random points within a study area</li>
-<li>Create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> layers for new spatial labels</li>
-<li>Use a docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move systematically through sampled grid cells</li>
-<li>Digitize rectangular tree labels from aerial imagery</li>
-<li>Export spatial data in <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> format with proper naming conventions</li>
-</ul>
-<p><img src="images/20260412_165514_image.png" alt=""></img></p>
+<p><strong><em>What You’ll Learn</em>:</strong> In this lab, you will be introduced to basic <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> techniques in QGIS, including creating <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> datasets from a georeferenced <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, working with Cloud Optimized GeoTIFFs (COGs), and using snapping for topological accuracy.</p>
+<p><strong>You should read</strong> Chapter 4 in the GIS Fundamentals textbook before starting this lab, as the chapter covers the basics of data entry and <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> mechanics. You will digitize and edit features based on a digital aerial photo of the <a href="https://farm.stanford.edu/" target="_blank">O'Donohue Family Stanford Educational Farm</a>.</p>
 <hr></hr>
-<h2 id="getting-started">Getting Started</h2>
-<h3 id="download-and-extract-the-project-package">Download and Extract the Project Package</h3>
-<p>Download the <code>CastleFire.zip</code> file using this direct download link:</p>
-<p><a href="https://github.com/mapninja/Earthsys144/raw/refs/heads/master/data/CastleFire.zip" target="_blank">Download CastleFire.zip</a></p>
-<p>This package contains everything you need to get started, with <strong>best-practice folder structure and naming conventions already set up for you</strong>.</p>
-<p><strong>What's included in the .zip file:</strong></p>
-<ul>
-<li>Pre-configured QGIS project file: <code>Castle_Fire_2020_NAIP.qgz</code></li>
-<li>Raw data layers and imagery references, including:<ul>
-<li><code>castle_2020</code>(Fi re Perimeter)</li>
-<li><code>Z17_Castle_2020_tile_boundary_grid</code> (XYZ Tile Grid)</li>
-<li><code>Castle Prefire</code><ul>
-<li><code>Castle_2020_Prefire_rgb_all</code></li>
-<li><code>Castle_2020_Prefire_irg_all</code></li>
-</ul>
-</li>
-<li><code>Castle Postfire</code><ul>
-<li><code>Castle_2020_Postfire_rgb_all</code></li>
-<li><code>Castle_2020_Postfire_irg_all</code></li>
-</ul>
-</li>
-<li><code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
-<li><code>Google Terrain basemap</code></li>
-</ul>
-</li>
-<li>Pre-built folder structure following GIS best practices</li>
-<li>Empty directories ready for your work</li>
-<li><a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">Map layout</a> template</li>
-</ul>
-<p><strong>Extract the .zip file:</strong></p>
-<ol>
-<li>Download <code>CastleFire.zip</code></li>
-<li>Extract it to your Documents folder (or another location you can easily access)</li>
-</ol>
-<h3 id="whats-in-the-raw-data-folder">What's in the Raw Data Folder</h3>
-<p>Inside <code>data/raw/</code> you'll find:</p>
-<ul>
-<li><strong>Tile boundary grid:</strong> <code>Z17_Castle_2020_tile_boundary_grid</code></li>
-<li><strong>Study area outline:</strong> <code>castle_2020</code></li>
-<li><strong>Pre-fire imagery group:</strong> <code>Castle Prefire</code></li>
-<li><strong>Post-fire imagery group:</strong> <code>Castle Postfire</code></li>
-<li><strong>Fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
-<li><strong>Terrain <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>:</strong> <code>Google Terrain</code></li>
-</ul>
-<p><strong>Important:</strong> Never modify or delete files in the <code>raw/</code> folder. These are your originals. All your work will be saved to the <code>processed/</code> and <code>outputs/</code> folders.</p>
+<h2 id="getting-ready-for-the-lab">Getting Ready for the Lab</h2>
+<p>We will be using an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> of the Stanford Teaching Farm for this exercise. That <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is stored as a <a href="https://cogeo.org/" target="_blank">Cloud-Optimized GeoTIFF (COG)</a> on AFS Space. A COG is a specialized type of TIFF <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> designed for efficient access and streaming over the web, enabling users to retrieve only the portions of the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> they need without downloading the entire file.</p>
+<p>You can find the Persistent URL Page for the dataset here: <a href="https://purl.stanford.edu/vq494qx9344" target="_blank">https://purl.stanford.edu/vq494qx9344</a></p>
+<p><img src="images/20250328_125841_20250328_120858_image.png" alt=""></img></p>
+<p>We will use the file <code>odm_orthophoto_COG_d.tif</code> for this lab. The direct URL is:
+<code>https://web.stanford.edu/~maples/cog/collection/odm_orthophoto_COG_d.tif</code>.</p>
 <hr></hr>
-<h2 id="part-1-open-and-explore-the-project">Part 1: Open and Explore the Project</h2>
-<h3 id="step-1-open-the-project-file">Step 1: Open the Project File</h3>
-<p>Now that you've extracted the project package, let's open the pre-configured QGIS project:</p>
+<h2 id="step-1-adding-the-cog-to-qgis">Step 1: Adding the COG to QGIS</h2>
 <ol>
-<li>Launch QGIS</li>
-<li>Go to <strong>Project &gt; Open</strong> (or press <code>Ctrl+O</code> / <code>Cmd+O</code>)</li>
-<li>Navigate to your extracted <code>CastleFire</code> folder</li>
-<li>Select the QGIS project file <code>Castle_Fire_2020_NAIP.qgz</code><ul>
-<li>Example path: <code>~/Documents/CastleFire/Castle_Fire_2020_NAIP.qgz</code></li>
-</ul>
-</li>
-<li>Click <strong>Open</strong></li>
+<li>Open QGIS and go to <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Add <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Add <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
 </ol>
-<p>The project should load with the tile boundary grid, the study area outline, pre-fire and post-fire imagery groups, the 2020 fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and the Google Terrain <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> visible in the Layers Panel. Everything is pre-configured and ready to use!</p>
-<p><strong>Try this:</strong></p>
-<ul>
-<li>Use your mouse wheel to zoom in and out</li>
-<li>Use <strong>Zoom to <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> on the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see all tile boundaries again</li>
-<li>Hold spacebar and drag to pan around the imagery</li>
-<li>Notice how the NAIP imagery refreshes as you navigate and change scales.</li>
-</ul>
-<h3 id="step-2-explore-the-layers-panel">Step 2: Explore the Layers Panel</h3>
-<p>The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:</p>
-<p><strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Management:</strong></p>
+<p><img src="images/20250328_122933_image.png" alt=""></img></p>
 <ol>
-<li><p><strong>To Reorder Layers:</strong> Click and drag layers up or down</p>
-<ul>
-<li>Layers higher in the list appear on top in the map</li>
-<li>Try moving the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> above and below the imagery <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
-<li>See how this affects visibility</li>
-</ul>
-</li>
-<li><p><strong>To Toggle <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Visibility:</strong> Click the checkbox next to each <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> name</p>
-<ul>
-<li>Turn the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> off and on</li>
-<li>Notice how you can see the imagery without the grid overlay</li>
-</ul>
-</li>
-<li><p><strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties:</strong> Right-click any <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and select <strong>Properties</strong></p>
-<ul>
-<li>Explore the different tabs (Source, <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a>, etc.)</li>
-<li>Don't make changes yet—just observe what's available</li>
-</ul>
-</li>
+<li>In the dialog, click <strong>Source Type</strong> and select <strong>Protocol</strong>.</li>
+<li>Paste the URL:
+<code>https://web.stanford.edu/~maples/cog/collection/odm_orthophoto_COG_d.tif</code></li>
 </ol>
-<h3 id="step-3-explore-layer-metadata">Step 3: Explore Layer Metadata</h3>
-<p><a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> tells you important information about your spatial data:</p>
+<p><img src="images/20250328_123034_image.png" alt=""></img></p>
 <ol>
-<li>Right-click the <strong>grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> and select <strong>Properties</strong></li>
-<li>Navigate to the <strong>Information</strong> tab</li>
-<li><p>Review the <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> including:</p>
-<ul>
-<li><strong>CRS (Coordinate Reference System):</strong> Should be WGS84 (EPSG:4326)</li>
-<li><strong>Extent:</strong> The bounding box coordinates</li>
-<li><strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> count:</strong> How many grid cells exist</li>
-<li><strong>Geometry type:</strong> Should be "Polygon"</li>
-</ul>
-</li>
-<li><p>Repeat for the NAIP imagery <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></p>
-<ul>
-<li>Note the source URL for the XYZ tiles</li>
-<li>Check the CRS (should be EPSG:26911 NAD83/UTM zone 11N)</li>
-</ul>
-</li>
+<li>Click <strong>Add</strong> to load the COG into your project.</li>
 </ol>
-<p><strong>Why this matters:</strong> Understanding your data's <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>, extent, and properties is essential before any <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>. Mismatched coordinate systems are one of the most common GIS errors.</p>
+<p><img src="images/20250328_123057_image.png" alt=""></img></p>
+<h3 id="notes-on-cog-performance">Notes on COG Performance</h3>
+<ul>
+<li>Initially, the COG may load slowly as QGIS fetches data from the server.</li>
+<li>As you pan and zoom around the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, QGIS will cache the views, improving performance over time.</li>
+<li>To cache views, pan around the area of interest (the Farm property) before starting digitization.</li>
+</ul>
 <hr></hr>
-<h2 id="part-2-working-with-attributes-and-selections">Part 2: Working with Attributes and Selections</h2>
-<h3 id="step-4-open-and-explore-the-attribute-table">Step 4: Open and Explore the Attribute Table</h3>
-<p>Every <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> containing information about each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>:</p>
+<h2 id="step-2-adding-google-hybrid-imagery">Step 2: Adding Google Hybrid Imagery</h2>
 <ol>
-<li>Right-click the <code>Z17_Castle_2020_tile_boundary_grid</code> in the Layers Panel</li>
-<li>Select <strong>Open <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong></li>
-<li>Examine the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure:<ul>
-<li>Each row represents one grid cell</li>
-<li>Columns contain attributes like tile coordinates (X, Y, Z)</li>
+<li><a href="https://github.com/mapninja/Earthsys144/blob/master/Labs/Week_01/CleanQGISInstallationforMac.md" target="_blank">Install the <strong>Quick Map Services</strong> plugin</a> if not already installed.</li>
+<li>Add Google Hybrid imagery:<ul>
+<li>Go to <strong>Web &gt; Quick Map Services &gt; Google &gt; Google Hybrid</strong>.</li>
 </ul>
 </li>
 </ol>
-<p><img src="images/20260412_181047_image.png" alt=""></img></p>
-<p><strong>Understanding the Grid:</strong></p>
-<ul>
-<li><strong>Z:</strong> Zoom level (should be 18)</li>
-<li><strong>X:</strong> Tile column number</li>
-<li><strong>Y:</strong> Tile row number</li>
-<li>These Z/X/Y values follow the Web Mercator tiling scheme used by web maps</li>
-</ul>
-<h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
-<h3 id="step-5-create-20-random-points-inside-the-castle-fire-boundary">Step 5: Create 20 Random Points Inside the Castle Fire Boundary</h3>
-<p>Now you will create a set of random sample locations that will guide your labeling work.</p>
-<ol>
-<li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
-<li>In the Processing Toolbox search bar, type <code>random points inside polygons</code>.</li>
-<li>Open <strong>Random points inside polygons (fixed)</strong>.</li>
-<li>Configure the tool:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>castle_2020</code></li>
-<li><strong>Sampling strategy:</strong> <code>Points count</code></li>
-<li><strong>Point count:</strong> <code>20</code></li>
-<li><strong>Minimum distance between points:</strong> <code>100</code></li>
-<li><strong>Random points:</strong> Save as <code>random20.geojson</code> in your <code>data/</code> folder</li>
-</ul>
-</li>
-<li>Click <strong>Run</strong>.</li>
-</ol>
-<p><img src="images/20260412_182253_image.png" alt=""></img></p>
-<p>You should now see 20 random points inside the <code>castle_2020</code> boundary.</p>
-<p><img src="images/20260412_182715_image.png" alt=""></img></p>
-<p>Notice that there may be a cluster of points in an area where there is no imagery. If this is the case, do the following:</p>
-<ol>
-<li>Use the <strong>Select Features</strong> tool in the main QGIS toolbar.</li>
-<li>With the <code>castle_2020</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, click the large <code>castle_2020</code> polygon that covers the area where imagery is actually available.</li>
-<li><p>Confirm that the correct polygon is selected.</p>
-<p><img src="images/20260412_183220_image.png" alt=""></img></p>
-</li>
-<li>Open <strong>Random points inside polygons (fixed)</strong> again.</li>
-<li>Use the same settings as before, but this time enable the <strong>Selected features only</strong> option.</li>
-<li>Run the tool again and save the output.</li>
-<li>Check the new random points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and confirm that the points now fall within the part of the fire area where imagery is available for labeling.</li>
-<li>If the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> display does not update right away, click the <strong>Refresh</strong> button.</li>
-</ol>
-<p><img src="images/20260412_183427_image.png" alt=""></img></p>
-<blockquote>
-<p><strong>Why do this?</strong> Random points help spread the work across the study area, and the 100 meter spacing reduces clustering.</p>
-</blockquote>
-<h3 id="step-6-use-the-random-points-to-select-a-sample-of-grid-cells">Step 6: Use the Random Points to Select a Sample of Grid Cells</h3>
-<p>Next, use the random points to select a subset of the grid cells.</p>
-<ol>
-<li>Select the <code>Z17_Castle_2020_tile_boundary_grid</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers Panel.</li>
-<li>Go to <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Research Tools &gt; Select by Location</strong>.</li>
-<li>Configure the tool:<ul>
-<li><strong>Select features from:</strong> <code>Z17_Castle_2020_tile_boundary_grid</code></li>
-<li><strong>Where the features:</strong> <code>intersect</code></li>
-<li><strong>By comparing to features from:</strong> your <code>random20</code> points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
-</ul>
-</li>
-<li>Click <strong>Run</strong>.</li>
-</ol>
-<p><img src="images/20260412_183632_image.png" alt=""></img></p>
-<p>You should now have a set of selected grid cells. You may need to turn off the <code>random20</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see the selected polygons more clearly.</p>
-<p><img src="images/20260412_183751_image.png" alt=""></img></p>
-<h3 id="step-7-export-the-selected-grid-cells-to-a-new-layer">Step 7: Export the Selected Grid Cells to a New Layer</h3>
-<p>Now export those selected grid cells to a new working <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<ol>
-<li>Right-click <code>Z17_Castle_2020_tile_boundary_grid</code>.</li>
-<li>Choose <strong>Export &gt; Save Selected Features As...</strong></li>
-<li>Make sure the <strong>Save only selected features</strong> option is enabled.</li>
-<li><p>Save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to <code>CastleFire/data/processed/</code> as:</p>
-<pre><code>sunetid_castle_sample_grid.shp
-</code></pre></li>
-<li>Leave the default CRS unless QGIS prompts you to choose otherwise.</li>
-<li><p>Click <strong>OK</strong>.</p>
-<p><img src="images/20260412_184036_image.png" alt=""></img></p>
-</li>
-</ol>
-<p><strong>Tip &amp; Trick:</strong> Copy the style from the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it to the new one, then turn off the old grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<ol>
-<li><p>Right-click the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</p>
-<p><img src="images/20260412_184119_image.png" alt=""></img></p>
-</li>
-<li><p>Right-click <code>sunetid_castle_sample_grid</code> and choose <strong>Styles &gt; Paste Style</strong>.</p>
-<p><img src="images/20260412_184153_image.png" alt=""></img></p>
-</li>
-<li>Turn off the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-</ol>
-<h3 id="step-8-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 8: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
-<p>You will use the exported sample grid as your working unit <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<ol>
-<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>.</li>
-<li><p>If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.</p>
-<p><img src="images/20260412_184334_image.png" alt=""></img></p>
-</li>
-<li>Use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> tools to:<ul>
-<li>select a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
-<li>zoom to the selected <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
-<li>move to the next <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
-</ul>
-</li>
-</ol>
-<p><img src="images/20260412_184518_image.png" alt=""></img></p>
-<p><img src="images/20260412_184439_image.png" alt=""></img></p>
-<p>This lets you work through the sampled grid cells systematically instead of hunting around visually.</p>
+<p><img src="images/20250328_130025_image.png" alt=""></img></p>
 <hr></hr>
-<h2 id="part-4-create-and-edit-the-label-layers">Part 4: Create and Edit the Label Layers</h2>
-<h3 id="step-9-create-the-postfire-label-layer">Step 9: Create the Postfire Label Layer</h3>
-<p>Create a new empty <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> for your first set of labels.</p>
+<h2 id="step-3-creating-new-empty-layers">Step 3: Creating New Empty Layers</h2>
+<p>The first step in creating a new spatial dataset using “heads up <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>” is to create a new empty <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> for your features to go into. In this case, we will create three empty shapefiles: one for points, one for lines, and one for polygons.</p>
 <ol>
 <li>Go to <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Create <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; New <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
-<li>Configure the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:<ul>
-<li><strong>File name:</strong> <code>sunetid_castle_postfire_labels.shp</code></li>
-<li><strong>Geometry type:</strong> Polygon</li>
-<li><strong>CRS:</strong> <code>WGS 84 (EPSG:4326)</code></li>
+<li>A window will open with entries for a <strong>file name, geometry type (e.g., point, line, polygon), <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>, and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> characteristics for a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong>.</li>
+</ol>
+<h3 id="create-three-layers">Create Three Layers:</h3>
+<h4 id="first-layer-trees-points">First Layer: Trees (Points)</h4>
+<ol>
+<li>Browse to your <strong>Lab folder</strong>, create a new subfolder called <code>data</code>, and save the <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> as file: <code>trees.shp</code></li>
+<li>Set the <strong>Geometry Type</strong> to "<strong>Point</strong>".</li>
+<li>Set the <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> to <strong>EPSG:4326 - WGS84</strong> (use the drop-down list to select the Project CRS).</li>
+<li>Add an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>Tree_ID</code> (type: Integer 32-bit).</li>
+</ol>
+<p><img src="images/20250328_133327_image.png" alt=""></img></p>
+<ol>
+<li>Leave the remainder of the options blank and click <strong>OK</strong>.</li>
+</ol>
+<h4 id="second-layer-rows-and-paths-lines">Second Layer: Rows and Paths (Lines)</h4>
+<ol>
+<li>Browse to your Lab Data folder and name the file: <strong>paths</strong>.</li>
+<li>Set the <strong>Geometry Type</strong> to "<strong>LineString</strong>".</li>
+<li>Set the <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> to <strong>EPSG:4326 - WGS84</strong>.</li>
+<li>Add an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>Path_Type</code> (type: Text).</li>
+</ol>
+<p><img src="images/20250328_133557_image.png" alt=""></img></p>
+<ol>
+<li>Leave the remainder of the options blank and click <strong>OK</strong>.</li>
+</ol>
+<h4 id="third-layer-structures-polygons">Third Layer: Structures (Polygons)</h4>
+<ol>
+<li>Browse to your Lab Data folder and name the file: <strong>structures</strong>.</li>
+<li>Set the <strong>Geometry Type</strong> to "<strong>Polygon</strong>".</li>
+<li>Set the <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> to <strong>EPSG:4326 - WGS84</strong>.</li>
+<li>Add an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>Name</code> (type: Text).</li>
+</ol>
+<p><img src="images/20250328_133740_image.png" alt=""></img></p>
+<ol>
+<li>Leave the remainder of the options blank and click <strong>OK</strong>.</li>
+<li>You should now see 3 new layers in you Layers panel</li>
+</ol>
+<p><img src="images/20250328_134452_image.png" alt=""></img></p>
+<hr></hr>
+<h3 id="why-use-wgs84-as-the-coordinate-system">Why Use WGS84 as the Coordinate System?</h3>
+<p>WGS84 (World Geodetic System 1984) is a widely used geodetic <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> that serves as the standard for global mapping and navigation. Here’s why it is the preferred choice for archival purposes:</p>
+<ol>
+<li><strong>Unprojected System</strong>: WGS84 is a geographic <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> that uses latitude and longitude to represent locations on the Earth's surface. Unlike projected systems, it does not distort shapes, areas, or distances, making it ideal for storing raw spatial data.</li>
+<li><strong>Universal Adoption</strong>: WGS84 is the default <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> for GPS and is universally recognized across GIS platforms, ensuring compatibility and ease of data sharing.</li>
+<li><strong>Global Coverage</strong>: It provides a consistent framework for mapping and analysis worldwide, making it suitable for datasets that span large geographic areas.</li>
+<li><strong>Archival Stability</strong>: As a standard system, WGS84 ensures that spatial data remains interpretable and usable over time, regardless of changes in software or technology.</li>
+</ol>
+<p>By using WGS84, you ensure that your spatial data is stored in a universally accepted format, making it easier to share, analyze, and integrate with other datasets.</p>
+<hr></hr>
+<h2 id="step-4-digitizing-features">Step 4: Digitizing Features</h2>
+<h3 id="understanding-heads-up-digitizing">Understanding Heads-Up Digitizing</h3>
+<p>Heads-up <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> is the process of defining the coordinate pairs of the vertices that outline spatial features by visually interpreting a reference <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> or <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>. This technique involves manually tracing features such as points, lines, or polygons directly on a digital map using GIS software. It is a fundamental method for creating spatial datasets from aerial imagery, satellite data, or scanned maps.</p>
+<p>Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the <a href="https://tasks.hotosm.org/learn/map" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a>. In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between (thousands of) remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.</p>
+<h3 id="points-digitizing-trees">Points: Digitizing Trees</h3>
+<ol>
+<li>Right-click the <strong>trees</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers panel, and toggle editing mode.</li>
+</ol>
+<p><img src="images/20250328_152205_image.png" alt=""></img></p>
+<ol>
+<li>Use the <strong>Add Point <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong> tool <img src="images/20250328_152927_image.png" alt=""></img> to place a point on each tree within the Farm property:<ul>
+<li>Toggle between the COG and Google Hybrid imagery for better identification.</li>
+<li>Assign a unique <code>Tree_ID</code> to each tree (keeping in mind you set the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <code>Integer</code>).</li>
+<li>Remember to <strong>save your edits</strong> by toggling off editing mode and confirming the changes when prompted.</li>
 </ul>
 </li>
-<li>Click <strong>OK</strong>.</li>
 </ol>
-<p><img src="images/20260412_184834_image.png" alt=""></img></p>
-<h3 id="step-10-get-ready-to-edit">Step 10: Get Ready to Edit</h3>
-<p>Before you start drawing labels, adjust the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> settings so QGIS uses the rectangle tool you need for this exercise.</p>
+<h2 id="tips--tricks">Tips &amp; Tricks</h2>
+<h3 id="adjusting-symbology">Adjusting symbology</h3>
+<p>Often it is useful to adjust the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> of your layers to better contrast with the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>, so that your progress is immediately apparent.</p>
+<p>To adjust the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> of the features:</p>
 <ol>
-<li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
-<li>Open <strong>Options</strong>.</li>
-<li>In the Options dialog, go to <strong>Map Tools &gt; <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a></strong>.</li>
-<li>Enable <strong>Suppress <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> form pop-up after <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> creation</strong>.</li>
-<li>Click <strong>Advanced</strong> at the bottom of the Options panel.</li>
-<li>Click <strong>I will be careful</strong>.</li>
-<li>Expand <code>digitizing &gt; shape-map-tools &gt; current</code>.</li>
-<li><p>Copy this text:</p>
-<pre><code>rectangle-from-center-and-a-point
-</code></pre></li>
-<li><p>Paste that text into the <strong>Value</strong> box for the <code>current</code> setting.</p>
-</li>
-</ol>
-<p><img src="images/20260412_191109_image.png" alt=""></img></p>
-<ol>
-<li>Click <strong>OK</strong> to save the setting.</li>
-</ol>
-<blockquote>
-<p><strong>Why do this?</strong> This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.</p>
-</blockquote>
-<h3 id="step-11-start-editing-the-postfire-label-layer">Step 11: Start Editing the Postfire Label Layer</h3>
-<ol>
-<li>Make sure the <strong>Castle Postfire</strong> imagery group is visible.</li>
-<li>Toggle between the RGB and IRG versions of the postfire imagery to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
-<li>Select <code>sunetid_castle_postfire_labels</code> in the Layers Panel.</li>
-<li>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s styling and set:<ul>
-<li><strong>Fill:</strong> Transparent</li>
-<li><strong>Stroke:</strong> a color that contrasts clearly with the imagery you are using</li>
+<li>Click on the <strong>Styling Button</strong> (represented by a paintbrush) <img src="images/20250328_153740_image.png" alt=""></img> to open the <strong>Styling Panel</strong>.</li>
+<li>Adjust the basic <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a>:<ul>
+<li>In the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling Panel, select the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> you want to modify.</li>
+<li>Select the Yellow circle.</li>
 </ul>
 </li>
-<li>Click <strong>Toggle Editing</strong>.</li>
 </ol>
-<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
-<p>Now begin the main labeling task.</p>
+<p><img src="images/20250328_154252_image.png" alt=""></img></p>
+<p>These adjustments improve the visibility of features, making them easier to analyze and interpret in the context of the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>.</p>
+<h3 id="dismissing-the-attribute-editor-pop-up">Dismissing the attribute editor pop-up</h3>
+<p><img src="images/20250328_154457_image.png" alt=""></img></p>
+<p>You've noted by now that the <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> Attributes Editing pop-up</strong> appears after every point is placed. If you aren't adding variables, this can slow the workflow, considerably.</p>
+<p>Remember to save your edits by toggling off editing mode and confirming the changes when prompted.</p>
+<p>To suppress the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> Editing pop-up:</p>
 <ol>
-<li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>, select a grid cell and zoom to it.</li>
-<li>Inspect that cell in the <strong>postfire</strong> imagery.</li>
-<li>Only choose grid cells that meet all of the following conditions:<ul>
-<li>It should have trees in it.</li>
-<li>It should have no buildings, because we are interested in the behavior of raw forests.</li>
-<li>It should have no roads.</li>
-<li>It should have NAIP imagery available. Some images are currently missing, but they may appear later.</li>
-</ul>
-</li>
-<li>If the cell meets those conditions, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the trees by drawing rectangles around them using <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>.</li>
-<li>Save your edits periodically.</li>
-<li>When you finish one grid cell, select another sampled grid cell and repeat.</li>
-<li>Continue until you have labeled trees in <strong>3 grid cells</strong>.</li>
+<li>Go to <strong>Settings &gt; Options</strong> in the QGIS menu.</li>
 </ol>
-<p><strong>Labeling guidance:</strong></p>
+<p><img src="images/20250328_155431_image.png" alt=""></img></p>
+<ol>
+<li>Navigate to the <strong><a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a></strong> tab.</li>
+<li>Under the <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> creation</strong> section, uncheck the box labeled <strong>Open <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> form after adding a new <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></strong>.</li>
+</ol>
+<p><img src="images/20250328_155519_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>OK</strong> to save the changes.</li>
+</ol>
+<p>This will prevent the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> editor from appearing after each point is placed, streamlining your <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> workflow.</p>
+<h3 id="editing-features-after-youve-placed-them">Editing features after you've placed them</h3>
+<h3 id="using-the-vertex-tool-for-editing-features">Using the Vertex Tool for Editing Features</h3>
+<p>The <strong>Vertex Tool</strong> in QGIS allows you to modify features by interacting with their vertices. This tool is particularly useful if you have placed a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> incorrectly during an edit session.</p>
+<h4 id="a-deleting-a-feature">A) Deleting a Feature</h4>
+<ol>
+<li>Ensure you are in an active edit session for the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> you are working on.</li>
+<li>Activate the <strong>Select Features by Area or Single Click</strong> tool <img src="images/20250328_161010_image.png" alt=""></img> from the toolbar.</li>
+<li>Click on the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> you want to delete to select it.</li>
+<li>Press the <strong>Delete</strong> key on your keyboard.</li>
+<li>Dismiss the warning pop-up
+y
+<img src="images/20250328_161247_image.png" alt=""></img></li>
+</ol>
+<h4 id="b-moving-a-feature">B) Moving a Feature</h4>
+<ol>
+<li>Ensure you are in an active edit session for the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> you are working on.</li>
+<li>Activate the <strong>Vertex Tool</strong> from the toolbar.</li>
+</ol>
+<p><img src="images/20250328_160913_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> you want to move. The vertices of the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> will become visible.</li>
+<li>Drag the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> to the correct location by clicking and holding anywhere within the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>'s boundary.</li>
+<li>Release the mouse button to place the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> in its new position.</li>
+</ol>
+<p>Remember to save your edits by toggling off editing mode and confirming the changes when prompted.</p>
+<h3 id="setting-up-keyboard-shortcuts-for-navigating-the-map-while-editing">Setting up keyboard shortcuts for navigating the map while editing</h3>
+<p>Keyboard shortcuts can significantly streamline workflows like <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> by reducing the need to switch between tools using the mouse. Efficient navigation shortcuts allow you to pan and zoom quickly, enabling seamless transitions between editing and navigating the map. This can save time and improve focus, especially when working on large or detailed datasets.</p>
+<p>To set up custom keyboard shortcuts for navigation in QGIS:</p>
+<ol>
+<li>Go to <strong>Settings &gt; Keyboard Shortcuts</strong> in the QGIS menu.</li>
+</ol>
+<p><img src="images/20250328_170319_image.png" alt=""></img></p>
+<ol>
+<li><p>Search for the following actions and assign the corresponding keys by clicking on the <strong>Change button</strong> and then the key combination you want to assign to the action.</p>
 <ul>
-<li>Keep the rectangles simple and consistent.</li>
-<li>Work one tree at a time.</li>
-<li>If a sampled cell has no trees, move on to another sampled cell.</li>
-<li>Save often.</li>
-</ul>
-<blockquote>
-<p><strong>Important concept:</strong> In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.</p>
-</blockquote>
-<h3 id="step-13-save-your-work-frequently">Step 13: Save Your Work Frequently</h3>
-<p>While <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>:</p>
-<ol>
-<li>Click <strong>Save <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Edits</strong> regularly.</li>
-<li>Do not wait until the end of the session to save.</li>
-</ol>
-<h3 id="step-14-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 14: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
-<p>Once you have finished labeling 3 grid cells in the postfire imagery:</p>
-<ol>
-<li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
-<li>Choose <strong>Save Features As...</strong></li>
-<li><p>Save a copy as:</p>
-<pre><code>sunetid_castle_prefire_labels.shp
-</code></pre></li>
-<li>Add the new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the project if QGIS does not do this automatically.</li>
-</ol>
-<p>This copied <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.</p>
-<h3 id="step-15-finish-the-prefire-tree-labels">Step 15: Finish the Prefire Tree Labels</h3>
-<p>Now switch to the prefire imagery and finish the second <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<ol>
-<li>Turn on the <strong>prefire</strong> imagery.</li>
-<li>Start editing <code>sunetid_castle_prefire_labels</code>.</li>
-<li>Return to the same 3 sampled grid cells you already worked on.</li>
-<li>Keep the copied tree labels that already match visible trees.</li>
-<li>Add rectangles for any additional trees visible in the prefire imagery.</li>
-<li>Save edits regularly.</li>
-<li>When finished, stop editing and save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-</ol>
-<h3 id="step-16-export-both-label-layers-to-geojson">Step 16: Export Both Label Layers to GeoJSON</h3>
-<p>When both shapefiles are complete, export each one to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
-<ol>
-<li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
-<li>Choose <strong>Export &gt; Save Features As...</strong></li>
-<li><p>Set:</p>
-<ul>
-<li><strong>Format:</strong> <code>GeoJSON</code></li>
-<li><strong>File name:</strong> <code>sunetid_castle_postfire_labels.geojson</code></li>
-<li><strong>CRS:</strong> <code>EPSG:4326</code></li>
+<li><p><strong>Pan</strong>: Assign the key <code>C</code>.</p>
+<p><img src="images/20250328_170434_image.png" alt=""></img></p>
+</li>
+<li><p><strong>Zoom In</strong>: Assign the key <code>Z</code>.</p>
+<p><img src="images/20250328_170632_image.png" alt=""></img></p>
+</li>
+<li><p><strong>Zoom Out</strong>: Assign the key <code>X</code>.</p>
+<p><img src="images/20250328_170709_image.png" alt=""></img></p>
+</li>
+<li><p><strong>Add Point</strong>: Assign the key <code>v</code>.</p>
+<p><img src="images/20250328_172159_image.png" alt=""></img></p>
+</li>
 </ul>
 </li>
-<li>Save it in <code>CastleFire/data/outputs/</code>.</li>
-<li><p>Repeat the same process for <code>sunetid_castle_prefire_labels</code>, exporting it as:</p>
-<pre><code>sunetid_castle_prefire_labels.geojson
-</code></pre></li>
+<li>Click <strong>Close</strong> to save your changes.</li>
+<li><strong>Save</strong> your Project and restart <strong>QGIS</strong>.</li>
+</ol>
+<p>Once configured, you can use these shortcuts to quickly pan and zoom while <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>. For example, press <code>C</code> to pan the map, then switch back to your editing tool using the <code>V</code> key without needing to click on the toolbar. This allows for a smoother workflow and minimizes interruptions during the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> process.</p>
+<h2 id="digitizing-continued">Digitizing continued...</h2>
+<h3 id="understanding-lines-in-gis">Understanding Lines in GIS</h3>
+<p>Lines in GIS are essentially a series of points connected in sequence, forming a continuous path. Each point, or vertex, represents a coordinate pair that defines the shape and direction of the line. When <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> lines, it is important to place vertices at key locations, such as intersections, curves, or changes in direction, to accurately represent the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> being mapped. Careful placement of vertices ensures that the line follows the intended path and aligns with other features, especially when snapping is enabled. <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a> lines requires attention to detail and a balance between precision and efficiency, as overly dense vertices can complicate data management, while too few may result in a loss of accuracy.</p>
+<h3 id="lines-digitizing-paths-and-sidewalks">Lines: Digitizing Paths and Sidewalks</h3>
+<ol>
+<li>With the <strong>paths</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, toggle editing on. into the project and toggle editing mode.</li>
+<li><p>Enable snapping for topological accuracy:</p>
+<ul>
+<li>Go to <strong>Project &gt; Snapping Options</strong>.</li>
+<li>Enable snapping for the line <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
+<li><p>Check <strong>Avoid Overlaps</strong> and <strong>Enable Topological Editing, snapping on intersection and self-snapping</strong>.</p>
+<p><img src="images/20250328_184220_image.png" alt=""></img></p>
+<p><img src="images/20250328_184430_image.png" alt=""></img></p>
+</li>
+</ul>
+</li>
+<li>You can dismiss the Project Snapping Settings dialog, once you have made the change to settings.</li>
+</ol>
+<h4 id="sidenote-what-is-snapping">Sidenote: What is Snapping?</h4>
+<p>Snapping ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.</p>
+<ol>
+<li><p>Use the <strong>Add Line <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong> tool  <img src="images/20250402_101713_image.png" alt=""></img> to trace paths and sidewalks:</p>
+</li>
+<li><p>Place vertices at intersections to ensure proper snapping for network integration.</p>
+</li>
+<li>To <strong>FINISH DRAWING A LINE</strong>, right-click (two-finger click on Mac) <strong>AFTER</strong> you place the final vertex (coordinate pair).</li>
+<li>Don't forget to save your edits using the <strong>Save Edits button</strong> <img src="images/20250402_101940_image.png" alt=""></img>, periodically.</li>
+<li>Once you have digitized the paths, try <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> one block of the planting rows. Harder than it seems, at first? There are many judgement calls involved in <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> data from satellite and aerial imagery, since we are usually limited to the one instantatneous snapshot, without other data to refer to.</li>
+</ol>
+<h3 id="polygons-digitizing-structures">Polygons: Digitizing Structures</h3>
+<h3 id="generalization-and-digitizing-complex-shapes">Generalization and Digitizing Complex Shapes</h3>
+<p>When <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> complex shapes and curves, the level of detail captured can significantly affect the accuracy of measurements such as area and length. This concept is closely related to the idea of generalization in GIS, where the complexity of a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> is simplified to make it more manageable or to fit the <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> of the map. However, over-generalization can lead to a loss of critical detail, while under-generalization can result in overly complex datasets that are difficult to work with.</p>
+<p>A classic example of this phenomenon is illustrated in Benoit Mandelbrot's "How Long Is the Coast of Britain?" paper. Mandelbrot demonstrated that the measured length of a coastline depends on the <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> of measurement and the level of detail captured. When using a finer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> (smaller measurement units), more intricate details of the coastline are included, resulting in a longer measured length. Conversely, using a coarser <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> (larger measurement units) smooths out smaller features, leading to a shorter measured length. This paradox highlights the fractal nature of natural features and the challenges of accurately representing them in a digital format.</p>
+<p>In the context of <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>, this means that the placement of vertices and the <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> of the reference imagery can greatly influence the resulting dataset. For example:</p>
+<ul>
+<li><strong>High Detail</strong>: Capturing every curve and nuance of a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> may produce a highly accurate representation but can lead to large file sizes and increased processing time.</li>
+<li><strong>Low Detail</strong>: Simplifying the shape by reducing the number of vertices can make the dataset more manageable but may omit important features or distort the true shape.</li>
+</ul>
+<p>When <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> complex shapes such as curved paths, irregular boundaries, or natural features like rivers and coastlines, it is essential to strike a balance between accuracy and efficiency. Consider the purpose of the dataset and the <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> at which it will be used. For large-<a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> maps, finer details may be necessary, while for small-<a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> maps, generalization may be more appropriate.</p>
+<p>By understanding the trade-offs involved in <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> complex shapes, you can make informed decisions about the level of detail to capture, ensuring that your datasets are both accurate and fit for purpose.</p>
+<h4 id="steps-for-digitizing-polygons">Steps for Digitizing Polygons</h4>
+<ol>
+<li>With the <strong>structures</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, toggle editing mode.</li>
+<li><p>Enable snapping for polygons:</p>
+<ul>
+<li>Go to <strong>Project &gt; Snapping Options</strong>.</li>
+<li>Enable snapping for the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
+<li>Check <strong>Avoid Overlaps</strong> and <strong>Enable Topological Editing</strong>.</li>
+</ul>
+<p><img src="images/20250328_184220_image.png" alt=""></img></p>
+</li>
+<li><p>Use the <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong> tool  <img src="images/20250402_103802_image.png" alt=""></img> to trace the outlines of buildings and other structures:</p>
+<ul>
+<li>Place vertices at key points along the boundary of the structure, such as corners or changes in direction.</li>
+<li>Note that the polygon appears closed as you add vertices, with a straight line connecting your first point, and the cursor, as soon as you place your 3rd point. To finish each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>, right-click (or two-finger click) anywhere in the map, after you place the last vertex. QGIS will automatically place a final vertex at the same location at the first, closing the polygon, for you.</li>
+</ul>
+</li>
+<li>Once you have digitized all of the features on the farm, save your edits using the <strong>Save Edits button</strong> <img src="images/20250402_101940_image.png" alt=""></img>.</li>
+</ol>
+<h4 id="tips-for-accurate-polygon-digitization">Tips for Accurate Polygon Digitization</h4>
+<ul>
+<li><strong>Snapping</strong>: Use snapping to align polygon edges with adjacent features, ensuring there are no gaps or overlaps.</li>
+<li><strong>Zooming</strong>: Zoom in to capture fine details and ensure precise placement of vertices.</li>
+<li><strong><a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a></strong>: Adjust the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> of the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to make it easier to distinguish from the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>.</li>
+</ul>
+<hr></hr>
+<h2 id="step-4-saving-and-exporting-data">Step 4: Saving and Exporting Data</h2>
+<ol>
+<li>Save your edits for each <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> by toggling off editing mode.</li>
+<li>Export the shapefiles if needed:<ul>
+<li>Right-click the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the <strong>Layers Panel</strong> and select <strong>Export &gt; Save Features As</strong>.
+-</li>
+</ul>
+</li>
 </ol>
 <hr></hr>
-<h2 id="part-5-final-submission">Part 5: Final Submission</h2>
-<h3 id="what-to-submit">What to Submit</h3>
-<p>When you are done:</p>
+<h2 id="to-turn-in">To turn in:</h2>
 <ol>
-<li>Confirm that both files exist in <code>CastleFire/data/outputs/</code>:<ul>
-<li><code>sunetid_castle_postfire_labels.geojson</code></li>
-<li><code>sunetid_castle_prefire_labels.geojson</code></li>
-</ul>
-</li>
-<li>Compress those two <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> files into a single <code>.zip</code> file.</li>
-<li>Upload that <code>.zip</code> file to the assignment on Canvas.</li>
+<li>Using your skills as a cartographer, and your creativity, create a reference map that displays the features you have digitize, with appropriate symbologies, cartographic elements, descriptive text (Title, Date, CRS, Your Name, and any additional explanatory text necessary, etc...).</li>
+<li>Export your map as a PDF and submit it in Canvas.</li>
 </ol>
-<h3 id="final-checklist">Final Checklist</h3>
-<ul>
-<li>[ ] You created 20 random points inside <code>castle_2020</code></li>
-<li>[ ] The points were at least 100 meters apart</li>
-<li>[ ] You used those points to select a subset of grid cells</li>
-<li>[ ] You exported the selected grid cells to <code>sunetid_castle_sample_grid.shp</code></li>
-<li>[ ] You used the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move through the grid cells</li>
-<li>[ ] You created <code>sunetid_castle_postfire_labels.shp</code> in <code>EPSG:4326</code></li>
-<li>[ ] You labeled trees in 3 sampled grid cells in the postfire imagery</li>
-<li>[ ] You copied that work to <code>sunetid_castle_prefire_labels.shp</code></li>
-<li>[ ] You finished the prefire labels using the prefire imagery</li>
-<li>[ ] You exported both final layers to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a></li>
-<li>[ ] You zipped the two <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> files and uploaded them to Canvas</li>
-</ul>
-<h3 id="validation-notes">Validation Notes</h3>
-<p>Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 3 grid cells you worked on.</p>
-<hr></hr>
-<h2 id="conclusion">Conclusion</h2>
-<p>Through this lab, you used QGIS 3.44.7 to:</p>
-<ul>
-<li>generate random sample locations</li>
-<li>select a working subset of grid cells</li>
-<li>navigate spatial work systematically with the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
-<li>create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a>-based <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> layers</li>
-<li><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery</li>
-<li>export final training labels to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> for submission</li>
-</ul>
-<p>These are foundational GIS data creation skills and an important introduction to how <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> interpretation becomes structured training data.</p>
-<h3 id="next-steps">Next Steps</h3>
-<ul>
-<li>Keep your QGIS project file and working layers</li>
-<li>Review any feedback on <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> consistency when the assignment is graded</li>
-<li>Practice this workflow, since we will keep building on spatial data creation skills</li>
-</ul>
-<h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3>
-<p><strong>Selection tools not working:</strong></p>
-<ul>
-<li>Make sure you selected the correct input and comparison layers</li>
-<li>Confirm that the random points actually fall inside the fire boundary</li>
-</ul>
-<p><strong>Can't edit/digitize:</strong></p>
-<ul>
-<li>Make sure <strong>Toggle Editing</strong> is on</li>
-<li>Confirm you are editing the <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, not the sample grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
-</ul>
-<p><strong>Need to delete a rectangle:</strong></p>
-<ul>
-<li>Select the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
-<li>Press <code>Delete</code></li>
-<li>Save your edits</li>
-</ul>
-<p><strong>Unsure which imagery to use:</strong></p>
-<ul>
-<li>Use the <strong>postfire</strong> imagery for <code>sunetid_castle_postfire_labels</code></li>
-<li>Use the <strong>prefire</strong> imagery for <code>sunetid_castle_prefire_labels</code></li>
-</ul>
-<hr></hr>
-<h2 id="additional-resources">Additional Resources</h2>
-<ul>
-<li>QGIS Documentation: <a href="https://docs.qgis.org" target="_blank">docs.qgis.org</a></li>
-<li>NAIP Imagery Information: <a href="https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/" target="_blank">USDA NAIP Program</a></li>
-<li><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> Specification: <a href="https://geojson.org" target="_blank">geojson.org</a></li>
-<li>Web Mercator Tile Scheme: <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames" target="_blank">Slippy Map Tilenames</a></li>
-</ul>
-<p>If you encounter issues not covered in the troubleshooting section, consult the course forum or office hours!</p>
 
                                 
                                 </section>
@@ -1496,7 +1341,7 @@ The data you create will be used to train machine learning models for automated 
 
             
                 
-                <a href="02_georeferencing_with_qgis_and_allmaps_org.html" class="navigation navigation-prev " aria-label="Previous page: 02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org">
+                <a href="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html" class="navigation navigation-prev " aria-label="Previous page: 02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1512,7 +1357,7 @@ The data you create will be used to train machine learning models for automated 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Creating Vector Data by Digitizing in QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-13T02:17:54.883Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T02:18:05.077Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-13T03:53:00.956Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T03:53:10.099Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

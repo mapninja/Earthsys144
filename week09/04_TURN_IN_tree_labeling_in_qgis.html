@@ -1,0 +1,1605 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>04 - TURN IN - Tree Labeling in QGIS · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../week10/" />
+    
+    
+    <link rel="prev" href="03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Editing with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    00 - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week03/01_sql_operations_in_qgis.html">
+            
+                <a href="../week03/01_sql_operations_in_qgis.html">
+            
+                    
+                    01 - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week03/02_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week03/02_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    02 - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                <a href="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                    
+                    03 - Using SQL to Subset Big Data in the Stanford Data Farm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    00 - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    01 - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_network_analysis_with_qgis.html">
+            
+                <a href="../week04/02_network_analysis_with_qgis.html">
+            
+                    
+                    02 - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/03_introducing_simplyanalytics_com.html">
+            
+                    
+                    03 - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - Terrain & Visibility with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    02 - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    03 - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../week06/">
+            
+                <a href="../week06/">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                <a href="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                    
+                    01 - Modeling Movement with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.12.5" data-path="04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >04 - TURN IN - Tree Labeling in QGIS</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="04---turn-in---tree-labeling-in-qgis">04 - TURN IN - Tree Labeling in QGIS</h1>
+<blockquote>
+<p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
+<p><strong>Turn-in for grading:</strong> Complete and submit this exercise only if assigned by your instructor.</p>
+</blockquote>
+<h2 id="introduction">Introduction</h2>
+<p>Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> individual tree crowns from high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> aerial imagery.</p>
+<p><strong>What you'll be doing:</strong>
+You'll work with a QGIS project that contains high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> NAIP (National Agriculture Imagery Program) imagery from before and after the Castle Fire. Your task is to generate random sample locations, use them to select a subset of grid cells, and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery so the results can support machine learning validation work.</p>
+<p><strong>Why this matters:</strong>
+The data you create will be used to train machine learning models for automated tree detection and counting. Accurate tree crown delineation is fundamental to forest inventory, wildfire risk assessment, and ecosystem monitoring. This workflow teaches you core GIS skills while contributing to real research applications.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Navigate the QGIS interface and use essential navigation tools</li>
+<li>Work with layers, including reordering, toggling visibility, and exploring <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
+<li><a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables and select features based on attributes and location</li>
+<li>Use <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools to create random points within a study area</li>
+<li>Create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> layers for new spatial labels</li>
+<li>Use a docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move systematically through sampled grid cells</li>
+<li>Digitize rectangular tree labels from aerial imagery</li>
+<li>Export spatial data in <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> format with proper naming conventions</li>
+</ul>
+<p><img src="images/20260412_165514_image.png" alt=""></img></p>
+<hr></hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="download-and-extract-the-project-package">Download and Extract the Project Package</h3>
+<p>Download the <code>CastleFire.zip</code> file using this direct download link:</p>
+<p><a href="https://github.com/mapninja/Earthsys144/raw/refs/heads/master/data/CastleFire.zip" target="_blank">Download CastleFire.zip</a></p>
+<p>This package contains everything you need to get started, with <strong>best-practice folder structure and naming conventions already set up for you</strong>.</p>
+<p><strong>What's included in the .zip file:</strong></p>
+<ul>
+<li>Pre-configured QGIS project file: <code>Castle_Fire_2020_NAIP.qgz</code></li>
+<li>Raw data layers and imagery references, including:<ul>
+<li><code>castle_2020</code>(Fi re Perimeter)</li>
+<li><code>Z17_Castle_2020_tile_boundary_grid</code> (XYZ Tile Grid)</li>
+<li><code>Castle Prefire</code><ul>
+<li><code>Castle_2020_Prefire_rgb_all</code></li>
+<li><code>Castle_2020_Prefire_irg_all</code></li>
+</ul>
+</li>
+<li><code>Castle Postfire</code><ul>
+<li><code>Castle_2020_Postfire_rgb_all</code></li>
+<li><code>Castle_2020_Postfire_irg_all</code></li>
+</ul>
+</li>
+<li><code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
+<li><code>Google Terrain basemap</code></li>
+</ul>
+</li>
+<li>Pre-built folder structure following GIS best practices</li>
+<li>Empty directories ready for your work</li>
+<li><a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">Map layout</a> template</li>
+</ul>
+<p><strong>Extract the .zip file:</strong></p>
+<ol>
+<li>Download <code>CastleFire.zip</code></li>
+<li>Extract it to your Documents folder (or another location you can easily access)</li>
+</ol>
+<h3 id="whats-in-the-raw-data-folder">What's in the Raw Data Folder</h3>
+<p>Inside <code>data/raw/</code> you'll find:</p>
+<ul>
+<li><strong>Tile boundary grid:</strong> <code>Z17_Castle_2020_tile_boundary_grid</code></li>
+<li><strong>Study area outline:</strong> <code>castle_2020</code></li>
+<li><strong>Pre-fire imagery group:</strong> <code>Castle Prefire</code></li>
+<li><strong>Post-fire imagery group:</strong> <code>Castle Postfire</code></li>
+<li><strong>Fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
+<li><strong>Terrain <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>:</strong> <code>Google Terrain</code></li>
+</ul>
+<p><strong>Important:</strong> Never modify or delete files in the <code>raw/</code> folder. These are your originals. All your work will be saved to the <code>processed/</code> and <code>outputs/</code> folders.</p>
+<hr></hr>
+<h2 id="part-1-open-and-explore-the-project">Part 1: Open and Explore the Project</h2>
+<h3 id="step-1-open-the-project-file">Step 1: Open the Project File</h3>
+<p>Now that you've extracted the project package, let's open the pre-configured QGIS project:</p>
+<ol>
+<li>Launch QGIS</li>
+<li>Go to <strong>Project &gt; Open</strong> (or press <code>Ctrl+O</code> / <code>Cmd+O</code>)</li>
+<li>Navigate to your extracted <code>CastleFire</code> folder</li>
+<li>Select the QGIS project file <code>Castle_Fire_2020_NAIP.qgz</code><ul>
+<li>Example path: <code>~/Documents/CastleFire/Castle_Fire_2020_NAIP.qgz</code></li>
+</ul>
+</li>
+<li>Click <strong>Open</strong></li>
+</ol>
+<p>The project should load with the tile boundary grid, the study area outline, pre-fire and post-fire imagery groups, the 2020 fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and the Google Terrain <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> visible in the Layers Panel. Everything is pre-configured and ready to use!</p>
+<p><strong>Try this:</strong></p>
+<ul>
+<li>Use your mouse wheel to zoom in and out</li>
+<li>Use <strong>Zoom to <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> on the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see all tile boundaries again</li>
+<li>Hold spacebar and drag to pan around the imagery</li>
+<li>Notice how the NAIP imagery refreshes as you navigate and change scales.</li>
+</ul>
+<h3 id="step-2-explore-the-layers-panel">Step 2: Explore the Layers Panel</h3>
+<p>The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:</p>
+<p><strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Management:</strong></p>
+<ol>
+<li><p><strong>To Reorder Layers:</strong> Click and drag layers up or down</p>
+<ul>
+<li>Layers higher in the list appear on top in the map</li>
+<li>Try moving the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> above and below the imagery <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li>See how this affects visibility</li>
+</ul>
+</li>
+<li><p><strong>To Toggle <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Visibility:</strong> Click the checkbox next to each <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> name</p>
+<ul>
+<li>Turn the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> off and on</li>
+<li>Notice how you can see the imagery without the grid overlay</li>
+</ul>
+</li>
+<li><p><strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties:</strong> Right-click any <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and select <strong>Properties</strong></p>
+<ul>
+<li>Explore the different tabs (Source, <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a>, etc.)</li>
+<li>Don't make changes yet—just observe what's available</li>
+</ul>
+</li>
+</ol>
+<h3 id="step-3-explore-layer-metadata">Step 3: Explore Layer Metadata</h3>
+<p><a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> tells you important information about your spatial data:</p>
+<ol>
+<li>Right-click the <strong>grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> and select <strong>Properties</strong></li>
+<li>Navigate to the <strong>Information</strong> tab</li>
+<li><p>Review the <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> including:</p>
+<ul>
+<li><strong>CRS (Coordinate Reference System):</strong> Should be WGS84 (EPSG:4326)</li>
+<li><strong>Extent:</strong> The bounding box coordinates</li>
+<li><strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> count:</strong> How many grid cells exist</li>
+<li><strong>Geometry type:</strong> Should be "Polygon"</li>
+</ul>
+</li>
+<li><p>Repeat for the NAIP imagery <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></p>
+<ul>
+<li>Note the source URL for the XYZ tiles</li>
+<li>Check the CRS (should be EPSG:26911 NAD83/UTM zone 11N)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Why this matters:</strong> Understanding your data's <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>, extent, and properties is essential before any <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>. Mismatched coordinate systems are one of the most common GIS errors.</p>
+<hr></hr>
+<h2 id="part-2-working-with-attributes-and-selections">Part 2: Working with Attributes and Selections</h2>
+<h3 id="step-4-open-and-explore-the-attribute-table">Step 4: Open and Explore the Attribute Table</h3>
+<p>Every <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> containing information about each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>:</p>
+<ol>
+<li>Right-click the <code>Z17_Castle_2020_tile_boundary_grid</code> in the Layers Panel</li>
+<li>Select <strong>Open <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong></li>
+<li>Examine the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure:<ul>
+<li>Each row represents one grid cell</li>
+<li>Columns contain attributes like tile coordinates (X, Y, Z)</li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20260412_181047_image.png" alt=""></img></p>
+<p><strong>Understanding the Grid:</strong></p>
+<ul>
+<li><strong>Z:</strong> Zoom level (should be 18)</li>
+<li><strong>X:</strong> Tile column number</li>
+<li><strong>Y:</strong> Tile row number</li>
+<li>These Z/X/Y values follow the Web Mercator tiling scheme used by web maps</li>
+</ul>
+<h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
+<h3 id="step-5-create-20-random-points-inside-the-castle-fire-boundary">Step 5: Create 20 Random Points Inside the Castle Fire Boundary</h3>
+<p>Now you will create a set of random sample locations that will guide your labeling work.</p>
+<ol>
+<li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
+<li>In the Processing Toolbox search bar, type <code>random points inside polygons</code>.</li>
+<li>Open <strong>Random points inside polygons (fixed)</strong>.</li>
+<li>Configure the tool:<ul>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>castle_2020</code></li>
+<li><strong>Sampling strategy:</strong> <code>Points count</code></li>
+<li><strong>Point count:</strong> <code>20</code></li>
+<li><strong>Minimum distance between points:</strong> <code>100</code></li>
+<li><strong>Random points:</strong> Save as <code>random20.geojson</code> in your <code>data/</code> folder</li>
+</ul>
+</li>
+<li>Click <strong>Run</strong>.</li>
+</ol>
+<p><img src="images/20260412_182253_image.png" alt=""></img></p>
+<p>You should now see 20 random points inside the <code>castle_2020</code> boundary.</p>
+<p><img src="images/20260412_182715_image.png" alt=""></img></p>
+<p>Notice that there may be a cluster of points in an area where there is no imagery. If this is the case, do the following:</p>
+<ol>
+<li>Use the <strong>Select Features</strong> tool in the main QGIS toolbar.</li>
+<li>With the <code>castle_2020</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, click the large <code>castle_2020</code> polygon that covers the area where imagery is actually available.</li>
+<li><p>Confirm that the correct polygon is selected.</p>
+<p><img src="images/20260412_183220_image.png" alt=""></img></p>
+</li>
+<li>Open <strong>Random points inside polygons (fixed)</strong> again.</li>
+<li>Use the same settings as before, but this time enable the <strong>Selected features only</strong> option.</li>
+<li>Run the tool again and save the output.</li>
+<li>Check the new random points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and confirm that the points now fall within the part of the fire area where imagery is available for labeling.</li>
+<li>If the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> display does not update right away, click the <strong>Refresh</strong> button.</li>
+</ol>
+<p><img src="images/20260412_183427_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Why do this?</strong> Random points help spread the work across the study area, and the 100 meter spacing reduces clustering.</p>
+</blockquote>
+<h3 id="step-6-use-the-random-points-to-select-a-sample-of-grid-cells">Step 6: Use the Random Points to Select a Sample of Grid Cells</h3>
+<p>Next, use the random points to select a subset of the grid cells.</p>
+<ol>
+<li>Select the <code>Z17_Castle_2020_tile_boundary_grid</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers Panel.</li>
+<li>Go to <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Research Tools &gt; Select by Location</strong>.</li>
+<li>Configure the tool:<ul>
+<li><strong>Select features from:</strong> <code>Z17_Castle_2020_tile_boundary_grid</code></li>
+<li><strong>Where the features:</strong> <code>intersect</code></li>
+<li><strong>By comparing to features from:</strong> your <code>random20</code> points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+</ul>
+</li>
+<li>Click <strong>Run</strong>.</li>
+</ol>
+<p><img src="images/20260412_183632_image.png" alt=""></img></p>
+<p>You should now have a set of selected grid cells. You may need to turn off the <code>random20</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see the selected polygons more clearly.</p>
+<p><img src="images/20260412_183751_image.png" alt=""></img></p>
+<h3 id="step-7-export-the-selected-grid-cells-to-a-new-layer">Step 7: Export the Selected Grid Cells to a New Layer</h3>
+<p>Now export those selected grid cells to a new working <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li>Right-click <code>Z17_Castle_2020_tile_boundary_grid</code>.</li>
+<li>Choose <strong>Export &gt; Save Selected Features As...</strong></li>
+<li>Make sure the <strong>Save only selected features</strong> option is enabled.</li>
+<li><p>Save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to <code>CastleFire/data/processed/</code> as:</p>
+<pre><code>sunetid_castle_sample_grid.shp
+</code></pre></li>
+<li>Leave the default CRS unless QGIS prompts you to choose otherwise.</li>
+<li><p>Click <strong>OK</strong>.</p>
+<p><img src="images/20260412_184036_image.png" alt=""></img></p>
+</li>
+</ol>
+<p><strong>Tip &amp; Trick:</strong> Copy the style from the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it to the new one, then turn off the old grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li><p>Right-click the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</p>
+<p><img src="images/20260412_184119_image.png" alt=""></img></p>
+</li>
+<li><p>Right-click <code>sunetid_castle_sample_grid</code> and choose <strong>Styles &gt; Paste Style</strong>.</p>
+<p><img src="images/20260412_184153_image.png" alt=""></img></p>
+</li>
+<li>Turn off the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+</ol>
+<h3 id="step-8-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 8: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
+<p>You will use the exported sample grid as your working unit <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>.</li>
+<li><p>If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.</p>
+<p><img src="images/20260412_184334_image.png" alt=""></img></p>
+</li>
+<li>Use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> tools to:<ul>
+<li>select a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+<li>zoom to the selected <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+<li>move to the next <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20260412_184518_image.png" alt=""></img></p>
+<p><img src="images/20260412_184439_image.png" alt=""></img></p>
+<p>This lets you work through the sampled grid cells systematically instead of hunting around visually.</p>
+<hr></hr>
+<h2 id="part-4-create-and-edit-the-label-layers">Part 4: Create and Edit the Label Layers</h2>
+<h3 id="step-9-create-the-postfire-label-layer">Step 9: Create the Postfire Label Layer</h3>
+<p>Create a new empty <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> for your first set of labels.</p>
+<ol>
+<li>Go to <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Create <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; New <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
+<li>Configure the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:<ul>
+<li><strong>File name:</strong> <code>sunetid_castle_postfire_labels.shp</code></li>
+<li><strong>Geometry type:</strong> Polygon</li>
+<li><strong>CRS:</strong> <code>WGS 84 (EPSG:4326)</code></li>
+</ul>
+</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p><img src="images/20260412_184834_image.png" alt=""></img></p>
+<h3 id="step-10-get-ready-to-edit">Step 10: Get Ready to Edit</h3>
+<p>Before you start drawing labels, adjust the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> settings so QGIS uses the rectangle tool you need for this exercise.</p>
+<ol>
+<li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
+<li>Open <strong>Options</strong>.</li>
+<li>In the Options dialog, go to <strong>Map Tools &gt; <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a></strong>.</li>
+<li>Enable <strong>Suppress <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> form pop-up after <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> creation</strong>.</li>
+<li>Click <strong>Advanced</strong> at the bottom of the Options panel.</li>
+<li>Click <strong>I will be careful</strong>.</li>
+<li>Expand <code>digitizing &gt; shape-map-tools &gt; current</code>.</li>
+<li><p>Copy this text:</p>
+<pre><code>rectangle-from-center-and-a-point
+</code></pre></li>
+<li><p>Paste that text into the <strong>Value</strong> box for the <code>current</code> setting.</p>
+</li>
+</ol>
+<p><img src="images/20260412_191109_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>OK</strong> to save the setting.</li>
+</ol>
+<blockquote>
+<p><strong>Why do this?</strong> This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.</p>
+</blockquote>
+<h3 id="step-11-start-editing-the-postfire-label-layer">Step 11: Start Editing the Postfire Label Layer</h3>
+<ol>
+<li>Make sure the <strong>Castle Postfire</strong> imagery group is visible.</li>
+<li>Toggle between the RGB and IRG versions of the postfire imagery to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
+<li>Select <code>sunetid_castle_postfire_labels</code> in the Layers Panel.</li>
+<li>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s styling and set:<ul>
+<li><strong>Fill:</strong> Transparent</li>
+<li><strong>Stroke:</strong> a color that contrasts clearly with the imagery you are using</li>
+</ul>
+</li>
+<li>Click <strong>Toggle Editing</strong>.</li>
+</ol>
+<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
+<p>Now begin the main labeling task.</p>
+<ol>
+<li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>, select a grid cell and zoom to it.</li>
+<li>Inspect that cell in the <strong>postfire</strong> imagery.</li>
+<li>Only choose grid cells that meet all of the following conditions:<ul>
+<li>It should have trees in it.</li>
+<li>It should have no buildings, because we are interested in the behavior of raw forests.</li>
+<li>It should have no roads.</li>
+<li>It should have NAIP imagery available. Some images are currently missing, but they may appear later.</li>
+</ul>
+</li>
+<li>If the cell meets those conditions, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the trees by drawing rectangles around them using <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>.</li>
+<li>Save your edits periodically.</li>
+<li>When you finish one grid cell, select another sampled grid cell and repeat.</li>
+<li>Continue until you have labeled trees in <strong>3 grid cells</strong>.</li>
+</ol>
+<p><strong>Labeling guidance:</strong></p>
+<ul>
+<li>Keep the rectangles simple and consistent.</li>
+<li>Work one tree at a time.</li>
+<li>If a sampled cell has no trees, move on to another sampled cell.</li>
+<li>Save often.</li>
+</ul>
+<blockquote>
+<p><strong>Important concept:</strong> In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.</p>
+</blockquote>
+<h3 id="step-13-save-your-work-frequently">Step 13: Save Your Work Frequently</h3>
+<p>While <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>:</p>
+<ol>
+<li>Click <strong>Save <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Edits</strong> regularly.</li>
+<li>Do not wait until the end of the session to save.</li>
+</ol>
+<h3 id="step-14-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 14: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
+<p>Once you have finished labeling 3 grid cells in the postfire imagery:</p>
+<ol>
+<li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
+<li>Choose <strong>Save Features As...</strong></li>
+<li><p>Save a copy as:</p>
+<pre><code>sunetid_castle_prefire_labels.shp
+</code></pre></li>
+<li>Add the new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the project if QGIS does not do this automatically.</li>
+</ol>
+<p>This copied <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.</p>
+<h3 id="step-15-finish-the-prefire-tree-labels">Step 15: Finish the Prefire Tree Labels</h3>
+<p>Now switch to the prefire imagery and finish the second <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li>Turn on the <strong>prefire</strong> imagery.</li>
+<li>Start editing <code>sunetid_castle_prefire_labels</code>.</li>
+<li>Return to the same 3 sampled grid cells you already worked on.</li>
+<li>Keep the copied tree labels that already match visible trees.</li>
+<li>Add rectangles for any additional trees visible in the prefire imagery.</li>
+<li>Save edits regularly.</li>
+<li>When finished, stop editing and save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+</ol>
+<h3 id="step-16-export-both-label-layers-to-geojson">Step 16: Export Both Label Layers to GeoJSON</h3>
+<p>When both shapefiles are complete, export each one to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
+<ol>
+<li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
+<li>Choose <strong>Export &gt; Save Features As...</strong></li>
+<li><p>Set:</p>
+<ul>
+<li><strong>Format:</strong> <code>GeoJSON</code></li>
+<li><strong>File name:</strong> <code>sunetid_castle_postfire_labels.geojson</code></li>
+<li><strong>CRS:</strong> <code>EPSG:4326</code></li>
+</ul>
+</li>
+<li>Save it in <code>CastleFire/data/outputs/</code>.</li>
+<li><p>Repeat the same process for <code>sunetid_castle_prefire_labels</code>, exporting it as:</p>
+<pre><code>sunetid_castle_prefire_labels.geojson
+</code></pre></li>
+</ol>
+<hr></hr>
+<h2 id="part-5-final-submission">Part 5: Final Submission</h2>
+<h3 id="what-to-submit">What to Submit</h3>
+<p>When you are done:</p>
+<ol>
+<li>Confirm that both files exist in <code>CastleFire/data/outputs/</code>:<ul>
+<li><code>sunetid_castle_postfire_labels.geojson</code></li>
+<li><code>sunetid_castle_prefire_labels.geojson</code></li>
+</ul>
+</li>
+<li>Compress those two <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> files into a single <code>.zip</code> file.</li>
+<li>Upload that <code>.zip</code> file to the assignment on Canvas.</li>
+</ol>
+<h3 id="final-checklist">Final Checklist</h3>
+<ul>
+<li>[ ] You created 20 random points inside <code>castle_2020</code></li>
+<li>[ ] The points were at least 100 meters apart</li>
+<li>[ ] You used those points to select a subset of grid cells</li>
+<li>[ ] You exported the selected grid cells to <code>sunetid_castle_sample_grid.shp</code></li>
+<li>[ ] You used the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move through the grid cells</li>
+<li>[ ] You created <code>sunetid_castle_postfire_labels.shp</code> in <code>EPSG:4326</code></li>
+<li>[ ] You labeled trees in 3 sampled grid cells in the postfire imagery</li>
+<li>[ ] You copied that work to <code>sunetid_castle_prefire_labels.shp</code></li>
+<li>[ ] You finished the prefire labels using the prefire imagery</li>
+<li>[ ] You exported both final layers to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a></li>
+<li>[ ] You zipped the two <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> files and uploaded them to Canvas</li>
+</ul>
+<h3 id="validation-notes">Validation Notes</h3>
+<p>Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 3 grid cells you worked on.</p>
+<hr></hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Through this lab, you used QGIS 3.44.7 to:</p>
+<ul>
+<li>generate random sample locations</li>
+<li>select a working subset of grid cells</li>
+<li>navigate spatial work systematically with the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
+<li>create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a>-based <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> layers</li>
+<li><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery</li>
+<li>export final training labels to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> for submission</li>
+</ul>
+<p>These are foundational GIS data creation skills and an important introduction to how <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> interpretation becomes structured training data.</p>
+<h3 id="next-steps">Next Steps</h3>
+<ul>
+<li>Keep your QGIS project file and working layers</li>
+<li>Review any feedback on <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> consistency when the assignment is graded</li>
+<li>Practice this workflow, since we will keep building on spatial data creation skills</li>
+</ul>
+<h3 id="troubleshooting-common-issues">Troubleshooting Common Issues</h3>
+<p><strong>Selection tools not working:</strong></p>
+<ul>
+<li>Make sure you selected the correct input and comparison layers</li>
+<li>Confirm that the random points actually fall inside the fire boundary</li>
+</ul>
+<p><strong>Can't edit/digitize:</strong></p>
+<ul>
+<li>Make sure <strong>Toggle Editing</strong> is on</li>
+<li>Confirm you are editing the <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, not the sample grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+</ul>
+<p><strong>Need to delete a rectangle:</strong></p>
+<ul>
+<li>Select the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+<li>Press <code>Delete</code></li>
+<li>Save your edits</li>
+</ul>
+<p><strong>Unsure which imagery to use:</strong></p>
+<ul>
+<li>Use the <strong>postfire</strong> imagery for <code>sunetid_castle_postfire_labels</code></li>
+<li>Use the <strong>prefire</strong> imagery for <code>sunetid_castle_prefire_labels</code></li>
+</ul>
+<hr></hr>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li>QGIS Documentation: <a href="https://docs.qgis.org" target="_blank">docs.qgis.org</a></li>
+<li>NAIP Imagery Information: <a href="https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/" target="_blank">USDA NAIP Program</a></li>
+<li><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> Specification: <a href="https://geojson.org" target="_blank">geojson.org</a></li>
+<li>Web Mercator Tile Scheme: <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames" target="_blank">Slippy Map Tilenames</a></li>
+</ul>
+<p>If you encounter issues not covered in the troubleshooting section, consult the course forum or office hours!</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html" class="navigation navigation-prev " aria-label="Previous page: 03 - Introducing GDAL & Command Line Tools on Stanford Farmshare">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../week10/" class="navigation navigation-next " aria-label="Next page: Week 10 - Wrapping It All Up">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Tree Labeling in QGIS","level":"1.12.5","depth":2,"next":{"title":"Week 10 - Wrapping It All Up","level":"1.13","depth":1,"path":"week10/README.md","ref":"week10/README.md","articles":[{"title":"00 - Final Project Guidelines","level":"1.13.1","depth":2,"path":"week10/00_final_project_guidelines.md","ref":"week10/00_final_project_guidelines.md","articles":[]},{"title":"01 - StoryMaps Support Materials","level":"1.13.2","depth":2,"path":"week10/01_storymaps_support_materials.md","ref":"week10/01_storymaps_support_materials.md","articles":[]},{"title":"02 - Guide to Citation of Spatial Data & Software","level":"1.13.3","depth":2,"path":"week10/02_guide_to_citation_of_spatial_data_and_software.md","ref":"week10/02_guide_to_citation_of_spatial_data_and_software.md","articles":[]},{"title":"03 - Stace's Crazy List of Additional GISci Resources","level":"1.13.4","depth":2,"path":"week10/03_staces_crazy_list.md","ref":"week10/03_staces_crazy_list.md","articles":[]}]},"previous":{"title":"03 - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.12.4","depth":2,"path":"week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week09/04_TURN_IN_tree_labeling_in_qgis.md","mtime":"2026-04-13T03:53:01.531Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T03:53:10.099Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
