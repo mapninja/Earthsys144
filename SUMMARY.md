@@ -21,55 +21,55 @@
   * [03 - TURN IN - Coordinates and Geometries with Google Earth Engine](week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
 
 * [Week 02 - Making & Collecting Data](week02/README.md)
-  * [01 - TURN IN - Creating Vector Data by Digitizing in QGIS](week02/01_TURN_IN_data_creation_in_qgis.md)
-  * [02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org](week02/02_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md)
-  * [03 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps](week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
+  * [01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps](week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
+  * [02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org](week02/02_georeferencing_with_qgis_and_allmaps_org.md)
+  * [03 - TURN IN - Creating Vector Data by Digitizing in QGIS](week02/03_TURN_IN_data_creation_in_qgis.md)
   * [04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine](week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md)
 
-* Week 03 - Tables & Queries
+* [Week 03 - Tables & Queries](week03/README.md)
   * [00 - Basic Table Structures & Operations in QGIS](week03/00_basic_table_structures_and_operations_in_qgis.md)
   * [01 - SQL Operations in QGIS](week03/01_sql_operations_in_qgis.md)
-  * 02 - Tabular/Vector Data in Google Earth Engine
-  * 03 - Using SQL to Subset Big Data in the Stanford Data Farm
+  * [02 - Tabular/Vector Data in Google Earth Engine](week03/02_tabular_vector_data_in_google_earth_engine.md)
+  * [03 - Using SQL to Subset Big Data in the Stanford Data Farm](week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.md)
 
-* Week 04 - Basic Vector Analysis
-  * 00 - Buffering & Overlay Analysis in QGIS
-  * 01 - Areal Interpolation of Attributes with QGIS
-  * 02 - Network Analysis with QGIS
-  * 03 - Introducing SimplyAnalytics.com
+* [Week 04 - Basic Vector Analysis](week04/README.md)
+  * [00 - Buffering & Overlay Analysis in QGIS](week04/00_buffering_and_overlay_analysis_in_qgis.md)
+  * [01 - Areal Interpolation of Attributes with QGIS](week04/01_areal_interpolation_of_attributes_with_qgis.md)
+  * [02 - Network Analysis with QGIS](week04/02_network_analysis_with_qgis.md)
+  * [03 - Introducing SimplyAnalytics.com](week04/03_introducing_simplyanalytics_com.md)
 
-* Week 05 - Basic Raster Analysis
-  * 00 - Basic Raster Analysis with Google Earth Engine
-  * 01 - Terrain & Visibility with QGIS
-  * 02 - Watershed with QGIS & WhiteBox Tools
-  * 03 - Introducing StoryMaps on ArcGIS Online
+* [Week 05 - Basic Raster Analysis](week05/README.md)
+  * [00 - Basic Raster Analysis with Google Earth Engine](week05/00_basic_raster_analysis_with_google_earth_engine.md)
+  * [01 - Terrain & Visibility with QGIS](week05/01_terrain_and_visibility_with_qgis.md)
+  * [02 - Watershed with QGIS & WhiteBox Tools](week05/02_watershed_with_qgis_and_whitebox_tools.md)
+  * [03 - Introducing StoryMaps on ArcGIS Online](week05/03_introducing_storymaps_on_arcgis_online.md)
 
-* Week 06 - More Raster & Remote Sensing
-  * 00 - Basic Remote Sensing with Google Earth Engine
-  * 01 - Modeling Movement with Google Earth Engine
-  * 02 - Sampling & Interpolation with QGIS
-  * 03 - Introducing Planet.com Satellite Imagery
+* [Week 06 - More Raster & Remote Sensing](week06/README.md)
+  * [00 - Basic Remote Sensing with Google Earth Engine](week06/00_basic_remote_sensing_with_google_earth_engine.md)
+  * [01 - Modeling Movement with Google Earth Engine](week06/01_modeling_movement_with_google_earth_engine.md)
+  * [02 - Sampling & Interpolation with QGIS](week06/02_sampling_and_interpolation_with_qgis.md)
+  * [03 - Introducing Planet.com Satellite Imagery](week06/03_introducing_planet_com_satellite_imagery.md)
 
-* Week 07 - Web Mapping & APIs
-  * 00 - Making & Serving Map Tiles with QGIS
-  * 01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
-  * 02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
-  * 03 - Introducing OpenRefine for Data Carpentry
+* [Week 07 - Web Mapping & APIs](week07/README.md)
+  * [00 - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)
+  * [01 - Geocoding Addresses with locator.stanford.edu & OpenRefine](week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md)
+  * [02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages](week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md)
+  * [03 - Introducing OpenRefine for Data Carpentry](week07/03_introducing_openrefine_for_data_carpentry.md)
 
-* Week 08 - Analytic Models
-  * 00 - Wildfire Detection & Severity Measurement in Google Earth Engine
-  * 01 - Suitability Modeling in QGIS
-  * 02 - Landcover Classification & Change Detection in Google Earth Engine
-  * 03 - Introducing Model Builder in QGIS
+* [Week 08 - Analytic Models](week08/README.md)
+  * [00 - Wildfire Detection & Severity Measurement in Google Earth Engine](week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md)
+  * [01 - Suitability Modeling in QGIS](week08/01_suitability_modeling_in_qgis.md)
+  * [02 - Landcover Classification & Change Detection in Google Earth Engine](week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md)
+  * [03 - Introducing Model Builder in QGIS](week08/03_introducing_model_builder_in_qgis.md)
 
-* Week 09 - Scaling, Code, Odds & Ends
-  * 00 - The AlphaEarth Embedding Database in Google Earth Engine
-  * 01 - Being John Snow in a Python Notebook
-  * 02 - Photogrammetric Processing of Drone Imagery
-  * 03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+* [Week 09 - Scaling, Code, Odds & Ends](week09/README.md)
+  * [00 - The AlphaEarth Embedding Database in Google Earth Engine](week09/00_the_alphaearth_embedding_database_in_google_earth_engine.md)
+  * [01 - Being John Snow in a Python Notebook](week09/01_being_john_snow_in_a_python_notebook.md)
+  * [02 - Photogrammetric Processing of Drone Imagery](week09/02_photogrammetric_processing_of_drone_imagery.md)
+  * [03 - Introducing GDAL & Command Line Tools on Stanford Farmshare](week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
 
-* Week 10 - Wrapping It All Up
+* [Week 10 - Wrapping It All Up](week10/README.md)
   * [00 - Final Project Guidelines](week10/00_final_project_guidelines.md)
-  * 01 - StoryMaps Support Materials
+  * [01 - StoryMaps Support Materials](week10/01_storymaps_support_materials.md)
   * [02 - Guide to Citation of Spatial Data & Software](week10/02_guide_to_citation_of_spatial_data_and_software.md)
-  * 03 - Stace's Crazy List of Additional GISci Resources
+  * [03 - Stace's Crazy List of Additional GISci Resources](week10/03_staces_crazy_list.md)

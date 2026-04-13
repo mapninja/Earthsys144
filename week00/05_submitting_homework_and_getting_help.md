@@ -307,7 +307,7 @@ Any ideas what might be wrong?"
 
 ### Need to Report Course Material Problems?
 
-If you find errors, unclear instructions, or problems with the course materials themselves, please see **[05 - Help Fix the Labs](05_help_fix_the_labs.md)** for detailed guidance on submitting GitHub issues to improve the course for future students.
+If you find errors, unclear instructions, or problems with the course materials themselves, please see **[06 - Help Fix the Labs](06_help_fix_the_labs.md)** for detailed guidance on submitting GitHub issues to improve the course for future students.
 
 ### Supporting Your Issues with Evidence
 

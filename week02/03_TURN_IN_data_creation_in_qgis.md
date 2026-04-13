@@ -43,16 +43,16 @@ This package contains everything you need to get started, with **best-practice f
 
 - Pre-configured QGIS project file: `Castle_Fire_2020_NAIP.qgz`
 - Raw data layers and imagery references, including:
-  - `castle_2020`
-  - `Z17_Castle_2020_tile_boundary_grid`
+  - `castle_2020`(Fi re Perimeter)
+  - `Z17_Castle_2020_tile_boundary_grid` (XYZ Tile Grid)
   - `Castle Prefire`
-  - `Castle_2020_Prefire_rgb_all`
-  - `Castle_2020_Prefire_irg_all`
+    - `Castle_2020_Prefire_rgb_all`
+    - `Castle_2020_Prefire_irg_all`
   - `Castle Postfire`
-  - `Castle_2020_Postfire_rgb_all`
-  - `Castle_2020_Postfire_irg_all`
+    - `Castle_2020_Postfire_rgb_all`
+    - `Castle_2020_Postfire_irg_all`
   - `MORTALITREE_FIRE_PERIMETERS_2020`
-  - `Google Terrain`
+  - `Google Terrain basemap`
 - Pre-built folder structure following GIS best practices
 - Empty directories ready for your work
 - Map layout template
@@ -92,25 +92,14 @@ Now that you've extracted the project package, let's open the pre-configured QGI
 
 The project should load with the tile boundary grid, the study area outline, pre-fire and post-fire imagery groups, the 2020 fire perimeter layer, and the Google Terrain basemap visible in the Layers Panel. Everything is pre-configured and ready to use!
 
-### Step 2: Explore Navigation Tools
-
-QGIS provides several tools for navigating your map canvas. Let's get familiar with them:
-
-**Basic Navigation:**
-
-1. **Pan Tool** (hand icon) - Click and drag to move around the map
-   - Shortcut: Hold `Spacebar` and drag
-2. **Zoom In/Out** - Use the magnifying glass icons or mouse wheel
-3. **Zoom Full** - Click the globe icon to see all layers
-4. **Zoom to Layer** - Right-click the grid layer in the Layers Panel and select **Zoom to Layer**
-   - This is particularly useful for understanding the full extent of a layer
+![](images/20260412_175839_image.png)
 
 **Try this:**
 
-- Use **Zoom to Layer** on the grid layer to see all tile boundaries
 - Use your mouse wheel to zoom in and out
+- Use **Zoom to Layer** on the grid layer to see all tile boundaries again
 - Hold spacebar and drag to pan around the imagery
-- Notice how the NAIP imagery loads different tiles as you navigate
+- Notice how the NAIP imagery refreshes as you navigate and change scales.
 
 ### Step 3: Explore the Layers Panel
 
@@ -118,12 +107,12 @@ The Layers Panel (usually on the left side) shows all layers in your project. Le
 
 **Layer Management:**
 
-1. **Reorder Layers:** Click and drag layers up or down
+1. **To Reorder Layers:** Click and drag layers up or down
 
    - Layers higher in the list appear on top in the map
    - Try moving the grid layer above and below the imagery layer
    - See how this affects visibility
-2. **Toggle Layer Visibility:** Click the checkbox next to each layer name
+2. **To Toggle Layer Visibility:** Click the checkbox next to each layer name
 
    - Turn the grid layer off and on
    - Notice how you can see the imagery without the grid overlay
@@ -140,14 +129,14 @@ Metadata tells you important information about your spatial data:
 2. Navigate to the **Information** tab
 3. Review the metadata including:
 
-   - **CRS (Coordinate Reference System):** Should be Web Mercator (EPSG:3857)
+   - **CRS (Coordinate Reference System):** Should be WGS84 (EPSG:4326)
    - **Extent:** The bounding box coordinates
    - **Feature count:** How many grid cells exist
    - **Geometry type:** Should be "Polygon"
 4. Repeat for the NAIP imagery layer
 
    - Note the source URL for the XYZ tiles
-   - Check the CRS (should also be EPSG:3857)
+   - Check the CRS (should be EPSG:26911 NAD83/UTM zone 11N)
 
 **Why this matters:** Understanding your data's coordinate system, extent, and properties is essential before any spatial analysis. Mismatched coordinate systems are one of the most common GIS errors.
 
@@ -235,7 +224,6 @@ Now export those selected grid cells to a new working layer.
    ```
    sunetid_castle_sample_grid.shp
    ```
-
 4. Leave the default CRS unless QGIS prompts you to choose otherwise.
 5. Click **OK**.
 
@@ -322,7 +310,6 @@ Once you have finished labeling 3 grid cells in the postfire imagery:
    ```
    sunetid_castle_prefire_labels.shp
    ```
-
 4. Add the new layer to the project if QGIS does not do this automatically.
 
 This copied layer gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.
@@ -346,6 +333,7 @@ When both shapefiles are complete, export each one to GeoJSON.
 1. Right-click `sunetid_castle_postfire_labels`.
 2. Choose **Export > Save Features As...**
 3. Set:
+
    - **Format:** `GeoJSON`
    - **File name:** `sunetid_castle_postfire_labels.geojson`
    - **CRS:** `EPSG:4326`

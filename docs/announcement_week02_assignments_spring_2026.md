@@ -8,11 +8,11 @@ This week's assignment includes three required exercises. Together, they introdu
 
 Please note that the Field Data Collection exercise is required and graded. If you hear older references in prerecorded materials suggesting that it is optional, please ignore those comments. That guidance applied to an earlier version of the course and is no longer current.
 
-## [Data Creation in QGIS: Tree Labeling](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_data_creation_in_qgis.html)
+## [Data Creation in QGIS: Tree Labeling](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_data_creation_in_qgis.html)
 
 In this exercise, you will create spatial data by digitizing tree crowns from aerial imagery in QGIS. You will be labeling trees in imagery from before and after a fire, producing data that can be used to help validate a machine learning model for tree detection and change analysis. This is a hands-on introduction to vector data creation and interpretation. As you work, you will make decisions about where a feature begins and ends, which is one of the most important parts of learning how spatial data is constructed.
 
-## [Field Data Collection with ArcGIS Online and Field Maps](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
+## [Field Data Collection with ArcGIS Online and Field Maps](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
 
 In this exercise, you will build a field data collection application that can be distributed to multiple field users, with observations collected into a shared central database. You will create feature layers, design a field form, and use controlled value lists, or domains, to improve consistency and data quality. This workflow introduces the practical realities of field-based GIS and should leave you feeling much more confident about how to build your own mobile data collection projects using the ArcGIS Online platform.
 
