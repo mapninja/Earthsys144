@@ -21,9 +21,9 @@
   * [03 - TURN IN - Coordinates and Geometries with Google Earth Engine](week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
 
 * [Week 02 - Making & Collecting Data](week02/README.md)
-  * [01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps](week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
-  * [02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org](week02/02_georeferencing_with_qgis_and_allmaps_org.md)
-  * [03 - TURN IN - Creating Vector Data by Digitizing in QGIS](week02/03_TURN_IN_data_creation_in_qgis.md)
+  * [01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps](week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
+  * [02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org](week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md)
+  * [03 - TURN IN - Editing with QGIS](week02/03_TURN_IN_data_creation_in_qgis.md)
   * [04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine](week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md)
 
 * [Week 03 - Tables & Queries](week03/README.md)
@@ -67,6 +67,7 @@
   * [01 - Being John Snow in a Python Notebook](week09/01_being_john_snow_in_a_python_notebook.md)
   * [02 - Photogrammetric Processing of Drone Imagery](week09/02_photogrammetric_processing_of_drone_imagery.md)
   * [03 - Introducing GDAL & Command Line Tools on Stanford Farmshare](week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+  * [04 - TURN IN - Tree Labeling in QGIS](week09/04_TURN_IN_tree_labeling_in_qgis.md)
 
 * [Week 10 - Wrapping It All Up](week10/README.md)
   * [00 - Final Project Guidelines](week10/00_final_project_guidelines.md)

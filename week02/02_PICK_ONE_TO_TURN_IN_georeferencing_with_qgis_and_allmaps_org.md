@@ -1,6 +1,8 @@
-# Georeferencing with QGIS and AllMaps.org
+# 02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
+> **Pick one note:** For Week 02, complete **one** of the two `PICK_ONE_TO_TURN_IN` labs, based on your interests. Choose this lab if historical maps, archival materials, and georeferencing are more relevant to the kind of work you want to do.
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 

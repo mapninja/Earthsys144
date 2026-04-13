@@ -8,14 +8,14 @@
 
 ## Getting Ready for the Lab
 
-We will be using an image of the Stanford Teaching Farm for this exercise. That image is stored as a [Cloud-Optimized GeoTIFF (COG)](https://cogeo.org/) on the [Stanford Digital Repository (SDR)](https://sdr.stanford.edu/). A COG is a specialized type of TIFF image designed for efficient access and streaming over the web, enabling users to retrieve only the portions of the image they need without downloading the entire file.
+We will be using an image of the Stanford Teaching Farm for this exercise. That image is stored as a [Cloud-Optimized GeoTIFF (COG)](https://cogeo.org/) on AFS Space. A COG is a specialized type of TIFF image designed for efficient access and streaming over the web, enabling users to retrieve only the portions of the image they need without downloading the entire file.
 
 You can find the Persistent URL Page for the dataset here: [https://purl.stanford.edu/vq494qx9344](https://purl.stanford.edu/vq494qx9344)
 
 ![](images/20250328_125841_20250328_120858_image.png)
 
 We will use the file `odm_orthophoto_COG_d.tif` for this lab. The direct URL is:
-`https://stacks.stanford.edu/file/vq494qx9344/odm_orthophoto_COG_d.tif`.
+`https://web.stanford.edu/~maples/cog/collection/odm_orthophoto_COG_d.tif`.
 
 ---
 

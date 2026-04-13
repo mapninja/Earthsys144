@@ -32,6 +32,7 @@ You will work with:
 
 - **Dynamic World V1**, a near-real-time land cover dataset derived from Sentinel-2 imagery
 - **Hansen Global Forest Change**, a widely used dataset for forest loss and gain analysis
+- **Sentinel-2**, for natural color and color-infrared visualization
 
 ## Learning Objectives
 
@@ -122,160 +123,496 @@ In the final section of this lab, you will visualize Sentinel-2 using:
 
 ## Part 1: Define an Area of Interest
 
-You should begin almost every Earth Engine workflow by deciding where you are looking.
-
-For this lab, you can use a rectangle, polygon, or imported AOI from earlier work.
-
 ```javascript
-// Create a simple rectangular Area of Interest (AOI).
-// The coordinates are in longitude, latitude order.
-// This AOI is around part of the San Francisco Peninsula.
-var aoi = ee.Geometry.Rectangle([-122.55, 37.05, -121.95, 37.55]);
+// Stace Maples
+// EarthSys 144
+// Part 1: Define an Area of Interest (AOI)
+//
+// This script defines a simple AOI and displays it on the map.
+// Many Earth Engine workflows begin by defining where you want to work.
 
-// Center the map on the AOI so we can see where we are working.
+// ----------------------------------------------------------------------------
+// Define an Area of Interest (AOI).
+// Coordinates are [west, south, east, north] in lon/lat.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+// Center the map on the AOI.
 Map.centerObject(aoi, 10);
 
-// Add the AOI to the map as an outline.
-// The color setting here controls the display color only.
+// Display the AOI.
 Map.addLayer(aoi, {color: 'red'}, 'AOI');
-```
 
-> **Why start here?** An AOI keeps your work focused. Instead of working with the whole Earth, you are limiting your analysis to the place that matters to your question.
+// Print the AOI to the Console for inspection.
+print('AOI geometry:', aoi);
+```
 
 ## Part 2: Start with a Collection, Then Filter It
 
-Dynamic World is an `ImageCollection`, which means there are many images available across dates and locations.
-
 ```javascript
-// Load the Dynamic World Version 1 image collection.
-// This is a collection, not a single image.
+// Stace Maples
+// EarthSys 144
+// Part 2: Start with a Collection, Then Filter It
+//
+// This script loads the Dynamic World ImageCollection,
+// then filters it by place and date.
+
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load Dynamic World Version 1.
+// This is an ImageCollection, not a single image.
+// ----------------------------------------------------------------------------
 var dwCollection = ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1');
 
-// Filter the collection to images that intersect our AOI.
-// This keeps only scenes that touch the place we care about.
+// Filter by place.
 var dwByPlace = dwCollection.filterBounds(aoi);
 
-// Filter again by date so we work with a manageable time period.
-// Here we limit to the 2023 calendar year.
-var dwByDate = dwByPlace.filterDate('2023-01-01', '2023-12-31');
+// Filter by date.
+var dwByDate = dwByPlace.filterDate('2024-06-01', '2024-07-31');
 
-// Print the filtered collection so we can inspect it in the Console.
-print('Dynamic World images in AOI and date range:', dwByDate);
+// Print the filtered collection and image count.
+print('Dynamic World collection filtered by AOI and date:', dwByDate);
+print('Number of Dynamic World images:', dwByDate.size());
 ```
-
-> **Concept note:** This is a very common Earth Engine pattern. You usually start with a large collection and progressively narrow it until it matches your place and time of interest.
 
 ## Part 3: Move from a Collection to a Single Image
 
-Many operations become easier to understand if you work with one image at a time.
-
 ```javascript
-// Sort the filtered collection by time so the newest image is first.
-var dwSorted = dwByDate.sort('system:time_start', false);
+// Stace Maples
+// EarthSys 144
+// Part 3: Move from a Collection to a Single Image
+//
+// This script filters Dynamic World, then converts one item from the
+// collection into a single ee.Image for inspection and display.
 
-// Convert the first image in the sorted collection into a single ee.Image.
-// This gives us one scene to inspect and visualize.
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load and filter Dynamic World.
+// ----------------------------------------------------------------------------
+var dwCollection = ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1')
+  .filterBounds(aoi)
+  .filterDate('2024-06-01', '2024-07-31');
+
+// Sort so the newest image is first.
+var dwSorted = dwCollection.sort('system:time_start', false);
+
+// Convert the first image in the sorted collection into a single image.
 var dwImage = ee.Image(dwSorted.first());
 
-// Print the image metadata so we can see its bands and properties.
+// Print the image and its band names.
 print('One Dynamic World image:', dwImage);
+print('Band names:', dwImage.bandNames());
+
+// ----------------------------------------------------------------------------
+// Display the Dynamic World label band.
+// ----------------------------------------------------------------------------
+var dwClassPalette = [
+  '#419bdf', // water
+  '#397d49', // trees
+  '#88b053', // grass
+  '#7a87c6', // flooded vegetation
+  '#e49635', // crops
+  '#dfc35a', // shrub and scrub
+  '#c4281b', // built
+  '#a59b8f', // bare
+  '#b39fe1'  // snow and ice
+];
+
+Map.addLayer(
+  dwImage.select('label'),
+  {min: 0, max: 8, palette: dwClassPalette},
+  'Dynamic World label'
+);
 ```
 
 ## Part 4: Look at Bands and Pixel Values
 
-Dynamic World contains a labeled class band and several probability bands.
-
-For beginning raster analysis, it is very useful to select one band and think carefully about what its pixel values mean.
-
 ```javascript
-// Select the 'trees' probability band from the Dynamic World image.
-// This produces a new single-band image.
-var trees = dwImage.select('trees');
+// Stace Maples
+// EarthSys 144
+// Part 4: Look at Bands and Pixel Values
+//
+// This script selects several Dynamic World probability bands and displays them.
+// Use the Inspector to click the map and read pixel values.
 
-// Add the band to the map.
-// Values closer to 1 mean higher model confidence that a pixel is trees.
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load one Dynamic World image.
+// ----------------------------------------------------------------------------
+var dwImage = ee.Image(
+  ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1')
+    .filterBounds(aoi)
+    .filterDate('2024-06-01', '2024-07-31')
+    .sort('system:time_start', false)
+    .first()
+);
+
+print('Dynamic World image:', dwImage);
+print('Band names:', dwImage.bandNames());
+
+// ----------------------------------------------------------------------------
+// Select several probability bands.
+// Pixel values in these bands range from 0 to 1.
+// ----------------------------------------------------------------------------
+var trees = dwImage.select('trees');
+var water = dwImage.select('water');
+var built = dwImage.select('built');
+var crops = dwImage.select('crops');
+var grass = dwImage.select('grass');
+
+print('Trees probability band:', trees);
+print('Water probability band:', water);
+print('Built probability band:', built);
+print('Crops probability band:', crops);
+print('Grass probability band:', grass);
+
+// ----------------------------------------------------------------------------
+// Display the probability bands.
+// Turn layers on and off to compare them.
+// ----------------------------------------------------------------------------
 Map.addLayer(
   trees,
   {min: 0, max: 1, palette: ['white', 'darkgreen']},
-  'Dynamic World trees probability'
+  'Trees probability',
+  true
 );
 
-// Print the selected band so we can inspect it in the Console.
-print('Trees probability band:', trees);
-```
+Map.addLayer(
+  water,
+  {min: 0, max: 1, palette: ['white', 'blue']},
+  'Water probability',
+  false
+);
 
-> **Concept note:** In this case, each pixel value is not simply "tree" or "not tree." It is a probability value between 0 and 1. That is a nice reminder that not all raster pixels are direct categories. Some are modeled values.
+Map.addLayer(
+  built,
+  {min: 0, max: 1, palette: ['white', 'maroon']},
+  'Built probability',
+  false
+);
+
+Map.addLayer(
+  crops,
+  {min: 0, max: 1, palette: ['white', 'orange']},
+  'Crops probability',
+  false
+);
+
+Map.addLayer(
+  grass,
+  {min: 0, max: 1, palette: ['white', 'limegreen']},
+  'Grass probability',
+  false
+);
+
+// ----------------------------------------------------------------------------
+// Also display the label band for comparison.
+// ----------------------------------------------------------------------------
+var dwClassPalette = [
+  '#419bdf', // water
+  '#397d49', // trees
+  '#88b053', // grass
+  '#7a87c6', // flooded vegetation
+  '#e49635', // crops
+  '#dfc35a', // shrub and scrub
+  '#c4281b', // built
+  '#a59b8f', // bare
+  '#b39fe1'  // snow and ice
+];
+
+Map.addLayer(
+  dwImage.select('label'),
+  {min: 0, max: 8, palette: dwClassPalette},
+  'Dynamic World label',
+  false
+);
+
+// Use the Inspector to click the map and read pixel values.
+```
 
 ## Part 5: Use the Inspector to Read a Single Pixel
 
-After running the script:
+```javascript
+// Stace Maples
+// EarthSys 144
+// Part 5: Use the Inspector to Read a Single Pixel
+//
+// This script loads one Dynamic World image and displays several bands.
+// Open the Inspector tab and click on the map to read pixel values.
 
-1. Open the **Inspector** tab in Earth Engine.
-2. Click on the map inside your AOI.
-3. Read the value reported for the `trees` band.
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
 
-That clicked value is the single-pixel value at that location.
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
 
-> **Why this matters:** This is one of the key conceptual moves in remote sensing. A map may look like an image, but analysis often depends on understanding that each cell has a numeric value you can query, compare, threshold, and mask.
+// ----------------------------------------------------------------------------
+// Load one Dynamic World image.
+// ----------------------------------------------------------------------------
+var dwImage = ee.Image(
+  ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1')
+    .filterBounds(aoi)
+    .filterDate('2024-06-01', '2024-07-31')
+    .sort('system:time_start', false)
+    .first()
+);
+
+// ----------------------------------------------------------------------------
+// Select several bands.
+// ----------------------------------------------------------------------------
+var trees = dwImage.select('trees');
+var water = dwImage.select('water');
+var built = dwImage.select('built');
+
+// ----------------------------------------------------------------------------
+// Display the bands for inspection.
+// ----------------------------------------------------------------------------
+Map.addLayer(
+  trees,
+  {min: 0, max: 1, palette: ['white', 'darkgreen']},
+  'Trees probability'
+);
+
+Map.addLayer(
+  water,
+  {min: 0, max: 1, palette: ['white', 'blue']},
+  'Water probability',
+  false
+);
+
+Map.addLayer(
+  built,
+  {min: 0, max: 1, palette: ['white', 'maroon']},
+  'Built probability',
+  false
+);
+
+// ----------------------------------------------------------------------------
+// Display the label band too.
+// ----------------------------------------------------------------------------
+var dwClassPalette = [
+  '#419bdf', '#397d49', '#88b053', '#7a87c6', '#e49635',
+  '#dfc35a', '#c4281b', '#a59b8f', '#b39fe1'
+];
+
+Map.addLayer(
+  dwImage.select('label'),
+  {min: 0, max: 8, palette: dwClassPalette},
+  'Dynamic World label',
+  false
+);
+
+print('Click the map with the Inspector tool to read pixel values.');
+```
 
 ## Part 6: Use `updateMask()` to Show Only Strong Tree Pixels
 
-`updateMask()` is used to hide pixels that do not meet a condition.
-
-Here, you will keep only pixels where the Dynamic World `trees` probability is high.
-
 ```javascript
-// Create a Boolean mask where pixels are true if tree probability is above 0.6.
-// Pixels below that threshold will be hidden when the mask is applied.
-var treesMask = trees.gt(0.6);
+// Stace Maples
+// EarthSys 144
+// Part 6: Use updateMask() to Show Only Strong Tree Pixels
+//
+// This script uses the Dynamic World trees probability band,
+// then masks out pixels below a threshold.
 
-// Apply the mask to the original trees probability image.
-// Only pixels passing the condition remain visible.
-var treesMasked = trees.updateMask(treesMask);
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
 
-// Add the masked image to the map.
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load one Dynamic World image and select the trees band.
+// ----------------------------------------------------------------------------
+var dwImage = ee.Image(
+  ee.ImageCollection('GOOGLE/DYNAMICWORLD/V1')
+    .filterBounds(aoi)
+    .filterDate('2024-06-01', '2024-07-31')
+    .sort('system:time_start', false)
+    .first()
+);
+
+var trees = dwImage.select('trees');
+
+// ----------------------------------------------------------------------------
+// Display the original trees probability band.
+// ----------------------------------------------------------------------------
 Map.addLayer(
-  treesMasked,
+  trees,
+  {min: 0, max: 1, palette: ['white', 'darkgreen']},
+  'Trees probability'
+);
+
+// ----------------------------------------------------------------------------
+// Create threshold masks.
+// ----------------------------------------------------------------------------
+var treesMask60 = trees.gt(0.6);
+var treesMask80 = trees.gt(0.8);
+
+// Display the masks themselves.
+Map.addLayer(
+  treesMask60,
+  {min: 0, max: 1, palette: ['black', 'yellow']},
+  'Tree mask > 0.6',
+  false
+);
+
+Map.addLayer(
+  treesMask80,
+  {min: 0, max: 1, palette: ['black', 'cyan']},
+  'Tree mask > 0.8',
+  false
+);
+
+// ----------------------------------------------------------------------------
+// Apply the masks.
+// ----------------------------------------------------------------------------
+var treesMasked60 = trees.updateMask(treesMask60);
+var treesMasked80 = trees.updateMask(treesMask80);
+
+// Display the masked images.
+Map.addLayer(
+  treesMasked60,
   {min: 0.6, max: 1, palette: ['yellow', 'green']},
   'Trees probability > 0.6'
 );
-```
 
-> **Concept note:** A mask does not necessarily change the underlying pixel values. It changes which pixels are visible or available for subsequent analysis.
+Map.addLayer(
+  treesMasked80,
+  {min: 0.8, max: 1, palette: ['cyan', 'darkgreen']},
+  'Trees probability > 0.8',
+  false
+);
+
+// ----------------------------------------------------------------------------
+// Also display the label band for context.
+// ----------------------------------------------------------------------------
+var dwClassPalette = [
+  '#419bdf', '#397d49', '#88b053', '#7a87c6', '#e49635',
+  '#dfc35a', '#c4281b', '#a59b8f', '#b39fe1'
+];
+
+Map.addLayer(
+  dwImage.select('label'),
+  {min: 0, max: 8, palette: dwClassPalette},
+  'Dynamic World label',
+  false
+);
+```
 
 ## Part 7: Threshold the Hansen Forest Loss Dataset
 
-Now you will move from class probabilities to a different kind of pixel value.
-
-In the Hansen dataset, the `lossyear` band stores the year of forest loss as a coded value:
-
-- `0` means no recorded loss
-- `1` means loss in 2001
-- `2` means loss in 2002
-- and so on
-
-So if you want all forest loss during a ten-year period, you can threshold those values.
-
 ```javascript
-// Load the Hansen Global Forest Change image.
-// This dataset is a single multi-band image.
+// Stace Maples
+// EarthSys 144
+// Part 7: Threshold the Hansen Forest Loss Dataset
+//
+// This script selects the Hansen lossyear band,
+// then isolates forest loss from 2005 through 2014.
+
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load the Hansen Global Forest Change dataset.
+// ----------------------------------------------------------------------------
 var hansen = ee.Image('UMD/hansen/global_forest_change_2023_v1_11');
 
-// Select the lossyear band, which stores the coded year of forest loss.
-var lossYear = hansen.select('lossyear');
+var treeCover2000 = hansen.select('treecover2000').clip(aoi);
+var lossYear = hansen.select('lossyear').clip(aoi);
 
-// Clip the data to the AOI so the display focuses on our study area.
-var lossYearClipped = lossYear.clip(aoi);
+print('Hansen image:', hansen);
+print('Hansen band names:', hansen.bandNames());
 
-// Create a mask for forest loss that happened from 2005 through 2014.
-// In the Hansen coding, 2001 = 1, so 2005 = 5 and 2014 = 14.
-var loss2005to2014 = lossYearClipped.gte(5).and(lossYearClipped.lte(14));
+// ----------------------------------------------------------------------------
+// Display tree cover in year 2000 for context.
+// ----------------------------------------------------------------------------
+Map.addLayer(
+  treeCover2000,
+  {min: 0, max: 100, palette: ['white', 'darkgreen']},
+  'Tree cover 2000',
+  false
+);
 
-// Apply the mask so only pixels with loss in that ten-year window remain visible.
-var lossMasked = lossYearClipped.updateMask(loss2005to2014);
+// ----------------------------------------------------------------------------
+// Display the raw lossyear band.
+// 0 = no loss, 1 = 2001, 2 = 2002, etc.
+// ----------------------------------------------------------------------------
+Map.addLayer(
+  lossYear,
+  {min: 0, max: 23, palette: ['black', 'yellow', 'orange', 'red']},
+  'Hansen lossyear raw',
+  false
+);
 
-// Add the masked forest loss image to the map.
-// The palette is arbitrary, but warm colors help the loss stand out.
+// ----------------------------------------------------------------------------
+// Create a mask for loss from 2005 through 2014.
+// ----------------------------------------------------------------------------
+var loss2005to2014 = lossYear.gte(5).and(lossYear.lte(14));
+
+// Display the Boolean mask.
+Map.addLayer(
+  loss2005to2014,
+  {min: 0, max: 1, palette: ['black', 'red']},
+  'Loss mask 2005-2014',
+  false
+);
+
+// Apply the mask.
+var lossMasked = lossYear.updateMask(loss2005to2014);
+
+// Display the masked result.
 Map.addLayer(
   lossMasked,
   {min: 5, max: 14, palette: ['yellow', 'orange', 'red']},
@@ -283,28 +620,45 @@ Map.addLayer(
 );
 ```
 
-> **Concept note:** This is a thresholding workflow. You are turning a broad range of pixel values into a narrower condition of interest. This is one of the most common operations in raster analysis.
-
 ## Part 8: Natural Color RGB Visualization with Sentinel-2
 
-Now you will work with Sentinel-2 imagery directly so you can compare analysis products to the source imagery.
-
 ```javascript
-// Load the Sentinel-2 surface reflectance collection.
-var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED');
+// Stace Maples
+// EarthSys 144
+// Part 8: Natural Color RGB Visualization with Sentinel-2
+//
+// This script loads Sentinel-2 Surface Reflectance imagery,
+// filters it, and creates a median composite for RGB display.
 
-// Filter Sentinel-2 to the same AOI and date range used above.
-var s2Filtered = s2
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load and filter Sentinel-2 Surface Reflectance.
+// ----------------------------------------------------------------------------
+var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
   .filterBounds(aoi)
-  .filterDate('2023-01-01', '2023-12-31')
+  .filterDate('2024-06-01', '2024-07-31')
   .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20));
 
-// Make a median composite so we get one representative image.
-// This reduces the impact of clouds and scene-to-scene variation.
-var s2Image = s2Filtered.median().clip(aoi);
+print('Filtered Sentinel-2 collection:', s2);
+print('Number of Sentinel-2 images:', s2.size());
 
-// Add a natural color RGB visualization.
-// B4 is red, B3 is green, and B2 is blue.
+// ----------------------------------------------------------------------------
+// Create a median composite and clip to the AOI.
+// ----------------------------------------------------------------------------
+var s2Image = s2.median().clip(aoi);
+
+// Display the RGB image.
+// B4 = red, B3 = green, B2 = blue.
 Map.addLayer(
   s2Image,
   {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000},
@@ -312,24 +666,50 @@ Map.addLayer(
 );
 ```
 
-### What is RGB?
-
-RGB uses:
-
-- `B4` for red
-- `B3` for green
-- `B2` for blue
-
-This gives an image that looks relatively close to what our eyes expect from a color photograph.
-
 ## Part 9: False Color IRG / CIR Visualization
 
-Near infrared is especially useful for vegetation analysis because healthy vegetation reflects strongly in that part of the spectrum.
-
 ```javascript
-// Add a false-color image using near infrared, red, and green.
-// This is often called CIR or false-color infrared visualization.
-// Vegetation usually appears bright red in this display.
+// Stace Maples
+// EarthSys 144
+// Part 9: False Color IRG / CIR Visualization
+//
+// This script loads Sentinel-2 imagery and compares RGB with CIR.
+// In CIR, vegetation usually appears bright red.
+
+// ----------------------------------------------------------------------------
+// Define the AOI.
+// ----------------------------------------------------------------------------
+var aoi = ee.Geometry.Rectangle([
+  -122.55, 37.05,
+  -121.95, 37.55
+]);
+
+Map.centerObject(aoi, 10);
+Map.addLayer(aoi, {color: 'red'}, 'AOI');
+
+// ----------------------------------------------------------------------------
+// Load and filter Sentinel-2.
+// ----------------------------------------------------------------------------
+var s2Image = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+  .filterBounds(aoi)
+  .filterDate('2024-06-01', '2024-07-31')
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20))
+  .median()
+  .clip(aoi);
+
+// ----------------------------------------------------------------------------
+// Display RGB.
+// ----------------------------------------------------------------------------
+Map.addLayer(
+  s2Image,
+  {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000},
+  'Sentinel-2 RGB'
+);
+
+// ----------------------------------------------------------------------------
+// Display CIR / IRG.
+// B8 = near infrared, B4 = red, B3 = green.
+// ----------------------------------------------------------------------------
 Map.addLayer(
   s2Image,
   {bands: ['B8', 'B4', 'B3'], min: 0, max: 3000},
@@ -337,71 +717,48 @@ Map.addLayer(
 );
 ```
 
-### Why does this help?
+## Part 10: Modify the Script to Explore a New Place
 
-RGB is useful for familiar visual interpretation.
+Now that you have built a working false-color visualization in Part 9, your final task is to adapt that script so it works somewhere else in the world.
 
-CIR is useful because vegetation becomes much easier to distinguish, often appearing bright red or pink, while built surfaces and water appear very different.
+Start with your Part 9 script and make the following changes:
 
-> **Concept note:** Visualization is not just cosmetic. Changing band combinations helps you see different physical properties in the landscape.
+1. Change the **AOI** so it covers a different place somewhere else in the world.
+2. Change the **date filter range** so the script loads imagery from a different time period.
+3. Run the script again and confirm that it produces a new image for your new AOI and date range.
+4. Keep the RGB and CIR visualizations so you can compare how the new place looks in both band combinations.
 
-## Part 10: How Dynamic World and Sentinel-2 Are Connected
+As you make these changes, add your usual script header as comments at the top of the script.
 
-Dynamic World is derived from Sentinel-2 imagery. That means the land cover probabilities you viewed earlier are tied to a specific Sentinel-2 acquisition.
+Your header should include:
 
-In many cases, the image identifiers are closely related, and the Dynamic World image name reflects the Sentinel-2 scene it was built from.
+- your name
+- the course name
+- the lab title
+- a short note explaining what place and date range you chose
 
-Here is a simple way to inspect that relationship:
+> **Why do this?** One of the most important Earth Engine skills is learning how to adapt a working script to a new place and time. If you can change the AOI and date range successfully, you are beginning to use the script as an analytical tool rather than just following it mechanically.
 
-```javascript
-// Get the system index for the selected Dynamic World image.
-// This is often the easiest way to examine how the image is identified.
-var dwId = dwImage.get('system:index');
-
-// Print the identifier to the Console so we can compare it to Sentinel-2 scene names.
-print('Dynamic World system:index', dwId);
-```
-
-When you inspect the metadata for Dynamic World images and Sentinel-2 scenes, you can often see that they correspond to the same underlying acquisition.
-
-> **Why this matters:** Dynamic World is not an unrelated map product floating in space. It is tied to specific Sentinel-2 imagery. That means you can move back and forth between the classified product and the source multispectral image when interpreting what you see.
-
-## Suggested Turn-In
+## To Turn-In
 
 For this lab, students should submit:
 
-- a Google Earth Engine **Get Link** URL
-- a script that includes their name in a comment near the top
+- a Google Earth Engine **Get Link** URL to their modified script
+- that includes their name in a comment near the top
 - inline comments marking any changes they made
 
-Their script should demonstrate:
+Your script should demonstrate:
 
 - an AOI
+- a changed AOI and changed date range that produce imagery for a new place
 - collection filtering by place and date
-- selection of a single Dynamic World probability band
-- use of `updateMask()`
-- thresholding of Hansen forest loss for a ten-year period
 - RGB and CIR visualization using Sentinel-2 bands
 
 ## A Good Script Header Example
 
 ```javascript
 // Your Name
-// Earthsys 144 Week 02
-// Collections, images, bands, and pixels in Google Earth Engine
-// I filtered Dynamic World and Sentinel-2 by my AOI and dates,
-// masked high tree-probability pixels, and mapped forest loss for a ten-year period.
+// EarthSys 144
+// Collections, Images, Bands, and Pixels in Google Earth Engine
+// I filtered Sentinel-2 by my AOI and dates,
 ```
-
-## Conclusion
-
-This lab is meant to make a very important transition feel manageable.
-
-You are moving from "satellite imagery is a picture" toward a stronger understanding:
-
-- collections contain many images
-- images contain bands
-- bands contain pixel values
-- pixel values can be filtered, masked, thresholded, and visualized
-
-That way of thinking is the foundation of remote sensing and raster analysis in Earth Engine.

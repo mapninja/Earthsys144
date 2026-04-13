@@ -1,6 +1,8 @@
-# Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection (Ready)
+# 01 - PICK ONE TO TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
+
+> **Pick one note:** For Week 02, complete **one** of the two `PICK_ONE_TO_TURN_IN` labs, based on your interests. Choose this lab if mobile field data collection, forms, and shared field workflows are more relevant to the kind of work you want to do.
 
 ## Collecting Field Data with ArcGIS Online and Field Maps
 

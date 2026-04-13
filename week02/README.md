@@ -24,23 +24,23 @@ By the end of Week 02, you should be able to:
 
 These Week 02 labs include material that must be turned in for grading.
 
-### 02 - TURN IN - Georeferencing with QGIS and AllMaps.org
+### 02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org
 
-[Open the lab](02_georeferencing_with_qgis_and_allmaps_org.md)
+[Open the lab](02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md)
 
 This lab introduces georeferencing through a historical map of Wyoming. You will work with a scanned map image, a PLSS reference layer, and the QGIS Georeferencer to align the historical map to real-world coordinates. The lab emphasizes not only the mechanics of the tool, but the conceptual ideas behind reference data, projection choice, and control point placement.
 
-### [01 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
+### [01 - PICK ONE TO TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](https://mapninja.github.io/Earthsys144/week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
 
-[Open the lab](01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
+[Open the lab](01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md)
 
 This lab introduces mobile field data collection. You will create hosted feature layers in ArcGIS Online, design a field form, configure offline use, and collect data with ArcGIS Field Maps. The purpose is to help you think carefully about field schema design, controlled vocabularies, usability, and the realities of collecting data away from a desktop GIS.
 
-### [03 - TURN IN - Data Creation in QGIS](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_data_creation_in_qgis.html)
+### [03 - TURN IN - Editing with QGIS](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_data_creation_in_qgis.html)
 
 [Open the lab](03_TURN_IN_data_creation_in_qgis.md)
 
-This lab introduces vector data creation through a tree crown labeling exercise in QGIS. You will work from prefire and postfire aerial imagery, create new tree label features, and build a structured training dataset for later validation work. The main lesson is that digitizing is an interpretive act: you are making decisions about what should count as a tree label and those decisions affect the quality of the resulting dataset.
+This lab introduces vector data creation through a hands-on editing exercise in QGIS. You will work from aerial imagery of the Stanford Teaching Farm and create point, line, and polygon features. The main lesson is that digitizing is an interpretive act: you are deciding what should count as a feature and how it should be represented in a structured dataset.
 
 ### [04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine](https://mapninja.github.io/Earthsys144/week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html)
 
