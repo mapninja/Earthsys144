@@ -1102,7 +1102,6 @@ The data you create will be used to train machine learning models for automated 
 <li>Click <strong>Open</strong></li>
 </ol>
 <p>The project should load with the tile boundary grid, the study area outline, pre-fire and post-fire imagery groups, the 2020 fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and the Google Terrain <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> visible in the Layers Panel. Everything is pre-configured and ready to use!</p>
-<p><img src="images/20260412_175839_image.png" alt=""></img></p>
 <p><strong>Try this:</strong></p>
 <ul>
 <li>Use your mouse wheel to zoom in and out</li>
@@ -1110,7 +1109,7 @@ The data you create will be used to train machine learning models for automated 
 <li>Hold spacebar and drag to pan around the imagery</li>
 <li>Notice how the NAIP imagery refreshes as you navigate and change scales.</li>
 </ul>
-<h3 id="step-3-explore-the-layers-panel">Step 3: Explore the Layers Panel</h3>
+<h3 id="step-2-explore-the-layers-panel">Step 2: Explore the Layers Panel</h3>
 <p>The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:</p>
 <p><strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Management:</strong></p>
 <ol>
@@ -1134,7 +1133,7 @@ The data you create will be used to train machine learning models for automated 
 </ul>
 </li>
 </ol>
-<h3 id="step-4-explore-layer-metadata">Step 4: Explore Layer Metadata</h3>
+<h3 id="step-3-explore-layer-metadata">Step 3: Explore Layer Metadata</h3>
 <p><a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> tells you important information about your spatial data:</p>
 <ol>
 <li>Right-click the <strong>grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> and select <strong>Properties</strong></li>
@@ -1157,18 +1156,18 @@ The data you create will be used to train machine learning models for automated 
 <p><strong>Why this matters:</strong> Understanding your data's <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>, extent, and properties is essential before any <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>. Mismatched coordinate systems are one of the most common GIS errors.</p>
 <hr></hr>
 <h2 id="part-2-working-with-attributes-and-selections">Part 2: Working with Attributes and Selections</h2>
-<h3 id="step-5-open-and-explore-the-attribute-table">Step 5: Open and Explore the Attribute Table</h3>
+<h3 id="step-4-open-and-explore-the-attribute-table">Step 4: Open and Explore the Attribute Table</h3>
 <p>Every <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> containing information about each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>:</p>
 <ol>
-<li>Right-click the <strong>grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> in the Layers Panel</li>
+<li>Right-click the <code>Z17_Castle_2020_tile_boundary_grid</code> in the Layers Panel</li>
 <li>Select <strong>Open <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong></li>
 <li>Examine the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure:<ul>
 <li>Each row represents one grid cell</li>
 <li>Columns contain attributes like tile coordinates (X, Y, Z)</li>
-<li>Note the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names—you'll need these for creating file names later</li>
 </ul>
 </li>
 </ol>
+<p><img src="images/20260412_181047_image.png" alt=""></img></p>
 <p><strong>Understanding the Grid:</strong></p>
 <ul>
 <li><strong>Z:</strong> Zoom level (should be 18)</li>
@@ -1176,24 +1175,8 @@ The data you create will be used to train machine learning models for automated 
 <li><strong>Y:</strong> Tile row number</li>
 <li>These Z/X/Y values follow the Web Mercator tiling scheme used by web maps</li>
 </ul>
-<h3 id="step-6-select-features-by-attributes">Step 6: Select Features by Attributes</h3>
-<p>Now let's practice selecting specific features based on their attributes:</p>
-<ol>
-<li>In the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, click the <strong>Select features using an expression</strong> button (looks like ε with a yellow highlight)</li>
-<li>The expression builder opens—this is where you can write queries</li>
-<li><p>Try a simple selection:</p>
-<ul>
-<li>In the expression <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>, type: <code>"X" = 100</code> (replace 100 with an actual X value from your <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>)</li>
-<li>Click <strong>Select Features</strong></li>
-<li>Notice the selected rows turn blue in the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and yellow on the map</li>
-</ul>
-</li>
-<li>To clear the selection: Click the <strong>Deselect all features</strong> button in the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> toolbar</li>
-</ol>
-<p><strong>Practice:</strong> Try selecting grid cells that meet certain criteria (explore the AND/OR operators in expressions if you want to get fancy).</p>
-<hr></hr>
 <h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
-<h3 id="step-7-create-20-random-points-inside-the-castle-fire-boundary">Step 7: Create 20 Random Points Inside the Castle Fire Boundary</h3>
+<h3 id="step-5-create-20-random-points-inside-the-castle-fire-boundary">Step 5: Create 20 Random Points Inside the Castle Fire Boundary</h3>
 <p>Now you will create a set of random sample locations that will guide your labeling work.</p>
 <ol>
 <li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
@@ -1201,18 +1184,35 @@ The data you create will be used to train machine learning models for automated 
 <li>Open <strong>Random points inside polygons (fixed)</strong>.</li>
 <li>Configure the tool:<ul>
 <li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>castle_2020</code></li>
-<li><strong>Number of points:</strong> <code>20</code></li>
+<li><strong>Sampling strategy:</strong> <code>Points count</code></li>
+<li><strong>Point count:</strong> <code>20</code></li>
 <li><strong>Minimum distance between points:</strong> <code>100</code></li>
-<li><strong>Random points:</strong> <strong>Create Temporary <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong></li>
+<li><strong>Random points:</strong> Save as <code>random20.geojson</code> in your <code>data/</code> folder</li>
 </ul>
 </li>
 <li>Click <strong>Run</strong>.</li>
 </ol>
+<p><img src="images/20260412_182253_image.png" alt=""></img></p>
 <p>You should now see 20 random points inside the <code>castle_2020</code> boundary.</p>
+<p><img src="images/20260412_182715_image.png" alt=""></img></p>
+<p>Notice that there may be a cluster of points in an area where there is no imagery. If this is the case, do the following:</p>
+<ol>
+<li>Use the <strong>Select Features</strong> tool in the main QGIS toolbar.</li>
+<li>With the <code>castle_2020</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, click the large <code>castle_2020</code> polygon that covers the area where imagery is actually available.</li>
+<li><p>Confirm that the correct polygon is selected.</p>
+<p><img src="images/20260412_183220_image.png" alt=""></img></p>
+</li>
+<li>Open <strong>Random points inside polygons (fixed)</strong> again.</li>
+<li>Use the same settings as before, but this time enable the <strong>Selected features only</strong> option.</li>
+<li>Run the tool again and save the output.</li>
+<li>Check the new random points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and confirm that the points now fall within the part of the fire area where imagery is available for labeling.</li>
+<li>If the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> display does not update right away, click the <strong>Refresh</strong> button.</li>
+</ol>
+<p><img src="images/20260412_183427_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Why do this?</strong> Random points help spread the work across the study area, and the 100 meter spacing reduces clustering.</p>
 </blockquote>
-<h3 id="step-8-use-the-random-points-to-select-a-sample-of-grid-cells">Step 8: Use the Random Points to Select a Sample of Grid Cells</h3>
+<h3 id="step-6-use-the-random-points-to-select-a-sample-of-grid-cells">Step 6: Use the Random Points to Select a Sample of Grid Cells</h3>
 <p>Next, use the random points to select a subset of the grid cells.</p>
 <ol>
 <li>Select the <code>Z17_Castle_2020_tile_boundary_grid</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers Panel.</li>
@@ -1220,34 +1220,45 @@ The data you create will be used to train machine learning models for automated 
 <li>Configure the tool:<ul>
 <li><strong>Select features from:</strong> <code>Z17_Castle_2020_tile_boundary_grid</code></li>
 <li><strong>Where the features:</strong> <code>intersect</code></li>
-<li><strong>By comparing to features from:</strong> your random points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li><strong>By comparing to features from:</strong> your <code>random20</code> points <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 </ul>
 </li>
 <li>Click <strong>Run</strong>.</li>
 </ol>
-<p>You should now have a set of selected grid cells.</p>
-<h3 id="step-9-export-the-selected-grid-cells-to-a-new-layer">Step 9: Export the Selected Grid Cells to a New Layer</h3>
+<p><img src="images/20260412_183632_image.png" alt=""></img></p>
+<p>You should now have a set of selected grid cells. You may need to turn off the <code>random20</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see the selected polygons more clearly.</p>
+<p><img src="images/20260412_183751_image.png" alt=""></img></p>
+<h3 id="step-7-export-the-selected-grid-cells-to-a-new-layer">Step 7: Export the Selected Grid Cells to a New Layer</h3>
 <p>Now export those selected grid cells to a new working <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
 <li>Right-click <code>Z17_Castle_2020_tile_boundary_grid</code>.</li>
 <li>Choose <strong>Export &gt; Save Selected Features As...</strong></li>
+<li>Make sure the <strong>Save only selected features</strong> option is enabled.</li>
 <li><p>Save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to <code>CastleFire/data/processed/</code> as:</p>
 <pre><code>sunetid_castle_sample_grid.shp
 </code></pre></li>
 <li>Leave the default CRS unless QGIS prompts you to choose otherwise.</li>
-<li>Click <strong>OK</strong>.</li>
+<li><p>Click <strong>OK</strong>.</p>
+<p><img src="images/20260412_184036_image.png" alt=""></img></p>
+</li>
 </ol>
 <p><strong>Tip &amp; Trick:</strong> Copy the style from the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it to the new one, then turn off the old grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
-<li>Right-click the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</li>
-<li>Right-click <code>sunetid_castle_sample_grid</code> and choose <strong>Styles &gt; Paste Style</strong>.</li>
+<li><p>Right-click the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</p>
+<p><img src="images/20260412_184119_image.png" alt=""></img></p>
+</li>
+<li><p>Right-click <code>sunetid_castle_sample_grid</code> and choose <strong>Styles &gt; Paste Style</strong>.</p>
+<p><img src="images/20260412_184153_image.png" alt=""></img></p>
+</li>
 <li>Turn off the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ol>
-<h3 id="step-10-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 10: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
+<h3 id="step-8-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 8: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
 <p>You will use the exported sample grid as your working unit <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>.</li>
-<li>If it opens in a separate window, dock it below the map panel.</li>
+<li><p>If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.</p>
+<p><img src="images/20260412_184334_image.png" alt=""></img></p>
+</li>
 <li>Use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> tools to:<ul>
 <li>select a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
 <li>zoom to the selected <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
@@ -1255,10 +1266,12 @@ The data you create will be used to train machine learning models for automated 
 </ul>
 </li>
 </ol>
+<p><img src="images/20260412_184518_image.png" alt=""></img></p>
+<p><img src="images/20260412_184439_image.png" alt=""></img></p>
 <p>This lets you work through the sampled grid cells systematically instead of hunting around visually.</p>
 <hr></hr>
 <h2 id="part-4-create-and-edit-the-label-layers">Part 4: Create and Edit the Label Layers</h2>
-<h3 id="step-11-create-the-postfire-label-layer">Step 11: Create the Postfire Label Layer</h3>
+<h3 id="step-9-create-the-postfire-label-layer">Step 9: Create the Postfire Label Layer</h3>
 <p>Create a new empty <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> for your first set of labels.</p>
 <ol>
 <li>Go to <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Create <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; New <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
@@ -1270,13 +1283,43 @@ The data you create will be used to train machine learning models for automated 
 </li>
 <li>Click <strong>OK</strong>.</li>
 </ol>
-<h3 id="step-12-start-editing-the-postfire-label-layer">Step 12: Start Editing the Postfire Label Layer</h3>
+<p><img src="images/20260412_184834_image.png" alt=""></img></p>
+<h3 id="step-10-get-ready-to-edit">Step 10: Get Ready to Edit</h3>
+<p>Before you start drawing labels, adjust the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> settings so QGIS uses the rectangle tool you need for this exercise.</p>
 <ol>
-<li>Select <code>sunetid_castle_postfire_labels</code> in the Layers Panel.</li>
-<li>Click <strong>Toggle Editing</strong>.</li>
-<li>Make sure the postfire imagery is visible.</li>
+<li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
+<li>Open <strong>Options</strong>.</li>
+<li>In the Options dialog, go to <strong>Map Tools &gt; <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a></strong>.</li>
+<li>Enable <strong>Suppress <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> form pop-up after <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> creation</strong>.</li>
+<li>Click <strong>Advanced</strong> at the bottom of the Options panel.</li>
+<li>Click <strong>I will be careful</strong>.</li>
+<li>Expand <code>digitizing &gt; shape-map-tools &gt; current</code>.</li>
+<li><p>Copy this text:</p>
+<pre><code>rectangle-from-center-and-a-point
+</code></pre></li>
+<li><p>Paste that text into the <strong>Value</strong> box for the <code>current</code> setting.</p>
+</li>
 </ol>
-<h3 id="step-13-label-trees-in-the-postfire-imagery">Step 13: Label Trees in the Postfire Imagery</h3>
+<p><img src="images/20260412_191109_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>OK</strong> to save the setting.</li>
+</ol>
+<blockquote>
+<p><strong>Why do this?</strong> This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.</p>
+</blockquote>
+<h3 id="step-11-start-editing-the-postfire-label-layer">Step 11: Start Editing the Postfire Label Layer</h3>
+<ol>
+<li>Make sure the <strong>Castle Postfire</strong> imagery group is visible.</li>
+<li>Toggle between the RGB and IRG versions of the postfire imagery to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
+<li>Select <code>sunetid_castle_postfire_labels</code> in the Layers Panel.</li>
+<li>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s styling and set:<ul>
+<li><strong>Fill:</strong> Transparent</li>
+<li><strong>Stroke:</strong> a color that contrasts clearly with the imagery you are using</li>
+</ul>
+</li>
+<li>Click <strong>Toggle Editing</strong>.</li>
+</ol>
+<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
 <p>Now begin the main labeling task.</p>
 <ol>
 <li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_castle_sample_grid</code>, select a grid cell and zoom to it.</li>
@@ -1303,13 +1346,13 @@ The data you create will be used to train machine learning models for automated 
 <blockquote>
 <p><strong>Important concept:</strong> In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.</p>
 </blockquote>
-<h3 id="step-14-save-your-work-frequently">Step 14: Save Your Work Frequently</h3>
+<h3 id="step-13-save-your-work-frequently">Step 13: Save Your Work Frequently</h3>
 <p>While <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>:</p>
 <ol>
 <li>Click <strong>Save <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Edits</strong> regularly.</li>
 <li>Do not wait until the end of the session to save.</li>
 </ol>
-<h3 id="step-15-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 15: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
+<h3 id="step-14-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 14: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
 <p>Once you have finished labeling 3 grid cells in the postfire imagery:</p>
 <ol>
 <li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
@@ -1320,7 +1363,7 @@ The data you create will be used to train machine learning models for automated 
 <li>Add the new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the project if QGIS does not do this automatically.</li>
 </ol>
 <p>This copied <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.</p>
-<h3 id="step-16-finish-the-prefire-tree-labels">Step 16: Finish the Prefire Tree Labels</h3>
+<h3 id="step-15-finish-the-prefire-tree-labels">Step 15: Finish the Prefire Tree Labels</h3>
 <p>Now switch to the prefire imagery and finish the second <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
 <li>Turn on the <strong>prefire</strong> imagery.</li>
@@ -1331,7 +1374,7 @@ The data you create will be used to train machine learning models for automated 
 <li>Save edits regularly.</li>
 <li>When finished, stop editing and save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ol>
-<h3 id="step-17-export-both-label-layers-to-geojson">Step 17: Export Both Label Layers to GeoJSON</h3>
+<h3 id="step-16-export-both-label-layers-to-geojson">Step 16: Export Both Label Layers to GeoJSON</h3>
 <p>When both shapefiles are complete, export each one to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
 <ol>
 <li>Right-click <code>sunetid_castle_postfire_labels</code>.</li>
@@ -1469,7 +1512,7 @@ The data you create will be used to train machine learning models for automated 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Creating Vector Data by Digitizing in QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-13T01:08:18.397Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T01:08:29.545Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Creating Vector Data by Digitizing in QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-13T02:17:54.883Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T02:18:05.077Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
