@@ -123,6 +123,8 @@ Your **Walking Tour layer** is created and its item details page should open. In
 
 ### Create a Domain (values list) for the places layer
 
+> **Concept note: What is a domain?** In ArcGIS, a **domain** is a controlled list of acceptable values for a field. You can think of it as a built-in rule that helps standardize data entry. Instead of allowing every user to type whatever they want, a domain gives them a short list of approved choices. This improves consistency, reduces spelling variation, and makes the resulting dataset easier to summarize, filter, and analyze.
+
 1. Click _`Point of Interest`_ in the **Display Name** list to open the details page for the field.
 2. Click **Get Started** to create a list of choices, or **Domain**, for the **POI Types**.
 
@@ -196,6 +198,8 @@ Now use what you just learned to add a few more fields for information about you
 ### Enable Offline Editing for Field Maps
 
 **This is a step that MUST be done before adding your feature layers to an ArcGIS Online map** for creating your editing app.
+
+> **Concept note: What does Sync do?** **Sync** is the mechanism that allows a device to take a local copy of data into the field, make edits while disconnected, and then send those edits back to ArcGIS Online later. Without Sync, offline editing would not work because the app would have no safe way to reconcile field edits with the hosted feature layer once the device reconnects.
 
 1. Click on the **Settings tab** at the top of the **Feature Layer's Details page**.
 2. Make sure that settings under the **Editing** section at the top are **all enabled**, in particular that "**Enable Sync**" is checked.
@@ -327,6 +331,8 @@ We do not need to change any settings in this section for the assignment, but it
 
 ### Enable Offline Editing
 
+> **Concept note: What is offline editing?** **Offline editing** means the app can keep working when the device temporarily loses internet access. The map, basemap, and editable layers are packaged onto the device ahead of time, so the field worker can still view the map and add or edit features. Later, when the device reconnects, those edits can be synchronized back to the hosted layer.
+
 1. Click on the **Map Properties** button ![](images/20250326_125443_image.png) on the left side of the page, then click on the **item details**.
 
    ![](images/20250326_125414_image.png)
@@ -390,6 +396,8 @@ This offline area is essentially a packaged copy of the map and its editable lay
 
 ![](images/20250326_150703_image.png)
 
+> **Concept note: GPS survey and averaging** In mobile GIS, the device can either record a location quickly from a single GPS reading or spend a little more time collecting multiple readings and averaging them. A **GPS survey** is a more deliberate location capture process that can improve positional accuracy by using repeated measurements. **Averaging** helps reduce random error by combining several readings rather than trusting only one instant. This matters when location quality is more important than speed.
+
 12. If you do make changes, be sure to Save your form.
 13. You can now close the form designer.
 
@@ -422,6 +430,8 @@ Open ArcGIS Field Maps, using `stanford` as your organization, and log in with y
 
 > **Field methods note:** Good field data is not just about quantity. Try to be consistent about what counts as a feature, use the categories carefully, and write notes that would make sense to another person looking at the data later.
 
+> **Concept note: Why wait for a better GPS fix?** When you first open a field app, the device may still be refining its estimate of where you are. Waiting a little longer can improve the accuracy reading. In some workflows, especially environmental or infrastructure surveys, even a few extra seconds can produce a more reliable location.
+
 ## Part 4: Multi-User Editing
 
 Management of multiple field workers can be implemented through the use of **Groups** in ArcGIS Online. You can create a group with appropriate permissions so that people in that group can access and use the deployed map for data collection.
@@ -436,7 +446,6 @@ First, join the current course group so that you can share and submit your map a
 2. Click on the **My Organization's Groups** tab.
 3. Search for the current `EarthSys144 Fundamentals of GISci - Spring 2026` course group.
 4. Click **Join This Group**.
-
 
 ![](images/20260412_142229_image.png)
 
@@ -463,7 +472,7 @@ Now that you are a member of the course group, you can share content with it. No
 
 1. Your mapping app and feature layer should now be visible to members of the course group.
 
-### Update SHaring on your Feature Layer
+### Update Sharing on your Feature Layer
 
 1. You will be prompted to **Review sharing**, since your Feature Layer is probably not shared int he same way as your Map Document.
 
@@ -478,6 +487,8 @@ Now that you are a member of the course group, you can share content with it. No
 You may want to share the collected data through a visualization, but you usually do not want to share your full editing map with everyone. Creating a **View Layer** is a way to safely share the collected data without exposing the editing layer itself.
 
 > **Important concept:** In GIS, sharing and editing are not the same thing. Separating editable data from read-only views is a core part of responsible data management.
+
+> **Concept note: What is a view?** A **view layer** is a derivative version of your data that can be shared with different permissions or with only part of the original content exposed. A view can be read-only, filtered to only certain records, or configured to show only selected fields. This makes views useful when you want to show data in restricted or partial ways without giving people direct access to the main editable layer.
 
 1. Return to your **Content page**, and find your **Walking Tour feature layer** item and click on it to go to the **Details page**.
 2. Click on **Show More** button and then the **Create View Layer** button
@@ -494,7 +505,7 @@ The resulting feature layer is a read-only view of the data being collected in y
 
 1. Join the current **EarthSys144 ArcGIS Online course group** if you didn't as part of the above steps, and share your data collection map app with that group.
 2. Return to the details page of your **web map** and copy the URL from the browser URL bar. Submit that URL in Canvas.
-3. Go to the details page for the **view layer** you created and find its URL. Submit that URL in Canvas as well.
+3. Go to the details page for the **View layer** you created and find its URL. Submit that URL in Canvas as well.
 
 These two links represent two different roles in the workflow:
 

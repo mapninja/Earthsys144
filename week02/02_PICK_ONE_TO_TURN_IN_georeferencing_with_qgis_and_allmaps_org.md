@@ -1,4 +1,4 @@
-# 02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org
+# 02 - PICK ONE TO TURN IN - Georeferencing with QGIS
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
@@ -10,6 +10,8 @@
 
 In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called **georeferencing**. A scanned map image, by itself, is just a picture. Once it is georeferenced, it becomes spatial data that can be aligned with vector layers, modern basemaps, and other geographic information.
 
+> **Concept note: What is georeferencing?** Georeferencing is the process of connecting an image to real-world coordinate space. You are telling the software which places on the scanned map correspond to known places on the Earth. Once that relationship is established, the image can be displayed, compared, and analyzed alongside other spatial data.
+
 This is one of the most important workflows in historical GIS, public history, environmental reconstruction, and archival map use. It is how we connect paper maps and scanned images to contemporary spatial analysis.
 
 You will work with:
@@ -17,8 +19,6 @@ You will work with:
 - A scanned 1900 map of Wyoming from Stanford Library collections
 - A Public Land Survey System (PLSS) reference layer from EarthWorks
 - QGIS georeferencing tools
-
-Although this lab is titled with **AllMaps.org**, the workflow below focuses on georeferencing directly in **QGIS**, which is an important foundational skill. Later, you may compare this desktop workflow with browser-based georeferencing platforms such as AllMaps.
 
 ## Learning Objectives
 
@@ -39,11 +39,10 @@ By the end of this lab, you should be able to:
 
 This lab uses two source datasets:
 
-- **Map of the State of Wyoming (1900)**  
-  Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. *Map Of The State Of Wyoming*.  
+- **Map of the State of Wyoming (1900)**
+  Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. *Map Of The State Of Wyoming*.
   Stanford record: [https://searchworks.stanford.edu/view/10453474](https://searchworks.stanford.edu/view/10453474)
-
-- **Public Land Survey System of the United States, 2010**  
+- **Public Land Survey System of the United States, 2010**
   Stanford EarthWorks record: [https://earthworks.stanford.edu/catalog/stanford-td889mh1819](https://earthworks.stanford.edu/catalog/stanford-td889mh1819)
 
 ## Before You Start
@@ -58,7 +57,7 @@ This lab uses two source datasets:
 
 ### Download the scanned Wyoming map
 
-1. In a browser, go to the Stanford SearchWorks record for the scanned map:  
+1. In a browser, go to the Stanford SearchWorks record for the scanned map:
    [https://searchworks.stanford.edu/view/10453474](https://searchworks.stanford.edu/view/10453474)
 2. Click the **Share** icon.
 
@@ -81,7 +80,9 @@ This lab uses two source datasets:
 
 ### Download PLSS data from EarthWorks
 
-1. Go to the EarthWorks record:  
+> **Concept note: What is PLSS?** The **Public Land Survey System (PLSS)** is a land division framework used across much of the United States. It organizes land into a regular pattern of townships, ranges, and sections. In this lab, the PLSS layer works as a spatial reference grid because the historical map also uses that survey logic.
+
+1. Go to the EarthWorks record:
    [https://earthworks.stanford.edu/catalog/stanford-td889mh1819](https://earthworks.stanford.edu/catalog/stanford-td889mh1819)
 2. Download the **Zipped Object** to your project folder.
 3. Unzip the download.
@@ -168,7 +169,7 @@ Before georeferencing, it is worth studying the scanned map itself.
 
 ### Examine the scanned image
 
-You can examine the image in the SearchWorks viewer here:  
+You can examine the image in the SearchWorks viewer here:
 [https://searchworks.stanford.edu/view/10453474](https://searchworks.stanford.edu/view/10453474)
 
 ![](images/GeoreferencingImages-e200422a-drop-shadow_reduce.png)
@@ -185,6 +186,8 @@ Use your cursor in QGIS to hover near the center of Wyoming and compare what you
 
 > **Why do this first?** Good georeferencing is not just clicking points mechanically. It starts with reading the map carefully and noticing how the cartographer represented space.
 
+> **Concept note: How do you infer a map's projection?** Older maps often do not clearly state their projection, or students may not yet know how to interpret the note if they do. You can still make useful inferences by looking at the graticule, the apparent curvature or straightness of parallels and meridians, and whether boundaries that should be straight appear bent or stretched. These visual clues help you reason about how the mapmaker projected the curved Earth onto a flat page.
+
 ## Part 6: Alter the CRS for the Georeferencing Task
 
 ### Examine the project CRS
@@ -195,9 +198,8 @@ Use your cursor in QGIS to hover near the center of Wyoming and compare what you
 
 2. Change the Project CRS to:
 
-   `USA_Contiguous_Equidistant_Conic`  
+   `USA_Contiguous_Equidistant_Conic`
    `ESRI:102005`
-
 3. Observe what happens to the PLSS grid.
 
 ![](images/GeoreferencingImages-710d8abe-drop-shadow_reduce.png)
@@ -210,23 +212,23 @@ Use your cursor in QGIS to hover near the center of Wyoming and compare what you
 
 We want a projection better suited to this specific map.
 
+> **Concept note: What is a custom projection?** A **custom projection** is simply a projection definition that you build or modify for a specific mapping problem. In QGIS, this usually means starting from an existing projection and changing parameters such as the **central meridian** (`lon_0`) and the **standard parallels** (`lat_1` and `lat_2`). Those settings control where distortion is minimized and how the projection is centered on the region you care about.
+
 1. In the Project CRS properties, copy the Proj4 text for `ESRI:102005`:
 
    ```text
    +proj=eqdc +lat_0=39 +lon_0=-96 +lat_1=33 +lat_2=45 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
    ```
-
 2. Go to **Settings > Custom Projections**.
 3. Click **Add CRS**.
 
 ![](images/GeoreferencingImages-af1d2c6d.png)
 
-4. Modify the projection parameters so they are centered on Wyoming. Note the bold changes:
+4. Modify the projection parameters so they are centered on Wyoming. Note the changes:
 
    ```text
    +proj=eqdc +lat_0=43 +lon_0=-107.5 +lat_1=37 +lat_2=49 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
    ```
-
 5. Paste the modified Proj4 text into the custom CRS definition.
 
 ![](images/GeoreferencingImages-f22eab0f-drop-shadow_reduce.png)
@@ -273,6 +275,15 @@ We want a projection better suited to this specific map.
 
 > **What are GCPs?** **Ground Control Points** are matching locations you identify on the scanned map and in real geographic space. The quality and distribution of your GCPs strongly affect the quality of the georeferencing result.
 
+> **Concept note: What does the transformation type mean?** A transformation is the mathematical rule QGIS uses to bend, stretch, rotate, or shift the scanned image so it fits geographic space. Different transformation types allow different levels of flexibility:
+>
+> - **Linear / Helmert** transformations mostly preserve shape and are useful when the source image is already close to correct and only needs shifting, scaling, or rotating.
+> - **Polynomial 1, 2, and 3** allow progressively more warping. First-order polynomial is often called an affine transform. Second- and third-order polynomials can handle more distortion, but they also risk overfitting if the control points are poor.
+> - **Thin Plate Spline** is a rubber-sheet style transformation that can handle irregular distortion, but it should be used thoughtfully because it can bend parts of the image strongly.
+> - **Projective** transformations are useful when the source behaves like a tilted photograph or perspective view.
+>
+> In general, higher-order transformations can fit more complicated distortion, but they also require more care and more well-distributed control points.
+
 ### Place control points
 
 1. Start by placing points near the corners and center of the image.
@@ -293,6 +304,8 @@ We want a projection better suited to this specific map.
 
 > **Control point strategy matters:** Do not cluster all your points in one part of the map. Spread them across the full extent so the transformation has support everywhere, not just in one corner.
 
+> **Concept note: What makes a good GCP?** A good **Ground Control Point** is a location you can identify confidently in both the scanned map and the reference data. Intersections, corners, graticule crossings, and survey grid crossings are often better than vague or fuzzy features. Good GCPs are not only accurate individually, but also distributed well across the map.
+
 ### Run the georeferencing process
 
 1. When you have enough well-distributed control points, click **Start Georeferencing**.
@@ -311,6 +324,8 @@ We want a projection better suited to this specific map.
 ## Evaluating Your Result
 
 A georeferenced image is rarely "perfect," especially for an old scanned map. What matters is whether the fit is reasonable for the purpose of the project.
+
+> **Concept note: What is RMSE?** **RMSE**, or **Root Mean Square Error**, is a summary statistic that describes how far your control points are, on average, from their fitted locations after the transformation is calculated. Lower RMSE usually suggests a better fit, but RMSE should never be treated as the only measure of quality. A low RMSE with badly clustered GCPs can still produce a poor map in parts of the image. Always combine RMSE with visual evaluation.
 
 Look for:
 
@@ -354,7 +369,6 @@ Your final deliverable for this lab is not just the georeferenced image inside t
    ```
    sunetid_wyoming_georeferencing_layout.pdf
    ```
-
 3. Open the PDF after export and confirm that all map elements are visible and legible.
 
 ## Turn-In Guidance
@@ -396,3 +410,11 @@ In this lab, you took a scanned historical map and turned it into usable spatial
 - Created a map layout that communicates the georeferenced result clearly
 
 This workflow is foundational for historical GIS and archival cartography. Once a scanned map is georeferenced, it can be compared to modern layers, digitized for further analysis, and used as part of larger spatial research workflows.
+
+## Emerging Technology Note
+
+An emerging browser-based georeferencing option is [Allmaps](https://allmaps.org/), a project connected to the wider IIIF ecosystem and work being advanced in part through Stanford Libraries and related digital library communities.
+
+If a map has a **IIIF manifest URL**, Allmaps can be used to georeference it natively in a web browser without first bringing it into a desktop GIS workflow.
+
+This lab focused on QGIS because desktop georeferencing remains an important foundational skill. But if you continue working with scanned maps from digital library platforms, it is worth knowing that browser-based IIIF georeferencing is becoming an increasingly important option.
