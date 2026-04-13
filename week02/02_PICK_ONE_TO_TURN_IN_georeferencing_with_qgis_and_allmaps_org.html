@@ -1031,7 +1031,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="02---pick-one-to-turn-in---georeferencing-with-qgis-and-allmapsorg">02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org</h1>
+                                <h1 id="02---pick-one-to-turn-in---georeferencing-with-qgis">02 - PICK ONE TO TURN IN - Georeferencing with QGIS</h1>
 <blockquote>
 <p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
 <p><strong>Pick one note:</strong> For Week 02, complete <strong>one</strong> of the two <code>PICK_ONE_TO_TURN_IN</code> labs, based on your interests. Choose this lab if historical maps, archival materials, and <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> are more relevant to the kind of work you want to do.</p>
@@ -1039,6 +1039,9 @@
 </blockquote>
 <h2 id="overview">Overview</h2>
 <p>In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called <strong><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a></strong>. A scanned map <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, by itself, is just a picture. Once it is georeferenced, it becomes spatial data that can be aligned with <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers, modern basemaps, and other geographic information.</p>
+<blockquote>
+<p><strong>Concept note: What is <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a>?</strong> <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">Georeferencing</a> is the process of connecting an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> to real-world coordinate space. You are telling the software which places on the scanned map correspond to known places on the Earth. Once that relationship is established, the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> can be displayed, compared, and analyzed alongside other spatial data.</p>
+</blockquote>
 <p>This is one of the most important workflows in historical GIS, public history, environmental reconstruction, and archival map use. It is how we connect paper maps and scanned images to contemporary <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
 <p>You will work with:</p>
 <ul>
@@ -1046,7 +1049,6 @@
 <li>A Public Land Survey System (PLSS) reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> from EarthWorks</li>
 <li>QGIS <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> tools</li>
 </ul>
-<p>Although this lab is titled with <strong>AllMaps.org</strong>, the workflow below focuses on <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> directly in <strong>QGIS</strong>, which is an important foundational skill. Later, you may compare this desktop workflow with browser-based <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> platforms such as AllMaps.</p>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this lab, you should be able to:</p>
 <ul>
@@ -1064,10 +1066,11 @@
 <h2 id="data">Data</h2>
 <p>This lab uses two source datasets:</p>
 <ul>
-<li><p><strong>Map of the State of Wyoming (1900)</strong><br></br>Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. <em>Map Of The State Of Wyoming</em>.<br></br>Stanford record: <a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></p>
-</li>
-<li><p><strong>Public Land Survey System of the United States, 2010</strong><br></br>Stanford EarthWorks record: <a href="https://earthworks.stanford.edu/catalog/stanford-td889mh1819" target="_blank">https://earthworks.stanford.edu/catalog/stanford-td889mh1819</a></p>
-</li>
+<li><strong>Map of the State of Wyoming (1900)</strong>
+Department Of The Interior General Land Office Hon. Binger Hermann, Commissioner. <em>Map Of The State Of Wyoming</em>.
+Stanford record: <a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></li>
+<li><strong>Public Land Survey System of the United States, 2010</strong>
+Stanford EarthWorks record: <a href="https://earthworks.stanford.edu/catalog/stanford-td889mh1819" target="_blank">https://earthworks.stanford.edu/catalog/stanford-td889mh1819</a></li>
 </ul>
 <h2 id="before-you-start">Before You Start</h2>
 <ul>
@@ -1081,7 +1084,8 @@
 <h2 id="part-1-download-the-map-image">Part 1: Download the Map Image</h2>
 <h3 id="download-the-scanned-wyoming-map">Download the scanned Wyoming map</h3>
 <ol>
-<li>In a browser, go to the Stanford SearchWorks record for the scanned map:<br></br><a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></li>
+<li>In a browser, go to the Stanford SearchWorks record for the scanned map:
+<a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></li>
 <li>Click the <strong>Share</strong> icon.</li>
 </ol>
 <p><img src="images/GeoreferencingImages-25c53dbe.png" alt=""></img></p>
@@ -1102,8 +1106,12 @@
 </blockquote>
 <h2 id="part-2-download-the-reference-data">Part 2: Download the Reference Data</h2>
 <h3 id="download-plss-data-from-earthworks">Download PLSS data from EarthWorks</h3>
+<blockquote>
+<p><strong>Concept note: What is PLSS?</strong> The <strong>Public Land Survey System (PLSS)</strong> is a land division framework used across much of the United States. It organizes land into a regular pattern of townships, ranges, and sections. In this lab, the PLSS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> works as a spatial reference grid because the historical map also uses that survey logic.</p>
+</blockquote>
 <ol>
-<li>Go to the EarthWorks record:<br></br><a href="https://earthworks.stanford.edu/catalog/stanford-td889mh1819" target="_blank">https://earthworks.stanford.edu/catalog/stanford-td889mh1819</a></li>
+<li>Go to the EarthWorks record:
+<a href="https://earthworks.stanford.edu/catalog/stanford-td889mh1819" target="_blank">https://earthworks.stanford.edu/catalog/stanford-td889mh1819</a></li>
 <li>Download the <strong>Zipped Object</strong> to your project folder.</li>
 <li>Unzip the download.</li>
 </ol>
@@ -1179,7 +1187,8 @@
 <h2 id="part-5-examine-the-map-and-projection-problem">Part 5: Examine the Map and Projection Problem</h2>
 <p>Before <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a>, it is worth studying the scanned map itself.</p>
 <h3 id="examine-the-scanned-image">Examine the scanned image</h3>
-<p>You can examine the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> in the SearchWorks viewer here:<br></br><a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></p>
+<p>You can examine the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> in the SearchWorks viewer here:
+<a href="https://searchworks.stanford.edu/view/10453474" target="_blank">https://searchworks.stanford.edu/view/10453474</a></p>
 <p><img src="images/GeoreferencingImages-e200422a-drop-shadow_reduce.png" alt=""></img></p>
 <p>Compare the top and bottom graticule and think through the following:</p>
 <ol>
@@ -1192,6 +1201,7 @@
 <p>Use your cursor in QGIS to hover near the center of Wyoming and compare what you see to your answers above.</p>
 <blockquote>
 <p><strong>Why do this first?</strong> Good <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> is not just clicking points mechanically. It starts with reading the map carefully and noticing how the cartographer represented space.</p>
+<p><strong>Concept note: How do you infer a map's projection?</strong> Older maps often do not clearly state their projection, or students may not yet know how to interpret the note if they do. You can still make useful inferences by looking at the graticule, the apparent curvature or straightness of parallels and meridians, and whether boundaries that should be straight appear bent or stretched. These visual clues help you reason about how the mapmaker projected the curved Earth onto a flat page.</p>
 </blockquote>
 <h2 id="part-6-alter-the-crs-for-the-georeferencing-task">Part 6: Alter the CRS for the Georeferencing Task</h2>
 <h3 id="examine-the-project-crs">Examine the project CRS</h3>
@@ -1201,10 +1211,10 @@
 <p><img src="images/GeoreferencingImages-69e0f350.png" alt=""></img></p>
 <ol>
 <li><p>Change the Project CRS to:</p>
-<p><code>USA_Contiguous_Equidistant_Conic</code><br></br><code>ESRI:102005</code></p>
+<p><code>USA_Contiguous_Equidistant_Conic</code>
+<code>ESRI:102005</code></p>
 </li>
-<li><p>Observe what happens to the PLSS grid.</p>
-</li>
+<li>Observe what happens to the PLSS grid.</li>
 </ol>
 <p><img src="images/GeoreferencingImages-710d8abe-drop-shadow_reduce.png" alt=""></img></p>
 <p><img src="images/GeoreferencingImages-a5dae868-drop-shadow_reduce.png" alt=""></img></p>
@@ -1213,23 +1223,24 @@
 </blockquote>
 <h3 id="create-a-custom-projection-centered-on-wyoming">Create a custom projection centered on Wyoming</h3>
 <p>We want a projection better suited to this specific map.</p>
+<blockquote>
+<p><strong>Concept note: What is a custom projection?</strong> A <strong>custom projection</strong> is simply a projection definition that you build or modify for a specific mapping problem. In QGIS, this usually means starting from an existing projection and changing parameters such as the <strong>central meridian</strong> (<code>lon_0</code>) and the <strong>standard parallels</strong> (<code>lat_1</code> and <code>lat_2</code>). Those settings control where distortion is minimized and how the projection is centered on the region you care about.</p>
+</blockquote>
 <ol>
 <li><p>In the Project CRS properties, copy the Proj4 text for <code>ESRI:102005</code>:</p>
 <pre><code class="lang-text">+proj=eqdc +lat_0=39 +lon_0=-96 +lat_1=33 +lat_2=45 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
 </code></pre>
 </li>
-<li><p>Go to <strong>Settings &gt; Custom Projections</strong>.</p>
-</li>
+<li>Go to <strong>Settings &gt; Custom Projections</strong>.</li>
 <li>Click <strong>Add CRS</strong>.</li>
 </ol>
 <p><img src="images/GeoreferencingImages-af1d2c6d.png" alt=""></img></p>
 <ol>
-<li><p>Modify the projection parameters so they are centered on Wyoming. Note the bold changes:</p>
+<li><p>Modify the projection parameters so they are centered on Wyoming. Note the changes:</p>
 <pre><code class="lang-text">+proj=eqdc +lat_0=43 +lon_0=-107.5 +lat_1=37 +lat_2=49 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs
 </code></pre>
 </li>
-<li><p>Paste the modified Proj4 text into the custom CRS definition.</p>
-</li>
+<li>Paste the modified Proj4 text into the custom CRS definition.</li>
 </ol>
 <p><img src="images/GeoreferencingImages-f22eab0f-drop-shadow_reduce.png" alt=""></img></p>
 <ol>
@@ -1272,6 +1283,14 @@
 <p><img src="images/GeoreferencingImages-600d9b86-drop-shadow_reduce.png" alt=""></img></p>
 <blockquote>
 <p><strong>What are GCPs?</strong> <strong>Ground Control Points</strong> are matching locations you identify on the scanned map and in real geographic space. The quality and distribution of your GCPs strongly affect the quality of the <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> result.</p>
+<p><strong>Concept note: What does the transformation type mean?</strong> A transformation is the mathematical rule QGIS uses to bend, stretch, rotate, or shift the scanned <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> so it fits geographic space. Different transformation types allow different levels of flexibility:</p>
+<ul>
+<li><strong>Linear / Helmert</strong> transformations mostly preserve shape and are useful when the source <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is already close to correct and only needs shifting, scaling, or rotating.</li>
+<li><strong>Polynomial 1, 2, and 3</strong> allow progressively more warping. First-order polynomial is often called an affine transform. Second- and third-order polynomials can handle more distortion, but they also risk overfitting if the control points are poor.</li>
+<li><strong>Thin Plate Spline</strong> is a rubber-sheet style transformation that can handle irregular distortion, but it should be used thoughtfully because it can bend parts of the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> strongly.</li>
+<li><strong>Projective</strong> transformations are useful when the source behaves like a tilted photograph or perspective view.</li>
+</ul>
+<p>In general, higher-order transformations can fit more complicated distortion, but they also require more care and more well-distributed control points.</p>
 </blockquote>
 <h3 id="place-control-points">Place control points</h3>
 <ol>
@@ -1289,6 +1308,7 @@
 <p><img src="images/GeoreferencingImages-0dae9f4b-drop-shadow_reduce.png" alt=""></img></p>
 <blockquote>
 <p><strong><a href="../GLOSSARY.html#control-point" class="glossary-term" title="A known location used during georeferencing to match positions on an image or scanned map to positions in real-world coordinates.">Control point</a> strategy matters:</strong> Do not cluster all your points in one part of the map. Spread them across the full extent so the transformation has support everywhere, not just in one corner.</p>
+<p><strong>Concept note: What makes a good GCP?</strong> A good <strong>Ground <a href="../GLOSSARY.html#control-point" class="glossary-term" title="A known location used during georeferencing to match positions on an image or scanned map to positions in real-world coordinates.">Control Point</a></strong> is a location you can identify confidently in both the scanned map and the reference data. Intersections, corners, graticule crossings, and survey grid crossings are often better than vague or fuzzy features. Good GCPs are not only accurate individually, but also distributed well across the map.</p>
 </blockquote>
 <h3 id="run-the-georeferencing-process">Run the georeferencing process</h3>
 <ol>
@@ -1306,6 +1326,9 @@
 <p><img src="images/GeoreferencingImages-e7488dd4-drop-shadow_reduce.png" alt=""></img></p>
 <h2 id="evaluating-your-result">Evaluating Your Result</h2>
 <p>A georeferenced <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is rarely "perfect," especially for an old scanned map. What matters is whether the fit is reasonable for the purpose of the project.</p>
+<blockquote>
+<p><strong>Concept note: What is RMSE?</strong> <strong>RMSE</strong>, or <strong>Root Mean Square Error</strong>, is a summary statistic that describes how far your control points are, on average, from their fitted locations after the transformation is calculated. Lower RMSE usually suggests a better fit, but RMSE should never be treated as the only measure of quality. A low RMSE with badly clustered GCPs can still produce a poor map in parts of the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. Always combine RMSE with visual evaluation.</p>
+</blockquote>
 <p>Look for:</p>
 <ul>
 <li>Good alignment across the whole <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, not just in one area</li>
@@ -1350,8 +1373,7 @@
 <li><p>Save the PDF with a clear file name such as:</p>
 <pre><code>sunetid_wyoming_georeferencing_layout.pdf
 </code></pre></li>
-<li><p>Open the PDF after export and confirm that all map elements are visible and legible.</p>
-</li>
+<li>Open the PDF after export and confirm that all map elements are visible and legible.</li>
 </ol>
 <h2 id="turn-in-guidance">Turn-In Guidance</h2>
 <p>The deliverable for this lab is:</p>
@@ -1389,6 +1411,10 @@
 <li>Created a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> that communicates the georeferenced result clearly</li>
 </ul>
 <p>This workflow is foundational for historical GIS and archival <a href="../GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">cartography</a>. Once a scanned map is georeferenced, it can be compared to modern layers, digitized for further analysis, and used as part of larger spatial research workflows.</p>
+<h2 id="emerging-technology-note">Emerging Technology Note</h2>
+<p>An emerging browser-based <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> option is <a href="https://allmaps.org/" target="_blank">Allmaps</a>, a project connected to the wider IIIF ecosystem and work being advanced in part through Stanford Libraries and related digital library communities.</p>
+<p>If a map has a <strong>IIIF manifest URL</strong>, Allmaps can be used to georeference it natively in a web browser without first bringing it into a desktop GIS workflow.</p>
+<p>This lab focused on QGIS because desktop <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> remains an important foundational skill. But if you continue working with scanned maps from digital library platforms, it is worth knowing that browser-based IIIF <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> is becoming an increasingly important option.</p>
 
                                 
                                 </section>
@@ -1432,7 +1458,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"next":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"previous":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","mtime":"2026-04-13T03:53:00.956Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T03:53:10.099Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"next":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"previous":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","mtime":"2026-04-13T16:28:56.630Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T16:29:09.117Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
