@@ -318,3 +318,5 @@ By understanding the trade-offs involved in digitizing complex shapes, you can m
 
 1. Using your skills as a cartographer, and your creativity, create a reference map that displays the features you have digitize, with appropriate symbologies, cartographic elements, descriptive text (Title, Date, CRS, Your Name, and any additional explanatory text necessary, etc...).
 2. Export your map as a PDF and submit it in Canvas.
+
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. For this lab, the PDF is your exported map layout.

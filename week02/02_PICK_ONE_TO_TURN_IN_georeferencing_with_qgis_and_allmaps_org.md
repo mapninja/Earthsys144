@@ -395,7 +395,9 @@ Your working QGIS project should still include:
 - The custom Wyoming-centered CRS
 - The georeferenced historical image loaded back into QGIS
 
-Submit the exported PDF as instructed by the course.
+Submit the exported PDF to Canvas.
+
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. For this lab, the PDF is your exported map layout.
 
 ## Conclusion
 

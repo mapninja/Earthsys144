@@ -17,6 +17,16 @@ By the end of this guide, you will be able to:
 
 ## Submitting Homework
 
+### Course-Wide Turn-In Rule
+
+For this course, all assignments labeled `TURN_IN` should be uploaded to Canvas as PDF files.
+
+- If your assignment output is a map layout, export the map from QGIS or the relevant software as a PDF.
+- If your assignment output is one or more URLs, place those URLs in a Google Doc with your name and the assignment title, then export that Google Doc as a PDF for submission.
+- If an assignment asks for more than one deliverable, Canvas can accept multiple PDF uploads, so submit each required PDF file there unless the assignment instructions say to combine them into one document.
+
+> **Why use PDFs for all turn-ins?** A consistent PDF workflow makes grading easier, keeps submissions legible, and gives both you and the instructional team a stable record of exactly what was submitted.
+
 ### Submitting Images
 
 **When to use screenshots:**
@@ -132,7 +142,7 @@ PDF is often required for formal map layouts:
 
 ### Submitting Links
 
-Many assignments require link submission. You have two main submission methods:
+Many assignments require links, but in this course link-based `TURN_IN` work should still be submitted to Canvas as a PDF document that contains those links.
 
 **Common Link Types:**
 
@@ -142,29 +152,13 @@ Many assignments require link submission. You have two main submission methods:
 - Google Colab notebooks
 - Published web maps and applications
 
-#### Method 1: Direct Submission via Canvas
-
-**For Canvas lab submission forms:**
-
-1. Copy your link from the source (browser address bar, share dialog, etc.)
-2. Paste directly into the designated link field in the Canvas assignment
-3. Click "Submit" to complete submission
-4. **Verify submission**: Check that the link appears correctly in your submission
-
-**Canvas Link Submission Tips:**
-
-- **Test first**: Open link in private/incognito browser window before submitting
-- **Check permissions**: Ensure link is publicly accessible or properly shared, if it is a Github, Google Drive or Earth Engine Get Link.
-- **Complete URL**: Include `https://` prefix for external links
-- **No spaces**: Ensure no extra spaces at beginning or end of URL
-
-#### Method 2: Google Docs PDF Submission
+#### Google Docs PDF Submission for URLs
 
 **When to use this method:**
 
-- Assignment requires multiple links
+- Assignment requires one or more links
 - You need to provide context or descriptions for links
-- Canvas form doesn't have dedicated link fields
+- You want your `TURN_IN` submission to follow the course PDF submission standard
 - You want to organize links with headings or annotations
 
 **Creating a Google Docs link submission:**
@@ -201,6 +195,13 @@ Many assignments require link submission. You have two main submission methods:
    - Click **File → Download → PDF Document (.pdf)**
    - Save with descriptive filename: `Smith_Jane_Week01_Links.pdf`
    - Upload the PDF file to Canvas assignment submission
+
+**Minimum content for a URL submission PDF:**
+
+- Your name
+- The course and assignment title
+- Each required URL
+- A short label explaining what each URL points to
 
 **Google Docs PDF Benefits:**
 

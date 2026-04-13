@@ -42,7 +42,7 @@ For Week 00, you are not being asked to write a full Earth Engine analysis from 
 
 You must submit:
 
-- A working Google Earth Engine "Get Link" URL
+- A PDF exported from Google Docs that contains a working Google Earth Engine "Get Link" URL
 
 That link must point to a script that:
 
@@ -52,6 +52,15 @@ That link must point to a script that:
 - Includes inline comments describing any changes you made, if you chose to modify the sample script
 
 > If you are feeling adventurous, you are welcome to change visualization settings, dates, map location, or other parts of the sample script. If you do, add inline comments so your instructor can easily see what you changed.
+
+To submit this assignment:
+
+1. Copy your Google Earth Engine **Get Link** URL.
+2. Create a short Google Doc with your name, the assignment title, and the URL.
+3. Export that Google Doc as a PDF.
+4. Upload the PDF to Canvas.
+
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. If the deliverable is a URL, place it in a Google Doc and export that document as a PDF before submitting.
 
 ---
 

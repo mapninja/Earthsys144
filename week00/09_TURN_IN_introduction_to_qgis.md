@@ -601,6 +601,8 @@ Before exporting, take a minute to clean things up:
 
 This exported Map PDF is the map you will submit for the Week 00 assignment.
 
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. For this lab, the PDF is your exported map layout.
+
 ![](images/20260325_182241_image.png)
 
 ## Conclusion

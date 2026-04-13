@@ -504,8 +504,17 @@ The resulting feature layer is a read-only view of the data being collected in y
 ## To Turn In
 
 1. Join the current **EarthSys144 ArcGIS Online course group** if you didn't as part of the above steps, and share your data collection map app with that group.
-2. Return to the details page of your **web map** and copy the URL from the browser URL bar. Submit that URL in Canvas.
-3. Go to the details page for the **View layer** you created and find its URL. Submit that URL in Canvas as well.
+2. Return to the details page of your **web map** and copy the URL from the browser URL bar.
+3. Go to the details page for the **View layer** you created and copy that URL as well.
+4. Create a short Google Doc that includes:
+   - your name
+   - the course and lab title
+   - the **web map** URL
+   - the **view layer** URL
+5. Export that Google Doc as a PDF.
+6. Submit the PDF to Canvas.
+
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. When an assignment's deliverable is a URL, place the URL or URLs in a Google Doc and export that document as a PDF before submitting.
 
 These two links represent two different roles in the workflow:
 

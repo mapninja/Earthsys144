@@ -743,9 +743,18 @@ Your header should include:
 
 For this lab, students should submit:
 
-- a Google Earth Engine **Get Link** URL to their modified script
+- a PDF exported from Google Docs that contains their Google Earth Engine **Get Link** URL to their modified script
 - that includes their name in a comment near the top
 - inline comments marking any changes they made
+
+To prepare your submission:
+
+1. Copy your Google Earth Engine **Get Link** URL.
+2. Create a short Google Doc with your name, the lab title, and the URL.
+3. Export the Google Doc as a PDF.
+4. Upload that PDF to Canvas.
+
+> **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. If the deliverable is a URL, put it in a Google Doc and export that document as a PDF for submission.
 
 Your script should demonstrate:
 
