@@ -92,8 +92,6 @@ Now that you've extracted the project package, let's open the pre-configured QGI
 
 The project should load with the tile boundary grid, the study area outline, pre-fire and post-fire imagery groups, the 2020 fire perimeter layer, and the Google Terrain basemap visible in the Layers Panel. Everything is pre-configured and ready to use!
 
-![](images/20260412_175839_image.png)
-
 **Try this:**
 
 - Use your mouse wheel to zoom in and out
@@ -101,7 +99,7 @@ The project should load with the tile boundary grid, the study area outline, pre
 - Hold spacebar and drag to pan around the imagery
 - Notice how the NAIP imagery refreshes as you navigate and change scales.
 
-### Step 3: Explore the Layers Panel
+### Step 2: Explore the Layers Panel
 
 The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:
 
@@ -121,7 +119,7 @@ The Layers Panel (usually on the left side) shows all layers in your project. Le
    - Explore the different tabs (Source, Symbology, etc.)
    - Don't make changes yet—just observe what's available
 
-### Step 4: Explore Layer Metadata
+### Step 3: Explore Layer Metadata
 
 Metadata tells you important information about your spatial data:
 
@@ -144,16 +142,17 @@ Metadata tells you important information about your spatial data:
 
 ## Part 2: Working with Attributes and Selections
 
-### Step 5: Open and Explore the Attribute Table
+### Step 4: Open and Explore the Attribute Table
 
 Every vector layer has an attribute table containing information about each feature:
 
-1. Right-click the **grid layer** in the Layers Panel
+1. Right-click the `Z17_Castle_2020_tile_boundary_grid` in the Layers Panel
 2. Select **Open Attribute Table**
 3. Examine the table structure:
    - Each row represents one grid cell
    - Columns contain attributes like tile coordinates (X, Y, Z)
-   - Note the field names—you'll need these for creating file names later
+
+![](images/20260412_181047_image.png)
 
 **Understanding the Grid:**
 
@@ -162,26 +161,9 @@ Every vector layer has an attribute table containing information about each feat
 - **Y:** Tile row number
 - These Z/X/Y values follow the Web Mercator tiling scheme used by web maps
 
-### Step 6: Select Features by Attributes
-
-Now let's practice selecting specific features based on their attributes:
-
-1. In the attribute table, click the **Select features using an expression** button (looks like ε with a yellow highlight)
-2. The expression builder opens—this is where you can write queries
-3. Try a simple selection:
-
-   - In the expression field, type: `"X" = 100` (replace 100 with an actual X value from your table)
-   - Click **Select Features**
-   - Notice the selected rows turn blue in the attribute table and yellow on the map
-4. To clear the selection: Click the **Deselect all features** button in the attribute table toolbar
-
-**Practice:** Try selecting grid cells that meet certain criteria (explore the AND/OR operators in expressions if you want to get fancy).
-
----
-
 ## Part 3: Geoprocessing and Random Selection
 
-### Step 7: Create 20 Random Points Inside the Castle Fire Boundary
+### Step 5: Create 20 Random Points Inside the Castle Fire Boundary
 
 Now you will create a set of random sample locations that will guide your labeling work.
 
@@ -190,16 +172,36 @@ Now you will create a set of random sample locations that will guide your labeli
 3. Open **Random points inside polygons (fixed)**.
 4. Configure the tool:
    - **Input layer:** `castle_2020`
-   - **Number of points:** `20`
+   - **Sampling strategy:** `Points count`
+   - **Point count:** `20`
    - **Minimum distance between points:** `100`
-   - **Random points:** **Create Temporary Layer**
+   - **Random points:** Save as `random20.geojson` in your `data/` folder
 5. Click **Run**.
+
+![](images/20260412_182253_image.png)
 
 You should now see 20 random points inside the `castle_2020` boundary.
 
+![](images/20260412_182715_image.png)
+
+Notice that there may be a cluster of points in an area where there is no imagery. If this is the case, do the following:
+
+1. Use the **Select Features** tool in the main QGIS toolbar.
+2. With the `castle_2020` layer selected in the Layers Panel, click the large `castle_2020` polygon that covers the area where imagery is actually available.
+3. Confirm that the correct polygon is selected.
+
+   ![](images/20260412_183220_image.png)
+4. Open **Random points inside polygons (fixed)** again.
+5. Use the same settings as before, but this time enable the **Selected features only** option.
+6. Run the tool again and save the output.
+7. Check the new random points layer and confirm that the points now fall within the part of the fire area where imagery is available for labeling.
+8. If the layer display does not update right away, click the **Refresh** button.
+
+![](images/20260412_183427_image.png)
+
 > **Why do this?** Random points help spread the work across the study area, and the 100 meter spacing reduces clustering.
 
-### Step 8: Use the Random Points to Select a Sample of Grid Cells
+### Step 6: Use the Random Points to Select a Sample of Grid Cells
 
 Next, use the random points to select a subset of the grid cells.
 
@@ -208,41 +210,58 @@ Next, use the random points to select a subset of the grid cells.
 3. Configure the tool:
    - **Select features from:** `Z17_Castle_2020_tile_boundary_grid`
    - **Where the features:** `intersect`
-   - **By comparing to features from:** your random points layer
+   - **By comparing to features from:** your `random20` points layer
 4. Click **Run**.
 
-You should now have a set of selected grid cells.
+![](images/20260412_183632_image.png)
 
-### Step 9: Export the Selected Grid Cells to a New Layer
+You should now have a set of selected grid cells. You may need to turn off the `random20` layer to see the selected polygons more clearly.
+
+![](images/20260412_183751_image.png)
+
+### Step 7: Export the Selected Grid Cells to a New Layer
 
 Now export those selected grid cells to a new working layer.
 
 1. Right-click `Z17_Castle_2020_tile_boundary_grid`.
 2. Choose **Export > Save Selected Features As...**
-3. Save the layer to `CastleFire/data/processed/` as:
+3. Make sure the **Save only selected features** option is enabled.
+4. Save the layer to `CastleFire/data/processed/` as:
 
    ```
    sunetid_castle_sample_grid.shp
    ```
-4. Leave the default CRS unless QGIS prompts you to choose otherwise.
-5. Click **OK**.
+5. Leave the default CRS unless QGIS prompts you to choose otherwise.
+6. Click **OK**.
+
+   ![](images/20260412_184036_image.png)
 
 **Tip & Trick:** Copy the style from the original grid layer and paste it to the new one, then turn off the old grid layer.
 
 1. Right-click the original grid layer and choose **Styles > Copy Style**.
+
+   ![](images/20260412_184119_image.png)
 2. Right-click `sunetid_castle_sample_grid` and choose **Styles > Paste Style**.
+
+   ![](images/20260412_184153_image.png)
 3. Turn off the original grid layer.
 
-### Step 10: Dock the Attribute Table Below the Map and Use It to Navigate
+### Step 8: Dock the Attribute Table Below the Map and Use It to Navigate
 
 You will use the exported sample grid as your working unit layer.
 
 1. Open the attribute table for `sunetid_castle_sample_grid`.
-2. If it opens in a separate window, dock it below the map panel.
+2. If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.
+
+   ![](images/20260412_184334_image.png)
 3. Use the attribute table tools to:
    - select a feature
    - zoom to the selected feature
    - move to the next feature
+
+![](images/20260412_184518_image.png)
+
+![](images/20260412_184439_image.png)
 
 This lets you work through the sampled grid cells systematically instead of hunting around visually.
 
@@ -250,7 +269,7 @@ This lets you work through the sampled grid cells systematically instead of hunt
 
 ## Part 4: Create and Edit the Label Layers
 
-### Step 11: Create the Postfire Label Layer
+### Step 9: Create the Postfire Label Layer
 
 Create a new empty shapefile for your first set of labels.
 
@@ -261,13 +280,44 @@ Create a new empty shapefile for your first set of labels.
    - **CRS:** `WGS 84 (EPSG:4326)`
 3. Click **OK**.
 
-### Step 12: Start Editing the Postfire Label Layer
+![](images/20260412_184834_image.png)
 
-1. Select `sunetid_castle_postfire_labels` in the Layers Panel.
-2. Click **Toggle Editing**.
-3. Make sure the postfire imagery is visible.
+### Step 10: Get Ready to Edit
 
-### Step 13: Label Trees in the Postfire Imagery
+Before you start drawing labels, adjust the digitizing settings so QGIS uses the rectangle tool you need for this exercise.
+
+1. Go to **QGIS > Settings** on Mac, or **Settings** on Windows.
+2. Open **Options**.
+3. In the Options dialog, go to **Map Tools > Digitizing**.
+4. Enable **Suppress attribute form pop-up after feature creation**.
+5. Click **Advanced** at the bottom of the Options panel.
+6. Click **I will be careful**.
+7. Expand `digitizing > shape-map-tools > current`.
+8. Copy this text:
+
+   ```
+   rectangle-from-center-and-a-point
+   ```
+
+9. Paste that text into the **Value** box for the `current` setting.
+
+![](images/20260412_191109_image.png)
+
+10. Click **OK** to save the setting.
+
+> **Why do this?** This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.
+
+### Step 11: Start Editing the Postfire Label Layer
+
+1. Make sure the **Castle Postfire** imagery group is visible.
+2. Toggle between the RGB and IRG versions of the postfire imagery to decide which one is easier to interpret. You can switch between them while labeling if that helps.
+3. Select `sunetid_castle_postfire_labels` in the Layers Panel.
+4. Open the layer's styling and set:
+   - **Fill:** Transparent
+   - **Stroke:** a color that contrasts clearly with the imagery you are using
+5. Click **Toggle Editing**.
+
+### Step 12: Label Trees in the Postfire Imagery
 
 Now begin the main labeling task.
 
@@ -292,14 +342,14 @@ Now begin the main labeling task.
 
 > **Important concept:** In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.
 
-### Step 14: Save Your Work Frequently
+### Step 13: Save Your Work Frequently
 
 While digitizing:
 
 1. Click **Save Layer Edits** regularly.
 2. Do not wait until the end of the session to save.
 
-### Step 15: Create the Prefire Label Layer by Copying the Postfire Layer
+### Step 14: Create the Prefire Label Layer by Copying the Postfire Layer
 
 Once you have finished labeling 3 grid cells in the postfire imagery:
 
@@ -314,7 +364,7 @@ Once you have finished labeling 3 grid cells in the postfire imagery:
 
 This copied layer gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.
 
-### Step 16: Finish the Prefire Tree Labels
+### Step 15: Finish the Prefire Tree Labels
 
 Now switch to the prefire imagery and finish the second label layer.
 
@@ -326,7 +376,7 @@ Now switch to the prefire imagery and finish the second label layer.
 6. Save edits regularly.
 7. When finished, stop editing and save the layer.
 
-### Step 17: Export Both Label Layers to GeoJSON
+### Step 16: Export Both Label Layers to GeoJSON
 
 When both shapefiles are complete, export each one to GeoJSON.
 
