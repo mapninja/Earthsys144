@@ -1,1 +1,0 @@
-# Sampling & Interpolation with QGIS

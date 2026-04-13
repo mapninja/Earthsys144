@@ -12,8 +12,8 @@ This Week 02 assignment is graded as a single 10-point assignment made up of thr
 
 ## Required Lab Pages
 
-- Lab Document: [01 - TURN IN - Data Creation in QGIS](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_data_creation_in_qgis.html)
-- Lab Document: [03 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
+- Lab Document: [01 - TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection](https://mapninja.github.io/Earthsys144/week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html)
+- Lab Document: [03 - TURN IN - Data Creation in QGIS](https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_data_creation_in_qgis.html)
 - Lab Document: [04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine](https://mapninja.github.io/Earthsys144/week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html)
 - Week overview: [Week 02 - Making and Collecting Data](https://mapninja.github.io/Earthsys144/week02/README.html)
 

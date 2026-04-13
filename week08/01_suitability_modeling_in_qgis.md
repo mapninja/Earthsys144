@@ -1,1 +1,0 @@
-# Suitability Modeling in QGIS

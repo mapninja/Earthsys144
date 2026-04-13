@@ -1,0 +1,1708 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="02_georeferencing_with_qgis_and_allmaps_org.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="02_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="02_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Creating Vector Data by Digitizing in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/00_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    00 - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week03/01_sql_operations_in_qgis.html">
+            
+                <a href="../week03/01_sql_operations_in_qgis.html">
+            
+                    
+                    01 - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week03/02_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week03/02_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    02 - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                <a href="../week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.html">
+            
+                    
+                    03 - Using SQL to Subset Big Data in the Stanford Data Farm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    00 - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    01 - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_network_analysis_with_qgis.html">
+            
+                <a href="../week04/02_network_analysis_with_qgis.html">
+            
+                    
+                    02 - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/03_introducing_simplyanalytics_com.html">
+            
+                    
+                    03 - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - Terrain & Visibility with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    02 - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    03 - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../week06/">
+            
+                <a href="../week06/">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                <a href="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                    
+                    01 - Modeling Movement with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introducing-arcgis-field-maps-and-arcgis-online-for-data-collection-ready">Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection (Ready)</h1>
+<blockquote>
+<p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
+</blockquote>
+<h2 id="collecting-field-data-with-arcgis-online-and-field-maps">Collecting Field Data with ArcGIS Online and Field Maps</h2>
+<h3 id="overview">Overview</h3>
+<p>This lab introduces <strong>ArcGIS Online</strong> and <strong>ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> as tools for mobile spatial data collection. You will explore a workflow for creating and managing a shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection project using a web browser and a phone or tablet.</p>
+<p>Together, ArcGIS Online and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps provide a powerful way to design <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> forms, deploy maps to mobile devices, collect points and attachments, and sync edits back to a shared database in real time.</p>
+<p>This is an important kind of spatial workflow to understand because not all GIS work begins with downloaded data. Sometimes the whole point of the project is to <strong>create</strong> the data yourself. <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> collection projects are how people document trees, sidewalks, public art, damaged infrastructure, habitat features, informal trails, historic sites, survey responses, and countless other things that do not already exist in a neat downloadable dataset.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>Explain why <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection requires both geometry and a well-designed <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a></li>
+<li>Explain why controlled vocabularies improve consistency and reduce messy data entry</li>
+<li>Explain why offline editing matters in real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> conditions</li>
+<li>Create empty hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers to hold spatial data</li>
+<li>Customize the data <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> to match a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data need</li>
+<li>Create lists to drive in-app dropdown menus for controlled vocabularies and standardization</li>
+<li>Customize <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> survey forms for usability</li>
+<li>Enable attachments such as photos, video, or audio</li>
+<li>Enable offline editing for remote or low-connectivity data collection</li>
+<li>Deploy a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection map from ArcGIS Online to iOS or Android devices with the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps app installed</li>
+<li>Share the app and editing role to a controlled group of users</li>
+<li>Download the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection app and <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> for offline use</li>
+<li>Collect data and sync it to ArcGIS Online</li>
+<li>Create a simple read-only view of the live data for monitoring data collection</li>
+</ul>
+<h2 id="before-you-start">Before You Start</h2>
+<ul>
+<li>You will need access to <strong>Stanford ArcGIS Online</strong> with your SUNetID.</li>
+<li>You will need a phone or tablet with <strong>ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> installed for the mobile part of the exercise.</li>
+<li>Some screenshots in this lab may show an earlier version of the interface or an earlier quarter's course group name. The workflow is still the same, but button placement and wording may vary slightly.</li>
+</ul>
+<blockquote>
+<p><strong>A good mindset for this lab:</strong> do not worry if ArcGIS Online feels a little "clicky" at first. Many web GIS tools work through settings panels, buttons, and forms instead of the more layered desktop workflow you see in QGIS. The key is to keep asking: What data object am I creating? What fields does it need? Who will use it? What will the person in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> actually see?</p>
+</blockquote>
+<h2 id="part-1-create-a-feature-layer">Part 1: Create a Feature Layer</h2>
+<h3 id="log-in-to-arcgis-online">Log in to ArcGIS Online</h3>
+<ol>
+<li>Go to <a href="https://stanford.maps.arcgis.com/home/signin.html" target="_blank">https://stanford.maps.arcgis.com/home/signin.html</a> and Login using your SUNetID &amp; Password using the Stanford University option.</li>
+</ol>
+<p><img src="images/20250326_114007_image.png" alt=""></img></p>
+<p>At this point, you should see Stanford's ArcGIS Online landing page. Take a moment to look around. This is where you will create hosted layers, web maps, and sharing groups throughout the exercise.</p>
+<h3 id="create-an-empty-feature-layer">Create an empty feature layer</h3>
+<ol>
+<li>Find the <strong>Content</strong> link at the top of the page and click it to go to <strong>Content</strong>.</li>
+<li>In <strong>My Content</strong> click <strong>Create (New Item)</strong> and choose <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> to open the <strong>Create a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> dialog.</li>
+</ol>
+<p><img src="images/ArcGIS_Online_FieldMaps-b8fcdba2.png" alt=""></img></p>
+<ol>
+<li>Select the <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> item.</li>
+</ol>
+<p><img src="images/ArcGIS_Online_FieldMaps-54402a17.png" alt=""></img></p>
+<ol>
+<li>Select <strong>Define your own <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong>, and click <strong>Next</strong>.</li>
+</ol>
+<p><img src="images/ArcGIS_Online_FieldMaps-aeadde9f.png" alt=""></img></p>
+<ol>
+<li><p>Use <strong>+ Add</strong> to create individual <strong>point, line, and polygon layers</strong> and name them as shown in the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> below.</p>
+<p><img src="images/20260412_131007_image.png" alt=""></img></p>
+</li>
+</ol>
+<table>
+  <tr>
+   <td>
+<strong>shape</strong>
+   </td>
+   <td><strong>name</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>point
+   </td>
+   <td>Place
+   </td>
+  </tr>
+  <tr>
+   <td>line
+   </td>
+   <td>Path
+   </td>
+  </tr>
+  <tr>
+   <td>polygon
+   </td>
+   <td>Area of Interest
+   </td>
+  </tr>
+</table>
+
+<ol>
+<li>Provide a title, like <code>"Walking Tour (SDM)"</code>. <em>Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise</em>. Click <strong>Save</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>Why are we creating three geometry types?</strong> Real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> projects often need more than one kind of <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. A point might represent a single object like a sculpture or water fountain. A line might represent a path or curb. A polygon might represent a garden, building footprint, or other area. Even if you only use one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> heavily in this exercise, it is useful to see how a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> project can be structured to collect multiple kinds of geometry.</p>
+</blockquote>
+<p>Your <strong>Walking Tour <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<h3 id="add-fields-to-the-feature-class">Add fields to the feature class</h3>
+<ol>
+<li>Go to the <strong>Data tab</strong> of the item page and go to <strong>Fields</strong>. If you created layers for <strong>points, lines, and polygons</strong>, verify that <em>Place</em> is chosen in the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> list.</li>
+</ol>
+<p><img src="images/20260412_131745_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Add <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong> at the top right side of the page.</li>
+<li><p>Select <strong>Text &gt; String</strong></p>
+<p><img src="images/20260412_131916_image.png" alt=""></img></p>
+</li>
+<li>Give the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> the name <code>PlaceType</code> and the alias <code>Point of Interest Type</code>.</li>
+<li>Accept the other defaults and click <strong>Add New <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong>.</li>
+</ol>
+<p><img src="images/20260412_132104_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Why add fields now?</strong> A hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is not just geometry. It is also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. The fields you create here become the structure of the form people fill out in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. Thinking carefully about fields early helps prevent messy, inconsistent data later.</p>
+</blockquote>
+<h3 id="create-a-domain-values-list-for-the-places-layer">Create a Domain (values list) for the places layer</h3>
+<ol>
+<li>Click <em><code>Point of Interest</code></em> in the <strong>Display Name</strong> list to open the details page for the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Click <strong>Get Started</strong> to create a list of choices, or <strong>Domain</strong>, for the <strong>POI Types</strong>.</li>
+</ol>
+<p><img src="images/20260412_132533_image.png" alt=""></img></p>
+<ol>
+<li>Select <strong>Enter values</strong> and <strong>Next</strong>...</li>
+</ol>
+<p><img src="images/20260412_132850_image.png" alt=""></img></p>
+<ol>
+<li>Type a <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> of <code>Art</code> with a code of <code>0</code>.</li>
+</ol>
+<p><img src="images/20260412_133012_image.png" alt=""></img></p>
+<ol>
+<li>Add entries for the rest of the values, as follow:</li>
+</ol>
+<table>
+  <tr>
+   <td>
+<strong><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a></strong>
+   </td>
+   <td><strong>code</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Art
+   </td>
+   <td>0
+   </td>
+  </tr>
+  <tr>
+   <td>Architecture
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr>
+   <td>Gadgetry
+   </td>
+   <td>2
+   </td>
+  </tr>
+  <tr>
+   <td>History
+   </td>
+   <td>3
+   </td>
+  </tr>
+  <tr>
+   <td>Other
+   </td>
+   <td>4
+   </td>
+  </tr>
+</table>
+
+<p><img src="images/20260412_133251_image.png" alt=""></img></p>
+<ol>
+<li>Click Save.</li>
+</ol>
+<h3 id="a-couple-more-fields">A couple more fields</h3>
+<p>Now use what you just learned to add a few more fields for information about your features.</p>
+<ol>
+<li>Create another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <em><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">Label</a></em> that is a String.</li>
+<li>Create another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <em>Notes</em> that is a String.</li>
+</ol>
+<blockquote>
+<p><strong>Why use a list of values?</strong> Controlled vocabularies make <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data cleaner. If users must choose from a short list like <code>Art</code>, <code>Architecture</code>, or <code>History</code>, you avoid messy spelling differences and one-off labels that are hard to summarize later.</p>
+</blockquote>
+<p><img src="images/20260412_133528_image.png" alt=""></img></p>
+<h3 id="enable-offline-editing-for-field-maps">Enable Offline Editing for Field Maps</h3>
+<p><strong>This is a step that MUST be done before adding your <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers to an ArcGIS Online map</strong> for creating your editing app.</p>
+<ol>
+<li>Click on the <strong>Settings tab</strong> at the top of the <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a>'s Details page</strong>.</li>
+<li><p>Make sure that settings under the <strong>Editing</strong> section at the top are <strong>all enabled</strong>, in particular that "<strong>Enable Sync</strong>" is checked.</p>
+<p><img src="images/20260412_133716_image.png" alt=""></img></p>
+</li>
+<li>Note the other settings for controlling who and how data can be edited.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>Setting Category</strong></th>
+<th><strong>Option</strong></th>
+<th><strong>Selected / Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Editing</strong></td>
+<td>Enable editing</td>
+<td>✅ Enabled</td>
+</tr>
+<tr>
+<td></td>
+<td>Track changes to data (add, update, delete)</td>
+<td>✅ Enabled</td>
+</tr>
+<tr>
+<td></td>
+<td>Track editor name and time</td>
+<td>✅ Enabled</td>
+</tr>
+<tr>
+<td></td>
+<td>Enable Sync</td>
+<td>✅ Enabled</td>
+</tr>
+<tr>
+<td><strong>Who can edit features?</strong></td>
+<td>Share <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to specific users/groups/org</td>
+<td>Not shared yet (info only)</td>
+</tr>
+<tr>
+<td><strong>What kind of editing is allowed?</strong></td>
+<td>Add</td>
+<td>✅ Allowed</td>
+</tr>
+<tr>
+<td></td>
+<td>Delete</td>
+<td>✅ Allowed</td>
+</tr>
+<tr>
+<td></td>
+<td>Update</td>
+<td>✅ Allowed</td>
+</tr>
+<tr>
+<td></td>
+<td>Update type</td>
+<td>Attributes and geometry</td>
+</tr>
+<tr>
+<td><strong>True curves</strong></td>
+<td>Allow update of true curves</td>
+<td>✅ Enabled</td>
+</tr>
+<tr>
+<td></td>
+<td>Only allow updates by true curve clients</td>
+<td>⬜ Not selected</td>
+</tr>
+<tr>
+<td><strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> visibility for editors</strong></td>
+<td>Editors can see all features</td>
+<td>✅ Selected (default)</td>
+</tr>
+<tr>
+<td></td>
+<td>Editors can only see their own features</td>
+<td>⬜ Not selected</td>
+</tr>
+<tr>
+<td><strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> editability for editors</strong></td>
+<td>Editors can edit all features</td>
+<td>⬜ Not selected</td>
+</tr>
+<tr>
+<td></td>
+<td>Editors can only edit their own features</td>
+<td>✅ Selected</td>
+</tr>
+<tr>
+<td><strong>Anonymous editor access</strong></td>
+<td>Same as signed-in editors</td>
+<td>⬜ Not selected</td>
+</tr>
+<tr>
+<td></td>
+<td>Only add new features (if allowed)</td>
+<td>✅ Selected</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Click Save to save these settings.</li>
+</ol>
+<blockquote>
+<p><strong>Why offline editing matters:</strong> Even on a well-connected campus, <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> conditions are unpredictable. If your map can work offline, the data collection workflow is much more resilient. This is even more important for environmental fieldwork, archaeology, disaster response, and any site where network access is weak or inconsistent.</p>
+</blockquote>
+<h2 id="part-2-make-a-map">Part 2: Make a Map</h2>
+<p>Now you will add the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers you created to an ArcGIS Online <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a>. This map will drive the behavior of your <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps mobile app, so everything from this point forward is about making the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> collection experience simpler and clearer for the person using it on a device.</p>
+<blockquote>
+<p><strong>Think like the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> user:</strong> A mobile <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> map should be simple. Good <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a>, clear forms, and sensible defaults matter because the person using the app may be standing in the sun, walking, juggling a clipboard, or trying to capture data quickly before moving on.</p>
+</blockquote>
+<ol>
+<li>Return to the <strong>Overview tab</strong> the <strong>Item Details</strong> of your <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and click on <strong>Open in Map Viewer</strong>.</li>
+</ol>
+<p><img src="images/20250326_121217_image.png" alt=""></img></p>
+<p><img src="images/20250326_121316_image.png" alt=""></img></p>
+<ol>
+<li><p>Use the <code>&gt;&gt;</code> and <code>&lt;&lt;</code> arrows at the bottom left and right of the <strong>Map Viewer</strong> to expand the toolbars so the controls show text labels as well as icons.</p>
+<p><img src="images/20250326_121454_image.png" alt=""></img></p>
+</li>
+<li>Click <strong>Save and open</strong> to save your map.</li>
+</ol>
+<p><img src="images/20260412_134139_image.png" alt=""></img></p>
+<ol>
+<li>Use the arrow next to your Walking Tour <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to expand the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> group so you can see the individual <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers.</li>
+</ol>
+<p><img src="images/20250326_121926_image.png" alt=""></img></p>
+<ol>
+<li>Click on the Places <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers panel to select it and update the Properties panel on the right.</li>
+<li>Click on <strong>Edit <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> Style</strong> link for the Places <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, in the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a> box of the Properties panel.</li>
+</ol>
+<p><img src="images/20250326_122229_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>+ <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a></strong> button to select the <code>Point of Interest Type</code> as the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to base <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> on.</li>
+</ol>
+<p><img src="images/20250326_122321_image.png" alt=""></img></p>
+<p><img src="images/20250326_122445_image.png" alt=""></img></p>
+<ol>
+<li>Click Add.</li>
+<li>In the resulting <code>Pick a style</code> box, click on Style options to open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> style editing options.</li>
+</ol>
+<p><img src="images/20250326_122749_image.png" alt=""></img></p>
+<ol>
+<li>Configure symbols for each of your POI types. Explore the available symbol categories. The default simple symbols are fine, but you should feel free to experiment as long as the resulting map stays readable.</li>
+</ol>
+<p><img src="images/20250326_122829_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Done</strong>, then <strong>Done</strong> again, to apply the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> to your <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+</ol>
+<p><img src="images/20250326_123016_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Why spend time on <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a>?</strong> In a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> collection app, symbols are not just decoration. They help users understand what kinds of features already exist on the map and make it easier to distinguish categories quickly while collecting new observations.</p>
+</blockquote>
+<h2 id="customize-field-visibility">Customize Field Visibility</h2>
+<p>We do not need to change any settings in this section for the assignment, but it is useful to know where this interface lives. In real projects, this is where you control what a user sees in a pop-up and what fields are visible or hidden.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Good <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> design is only half the job. Good interface design matters too. A form can have sensible fields and still be frustrating if users are shown too much, too little, or the wrong information at the wrong time.</p>
+</blockquote>
+<ol>
+<li>With the Places <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> still selected, click on the "Pop-ups" button on the right side of the page.</li>
+</ol>
+<p><img src="images/20250326_123129_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>Fields list</strong> box to expand it and note that the fields you added to your Places <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> are already included in the Fields list.</li>
+</ol>
+<p><img src="images/20250326_124426_image.png" alt=""></img></p>
+<p><img src="images/20250326_124613_image.png" alt=""></img></p>
+<ol>
+<li>Click on <strong>Select fields</strong> in the <strong>Fields list</strong>.</li>
+<li>Scroll down and note the fields that are unchecked. These are automated fields that will hold the editor tracking values you enabled earlier.</li>
+</ol>
+<p><img src="images/20250326_124716_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Done</strong> to close the <strong>Select fields</strong> panel, and click the <strong>X</strong> at the top of the Properties Panel, to close it.</li>
+<li>In the map, Zoom and Pan until you can see the entire Stanford Campus</li>
+</ol>
+<p><img src="images/20250326_125042_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">Basemap</a> button on the left side of the page, and change the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> to OpenStreetMap.</li>
+</ol>
+<p><img src="images/20250326_125136_image.png" alt=""></img></p>
+<ol>
+<li>Save the map.</li>
+</ol>
+<p><img src="images/20250326_125212_image.png" alt=""></img></p>
+<h3 id="update-the-editing-template">Update the Editing Template</h3>
+<ol>
+<li>On the right side of the Map Viewer, click <strong>Configure Editing &gt; Templates</strong></li>
+</ol>
+<p><img src="images/20260412_134956_image.png" alt=""></img></p>
+<ol>
+<li><p>Click Update in the Banner at the top</p>
+<p><img src="images/20260412_135111_image.png" alt=""></img></p>
+</li>
+<li><p>CLick OK to Save the Template Update, and close the Template Editor</p>
+<p><img src="images/20260412_135153_image.png" alt=""></img></p>
+</li>
+</ol>
+<h3 id="enable-offline-editing">Enable Offline Editing</h3>
+<ol>
+<li><p>Click on the <strong>Map Properties</strong> button <img src="images/20250326_125443_image.png" alt=""></img> on the left side of the page, then click on the <strong>item details</strong>.</p>
+<p><img src="images/20250326_125414_image.png" alt=""></img></p>
+<p>button and then on the More Details... link to go to the Details page of your webmap.</p>
+</li>
+<li>Click on the <strong>Settings tab</strong> at the top of the page and scroll down to the section labeled "Offline."</li>
+<li>Make sure that "<strong>Offline enabled</strong>" is at the top right corner of the panel.</li>
+</ol>
+<p><img src="images/20250326_125606_image.png" alt=""></img></p>
+<ol>
+<li>Click on <strong>Manage Offline Areas</strong>.</li>
+</ol>
+<p><img src="images/20250326_125800_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>+ Create <a href="../GLOSSARY.html#offline-area" class="glossary-term" title="A packaged copy of a web map and its needed layers for use on a mobile device without reliable internet access. Offline areas are important in field data collection.">offline area</a></strong> button.</li>
+<li>Use the <strong>Sketch rectangular map area</strong> tool in the map toolbar, and draw a box around the main Stanford Campus.</li>
+</ol>
+<p><img src="images/20250326_130046_image.png" alt=""></img></p>
+<ol>
+<li>Leave the remaining setting as their default values and click Save.</li>
+<li>Click the <strong>X</strong> at the top right corner to dismiss the <strong>Manage Offline Areas</strong> page.</li>
+</ol>
+<p>This <a href="../GLOSSARY.html#offline-area" class="glossary-term" title="A packaged copy of a web map and its needed layers for use on a mobile device without reliable internet access. Offline areas are important in field data collection.">offline area</a> is essentially a packaged copy of the map and its editable layers for use on a device when connectivity is unreliable.</p>
+<blockquote>
+<p><strong>Why package an <a href="../GLOSSARY.html#offline-area" class="glossary-term" title="A packaged copy of a web map and its needed layers for use on a mobile device without reliable internet access. Offline areas are important in field data collection.">offline area</a>?</strong> Offline areas make a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> workflow more robust. They shift the project away from depending on constant connectivity and toward a more realistic model of <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> conditions, where the device may need to keep working even when the network does not.</p>
+</blockquote>
+<h3 id="use-field-maps-designer-to-finish-the-editing-form">Use Field Maps Designer to Finish the Editing Form</h3>
+<ol>
+<li>Click the 3x3 app launcher icon at the top right of the page, next to your user name, and look for <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps Designer</strong>. Launch that tool.</li>
+</ol>
+<p><img src="images/20250326_131551_image.png" alt=""></img></p>
+<ol>
+<li>The resulting list should be sorted by "<strong>Last Modified</strong>" so your <strong>Walking Tour map</strong> should be the first item in the resulting gallery list. Click to open it in <strong>FieldMaps Designer</strong>.</li>
+</ol>
+<p><img src="images/20250326_131711_image.png" alt=""></img></p>
+<ol>
+<li>On the resulting page, make sure <strong>Place</strong> is selected, and click <strong>Convert pop-up</strong> to import the pop-up fields into your editing form.</li>
+</ol>
+<p><img src="images/20250326_132037_image.png" alt=""></img></p>
+<ol>
+<li><p>This should result in a basic form design, with your custom fields, like this:</p>
+<p><img src="images/20250326_132123_image.png" alt=""></img></p>
+</li>
+<li>Drag and drop the <strong>Date and time</strong> form element into the form designer underneath all other fields.</li>
+</ol>
+<p><img src="images/20250326_132227_image.png" alt=""></img></p>
+<ol>
+<li>Add a Display name and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> name for the Date and time form element.</li>
+</ol>
+<p><img src="images/20250326_132632_image.png" alt=""></img></p>
+<ol>
+<li>Note that certain <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names are reserved, including the default one that is created when you drop the Date and time form element into the Form Designer. You will need to append <code>_collect</code> to the end of the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> name in the formatting panel:</li>
+</ol>
+<p><img src="images/20250326_132521_image.png" alt=""></img></p>
+<ol>
+<li>Once you have added the <code>Date/Time</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to the form designer, click on the <strong>Save button</strong> at the top right corner of the Form panel.</li>
+</ol>
+<p><img src="images/20250326_132806_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>App settings</strong> button <img src="images/20250326_133042_image.png" alt=""></img> on the left side of the page, and expand each section to familiarize yourself with the options. We will not change any here, but pay particular attention to the options in the <strong>Collection</strong> section for controlling how the app interacts with the device GPS.</li>
+</ol>
+<p><img src="images/20250326_150703_image.png" alt=""></img></p>
+<ol>
+<li>If you do make changes, be sure to Save your form.</li>
+<li>You can now close the form designer.</li>
+</ol>
+<blockquote>
+<p><strong>Why use the form designer at all?</strong> A <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection project succeeds or fails partly on whether the form is usable. The form is where your <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> becomes an actual data-entry experience for a person in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+</blockquote>
+<h2 id="part-3-record-points-of-interest-with-field-maps">Part 3: Record Points of Interest with Field Maps</h2>
+<p>For this part of the exercise, you will need to download <strong>ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> for iPhone or Android from the appropriate app store.</p>
+<p>Open ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps, using <code>stanford</code> as your organization, and log in with your SUNetID and password.</p>
+<ol>
+<li>Choose the map you just made.</li>
+</ol>
+<p><img src="images/20250326_130737_image.png" alt=""></img></p>
+<ol>
+<li>You should see the Online Map for use when connected to the network and the <strong>Map Areas</strong> you created for offline use when there is no reliable connectivity.</li>
+</ol>
+<p><img src="images/20250326_130923_image.png" alt=""></img></p>
+<ol>
+<li>Click on the **Online Map to open it.</li>
+</ol>
+<p><img src="images/20250326_131029_image.png" alt=""></img></p>
+<ol>
+<li>To add a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>, touch the <strong>+</strong> icon, select <strong>New <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>, and follow the prompts.</li>
+</ol>
+<p><img src="images/20260412_141940_image.png" alt=""></img></p>
+<ol>
+<li>You can fill out the form before placing the point, or click <strong>Add Point</strong> first. Sometimes it is useful to wait and place the point after filling the form, to allow your GPS accuracy to improve.</li>
+<li>Walk around campus, adding public art, historically significant locations, technology, or other useful features such as picnic tables, restrooms, or water fountains. <strong>Collect at least 12 points, with photo or video attachments.</strong></li>
+</ol>
+<blockquote>
+<p><strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> methods note:</strong> Good <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data is not just about quantity. Try to be consistent about what counts as a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>, use the categories carefully, and write notes that would make sense to another person looking at the data later.</p>
+</blockquote>
+<h2 id="part-4-multi-user-editing">Part 4: Multi-User Editing</h2>
+<p>Management of multiple <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> workers can be implemented through the use of <strong>Groups</strong> in ArcGIS Online. You can create a group with appropriate permissions so that people in that group can access and use the deployed map for data collection.</p>
+<h3 id="join-the-current-course-group">Join the Current Course Group</h3>
+<p>First, <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> the current course group so that you can share and submit your map and <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers.</p>
+<blockquote>
+<p><strong>Important note:</strong> Some of the screenshots below show the course group name from an earlier quarter. Use the current quarter's ArcGIS Online group name and sharing instructions as announced on Canvas.</p>
+</blockquote>
+<ol>
+<li>From the map, click the <strong>Home</strong> button and go to <strong>Groups</strong>.</li>
+<li>Click on the <strong>My Organization's Groups</strong> tab.</li>
+<li>Search for the current <code>EarthSys144 Fundamentals of GISci - Spring 2026</code> course group.</li>
+<li>Click <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> This Group</strong>.</li>
+</ol>
+<p><img src="images/20260412_142229_image.png" alt=""></img></p>
+<p><img src="." alt=""></img></p>
+<h3 id="share-the-map-and-feature-layer-with-the-group">Share the map and feature layer with the group</h3>
+<p>Now that you are a member of the course group, you can share content with it. Note that anyone in that group may be able to access and use your app for data collection. In your own research projects, you would normally limit group membership carefully to control access to the app.</p>
+<ol>
+<li>Click on the <strong>Content</strong> tab at the top of the page to go to <strong>My Content</strong>.</li>
+<li>Find your mapping app, whose item type will be <strong><a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">Web Map</a></strong>, and your <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. Check their boxes, then click <strong>Share</strong>.</li>
+</ol>
+<p><img src="images/20250412_091633_image.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>Edit group sharing</strong> button, select the current course group, and click <strong>OK</strong>.</li>
+</ol>
+<p><img src="images/20250412_091737_image.png" alt=""></img></p>
+<p><img src="images/20260412_142806_image.png" alt=""></img></p>
+<ol>
+<li>Click Apply, then click Save to apply the Share settings</li>
+</ol>
+<p><img src="images/20250412_092139_image.png" alt=""></img></p>
+<ol>
+<li>Your mapping app and <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> should now be visible to members of the course group.</li>
+</ol>
+<h3 id="update-sharing-on-your-feature-layer">Update SHaring on your Feature Layer</h3>
+<ol>
+<li>You will be prompted to <strong>Review sharing</strong>, since your <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> is probably not shared int he same way as your Map Document.</li>
+</ol>
+<p><img src="images/20260412_143031_image.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Update sharing</strong> button to apply the Share Settings to your <strong><a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong>.</li>
+</ol>
+<h2 id="working-with-the-data">Working with the data</h2>
+<h3 id="create-a-view-layer">Create a View Layer</h3>
+<p>You may want to share the collected data through a <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a>, but you usually do not want to share your full editing map with everyone. Creating a <strong>View <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> is a way to safely share the collected data without exposing the editing <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> itself.</p>
+<blockquote>
+<p><strong>Important concept:</strong> In GIS, sharing and editing are not the same thing. Separating editable data from read-only views is a core part of responsible data management.</p>
+</blockquote>
+<ol>
+<li>Return to your <strong>Content page</strong>, and find your <strong>Walking Tour <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> item and click on it to go to the <strong>Details page</strong>.</li>
+<li>Click on <strong>Show More</strong> button and then the <strong>Create View <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> button</li>
+<li>Give it an appropriate name like <code>My Mapping App Data Public View (_SUNetID_)</code> and click OK</li>
+<li>Click on the <strong>Share</strong> Button in the resulting <strong>Details Page</strong>, and change the Sharing to <code>Public</code>.</li>
+</ol>
+<p>The resulting <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is a read-only view of the data being collected in your mapping app. It can be added to a new map, filtered, symbolized, used in a web application, and shared publicly, within the Stanford organization, or with a controlled group, but without editing permissions.</p>
+<p><img src="images/ArcGIS_Online_FieldMaps-29b43640.png" alt=""></img></p>
+<p><img src="images/ArcGIS_Online_FieldMaps-0305aa70.png" alt=""></img></p>
+<h2 id="to-turn-in">To Turn In</h2>
+<ol>
+<li><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> the current <strong>EarthSys144 ArcGIS Online course group</strong> if you didn't as part of the above steps, and share your data collection map app with that group.</li>
+<li>Return to the details page of your <strong><a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></strong> and copy the URL from the browser URL bar. Submit that URL in Canvas.</li>
+<li>Go to the details page for the <strong>view <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> you created and find its URL. Submit that URL in Canvas as well.</li>
+</ol>
+<p>These two links represent two different roles in the workflow:</p>
+<ul>
+<li>The <strong><a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></strong> shows the working collection environment.</li>
+<li>The <strong>view <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> shows the shared, non-editable version of the collected data.</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this lab, you built a simple <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection workflow from the ground up. You:</p>
+<ul>
+<li>Created hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers in ArcGIS Online</li>
+<li>Added fields and controlled-value lists to structure incoming data</li>
+<li>Configured a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> for mobile data collection</li>
+<li>Enabled offline use</li>
+<li>Customized the editing form in <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps Designer</li>
+<li>Collected data on a mobile device</li>
+<li>Shared the results through a view <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and course group</li>
+</ul>
+<p>This kind of workflow is common in research, planning, environmental monitoring, public history, archaeology, and community mapping. In later projects, you can adapt the same basic pattern to collect your own <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> observations, survey results, media, and spatial notes.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Week 02 - Making & Collecting Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="02_georeferencing_with_qgis_and_allmaps_org.html" class="navigation navigation-next " aria-label="Next page: 02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"next":{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"previous":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"01 - TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"02 - TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Creating Vector Data by Digitizing in QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/01_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","mtime":"2026-04-13T01:08:18.395Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-13T01:08:29.545Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
