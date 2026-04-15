@@ -119,10 +119,12 @@ The PLSS layer covers the entire United States, but we only need the part releva
 6. Build the following filter:
 
    ```text
-   "state" = 'WY'
+   "STATE" = 'WY'
    ```
 
-![](images/GeoreferencingImages-3a2041a1-drop-shadow_reduce.png)
+   7. You can use the **Fields** list to Double-click `STATE`, then click the **All** button to get the values from that field and double-click on `WY`
+
+![](images/20260415_101207_image.png)
 
 7. Click **OK** to apply the filter.
 8. Click **OK** again to close the Layer Properties window.
@@ -268,10 +270,10 @@ We want a projection better suited to this specific map.
 - **Transformation type:** `Polynomial 2`
 - **Resampling method:** `Cubic (4x4 Kernel)`
 - **Target CRS:** your custom Wyoming projection
-- **Save GCP points**
+- **Check the Save GCP points** option
 - **Load in QGIS when done**
 
-![](images/GeoreferencingImages-600d9b86-drop-shadow_reduce.png)
+![](images/20260415_100951_image.png)
 
 > **What are GCPs?** **Ground Control Points** are matching locations you identify on the scanned map and in real geographic space. The quality and distribution of your GCPs strongly affect the quality of the georeferencing result.
 

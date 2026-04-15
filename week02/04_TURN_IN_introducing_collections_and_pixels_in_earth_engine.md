@@ -1,4 +1,4 @@
-# Introducing Collections, Images, Bands, and Pixels in Google Earth Engine (DRAFT)
+# Introducing Collections, Images, Bands, and Pixels in Google Earth Engine
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
