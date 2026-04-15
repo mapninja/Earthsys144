@@ -266,7 +266,7 @@ We want a projection better suited to this specific map.
 2. Use the following settings:
 
 - **Transformation type:** `Polynomial 2`
-- **Resampling method:** `Cubic`
+- **Resampling method:** `Cubic (4x4 Kernel)`
 - **Target CRS:** your custom Wyoming projection
 - **Save GCP points**
 - **Load in QGIS when done**
