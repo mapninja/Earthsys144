@@ -8,6 +8,10 @@ Many of the definitions below are course-oriented paraphrases of foundational GI
 
 A specific geographic area selected for analysis or mapping. An AOI helps limit your work to the place relevant to your question.
 
+## Absolute Change
+
+The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.
+
 ## Attribute
 
 Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.
@@ -31,6 +35,14 @@ A zone of a specified distance around a feature or set of features. Buffers are 
 ## Cartography
 
 The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.
+
+## Choropleth Map
+
+A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.
+
+## Column
+
+A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.
 
 ## Coordinate System
 
@@ -75,6 +87,10 @@ A vector object representing something on the landscape. Features are usually st
 ## Field
 
 A column in an attribute table. Each field stores one type of information, such as `NAME`, `DATE`, or `POPULATION`.
+
+## Field Name
+
+The label used to identify a field in a table. A field name such as `MHHINC2020` tells you what kind of values that column stores.
 
 ## Field Calculator
 
@@ -184,6 +200,10 @@ The process by which GIS software displays layers with different coordinate refe
 
 The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.
 
+## Percent Change
+
+A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.
+
 ## PLSS (Public Land Survey System)
 
 A land subdivision system used in much of the United States. PLSS grids can be useful as a reference framework in historical mapping and georeferencing exercises.
@@ -195,6 +215,10 @@ A field whose values uniquely identify each record in a table. Primary keys are 
 ## Query
 
 A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.
+
+## Row
+
+A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.
 
 ## Raster
 
