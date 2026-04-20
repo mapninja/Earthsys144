@@ -28,9 +28,9 @@
 
 * [Week 03 - Tables & Queries](week03/README.md)
   * [00 - Basic Table Structures & Operations in QGIS](week03/00_basic_table_structures_and_operations_in_qgis.md)
+  * [00 - Basic Table Joins and Calculations in QGIS](week03/00_basic_table_joins_and_calculations.md)
   * [01 - SQL Operations in QGIS](week03/01_sql_operations_in_qgis.md)
   * [02 - Tabular/Vector Data in Google Earth Engine](week03/02_tabular_vector_data_in_google_earth_engine.md)
-  * [03 - Using SQL to Subset Big Data in the Stanford Data Farm](week03/03_using_sql_to_subset_big_data_in_the_stanford_data_farm.md)
 
 * [Week 04 - Basic Vector Analysis](week04/README.md)
   * [00 - Buffering & Overlay Analysis in QGIS](week04/00_buffering_and_overlay_analysis_in_qgis.md)
