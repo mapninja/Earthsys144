@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="week03/00_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="week03/01_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="week03/00_basic_table_structures_and_operations_in_qgis.html">
+                <a href="week03/01_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    00 - Basic Table Structures & Operations in QGIS
+                    01 - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="week03/00_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="week03/02_basic_table_joins_and_calculations.html">
             
-                <a href="week03/00_basic_table_joins_and_calculations.html">
+                <a href="week03/02_basic_table_joins_and_calculations.html">
             
                     
-                    00 - Basic Table Joins and Calculations in QGIS
+                    02 - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="week03/01_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="week03/03_sql_operations_in_qgis.html">
             
-                <a href="week03/01_sql_operations_in_qgis.html">
+                <a href="week03/03_sql_operations_in_qgis.html">
             
                     
-                    01 - SQL Operations in QGIS
+                    03 - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="week03/02_tabular_vector_data_in_google_earth_engine.html">
+        <li class="chapter " data-level="1.6.4" data-path="week03/04_cartographic_design_basics.html">
             
-                <a href="week03/02_tabular_vector_data_in_google_earth_engine.html">
+                <a href="week03/04_cartographic_design_basics.html">
             
                     
-                    02 - Tabular/Vector Data in Google Earth Engine
+                    04 - Cartographic Design Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="week03/05_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="week03/05_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    05 - Tabular/Vector Data in Google Earth Engine
             
                 </a>
             
@@ -1048,8 +1061,10 @@
 <p>A background map <a href="GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.</p>
 <h2 id="buffer">Buffer</h2>
 <p>A zone of a specified distance around a <a href="GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.</p>
+<h2 id="callout">Callout</h2>
+<p>Text or a graphic annotation placed near a map <a href="GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> and connected to it with a line, arrow, or pointer. Callouts are often used in layouts to draw attention to an important place or event without crowding the map itself.</p>
 <h2 id="cartography">Cartography</h2>
-<p>The design and making of maps. <a href="GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">Cartography</a> includes choices about symbolization, labeling, layout, <a href="GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>, color, and visual hierarchy.</p>
+<p>The design and making of maps. <a href="GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">Cartography</a> includes choices about symbolization, labeling, layout, <a href="GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>, color, and <a href="GLOSSARY.html#visual-hierarchy" class="glossary-term" title="The ordering of map elements so the most important information stands out first and less important information recedes. Visual hierarchy is created through size, color, contrast, placement, and styling choices.">visual hierarchy</a>.</p>
 <h2 id="choropleth-map">Choropleth Map</h2>
 <p>A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible <a href="GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> and symbol choices.</p>
 <h2 id="column">Column</h2>
@@ -1110,8 +1125,12 @@
 <p>Text placed on a map to identify features or provide information. Labels can be based on <a href="GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> values such as names or measurements.</p>
 <h2 id="layer">Layer</h2>
 <p>A set of spatial data displayed in a map. A <a href="GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> may be <a href="GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a>, <a href="GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>, tabular, or a web service.</p>
+<h2 id="legibility">Legibility</h2>
+<p>The degree to which map text, symbols, and layout elements can be read and understood easily. <a href="GLOSSARY.html#legibility" class="glossary-term" title="The degree to which map text, symbols, and layout elements can be read and understood easily. Legibility depends on choices such as font size, contrast, spacing, and the amount of visual clutter in the design.">Legibility</a> depends on choices such as font size, contrast, spacing, and the amount of visual clutter in the design.</p>
 <h2 id="legend">Legend</h2>
 <p>A map element explaining the meaning of symbols, colors, and patterns used in a map.</p>
+<h2 id="locator-map">Locator Map</h2>
+<p>A small supporting map that shows where the main map area sits within a larger geographic context. Locator maps help readers orient themselves quickly, especially when the main map covers a small or unfamiliar place.</p>
 <h2 id="map-layout">Map Layout</h2>
 <p>The arrangement of map elements for export or printing. A layout usually includes the map frame, title, <a href="GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a>, <a href="GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar, author name, date, and other cartographic elements.</p>
 <h2 id="map-projection">Map Projection</h2>
@@ -1176,6 +1195,8 @@
 <p>A spatial data model that represents geographic features as points, lines, and polygons.</p>
 <h2 id="visualization">Visualization</h2>
 <p>The way data is displayed so it can be interpreted visually. In GIS and <a href="GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a>, <a href="GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> includes map design, color ramps, <a href="GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combinations, and symbol choices.</p>
+<h2 id="visual-hierarchy">Visual Hierarchy</h2>
+<p>The ordering of map elements so the most important information stands out first and less important information recedes. <a href="GLOSSARY.html#visual-hierarchy" class="glossary-term" title="The ordering of map elements so the most important information stands out first and less important information recedes. Visual hierarchy is created through size, color, contrast, placement, and styling choices.">Visual hierarchy</a> is created through size, color, contrast, placement, and styling choices.</p>
 <h2 id="web-map">Web Map</h2>
 <p>A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.</p>
 <h2 id="sources">Sources</h2>
@@ -1226,7 +1247,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Glossary","level":"1.2","depth":1,"next":{"title":"Week 00 - Getting Ready for the Course","level":"1.3","depth":1,"path":"week00/README.md","ref":"week00/README.md","articles":[{"title":"Syllabus - Spring 2026","level":"1.3.1","depth":2,"path":"week00/00_earthsys144_spring_2026_syllabus.md","ref":"week00/00_earthsys144_spring_2026_syllabus.md","articles":[]},{"title":"00 - Things you need to know about your computer","level":"1.3.2","depth":2,"path":"week00/00_things_you_need_to_know_about_your_computer.md","ref":"week00/00_things_you_need_to_know_about_your_computer.md","articles":[]},{"title":"01 - Things you need to know about GIS data on your computer","level":"1.3.3","depth":2,"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","ref":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","articles":[]},{"title":"02 - Logging Into Accounts and Installing Software","level":"1.3.4","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},{"title":"03 - Introduction to Spatial Data Formats","level":"1.3.5","depth":2,"path":"week00/03_introduction_to_spatial_data_formats.md","ref":"week00/03_introduction_to_spatial_data_formats.md","articles":[]},{"title":"04 - Introduction to Finding Data","level":"1.3.6","depth":2,"path":"week00/04_introduction_to_finding_data.md","ref":"week00/04_introduction_to_finding_data.md","articles":[]},{"title":"05 - Submitting Homework and Getting Help","level":"1.3.7","depth":2,"path":"week00/05_submitting_homework_and_getting_help.md","ref":"week00/05_submitting_homework_and_getting_help.md","articles":[]},{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.10","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.3.11","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"GLOSSARY.md","mtime":"2026-04-20T15:10:28.853Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-20T15:10:45.738Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Glossary","level":"1.2","depth":1,"next":{"title":"Week 00 - Getting Ready for the Course","level":"1.3","depth":1,"path":"week00/README.md","ref":"week00/README.md","articles":[{"title":"Syllabus - Spring 2026","level":"1.3.1","depth":2,"path":"week00/00_earthsys144_spring_2026_syllabus.md","ref":"week00/00_earthsys144_spring_2026_syllabus.md","articles":[]},{"title":"00 - Things you need to know about your computer","level":"1.3.2","depth":2,"path":"week00/00_things_you_need_to_know_about_your_computer.md","ref":"week00/00_things_you_need_to_know_about_your_computer.md","articles":[]},{"title":"01 - Things you need to know about GIS data on your computer","level":"1.3.3","depth":2,"path":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","ref":"week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md","articles":[]},{"title":"02 - Logging Into Accounts and Installing Software","level":"1.3.4","depth":2,"path":"week00/02_logging_into_accounts_and_installing_software.md","ref":"week00/02_logging_into_accounts_and_installing_software.md","articles":[]},{"title":"03 - Introduction to Spatial Data Formats","level":"1.3.5","depth":2,"path":"week00/03_introduction_to_spatial_data_formats.md","ref":"week00/03_introduction_to_spatial_data_formats.md","articles":[]},{"title":"04 - Introduction to Finding Data","level":"1.3.6","depth":2,"path":"week00/04_introduction_to_finding_data.md","ref":"week00/04_introduction_to_finding_data.md","articles":[]},{"title":"05 - Submitting Homework and Getting Help","level":"1.3.7","depth":2,"path":"week00/05_submitting_homework_and_getting_help.md","ref":"week00/05_submitting_homework_and_getting_help.md","articles":[]},{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.10","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},{"title":"10 - TURN IN - Logging in to Google Earth Engine","level":"1.3.11","depth":2,"path":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","ref":"week00/10_TURN_IN_logging_in_to_google_earth_engine.md","articles":[]}]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"GLOSSARY.md","mtime":"2026-04-20T19:50:54.321Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-20T19:51:09.728Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
