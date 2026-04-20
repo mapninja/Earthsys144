@@ -1,0 +1,1536 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>00 - Basic Table Joins and Calculations in QGIS · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="01_sql_operations_in_qgis.html" />
+    
+    
+    <link rel="prev" href="00_basic_table_structures_and_operations_in_qgis.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../week00/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Editing with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="00_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="00_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    00 - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.2" data-path="00_basic_table_joins_and_calculations.html">
+            
+                <a href="00_basic_table_joins_and_calculations.html">
+            
+                    
+                    00 - Basic Table Joins and Calculations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="01_sql_operations_in_qgis.html">
+            
+                <a href="01_sql_operations_in_qgis.html">
+            
+                    
+                    01 - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="02_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="02_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    02 - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/00_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    00 - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/01_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    01 - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_network_analysis_with_qgis.html">
+            
+                <a href="../week04/02_network_analysis_with_qgis.html">
+            
+                    
+                    02 - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/03_introducing_simplyanalytics_com.html">
+            
+                    
+                    03 - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/00_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - Terrain & Visibility with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/02_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    02 - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/03_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    03 - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../week06/">
+            
+                <a href="../week06/">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                <a href="../week06/01_modeling_movement_with_google_earth_engine.html">
+            
+                    
+                    01 - Modeling Movement with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="../week06/02_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="../week06/03_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >00 - Basic Table Joins and Calculations in QGIS</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="basic-table-joins-and-calculations-in-qgis">Basic Table Joins and Calculations in QGIS</h1>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces one of the most important ideas in GIS: a map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.
+When we work with spatial data, we are not only drawing counties, roads, or parcels on a map. We are also working with rows, columns, <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names, and data types. That means many GIS tasks depend on understanding tables just as much as maps.</p>
+<p>In this exercise, you will compare California county median household income for two years, <code>2000</code> and <code>2020</code>, by joining one county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to another using a shared key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. Then you will calculate both the raw difference and the <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a> between the two years, and finally create a <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a> to show that change.</p>
+<p>This matters because GIS analysis often depends on connecting data from multiple <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>. Sometimes you <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> a <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> to a spreadsheet. Sometimes you <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to another <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. In both cases, the basic idea is the same: QGIS treats the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables as separate tables and links them through a shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lab, you should be able to:</p>
+<ul>
+<li>Explain the difference between rows, columns, <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names, and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> types</li>
+<li>Explain what a key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is and why it matters for a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a></li>
+<li>Explain the difference between a <a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a> and a <a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a></li>
+<li>Open and interpret the <strong>Fields</strong> tab in <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties</strong></li>
+<li>Open and use the <strong><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong></li>
+<li><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> one spatial <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to another using a shared key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+<li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to create new numeric fields</li>
+<li>Calculate both <a href="../GLOSSARY.html#absolute-change" class="glossary-term" title="The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.">absolute change</a> and <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a></li>
+<li>Choose a reasonable choropleth <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> for mapped values</li>
+</ul>
+<h2 id="data">Data</h2>
+<p>Download the lab data from:</p>
+<ul>
+<li><a href="https://github.com/mapninja/Earthsys144/raw/master/data/TableBasics.zip" target="_blank">https://github.com/mapninja/Earthsys144/raw/master/data/TableBasics.zip</a></li>
+</ul>
+<p>After downloading:</p>
+<ul>
+<li>Unzip <code>TableBasics.zip</code></li>
+<li>Keep the shapefiles and their related files together in the same folder</li>
+<li>Add the layers from the unzipped folder into QGIS</li>
+</ul>
+<p>This lab uses two county polygon layers:</p>
+<ul>
+<li><code>ca_county_2000_mhhinc</code></li>
+<li><code>ca_county_2020_mhhinc</code></li>
+</ul>
+<p>Each <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> contains California counties and one median household income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>:</p>
+<ul>
+<li><code>MHHINC2000</code> in the 2000 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li><code>MHHINC2020</code> in the 2020 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+</ul>
+<p>Both layers also contain shared identifier fields including:</p>
+<ul>
+<li><code>spatial_id</code></li>
+<li><code>name</code></li>
+</ul>
+<p>You should see these layers in the lab data folder and in QGIS as shown below.</p>
+<p><img src="images/20260418_154439_image.png" alt=""></img></p>
+<h2 id="conceptual-focus">Conceptual Focus</h2>
+<h3 id="rows-columns-and-fields">Rows, Columns, and Fields</h3>
+<p>Every <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> in a GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has geometry and attributes.</p>
+<ul>
+<li>A <strong><a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a></strong> represents one <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>, such as one county.</li>
+<li>A <strong><a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a></strong> represents one variable, such as county name or median household income.</li>
+<li>A <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> name</strong> is the <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> at the top of a <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, such as <code>MHHINC2000</code>.</li>
+<li>A <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type</strong> tells QGIS what kind of values the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> stores, such as text or decimal numbers.</li>
+</ul>
+<h3 id="key-fields-and-joins">Key Fields and Joins</h3>
+<p>A <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a></strong> connects information from one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to another using a shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+<p>The shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is often called a <strong>key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>. In relational database language:</p>
+<ul>
+<li>A <strong><a href="../GLOSSARY.html#primary-key" class="glossary-term" title="A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.">primary key</a></strong> is a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> whose values uniquely identify records in its own <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>A <strong><a href="../GLOSSARY.html#foreign-key" class="glossary-term" title="A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.">foreign key</a></strong> is a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> that refers to matching values in another <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+</ul>
+<p>In practice, when you make a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> in QGIS, you are telling the software:</p>
+<p>"Match the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> in one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> in another <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> wherever these key values are the same."</p>
+<p>For this lab, <code>spatial_id</code> is the safest <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to use as the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> key because it is designed as an identifier. County names can sometimes vary in spelling, capitalization, punctuation, or abbreviations, so a more formal ID is usually a better <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+<h3 id="why-join-two-shapefiles">Why Join Two Shapefiles?</h3>
+<p>It is common to think of a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> as something you do between a spreadsheet and a map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. But joining one <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> to another is conceptually the same thing. Each <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> has its own <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. QGIS joins the tables first, and then displays the result through the geometry of the target <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>In other words, even though both of these datasets are spatial layers, the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> still happens through their tables.</p>
+<h3 id="choropleth-mapping">Choropleth Mapping</h3>
+<p>A <strong><a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a></strong> uses differences in color or shading to represent values across enumeration units such as counties or states.</p>
+<p>Choropleth maps work best when:</p>
+<ul>
+<li>The units are comparable areas, such as counties</li>
+<li>The mapped variable is meaningful at that unit of aggregation</li>
+<li>The <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method is chosen carefully</li>
+</ul>
+<p>For this lab, you will map change in median household income across counties. Because some counties changed much more than others, <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> choices will strongly affect how the pattern looks.</p>
+<p>For a thoughtful discussion of <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> choices in choropleth mapping, see John Nelson's essay:</p>
+<ul>
+<li><a href="https://web.archive.org/web/20241226082540/http://uxblog.idvsolutions.com/2011/10/telling-truth.html" target="_blank">Telling Truth with Choropleth Maps</a></li>
+</ul>
+<h2 id="part-1-add-the-layers-and-inspect-the-fields">Part 1: Add the Layers and Inspect the Fields</h2>
+<ol>
+<li>Open QGIS and start a new project.</li>
+<li>Use the <strong>Browser</strong> panel to locate the lab data folder.</li>
+<li>Add both layers to the project:<ul>
+<li><code>ca_county_2000_mhhinc.shp</code></li>
+<li><code>ca_county_2020_mhhinc.shp</code></li>
+</ul>
+</li>
+<li>Make sure both layers appear in the <strong>Layers</strong> panel.</li>
+<li>Turn both layers on so you can confirm they cover the same set of California counties.</li>
+</ol>
+<p><img src="images/20260418_154439_image.png" alt=""></img></p>
+<h3 id="inspect-the-2000-layer-fields">Inspect the 2000 layer fields</h3>
+<ol>
+<li>Right-click <code>ca_county_2000_mhhinc</code>.</li>
+<li>Choose <strong>Properties</strong>.</li>
+<li>Click the <strong>Fields</strong> tab.</li>
+</ol>
+<p>You should see fields including <code>spatial_id</code>, <code>name</code>, and <code>MHHINC2000</code>.</p>
+<p><img src="images/20260418_154309_image.png" alt=""></img></p>
+<p>Notice that:</p>
+<ul>
+<li><code>spatial_id</code> is stored as <strong>Text (string)</strong></li>
+<li><code>name</code> is stored as <strong>Text (string)</strong></li>
+<li><code>MHHINC2000</code> is stored as <strong>Decimal (double)</strong></li>
+</ul>
+<p>This tells you that the income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is numeric, which means it can be used in calculations.</p>
+<h3 id="inspect-the-2020-layer-fields">Inspect the 2020 layer fields</h3>
+<ol>
+<li>Close the first properties window.</li>
+<li>Right-click <code>ca_county_2020_mhhinc</code>.</li>
+<li>Choose <strong>Properties</strong>.</li>
+<li>Click the <strong>Fields</strong> tab.</li>
+</ol>
+<p>You should see a similar structure, but with <code>MHHINC2020</code> instead of <code>MHHINC2000</code>.</p>
+<p><img src="images/20260418_154251_image.png" alt=""></img></p>
+<p>Pause here and compare the two tables:</p>
+<ul>
+<li>Both have <code>spatial_id</code></li>
+<li>Both have <code>name</code></li>
+<li>Each has one year-specific income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+</ul>
+<p>That is exactly what makes a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> possible.</p>
+<h2 id="part-2-explore-the-attribute-tables">Part 2: Explore the Attribute Tables</h2>
+<ol>
+<li>Open the <strong><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong> for <code>ca_county_2020_mhhinc</code>.</li>
+<li>Scroll through the rows and columns.</li>
+<li>Find the <code>MHHINC2020</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Note that the values vary substantially across counties.</li>
+</ol>
+<p>For this dataset:</p>
+<ul>
+<li><code>MHHINC2020</code> ranges from <code>41780</code> to <code>130890</code></li>
+</ul>
+<p>Now repeat the same process for <code>ca_county_2000_mhhinc</code>.</p>
+<p>For that dataset:</p>
+<ul>
+<li><code>MHHINC2000</code> ranges from <code>27522</code> to <code>74335</code></li>
+</ul>
+<h3 id="why-this-matters">Why this matters</h3>
+<p>Before doing a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> or a calculation, it is worth simply looking at the tables.</p>
+<p>This helps you answer questions like:</p>
+<ul>
+<li>What are the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names?</li>
+<li>Which fields are numeric?</li>
+<li>Do the likely <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> fields match?</li>
+<li>What is the rough range of the values?</li>
+</ul>
+<p>These are small checks, but they prevent many common GIS mistakes.</p>
+<h2 id="part-3-run-basic-statistics-for-fields">Part 3: Run Basic Statistics for Fields</h2>
+<p>Before making the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>, use one of QGIS' summary tools to confirm the distribution of values in each year.</p>
+<ol>
+<li>Open the <strong>Processing Toolbox</strong>.</li>
+<li>Search for <strong>Basic statistics for fields</strong>.</li>
+<li>Run the tool for <code>ca_county_2020_mhhinc</code> using the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>MHHINC2020</code>.</li>
+<li>Review the output in the <strong>Results Viewer</strong>.</li>
+</ol>
+<p>You should get values close to the following:  </p>
+<pre><code>- COUNT: 58
+- UNIQUE: 58
+- EMPTY: 0
+- FILLED: 58
+- MIN: 41780
+- MAX: 130890
+- CV: 0.297786098407827
+- SUM: 4124349
+- MEAN: 71109.46551724138
+- RANGE: 89110
+- MEDIAN: 65055.5
+- MINORITY: 41780
+- MAJORITY: 41780
+- STD_DEV: 21175.41029624522
+- FIRSTQUARTILE: 54972
+- THIRDQUARTILE: 84638
+- IQR: 29666
+</code></pre><p>Now repeat the tool for <code>ca_county_2000_mhhinc</code> using the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>MHHINC2000</code>.</p>
+<p>You should get values close to the following:</p>
+<pre><code>- COUNT: 58
+- UNIQUE: 58
+- EMPTY: 0
+- FILLED: 58
+- MIN: 27522
+- MAX: 74335
+- CV: 0.2653085128734548
+- SUM: 2487970.4000000004
+- MEAN: 42896.04137931035
+- RANGE: 46813
+- MEDIAN: 40895.5
+- MINORITY: 27522
+- MAJORITY: 27522
+- STD_DEV: 11380.68494650301
+- FIRSTQUARTILE: 34725
+- THIRDQUARTILE: 51484
+- IQR: 16759
+</code></pre><h3 id="why-this-matters">Why this matters</h3>
+<p>This tool gives you a quick numerical summary of the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> you are about to analyze.
+It helps you verify that:</p>
+<ul>
+<li>The <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is numeric</li>
+<li>The <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has the expected number of records</li>
+<li>There are no empty values</li>
+<li>The spread of values looks reasonable</li>
+</ul>
+<p>It also gives you a stronger basis for deciding how to classify the map later.</p>
+<h2 id="part-4-select-the-lowest-income-county-in-each-layer">Part 4: Select the Lowest-Income County in Each Layer</h2>
+<p>This section is designed to help you connect the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the map.</p>
+<h3 id="find-the-lowest-value-in-the-2020-layer">Find the lowest value in the 2020 layer</h3>
+<ol>
+<li>Open the <code>ca_county_2020_mhhinc</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>Locate the <code>MHHINC2020</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Sort the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in ascending order so the smallest value appears first.</li>
+<li>Select the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> with the lowest <code>MHHINC2020</code> value.</li>
+<li>Use the <strong>Zoom map to selected rows</strong> tool in the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+</ol>
+<h3 id="find-the-lowest-value-in-the-2000-layer">Find the lowest value in the 2000 layer</h3>
+<ol>
+<li>Open the <code>ca_county_2000_mhhinc</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>Locate the <code>MHHINC2000</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Sort the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in ascending order.</li>
+<li>Select the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> with the lowest <code>MHHINC2000</code> value.</li>
+<li>Use the <strong>Zoom map to selected rows</strong> tool again.</li>
+</ol>
+<h3 id="reflect-on-what-you-see">Reflect on what you see</h3>
+<p>The county with the lowest value in 2000 may not be the same county as the one with the lowest value in 2020.
+That is one reason it is useful to bring both years into one joined <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and calculate change directly. Once both values are in the same <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you can compare them <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> by <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> rather than trying to mentally compare two separate layers.</p>
+<h2 id="part-5-join-the-2000-table-to-the-2020-layer">Part 5: Join the 2000 Table to the 2020 Layer</h2>
+<p>In this lab, you will use the <code>ca_county_2020_mhhinc</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as the target <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> the 2000 <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to it.</p>
+<p>That means the geometry will remain the counties from the 2020 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, but the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> will temporarily gain fields from the 2000 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li>Right-click <code>ca_county_2020_mhhinc</code>.</li>
+<li>Choose <strong>Properties</strong>.</li>
+<li>Click the <strong>Joins</strong> tab.</li>
+<li>Click the <strong>Add <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a></strong> button.</li>
+<li>Set the <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> to <code>ca_county_2000_mhhinc</code>.</li>
+<li>Set the <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to <code>spatial_id</code>.</li>
+<li>Set the <strong>Target <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to <code>spatial_id</code>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Click <strong>OK</strong> again to close <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties</strong>.</li>
+</ol>
+<h3 id="concept-note">Concept note</h3>
+<p>Although both inputs are shapefiles, the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> is still a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> operation.
+QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s <code>spatial_id</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to the values in the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s <code>spatial_id</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. Wherever they match, it temporarily appends the joined attributes.</p>
+<h3 id="verify-the-join">Verify the join</h3>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>ca_county_2020_mhhinc</code>.</li>
+<li>Scroll to the right.</li>
+<li>Confirm that you can now see the joined 2000 fields, including <code>MHHINC2000</code>.</li>
+</ol>
+<p>At this point, one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> should contain:</p>
+<ul>
+<li>The 2020 income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+<li>The 2000 income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+<li>The shared ID <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> used to connect them</li>
+</ul>
+<h2 id="part-6-calculate-absolute-change">Part 6: Calculate Absolute Change</h2>
+<p>Now that both year values are in the same <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you can calculate the difference.</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>ca_county_2020_mhhinc</code>.</li>
+<li>Click <strong>Toggle Editing</strong>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
+<li>Choose <strong>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>.</li>
+<li>Name the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>mhhinc_diff</code>.</li>
+<li>Set the output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Decimal (double)</strong>.</li>
+<li>Use an output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> length and precision that can hold the results, such as length <code>20</code> and precision <code>2</code>.</li>
+<li>Enter this expression:</li>
+</ol>
+<pre><code class="lang-qgis">"MHHINC2020" - "MHHINC2000"
+</code></pre>
+<ol>
+<li>Check the preview.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="what-this-means">What this means</h3>
+<p>This calculation subtracts the 2000 median household income from the 2020 median household income for each county.</p>
+<ul>
+<li>Positive values mean income increased.</li>
+<li>Negative values mean income decreased.</li>
+<li>Values near zero mean very little change.</li>
+</ul>
+<h2 id="part-7-calculate-percent-change">Part 7: Calculate Percent Change</h2>
+<p><a href="../GLOSSARY.html#absolute-change" class="glossary-term" title="The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.">Absolute change</a> is useful, but <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a> often tells a clearer story because it scales the change relative to the starting value.</p>
+<ol>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> again.</li>
+<li>Choose <strong>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>.</li>
+<li>Name the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>pct_change</code>.</li>
+<li>Set the output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Decimal (double)</strong>.</li>
+<li>Use a reasonable length and precision, such as length <code>20</code> and precision <code>2</code>.</li>
+<li>Enter this expression:</li>
+</ol>
+<pre><code class="lang-qgis">(("MHHINC2020" - "MHHINC2000") / "MHHINC2000") * 100
+</code></pre>
+<ol>
+<li>Check the preview.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Save your edits.</li>
+<li>Toggle editing off.</li>
+</ol>
+<h3 id="why-percent-change-can-be-more-meaningful">Why percent change can be more meaningful</h3>
+<p>Suppose two counties each changed by <code>$10,000</code>.</p>
+<ul>
+<li>If one started at <code>$30,000</code>, that change is proportionally large.</li>
+<li>If one started at <code>$120,000</code>, that same change is proportionally smaller.</li>
+</ul>
+<p><a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">Percent change</a> helps capture that difference.</p>
+<h2 id="part-8-map-the-change">Part 8: Map the Change</h2>
+<p>Now create a <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a> from one of your new fields.</p>
+<p>The best <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> for the final map is usually <code>pct_change</code>, because it allows comparison across counties with different starting values.</p>
+<ol>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel for <code>ca_county_2020_mhhinc</code>.</li>
+<li>Change the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> from <strong>Single Symbol</strong> to <strong>Graduated</strong>.</li>
+<li>Set the <strong>Value</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to <code>pct_change</code>.</li>
+<li>Choose a color ramp that makes change easy to interpret.</li>
+</ol>
+<p>If your data include both positive and negative values, a diverging ramp is often appropriate because it visually separates decreases from increases.</p>
+<ol>
+<li>Experiment with <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> methods such as:<ul>
+<li><strong>Quantile</strong></li>
+<li><strong>Natural Breaks (Jenks)</strong></li>
+<li><strong>Equal Interval</strong></li>
+</ul>
+</li>
+<li>Try several class counts, such as <code>5</code>, <code>6</code>, or <code>7</code>.</li>
+<li>Compare how the mapped pattern changes.</li>
+</ol>
+<h3 id="classification-reflection">Classification reflection</h3>
+<p>There is no universally correct <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> for every <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a>.
+Different methods emphasize different aspects of the distribution.</p>
+<p>As you test classifications, ask:</p>
+<ul>
+<li>Does this map exaggerate differences?</li>
+<li>Does it hide important variation?</li>
+<li>Are the class breaks understandable?</li>
+<li>Does the map help a reader see a meaningful pattern?</li>
+</ul>
+<p>This is the central design question in choropleth mapping.</p>
+<h2 id="part-9-check-specific-counties">Part 9: Check Specific Counties</h2>
+<p>After symbolizing the map, use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and map together to examine a few counties more closely.</p>
+<ol>
+<li>Sort the <code>pct_change</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> from highest to lowest.</li>
+<li>Select one of the counties with the largest increase.</li>
+<li>Zoom to it on the map.</li>
+<li>Repeat with one of the smallest values.</li>
+<li>Compare the raw values:<ul>
+<li><code>MHHINC2000</code></li>
+<li><code>MHHINC2020</code></li>
+<li><code>mhhinc_diff</code></li>
+<li><code>pct_change</code></li>
+</ul>
+</li>
+</ol>
+<p>This is a good reminder that maps summarize patterns, but the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> gives you the exact values behind the symbols.</p>
+<h2 id="to-turn-in">To Turn In</h2>
+<p>Create and export one map showing county-level change in median household income in California.</p>
+<p>Your map should include:</p>
+<ul>
+<li>A clear title</li>
+<li>The county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> symbolized by <code>pct_change</code></li>
+<li>A <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
+<li>Your name</li>
+<li>A <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> only if it helps rather than distracts</li>
+<li>Enough visual contrast to make the county patterns readable</li>
+</ul>
+<p>You should also be prepared to answer these questions:</p>
+<ol>
+<li>What <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> did you use as the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> key, and why?</li>
+<li>Why is joining one <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> to another still a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> operation?</li>
+<li>What is the difference between <a href="../GLOSSARY.html#absolute-change" class="glossary-term" title="The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.">absolute change</a> and <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a>?</li>
+<li>Why did you choose the <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method you used for the <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a>?</li>
+</ol>
+<h2 id="wrap-up">Wrap-Up</h2>
+<p>This lab introduced several foundational GIS ideas at once:</p>
+<ul>
+<li>Spatial layers contain <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables</li>
+<li><a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> structure matters for GIS analysis</li>
+<li>Joins depend on shared key fields</li>
+<li>Calculations depend on correct <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> types</li>
+<li>Choropleth maps depend on thoughtful <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> choices</li>
+</ul>
+<p>These ideas show up constantly in GIS work.
+If you are comfortable moving between the map, the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> properties, and the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you are building one of the core habits of <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="00_basic_table_structures_and_operations_in_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 00 - Basic Table Structures & Operations in QGIS">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="01_sql_operations_in_qgis.html" class="navigation navigation-next " aria-label="Next page: 01 - SQL Operations in QGIS">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"00 - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"next":{"title":"01 - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/01_sql_operations_in_qgis.md","ref":"week03/01_sql_operations_in_qgis.md","articles":[]},"previous":{"title":"00 - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/00_basic_table_structures_and_operations_in_qgis.md","ref":"week03/00_basic_table_structures_and_operations_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/00_basic_table_joins_and_calculations.md","mtime":"2026-04-20T15:10:34.027Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-20T15:10:45.738Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
