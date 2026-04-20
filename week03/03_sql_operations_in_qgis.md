@@ -1,4 +1,4 @@
-# SQL Operations in QGIS (DRAFT)
+# SQL Operations in QGIS (Ready to Review)
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 

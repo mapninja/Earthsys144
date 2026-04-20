@@ -32,6 +32,10 @@ A background map layer used to provide context for other spatial data. Examples 
 
 A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.
 
+## Callout
+
+Text or a graphic annotation placed near a map feature and connected to it with a line, arrow, or pointer. Callouts are often used in layouts to draw attention to an important place or event without crowding the map itself.
+
 ## Cartography
 
 The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.
@@ -156,9 +160,17 @@ Text placed on a map to identify features or provide information. Labels can be 
 
 A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.
 
+## Legibility
+
+The degree to which map text, symbols, and layout elements can be read and understood easily. Legibility depends on choices such as font size, contrast, spacing, and the amount of visual clutter in the design.
+
 ## Legend
 
 A map element explaining the meaning of symbols, colors, and patterns used in a map.
+
+## Locator Map
+
+A small supporting map that shows where the main map area sits within a larger geographic context. Locator maps help readers orient themselves quickly, especially when the main map covers a small or unfamiliar place.
 
 ## Map Layout
 
@@ -287,6 +299,10 @@ A spatial data model that represents geographic features as points, lines, and p
 ## Visualization
 
 The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.
+
+## Visual Hierarchy
+
+The ordering of map elements so the most important information stands out first and less important information recedes. Visual hierarchy is created through size, color, contrast, placement, and styling choices.
 
 ## Web Map
 

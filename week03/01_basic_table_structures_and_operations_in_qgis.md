@@ -1,4 +1,4 @@
-# Basic Table Structures & Operations in QGIS (DRAFT)
+# Basic Table Structures & Operations in QGIS (Ready to Review)
 
 ## Overview
 
