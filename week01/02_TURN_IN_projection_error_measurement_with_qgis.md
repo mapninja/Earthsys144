@@ -6,39 +6,14 @@
 
 ## Introduction
 
-Maps are never neutral transformations of the Earth. Every time we represent the curved Earth on a flat surface, we make choices about how location, distance, area, direction, and shape will be handled. This lab is designed to make those choices visible.
-
-In Bolstad's treatment of geodesy and map projection, several foundational ideas matter here:
-
-- An **ellipsoid** is a smooth mathematical model of the Earth used for horizontal positioning and geodetic measurement.
-- A **geoid** is an irregular gravity-based surface that approximates mean sea level. It matters most for vertical reference. We will not calculate orthometric height in this lab, but it is important to distinguish the geoid from the ellipsoid because they solve different problems.
-- A **coordinate reference system (CRS)** is the full set of rules that ties coordinates to real places on Earth.
-- A **geographic CRS** stores positions with angular coordinates such as latitude and longitude.
-- A **projected CRS** transforms those positions onto a flat surface so we can work in linear units such as meters or feet.
-- Every projection introduces distortion. Some preserve area better, some preserve local shape better, and some balance several properties over a limited region.
-- A **line of true scale** is a line along which the projection scale factor is exactly 1. Away from that line, distances and areas begin to drift. In a conic system such as State Plane California III, true scale occurs along standard parallels, and error changes as you move away from them.
-
-This lab turns those concepts into something measurable. You will calculate county area in two ways:
+This lab turns projection and measurement ideas into something measurable. You will calculate county area in two ways:
 
 1. As a geodetic measurement on the ellipsoid.
 2. As a planar measurement after the data are projected into a State Plane coordinate system.
 
-You will then calculate the percent difference between those two results and symbolize the error. The final map makes projection distortion visible, rather than treating it as an abstract idea.
+You will then calculate the percent difference between those two results and symbolize the error. The final map makes projection distortion visible instead of leaving it as an abstract idea.
 
 **Suggested reading:** Bolstad, Chapters 3, 4, and 7.
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-- Distinguish among ellipsoids, geoids, geographic CRS, projected CRS, and projections.
-- Explain the relationship between a QGIS project CRS and the CRS of the layers it contains.
-- Identify when QGIS is reprojecting layers on the fly.
-- Set measurement properties so ellipsoidal calculations use the intended earth model and units.
-- Calculate ellipsoidal area and planar area in the QGIS Field Calculator.
-- Export a reprojected copy of a layer into a new CRS.
-- Compute and symbolize the percent error introduced by planar measurement.
-- Interpret the resulting error pattern in relation to projection design and lines of true scale.
 
 ## Data
 
@@ -69,7 +44,7 @@ Before you add data, create and save a new QGIS project.
 
 ### A note on project organization
 
-A QGIS project file does **not** contain the datasets you add to it. It stores paths to those datasets. That means portability depends on keeping the project file and its data together in a well-organized folder structure.
+A QGIS project file does **not** contain the datasets you add to it. It stores paths to those datasets, so portability depends on keeping the project file and its data together in a well-organized folder structure.
 
 1. Open QGIS.
 2. Click the **New Project** button ![](../week02/images/50_Coordinate_Systems_Geodesy-e1fd8eb8.png).
@@ -173,9 +148,7 @@ Use the division operator button ![](../week02/images/50_Coordinate_Systems_Geod
 
 ## CRS, Measurement, and Why This Matters
 
-This is the core conceptual section of the lab.
-
-The county boundaries are stored in a geographic CRS. That means their coordinates are angular, not planar. QGIS can still compute area, but the method matters:
+The county boundaries are stored in a geographic CRS, so their coordinates are angular rather than planar. QGIS can still compute area, but the method matters:
 
 - If you use ellipsoidal measurement, QGIS measures on the earth model you specify.
 - If you use planar measurement, QGIS measures on the flat projected plane defined by the layer CRS.

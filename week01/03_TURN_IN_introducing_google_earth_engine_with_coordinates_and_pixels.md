@@ -6,11 +6,11 @@
 
 ## Introduction
 
-This lab introduces Google Earth Engine (GEE) as a platform for working with spatial data. Unlike a desktop GIS, Earth Engine is **cloud-based**: you write code that runs on Google's servers against a vast archive of satellite imagery and geospatial datasets, without downloading anything to your computer.
+This lab introduces Google Earth Engine (GEE) through coordinates and geometries.
 
-The central tool is the **Code Editor**, a browser-based JavaScript environment. This lab covers the building blocks you need to write and read Earth Engine scripts, then immediately applies them to the thing that connects Earth Engine back to everything you are learning in QGIS: **coordinates and geometries**.
+You will use the **Code Editor** to review a few JavaScript basics, then apply them to the spatial objects that connect Earth Engine back to what you are learning in QGIS: **coordinates and geometries**.
 
-A coordinate pair is only meaningful in the context of a **coordinate reference system (CRS)**. Earth Engine's default CRS is **WGS 84 (EPSG:4326)**, the same geographic CRS you encounter when you first open a QGIS project. Coordinates are stored as decimal degrees of longitude and latitude, referenced to the WGS 84 ellipsoid. When Earth Engine performs area or distance calculations it works on the ellipsoid, not a flat plane — the same distinction you are examining in the projection error lab.
+In this workflow, coordinates are stored in **WGS 84 (EPSG:4326)** as decimal-degree longitude and latitude pairs.
 
 ### The Code Editor Interface
 

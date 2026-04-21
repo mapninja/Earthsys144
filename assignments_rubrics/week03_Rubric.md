@@ -13,9 +13,9 @@ This Week 03 assignment is graded as a single 10-point assignment made up of fou
 
 ## Required Lab Pages
 
-- Lab Document: [01 - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_basic_table_structures_and_operations_in_qgis.html)
-- Lab Document: [02 - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_basic_table_joins_and_calculations.html)
-- Lab Document: [03 - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_sql_operations_in_qgis.html)
+- Lab Document: [01 - TURN IN - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html)
+- Lab Document: [02 - TURN IN - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_TURN_IN_basic_table_joins_and_calculations.html)
+- Lab Document: [03 - TURN IN - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_TURN_IN_sql_operations_in_qgis.html)
 - Cartographic Design Exercise: [Poster Redesign Exercise - David Medeiros, Cartography with QGIS, Module 2](https://sites.google.com/stanford.edu/cartographywithqgis/module-2?authuser=0)
 - Week overview: [Week 03 - Tables and Queries](https://mapninja.github.io/Earthsys144/week03/README.html)
 

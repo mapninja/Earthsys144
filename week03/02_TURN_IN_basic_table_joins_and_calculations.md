@@ -1,27 +1,10 @@
-# Basic Table Joins and Calculations in QGIS (DRAFT)
+# Basic Table Joins and Calculations in QGIS
 
 ## Overview
 
-This lab introduces one of the most important ideas in GIS: a map layer is also a table.
-When we work with spatial data, we are not only drawing counties, roads, or parcels on a map. We are also working with rows, columns, field names, and data types. That means many GIS tasks depend on understanding tables just as much as maps.
+This lab focuses on a two-layer join and calculation workflow.
 
-In this exercise, you will compare California county median household income for two years, `2000` and `2020`, by joining one county layer to another using a shared key field. Then you will calculate both the raw difference and the percent change between the two years, and finally create a choropleth map to show that change.
-
-This matters because GIS analysis often depends on connecting data from multiple sources. Sometimes you join a shapefile to a spreadsheet. Sometimes you join a layer to another layer. In both cases, the basic idea is the same: QGIS treats the attribute tables as separate tables and links them through a shared field.
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-- Explain the difference between rows, columns, field names, and field types
-- Explain what a key field is and why it matters for a join
-- Explain the difference between a primary key and a foreign key
-- Open and interpret the **Fields** tab in **Layer Properties**
-- Open and use the **Attribute Table**
-- Join one spatial layer to another using a shared key field
-- Use the **Field Calculator** to create new numeric fields
-- Calculate both absolute change and percent change
-- Choose a reasonable choropleth classification for mapped values
+You will compare California county median household income for `2000` and `2020`, join the two county layers through a shared identifier, calculate both absolute and percent change, and then symbolize the result as a choropleth map.
 
 ## Data
 
@@ -49,54 +32,6 @@ Both layers also contain shared identifier fields including:
 
 - `spatial_id`
 - `name`
-
-## Conceptual Focus
-
-### Rows, Columns, and Fields
-
-Every feature in a GIS layer has geometry and attributes.
-
-- A **row** represents one feature, such as one county.
-- A **column** represents one variable, such as county name or median household income.
-- A **field name** is the label at the top of a column, such as `MHHINC2000`.
-- A **field type** tells QGIS what kind of values the field stores, such as text or decimal numbers.
-
-### Key Fields and Joins
-
-A **join** connects information from one table to another using a shared field.
-
-The shared field is often called a **key field**. In relational database language:
-
-- A **primary key** is a field whose values uniquely identify records in its own table.
-- A **foreign key** is a field that refers to matching values in another table.
-
-In practice, when you make a join in QGIS, you are telling the software:
-
-"Match the row in one table to the row in another table wherever these key values are the same."
-
-For this lab, `spatial_id` is the safest field to use as the join key because it is designed as an identifier. County names can sometimes vary in spelling, capitalization, punctuation, or abbreviations, so a more formal ID is usually a better join field.
-
-### Why Join Two Shapefiles?
-
-It is common to think of a join as something you do between a spreadsheet and a map layer. But joining one shapefile to another is conceptually the same thing. Each shapefile has its own attribute table. QGIS joins the tables first, and then displays the result through the geometry of the target layer.
-
-In other words, even though both of these datasets are spatial layers, the join still happens through their tables.
-
-### Choropleth Mapping
-
-A **choropleth map** uses differences in color or shading to represent values across enumeration units such as counties or states.
-
-Choropleth maps work best when:
-
-- The units are comparable areas, such as counties
-- The mapped variable is meaningful at that unit of aggregation
-- The classification method is chosen carefully
-
-For this lab, you will map change in median household income across counties. Because some counties changed much more than others, classification choices will strongly affect how the pattern looks.
-
-For a thoughtful discussion of classification choices in choropleth mapping, see John Nelson's essay:
-
-- [Telling Truth with Choropleth Maps](https://web.archive.org/web/20241226082540/http://uxblog.idvsolutions.com/2011/10/telling-truth.html)
 
 ## Part 1: Add the Layers and Inspect the Fields
 

@@ -4,15 +4,15 @@
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
-**_What You’ll Learn_:** In this lab, you will be introduced to basic digitizing techniques in QGIS, including creating vector datasets from a georeferenced image, working with Cloud Optimized GeoTIFFs (COGs), and using snapping for topological accuracy.
+This lab introduces basic digitizing in QGIS. You will create point, line, and polygon layers from imagery of the [O'Donohue Family Stanford Educational Farm](https://farm.stanford.edu/) and practice the editing workflow needed to build clean vector data.
 
-**You should read** Chapter 4 in the GIS Fundamentals textbook before starting this lab, as the chapter covers the basics of data entry and digitizing mechanics. You will digitize and edit features based on a digital aerial photo of the [O'Donohue Family Stanford Educational Farm](https://farm.stanford.edu/).
+**You should read** Chapter 4 in the GIS Fundamentals textbook before starting, since it covers the basics of data entry and digitizing mechanics.
 
 ---
 
 ## Getting Ready for the Lab
 
-We will be using an image of the Stanford Teaching Farm for this exercise. That image is stored as a [Cloud-Optimized GeoTIFF (COG)](https://cogeo.org/) on AFS Space. A COG is a specialized type of TIFF image designed for efficient access and streaming over the web, enabling users to retrieve only the portions of the image they need without downloading the entire file.
+We will be using an image of the Stanford Teaching Farm for this exercise. That image is stored as a [Cloud-Optimized GeoTIFF (COG)](https://cogeo.org/) on AFS Space.
 
 You can find the Persistent URL Page for the dataset here: [https://purl.stanford.edu/vq494qx9344](https://purl.stanford.edu/vq494qx9344)
 
@@ -106,14 +106,7 @@ The first step in creating a new spatial dataset using “heads up digitizing”
 
 ### Why Use WGS84 as the Coordinate System?
 
-WGS84 (World Geodetic System 1984) is a widely used geodetic coordinate system that serves as the standard for global mapping and navigation. Here’s why it is the preferred choice for archival purposes:
-
-1. **Unprojected System**: WGS84 is a geographic coordinate system that uses latitude and longitude to represent locations on the Earth's surface. Unlike projected systems, it does not distort shapes, areas, or distances, making it ideal for storing raw spatial data.
-2. **Universal Adoption**: WGS84 is the default coordinate system for GPS and is universally recognized across GIS platforms, ensuring compatibility and ease of data sharing.
-3. **Global Coverage**: It provides a consistent framework for mapping and analysis worldwide, making it suitable for datasets that span large geographic areas.
-4. **Archival Stability**: As a standard system, WGS84 ensures that spatial data remains interpretable and usable over time, regardless of changes in software or technology.
-
-By using WGS84, you ensure that your spatial data is stored in a universally accepted format, making it easier to share, analyze, and integrate with other datasets.
+WGS84 is a good archival choice because it is the default geographic CRS used by GPS and many GIS platforms. In this lab, using WGS84 keeps the new layers broadly compatible and easy to reuse later.
 
 ---
 
@@ -121,9 +114,7 @@ By using WGS84, you ensure that your spatial data is stored in a universally acc
 
 ### Understanding Heads-Up Digitizing
 
-Heads-up digitizing is the process of defining the coordinate pairs of the vertices that outline spatial features by visually interpreting a reference image or basemap. This technique involves manually tracing features such as points, lines, or polygons directly on a digital map using GIS software. It is a fundamental method for creating spatial datasets from aerial imagery, satellite data, or scanned maps.
-
-Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the [Humanitarian OpenStreetMap Team (HOT)](https://tasks.hotosm.org/learn/map). In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between (thousands of) remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.
+Heads-up digitizing is the process of tracing spatial features directly from imagery or another visual reference. In this lab, you will use that workflow to create points, lines, and polygons from the farm image.
 
 ### Points: Digitizing Trees
 

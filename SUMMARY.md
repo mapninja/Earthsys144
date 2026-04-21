@@ -27,10 +27,10 @@
   * [04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine](week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md)
 
 * [Week 03 - Tables & Queries](week03/README.md)
-  * [01 - Basic Table Structures & Operations in QGIS](week03/01_basic_table_structures_and_operations_in_qgis.md)
-  * [02 - Basic Table Joins and Calculations in QGIS](week03/02_basic_table_joins_and_calculations.md)
-  * [03 - SQL Operations in QGIS](week03/03_sql_operations_in_qgis.md)
-  * [04 - Cartographic Design Basics](week03/04_cartographic_design_basics.md)
+  * [01 - TURN IN - Basic Table Structures & Operations in QGIS](week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md)
+  * [02 - TURN IN - Basic Table Joins and Calculations in QGIS](week03/02_TURN_IN_basic_table_joins_and_calculations.md)
+  * [03 - TURN IN - SQL Operations in QGIS](week03/03_TURN_IN_sql_operations_in_qgis.md)
+  * [04 - TURN IN - Cartographic Design Basics](week03/04_TURN_IN_cartographic_design_basics.md)
 
 * [Week 04 - Basic Vector Analysis](week04/README.md)
   * [00 - Buffering & Overlay Analysis in QGIS](week04/00_buffering_and_overlay_analysis_in_qgis.md)

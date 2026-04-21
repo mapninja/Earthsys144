@@ -17,22 +17,22 @@ In addition, following David Medeiros' Wednesday cartographic design lecture, yo
 
 Please complete the following assigned work:
 
-1. [01 - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_basic_table_structures_and_operations_in_qgis.html)
-2. [02 - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_basic_table_joins_and_calculations.html)
-3. [03 - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_sql_operations_in_qgis.html)
+1. [01 - TURN IN - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html)
+2. [02 - TURN IN - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_TURN_IN_basic_table_joins_and_calculations.html)
+3. [03 - TURN IN - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_TURN_IN_sql_operations_in_qgis.html)
 4. [Poster Redesign Exercise - David Medeiros, Cartography with QGIS, Module 2](https://sites.google.com/stanford.edu/cartographywithqgis/module-2?authuser=0)
 
 ## Exercise Notes
 
-## [01 - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_basic_table_structures_and_operations_in_qgis.html)
+## [01 - TURN IN - Basic Table Structures and Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html)
 
 This exercise introduces joins through a classic lookup-table workflow. You will inspect key fields, compare field types, join a soil-properties table to a spatial soils layer, and build a map layout that demonstrates the result. The main goal is to understand how tabular structure makes spatial data more informative.
 
-## [02 - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_basic_table_joins_and_calculations.html)
+## [02 - TURN IN - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_TURN_IN_basic_table_joins_and_calculations.html)
 
 This exercise builds from the previous one by asking you to compare county-level median household income across time. You will inspect field structure, run basic statistics, join one county layer to another, calculate both absolute and percent change, and create a choropleth map showing those changes.
 
-## [03 - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_sql_operations_in_qgis.html)
+## [03 - TURN IN - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_TURN_IN_sql_operations_in_qgis.html)
 
 This exercise introduces SQL inside QGIS through DB Manager and Virtual Layers. You will work with a File Geodatabase and use SQL to ask relational questions about toxic release sites and chemicals near schools. Your final submission should still be a QGIS map layout exported as a PDF, but the analysis behind that map should come from the SQL workflow.
 

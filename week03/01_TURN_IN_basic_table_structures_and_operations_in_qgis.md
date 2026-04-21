@@ -2,34 +2,9 @@
 
 ## Overview
 
-This lab introduces one of the most common GIS workflows: joining a non-spatial table to an existing spatial layer using a shared key field.
+This lab walks you through a lookup-table join in QGIS using a soils polygon layer and a separate soil-properties table.
 
-In this exercise, the spatial layer is a set of soil polygons, and the separate table contains soil-type descriptions and properties. The important idea is that the polygons already exist, but they become much more useful once you connect them to a lookup table that explains what each soil code means.
-
-## Conceptual Focus
-
-This lab focuses on a specific join pattern:
-
-- the `soils` polygon layer contains many features with repeated `SOIL_TYPE` codes
-- the soil properties table contains one row for each soil type
-- the shared key field is `SOIL_TYPE`
-
-That means this is:
-
-- **one-to-many** from the soil properties table to the polygons
-- **many-to-one** from the polygons to the soil properties table
-
-This is a very common GIS pattern: many mapped features link back to one descriptive lookup record.
-
-## Learning Objectives
-
-By the end of this section, you should be able to:
-
-- Explain what a key field is and why it matters in GIS
-- Distinguish between primary keys and foreign keys in this workflow
-- Explain why this soil example is a many-to-one join from the perspective of the polygon layer
-- Recognize why field type, formatting, and consistency matter before attempting a join
-- Use QGIS to inspect fields, fix a mismatch, and perform the join successfully
+The main task is practical: inspect the key field, fix the field-type mismatch, perform the join, and use the joined attributes in a map.
 
 ## Getting Ready
 
@@ -48,10 +23,6 @@ After downloading:
 3. Use the `soils.shp` layer from that unzipped folder in this exercise.
 4. Open the Soil Properties Google Sheet and download it as a CSV when you reach that step in the lab.
 
-## Hands-On: Joining a Soil Properties Table to a Soil Polygon Layer
-
-You will begin with a soil polygon layer that already contains a `SOIL_TYPE` code. Then you will add a separate CSV table that contains one record for each soil type and join it to the polygons through that shared field.
-
 ## Data for This Exercise
 
 You will need:
@@ -59,11 +30,7 @@ You will need:
 - the `soils.shp` layer from `Soils.zip`
 - the `Soil Properties.csv` table linked in this lab
 
-This is a lookup-table join:
-
-- many polygons in `soils.shp` share the same `SOIL_TYPE`
-- the CSV table has one row for each soil type
-- the polygon layer therefore joins many features to one descriptive record
+In this workflow, many polygons in `soils.shp` share the same `SOIL_TYPE`, while the CSV has one row for each soil type.
 
 ## Part 1: Open the Soils Layer and Inspect Its Key Field
 
@@ -80,8 +47,6 @@ This is a lookup-table join:
 ![](images/20250422_094708_image.png)
 
 This `SOIL_TYPE` field is the key field already present in the spatial data. It stores a short code for each polygon.
-
-> **Concept note:** At this stage, the polygons know their soil type code, but they do not yet contain the descriptive information that code refers to. That descriptive information will come from a separate table.
 
 ## Part 2: Symbolize the Existing Layer
 

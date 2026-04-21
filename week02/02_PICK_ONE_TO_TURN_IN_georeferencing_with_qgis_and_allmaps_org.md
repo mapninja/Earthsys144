@@ -8,32 +8,15 @@
 
 ## Overview
 
-In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called **georeferencing**. A scanned map image, by itself, is just a picture. Once it is georeferenced, it becomes spatial data that can be aligned with vector layers, modern basemaps, and other geographic information.
+In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called **georeferencing**.
 
 > **Concept note: What is georeferencing?** Georeferencing is the process of connecting an image to real-world coordinate space. You are telling the software which places on the scanned map correspond to known places on the Earth. Once that relationship is established, the image can be displayed, compared, and analyzed alongside other spatial data.
-
-This is one of the most important workflows in historical GIS, public history, environmental reconstruction, and archival map use. It is how we connect paper maps and scanned images to contemporary spatial analysis.
 
 You will work with:
 
 - A scanned 1900 map of Wyoming from Stanford Library collections
 - A Public Land Survey System (PLSS) reference layer from EarthWorks
 - QGIS georeferencing tools
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-- Explain what georeferencing is and why it matters
-- Download and organize scanned map imagery and reference data
-- Explain why a reference layer is needed for georeferencing
-- Subset a reference layer using an attribute filter
-- Adjust layer symbology to support visual alignment
-- Explain why projection choice matters during georeferencing
-- Create and apply a custom CRS for a specific mapping problem
-- Explain what ground control points are and why their distribution matters
-- Use the QGIS Georeferencer to place control points and transform a scanned map
-- Evaluate the visual accuracy of a georeferenced image
 
 ## Data
 
@@ -80,7 +63,7 @@ This lab uses two source datasets:
 
 ### Download PLSS data from EarthWorks
 
-> **Concept note: What is PLSS?** The **Public Land Survey System (PLSS)** is a land division framework used across much of the United States. It organizes land into a regular pattern of townships, ranges, and sections. In this lab, the PLSS layer works as a spatial reference grid because the historical map also uses that survey logic.
+> **Concept note: What is PLSS?** The **Public Land Survey System (PLSS)** is a land division framework used across much of the United States. In this lab, the PLSS layer works as a spatial reference grid because the historical map also uses that survey logic.
 
 1. Go to the EarthWorks record:
    [https://earthworks.stanford.edu/catalog/stanford-td889mh1819](https://earthworks.stanford.edu/catalog/stanford-td889mh1819)

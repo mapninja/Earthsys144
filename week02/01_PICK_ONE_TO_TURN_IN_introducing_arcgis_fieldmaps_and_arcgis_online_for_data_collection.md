@@ -8,30 +8,9 @@
 
 ### Overview
 
-This lab introduces **ArcGIS Online** and **ArcGIS Field Maps** as tools for mobile spatial data collection. You will explore a workflow for creating and managing a shared field data collection project using a web browser and a phone or tablet.
+This lab introduces **ArcGIS Online** and **ArcGIS Field Maps** as tools for mobile spatial data collection.
 
-Together, ArcGIS Online and Field Maps provide a powerful way to design field forms, deploy maps to mobile devices, collect points and attachments, and sync edits back to a shared database in real time.
-
-This is an important kind of spatial workflow to understand because not all GIS work begins with downloaded data. Sometimes the whole point of the project is to **create** the data yourself. Field collection projects are how people document trees, sidewalks, public art, damaged infrastructure, habitat features, informal trails, historic sites, survey responses, and countless other things that do not already exist in a neat downloadable dataset.
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-* Explain why field data collection requires both geometry and a well-designed attribute schema
-* Explain why controlled vocabularies improve consistency and reduce messy data entry
-* Explain why offline editing matters in real field conditions
-* Create empty hosted feature layers to hold spatial data
-* Customize the data schema to match a field data need
-* Create lists to drive in-app dropdown menus for controlled vocabularies and standardization
-* Customize field survey forms for usability
-* Enable attachments such as photos, video, or audio
-* Enable offline editing for remote or low-connectivity data collection
-* Deploy a field data collection map from ArcGIS Online to iOS or Android devices with the Field Maps app installed
-* Share the app and editing role to a controlled group of users
-* Download the field data collection app and basemap for offline use
-* Collect data and sync it to ArcGIS Online
-* Create a simple read-only view of the live data for monitoring data collection
+You will create hosted feature layers, add fields and domains, configure a web map for mobile use, and test the workflow in the Field Maps app. The emphasis here is on building a usable field-collection structure, not just clicking through the interface.
 
 ## Before You Start
 
@@ -100,7 +79,7 @@ At this point, you should see Stanford's ArcGIS Online landing page. Take a mome
 
 4. Provide a title, like `"Walking Tour (SDM)"`. _Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise_. Click **Save**.
 
-> **Why are we creating three geometry types?** Real field projects often need more than one kind of feature. A point might represent a single object like a sculpture or water fountain. A line might represent a path or curb. A polygon might represent a garden, building footprint, or other area. Even if you only use one layer heavily in this exercise, it is useful to see how a field project can be structured to collect multiple kinds of geometry.
+> **Why are we creating three geometry types?** Real field projects often need more than one kind of feature. A point might represent a single object, a line might represent a path, and a polygon might represent an area.
 
 Your **Walking Tour layer** is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places layer.
 

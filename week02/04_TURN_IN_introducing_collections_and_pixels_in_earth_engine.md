@@ -13,12 +13,6 @@ This lab introduces some of the most important ideas in raster-based remote sens
 - **Bands**
 - **Pixels**
 
-These ideas matter because most Earth observation data is not a single picture. Instead, it is usually:
-
-- one of many images collected over time
-- made of multiple bands that measure different parts of the electromagnetic spectrum
-- built from pixels, where each pixel stores a value
-
 In this exercise, you will progressively narrow your analysis by:
 
 1. starting with an image collection
@@ -34,20 +28,6 @@ You will work with:
 - **Hansen Global Forest Change**, a widely used dataset for forest loss and gain analysis
 - **Sentinel-2**, for natural color and color-infrared visualization
 
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-- Explain the difference between an `ImageCollection` and an `Image` in Earth Engine
-- Explain what a band is and why multi-band imagery is useful
-- Explain what a pixel value represents in a raster dataset
-- Filter an image collection by area of interest and date
-- Use `updateMask()` to hide pixels that do not meet a condition
-- Select and inspect the values of a single land cover probability band in Dynamic World
-- Threshold a raster to isolate deforestation during a chosen ten-year period
-- Create both RGB and color-infrared image visualizations from Sentinel-2 bands
-- Explain how Dynamic World images are linked to their source Sentinel-2 images through dataset naming
-
 ## Before You Start
 
 This lab assumes that you can:
@@ -59,41 +39,16 @@ This lab assumes that you can:
 
 If needed, review the Week 00 Earth Engine setup guide first.
 
-## A Few Core Ideas Before the Code
+## A Few Workflow Notes Before the Code
 
-### What is an image collection?
+For this lab, the important pattern is simple:
 
-An **image collection** is a stack or library of images. Each image usually represents a different date, time, or scene.
+- start with an `ImageCollection`
+- filter it by place and time
+- move to a single `Image` when you need one scene
+- inspect, mask, and threshold band values at the pixel level
 
-For example, if a satellite passes over the same area many times, Earth Engine may store all of those scenes together as an `ImageCollection`.
-
-### What is an image?
-
-An **image** is one item from that collection. It may still contain many bands, but it represents a single scene or observation.
-
-### What is a band?
-
-A **band** is one layer inside an image. Different bands measure different parts of the electromagnetic spectrum, such as:
-
-- blue light
-- green light
-- red light
-- near infrared
-
-Some datasets also include bands that are not raw reflectance, but instead represent classifications or modeled probabilities.
-
-### What is a pixel?
-
-A **pixel** is the smallest unit in a raster image. Each pixel stores a value.
-
-That value might represent:
-
-- reflectance in a spectral band
-- a land cover class
-- the probability of a class
-- the year of forest loss
-
-> **Concept note:** In raster GIS, analysis often means asking meaningful questions about pixel values. The map is visual, but the underlying data is numeric.
+> **Concept note:** In raster GIS, analysis often means asking questions about pixel values. The map is visual, but the underlying data is numeric.
 
 ## Data Used in This Lab
 

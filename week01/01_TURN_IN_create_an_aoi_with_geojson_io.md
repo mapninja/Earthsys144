@@ -6,20 +6,20 @@
 
 ## Introduction
 
-Almost every spatial analysis project starts with defining a study area — an **Area of Interest (AOI)**. An AOI sets the geographic scope of your work: it tells your tools where to load data, where to clip rasters, and where to run calculations.
+Almost every spatial analysis project starts by defining a study area, or **Area of Interest (AOI)**.
 
-In this lab you will use **[geojson.io](https://geojson.io)**, a lightweight browser-based tool for creating and editing vector features without any software installation. You will draw a rectangular AOI that is at least as large as the Stanford campus, then relocate it to a place that is personally meaningful to you — a research site, hometown, field area, or any other location you want to study this quarter.
+In this lab you will use **[geojson.io](https://geojson.io)** to draw a rectangular AOI that is at least as large as the Stanford campus, then recreate it at a place that is personally meaningful to you.
 
-The result is a single GeoJSON file that you will use again in later labs as your personal study area.
+The result is a GeoJSON file that you will use again in later labs as your personal study area.
 
 ### Why GeoJSON?
 
-GeoJSON is a plain-text, open standard for encoding geographic features using JSON.
+GeoJSON is a plain-text, open standard for encoding geographic features.
 
 - A single self-contained file (no sidecar files, unlike shapefiles).
-- Human-readable — you can open it in any text editor and read the coordinates.
+- Human-readable, so you can open it in a text editor and inspect the coordinates.
 - Natively understood by QGIS, Google Earth Engine, Leaflet, Mapbox, GitHub, and most other modern GIS tools.
-- Coordinates are always in **WGS 84 (EPSG:4326)** — the same geographic CRS you encountered in the projection error lab.
+- Coordinates are always in **WGS 84 (EPSG:4326)**.
 
 ---
 

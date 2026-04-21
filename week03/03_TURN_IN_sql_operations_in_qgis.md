@@ -1,64 +1,12 @@
-# SQL Operations in QGIS (Ready to Review)
+# SQL Operations in QGIS
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
 ## Overview
 
-This lab introduces **SQL inside QGIS** through the **DB Manager** and **Virtual Layers** tools. Up to this point in the course, you have mostly interacted with data through menus, tool dialogs, and map layers. In this exercise, you will begin asking questions of your data directly using SQL.
+This lab introduces **SQL inside QGIS** through the **DB Manager** and **Virtual Layers** tools.
 
-That matters because GIS is not only about geometry. It is also about **tables**, **relationships**, and **queries**. SQL gives you a precise language for asking questions like:
-
-- Which records match a condition?
-- How do two tables connect to one another?
-- How can I summarize many rows into a smaller set of results?
-- Which features are close to one another in space?
-
-You will use those ideas to answer a concrete question:
-
-**What chemicals are being released near a school, and how much air and water release is associated with them?**
-
-## Conceptual Focus
-
-This lab is about more than memorizing SQL syntax. The larger ideas are:
-
-- A GIS layer is also a table.
-- Related tables let you avoid storing the same information over and over again.
-- SQL lets you be explicit about what you want from the data.
-- Spatial SQL extends those same ideas into geographic space.
-- QGIS can treat project layers as if they were database tables through **Virtual Layers**.
-
-## Learning Objectives
-
-By the end of this lab, you should be able to:
-
-- Explain why relational data structure matters in GIS
-- Explain what a key field does in a table relationship
-- Explain the purpose of `SELECT`, `WHERE`, `GROUP BY`, and `JOIN`
-- Explain how spatial SQL functions such as `ST_Distance()` and `ST_Buffer()` extend tabular SQL into GIS analysis
-- Open and use the QGIS **DB Manager** and **SQL Window**
-- Run saved SQL queries against project layers through **Virtual Layers**
-- Interpret the results of attribute and spatial SQL queries
-- Load SQL results back into QGIS as layers or tables
-- Create a final map layout that communicates the result of an SQL-driven spatial analysis
-
-## A Relational Data Idea: Why Separate Tables?
-
-Before you begin clicking through the lab, it is worth pausing to understand why this data is structured the way it is.
-
-Imagine a city tree inventory. If you revisit the same tree over many years, you do not want to create a brand new point every time just to record a new inspection. Instead, you would usually separate the data into:
-
-1. A **locations** table holding the stable information about each site, such as coordinates or address.
-2. A **survey records** table holding the changing information from each visit, such as condition, date, or notes.
-
-These two tables are connected through a shared **key field**. That relationship is often called **one-to-many** because one location can be linked to many survey records.
-
-This is a core relational database idea: **store stable information once, and connect it to changing information through a shared identifier.**
-
-The data in this lab works in a similar way:
-
-- `toxic_sites_stateplane` holds facility information and geometry.
-- `chemicals` holds chemical release records.
-- `TRIFID` is the shared key that connects them.
+The main task is to use saved and edited SQL queries to investigate a relational dataset of toxic release sites and chemicals, then turn those results into a final QGIS map layout.
 
 ## Data
 

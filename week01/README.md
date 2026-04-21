@@ -1,35 +1,80 @@
 # Week 01 - Coordinates, Geodesy and Geometries
 
-Week 01 introduces the coordinate concepts that sit underneath the rest of the course. The labs move between Google Earth Engine and QGIS, but they are working on the same core problem: spatial data only makes sense when you understand how coordinates are defined, how geometries are built from those coordinates, and how coordinate reference systems affect measurement.
+## Overview
 
-By the end of Week 01, you should be able to:
+Week 01 introduces the coordinate ideas that support everything else in the course.
 
-- Explain why coordinates are only meaningful within a coordinate reference system.
-- Recognize the difference between geographic and projected coordinate systems.
-- Work with points, lines, polygons, and rectangular extents in Google Earth Engine.
-- Use basic Earth Engine scripting patterns to inspect coordinates, geometries, and spatial objects.
-- Distinguish among ellipsoids, geoids, projections, and full coordinate reference systems.
-- Explain the difference between ellipsoidal and planar measurement.
-- Measure and visualize projection error in QGIS.
+Before students can analyze imagery, measure features, or write useful Earth Engine scripts, they need to understand what coordinates mean, how geometries are constructed from them, and why coordinate reference systems affect measurement and display. This week builds that foundation by moving between browser-based tools, QGIS, and Google Earth Engine while staying centered on the same core problem: spatial data only makes sense when coordinates are tied to a reference system.
 
-## Week 01 Labs
+You will move from:
 
-These three Week 01 labs include material that must be turned in for grading.
+1. defining a study area as a GeoJSON feature
+2. examining how coordinate reference systems affect map measurement
+3. creating and inspecting basic geometries in Google Earth Engine
 
-### 01 - TURN IN - Create an Area of Interest with GeoJSON.io
+## Core Ideas for the Week
 
-[Open the lab](01_TURN_IN_create_an_aoi_with_geojson_io.md)
+### Coordinates need a reference system
 
-In this lab you define your personal study area for the rest of the quarter. You will use [geojson.io](https://geojson.io) to draw a rectangular AOI at least as large as the Stanford campus, relocate it to a place of personal significance — hometown, research site, or field area — add identifying properties, and export the result as a GeoJSON file to submit to Canvas.
+A coordinate pair is not meaningful by itself. It only becomes a real location when it is interpreted within a **coordinate reference system (CRS)**.
 
-### 02 - TURN IN - Projection Error Measurement with QGIS
+This week you will encounter two broad CRS types:
 
-[Open the lab](02_TURN_IN_projection_error_measurement_with_qgis.md)
+- a **geographic CRS**, which stores locations as latitude and longitude
+- a **projected CRS**, which places the curved Earth onto a flat surface so measurements can be made in linear units such as meters or feet
 
-This lab turns geodesy and projection ideas into something measurable. You will compare area measured on the ellipsoid with area measured in a projected coordinate system, then calculate and symbolize the percent difference across U.S. counties. The purpose is not just to practice QGIS tools, but to make projection distortion visible and interpretable in relation to concepts such as geographic versus projected CRS, on-the-fly reprojection, and lines of true scale.
+### Geometry begins with coordinate pairs
 
-### 03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+Spatial features are built from coordinates.
 
-[Open the lab](03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
+- A **point** is one coordinate pair.
+- A **line** is an ordered list of coordinate pairs.
+- A **polygon** is a closed boundary made from coordinate pairs.
+- A **rectangle** is a simple polygon often used as an **area of interest (AOI)**.
 
-This lab introduces the Earth Engine Code Editor as a cloud-based GIS environment and uses it to build spatial thinking from the ground up. You will review the JavaScript structures that appear constantly in Earth Engine scripts, then use them to define and inspect coordinate pairs, points, lines, polygons, and rectangles. The turn-in asks you to reset to a blank script, choose your own location, use the Inspector to capture two corner coordinates, and build a rectangle from them in code. The goal is to get comfortable reading and writing simple Earth Engine code while understanding that every coordinate pair is tied to a CRS, usually WGS 84 in this workflow.
+You will use those ideas in both GeoJSON and Earth Engine so the relationship between coordinates and geometry becomes explicit.
+
+### The Earth is curved, maps are flat
+
+One of the central ideas in introductory GIS is that measurements change depending on how the Earth is represented.
+
+This is where several important terms belong:
+
+- an **ellipsoid** is a smooth mathematical model used for horizontal positioning
+- a **geoid** is a gravity-based surface related to mean sea level
+- a **projection** transforms locations from the curved Earth to a flat surface
+- a **projected CRS** adds units, parameters, and reference information that make planar mapping possible
+
+The projection error lab makes those distinctions visible by comparing ellipsoidal and planar area.
+
+### Earth Engine still depends on spatial fundamentals
+
+Although Google Earth Engine feels very different from desktop GIS, it still depends on the same spatial ideas.
+
+When you define a point, polygon, or rectangle in Earth Engine, you are still working with coordinates, geometry types, and a CRS. Week 01 is meant to make that continuity clear early.
+
+## How the Week Fits Together
+
+### [01 - TURN IN - Create an Area of Interest with GeoJSON.io](01_TURN_IN_create_an_aoi_with_geojson_io.md)
+
+This lab asks you to define a personal study area for later work in the course. The main point is to create a clean GeoJSON AOI while recognizing that even a simple rectangle is a geometry built from coordinates and stored in a standard spatial format.
+
+### [02 - TURN IN - Projection Error Measurement with QGIS](02_TURN_IN_projection_error_measurement_with_qgis.md)
+
+This lab turns geodesy and projection ideas into something measurable. You will compare county area measured on the ellipsoid with county area measured in a projected system, then map the percent difference so distortion becomes visible.
+
+### [03 - TURN IN - Coordinates and Geometries with Google Earth Engine](03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md)
+
+This lab introduces the Earth Engine Code Editor while reinforcing the same coordinate ideas from the first two labs. You will inspect coordinate pairs, create points, lines, polygons, and rectangles, and practice reading Earth Engine objects through the Console and map display.
+
+## What to Expect in the Individual Lab Documents
+
+The individual Week 01 lab pages are intended to be more hands-on and workflow-focused.
+
+That means:
+
+- the lab steps focus on what to open, inspect, create, measure, and export
+- the broader conceptual framing is concentrated here in the weekly overview
+- short notes remain inside each lab wherever they directly explain a workflow decision or prevent a likely beginner mistake
+
+Use this page as the conceptual guide for Week 01, and use the lab documents as the operational guides for completing the exercises.
