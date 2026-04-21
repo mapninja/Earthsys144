@@ -1089,8 +1089,6 @@ When we work with spatial data, we are not only drawing counties, roads, or parc
 <li><code>spatial_id</code></li>
 <li><code>name</code></li>
 </ul>
-<p>You should see these layers in the lab data folder and in QGIS as shown below.</p>
-<p><img src="images/20260418_154439_image.png" alt=""></img></p>
 <h2 id="conceptual-focus">Conceptual Focus</h2>
 <h3 id="rows-columns-and-fields">Rows, Columns, and Fields</h3>
 <p>Every <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> in a GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has geometry and attributes.</p>
@@ -1177,6 +1175,7 @@ When we work with spatial data, we are not only drawing counties, roads, or parc
 <li>Find the <code>MHHINC2020</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 <li>Note that the values vary substantially across counties.</li>
 </ol>
+<p><img src="images/20260420_203242_image.png" alt=""></img></p>
 <p>For this dataset:</p>
 <ul>
 <li><code>MHHINC2020</code> ranges from <code>41780</code> to <code>130890</code></li>
@@ -1201,10 +1200,12 @@ When we work with spatial data, we are not only drawing counties, roads, or parc
 <ol>
 <li>Open the <strong>Processing Toolbox</strong>.</li>
 <li>Search for <strong>Basic statistics for fields</strong>.</li>
-<li>Run the tool for <code>ca_county_2020_mhhinc</code> using the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>MHHINC2020</code>.</li>
+<li>Run the tool for <code>ca_county_2020_mhhinc</code> using the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>MHHINC2020</code> as the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> to calculate statistics on.</li>
 <li>Review the output in the <strong>Results Viewer</strong>.</li>
+<li>Use the <code>[Create temporary layer}</code> option to create an output that will not persist after you close the project.</li>
 </ol>
-<p>You should get values close to the following:  </p>
+<p><img src="images/20260420_203715_image.png" alt=""></img></p>
+<p>You should get values close to the following:</p>
 <pre><code>- COUNT: 58
 - UNIQUE: 58
 - EMPTY: 0
@@ -1254,13 +1255,16 @@ It helps you verify that:</p>
 <h2 id="part-4-select-the-lowest-income-county-in-each-layer">Part 4: Select the Lowest-Income County in Each Layer</h2>
 <p>This section is designed to help you connect the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to the map.</p>
 <h3 id="find-the-lowest-value-in-the-2020-layer">Find the lowest value in the 2020 layer</h3>
+<p><img src="images/20260420_203952_image.png" alt=""></img></p>
 <ol>
 <li>Open the <code>ca_county_2020_mhhinc</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Locate the <code>MHHINC2020</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
-<li>Sort the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in ascending order so the smallest value appears first.</li>
+<li>Click on the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Header to <strong>Sort</strong> the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in ascending order so the smallest value appears first.</li>
 <li>Select the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> with the lowest <code>MHHINC2020</code> value.</li>
-<li>Use the <strong>Zoom map to selected rows</strong> tool in the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>Use the <strong>Zoom map to selected rows</strong> tool <img src="images/20260420_204034_image.png" alt=""></img> in the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>Use the Deselect all features button <img src="images/20260420_204303_image.png" alt=""></img> to deselect your features, when you are done.</li>
 </ol>
+<p><img src="images/20260420_204110_image.png" alt=""></img></p>
 <h3 id="find-the-lowest-value-in-the-2000-layer">Find the lowest value in the 2000 layer</h3>
 <ol>
 <li>Open the <code>ca_county_2000_mhhinc</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
@@ -1268,6 +1272,7 @@ It helps you verify that:</p>
 <li>Sort the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> in ascending order.</li>
 <li>Select the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> with the lowest <code>MHHINC2000</code> value.</li>
 <li>Use the <strong>Zoom map to selected rows</strong> tool again.</li>
+<li>Use the Deselect all features button <img src="images/20260420_204303_image.png" alt=""></img> to deselect your features, when you are done.</li>
 </ol>
 <h3 id="reflect-on-what-you-see">Reflect on what you see</h3>
 <p>The county with the lowest value in 2000 may not be the same county as the one with the lowest value in 2020.
@@ -1283,6 +1288,10 @@ That is one reason it is useful to bring both years into one joined <a href="../
 <li>Set the <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> to <code>ca_county_2000_mhhinc</code>.</li>
 <li>Set the <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to <code>spatial_id</code>.</li>
 <li>Set the <strong>Target <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to <code>spatial_id</code>.</li>
+<li>Check the option to use a <code>Custom field name prefix</code> and set it to the value <code>2000_</code></li>
+</ol>
+<p><img src="images/20260420_204818_image.png" alt=""></img></p>
+<ol>
 <li>Click <strong>OK</strong>.</li>
 <li>Click <strong>OK</strong> again to close <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties</strong>.</li>
 </ol>
@@ -1295,6 +1304,7 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <li>Scroll to the right.</li>
 <li>Confirm that you can now see the joined 2000 fields, including <code>MHHINC2000</code>.</li>
 </ol>
+<p><img src="images/20260420_204858_image.png" alt=""></img></p>
 <p>At this point, one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> should contain:</p>
 <ul>
 <li>The 2020 income <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
@@ -1305,11 +1315,10 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <p>Now that both year values are in the same <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you can calculate the difference.</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>ca_county_2020_mhhinc</code>.</li>
-<li>Click <strong>Toggle Editing</strong>.</li>
-<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>. <img src="images/20260420_204947_image.png" alt=""></img></li>
 <li>Choose <strong>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>.</li>
 <li>Name the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>mhhinc_diff</code>.</li>
-<li>Set the output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Decimal (double)</strong>.</li>
+<li>Set the output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Decimal number(real)</strong>.</li>
 <li>Use an output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> length and precision that can hold the results, such as length <code>20</code> and precision <code>2</code>.</li>
 <li>Enter this expression:</li>
 </ol>
@@ -1319,6 +1328,7 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <li>Check the preview.</li>
 <li>Click <strong>OK</strong>.</li>
 </ol>
+<p><img src="images/20260420_205345_image.png" alt=""></img></p>
 <h3 id="what-this-means">What this means</h3>
 <p>This calculation subtracts the 2000 median household income from the 2020 median household income for each county.</p>
 <ul>
@@ -1326,6 +1336,7 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <li>Negative values mean income decreased.</li>
 <li>Values near zero mean very little change.</li>
 </ul>
+<p><img src="images/20260420_211038_image.png" alt=""></img></p>
 <h2 id="part-7-calculate-percent-change">Part 7: Calculate Percent Change</h2>
 <p><a href="../GLOSSARY.html#absolute-change" class="glossary-term" title="The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.">Absolute change</a> is useful, but <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a> often tells a clearer story because it scales the change relative to the starting value.</p>
 <ol>
@@ -1334,33 +1345,37 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <li>Name the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <code>pct_change</code>.</li>
 <li>Set the output <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Decimal (double)</strong>.</li>
 <li>Use a reasonable length and precision, such as length <code>20</code> and precision <code>2</code>.</li>
-<li>Enter this expression:</li>
+<li>In the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator window, look for the list of available items in the <strong>middle panel</strong>.</li>
+<li>Open the <strong>Fields and Values</strong> section if needed.</li>
+<li>Find <code>MHHINC2020</code> and <strong>double-click</strong> it to place the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> name into the <strong>Expression</strong> window, instead of typing it by hand.</li>
+<li>Repeat the same process for <code>MHHINC2000</code>.</li>
+<li>Add the operators and parentheses needed to build this expression:</li>
 </ol>
 <pre><code class="lang-qgis">(("MHHINC2020" - "MHHINC2000") / "MHHINC2000") * 100
 </code></pre>
+<p><img src="images/20260420_211358_image.png" alt=""></img></p>
 <ol>
 <li>Check the preview.</li>
 <li>Click <strong>OK</strong>.</li>
 <li>Save your edits.</li>
 <li>Toggle editing off.</li>
 </ol>
-<h3 id="why-percent-change-can-be-more-meaningful">Why percent change can be more meaningful</h3>
-<p>Suppose two counties each changed by <code>$10,000</code>.</p>
-<ul>
-<li>If one started at <code>$30,000</code>, that change is proportionally large.</li>
-<li>If one started at <code>$120,000</code>, that same change is proportionally smaller.</li>
-</ul>
-<p><a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">Percent change</a> helps capture that difference.</p>
+<blockquote>
+<p><strong>Why double-click fields from the panel?</strong> This helps you avoid spelling mistakes, missing underscores, or accidentally typing the wrong capitalization. Letting QGIS insert the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names for you is safer than typing them manually.</p>
+</blockquote>
 <h2 id="part-8-map-the-change">Part 8: Map the Change</h2>
-<p>Now create a <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a> from one of your new fields.</p>
-<p>The best <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> for the final map is usually <code>pct_change</code>, because it allows comparison across counties with different starting values.</p>
+<p>Now create a <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a> from <code>pct_change</code>, because it allows comparison across counties with different starting values.</p>
 <ol>
 <li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel for <code>ca_county_2020_mhhinc</code>.</li>
 <li>Change the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> from <strong>Single Symbol</strong> to <strong>Graduated</strong>.</li>
 <li>Set the <strong>Value</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to <code>pct_change</code>.</li>
 <li>Choose a color ramp that makes change easy to interpret.</li>
 </ol>
-<p>If your data include both positive and negative values, a diverging ramp is often appropriate because it visually separates decreases from increases.</p>
+<p><img src="images/20260420_212003_image.png" alt=""></img></p>
+<blockquote>
+<p>Note: If your data include both positive and negative values, a diverging ramp is often appropriate because it visually separates decreases from increases.</p>
+</blockquote>
+<p>Return to John Nelson's essay: <a href="https://web.archive.org/web/20241226082540/http://uxblog.idvsolutions.com/2011/10/telling-truth.html" target="_blank">Telling Truth with Choropleth Maps</a> and review his recommendations for selecting <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> methods.</p>
 <ol>
 <li>Experiment with <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> methods such as:<ul>
 <li><strong>Quantile</strong></li>
@@ -1372,8 +1387,7 @@ QGIS compares the values in the target <a href="../GLOSSARY.html#layer" class="g
 <li>Compare how the mapped pattern changes.</li>
 </ol>
 <h3 id="classification-reflection">Classification reflection</h3>
-<p>There is no universally correct <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> for every <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a>.
-Different methods emphasize different aspects of the distribution.</p>
+<p>There is no universally <em>correct</em> <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> for every <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a>. Different methods emphasize different aspects of the distribution.</p>
 <p>As you test classifications, ask:</p>
 <ul>
 <li>Does this map exaggerate differences?</li>
@@ -1382,51 +1396,10 @@ Different methods emphasize different aspects of the distribution.</p>
 <li>Does the map help a reader see a meaningful pattern?</li>
 </ul>
 <p>This is the central design question in choropleth mapping.</p>
-<h2 id="part-9-check-specific-counties">Part 9: Check Specific Counties</h2>
-<p>After symbolizing the map, use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and map together to examine a few counties more closely.</p>
-<ol>
-<li>Sort the <code>pct_change</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> from highest to lowest.</li>
-<li>Select one of the counties with the largest increase.</li>
-<li>Zoom to it on the map.</li>
-<li>Repeat with one of the smallest values.</li>
-<li>Compare the raw values:<ul>
-<li><code>MHHINC2000</code></li>
-<li><code>MHHINC2020</code></li>
-<li><code>mhhinc_diff</code></li>
-<li><code>pct_change</code></li>
-</ul>
-</li>
-</ol>
-<p>This is a good reminder that maps summarize patterns, but the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> gives you the exact values behind the symbols.</p>
 <h2 id="to-turn-in">To Turn In</h2>
-<p>Create and export one map showing county-level change in median household income in California.</p>
-<p>Your map should include:</p>
-<ul>
-<li>A clear title</li>
-<li>The county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> symbolized by <code>pct_change</code></li>
-<li>A <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
-<li>Your name</li>
-<li>A <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> only if it helps rather than distracts</li>
-<li>Enough visual contrast to make the county patterns readable</li>
-</ul>
-<p>You should also be prepared to answer these questions:</p>
-<ol>
-<li>What <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> did you use as the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> key, and why?</li>
-<li>Why is joining one <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> to another still a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> operation?</li>
-<li>What is the difference between <a href="../GLOSSARY.html#absolute-change" class="glossary-term" title="The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.">absolute change</a> and <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a>?</li>
-<li>Why did you choose the <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method you used for the <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a>?</li>
-</ol>
-<h2 id="wrap-up">Wrap-Up</h2>
-<p>This lab introduced several foundational GIS ideas at once:</p>
-<ul>
-<li>Spatial layers contain <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables</li>
-<li><a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a> structure matters for GIS analysis</li>
-<li>Joins depend on shared key fields</li>
-<li>Calculations depend on correct <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> types</li>
-<li>Choropleth maps depend on thoughtful <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> choices</li>
-</ul>
-<p>These ideas show up constantly in GIS work.
-If you are comfortable moving between the map, the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> properties, and the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you are building one of the core habits of <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
+<p>Create a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> showing county-level change in median household income in California.</p>
+<p>Your map should include the necessary elements, such as Title, <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">Legend</a>, Author Name, Date, CRS, <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">Scale</a>, etc...</p>
+<p>Export to PDF and submit on Canvas.</p>
 
                                 
                                 </section>
@@ -1470,7 +1443,7 @@ If you are comfortable moving between the map, the <a href="../GLOSSARY.html#lay
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"next":{"title":"03 - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_sql_operations_in_qgis.md","ref":"week03/03_sql_operations_in_qgis.md","articles":[]},"previous":{"title":"01 - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_basic_table_structures_and_operations_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/02_basic_table_joins_and_calculations.md","mtime":"2026-04-21T03:22:16.433Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T03:22:26.833Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"next":{"title":"03 - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_sql_operations_in_qgis.md","ref":"week03/03_sql_operations_in_qgis.md","articles":[]},"previous":{"title":"01 - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_basic_table_structures_and_operations_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/02_basic_table_joins_and_calculations.md","mtime":"2026-04-21T04:34:49.326Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T04:34:59.372Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
