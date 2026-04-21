@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../week03/02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="../week03/02_basic_table_joins_and_calculations.html">
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../week03/03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="../week03/03_sql_operations_in_qgis.html">
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../week03/04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="../week03/04_cartographic_design_basics.html">
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1050,16 +1050,16 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Export your AOI file using the naming convention below and submit it to Canvas.</p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
-<p>Almost every <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> project starts with defining a study area — an <strong><a href="../GLOSSARY.html#area-of-interest-aoi" class="glossary-term" title="A specific geographic area selected for analysis or mapping. An AOI helps limit your work to the place relevant to your question.">Area of Interest (AOI)</a></strong>. An AOI sets the geographic scope of your work: it tells your tools where to load data, where to <a href="../GLOSSARY.html#clip" class="glossary-term" title="A geoprocessing operation that cuts a dataset down to a specified boundary or area of interest.">clip</a> rasters, and where to run calculations.</p>
-<p>In this lab you will use <strong><a href="https://geojson.io" target="_blank">geojson.io</a></strong>, a lightweight browser-based tool for creating and editing <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features without any software installation. You will draw a rectangular AOI that is at least as large as the Stanford campus, then relocate it to a place that is personally meaningful to you — a research site, hometown, <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> area, or any other location you want to study this quarter.</p>
-<p>The result is a single <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> file that you will use again in later labs as your personal study area.</p>
+<p>Almost every <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> project starts by defining a study area, or <strong><a href="../GLOSSARY.html#area-of-interest-aoi" class="glossary-term" title="A specific geographic area selected for analysis or mapping. An AOI helps limit your work to the place relevant to your question.">Area of Interest (AOI)</a></strong>.</p>
+<p>In this lab you will use <strong><a href="https://geojson.io" target="_blank">geojson.io</a></strong> to draw a rectangular AOI that is at least as large as the Stanford campus, then recreate it at a place that is personally meaningful to you.</p>
+<p>The result is a <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> file that you will use again in later labs as your personal study area.</p>
 <h3 id="why-geojson">Why GeoJSON?</h3>
-<p><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> is a plain-text, open standard for encoding geographic features using JSON.</p>
+<p><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> is a plain-text, open standard for encoding geographic features.</p>
 <ul>
 <li>A single self-contained file (no sidecar files, unlike shapefiles).</li>
-<li>Human-readable — you can open it in any text editor and read the coordinates.</li>
+<li>Human-readable, so you can open it in a text editor and inspect the coordinates.</li>
 <li>Natively understood by QGIS, Google Earth Engine, Leaflet, Mapbox, GitHub, and most other modern GIS tools.</li>
-<li>Coordinates are always in <strong>WGS 84 (EPSG:4326)</strong> — the same geographic CRS you encountered in the projection error lab.</li>
+<li>Coordinates are always in <strong>WGS 84 (EPSG:4326)</strong>.</li>
 </ul>
 <hr></hr>
 <h2 id="part-1-get-oriented-with-geojsonio">Part 1: Get Oriented with geojson.io</h2>
@@ -1262,7 +1262,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.4.1","depth":2,"next":{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},"previous":{"title":"Week 01 - Lining it Up & Cartographic Presentation","level":"1.4","depth":1,"path":"week01/README.md","ref":"week01/README.md","articles":[{"title":"01 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.4.1","depth":2,"path":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","ref":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","articles":[]},{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Coordinates and Geometries with Google Earth Engine","level":"1.4.3","depth":2,"path":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","mtime":"2026-04-21T19:00:06.598Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.4.1","depth":2,"next":{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},"previous":{"title":"Week 01 - Lining it Up & Cartographic Presentation","level":"1.4","depth":1,"path":"week01/README.md","ref":"week01/README.md","articles":[{"title":"01 - TURN IN - Create an Area of Interest with GeoJSON.io","level":"1.4.1","depth":2,"path":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","ref":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","articles":[]},{"title":"02 - TURN IN - Projection Error Measurement with QGIS","level":"1.4.2","depth":2,"path":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","ref":"week01/02_TURN_IN_projection_error_measurement_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Coordinates and Geometries with Google Earth Engine","level":"1.4.3","depth":2,"path":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week01/01_TURN_IN_create_an_aoi_with_geojson_io.md","mtime":"2026-04-21T19:12:25.553Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

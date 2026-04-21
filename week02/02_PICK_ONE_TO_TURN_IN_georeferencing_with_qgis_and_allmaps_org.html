@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../week03/02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="../week03/02_basic_table_joins_and_calculations.html">
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../week03/03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="../week03/03_sql_operations_in_qgis.html">
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../week03/04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="../week03/04_cartographic_design_basics.html">
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1051,30 +1051,15 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called <strong><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a></strong>. A scanned map <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, by itself, is just a picture. Once it is georeferenced, it becomes spatial data that can be aligned with <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers, modern basemaps, and other geographic information.</p>
+<p>In this lab, you will take a scanned historical map and give it spatial coordinates so it can be used in GIS. This process is called <strong><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a></strong>.</p>
 <blockquote>
 <p><strong>Concept note: What is <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a>?</strong> <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">Georeferencing</a> is the process of connecting an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> to real-world coordinate space. You are telling the software which places on the scanned map correspond to known places on the Earth. Once that relationship is established, the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> can be displayed, compared, and analyzed alongside other spatial data.</p>
 </blockquote>
-<p>This is one of the most important workflows in historical GIS, public history, environmental reconstruction, and archival map use. It is how we connect paper maps and scanned images to contemporary <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
 <p>You will work with:</p>
 <ul>
 <li>A scanned 1900 map of Wyoming from Stanford Library collections</li>
 <li>A Public Land Survey System (PLSS) reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> from EarthWorks</li>
 <li>QGIS <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> tools</li>
-</ul>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you should be able to:</p>
-<ul>
-<li>Explain what <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> is and why it matters</li>
-<li>Download and organize scanned map imagery and reference data</li>
-<li>Explain why a reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is needed for <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a></li>
-<li>Subset a reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> using an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> filter</li>
-<li>Adjust <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> to support visual alignment</li>
-<li>Explain why projection choice matters during <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a></li>
-<li>Create and apply a custom CRS for a specific mapping problem</li>
-<li>Explain what ground control points are and why their distribution matters</li>
-<li>Use the QGIS Georeferencer to place control points and transform a scanned map</li>
-<li>Evaluate the visual accuracy of a georeferenced <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a></li>
 </ul>
 <h2 id="data">Data</h2>
 <p>This lab uses two source datasets:</p>
@@ -1120,7 +1105,7 @@ Stanford EarthWorks record: <a href="https://earthworks.stanford.edu/catalog/sta
 <h2 id="part-2-download-the-reference-data">Part 2: Download the Reference Data</h2>
 <h3 id="download-plss-data-from-earthworks">Download PLSS data from EarthWorks</h3>
 <blockquote>
-<p><strong>Concept note: What is PLSS?</strong> The <strong>Public Land Survey System (PLSS)</strong> is a land division framework used across much of the United States. It organizes land into a regular pattern of townships, ranges, and sections. In this lab, the PLSS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> works as a spatial reference grid because the historical map also uses that survey logic.</p>
+<p><strong>Concept note: What is PLSS?</strong> The <strong>Public Land Survey System (PLSS)</strong> is a land division framework used across much of the United States. In this lab, the PLSS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> works as a spatial reference grid because the historical map also uses that survey logic.</p>
 </blockquote>
 <ol>
 <li>Go to the EarthWorks record:
@@ -1477,7 +1462,7 @@ Stanford EarthWorks record: <a href="https://earthworks.stanford.edu/catalog/sta
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"next":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"previous":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","mtime":"2026-04-21T19:00:06.689Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"next":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"previous":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","mtime":"2026-04-21T19:12:25.637Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="01_basic_table_structures_and_operations_in_qgis.html" />
+    <link rel="next" href="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html" />
     
     
     <link rel="prev" href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html" />
@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="02_basic_table_joins_and_calculations.html">
+                <a href="02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="03_sql_operations_in_qgis.html">
+                <a href="03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="04_cartographic_design_basics.html">
+                <a href="04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1045,6 +1045,76 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="week-03---tables--queries">Week 03 - Tables &amp; Queries</h1>
+<h2 id="overview">Overview</h2>
+<p>This week introduces one of the most important ideas in GIS: a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is not only geometry on a map, but also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p>That means a large part of GIS work depends on how information is structured in rows, columns, fields, and related tables. Before students can do more advanced analysis, they need to be comfortable reading <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure, recognizing key fields, understanding what a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> actually does, and seeing how tabular logic affects mapping.</p>
+<p>Week 03 is organized around that transition.</p>
+<p>You will move from:</p>
+<ol>
+<li>inspecting <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure in QGIS</li>
+<li>joining descriptive information to mapped features</li>
+<li>calculating new values from joined attributes</li>
+<li>using <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> to ask more explicit questions of relational data</li>
+<li>improving the communication of those results through cartographic design</li>
+</ol>
+<h2 id="core-ideas-for-the-week">Core Ideas for the Week</h2>
+<h3 id="a-gis-layer-is-also-a-table">A GIS layer is also a table</h3>
+<p>When you open a GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, you are not only looking at shapes on a screen. You are also looking at records and variables.</p>
+<ul>
+<li>A <strong><a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a></strong> usually represents one <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>.</li>
+<li>A <strong><a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a></strong> stores one type of information.</li>
+<li>A <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> name</strong> tells you what the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> is meant to contain.</li>
+<li>A <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type</strong> tells QGIS how the values should be interpreted.</li>
+</ul>
+<p>Many GIS problems are really <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> problems first.</p>
+<h3 id="joins-connect-geometry-to-meaning">Joins connect geometry to meaning</h3>
+<p>A <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> works by matching values in a shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+<p>This week you will work with classic <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> patterns such as:</p>
+<ul>
+<li>many polygons connecting to one lookup-<a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> record</li>
+<li>one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> being joined to another <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> through a shared identifier</li>
+<li>tables being linked so a map can be symbolized or queried using more meaningful attributes</li>
+</ul>
+<p>The important point is that QGIS is usually joining tables first and then displaying the result through the geometry of the target <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<h3 id="relational-structure-matters">Relational structure matters</h3>
+<p>You will encounter several relational ideas this week:</p>
+<ul>
+<li><strong>key fields</strong></li>
+<li><strong>primary keys</strong></li>
+<li><strong>foreign keys</strong></li>
+<li><strong>one-to-many</strong> and <strong>many-to-one</strong> relationships</li>
+</ul>
+<p>These are not just database terms. They explain why some joins work, why some fail, and why some data structures are more flexible than others.</p>
+<h3 id="sql-makes-the-table-logic-explicit">SQL makes the table logic explicit</h3>
+<p>The <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> lab pushes the same ideas further. Instead of relying only on menus and dialogs, you will begin asking direct questions of the data using <code>SELECT</code>, <code>WHERE</code>, <code>GROUP BY</code>, and <code>JOIN</code>.</p>
+<p>The goal is not just to memorize syntax. The goal is to understand that GIS analysis often depends on being precise about:</p>
+<ul>
+<li>which rows you want</li>
+<li>how tables are related</li>
+<li>how values should be summarized</li>
+<li>which features are close to one another in space</li>
+</ul>
+<h3 id="cartography-still-matters">Cartography still matters</h3>
+<p>This week is not only about joining and querying data. It is also about presenting it clearly.</p>
+<p>The cartographic design materials for the week ask you to look at hierarchy, <a href="../GLOSSARY.html#legibility" class="glossary-term" title="The degree to which map text, symbols, and layout elements can be read and understood easily. Legibility depends on choices such as font size, contrast, spacing, and the amount of visual clutter in the design.">legibility</a>, clutter, <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> choice, legends, titles, locator maps, and general layout structure. By this point in the course, students should be moving beyond "I made a map" toward "I made a map that communicates well."</p>
+<h2 id="how-the-week-fits-together">How the Week Fits Together</h2>
+<h3 id="01---turn-in---basic-table-structures-and-operations-in-qgis"><a href="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">01 - TURN IN - Basic Table Structures and Operations in QGIS</a></h3>
+<p>This lab introduces a lookup-<a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> using a soils polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and a separate soil-properties <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. The main goal is to understand the characteristics of a many-to-one <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> from the perspective of the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<h3 id="02---turn-in---basic-table-joins-and-calculations-in-qgis"><a href="02_TURN_IN_basic_table_joins_and_calculations.html">02 - TURN IN - Basic Table Joins and Calculations in QGIS</a></h3>
+<p>This lab extends those ideas by joining one county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to another and then calculating both absolute and <a href="../GLOSSARY.html#percent-change" class="glossary-term" title="A measure of change expressed relative to the starting value, usually as a percentage. Percent change is often more useful than absolute change when comparing places with very different starting values.">percent change</a>. It also introduces a choropleth mapping decision: once you can calculate a value, you still have to decide how to classify and symbolize it.</p>
+<h3 id="03---turn-in---sql-operations-in-qgis"><a href="03_TURN_IN_sql_operations_in_qgis.html">03 - TURN IN - SQL Operations in QGIS</a></h3>
+<p>This lab moves from menu-driven <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> work into <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> and relational querying inside QGIS. Here, the emphasis is on using saved queries, understanding how tables relate, and turning <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> results back into mappable outputs.</p>
+<h3 id="04---turn-in---cartographic-design-basics"><a href="04_TURN_IN_cartographic_design_basics.html">04 - TURN IN - Cartographic Design Basics</a></h3>
+<p>This page points you to David Medeiros' materials for the week. The redesign exercise complements the technical <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> work by focusing on communication, layout revision, and design judgment.</p>
+<h2 id="what-to-expect-in-the-individual-lab-documents">What to Expect in the Individual Lab Documents</h2>
+<p>The individual lab pages for this week are intended to be more hands-on and workflow-focused.</p>
+<p>That means:</p>
+<ul>
+<li>the step-by-step documents emphasize what to click, inspect, compare, calculate, and export</li>
+<li>conceptual framing is concentrated here in the week overview</li>
+<li>shorter notes remain inside the lab documents wherever they directly explain a workflow choice or help prevent a likely beginner mistake</li>
+</ul>
+<p>Use this page as the conceptual guide for the week, and use the individual lab pages as the operational guides for completing the exercises.</p>
 
                                 
                                 </section>
@@ -1077,7 +1147,7 @@
                 </a>
                 
                 
-                <a href="01_basic_table_structures_and_operations_in_qgis.html" class="navigation navigation-next " aria-label="Next page: 01 - Basic Table Structures & Operations in QGIS">
+                <a href="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html" class="navigation navigation-next " aria-label="Next page: 01 - TURN IN - Basic Table Structures & Operations in QGIS">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1088,7 +1158,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Week 03 - Tables & Queries","level":"1.6","depth":1,"next":{"title":"01 - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_basic_table_structures_and_operations_in_qgis.md","articles":[]},"previous":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"articles":[{"title":"01 - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"02 - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_basic_table_joins_and_calculations.md","ref":"week03/02_basic_table_joins_and_calculations.md","articles":[]},{"title":"03 - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_sql_operations_in_qgis.md","ref":"week03/03_sql_operations_in_qgis.md","articles":[]},{"title":"04 - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_cartographic_design_basics.md","ref":"week03/04_cartographic_design_basics.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/README.md","mtime":"2026-04-21T19:00:07.129Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Week 03 - Tables & Queries","level":"1.6","depth":1,"next":{"title":"01 - TURN IN - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","articles":[]},"previous":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"articles":[{"title":"01 - TURN IN - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","ref":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","articles":[]},{"title":"03 - TURN IN - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_TURN_IN_sql_operations_in_qgis.md","ref":"week03/03_TURN_IN_sql_operations_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/README.md","mtime":"2026-04-21T19:12:26.042Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

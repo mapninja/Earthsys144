@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../week03/02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="../week03/02_basic_table_joins_and_calculations.html">
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../week03/03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="../week03/03_sql_operations_in_qgis.html">
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../week03/04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="../week03/04_cartographic_design_basics.html">
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1051,27 +1051,8 @@
 </blockquote>
 <h2 id="collecting-field-data-with-arcgis-online-and-field-maps">Collecting Field Data with ArcGIS Online and Field Maps</h2>
 <h3 id="overview">Overview</h3>
-<p>This lab introduces <strong>ArcGIS Online</strong> and <strong>ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> as tools for mobile spatial data collection. You will explore a workflow for creating and managing a shared <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection project using a web browser and a phone or tablet.</p>
-<p>Together, ArcGIS Online and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps provide a powerful way to design <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> forms, deploy maps to mobile devices, collect points and attachments, and sync edits back to a shared database in real time.</p>
-<p>This is an important kind of spatial workflow to understand because not all GIS work begins with downloaded data. Sometimes the whole point of the project is to <strong>create</strong> the data yourself. <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> collection projects are how people document trees, sidewalks, public art, damaged infrastructure, habitat features, informal trails, historic sites, survey responses, and countless other things that do not already exist in a neat downloadable dataset.</p>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you should be able to:</p>
-<ul>
-<li>Explain why <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection requires both geometry and a well-designed <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a></li>
-<li>Explain why controlled vocabularies improve consistency and reduce messy data entry</li>
-<li>Explain why offline editing matters in real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> conditions</li>
-<li>Create empty hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers to hold spatial data</li>
-<li>Customize the data <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> to match a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data need</li>
-<li>Create lists to drive in-app dropdown menus for controlled vocabularies and standardization</li>
-<li>Customize <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> survey forms for usability</li>
-<li>Enable attachments such as photos, video, or audio</li>
-<li>Enable offline editing for remote or low-connectivity data collection</li>
-<li>Deploy a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection map from ArcGIS Online to iOS or Android devices with the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps app installed</li>
-<li>Share the app and editing role to a controlled group of users</li>
-<li>Download the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection app and <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> for offline use</li>
-<li>Collect data and sync it to ArcGIS Online</li>
-<li>Create a simple read-only view of the live data for monitoring data collection</li>
-</ul>
+<p>This lab introduces <strong>ArcGIS Online</strong> and <strong>ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> as tools for mobile spatial data collection.</p>
+<p>You will create hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers, add fields and domains, configure a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> for mobile use, and test the workflow in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps app. The emphasis here is on building a usable <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>-collection structure, not just clicking through the interface.</p>
 <h2 id="before-you-start">Before You Start</h2>
 <ul>
 <li>You will need access to <strong>Stanford ArcGIS Online</strong> with your SUNetID.</li>
@@ -1139,7 +1120,7 @@
 <li>Provide a title, like <code>"Walking Tour (SDM)"</code>. <em>Since this must be a unique name in your organization, include your SUNetID in the name of this item, and any others in this exercise</em>. Click <strong>Save</strong>.</li>
 </ol>
 <blockquote>
-<p><strong>Why are we creating three geometry types?</strong> Real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> projects often need more than one kind of <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. A point might represent a single object like a sculpture or water fountain. A line might represent a path or curb. A polygon might represent a garden, building footprint, or other area. Even if you only use one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> heavily in this exercise, it is useful to see how a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> project can be structured to collect multiple kinds of geometry.</p>
+<p><strong>Why are we creating three geometry types?</strong> Real <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> projects often need more than one kind of <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. A point might represent a single object, a line might represent a path, and a polygon might represent an area.</p>
 </blockquote>
 <p>Your <strong>Walking Tour <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> is created and its item details page should open. In the following steps you’ll create the fields that define the form for the Places <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <h3 id="add-fields-to-the-feature-class">Add fields to the feature class</h3>
@@ -1682,7 +1663,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"next":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"previous":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","mtime":"2026-04-21T19:00:06.688Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"next":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"previous":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"path":"week02/README.md","ref":"week02/README.md","articles":[{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","mtime":"2026-04-21T19:12:25.636Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

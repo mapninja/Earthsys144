@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>03 - SQL Operations in QGIS · HonKit</title>
+        <title>03 - TURN IN - SQL Operations in QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="04_cartographic_design_basics.html" />
+    <link rel="next" href="04_TURN_IN_cartographic_design_basics.html" />
     
     
-    <link rel="prev" href="02_basic_table_joins_and_calculations.html" />
+    <link rel="prev" href="02_TURN_IN_basic_table_joins_and_calculations.html" />
     
 
     </head>
@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="02_basic_table_joins_and_calculations.html">
+                <a href="02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="03_sql_operations_in_qgis.html">
+        <li class="chapter active" data-level="1.6.3" data-path="03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="03_sql_operations_in_qgis.html">
+                <a href="03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="04_cartographic_design_basics.html">
+                <a href="04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1029,7 +1029,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >03 - SQL Operations in QGIS</a>
+        <a href=".." >03 - TURN IN - SQL Operations in QGIS</a>
     </h1>
 </div>
 
@@ -1044,58 +1044,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sql-operations-in-qgis-ready-to-review">SQL Operations in QGIS (Ready to Review)</h1>
+                                <h1 id="sql-operations-in-qgis">SQL Operations in QGIS</h1>
 <blockquote>
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> inside QGIS</strong> through the <strong>DB Manager</strong> and <strong>Virtual Layers</strong> tools. Up to this point in the course, you have mostly interacted with data through menus, tool dialogs, and map layers. In this exercise, you will begin asking questions of your data directly using <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>.</p>
-<p>That matters because GIS is not only about geometry. It is also about <strong>tables</strong>, <strong>relationships</strong>, and <strong>queries</strong>. <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> gives you a precise language for asking questions like:</p>
-<ul>
-<li>Which records match a condition?</li>
-<li>How do two tables connect to one another?</li>
-<li>How can I summarize many rows into a smaller set of results?</li>
-<li>Which features are close to one another in space?</li>
-</ul>
-<p>You will use those ideas to answer a concrete question:</p>
-<p><strong>What chemicals are being released near a school, and how much air and water release is associated with them?</strong></p>
-<h2 id="conceptual-focus">Conceptual Focus</h2>
-<p>This lab is about more than memorizing <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> syntax. The larger ideas are:</p>
-<ul>
-<li>A GIS <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is also a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
-<li>Related tables let you avoid storing the same information over and over again.</li>
-<li><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> lets you be explicit about what you want from the data.</li>
-<li>Spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> extends those same ideas into geographic space.</li>
-<li>QGIS can treat project layers as if they were database tables through <strong>Virtual Layers</strong>.</li>
-</ul>
-<h2 id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this lab, you should be able to:</p>
-<ul>
-<li>Explain why relational data structure matters in GIS</li>
-<li>Explain what a key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> does in a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> relationship</li>
-<li>Explain the purpose of <code>SELECT</code>, <code>WHERE</code>, <code>GROUP BY</code>, and <code>JOIN</code></li>
-<li>Explain how spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> functions such as <code>ST_Distance()</code> and <code>ST_Buffer()</code> extend tabular <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> into GIS analysis</li>
-<li>Open and use the QGIS <strong>DB Manager</strong> and <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> Window</strong></li>
-<li>Run saved <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries against project layers through <strong>Virtual Layers</strong></li>
-<li>Interpret the results of <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> and spatial <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries</li>
-<li>Load <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> results back into QGIS as layers or tables</li>
-<li>Create a final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> that communicates the result of an <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a>-driven <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a></li>
-</ul>
-<h2 id="a-relational-data-idea-why-separate-tables">A Relational Data Idea: Why Separate Tables?</h2>
-<p>Before you begin clicking through the lab, it is worth pausing to understand why this data is structured the way it is.</p>
-<p>Imagine a city tree inventory. If you revisit the same tree over many years, you do not want to create a brand new point every time just to record a new inspection. Instead, you would usually separate the data into:</p>
-<ol>
-<li>A <strong>locations</strong> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> holding the stable information about each site, such as coordinates or address.</li>
-<li>A <strong>survey records</strong> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> holding the changing information from each visit, such as condition, date, or notes.</li>
-</ol>
-<p>These two tables are connected through a shared <strong>key <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong>. That relationship is often called <strong>one-to-many</strong> because one location can be linked to many survey records.</p>
-<p>This is a core relational database idea: <strong>store stable information once, and connect it to changing information through a shared identifier.</strong></p>
-<p>The data in this lab works in a similar way:</p>
-<ul>
-<li><code>toxic_sites_stateplane</code> holds facility information and geometry.</li>
-<li><code>chemicals</code> holds chemical release records.</li>
-<li><code>TRIFID</code> is the shared key that connects them.</li>
-</ul>
+<p>This lab introduces <strong><a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> inside QGIS</strong> through the <strong>DB Manager</strong> and <strong>Virtual Layers</strong> tools.</p>
+<p>The main task is to use saved and edited <a href="../GLOSSARY.html#sql" class="glossary-term" title="Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.">SQL</a> queries to investigate a relational dataset of toxic release sites and chemicals, then turn those results into a final QGIS <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a>.</p>
 <h2 id="data">Data</h2>
 <p>Download the lab package from:</p>
 <ul>
@@ -1425,12 +1380,12 @@ Hint: Use the <code>02 - Filter with WHERE</code> <a href="../GLOSSARY.html#quer
 
             
                 
-                <a href="02_basic_table_joins_and_calculations.html" class="navigation navigation-prev " aria-label="Previous page: 02 - Basic Table Joins and Calculations in QGIS">
+                <a href="02_TURN_IN_basic_table_joins_and_calculations.html" class="navigation navigation-prev " aria-label="Previous page: 02 - TURN IN - Basic Table Joins and Calculations in QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="04_cartographic_design_basics.html" class="navigation navigation-next " aria-label="Next page: 04 - Cartographic Design Basics">
+                <a href="04_TURN_IN_cartographic_design_basics.html" class="navigation navigation-next " aria-label="Next page: 04 - TURN IN - Cartographic Design Basics">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1441,7 +1396,7 @@ Hint: Use the <code>02 - Filter with WHERE</code> <a href="../GLOSSARY.html#quer
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - SQL Operations in QGIS","level":"1.6.3","depth":2,"next":{"title":"04 - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_cartographic_design_basics.md","ref":"week03/04_cartographic_design_basics.md","articles":[]},"previous":{"title":"02 - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_basic_table_joins_and_calculations.md","ref":"week03/02_basic_table_joins_and_calculations.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/03_sql_operations_in_qgis.md","mtime":"2026-04-21T19:00:07.129Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - SQL Operations in QGIS","level":"1.6.3","depth":2,"next":{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]},"previous":{"title":"02 - TURN IN - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","ref":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week03/03_TURN_IN_sql_operations_in_qgis.md","mtime":"2026-04-21T19:12:26.042Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

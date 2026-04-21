@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../week03/02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="../week03/02_basic_table_joins_and_calculations.html">
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../week03/03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="../week03/03_sql_operations_in_qgis.html">
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../week03/04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="../week03/04_cartographic_design_basics.html">
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1049,11 +1049,11 @@
 <p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
-<p><strong><em>What You’ll Learn</em>:</strong> In this lab, you will be introduced to basic <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> techniques in QGIS, including creating <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> datasets from a georeferenced <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, working with Cloud Optimized GeoTIFFs (COGs), and using snapping for topological accuracy.</p>
-<p><strong>You should read</strong> Chapter 4 in the GIS Fundamentals textbook before starting this lab, as the chapter covers the basics of data entry and <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> mechanics. You will digitize and edit features based on a digital aerial photo of the <a href="https://farm.stanford.edu/" target="_blank">O'Donohue Family Stanford Educational Farm</a>.</p>
+<p>This lab introduces basic <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> in QGIS. You will create point, line, and polygon layers from imagery of the <a href="https://farm.stanford.edu/" target="_blank">O'Donohue Family Stanford Educational Farm</a> and practice the editing workflow needed to build clean <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> data.</p>
+<p><strong>You should read</strong> Chapter 4 in the GIS Fundamentals textbook before starting, since it covers the basics of data entry and <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> mechanics.</p>
 <hr></hr>
 <h2 id="getting-ready-for-the-lab">Getting Ready for the Lab</h2>
-<p>We will be using an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> of the Stanford Teaching Farm for this exercise. That <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is stored as a <a href="https://cogeo.org/" target="_blank">Cloud-Optimized GeoTIFF (COG)</a> on AFS Space. A COG is a specialized type of TIFF <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> designed for efficient access and streaming over the web, enabling users to retrieve only the portions of the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> they need without downloading the entire file.</p>
+<p>We will be using an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> of the Stanford Teaching Farm for this exercise. That <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is stored as a <a href="https://cogeo.org/" target="_blank">Cloud-Optimized GeoTIFF (COG)</a> on AFS Space.</p>
 <p>You can find the Persistent URL Page for the dataset here: <a href="https://purl.stanford.edu/vq494qx9344" target="_blank">https://purl.stanford.edu/vq494qx9344</a></p>
 <p><img src="images/20250328_125841_20250328_120858_image.png" alt=""></img></p>
 <p>We will use the file <code>odm_orthophoto_COG_d.tif</code> for this lab. The direct URL is:
@@ -1135,19 +1135,11 @@
 <p><img src="images/20250328_134452_image.png" alt=""></img></p>
 <hr></hr>
 <h3 id="why-use-wgs84-as-the-coordinate-system">Why Use WGS84 as the Coordinate System?</h3>
-<p>WGS84 (World Geodetic System 1984) is a widely used geodetic <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> that serves as the standard for global mapping and navigation. Here’s why it is the preferred choice for archival purposes:</p>
-<ol>
-<li><strong>Unprojected System</strong>: WGS84 is a geographic <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> that uses latitude and longitude to represent locations on the Earth's surface. Unlike projected systems, it does not distort shapes, areas, or distances, making it ideal for storing raw spatial data.</li>
-<li><strong>Universal Adoption</strong>: WGS84 is the default <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> for GPS and is universally recognized across GIS platforms, ensuring compatibility and ease of data sharing.</li>
-<li><strong>Global Coverage</strong>: It provides a consistent framework for mapping and analysis worldwide, making it suitable for datasets that span large geographic areas.</li>
-<li><strong>Archival Stability</strong>: As a standard system, WGS84 ensures that spatial data remains interpretable and usable over time, regardless of changes in software or technology.</li>
-</ol>
-<p>By using WGS84, you ensure that your spatial data is stored in a universally accepted format, making it easier to share, analyze, and integrate with other datasets.</p>
+<p>WGS84 is a good archival choice because it is the default geographic CRS used by GPS and many GIS platforms. In this lab, using WGS84 keeps the new layers broadly compatible and easy to reuse later.</p>
 <hr></hr>
 <h2 id="step-4-digitizing-features">Step 4: Digitizing Features</h2>
 <h3 id="understanding-heads-up-digitizing">Understanding Heads-Up Digitizing</h3>
-<p>Heads-up <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> is the process of defining the coordinate pairs of the vertices that outline spatial features by visually interpreting a reference <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> or <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>. This technique involves manually tracing features such as points, lines, or polygons directly on a digital map using GIS software. It is a fundamental method for creating spatial datasets from aerial imagery, satellite data, or scanned maps.</p>
-<p>Heads-up digitization is not only a valuable skill for individual projects but also a cornerstone of collaborative mapping efforts like those undertaken by the <a href="https://tasks.hotosm.org/learn/map" target="_blank">Humanitarian OpenStreetMap Team (HOT)</a>. In these projects, remote digitizers trace features such as roads, buildings, and land use from satellite imagery, much like you are doing in this lab. However, the process is enriched by contributions from local informants who provide critical on-the-ground information—such as names, addresses, building types, or post-disaster conditions—that cannot be discerned from imagery alone. This collaboration between (thousands of) remote mappers and local communities ensures that the resulting datasets are both spatially accurate and contextually meaningful, demonstrating the power of combining global technology with local knowledge.</p>
+<p>Heads-up <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> is the process of tracing spatial features directly from imagery or another visual reference. In this lab, you will use that workflow to create points, lines, and polygons from the farm <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</p>
 <h3 id="points-digitizing-trees">Points: Digitizing Trees</h3>
 <ol>
 <li>Right-click the <strong>trees</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Layers panel, and toggle editing mode.</li>
@@ -1373,7 +1365,7 @@ y
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-21T19:00:06.689Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-04-21T19:12:25.637Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

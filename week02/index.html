@@ -419,12 +419,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
-                <a href="../week03/01_basic_table_structures_and_operations_in_qgis.html">
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
             
                     
-                    01 - Basic Table Structures & Operations in QGIS
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
             
                 </a>
             
@@ -432,12 +432,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../week03/02_basic_table_joins_and_calculations.html">
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
-                <a href="../week03/02_basic_table_joins_and_calculations.html">
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
             
                     
-                    02 - Basic Table Joins and Calculations in QGIS
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
             
                 </a>
             
@@ -445,12 +445,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../week03/03_sql_operations_in_qgis.html">
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
-                <a href="../week03/03_sql_operations_in_qgis.html">
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
             
                     
-                    03 - SQL Operations in QGIS
+                    03 - TURN IN - SQL Operations in QGIS
             
                 </a>
             
@@ -458,12 +458,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../week03/04_cartographic_design_basics.html">
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
             
-                <a href="../week03/04_cartographic_design_basics.html">
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
             
                     
-                    04 - Cartographic Design Basics
+                    04 - TURN IN - Cartographic Design Basics
             
                 </a>
             
@@ -1045,39 +1045,84 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="week-02---making-and-collecting-data">Week 02 - Making and Collecting Data</h1>
-<p>Week 02 shifts the course from working with existing spatial data toward <strong>creating</strong> it. This is an important transition. A great deal of GIS work is not just analyzing data someone else prepared. It is deciding what should count as data in the first place, how it should be structured, how accurately it should be captured, and how to document it so other people can use it later.</p>
-<p>The Week 02 labs approach data creation from four different angles:</p>
+<h2 id="overview">Overview</h2>
+<p>Week 02 shifts the course from working with existing spatial data toward creating it.</p>
+<p>That is an important transition. A large share of GIS work is not just analyzing data that already exists. It is deciding what should count as data, how it should be structured, how accurately it should be captured, and how it should be documented so the results remain useful later.</p>
+<p>This week approaches data creation from several directions:</p>
+<ol>
+<li>designing and collecting new observations in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></li>
+<li><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> a scanned historical map so it becomes usable spatial data</li>
+<li><a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> new <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features from imagery in QGIS</li>
+<li>understanding how <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> collections and pixels are structured in Earth Engine</li>
+</ol>
+<h2 id="core-ideas-for-the-week">Core Ideas for the Week</h2>
+<h3 id="creating-data-requires-design-decisions">Creating data requires design decisions</h3>
+<p>Spatial data does not begin as neutral truth. Someone decides:</p>
 <ul>
-<li><strong><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">Georeferencing</a></strong> turns a scanned historical map into usable spatial data by aligning it to a reference system.</li>
-<li><strong><a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a> in QGIS</strong> creates new <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features from imagery and teaches careful interpretation of boundaries.</li>
-<li><strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> data collection with ArcGIS Online and <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps</strong> shows how to design and deploy a mobile workflow for collecting new observations directly in the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
-<li><strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> collections and pixels in Google Earth Engine</strong> introduce how satellite-derived datasets are structured, filtered, masked, and visualized.</li>
+<li>what the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> is</li>
+<li>what geometry type it should have</li>
+<li>which attributes need to be recorded</li>
+<li>how values should be standardized</li>
+<li>how accurate the result needs to be for the task at hand</li>
 </ul>
-<p>By the end of Week 02, you should be able to:</p>
+<p>Those decisions shape the quality and usefulness of the finished dataset.</p>
+<h3 id="a-dataset-is-more-than-geometry">A dataset is more than geometry</h3>
+<p>Whether you are collecting <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> observations or <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> from imagery, you are also creating a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p>That means <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> design matters:</p>
 <ul>
-<li>Explain the difference between using existing spatial data and creating new spatial data</li>
-<li>Explain why <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> design, naming conventions, and organization matter in GIS projects</li>
-<li>Explain what <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> is and why projection and <a href="../GLOSSARY.html#control-point" class="glossary-term" title="A known location used during georeferencing to match positions on an image or scanned map to positions in real-world coordinates.">control point</a> choice affect the result</li>
-<li>Create new <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> data through <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> and mobile <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> collection workflows</li>
-<li>Explain how <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> datasets are built from collections, images, bands, and pixels</li>
-<li>Filter, <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>, and <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> data in Google Earth Engine</li>
-<li>Build cleaner, more reproducible project structures for data creation work</li>
-<li>Evaluate data creation choices in terms of accuracy, consistency, and fitness for use</li>
+<li><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names should be understandable</li>
+<li><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> types should match the kind of values being stored</li>
+<li>controlled vocabularies help reduce messy, inconsistent entries</li>
+<li>project organization matters because the files, layers, and forms all need to stay connected</li>
 </ul>
-<h2 id="week-02-labs">Week 02 Labs</h2>
-<p>These Week 02 labs include material that must be turned in for grading.</p>
-<h3 id="02---pick-one-to-turn-in---georeferencing-with-qgis-and-allmapsorg">02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org</h3>
-<p><a href="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">Open the lab</a></p>
-<p>This lab introduces <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> through a historical map of Wyoming. You will work with a scanned map <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, a PLSS reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and the QGIS Georeferencer to align the historical map to real-world coordinates. The lab emphasizes not only the mechanics of the tool, but the conceptual ideas behind reference data, projection choice, and <a href="../GLOSSARY.html#control-point" class="glossary-term" title="A known location used during georeferencing to match positions on an image or scanned map to positions in real-world coordinates.">control point</a> placement.</p>
-<h3 id="01---pick-one-to-turn-in---introducing-arcgis-field-maps-and-arcgis-online-for-data-collection"><a href="https://mapninja.github.io/Earthsys144/week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html" target="_blank">01 - PICK ONE TO TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection</a></h3>
-<p><a href="01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">Open the lab</a></p>
-<p>This lab introduces mobile <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> data collection. You will create hosted <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> layers in ArcGIS Online, design a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> form, configure offline use, and collect data with ArcGIS <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Maps. The purpose is to help you think carefully about <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a> design, controlled vocabularies, usability, and the realities of collecting data away from a desktop GIS.</p>
-<h3 id="03---turn-in---editing-with-qgis"><a href="https://mapninja.github.io/Earthsys144/week02/03_TURN_IN_data_creation_in_qgis.html" target="_blank">03 - TURN IN - Editing with QGIS</a></h3>
-<p><a href="03_TURN_IN_data_creation_in_qgis.html">Open the lab</a></p>
-<p>This lab introduces <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> data creation through a hands-on editing exercise in QGIS. You will work from aerial imagery of the Stanford Teaching Farm and create point, line, and polygon features. The main lesson is that <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> is an interpretive act: you are deciding what should count as a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> and how it should be represented in a structured dataset.</p>
-<h3 id="04---turn-in---introducing-collections-images-bands-and-pixels-in-google-earth-engine"><a href="https://mapninja.github.io/Earthsys144/week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html" target="_blank">04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine</a></h3>
-<p><a href="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">Open the lab</a></p>
-<p>This lab introduces <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> ideas through Google Earth Engine. You will work with Dynamic World, Sentinel-2, and the Hansen forest change dataset to understand how collections become images, how images contain bands, and how bands store <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values that can be filtered, masked, thresholded, and visualized. The lab is meant to help students move from seeing satellite imagery as a picture toward seeing it as structured spatial data.</p>
+<h3 id="georeferencing-connects-images-to-coordinate-space">Georeferencing connects images to coordinate space</h3>
+<p>A scanned map or <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> file is just a picture until it is tied to known locations in a <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>.</p>
+<p><a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">Georeferencing</a> depends on:</p>
+<ul>
+<li>choosing a useful reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li>placing control points carefully</li>
+<li>thinking about projection and distortion</li>
+<li>checking the result visually and spatially</li>
+</ul>
+<p>This is one of the most important workflows for historical GIS and archival mapping.</p>
+<h3 id="digitizing-is-interpretive">Digitizing is interpretive</h3>
+<p>When you digitize points, lines, or polygons from imagery, you are making judgments.</p>
+<p>You are deciding:</p>
+<ul>
+<li>where a boundary begins and ends</li>
+<li>whether something should be represented as a point, line, or polygon</li>
+<li>how much detail is appropriate</li>
+<li>how to keep features topologically clean and visually consistent</li>
+</ul>
+<p>This is why data creation is never only technical. It is also analytical and interpretive.</p>
+<h3 id="raster-data-is-also-structured-data">Raster data is also structured data</h3>
+<p>The Earth Engine lab for this week extends the data-creation theme into <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> thinking.</p>
+<p>Students often see imagery as a picture first. This week asks you to see it as structured data:</p>
+<ul>
+<li>an <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection</strong> contains many images</li>
+<li>an <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a></strong> contains one or more bands</li>
+<li>a <strong><a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a></strong> stores one kind of measurement or modeled value</li>
+<li>a <strong><a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a></strong> stores the value at a specific location</li>
+</ul>
+<p>That structure matters because later <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> analysis depends on filtering, masking, and comparing those values deliberately.</p>
+<h2 id="how-the-week-fits-together">How the Week Fits Together</h2>
+<h3 id="01---pick-one-to-turn-in---introducing-arcgis-field-maps-and-arcgis-online-for-data-collection"><a href="01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">01 - PICK ONE TO TURN IN - Introducing ArcGIS Field Maps and ArcGIS Online for Data Collection</a></h3>
+<p>This lab focuses on designing a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> collection workflow. The main goal is to think carefully about geometry, forms, <a href="../GLOSSARY.html#schema" class="glossary-term" title="The planned structure of a dataset, especially its fields, field types, allowed values, and organization. Good schema design is essential for reliable field collection and analysis.">schema</a>, controlled vocabularies, offline use, and the practical realities of collecting new data with a mobile app.</p>
+<h3 id="02---pick-one-to-turn-in---georeferencing-with-qgis-and-allmapsorg"><a href="02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">02 - PICK ONE TO TURN IN - Georeferencing with QGIS and AllMaps.org</a></h3>
+<p>This lab introduces <a href="../GLOSSARY.html#georeferencing" class="glossary-term" title="The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.">georeferencing</a> through a historical Wyoming map and a PLSS reference <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. The emphasis is on connecting an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> to coordinate space and understanding why reference data, projection choice, and control-point placement matter.</p>
+<h3 id="03---turn-in---editing-with-qgis"><a href="03_TURN_IN_data_creation_in_qgis.html">03 - TURN IN - Editing with QGIS</a></h3>
+<p>This lab introduces <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> data creation through <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>. You will create point, line, and polygon layers from imagery and learn that editing in GIS depends on careful interpretation, clean structure, and good project habits.</p>
+<h3 id="04---turn-in---introducing-collections-images-bands-and-pixels-in-google-earth-engine"><a href="04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">04 - TURN IN - Introducing Collections, Images, Bands, and Pixels in Google Earth Engine</a></h3>
+<p>This lab introduces <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> structure in Earth Engine. The goal is to understand how collections, images, bands, and pixels relate to one another before moving deeper into analysis later in the course.</p>
+<h2 id="what-to-expect-in-the-individual-lab-documents">What to Expect in the Individual Lab Documents</h2>
+<p>The individual Week 02 lab pages are intended to be more hands-on and workflow-focused.</p>
+<p>That means:</p>
+<ul>
+<li>the lab steps emphasize what to download, configure, digitize, inspect, and export</li>
+<li>the broader conceptual framing is concentrated here in the weekly overview</li>
+<li>shorter notes remain inside the labs wherever they explain a workflow choice, a setup dependency, or a likely beginner stumbling point</li>
+</ul>
+<p>Use this page as the conceptual guide for Week 02, and use the individual lab documents as the operational guides for completing the exercises.</p>
 
                                 
                                 </section>
@@ -1121,7 +1166,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"next":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"previous":{"title":"03 - TURN IN - Coordinates and Geometries with Google Earth Engine","level":"1.4.3","depth":2,"path":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},"articles":[{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/README.md","mtime":"2026-04-21T19:00:06.689Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:00:17.097Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Week 02 - Making & Collecting Data","level":"1.5","depth":1,"next":{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},"previous":{"title":"03 - TURN IN - Coordinates and Geometries with Google Earth Engine","level":"1.4.3","depth":2,"path":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","ref":"week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.md","articles":[]},"articles":[{"title":"01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps","level":"1.5.1","depth":2,"path":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","ref":"week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.md","articles":[]},{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/README.md","mtime":"2026-04-21T19:12:25.637Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
