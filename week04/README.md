@@ -57,7 +57,7 @@ This lab introduces street networks as analytical structures, then uses one-way 
 
 ### [03 - Introducing SimplyAnalytics.com](03_introducing_simplyanalytics_com.md)
 
-Placeholder: this lab will introduce a web-based demographic reporting workflow and connect it back to spatial units, trade areas, and summary geography.
+This lab introduces a Stanford-licensed demographic reporting platform, then brings exported county data into QGIS to join Bigfoot sightings by location and finish with either a per-capita map or an advanced geographically weighted regression workflow.
 
 ### 04 - Additional Week 04 Exercise
 
