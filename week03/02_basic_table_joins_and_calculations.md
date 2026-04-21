@@ -50,10 +50,6 @@ Both layers also contain shared identifier fields including:
 - `spatial_id`
 - `name`
 
-You should see these layers in the lab data folder and in QGIS as shown below.
-
-![](images/20260418_154439_image.png)
-
 ## Conceptual Focus
 
 ### Rows, Columns, and Fields
@@ -158,6 +154,8 @@ That is exactly what makes a join possible.
 3. Find the `MHHINC2020` field.
 4. Note that the values vary substantially across counties.
 
+![](images/20260420_203242_image.png)
+
 For this dataset:
 
 - `MHHINC2020` ranges from `41780` to `130890`
@@ -187,10 +185,14 @@ Before making the join, use one of QGIS' summary tools to confirm the distributi
 
 1. Open the **Processing Toolbox**.
 2. Search for **Basic statistics for fields**.
-3. Run the tool for `ca_county_2020_mhhinc` using the field `MHHINC2020`.
+3. Run the tool for `ca_county_2020_mhhinc` using the field `MHHINC2020` as the Field to calculate statistics on.
 4. Review the output in the **Results Viewer**.
+5. Use the `[Create temporary layer}` option to create an output that will not persist after you close the project.
 
-You should get values close to the following:  
+![](images/20260420_203715_image.png)
+
+You should get values close to the following:
+
 ```
 - COUNT: 58
 - UNIQUE: 58
@@ -209,10 +211,12 @@ You should get values close to the following:
 - FIRSTQUARTILE: 54972
 - THIRDQUARTILE: 84638
 - IQR: 29666
-```  
+```
+
 Now repeat the tool for `ca_county_2000_mhhinc` using the field `MHHINC2000`.
 
 You should get values close to the following:
+
 ```
 - COUNT: 58
 - UNIQUE: 58
@@ -232,6 +236,7 @@ You should get values close to the following:
 - THIRDQUARTILE: 51484
 - IQR: 16759
 ```
+
 ### Why this matters
 
 This tool gives you a quick numerical summary of the field you are about to analyze.
@@ -250,11 +255,16 @@ This section is designed to help you connect the table to the map.
 
 ### Find the lowest value in the 2020 layer
 
+![](images/20260420_203952_image.png)
+
 1. Open the `ca_county_2020_mhhinc` attribute table.
 2. Locate the `MHHINC2020` field.
-3. Sort the field in ascending order so the smallest value appears first.
+3. Click on the Field Header to **Sort** the field in ascending order so the smallest value appears first.
 4. Select the row with the lowest `MHHINC2020` value.
-5. Use the **Zoom map to selected rows** tool in the attribute table.
+5. Use the **Zoom map to selected rows** tool ![](images/20260420_204034_image.png) in the attribute table.
+6. Use the Deselect all features button ![](images/20260420_204303_image.png) to deselect your features, when you are done.
+
+![](images/20260420_204110_image.png)
 
 ### Find the lowest value in the 2000 layer
 
@@ -263,6 +273,7 @@ This section is designed to help you connect the table to the map.
 3. Sort the field in ascending order.
 4. Select the row with the lowest `MHHINC2000` value.
 5. Use the **Zoom map to selected rows** tool again.
+6. Use the Deselect all features button ![](images/20260420_204303_image.png) to deselect your features, when you are done.
 
 ### Reflect on what you see
 
@@ -282,8 +293,12 @@ That means the geometry will remain the counties from the 2020 layer, but the ta
 5. Set the **Join layer** to `ca_county_2000_mhhinc`.
 6. Set the **Join field** to `spatial_id`.
 7. Set the **Target field** to `spatial_id`.
-8. Click **OK**.
-9. Click **OK** again to close **Layer Properties**.
+8. Check the option to use a `Custom field name prefix` and set it to the value `2000_`
+
+![](images/20260420_204818_image.png)
+
+1. Click **OK**.
+2. Click **OK** again to close **Layer Properties**.
 
 ### Concept note
 
@@ -296,6 +311,8 @@ QGIS compares the values in the target layer's `spatial_id` field to the values 
 2. Scroll to the right.
 3. Confirm that you can now see the joined 2000 fields, including `MHHINC2000`.
 
+![](images/20260420_204858_image.png)
+
 At this point, one table should contain:
 
 - The 2020 income field
@@ -307,13 +324,12 @@ At this point, one table should contain:
 Now that both year values are in the same table, you can calculate the difference.
 
 1. Open the attribute table for `ca_county_2020_mhhinc`.
-2. Click **Toggle Editing**.
-3. Open the **Field Calculator**.
-4. Choose **Create a new field**.
-5. Name the field `mhhinc_diff`.
-6. Set the output field type to **Decimal (double)**.
-7. Use an output field length and precision that can hold the results, such as length `20` and precision `2`.
-8. Enter this expression:
+2. Open the **Field Calculator**. ![](images/20260420_204947_image.png)
+3. Choose **Create a new field**.
+4. Name the field `mhhinc_diff`.
+5. Set the output field type to **Decimal number(real)**.
+6. Use an output field length and precision that can hold the results, such as length `20` and precision `2`.
+7. Enter this expression:
 
 ```qgis
 "MHHINC2020" - "MHHINC2000"
@@ -322,6 +338,8 @@ Now that both year values are in the same table, you can calculate the differenc
 9. Check the preview.
 10. Click **OK**.
 
+![](images/20260420_205345_image.png)
+
 ### What this means
 
 This calculation subtracts the 2000 median household income from the 2020 median household income for each county.
@@ -329,6 +347,8 @@ This calculation subtracts the 2000 median household income from the 2020 median
 - Positive values mean income increased.
 - Negative values mean income decreased.
 - Values near zero mean very little change.
+
+![](images/20260420_211038_image.png)
 
 ## Part 7: Calculate Percent Change
 
@@ -339,50 +359,50 @@ Absolute change is useful, but percent change often tells a clearer story becaus
 3. Name the field `pct_change`.
 4. Set the output field type to **Decimal (double)**.
 5. Use a reasonable length and precision, such as length `20` and precision `2`.
-6. Enter this expression:
+6. In the Field Calculator window, look for the list of available items in the **middle panel**.
+7. Open the **Fields and Values** section if needed.
+8. Find `MHHINC2020` and **double-click** it to place the field name into the **Expression** window, instead of typing it by hand.
+9. Repeat the same process for `MHHINC2000`.
+10. Add the operators and parentheses needed to build this expression:
 
 ```qgis
 (("MHHINC2020" - "MHHINC2000") / "MHHINC2000") * 100
 ```
 
-7. Check the preview.
-8. Click **OK**.
-9. Save your edits.
-10. Toggle editing off.
+![](images/20260420_211358_image.png)
 
-### Why percent change can be more meaningful
+11. Check the preview.
+12. Click **OK**.
+13. Save your edits.
+14. Toggle editing off.
 
-Suppose two counties each changed by `$10,000`.
-
-- If one started at `$30,000`, that change is proportionally large.
-- If one started at `$120,000`, that same change is proportionally smaller.
-
-Percent change helps capture that difference.
+> **Why double-click fields from the panel?** This helps you avoid spelling mistakes, missing underscores, or accidentally typing the wrong capitalization. Letting QGIS insert the field names for you is safer than typing them manually.
 
 ## Part 8: Map the Change
 
-Now create a choropleth map from one of your new fields.
-
-The best field for the final map is usually `pct_change`, because it allows comparison across counties with different starting values.
+Now create a choropleth map from `pct_change`, because it allows comparison across counties with different starting values.
 
 1. Open the **Layer Styling** panel for `ca_county_2020_mhhinc`.
 2. Change the symbology from **Single Symbol** to **Graduated**.
 3. Set the **Value** field to `pct_change`.
 4. Choose a color ramp that makes change easy to interpret.
 
-If your data include both positive and negative values, a diverging ramp is often appropriate because it visually separates decreases from increases.
+![](images/20260420_212003_image.png)
 
-5. Experiment with classification methods such as:
+> Note: If your data include both positive and negative values, a diverging ramp is often appropriate because it visually separates decreases from increases.
+
+Return to John Nelson's essay: [Telling Truth with Choropleth Maps](https://web.archive.org/web/20241226082540/http://uxblog.idvsolutions.com/2011/10/telling-truth.html) and review his recommendations for selecting classification methods.
+
+6. Experiment with classification methods such as:
    - **Quantile**
    - **Natural Breaks (Jenks)**
    - **Equal Interval**
-6. Try several class counts, such as `5`, `6`, or `7`.
-7. Compare how the mapped pattern changes.
+7. Try several class counts, such as `5`, `6`, or `7`.
+8. Compare how the mapped pattern changes.
 
 ### Classification reflection
 
-There is no universally correct classification for every choropleth map.
-Different methods emphasize different aspects of the distribution.
+There is no universally *correct* classification for every choropleth map. Different methods emphasize different aspects of the distribution.
 
 As you test classifications, ask:
 
@@ -393,51 +413,10 @@ As you test classifications, ask:
 
 This is the central design question in choropleth mapping.
 
-## Part 9: Check Specific Counties
-
-After symbolizing the map, use the attribute table and map together to examine a few counties more closely.
-
-1. Sort the `pct_change` field from highest to lowest.
-2. Select one of the counties with the largest increase.
-3. Zoom to it on the map.
-4. Repeat with one of the smallest values.
-5. Compare the raw values:
-   - `MHHINC2000`
-   - `MHHINC2020`
-   - `mhhinc_diff`
-   - `pct_change`
-
-This is a good reminder that maps summarize patterns, but the table gives you the exact values behind the symbols.
-
 ## To Turn In
 
-Create and export one map showing county-level change in median household income in California.
+Create a map layout showing county-level change in median household income in California.
 
-Your map should include:
+Your map should include the necessary elements, such as Title, Legend, Author Name, Date, CRS, Scale, etc...
 
-- A clear title
-- The county layer symbolized by `pct_change`
-- A legend
-- Your name
-- A basemap only if it helps rather than distracts
-- Enough visual contrast to make the county patterns readable
-
-You should also be prepared to answer these questions:
-
-1. What field did you use as the join key, and why?
-2. Why is joining one shapefile to another still a table operation?
-3. What is the difference between absolute change and percent change?
-4. Why did you choose the classification method you used for the choropleth map?
-
-## Wrap-Up
-
-This lab introduced several foundational GIS ideas at once:
-
-- Spatial layers contain attribute tables
-- Table structure matters for GIS analysis
-- Joins depend on shared key fields
-- Calculations depend on correct field types
-- Choropleth maps depend on thoughtful classification choices
-
-These ideas show up constantly in GIS work.
-If you are comfortable moving between the map, the layer properties, and the attribute table, you are building one of the core habits of spatial analysis.
+Export to PDF and submit on Canvas.
