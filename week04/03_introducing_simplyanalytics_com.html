@@ -1058,6 +1058,202 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="introducing-simplyanalyticscom">Introducing SimplyAnalytics.com</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces <strong>SimplyAnalytics</strong> as a source of county-level demographic and consumer data, then brings that exported data back into QGIS for <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
+<p>The workflow is intentionally a little strange and a little fun: you will build a county dataset for the United States containing population and <strong>annual beer consumption per capita</strong>, then <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> a national <strong>Bigfoot sightings</strong> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to counties by location.</p>
+<p>From there, the exercise splits into two possible endings:</p>
+<ol>
+<li>a map workflow that calculates and maps <strong>Bigfoot sightings per capita</strong></li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> This lab is less about proving anything meaningful about Bigfoot and more about practicing a real GIS pattern: acquire polygon data from an external reporting platform, enrich it with point events by location, then test and map possible spatial relationships.</p>
+</blockquote>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>You will need:</p>
+<ul>
+<li>access to <a href="https://simplyanalytics.com" target="_blank">SimplyAnalytics</a></li>
+<li>Stanford network access, either:<ul>
+<li>on a Stanford IP address, or</li>
+<li>through the Lean Library browser plugin</li>
+</ul>
+</li>
+<li>the local point dataset: <a href="../data/Bigfoot_Sightings.zip">Bigfoot_Sightings.zip</a></li>
+</ul>
+<h3 id="access-simplyanalytics">Access SimplyAnalytics</h3>
+<ol>
+<li>Go to <a href="https://simplyanalytics.com" target="_blank">https://simplyanalytics.com</a>.</li>
+<li>If you are off campus, make sure you are using the <strong>Lean Library</strong> access route or another Stanford-approved access path.</li>
+<li>Create an account using your Stanford credentials if you have not already done so.</li>
+</ol>
+<blockquote>
+<p><strong>Workflow note:</strong> Many licensed Stanford data platforms depend on institutional authentication. If SimplyAnalytics does not appear to give you full access, first check whether you are on Stanford IP space or whether Lean Library is active in your browser.</p>
+</blockquote>
+<h2 id="part-1-build-a-county-level-dataset-in-simplyanalytics">Part 1: Build a County-Level Dataset in SimplyAnalytics</h2>
+<p>Your goal in SimplyAnalytics is to create a U.S. county-level dataset containing at least these variables:</p>
+<ul>
+<li>total population</li>
+<li>annual beer consumption per capita</li>
+</ul>
+<h3 id="create-the-report">Create the report</h3>
+<ol>
+<li>In SimplyAnalytics, log in and start a new map, project, or report workflow.</li>
+<li>Choose the <strong>United States</strong> as your study area.</li>
+<li>Set the geography/reporting unit to <strong>County</strong>.</li>
+<li>Open the variable search or data browser panel.</li>
+<li>Search for <code>population</code> and add a total population <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to the report.</li>
+<li>Search for <code>beer</code> and look for a variable that reports <strong>annual beer consumption per capita</strong>.</li>
+<li>Add that beer-consumption variable to the same county-level report.</li>
+<li>Confirm that your results <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> is showing one <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> per U.S. county and that both variables appear as columns.</li>
+</ol>
+<p>If the interface gives you separate places to define <strong>geography</strong>, <strong>variables</strong>, and <strong><a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a></strong>, the general sequence should be:</p>
+<ol>
+<li>choose <strong>United States</strong></li>
+<li>choose <strong>Counties</strong></li>
+<li>add the variables</li>
+<li>switch to the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> view to confirm the output structure</li>
+</ol>
+<h3 id="a-more-specific-workflow-to-follow-in-the-interface">A more specific workflow to follow in the interface</h3>
+<p>Because SimplyAnalytics changes its interface occasionally, use this sequence as your guide even if button names differ slightly:</p>
+<ol>
+<li>After login, create a <strong>new project</strong>, <strong>new map</strong>, or <strong>new report</strong>.</li>
+<li>Look for a geography selector and set:<ul>
+<li><strong>Country:</strong> <code>United States</code></li>
+<li><strong>Geography level:</strong> <code>County</code></li>
+</ul>
+</li>
+<li>Open the data-variable search.</li>
+<li>Add a population variable first so you have a basic demographic <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
+<li>Then search consumer or expenditure variables for <code>beer</code>.</li>
+<li>Choose the variable that most clearly corresponds to <strong>annual beer consumption per capita</strong>.</li>
+<li>Add it to the same report.</li>
+<li>Open the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> view and scan a few records to make sure:<ul>
+<li>counties are the rows</li>
+<li>population is one <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a></li>
+<li>beer consumption per capita is another <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Workflow note:</strong> If SimplyAnalytics returns too many variable choices, prefer the one whose wording most explicitly includes both <code>beer</code> and <code>per capita</code>. Write down the exact variable name you selected so you can cite it later in your map or notes.</p>
+</blockquote>
+<h3 id="check-the-output-before-export">Check the output before export</h3>
+<p>Before exporting, make sure:</p>
+<ul>
+<li>the geography is <strong>county</strong>, not state, ZIP code, tract, or block group</li>
+<li>the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> is for the <strong>United States</strong></li>
+<li>both required variables are present</li>
+<li>the county names and identifiers look complete</li>
+<li>there are no obvious filters limiting the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to only one region</li>
+</ul>
+<h3 id="export-the-county-data">Export the county data</h3>
+<ol>
+<li>Use the export or download option for the report.</li>
+<li>Choose a format that includes geometry, ideally <strong><a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a></strong>.</li>
+<li>If SimplyAnalytics asks whether to export the current geography, make sure it is exporting the <strong>county geography</strong> and not just a non-spatial <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
+<li>Save the download somewhere stable in your Week 04 project folder.</li>
+<li>Unzip the exported <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> package if necessary.</li>
+</ol>
+<blockquote>
+<p><strong>Workflow note:</strong> If the platform does not give you a <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> export in the exact screen you are using, look for an option to export the mapped geography rather than only the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. The important outcome is a county polygon dataset with your selected attributes attached.</p>
+<p><strong>Concept note:</strong> External reporting platforms like SimplyAnalytics are useful because they package demographic and consumer variables into ready-to-map geographic units. In GIS terms, they are often giving you an already-attributed polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+</blockquote>
+<h2 id="part-2-add-the-county-and-bigfoot-data-to-qgis">Part 2: Add the County and Bigfoot Data to QGIS</h2>
+<p>Now move the exported data into QGIS and combine it with the Bigfoot points.</p>
+<ol>
+<li>Start a new QGIS project and save it in your Week 04 project folder.</li>
+<li>Add the county <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> you exported from SimplyAnalytics.</li>
+<li>Download and unzip <a href="../data/Bigfoot_Sightings.zip">Bigfoot_Sightings.zip</a>.</li>
+<li>Add the Bigfoot sightings point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the map.</li>
+<li>Inspect both <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables so you know which <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is polygon data and which <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is event-point data.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> The county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is your reporting geography. The Bigfoot <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is an event dataset. Since the sightings are points and the beer data is by county polygon, the relationship between them has to be created spatially.</p>
+</blockquote>
+<h2 id="part-3-count-bigfoot-sightings-by-county-with-a-spatial-join">Part 3: Count Bigfoot Sightings by County with a Spatial Join</h2>
+<p>Use a <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>-by-location workflow to count how many sightings fall inside each county.</p>
+<ol>
+<li>Open the <strong>Processing Toolbox</strong>.</li>
+<li>Search for <strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> attributes by location (summary)</strong>.</li>
+<li>Set:<ul>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> the county polygons from SimplyAnalytics</li>
+<li><strong><a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">Join</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> the Bigfoot sightings points</li>
+</ul>
+</li>
+<li>Use an intersect or within-style spatial relationship so each county receives the points located inside it.</li>
+<li>In the summary options, calculate the <strong>count</strong> of joined Bigfoot points.</li>
+<li>Save the result as a new county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, something like <code>counties_bigfoot_joined.gpkg</code>.</li>
+</ol>
+<p>Open the resulting <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and confirm that each county now has a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> representing the number of Bigfoot sightings within that county.</p>
+<blockquote>
+<p><strong>Concept note:</strong> This is a classic point-in-polygon aggregation. The point data is being summarized up to the polygon unit by location, not by any shared <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> key.</p>
+</blockquote>
+<h2 id="part-4-calculate-bigfoot-sightings-per-capita">Part 4: Calculate Bigfoot Sightings Per Capita</h2>
+<p>Now create a normalized variable so the result is not just dominated by the largest-population counties.</p>
+<ol>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> on the joined county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Create a new decimal <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named something like <code>bf_percap</code>.</li>
+<li>Build an expression that divides the Bigfoot sighting count by total population.</li>
+</ol>
+<p>Depending on your <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> names, this will look something like:</p>
+<pre><code class="lang-qgis">"bigfoot_count" / "population"
+</code></pre>
+<p>If you prefer a more readable rate, you can also calculate sightings per 100,000 residents:</p>
+<pre><code class="lang-qgis">("bigfoot_count" / "population") * 100000
+</code></pre>
+<ol>
+<li>Save the new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> Per-capita normalization matters because raw counts often reflect where more people live, not where a phenomenon is disproportionately common.</p>
+</blockquote>
+<h2 id="part-5-map-bigfoot-sightings-per-capita">Part 5: Map Bigfoot Sightings Per Capita</h2>
+<p>At this point, everyone should have a county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with:</p>
+<ul>
+<li>population</li>
+<li>beer consumption per capita</li>
+<li>Bigfoot sighting count</li>
+<li>Bigfoot sightings per capita</li>
+</ul>
+<p>Create a <a href="../GLOSSARY.html#choropleth-map" class="glossary-term" title="A map that uses differences in color or shading to show how a value varies across areas such as counties, census tracts, or states. Choropleth maps depend heavily on sensible classification and symbol choices.">choropleth map</a> showing the rate of Bigfoot sightings per capita.</p>
+<ol>
+<li>Use the joined county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as your map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel.</li>
+<li>Choose <strong>Graduated</strong> <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a>.</li>
+<li>Use the <code>bf_percap</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> or your rate <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> as the value.</li>
+<li>Choose a <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method and color ramp that make the pattern readable.</li>
+<li>Create a layout and export a final map.</li>
+</ol>
+<h2 id="deliverable">Deliverable</h2>
+<p>Submit:</p>
+<ul>
+<li>a final map of <strong>Bigfoot sightings per capita by county</strong></li>
+</ul>
+<h3 id="what-to-think-about">What to Think About</h3>
+<p>As you interpret the map, consider:</p>
+<ul>
+<li>whether raw counts and per-capita rates tell the same story</li>
+<li>whether rare-event mapping becomes unstable in low-population counties</li>
+<li>whether the mapped pattern looks regionally clustered</li>
+</ul>
+<h2 id="suggested-maplayout-elements">Suggested Map/Layout Elements</h2>
+<p>Include:</p>
+<ul>
+<li>a title</li>
+<li>your name</li>
+<li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
+<li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar if appropriate</li>
+<li>a short note describing the main mapped variable</li>
+</ul>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>how an external reporting platform can provide ready-to-map polygon data</li>
+<li>how a spatial <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> can aggregate point events to counties</li>
+<li>why per-capita normalization changes interpretation</li>
+</ul>
 
                                 
                                 </section>
@@ -1101,7 +1297,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - Introducing SimplyAnalytics.com","level":"1.7.4","depth":2,"next":{"title":"05 - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/05_tabular_vector_data_in_google_earth_engine.md","ref":"week04/05_tabular_vector_data_in_google_earth_engine.md","articles":[]},"previous":{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/03_introducing_simplyanalytics_com.md","mtime":"2026-04-21T19:35:52.925Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:36:06.450Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - Introducing SimplyAnalytics.com","level":"1.7.4","depth":2,"next":{"title":"05 - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/05_tabular_vector_data_in_google_earth_engine.md","ref":"week04/05_tabular_vector_data_in_google_earth_engine.md","articles":[]},"previous":{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/03_introducing_simplyanalytics_com.md","mtime":"2026-04-21T20:51:34.998Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T20:51:44.073Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
