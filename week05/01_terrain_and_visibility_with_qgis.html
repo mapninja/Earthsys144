@@ -59,7 +59,7 @@
     <link rel="next" href="02_visibility_analysis_with_qgis.html" />
     
     
-    <link rel="prev" href="00_basic_raster_analysis_with_google_earth_engine.html" />
+    <link rel="prev" href="00_basic_raster_analysis_with_google_earth_engine.md" />
     
 
     </head>
@@ -574,9 +574,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.1" data-path="00_basic_raster_analysis_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.8.1" data-path="00_basic_raster_analysis_with_google_earth_engine.md">
             
-                <a href="00_basic_raster_analysis_with_google_earth_engine.html">
+                <span>
             
                     
                     00 - Basic Raster Analysis with Google Earth Engine
@@ -1110,9 +1110,11 @@
 <li><code>valley9.tif</code></li>
 </ul>
 <p>Both are DEMs of the same general area, but they differ in <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> and coverage.</p>
+<p>All elevation values are in meters, and both rasters are in the same projected <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>. The important difference is their cell size and spatial extent.</p>
 <h2 id="part-1-add-the-dems-and-compare-their-extent">Part 1: Add the DEMs and Compare Their Extent</h2>
 <ol>
 <li>Add <code>valley3.tif</code> and <code>valley9.tif</code> to QGIS.</li>
+<li>If QGIS prompts you about coordinate transformations, accept the default.</li>
 <li>Arrange the layers so <code>valley3</code> is on top.</li>
 <li>Toggle the layers on and off to compare their extents.</li>
 <li>Turn off <code>valley9</code> temporarily and inspect the footprint of <code>valley3</code>.</li>
@@ -1122,6 +1124,11 @@
 <blockquote>
 <p><strong>Concept note:</strong> The higher-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> DEM does not cover the whole study area. That incomplete coverage is why the merge is needed.</p>
 </blockquote>
+<p><img src="images/20250427_143640_image.png" alt=""></img></p>
+<p>With <code>valley9</code> turned off, the <code>valley3</code> footprint should appear as a more limited, winding patch of higher-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> terrain:</p>
+<p><img src="images/Raster_and_Terrain-d9569efc.png" alt=""></img></p>
+<p>When you use the identify tool, cells outside the real <code>valley3</code> coverage should report <code>NoData</code>:</p>
+<p><img src="images/Raster_and_Terrain-664541cd.png" alt=""></img></p>
 <h2 id="part-2-create-hillshades-to-compare-detail">Part 2: Create Hillshades to Compare Detail</h2>
 <p>Hillshades make differences in terrain detail easier to see.</p>
 <ol>
@@ -1140,6 +1147,14 @@
 <blockquote>
 <p><strong>Concept note:</strong> Hillshade is a <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> derived from elevation, not a new measurement of terrain. It is useful here because it makes the <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> difference between the two DEMs easier to interpret visually.</p>
 </blockquote>
+<p>Use settings like these for <code>valley3</code>:</p>
+<p><img src="images/20250427_144050_image.png" alt=""></img></p>
+<p>Then repeat for <code>valley9</code>:</p>
+<p><img src="images/20250427_144208_image.png" alt=""></img></p>
+<p>Place <code>hillshade3</code> above <code>hillshade9</code>:</p>
+<p><img src="images/20250427_144244_image.png" alt=""></img></p>
+<p>As you zoom in and out, you should be able to see the finer terrain detail preserved in the higher-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</p>
+<p><img src="images/20250427_144306_image.png" alt=""></img></p>
 <h2 id="part-3-replace-nodata-in-the-high-resolution-dem">Part 3: Replace NoData in the High-Resolution DEM</h2>
 <p>Before combining the DEMs, convert the <code>NoData</code> cells in the high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> to zeros.</p>
 <ol>
@@ -1153,6 +1168,9 @@
 <blockquote>
 <p><strong>Concept note:</strong> Many <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> operations return <code>NoData</code> whenever any input cell is <code>NoData</code>. Converting the missing area to a known placeholder value lets you use a conditional rule later to decide where the high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> should and should not be used.</p>
 </blockquote>
+<p><img src="images/20250427_144556_image.png" alt=""></img></p>
+<p>The output should look different from the original because the background that used to be transparent is now filled with <code>0</code> values:</p>
+<p><img src="images/20250427_144606_image.png" alt=""></img></p>
 <h2 id="part-4-resample-the-coarser-dem-to-match-the-finer-grid">Part 4: Resample the Coarser DEM to Match the Finer Grid</h2>
 <p>Now make the <code>9 meter</code> DEM match the cell size of the <code>3 meter</code> DEM.</p>
 <ol>
@@ -1167,6 +1185,12 @@
 <blockquote>
 <p><strong>Concept note:</strong> Nearest-neighbor resampling preserves the original elevation values from the coarse DEM. It does not invent smoother intermediate values; it simply fits the original values into a finer grid structure.</p>
 </blockquote>
+<p>When selecting the input file in WhiteboxTools, use the file picker to choose <code>valley9</code>:</p>
+<p><img src="images/Raster_and_Terrain-98acc163.png" alt=""></img></p>
+<p>Use <code>valley3nonull</code> as the base <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and <code>nn</code> for the resample method:</p>
+<p><img src="images/20250427_150439_image.png" alt=""></img></p>
+<p>Then check the output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> information to confirm the new <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> size:</p>
+<p><img src="images/20250427_150542_image.png" alt=""></img></p>
 <h2 id="part-5-merge-the-dems-with-conditional-evaluation">Part 5: Merge the DEMs with Conditional Evaluation</h2>
 <p>Now combine the two rasters so the fine DEM is used where it has real data, and the resampled coarse DEM is used everywhere else.</p>
 <ol>
@@ -1189,6 +1213,8 @@
 <blockquote>
 <p><strong>Concept note:</strong> This is a simple <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> map-algebra decision rule. It uses the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell value itself to determine which source <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> contributes to the final merged DEM.</p>
 </blockquote>
+<p>Use settings like these:</p>
+<p><img src="images/20250427_154549_image.png" alt=""></img></p>
 <h2 id="part-6-create-and-inspect-a-hillshade-of-the-merged-dem">Part 6: Create and Inspect a Hillshade of the Merged DEM</h2>
 <ol>
 <li>Run the <strong>Hillshade</strong> tool again using <code>valley_merged</code> as the elevation <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
@@ -1204,6 +1230,10 @@
 <blockquote>
 <p><strong>Workflow note:</strong> Some checkerboard-like visual patterning may appear depending on zoom <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> and display resampling. That is partly a display issue and partly a reminder that the merged DEM contains information from rasters with different original resolutions.</p>
 </blockquote>
+<p>You should see a merged terrain surface with finer detail in the valley bottom and coarser detail in the uplands:</p>
+<p><img src="images/20250427_154832_image.png" alt=""></img></p>
+<p>If checkerboard patterning is distracting, adjust the display resampling in <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> properties or styling:</p>
+<p><img src="images/Raster_and_Terrain-4d125790.png" alt=""></img></p>
 <h2 id="part-7-style-the-final-dem-for-terrain-visualization">Part 7: Style the Final DEM for Terrain Visualization</h2>
 <ol>
 <li>Place <code>valley_merged</code> above its hillshade <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
@@ -1221,6 +1251,10 @@
 <blockquote>
 <p><strong>Concept note:</strong> A colored DEM and a hillshade often work well together because the color communicates elevation categories while the hillshade communicates shape and relief.</p>
 </blockquote>
+<p>Use settings similar to these as a starting point:</p>
+<p><img src="images/20250427_155637_image.png" alt=""></img></p>
+<p>The result should allow the hillshade to enrich the colored DEM:</p>
+<p><img src="images/20250427_155808_image.png" alt=""></img></p>
 <h2 id="deliverable">Deliverable</h2>
 <p>Create and export a final layout of the merged terrain surface.</p>
 <p>Include:</p>
@@ -1232,6 +1266,8 @@
 <li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
 <li>the CRS name and EPSG code somewhere in the layout</li>
 </ul>
+<p>The old exercise expected a full cartographic layout, not just a screenshot of the map canvas. If you want a model for the level of finish expected, aim for something like this:</p>
+<p><img src="images/Raster_and_Terrain-c231010e.png" alt=""></img></p>
 <h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
 <p>By the end of this exercise, you should be able to explain:</p>
 <ul>
@@ -1267,7 +1303,7 @@
 
             
                 
-                <a href="00_basic_raster_analysis_with_google_earth_engine.html" class="navigation navigation-prev " aria-label="Previous page: 00 - Basic Raster Analysis with Google Earth Engine">
+                <a href="00_basic_raster_analysis_with_google_earth_engine.md" class="navigation navigation-prev " aria-label="Previous page: 00 - Basic Raster Analysis with Google Earth Engine">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1283,7 +1319,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.2","depth":2,"next":{"title":"02 - Visibility Analysis with QGIS","level":"1.8.3","depth":2,"path":"week05/02_visibility_analysis_with_qgis.md","ref":"week05/02_visibility_analysis_with_qgis.md","articles":[]},"previous":{"title":"00 - Basic Raster Analysis with Google Earth Engine","level":"1.8.1","depth":2,"path":"week05/00_basic_raster_analysis_with_google_earth_engine.md","ref":"week05/00_basic_raster_analysis_with_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/01_terrain_and_visibility_with_qgis.md","mtime":"2026-04-21T20:51:34.998Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T20:51:44.073Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.2","depth":2,"next":{"title":"02 - Visibility Analysis with QGIS","level":"1.8.3","depth":2,"path":"week05/02_visibility_analysis_with_qgis.md","ref":"week05/02_visibility_analysis_with_qgis.md","articles":[]},"previous":{"title":"00 - Basic Raster Analysis with Google Earth Engine","level":"1.8.1","depth":2,"path":"week05/00_basic_raster_analysis_with_google_earth_engine.md","ref":"week05/00_basic_raster_analysis_with_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/01_terrain_and_visibility_with_qgis.md","mtime":"2026-04-21T21:10:44.129Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T21:10:54.799Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
