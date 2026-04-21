@@ -10,7 +10,6 @@ The Week 03 materials now follow this sequence:
 2. **Basic Table Joins and Calculations in QGIS**
 3. **SQL Operations in QGIS**
 4. **Cartographic Design Basics**
-5. **Tabular/Vector Data in Google Earth Engine**
 
 In addition, following David Medeiros' Wednesday cartographic design lecture, you should also complete his **Poster Redesign Exercise** in QGIS.
 
@@ -22,10 +21,6 @@ Please complete the following assigned work:
 2. [02 - Basic Table Joins and Calculations in QGIS](https://mapninja.github.io/Earthsys144/week03/02_basic_table_joins_and_calculations.html)
 3. [03 - SQL Operations in QGIS](https://mapninja.github.io/Earthsys144/week03/03_sql_operations_in_qgis.html)
 4. [Poster Redesign Exercise - David Medeiros, Cartography with QGIS, Module 2](https://sites.google.com/stanford.edu/cartographywithqgis/module-2?authuser=0)
-
-You should also begin looking at:
-
-5. [05 - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week03/05_tabular_vector_data_in_google_earth_engine.html)
 
 ## Exercise Notes
 
@@ -52,19 +47,6 @@ Please complete this exercise **in QGIS** and **export your redesigned poster as
 
 This exercise is meant to shift your attention from "can I make a map?" to "can I improve the visual communication of a map layout?" That means typography, hierarchy, balance, spacing, legend cleanup, and general presentation all matter here.
 
-## [05 - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week03/05_tabular_vector_data_in_google_earth_engine.html)
-
-This Earth Engine exercise is **not complete yet**, but it will progressively walk you through importing and using feature collections for measurement and summary of pixel data.
-
-The eventual turn-in will follow the usual Earth Engine submission pattern:
-
-1. Complete the final script.
-2. Alter it to focus on another location and time.
-3. Create a new **Get Link** URL.
-4. Turn that link in inside a PDF document.
-
-For now, you should treat this as a developing exercise that will become part of the assignment sequence as the materials are finalized.
-
 ## What Students Should Submit
 
 Please submit the following:
@@ -74,7 +56,7 @@ Please submit the following:
 3. A PDF exported from QGIS for **SQL Operations in QGIS**.
 4. A PDF exported from QGIS for the **Poster Redesign Exercise**.
 
-The Google Earth Engine exercise is not yet complete, so it is not the main focus of this week's graded turn-ins yet. Once it is finalized, the turn-in will be a shared **Get Link** URL included in a PDF document.
+The Feature Collections lab in Google Earth Engine has been moved to next week. It will return when we begin analysis workflows, so you should expect to see it again as part of the Week 04 sequence.
 
 ## Week 03 Overview
 
