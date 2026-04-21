@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>02 - Watershed with QGIS & WhiteBox Tools · HonKit</title>
+        <title>02 - Visibility Analysis with QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="03_introducing_storymaps_on_arcgis_online.html" />
+    <link rel="next" href="03_watershed_with_qgis_and_whitebox_tools.html" />
     
     
     <link rel="prev" href="01_terrain_and_visibility_with_qgis.html" />
@@ -592,7 +592,7 @@
                 <a href="01_terrain_and_visibility_with_qgis.html">
             
                     
-                    01 - Terrain & Visibility with QGIS
+                    01 - Terrain Data Preparation and DEM Merging with QGIS
             
                 </a>
             
@@ -600,12 +600,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.8.3" data-path="02_watershed_with_qgis_and_whitebox_tools.html">
+        <li class="chapter active" data-level="1.8.3" data-path="02_visibility_analysis_with_qgis.html">
             
-                <a href="02_watershed_with_qgis_and_whitebox_tools.html">
+                <a href="02_visibility_analysis_with_qgis.html">
             
                     
-                    02 - Watershed with QGIS & WhiteBox Tools
+                    02 - Visibility Analysis with QGIS
             
                 </a>
             
@@ -613,12 +613,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.4" data-path="03_introducing_storymaps_on_arcgis_online.html">
+        <li class="chapter " data-level="1.8.4" data-path="03_watershed_with_qgis_and_whitebox_tools.html">
             
-                <a href="03_introducing_storymaps_on_arcgis_online.html">
+                <a href="03_watershed_with_qgis_and_whitebox_tools.html">
             
                     
-                    03 - Introducing StoryMaps on ArcGIS Online
+                    03 - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="04_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="04_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    04 - Introducing StoryMaps on ArcGIS Online
             
                 </a>
             
@@ -1029,7 +1042,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >02 - Watershed with QGIS & WhiteBox Tools</a>
+        <a href=".." >02 - Visibility Analysis with QGIS</a>
     </h1>
 </div>
 
@@ -1044,7 +1057,130 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="watershed-with-qgis--whitebox-tools">Watershed with QGIS &amp; WhiteBox Tools</h1>
+                                <h1 id="visibility-analysis-with-qgis">Visibility Analysis with QGIS</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces two related terrain-analysis workflows:</p>
+<ol>
+<li>generating an elevation profile along a line of sight</li>
+<li>calculating a viewshed from an observation point</li>
+</ol>
+<p>Both workflows use a DEM to ask questions about what the terrain allows someone to see.</p>
+<p>You will:</p>
+<ol>
+<li>load a terrain model and line-of-sight features</li>
+<li>create a terrain profile along a specified line</li>
+<li>run a viewshed from a viewing station</li>
+<li>style the results for interpretation and map output</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> Visibility analysis depends on both the elevation surface and the observer location. A DEM is not just a background <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> here; it is the mathematical surface used to test whether terrain blocks or allows visibility.</p>
+</blockquote>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>You will need:</p>
+<ul>
+<li><a href="../data/L11.zip">L11.zip</a></li>
+<li><a href="../data/ViewStationSHP.zip">ViewStationSHP.zip</a> if you need a replacement viewing-station <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a></li>
+<li>WhiteboxTools installed in QGIS</li>
+</ul>
+<h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
+<ol>
+<li>Download <a href="../data/L11.zip">L11.zip</a>.</li>
+<li>If needed, also download <a href="../data/ViewStationSHP.zip">ViewStationSHP.zip</a>.</li>
+<li>Unzip the files somewhere stable on your computer.</li>
+<li>Create a project folder for this lab.</li>
+<li>Save a new QGIS project in that folder as <code>visibility_analysis.qgz</code>.</li>
+</ol>
+<h2 id="data-for-this-exercise">Data for This Exercise</h2>
+<p>The main files are:</p>
+<ul>
+<li><code>Qdrift.tif</code></li>
+<li><code>ViewingStation.shp</code></li>
+<li><code>sight.shp</code></li>
+</ul>
+<p>All are in <code>NAD83 UTM Zone 15</code> with elevation values in meters.</p>
+<h2 id="part-1-set-up-the-visibility-project">Part 1: Set Up the Visibility Project</h2>
+<ol>
+<li>Start a new QGIS project.</li>
+<li>Add <code>Qdrift.tif</code>, <code>ViewingStation.shp</code>, and <code>sight.shp</code>.</li>
+<li>Move the shapefiles above the DEM if needed.</li>
+<li>Use the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel to make the viewing station and line of sight easier to see.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> The point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> identifies the observer location. The line <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> identifies a specific directional slice through the terrain that will be used for the elevation profile.</p>
+</blockquote>
+<h2 id="part-2-create-a-terrain-profile">Part 2: Create a Terrain Profile</h2>
+<p>Use the profile tool to examine how elevation changes along the line of sight.</p>
+<ol>
+<li>Open the <strong>Processing Toolbox</strong>.</li>
+<li>Search for <strong>Profile</strong> in <strong>WhiteboxTools</strong>.</li>
+<li>Set:<ul>
+<li><strong>Input surface file:</strong> <code>Qdrift</code></li>
+<li><strong>Input <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> line file:</strong> <code>sight.shp</code></li>
+</ul>
+</li>
+<li>Save the HTML output to your project folder.</li>
+<li>Run the tool.</li>
+</ol>
+<p>The tool should open a browser page or HTML output showing the terrain profile along the line.</p>
+<p>Take a screenshot of that profile for later use in your final layout.</p>
+<blockquote>
+<p><strong>Concept note:</strong> A terrain profile reduces the 3D terrain surface to a 2D cross-section along one line. It is useful for seeing ridges, depressions, and potential sight obstructions along a chosen path.</p>
+</blockquote>
+<h2 id="part-3-create-a-viewshed">Part 3: Create a Viewshed</h2>
+<p>Now calculate which parts of the DEM are visible from the viewing station.</p>
+<ol>
+<li>In the <strong>Processing Toolbox</strong>, search for <strong>Viewshed</strong> under <strong>WhiteboxTools</strong>.</li>
+<li>Set:<ul>
+<li><strong>Input DEM:</strong> <code>Qdrift</code></li>
+<li><strong>Input viewing station file:</strong> <code>ViewingStation</code></li>
+<li><strong>Station height:</strong> <code>1.8</code></li>
+</ul>
+</li>
+<li>Save the output as <code>viewshed.tif</code>.</li>
+<li>Run the tool.</li>
+</ol>
+<p>The output should show visible and not-visible areas as <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values.</p>
+<blockquote>
+<p><strong>Concept note:</strong> The station height represents the observer's eye height above the ground. Changing it changes the visibility result because the line of sight begins from a different elevation above the terrain surface.</p>
+</blockquote>
+<h2 id="part-4-style-the-viewshed-for-interpretation">Part 4: Style the Viewshed for Interpretation</h2>
+<p>The default grayscale output is not especially useful, so restyle it.</p>
+<ol>
+<li>Select the <code>viewshed</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel.</li>
+<li>Change the render type from <strong>Singleband gray</strong> to <strong>Paletted/Unique values</strong>.</li>
+<li>Click <strong>Classify</strong>.</li>
+<li>For the class representing non-visible cells, change the opacity to <code>0</code>.</li>
+<li>For the class representing visible cells, choose a clear color of your choice.</li>
+</ol>
+<p>This should allow the visible area to display on top of the DEM while leaving the non-visible area transparent.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Making the invisible areas transparent helps the visibility result function as an analytical overlay rather than as a separate <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> competing visually with the terrain beneath it.</p>
+</blockquote>
+<h2 id="deliverable">Deliverable</h2>
+<p>Create and export a final layout that includes:</p>
+<ul>
+<li>the DEM as terrain context</li>
+<li>the viewing station</li>
+<li>the styled viewshed result</li>
+<li>the line of sight</li>
+<li>a screenshot of the profile result placed in the layout</li>
+<li>a title</li>
+<li>your name</li>
+<li>the date</li>
+<li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
+<li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> if it helps interpretation</li>
+</ul>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>how a terrain profile differs from a viewshed</li>
+<li>why observer location and observer height matter in visibility analysis</li>
+<li>how DEM-based visibility analysis uses the terrain surface to evaluate line of sight</li>
+</ul>
 
                                 
                                 </section>
@@ -1072,12 +1208,12 @@
 
             
                 
-                <a href="01_terrain_and_visibility_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 01 - Terrain & Visibility with QGIS">
+                <a href="01_terrain_and_visibility_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 01 - Terrain Data Preparation and DEM Merging with QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="03_introducing_storymaps_on_arcgis_online.html" class="navigation navigation-next " aria-label="Next page: 03 - Introducing StoryMaps on ArcGIS Online">
+                <a href="03_watershed_with_qgis_and_whitebox_tools.html" class="navigation navigation-next " aria-label="Next page: 03 - Watershed with QGIS & WhiteBox Tools">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1088,7 +1224,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"next":{"title":"03 - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/03_introducing_storymaps_on_arcgis_online.md","ref":"week05/03_introducing_storymaps_on_arcgis_online.md","articles":[]},"previous":{"title":"01 - Terrain & Visibility with QGIS","level":"1.8.2","depth":2,"path":"week05/01_terrain_and_visibility_with_qgis.md","ref":"week05/01_terrain_and_visibility_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/02_watershed_with_qgis_and_whitebox_tools.md","mtime":"2026-04-21T19:12:26.264Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:12:39.496Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - Visibility Analysis with QGIS","level":"1.8.3","depth":2,"next":{"title":"03 - Watershed with QGIS & WhiteBox Tools","level":"1.8.4","depth":2,"path":"week05/03_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"previous":{"title":"01 - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.2","depth":2,"path":"week05/01_terrain_and_visibility_with_qgis.md","ref":"week05/01_terrain_and_visibility_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/02_visibility_analysis_with_qgis.md","mtime":"2026-04-21T19:35:52.925Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T19:36:06.450Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
