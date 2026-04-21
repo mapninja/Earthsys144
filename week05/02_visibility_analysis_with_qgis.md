@@ -46,6 +46,8 @@ The main files are:
 
 All are in `NAD83 UTM Zone 15` with elevation values in meters.
 
+If the `ViewingStation.shp` file in your copy of the lab data is not usable, use the replacement in [ViewStationSHP.zip](../data/ViewStationSHP.zip).
+
 ## Part 1: Set Up the Visibility Project
 
 1. Start a new QGIS project.
@@ -54,6 +56,10 @@ All are in `NAD83 UTM Zone 15` with elevation values in meters.
 4. Use the **Layer Styling** panel to make the viewing station and line of sight easier to see.
 
 > **Concept note:** The point layer identifies the observer location. The line layer identifies a specific directional slice through the terrain that will be used for the elevation profile.
+
+Your starting map should look something like this, with the viewing station and sight line visible over the DEM:
+
+![](images/Raster_and_Terrain-f4b39d3a.png)
 
 ## Part 2: Create a Terrain Profile
 
@@ -73,6 +79,14 @@ Take a screenshot of that profile for later use in your final layout.
 
 > **Concept note:** A terrain profile reduces the 3D terrain surface to a 2D cross-section along one line. It is useful for seeing ridges, depressions, and potential sight obstructions along a chosen path.
 
+Use settings like these:
+
+![](images/20250427_160238_image.png)
+
+The output should open as an HTML page in your browser:
+
+![](images/Raster_and_Terrain-a790b290.png)
+
 ## Part 3: Create a Viewshed
 
 Now calculate which parts of the DEM are visible from the viewing station.
@@ -89,6 +103,14 @@ The output should show visible and not-visible areas as raster values.
 
 > **Concept note:** The station height represents the observer's eye height above the ground. Changing it changes the visibility result because the line of sight begins from a different elevation above the terrain surface.
 
+Use settings like these:
+
+![](images/20250427_160447_image.png)
+
+The raw output will usually look something like this before you restyle it:
+
+![](images/Raster_and_Terrain-a1d6b193.png)
+
 ## Part 4: Style the Viewshed for Interpretation
 
 The default grayscale output is not especially useful, so restyle it.
@@ -104,6 +126,14 @@ This should allow the visible area to display on top of the DEM while leaving th
 
 > **Concept note:** Making the invisible areas transparent helps the visibility result function as an analytical overlay rather than as a separate raster competing visually with the terrain beneath it.
 
+The old workflow specifically used the palette classification step and then changed the classes manually:
+
+![](images/Raster_and_Terrain-36f44398.png)
+
+Your styled result should allow the visible area to stand out clearly over the DEM:
+
+![](images/20250427_160646_image.png)
+
 ## Deliverable
 
 Create and export a final layout that includes:
@@ -118,6 +148,8 @@ Create and export a final layout that includes:
 - the date
 - a scale bar
 - a legend if it helps interpretation
+
+Take and save the profile screenshot before you close the browser output, since it is part of the expected final layout from the original workflow.
 
 ## What You Should Understand After This Lab
 

@@ -56,16 +56,29 @@ The main raster layers are:
 
 Both are DEMs of the same general area, but they differ in resolution and coverage.
 
+All elevation values are in meters, and both rasters are in the same projected coordinate system. The important difference is their cell size and spatial extent.
+
 ## Part 1: Add the DEMs and Compare Their Extent
 
 1. Add `valley3.tif` and `valley9.tif` to QGIS.
-2. Arrange the layers so `valley3` is on top.
-3. Toggle the layers on and off to compare their extents.
-4. Turn off `valley9` temporarily and inspect the footprint of `valley3`.
-5. Use **Identify Features** on the `valley3` raster.
-6. Click both inside and outside the visible valley area to compare valid elevation cells with `NoData` cells.
+2. If QGIS prompts you about coordinate transformations, accept the default.
+3. Arrange the layers so `valley3` is on top.
+4. Toggle the layers on and off to compare their extents.
+5. Turn off `valley9` temporarily and inspect the footprint of `valley3`.
+6. Use **Identify Features** on the `valley3` raster.
+7. Click both inside and outside the visible valley area to compare valid elevation cells with `NoData` cells.
 
 > **Concept note:** The higher-resolution DEM does not cover the whole study area. That incomplete coverage is why the merge is needed.
+
+![](images/20250427_143640_image.png)
+
+With `valley9` turned off, the `valley3` footprint should appear as a more limited, winding patch of higher-resolution terrain:
+
+![](images/Raster_and_Terrain-d9569efc.png)
+
+When you use the identify tool, cells outside the real `valley3` coverage should report `NoData`:
+
+![](images/Raster_and_Terrain-664541cd.png)
 
 ## Part 2: Create Hillshades to Compare Detail
 
@@ -83,6 +96,22 @@ Hillshades make differences in terrain detail easier to see.
 
 > **Concept note:** Hillshade is a visualization derived from elevation, not a new measurement of terrain. It is useful here because it makes the resolution difference between the two DEMs easier to interpret visually.
 
+Use settings like these for `valley3`:
+
+![](images/20250427_144050_image.png)
+
+Then repeat for `valley9`:
+
+![](images/20250427_144208_image.png)
+
+Place `hillshade3` above `hillshade9`:
+
+![](images/20250427_144244_image.png)
+
+As you zoom in and out, you should be able to see the finer terrain detail preserved in the higher-resolution layer:
+
+![](images/20250427_144306_image.png)
+
 ## Part 3: Replace NoData in the High-Resolution DEM
 
 Before combining the DEMs, convert the `NoData` cells in the high-resolution raster to zeros.
@@ -97,6 +126,12 @@ Inspect the output and confirm that the previously transparent `NoData` area is 
 
 > **Concept note:** Many raster operations return `NoData` whenever any input cell is `NoData`. Converting the missing area to a known placeholder value lets you use a conditional rule later to decide where the high-resolution raster should and should not be used.
 
+![](images/20250427_144556_image.png)
+
+The output should look different from the original because the background that used to be transparent is now filled with `0` values:
+
+![](images/20250427_144606_image.png)
+
 ## Part 4: Resample the Coarser DEM to Match the Finer Grid
 
 Now make the `9 meter` DEM match the cell size of the `3 meter` DEM.
@@ -110,6 +145,18 @@ Now make the `9 meter` DEM match the cell size of the `3 meter` DEM.
 7. Open **Layer Properties > Information** for the new raster and verify that the pixel size is `3` by `3` meters.
 
 > **Concept note:** Nearest-neighbor resampling preserves the original elevation values from the coarse DEM. It does not invent smoother intermediate values; it simply fits the original values into a finer grid structure.
+
+When selecting the input file in WhiteboxTools, use the file picker to choose `valley9`:
+
+![](images/Raster_and_Terrain-98acc163.png)
+
+Use `valley3nonull` as the base raster and `nn` for the resample method:
+
+![](images/20250427_150439_image.png)
+
+Then check the output layer information to confirm the new pixel size:
+
+![](images/20250427_150542_image.png)
 
 ## Part 5: Merge the DEMs with Conditional Evaluation
 
@@ -131,6 +178,10 @@ This logic means:
 
 > **Concept note:** This is a simple raster map-algebra decision rule. It uses the raster cell value itself to determine which source raster contributes to the final merged DEM.
 
+Use settings like these:
+
+![](images/20250427_154549_image.png)
+
 ## Part 6: Create and Inspect a Hillshade of the Merged DEM
 
 1. Run the **Hillshade** tool again using `valley_merged` as the elevation layer.
@@ -144,6 +195,14 @@ You should see:
 - possibly a visible seam where the two datasets meet
 
 > **Workflow note:** Some checkerboard-like visual patterning may appear depending on zoom scale and display resampling. That is partly a display issue and partly a reminder that the merged DEM contains information from rasters with different original resolutions.
+
+You should see a merged terrain surface with finer detail in the valley bottom and coarser detail in the uplands:
+
+![](images/20250427_154832_image.png)
+
+If checkerboard patterning is distracting, adjust the display resampling in layer properties or styling:
+
+![](images/Raster_and_Terrain-4d125790.png)
 
 ## Part 7: Style the Final DEM for Terrain Visualization
 
@@ -160,6 +219,14 @@ This should allow the hillshade beneath the DEM to contribute subtle topographic
 
 > **Concept note:** A colored DEM and a hillshade often work well together because the color communicates elevation categories while the hillshade communicates shape and relief.
 
+Use settings similar to these as a starting point:
+
+![](images/20250427_155637_image.png)
+
+The result should allow the hillshade to enrich the colored DEM:
+
+![](images/20250427_155808_image.png)
+
 ## Deliverable
 
 Create and export a final layout of the merged terrain surface.
@@ -172,6 +239,10 @@ Include:
 - a scale bar
 - a legend
 - the CRS name and EPSG code somewhere in the layout
+
+The old exercise expected a full cartographic layout, not just a screenshot of the map canvas. If you want a model for the level of finish expected, aim for something like this:
+
+![](images/Raster_and_Terrain-c231010e.png)
 
 ## What You Should Understand After This Lab
 
