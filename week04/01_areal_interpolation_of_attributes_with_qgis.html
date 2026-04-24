@@ -1062,26 +1062,41 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces <strong>areal interpolation</strong> in QGIS.</p>
-<p>The main problem is a common one in GIS: we want to summarize population by <strong>watershed basin</strong>, but the population data is stored by <strong>Census block group</strong>. Those two boundary systems do not line up neatly. Some block groups fall entirely within one watershed, while others cross watershed boundaries.</p>
-<p>To handle that mismatch, you will:</p>
+<p>This lab uses <strong>areal interpolation</strong> to estimate population totals for a set of watershed polygons.</p>
+<p>The problem is that the population data and the reporting geography do not use the same boundaries:</p>
+<ol>
+<li><code>CT_Block_Groups</code> contains the source population data</li>
+<li><code>CT_Major_Basins</code> contains the watershed boundaries you want to summarize to</li>
+</ol>
+<p>Because those polygon systems do not align, you cannot use a simple <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>. Instead, you will:</p>
 <ol>
 <li>calculate the original area of each Census block group</li>
-<li>split the block groups where they intersect watershed boundaries</li>
-<li>calculate the area of the resulting child polygons</li>
-<li>compute a weight based on the proportion of overlap</li>
-<li>use that weight to estimate the share of population assigned to each watershed piece</li>
+<li>split block groups where they intersect watershed boundaries</li>
+<li>calculate the area of the resulting overlap polygons</li>
+<li>convert those overlap areas into weights</li>
+<li>use those weights to estimate population by watershed piece</li>
 <li>summarize the weighted population by watershed</li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> Areal interpolation is used when attributes are available for one set of polygons, but the analysis needs to be reported for a different set of polygons. In this lab, the key assumption is simple area weighting: if 40% of a block group's area falls inside a watershed, we will estimate that 40% of the block group's population belongs to that watershed piece.</p>
+<p><strong>Concept note:</strong> Areal interpolation is useful whenever attributes are reported for one set of polygons, but the question you want to answer belongs to another set of polygons. In this lab, the interpolation uses a simple area-weighting assumption.</p>
 </blockquote>
 <h2 id="getting-ready">Getting Ready</h2>
 <p>You will need:</p>
 <ul>
-<li>the workshop dataset: <a href="../data/CT_Watershed_Data.gdb.zip">CT_Watershed_Data.gdb.zip</a></li>
-<li>the <strong>Group Stats</strong> QGIS plugin</li>
+<li><a href="../data/CT_Watershed_Data.gdb.zip">CT_Watershed_Data.gdb.zip</a></li>
+<li>the <strong>Group Stats</strong> plugin for QGIS</li>
 </ul>
+<h3 id="install-the-group-stats-plugin">Install the Group Stats plugin</h3>
+<p>You will use <strong>Group Stats</strong> at the end of the lab to summarize weighted population by watershed.</p>
+<ol>
+<li>Open <strong>Plugins &gt; Manage and Install Plugins</strong>.</li>
+<li>Search for <code>Group Stats</code>.</li>
+<li>Install the plugin.</li>
+</ol>
+<p><img src="images/20250427_125204_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> Group Stats works like a pivot <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. It is helpful when you need to group rows by one <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and summarize the values from another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
+</blockquote>
 <h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
 <ol>
 <li>Download <a href="../data/CT_Watershed_Data.gdb.zip">CT_Watershed_Data.gdb.zip</a>.</li>
@@ -1089,28 +1104,6 @@
 <li>Create a new project folder for this lab.</li>
 <li>Save a new QGIS project in that folder as <code>areal_interpolation.qgz</code>.</li>
 </ol>
-<h3 id="install-the-group-stats-plugin">Install the Group Stats plugin</h3>
-<p>You will use <strong>Group Stats</strong> at the end of the lab to summarize weighted population by watershed.</p>
-<ol>
-<li>In QGIS, go to <strong>Plugins &gt; Manage and Install Plugins</strong>.</li>
-<li>Search for <code>Group Stats</code>.</li>
-<li>Install the plugin.</li>
-</ol>
-<blockquote>
-<p><strong>Concept note:</strong> Group Stats works like a pivot <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. It is useful when you need to group records by one <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and summarize the values in another <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
-</blockquote>
-<h2 id="data-for-this-exercise">Data for This Exercise</h2>
-<p>From the <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">geodatabase</a>, you will use these layers:</p>
-<ul>
-<li><code>CT_State_Boundary</code></li>
-<li><code>CT_Block_Groups</code></li>
-<li><code>CT_Major_Basins</code></li>
-</ul>
-<p>The important relationship is this:</p>
-<ul>
-<li><code>CT_Block_Groups</code> contains the population <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> you want to redistribute</li>
-<li><code>CT_Major_Basins</code> contains the watershed boundaries you want to report to</li>
-</ul>
 <h2 id="part-1-add-the-layers-and-get-oriented">Part 1: Add the Layers and Get Oriented</h2>
 <ol>
 <li>In the <strong>Browser</strong> panel, browse to the unzipped <code>CT_Watershed_Data.gdb</code>.</li>
@@ -1121,148 +1114,192 @@
 </ol>
 </li>
 <li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel.</li>
-<li>Style <code>CT_Block_Groups</code> and <code>CT_Major_Basins</code> with <strong>Transparent Fill</strong> and a visible outline so you can compare the two boundary systems easily.</li>
+<li>Make the polygon fills transparent and the outlines visible so you can compare the boundary systems.</li>
 </ol>
+<p><img src="images/20250427_122609_image.png" alt=""></img></p>
+<p>Take a moment to inspect the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables.</p>
+<p>You should notice that:</p>
+<ul>
+<li><code>CT_Block_Groups</code> contains the demographic values you want to redistribute</li>
+<li><code>CT_Major_Basins</code> contains the watershed geography you want to report to</li>
+</ul>
 <blockquote>
-<p><strong>Concept note:</strong> Before doing any <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a>, it is worth taking a minute to visually confirm the analytical problem. You should be able to see that many block groups do not align with watershed boundaries.</p>
-<p>Placeholder <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>: QGIS map canvas showing Connecticut block groups and major basins with transparent fills so the overlapping boundary systems are visible.</p>
+<p><strong>Concept note:</strong> Before doing any <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a>, it helps to look directly at the geometry problem. You should be able to see that many block groups do not line up with watershed boundaries.</p>
 </blockquote>
 <h2 id="part-2-calculate-the-parent-area-of-the-block-groups">Part 2: Calculate the Parent Area of the Block Groups</h2>
-<p>Before splitting the polygons, calculate the original area of each block group.</p>
+<p>First calculate the original area of each intact block group. This becomes the denominator in the weighting step later.</p>
+<p>Because the source data is inside a <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">geodatabase</a>, use a <strong>virtual <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> for this calculation.</p>
 <ol>
-<li>Open the <strong><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong> for <code>CT_Block_Groups</code>.</li>
-<li>Look through the available fields, especially the population <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> you will use later.</li>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>CT_Block_Groups</code>.</li>
+<li>Look through the fields, including the population <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> you will use later.</li>
 <li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
-<li>Create a <strong>new virtual <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> named <code>P_AREA</code>.</li>
-<li>Set the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type to <strong>Whole number (integer)</strong> or <strong>Decimal number (real)</strong>.</li>
-<li>Use the expression:</li>
 </ol>
-<pre><code class="lang-qgis">$area
-</code></pre>
+<p><img src="images/Areal_Interpolation-fc5900dd.png" alt=""></img></p>
 <ol>
-<li>Click <strong>OK</strong>.</li>
-</ol>
-<blockquote>
-<p><strong>Concept note:</strong> <code>P_AREA</code> stands for <strong>parent area</strong>. This is the area of each intact source polygon before it gets split by the watershed boundaries.</p>
-<p><strong>Why a virtual <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> here?</strong> For this workflow, a virtual <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> is a good choice because it lets you calculate and use the value immediately without altering the original source <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> inside the <a href="../GLOSSARY.html#geodatabase" class="glossary-term" title="A spatial database format that can store multiple layers, tables, relationships, and other GIS information in one structure. In practice, the term may refer either to Esri geodatabases specifically or more generally to a spatial database.">geodatabase</a>.</p>
-</blockquote>
-<h2 id="part-3-use-union-to-split-the-block-groups-by-watershed">Part 3: Use Union to Split the Block Groups by Watershed</h2>
-<p>Now create the overlap geometry that makes the weighting possible.</p>
-<ol>
-<li>Open the <strong>Processing Toolbox</strong>.</li>
-<li>Search for <strong>Union</strong> and open the tool.</li>
-<li>Set:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>CT_Major_Basins</code></li>
-<li><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>CT_Block_Groups</code></li>
-</ul>
-</li>
-<li>Save the output to your project folder as <code>union.gpkg</code>.</li>
-<li>Click <strong>Run</strong>.</li>
-</ol>
-<p>This will produce a new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> containing the combined boundaries and attributes of both inputs.</p>
-<blockquote>
-<p><strong>Concept note:</strong> The Union tool is doing the key spatial transformation in this lab. It creates new polygons wherever the source boundaries intersect. Those new polygons are the smaller units on which you can calculate overlap proportions.</p>
-<p><strong>Workflow note:</strong> The union may take a little time because the block group polygons are fairly detailed.</p>
-</blockquote>
-<h2 id="part-4-calculate-the-child-area">Part 4: Calculate the Child Area</h2>
-<p>Now measure the area of the new polygons created by the union.</p>
-<ol>
-<li>Open the <strong><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong> for the <code>union</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
-<li>Create a <strong>new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> named <code>CH_AREA</code>.</li>
+<li>Create a new <strong>virtual <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> named <code>P_AREA</code>.</li>
 <li>Use a numeric <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type.</li>
 <li>Use the expression:</li>
 </ol>
 <pre><code class="lang-qgis">$area
 </code></pre>
 <ol>
-<li>Click <strong>OK</strong>.</li>
+<li>Run the calculation.</li>
 </ol>
+<p><img src="images/20250427_123720_image.png" alt=""></img></p>
+<p><img src="images/20250427_122834_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> <code>CH_AREA</code> stands for <strong>child area</strong>. These are the smaller pieces created after the original block groups were cut by watershed boundaries.</p>
+<p><strong>Concept note:</strong> <code>P_AREA</code> stands for <strong>parent area</strong>, meaning the area of the original unsplit source polygon.</p>
+</blockquote>
+<h2 id="part-3-use-union-to-split-block-groups-by-watershed">Part 3: Use Union to Split Block Groups by Watershed</h2>
+<p>Now create the overlap geometry that makes the interpolation possible.</p>
+<ol>
+<li>Open the <strong>Processing Toolbox</strong>.</li>
+<li>Search for <strong>Union</strong>.</li>
+<li><p>Set:</p>
+</li>
+<li><p><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>CT_Major_Basins</code></p>
+</li>
+<li><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>CT_Block_Groups</code></li>
+</ol>
+<p><img src="images/20250427_122945_image.png" alt=""></img></p>
+<ol>
+<li>Save the output as <code>union.shp</code>.</li>
+<li>Run the tool.</li>
+</ol>
+<p>This may take a little time because the block group geometry is fairly detailed.</p>
+<p>When the tool finishes, the <code>union</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> should contain:</p>
+<ul>
+<li>the attributes of both inputs</li>
+<li>new polygons wherever the source boundaries intersect</li>
+</ul>
+<p>The <code>P_AREA</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> should appear at the far right side of the <code>union</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p><img src="images/20250427_123329_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> The union <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> creates the new analytical units. These smaller polygons are the pieces to which the population shares will be assigned.</p>
+</blockquote>
+<h2 id="part-4-calculate-the-child-area">Part 4: Calculate the Child Area</h2>
+<p>Now calculate the area of the new polygons created by the union process.</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>union</code>.</li>
+<li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
+</ol>
+<p><img src="images/Areal_Interpolation-fc5900dd.png" alt=""></img></p>
+<ol>
+<li>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>CH_AREA</code>.</li>
+<li>Use a numeric <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type.</li>
+<li>Use the expression:</li>
+</ol>
+<pre><code class="lang-qgis">$area
+</code></pre>
+<ol>
+<li>Run the calculation.</li>
+</ol>
+<p><img src="images/20250506_142043_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> <code>CH_AREA</code> stands for <strong>child area</strong>, meaning the area of each smaller polygon created after the original block groups were split.</p>
 </blockquote>
 <h2 id="part-5-exclude-records-with-null-parent-area">Part 5: Exclude Records with Null Parent Area</h2>
-<p>Some polygons in the union result will not represent meaningful source polygons for the interpolation step. Remove those from the weight calculation.</p>
+<p>Some polygons in the union result will not represent valid block-group pieces for the interpolation step.</p>
 <ol>
 <li>In the <code>union</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, click <strong>Select features using an expression</strong>.</li>
-<li>Enter:</li>
+</ol>
+<p><img src="images/Areal_Interpolation-730cd2b9.png" alt=""></img></p>
+<ol>
+<li>Use the expression:</li>
 </ol>
 <pre><code class="lang-qgis">"P_AREA" IS NULL
 </code></pre>
 <ol>
 <li>Click <strong>Select Features</strong>.</li>
-<li>Inspect the selected polygons on the map.</li>
-<li>In the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, click <strong>Invert Selection</strong> so that the selected records are the polygons where <code>P_AREA</code> is <strong>not</strong> null.</li>
 </ol>
+<p><img src="images/20250427_123951_image.png" alt=""></img></p>
+<p><img src="images/Areal_Interpolation-59224936.png" alt=""></img></p>
+<ol>
+<li>Close the selection dialog and inspect the selected features.</li>
+</ol>
+<p><img src="images/20250427_124103_image.png" alt=""></img></p>
+<p>These are usually small sliver polygons that do not carry a valid parent-area value from the original block group <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<ol>
+<li>In the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, click <strong>Invert Selection</strong> so that the selected records are the ones where <code>P_AREA</code> is not null.</li>
+</ol>
+<p><img src="images/Areal_Interpolation-94ba9a51.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> The null records are usually slivers or pieces that do not carry a valid source-area value from the original block group <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. If you leave them in the weight calculation, you risk dividing by null and producing invalid results.</p>
+<p><strong>Concept note:</strong> If you leave null parent-area records in the next step, you risk dividing by null and generating invalid weights.</p>
 </blockquote>
 <h2 id="part-6-calculate-the-area-weight">Part 6: Calculate the Area Weight</h2>
 <p>Now calculate the proportion of each child polygon relative to its original parent polygon.</p>
 <ol>
 <li>With the non-null records still selected, open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
 <li>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>WEIGHT</code>.</li>
-<li>Use <strong>Decimal number (real)</strong> as the output type.</li>
+<li>Use <strong>Decimal number (real)</strong> as the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type.</li>
 <li>If available, check <strong>Only update selected features</strong>.</li>
 <li>Use the expression:</li>
 </ol>
 <pre><code class="lang-qgis">"CH_AREA" / "P_AREA"
 </code></pre>
 <ol>
-<li>Set a precision that keeps several decimal places.</li>
-<li>Click <strong>OK</strong>.</li>
+<li>Use a precision of several decimal places.</li>
+<li>Run the calculation.</li>
 </ol>
+<p><img src="images/20250427_124525_image.png" alt=""></img></p>
+<p>Many values will be <code>1</code>, while others will be smaller than <code>1</code>.</p>
+<p><img src="images/20250506_142131_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> A value of <code>1</code> means the original block group was not split at all for that record. A value smaller than <code>1</code> means only part of the block group's area falls in that watershed polygon.</p>
+<p><strong>Concept note:</strong> A value of <code>1</code> means the original block group was not split for that record. A value less than <code>1</code> means only part of the block group's area falls within that watershed polygon.</p>
 </blockquote>
 <h2 id="part-7-calculate-weighted-population">Part 7: Calculate Weighted Population</h2>
-<p>Now apply the area weight to the population <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a>.</p>
+<p>Now apply the area weight to the block-group population <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
 <ol>
 <li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> again for the <code>union</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>WT_POP</code>.</li>
-<li>Use <strong>Decimal number (real)</strong> as the output type.</li>
+<li>Use <strong>Decimal number (real)</strong> as the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> type.</li>
 <li>Use the expression:</li>
 </ol>
 <pre><code class="lang-qgis">"WEIGHT" * "POP2004"
 </code></pre>
 <ol>
-<li>Click <strong>OK</strong>.</li>
-<li>Save your edits if QGIS prompts you to do so.</li>
+<li>Run the calculation.</li>
+</ol>
+<p><img src="images/20250427_124708_image.png" alt=""></img></p>
+<ol>
+<li>Save edits if QGIS prompts you.</li>
+<li>Toggle off editing.</li>
 <li>Clear the selection.</li>
 </ol>
+<p><img src="images/Areal_Interpolation-0665525d.png" alt=""></img></p>
+<p><img src="images/20250506_142321_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> <code>WT_POP</code> is the estimated population assigned to each child polygon after the area-based redistribution. This is the actual interpolated value you will summarize by watershed.</p>
-<p><strong>Important caution:</strong> This method assumes population is spread evenly within each block group. That is rarely perfectly true in real life. Areal interpolation is an estimate, not a direct observation.</p>
+<p><strong>Concept note:</strong> <code>WT_POP</code> is the estimated population assigned to each child polygon after the area-based redistribution. This is the value you will summarize by watershed.</p>
 </blockquote>
 <h2 id="part-8-summarize-weighted-population-by-watershed">Part 8: Summarize Weighted Population by Watershed</h2>
 <p>Now aggregate the interpolated values to the watershed level.</p>
 <ol>
 <li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Group Stats</strong>.</li>
 <li>Use the <code>union</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as the input <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> if prompted.</li>
-<li>Build the summary as follows:<ul>
-<li><strong>Rows:</strong> <code>MAJOR</code></li>
-<li><strong>Values:</strong> <code>WT_POP</code></li>
-<li><strong>Columns or statistic:</strong> <code>sum</code></li>
-</ul>
+<li><p>Set:</p>
 </li>
-<li>Click <strong>Calculate</strong>.</li>
+<li><p><strong>Columns:</strong> <code>sum</code></p>
+</li>
+<li><strong>Rows:</strong> <code>MAJOR</code></li>
+<li><p><strong>Value:</strong> <code>WT_POP</code></p>
+</li>
+<li><p>Click <strong>Calculate</strong>.</p>
+</li>
 </ol>
 <p>The result should be a grouped summary <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> showing the estimated total population for each major basin.</p>
-<blockquote>
-<p><strong>Concept note:</strong> This final step is where the interpolation becomes useful. Up to now, you have been preparing weighted pieces. Group Stats recombines those pieces by watershed so the results can be interpreted at the reporting geography you actually care about.</p>
-<p>Placeholder <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>: Group Stats window showing <code>MAJOR</code> watershed names in rows and the summed <code>WT_POP</code> values as the summary result.</p>
-</blockquote>
-<h2 id="optional-export-step">Optional Export Step</h2>
-<p>If you want to save the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for later use:</p>
+<p><img src="images/20250427_125413_image.png" alt=""></img></p>
+<p>If you want to save the result:</p>
 <ol>
-<li>Select the results in <strong>Group Stats</strong>.</li>
-<li>Use the plugin's export or save option to write the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to CSV.</li>
-<li>Save it in your project folder with a clear name such as <code>ct_major_basins_weighted_population.csv</code>.</li>
+<li>select the output <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
+<li>use the plugin export option to save the result as CSV</li>
 </ol>
+<blockquote>
+<p><strong>Concept note:</strong> This final step is where the interpolation becomes useful. Up to this point, you have been preparing weighted pieces. Group Stats recombines those pieces by watershed so the result can be interpreted in the target geography.</p>
+</blockquote>
 <h2 id="deliverable">Deliverable</h2>
-<p>Submit the following:</p>
+<p>Submit:</p>
 <ul>
-<li>a screenshot of the <strong>Group Stats</strong> results <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> showing the weighted population summarized by watershed</li>
+<li>a screenshot of the <strong>Group Stats</strong> results showing weighted population by watershed</li>
 </ul>
 <h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
 <p>By the end of the exercise, you should be able to explain:</p>
@@ -1315,7 +1352,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"next":{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},"previous":{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/00_buffering_and_overlay_analysis_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","mtime":"2026-04-21T21:10:44.129Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T21:10:54.799Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"next":{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},"previous":{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/00_buffering_and_overlay_analysis_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","mtime":"2026-04-24T16:45:01.482Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-24T16:45:11.230Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

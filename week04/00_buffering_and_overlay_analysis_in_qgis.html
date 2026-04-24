@@ -1062,145 +1062,174 @@
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces two foundational <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a>-analysis workflows in QGIS:</p>
+<p>This lab walks through two closely related <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a>-analysis workflows in QGIS:</p>
 <ol>
-<li><strong>buffering</strong>, which creates zones around features based on distance</li>
-<li><strong>overlay analysis</strong>, which combines multiple spatial criteria into a new analytical result</li>
+<li>buffering</li>
+<li>overlay analysis</li>
 </ol>
-<p>You will use both techniques to build a simple suitability analysis. The scenario is that we want to identify potential recreation or campground areas that are:</p>
-<ul>
+<p>You will first create:</p>
+<ol>
+<li>a fixed-distance <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around roads</li>
+<li>a variable-distance <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around lakes based on lake size</li>
+</ol>
+<p>You will then combine those buffered layers to identify candidate campground areas that are:</p>
+<ol>
 <li>close to roads</li>
 <li>close to lakes</li>
-<li>outside the lakes themselves</li>
-</ul>
-<p>In the second part of the workflow, you will combine the road and lake criteria to identify candidate polygons that satisfy both conditions.</p>
+<li>on private land rather than public land</li>
+</ol>
 <blockquote>
-<p><strong>Concept note:</strong> Buffering is one of the most common GIS operations because many spatial questions are really proximity questions. Overlay analysis matters because real site-selection problems usually depend on more than one criterion at the same time.</p>
+<p><strong>Concept note:</strong> Buffering turns a distance-based idea such as "near a road" into an actual polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> that can be analyzed. Overlay analysis matters because many GIS questions depend on more than one condition being true at the same time.</p>
 </blockquote>
 <h2 id="getting-ready">Getting Ready</h2>
-<p>You will need the workshop dataset:</p>
+<p>You will need:</p>
 <ul>
-<li><a href="../data/L10.zip">L10.zip</a></li>
+<li><a href="../data/L9.zip">L9.zip</a></li>
 </ul>
 <h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
 <ol>
-<li>Download <a href="../data/L10.zip">L10.zip</a>.</li>
+<li>Download <a href="../data/L9.zip">L9.zip</a>.</li>
 <li>Unzip it somewhere stable on your computer.</li>
-<li>Create a project folder for this lab.</li>
+<li>Create a new project folder for this lab.</li>
 <li>Save a new QGIS project in that folder as <code>buffering_overlay_analysis.qgz</code>.</li>
 </ol>
-<h3 id="data-for-this-exercise">Data for This Exercise</h3>
-<p>The original lab uses three main layers:</p>
+<h2 id="data-for-this-exercise">Data for This Exercise</h2>
+<p>The main layers are:</p>
 <ul>
 <li><code>roads.shp</code></li>
 <li><code>lakes.shp</code></li>
 <li><code>public_Hugo.shp</code></li>
 </ul>
-<p>This workflow focuses primarily on the roads and lakes layers. The public-lands <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> may be used later if you extend the suitability analysis further.</p>
-<h2 id="suitability-criteria">Suitability Criteria</h2>
 <p>The suitability logic in this lab is:</p>
 <ol>
 <li>areas must be within <code>300 meters</code> of a road</li>
-<li>areas must also be close to lakes, but the lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance depends on lake size</li>
-<li>candidate sites should be on land, not inside the lake polygons</li>
+<li>areas must also be within a lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> whose distance depends on lake size</li>
+<li>final candidate sites must not fall on public land</li>
 </ol>
 <p>Use these lake-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distances:</p>
 <ul>
-<li><code>50 meters</code> for lakes in size class <code>1</code></li>
-<li><code>150 meters</code> for lakes in size class <code>2</code></li>
-<li><code>500 meters</code> for lakes in size class <code>3</code></li>
+<li><code>50 meters</code> for lakes with <code>SIZE_CLS = 1</code></li>
+<li><code>150 meters</code> for lakes with <code>SIZE_CLS = 2</code></li>
+<li><code>500 meters</code> for lakes with <code>SIZE_CLS = 3</code></li>
 </ul>
 <h2 id="part-1-create-a-fixed-distance-buffer-around-roads">Part 1: Create a Fixed-Distance Buffer Around Roads</h2>
-<p>Start with a standard fixed-distance <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>.</p>
 <ol>
 <li>Add <code>roads.shp</code> to your QGIS project.</li>
-<li>Open the <strong>Processing Toolbox</strong>.</li>
-<li>Search for <strong><a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong> and open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> geometry &gt; <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong>.</li>
-<li>Set:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>roads</code></li>
-<li><strong>Distance:</strong> <code>300</code></li>
-</ul>
+</ol>
+<p><img src="images/20250422_153525_image.png" alt=""></img></p>
+<ol>
+<li>Open the <strong>Processing Toolbox</strong> from <strong>Processing &gt; Toolbox</strong>.</li>
+<li>Search for <strong><a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong>.</li>
+<li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> geometry &gt; <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong>.</li>
+</ol>
+<p><img src="images/20250422_174803_image.png" alt=""></img></p>
+<ol>
+<li><p>Set:</p>
 </li>
-<li>Check <strong>Dissolve result</strong>.</li>
-<li>Save the output to your project folder with a name such as <code>roadsBuffer300m.gpkg</code>.</li>
+<li><p><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>roads</code></p>
+</li>
+<li><strong>Distance:</strong> <code>300</code></li>
+<li><p><strong>Dissolve result:</strong> checked</p>
+</li>
+<li><p>Save the output as something like <code>roadsBuffer300m.shp</code>.</p>
+</li>
 <li>Run the tool.</li>
 </ol>
-<p>You should now have a dissolved road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> that represents all land within 300 meters of a road.</p>
+<p><img src="images/20250422_175310_image.png" alt=""></img></p>
+<p>The dissolved road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> should look something like this when drawn below the roads <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</p>
+<p><img src="images/20250422_175436_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> A dissolved <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> merges overlapping <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> polygons into one generalized zone. That is useful when the analytical question is simply "inside or outside the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>," rather than "which individual road segment created this <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>."</p>
+<p><strong>Concept note:</strong> A dissolved <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> merges overlapping polygons into one analytical zone. That makes sense here because the question is whether an area is inside the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, not which single road segment created it.</p>
 </blockquote>
 <h3 id="compare-dissolved-and-undissolved-results">Compare dissolved and undissolved results</h3>
-<p>Now repeat the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> once more, but compare the geometry and <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> structure.</p>
+<p>Now repeat the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> once more, but this time:</p>
 <ol>
-<li>Open the <strong><a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong> tool again.</li>
-<li>Use <code>roads</code> as the input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>Keep the distance at <code>300</code>.</li>
-<li>This time, leave <strong>Dissolve result</strong> unchecked.</li>
-<li>Leave the output as a temporary <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> or save it as a clearly named test <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>Run the tool.</li>
-<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for both <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> outputs and compare them.</li>
+<li>keep the distance at <code>300</code></li>
+<li>leave <strong>Dissolve result</strong> unchecked</li>
+<li>leave the output as a temporary <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 </ol>
-<p>As you compare them, ask:</p>
+<p><img src="images/20250422_180139_image.png" alt=""></img></p>
+<p>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables for the dissolved and undissolved versions and compare them.</p>
+<p>Ask yourself:</p>
 <ul>
-<li>How does the geometry differ?</li>
-<li>How does the number of rows differ?</li>
-<li>In what kinds of analysis would dissolved versus undissolved results matter?</li>
+<li>how does the geometry differ</li>
+<li>how does the number of rows differ</li>
+<li>when would that difference matter for later analysis</li>
 </ul>
-<p>After you inspect the difference, you can remove the undissolved test <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p><img src="images/20250422_180533_image.png" alt=""></img></p>
+<p>After inspecting the difference, remove the undissolved test <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <blockquote>
-<p><strong>Workflow note:</strong> Temporary layers are useful for experiments and intermediate results, but they are not a safe place to keep anything you need long-term. Save permanent outputs when the result will matter later in the workflow.</p>
+<p><strong>Workflow note:</strong> Temporary layers are useful for experiments and intermediate checks, but they are not safe storage for anything you need later. Save permanent outputs once you know a result matters.</p>
 </blockquote>
 <h2 id="part-2-create-a-variable-distance-buffer-around-lakes">Part 2: Create a Variable-Distance Buffer Around Lakes</h2>
-<p>Now build a <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> whose distance depends on each lake's size class.</p>
+<p>Now create a lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> where the distance depends on each lake's size class.</p>
+<p>The process has three parts:</p>
 <ol>
-<li>Add <code>lakes.shp</code> to the project.</li>
-<li>Open its <strong><a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">Attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a></strong>.</li>
-<li>Start an edit session if needed.</li>
+<li>add a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to hold the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance</li>
+<li>calculate that value by lake size class</li>
+<li>use that <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to drive the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance</li>
 </ol>
-<h3 id="create-the-buffer-distance-field">Create the buffer-distance field</h3>
+<h3 id="create-and-calculate-the-buffdist-field">Create and calculate the <code>buffdist</code> field</h3>
 <ol>
+<li>Add <code>lakes.shp</code> to the project and open its <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Use <strong>Select features by expression</strong> to select lakes where:</li>
 </ol>
 <pre><code class="lang-qgis">"SIZE_CLS" = 1
 </code></pre>
+<p><img src="images/20250422_202316_image.png" alt=""></img></p>
+<p><img src="images/20250422_202449_image.png" alt=""></img></p>
 <ol>
 <li>Open the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong>.</li>
-<li>Create a new integer <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>buffdist</code>.</li>
+<li>Create a new whole-number <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>buffdist</code>.</li>
 <li>Check <strong>Only update selected features</strong>.</li>
 <li>Assign the value:</li>
 </ol>
 <pre><code class="lang-qgis">50
 </code></pre>
+<p><img src="images/20250422_202757_image.png" alt=""></img></p>
 <ol>
-<li>Apply the calculation.</li>
+<li>Repeat the same process for <code>SIZE_CLS = 2</code>, assigning:</li>
 </ol>
-<p>Now repeat the same logic for the other size classes:</p>
-<ul>
-<li>select <code>"SIZE_CLS" = 2</code> and assign <code>150</code> to <code>buffdist</code></li>
-<li><p>select <code>"SIZE_CLS" = 3</code> and assign <code>500</code> to <code>buffdist</code></p>
-</li>
-<li><p>Clear the selection.</p>
-</li>
-<li>Save your edits.</li>
-</ul>
+<pre><code class="lang-qgis">150
+</code></pre>
+<p><img src="images/20250422_202902_image.png" alt=""></img></p>
+<p><img src="images/20250422_203228_image.png" alt=""></img></p>
+<ol>
+<li>Repeat again for <code>SIZE_CLS = 3</code>, assigning:</li>
+</ol>
+<pre><code class="lang-qgis">500
+</code></pre>
+<p><img src="images/Buffering_Overlay-417487c9.png" alt=""></img></p>
+<p><img src="images/Buffering_Overlay-46357406.png" alt=""></img></p>
+<ol>
+<li>Clear the selection using <strong>Unselect all features</strong>.</li>
+<li>Save your edits and stop editing.</li>
+</ol>
+<p><img src="images/Buffering_Overlay-ea82b654.png" alt=""></img></p>
+<p><img src="images/Buffering_Overlay-f7d6212d.png" alt=""></img></p>
+<p>Check that the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> now shows larger <code>buffdist</code> values for larger lake size classes.</p>
+<p><img src="images/20250422_203504_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> This is a common GIS pattern: use <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> values to drive geometry creation. Instead of one universal <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance, the lake size class determines how much surrounding area counts as "near" that lake.</p>
+<p><strong>Concept note:</strong> This is a useful GIS pattern: an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> can control a later geometry operation. Instead of applying one universal distance to all lakes, the lake type determines the spatial rule.</p>
 </blockquote>
 <h3 id="run-the-variable-distance-buffer">Run the variable-distance buffer</h3>
 <ol>
 <li>Open the <strong><a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">Buffer</a></strong> tool again.</li>
-<li>Use <code>lakes</code> as the input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>For the <strong>Distance</strong> parameter, use the data-defined option and choose the <code>buffdist</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Set <strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> to <code>lakes</code>.</li>
+<li>Open the small data-defined button at the far right of the <strong>Distance</strong> parameter.</li>
+</ol>
+<p><img src="images/20250427_114203_image.png" alt=""></img></p>
+<ol>
+<li>Choose the <code>buffdist</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> as the source of the distance values.</li>
 <li>Check <strong>Dissolve result</strong>.</li>
-<li>Save the output as something like <code>VarBuffLakes.gpkg</code>.</li>
+<li>Save the output as something like <code>VarBuffLakes.shp</code>.</li>
 <li>Run the tool.</li>
 </ol>
-<p>Arrange the road, road-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, lake, and lake-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> layers so you can see how the two proximity criteria differ spatially.</p>
-<blockquote>
-<p>Placeholder <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>: QGIS map canvas with roads and lakes on top of their dissolved road and variable-distance lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> polygons.</p>
-</blockquote>
+<p><img src="images/20250425_121047_image.png" alt=""></img></p>
+<p>Arrange the roads, road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, lakes, and lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> layers so you can compare them visually.</p>
+<p><img src="images/20250422_205738_image.png" alt=""></img></p>
 <h2 id="deliverable-1">Deliverable 1</h2>
-<p>Create and export a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> showing:</p>
+<p>Create and export a layout showing:</p>
 <ul>
 <li>roads</li>
 <li>lakes</li>
@@ -1209,128 +1238,209 @@
 </ul>
 <p>Include:</p>
 <ul>
-<li>a clear title</li>
+<li>a title</li>
 <li>your name</li>
 <li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
 <li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
 </ul>
+<p><img src="images/Burrering_Overlay-72ec483d.png" alt=""></img></p>
 <h2 id="part-3-prepare-the-buffer-layers-for-overlay">Part 3: Prepare the Buffer Layers for Overlay</h2>
-<p>The dissolved <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> outputs are useful analytically, but before overlay we need to prepare them so the result is easier to interpret.</p>
+<p>Now that the two proximity layers exist, prepare them so the overlay result will be easier to interpret.</p>
+<h3 id="save-a-new-copy-of-the-project">Save a new copy of the project</h3>
+<ol>
+<li>Save the project to a new folder for the overlay portion of the lab.</li>
+<li>Give the copied project a name such as <code>Overlay_Analysis.qgz</code>.</li>
+</ol>
+<p>This leaves your first buffering project untouched while you continue into the suitability workflow.</p>
 <h3 id="convert-multipart-buffers-to-singlepart-features">Convert multipart buffers to singlepart features</h3>
+<p>The dissolved <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> outputs are multipart features. That means one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> may represent several disconnected polygons.</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>VarBuffLakes</code>.</li>
-<li>Notice that the dissolved <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> may contain many polygons but very few rows.</li>
-<li>Open <strong>Multipart to singleparts</strong> from the <strong>Processing Toolbox</strong>.</li>
-<li>Use <code>VarBuffLakes</code> as the input.</li>
-<li>Save the output as <code>SingleLakeBuffers.gpkg</code>.</li>
+<li>Notice that the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> contains many polygons but very few rows.</li>
+</ol>
+<p><img src="images/20250425_121210_image.png" alt=""></img></p>
+<ol>
+<li>Search for and open <strong>Multipart to singleparts</strong> in the <strong>Processing Toolbox</strong>.</li>
+</ol>
+<p><img src="images/20250425_121408_image.png" alt=""></img></p>
+<ol>
+<li>Use <code>VarBuffLakes</code> as the input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Save the output as <code>SingleLakeBuffers.shp</code>.</li>
 <li>Run the tool.</li>
 </ol>
-<p>Open the new <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and confirm that the multipart geometry has been separated into individual polygons.</p>
-<p>Repeat the same process for the dissolved road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>:</p>
+<p><img src="images/20250425_121538_image.png" alt=""></img></p>
 <ol>
-<li>Run <strong>Multipart to singleparts</strong> on the road-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>Save the result as something like <code>SingleRoadBuffers.gpkg</code>.</li>
+<li>Open the output <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and confirm that there is now one <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> per polygon.</li>
 </ol>
+<p><img src="images/20250425_121739_image.png" alt=""></img></p>
+<p>Repeat the same process for the dissolved road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> and save the result as something like <code>SingleRoadBuffers.shp</code>.</p>
+<p><img src="images/20250425_122525_image.png" alt=""></img></p>
+<p><img src="images/20250425_122913_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> Multipart features can be awkward for overlay analysis because one <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> may represent several disconnected polygons. Converting to singlepart features makes later selection and interpretation much clearer.</p>
+<p><strong>Concept note:</strong> Multipart features can be awkward in overlay workflows because one <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> can stand for several different polygons. Converting to singlepart features makes later selection and interpretation much clearer.</p>
 </blockquote>
-<h3 id="clean-the-buffer-tables-and-create-inside-buffer-flags">Clean the buffer tables and create inside-buffer flags</h3>
-<p>For each of the new singlepart <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> layers:</p>
+<h3 id="clean-the-attributes-and-create-inside-buffer-flags">Clean the attributes and create inside-buffer flags</h3>
+<p>For <code>SingleLakeBuffers</code>:</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</li>
 <li>Toggle editing on.</li>
-<li>Delete the existing fields if they are not helpful for the overlay result.</li>
-<li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to create a simple indicator <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>:<ul>
-<li><code>inlakebuff</code> for <code>SingleLakeBuffers</code></li>
-<li><code>inroadbuff</code> for <code>SingleRoadBuffers</code></li>
-</ul>
-</li>
+<li>Use <strong>Delete <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a></strong> to remove the existing fields if they are no longer useful for the overlay result.</li>
+</ol>
+<p><img src="images/Buffering_Overlay-e6fa45d2.png" alt=""></img></p>
+<p><img src="images/Buffering_Overlay-f567cbfd.png" alt=""></img></p>
+<ol>
+<li>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>inlakebuff</code>.</li>
 <li>Assign a value of:</li>
 </ol>
 <pre><code class="lang-qgis">1
 </code></pre>
+<p>to all rows.</p>
+<p><img src="images/20250425_121947_image.png" alt=""></img></p>
+<p><img src="images/Buffering_Overlay-a7f6a6f6.png" alt=""></img></p>
+<p>For <code>SingleRoadBuffers</code>:</p>
 <ol>
-<li>Save edits and stop editing.</li>
+<li>Repeat the same process.</li>
+<li>Create a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <code>inroadbuff</code>.</li>
+<li>Assign a value of:</li>
+</ol>
+<pre><code class="lang-qgis">1
+</code></pre>
+<p>to all rows.</p>
+<p><img src="images/20250425_123835_image.png" alt=""></img></p>
+<ol>
+<li>Save edits and stop editing on both layers.</li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> These fields act like logical flags. After the overlay, they let you identify which polygons are inside the lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, or both.</p>
+<p><strong>Concept note:</strong> These fields work like logical flags. After the overlay, they tell you whether a polygon is inside the lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, or both.</p>
 </blockquote>
 <h2 id="part-4-remove-the-lake-interior-from-the-lake-buffer">Part 4: Remove the Lake Interior from the Lake Buffer</h2>
-<p>The lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> currently includes the lake polygons themselves, but a campsite or recreation site should be on land near the lake, not in the water.</p>
+<p>The lake <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> currently includes the lake polygons themselves. Since campsites should be on land near lakes, remove the water area from the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>.</p>
 <ol>
-<li>Open the <strong>Difference</strong> tool from the <strong>Processing Toolbox</strong>.</li>
-<li>Set:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>SingleLakeBuffers</code></li>
-<li><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>lakes</code></li>
-</ul>
+<li>Search for <strong>Difference</strong> in the <strong>Processing Toolbox</strong>.</li>
+</ol>
+<p><img src="images/20250425_124648_image.png" alt=""></img></p>
+<ol>
+<li><p>Set:</p>
 </li>
-<li>Save the output as <code>LakeBuffersOnly.gpkg</code>.</li>
+<li><p><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>SingleLakeBuffers</code></p>
+</li>
+<li><p><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>lakes</code></p>
+</li>
+<li><p>Save the output as <code>LakeBuffersOnly.shp</code>.</p>
+</li>
 <li>Run the tool.</li>
 </ol>
-<p>Verify that the result shows the buffered land near lakes, with the lake interiors removed.</p>
+<p><img src="images/20250425_124204_image.png" alt=""></img></p>
+<p>Verify that the result contains the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> area around lakes but not the lake interiors themselves.</p>
+<p><img src="images/20250425_124252_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> In many overlay workflows, a criterion needs to be interpreted carefully. "Near a lake" is not the same as "inside the lake polygon." Difference helps turn that conceptual distinction into the geometry you actually want.</p>
+<p><strong>Concept note:</strong> "Near a lake" is not the same as "inside a lake." The geometry has to match the actual interpretation of the criterion.</p>
 </blockquote>
 <h2 id="part-5-use-union-to-combine-the-lake-and-road-criteria">Part 5: Use Union to Combine the Lake and Road Criteria</h2>
-<p>Now combine the land-near-lakes <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with the road-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>Now combine the lake-<a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> land area with the road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>.</p>
 <ol>
-<li>Open the <strong>Union</strong> tool in the <strong>Processing Toolbox</strong>.</li>
-<li>Set:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>LakeBuffersOnly</code></li>
-<li><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>SingleRoadBuffers</code></li>
-</ul>
+<li>Search for and open <strong>Union</strong>.</li>
+</ol>
+<p><img src="images/20250425_124755_image.png" alt=""></img></p>
+<ol>
+<li><p>Set:</p>
 </li>
-<li>Save the output as <code>BufferUnion.gpkg</code>.</li>
+<li><p><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>LakeBuffersOnly</code></p>
+</li>
+<li><p><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>SingleRoadBuffers</code></p>
+</li>
+<li><p>Save the output as <code>BufferUnion.shp</code>.</p>
+</li>
 <li>Run the tool.</li>
 </ol>
+<p><img src="images/20250425_124841_image.png" alt=""></img></p>
 <p>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>BufferUnion</code> and inspect the <code>inlakebuff</code> and <code>inroadbuff</code> fields.</p>
-<p>You are looking for polygons where:</p>
-<ul>
-<li><code>inlakebuff = 1</code></li>
-<li><code>inroadbuff = 1</code></li>
-</ul>
-<p>Those are the polygons that satisfy both proximity criteria.</p>
-<h2 id="part-6-select-and-export-the-candidate-areas">Part 6: Select and Export the Candidate Areas</h2>
+<p>You are looking for polygons where both fields equal <code>1</code>.</p>
+<ol>
+<li>Find a <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> where:</li>
+</ol>
+<pre><code class="lang-qgis">"inlakebuff" = 1 AND "inroadbuff" = 1
+</code></pre>
+<ol>
+<li>Click the <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> number to select it.</li>
+<li>Use <strong>Zoom to Selected</strong>.</li>
+</ol>
+<p><img src="images/20250425_125057_image.png" alt=""></img></p>
+<p><img src="images/Buffering_Overlay-40d205af.png" alt=""></img></p>
+<p>You should see a polygon that satisfies both proximity criteria.</p>
+<h2 id="part-6-select-and-export-candidate-areas">Part 6: Select and Export Candidate Areas</h2>
 <ol>
 <li>In the <code>BufferUnion</code> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, open <strong>Select features by expression</strong>.</li>
-<li>Use:</li>
+</ol>
+<p><img src="images/Buffering_Overlay-7a6534b1.png" alt=""></img></p>
+<p><img src="images/20250427_114754_image.png" alt=""></img></p>
+<ol>
+<li>Use the expression:</li>
 </ol>
 <pre><code class="lang-qgis">"inlakebuff" = 1 AND "inroadbuff" = 1
 </code></pre>
 <ol>
 <li>Apply the selection.</li>
-<li>Inspect the selected polygons on the map.</li>
-<li>Right-click <code>BufferUnion</code> and choose <strong>Export &gt; Save Selected Features As...</strong></li>
-<li>Save the output as <code>Candidates.gpkg</code>.</li>
 </ol>
-<p>This new candidate <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> represents places that are both:</p>
-<ul>
-<li>near a lake, based on the size-dependent <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a></li>
-<li>near a road, based on the 300-meter road <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a></li>
-</ul>
+<p>The selected polygons should represent the places that are both near roads and near lakes.</p>
+<p><img src="images/20250427_114820_image.png" alt=""></img></p>
+<ol>
+<li>Right-click <code>BufferUnion</code>.</li>
+<li>Choose <strong>Export &gt; Save Selected Features As...</strong></li>
+<li>Save the result as <code>Candidates.shp</code>.</li>
+</ol>
+<p><img src="images/20250427_114938_image.png" alt=""></img></p>
+<p>Display the new <code>Candidates</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and verify that it matches the selected areas.</p>
+<p><img src="images/20250427_115004_image.png" alt=""></img></p>
+<p>Some of the selected records may still be multipart features. Use the manual selection tool to inspect a few polygons if needed.</p>
+<p><img src="images/Buffering_Overlay-209ecb06.png" alt=""></img></p>
+<p><img src="images/20250427_115037_image.png" alt=""></img></p>
+<p>Clear your selection before continuing.</p>
 <blockquote>
-<p><strong>Concept note:</strong> This is the core logic of suitability analysis. Instead of asking whether one condition is true, you are asking where several spatial conditions are true at the same time.</p>
-<p>Placeholder <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>: QGIS map showing the final selected candidate polygons that meet both lake and road proximity criteria.</p>
+<p><strong>Concept note:</strong> This is the heart of suitability analysis. The candidate polygons are not created by one input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> alone. They are the places where multiple spatial conditions are true at once.</p>
 </blockquote>
+<h2 id="part-7-remove-public-lands-from-the-candidate-areas">Part 7: Remove Public Lands from the Candidate Areas</h2>
+<p>We have one final condition: the campgrounds should be on private land.</p>
+<ol>
+<li>Add <code>public_Hugo.shp</code> to the project.</li>
+<li>Open <strong>Difference</strong> again.</li>
+<li><p>Use:</p>
+</li>
+<li><p><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>Candidates</code></p>
+</li>
+<li><p><strong>Overlay <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>public_Hugo</code></p>
+</li>
+<li><p>Save the output as <code>FinalCandidates.shp</code>.</p>
+</li>
+<li>Run the tool.</li>
+</ol>
+<p><img src="images/20250427_115207_image.png" alt=""></img></p>
+<p>The westernmost lakes should now show the public-land portions carved out of the candidate areas.</p>
+<p><img src="images/20250427_115321_image.png" alt=""></img></p>
 <h2 id="deliverable-2">Deliverable 2</h2>
-<p>Create and export a second <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> showing the candidate recreation areas.</p>
+<p>Create and export a second layout that includes:</p>
+<ul>
+<li>roads</li>
+<li>lakes</li>
+<li>lands suitable for campgrounds on private land</li>
+</ul>
 <p>Include:</p>
 <ul>
-<li>the final candidate polygons</li>
-<li>enough context layers to interpret the result</li>
-<li>a clear title</li>
+<li>a title</li>
 <li>your name</li>
 <li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
 <li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a></li>
+<li>a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> if it helps interpretation without overwhelming the analysis result</li>
 </ul>
+<p><img src="images/Buffering_Overlay-ec20e840.png" alt=""></img></p>
 <h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
 <p>By the end of this exercise, you should be able to explain:</p>
 <ul>
 <li>the difference between fixed-distance and variable-distance buffers</li>
 <li>why dissolved and undissolved buffers produce different analytical structures</li>
-<li>why multipart-to-singlepart conversion can matter before overlay analysis</li>
+<li>why multipart-to-singlepart conversion matters before overlay analysis</li>
 <li>why <code>Difference</code> was needed before combining the lake and road criteria</li>
-<li>how <code>Union</code> plus <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> selection produces a simple suitability analysis result</li>
+<li>how <code>Union</code> plus <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> selection produces a suitability-analysis result</li>
 </ul>
 
                                 
@@ -1375,7 +1485,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"next":{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/01_areal_interpolation_of_attributes_with_qgis.md","articles":[]},"previous":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"path":"week04/README.md","ref":"week04/README.md","articles":[{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/00_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/01_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},{"title":"03 - Introducing SimplyAnalytics.com","level":"1.7.4","depth":2,"path":"week04/03_introducing_simplyanalytics_com.md","ref":"week04/03_introducing_simplyanalytics_com.md","articles":[]},{"title":"05 - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/05_tabular_vector_data_in_google_earth_engine.md","ref":"week04/05_tabular_vector_data_in_google_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","mtime":"2026-04-21T21:10:44.128Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-21T21:10:54.799Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"next":{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/01_areal_interpolation_of_attributes_with_qgis.md","articles":[]},"previous":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"path":"week04/README.md","ref":"week04/README.md","articles":[{"title":"00 - Buffering & Overlay Analysis in QGIS","level":"1.7.1","depth":2,"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/00_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/01_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"path":"week04/02_network_analysis_with_qgis.md","ref":"week04/02_network_analysis_with_qgis.md","articles":[]},{"title":"03 - Introducing SimplyAnalytics.com","level":"1.7.4","depth":2,"path":"week04/03_introducing_simplyanalytics_com.md","ref":"week04/03_introducing_simplyanalytics_com.md","articles":[]},{"title":"05 - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/05_tabular_vector_data_in_google_earth_engine.md","ref":"week04/05_tabular_vector_data_in_google_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/00_buffering_and_overlay_analysis_in_qgis.md","mtime":"2026-04-24T16:45:01.481Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-24T16:45:11.230Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
