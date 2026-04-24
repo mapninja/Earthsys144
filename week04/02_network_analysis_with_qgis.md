@@ -2,22 +2,22 @@
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
-> **Attribution note:** This exercise is adapted from Ujaval Gandhi's excellent tutorial on basic network visualization and routing in QGIS.
+> **Attribution note:** This exercise is adapted from Ujaval Gandhi's tutorial on basic network visualization and routing in QGIS.
 
 ## Overview
 
 This lab introduces **network analysis** in QGIS using a street dataset from San Francisco.
 
-In GIS, a network is a connected system of lines and nodes that can be used to model movement. Roads are one of the most common examples. Once a line dataset is treated as a network, GIS can do more than display it: it can analyze connectivity, direction, and route options.
+In GIS, a network is a connected system of lines and nodes that can model movement. Roads are one of the most common examples. Once a street layer is treated as a network, QGIS can do more than display it. It can use attributes such as one-way direction to calculate legal routes.
 
 In this exercise, you will:
 
-1. add and inspect a street-network dataset
-2. symbolize one-way streets so traffic direction is visible
+1. load and inspect a street-network dataset
+2. symbolize one-way streets with directional arrows
 3. use the shortest-path tool to calculate a route between two points
-4. create a final map layout showing the route
+4. create a final layout showing the route
 
-> **Concept note:** A road network is not just a line map. It is a structured system where attributes such as one-way direction affect which routes are actually possible.
+> **Concept note:** A road network is not just a line map. It is an analytical structure where geometry and movement rules both matter.
 
 ## Getting Ready
 
@@ -29,55 +29,93 @@ You will need:
 
 1. Download [Streets Active and Retired.zip](../data/Streets%20Active%20and%20Retired.zip).
 2. Unzip it somewhere stable on your computer.
-3. Create a project folder for this lab.
+3. Create a new project folder for this lab.
 4. Save a new QGIS project in that folder as `network_analysis.qgz`.
 
 ## Part 1: Add and Inspect the Street Network
 
-1. In the **Browser** panel, browse to the unzipped folder.
+The source data comes from DataSF.
+
+![](images/Network_Analysis-8f0f8501.png)
+
+1. In the **Browser** panel, browse to the unzipped **Streets Active and Retired** folder.
 2. Add the street shapefile to the map canvas.
-3. Open the **Attribute Table** and inspect the fields.
-4. Use the **Identify Features** tool on several street segments.
 
-Pay particular attention to the `oneway` field.
+![](images/20250427_131900_image.png)
 
-In this dataset, the values are:
+3. Use the **Identify Features** tool and click several road segments.
+
+![](images/20250427_132005_image.png)
+
+Pay special attention to the `oneway` field.
+
+Its important values are:
 
 - `F` for one-way in the forward direction
 - `T` for one-way in the reverse direction
 - `B` for travel allowed in both directions
-- `NULL` values, which you can treat here as two-way segments
+- `NULL`, which you can treat here as two-way
 
-> **Concept note:** Network analysis depends heavily on attributes that describe movement rules. Without a field like `oneway`, the software has no way to distinguish between a legal route and an impossible one.
+![](images/20250427_132127_image.png)
+
+> **Concept note:** Network analysis depends on movement rules stored in attributes. Without fields such as `oneway`, the software cannot tell a legal route from an impossible one.
 
 ## Part 2: Symbolize One-Way Streets with Rule-Based Styling
 
 Before doing analysis, make the directionality of the network visible.
 
 1. Open the **Layer Styling** panel.
-2. Change the symbology to **Rule-based**.
+
+![](images/Network_Analysis-fe00bea5.png)
+
+2. Change the renderer to **Rule-based**.
+
+![](images/Network_Analysis-fab99b21.png)
+
 3. Add a new rule.
-4. Open the **Expression String Builder** for the rule filter.
-5. Build this expression:
+
+![](images/Network_Analysis-87fdc3a0.png)
+
+4. Open the expression builder.
+
+![](images/Network_Analysis-b2ce377e.png)
+
+5. Use this expression:
 
 ```qgis
 "oneway" IN ('F', 'T')
 ```
 
-This selects only the one-way streets.
+![](images/20250427_132701_image.png)
 
-### Add arrow markers to the one-way streets
+This selects only the one-way street segments.
+
+### Add arrow markers
 
 1. In the symbol settings for that rule, change the symbol layer type to **Marker line**.
-2. Set placement to **On central point**.
-3. Choose a marker symbol such as a filled arrowhead.
+
+![](images/Network_Analysis-028783ac.png)
+
+2. Uncheck **With interval**.
+3. Set **Marker placement** to **On central point**.
+
+![](images/Network_Analysis-778a0553.png)
+
+4. Choose a marker such as a filled arrowhead.
+
+![](images/Network_Analysis-bdbf05cb.png)
 
 At this point, all arrows may point in the same direction. That is not yet correct.
 
 ### Use a data-defined override for rotation
 
-1. Find the **Rotation** option in the symbol settings.
-2. Open the **data-defined override** menu and choose **Edit...**
+1. Find the **Rotation** option.
+2. Open the data-defined override menu.
+
+![](images/Network_Analysis-42cbb64c.png)
+
+![](images/Network_Analysis-15bab421.png)
+
 3. Use this expression:
 
 ```qgis
@@ -86,53 +124,59 @@ if("oneway" = 'T', 180, 0)
 
 4. Apply the expression.
 
-This rotates the arrow 180 degrees for segments where the one-way direction is stored as `T`.
+![](images/20250427_133048_image.png)
 
-> **Concept note:** This is a good example of how cartography and analysis connect. You are not changing the data here. You are using an attribute to create a more truthful visual representation of how movement works on the network.
+The arrows should now align with the stored traffic direction.
 
-> Placeholder image: QGIS street map of San Francisco with arrow markers visible only on one-way streets, rotated according to the `oneway` field.
+![](images/Network_Analysis-1ed98943.png)
+
+> **Concept note:** This is a good example of cartography supporting analysis. The data is not changing, but the styling is making the movement rules visible.
 
 ## Part 3: Calculate a Shortest Path
 
-Now that the network is styled and its directionality is clearer, use it for routing.
+Now use the network for routing.
 
-1. Open the **Processing Toolbox**.
+1. Open **Processing > Toolbox**.
 2. Search for **Shortest path (point to point)**.
 3. Open the tool.
 4. Set:
-   - **Vector layer representing network:** the San Francisco streets layer
-   - **Path type:** `Shortest`
 
-### Choose start and end points
+- **Vector layer representing network:** the San Francisco streets layer
+- **Path type:** `Shortest`
 
-You can click on the map using the coordinate picker, or type coordinates directly.
-
-If you want to replicate the example workflow, use:
+If you want to reproduce the example route, use:
 
 - **Start point:** `-122.422227,37.768156`
 - **End point:** `-122.429083,37.750797`
 
-### Set the direction parameters
+You can type those coordinates directly or use the map picker.
 
-Expand the advanced options and configure the one-way rules:
+![](images/Network_Analysis-5730a422.png)
+
+5. Expand the advanced parameters.
+6. Set:
 
 - **Direction field:** `oneway`
 - **Value for forward direction:** `F`
 - **Value for backward direction:** `T`
 
-Save the output as something like `ShortestPath.gpkg`, then run the tool.
+7. Save the output as `ShortestPath.shp`.
+8. Run the tool.
 
-> **Concept note:** The shortest path tool first builds a network graph from the road geometry and its attributes. The route result depends not only on distance, but also on the legal movement rules encoded in the network.
+![](images/20250427_134309_image.png)
+
+> **Concept note:** The shortest-path tool builds a network graph from the line geometry and the movement rules. The route is shortest only among paths that are valid under those rules.
 
 ## Part 4: Inspect and Style the Result
 
-1. Add the `ShortestPath` result to the project if it is not added automatically.
-2. Style it so it stands out clearly from the road network.
-3. Zoom to the route and inspect how it moves through the street system.
+When the tool finishes, QGIS will add the route result as a new layer.
 
-As you look at the route, think about why the path is shaped the way it is. In many places there may appear to be several possible visual routes, but the shortest valid route must obey the one-way restrictions in the data.
+1. Select the `ShortestPath` layer.
+2. Style it so it stands out clearly from the street network.
 
-> **Concept note:** In network analysis, the "best" path is always relative to the cost and rules built into the model. In this lab, the cost is distance and the rule set includes one-way travel direction.
+![](images/20250427_134355_image.png)
+
+As you inspect the route, think about why it follows that specific path. There may appear to be many visual alternatives, but the shortest legal route still has to respect the one-way constraints stored in the network.
 
 ## Deliverable
 
@@ -149,8 +193,6 @@ Include:
 - a legend if it helps interpretation
 
 Choose a basemap or background style that stays visually subordinate to the route.
-
-> Placeholder image: final layout showing a highlighted shortest path over the San Francisco street network, with cartographic elements included.
 
 ## What You Should Understand After This Lab
 
