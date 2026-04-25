@@ -1,17 +1,23 @@
 # Areal Interpolation with QGIS: Santa Clara County Population by Fire Hazard Risk Level
 
-> **Draft status:** This is a workflow draft adapted from the older areal interpolation lab. It keeps the step-by-step analysis sequence, updates the data and objective, and leaves broader introductory conceptual framing for the Week 05 overview or a later README update.
-
 ## Overview
 
 In this lab, you will use **areal interpolation** to estimate how many people live in each **Fire Hazard Severity Zone** risk class in Santa Clara County.
 
-The challenge is that the two datasets in this exercise use different geographic units:
+This lab is about **manipulating geography to estimate a measurement that is not directly available to us**.
+
+In GIS, we are often interested in demographic values for units of area that are not based on Census geography. Fire hazard zones are a good example. They are meaningful analytical zones, but they are not the polygons the Census or SimplyAnalytics used to report population.
+
+That creates a common problem: the population data and the geography we care about do not use the same boundaries.
+
+In this exercise:
 
 1. the **Fire Hazard Severity Zone** polygons represent the hazard-risk geography
 2. the **2025 Santa Clara County block group population** polygons represent the demographic reporting geography
 
-Because those boundaries do not line up perfectly, we cannot just use a simple attribute join. Instead, we will:
+Because those boundaries do not line up perfectly, we cannot just use a simple attribute join. Instead, we will use a simplified version of a very common GIS solution. We will split the source polygons where they intersect the target geography, calculate overlap-based weights, and use those weights to estimate population for the hazard zones.
+
+In this lab, we will:
 
 1. calculate the original area of each block group
 2. split block groups where they cross Fire Hazard Severity Zone boundaries
@@ -19,7 +25,9 @@ Because those boundaries do not line up perfectly, we cannot just use a simple a
 4. use an area-based weight to estimate how much of each block group's population belongs in each hazard polygon
 5. summarize the weighted population totals by hazard risk level
 
-> **Concept note:** Areal interpolation is a way of transferring attribute values from one set of polygons to another when their boundaries do not match. In this lab, we are assuming that population is distributed evenly within each block group. That assumption is not perfect, but it gives us a practical estimate.
+> **Concept note:** Areal interpolation is a way of transferring attribute values from one set of polygons to another when their boundaries do not match. In this lab, we are using a simple area-weighting method, which assumes that population is distributed evenly within each block group.
+
+> **Concept note:** A more advanced and often more accurate method is to build the weight from the **linear length of streets** in the overlapping areas, rather than from polygon area alone. Street infrastructure often correlates more closely with population density, which helps reduce distortion from large but lightly populated spaces such as golf courses, industrial parks, or other land-extensive features.
 
 ## Getting Ready
 
@@ -89,8 +97,6 @@ You should identify:
 - the Fire Hazard Severity Zone category field: `HAZ_CLASS`
 - the optional coded hazard field: `HAZ_CODE`
 
-![Placeholder image: QGIS map canvas showing Santa Clara County block groups and Fire Hazard Severity Zone polygons layered together, with one layer transparent so students can see that the boundaries do not align exactly.](images/placeholder_areal_interpolation_layer_setup.png)
-
 ## Part 2: Calculate the Parent Area of Each Block Group
 
 We first need the original area of each intact block group polygon. This gives us the denominator for the weighting step later.
@@ -119,7 +125,6 @@ $area
 
 If your population field contains whole-number totals, leave that field unchanged. The weighted population field later in the workflow should be stored as a decimal number.
 
-
 ## Part 3: Use Union to Split Block Groups by Fire Hazard Severity Zone
 
 Now create the overlap geometry that makes the interpolation possible.
@@ -133,7 +138,6 @@ Now create the overlap geometry that makes the interpolation possible.
 
 ![](images/20260423_155418_image.png)
 
-
 ![](images/20260423_155646_image.png)
 
 The result should be a new polygon layer containing:
@@ -145,8 +149,6 @@ The result should be a new polygon layer containing:
 ![](images/20260423_155751_image.png)
 
 > **Concept note:** The union step creates the new analytical units used in the interpolation. Any block group that crosses a hazard boundary will be divided into smaller child polygons.
-
-![Placeholder image: QGIS Union tool configured with the EarthWorks Fire Hazard Severity Zone layer as the input layer and santa_clara_pop_2025.shp as the overlay layer, with the output saved as fhsz_union.shp.](images/placeholder_areal_interpolation_intersection_tool.png)
 
 ## Part 4: Calculate the Child Area of the Overlap Polygons
 
@@ -185,7 +187,7 @@ As in the Week 04 watershed interpolation lab, some polygons in the union result
 
 4. Apply the selection.
 5. Inspect the selected features on the map.
-6. Invert the selection so that the selected records are the polygons where `P_AREA` is not null.
+6. Invert the selection ![](images/20260424_153338_image.png) so that the selected records are the polygons where `P_AREA` **IS NOT** NULL.
 
 ![](images/20260423_160312_image.png)
 
@@ -195,7 +197,7 @@ As in the Week 04 watershed interpolation lab, some polygons in the union result
 
 Now calculate the proportion of each child polygon relative to its original parent block group.
 
-1. With the non-null records still selected, open the **Field Calculator** for the union layer.
+1. With the non-null records still selected, open the **Field Calculator** ![](images/20260424_153443_image.png) for the union layer.
 2. Create a new field named `WEIGHT`.
 3. Set the output field type to **Decimal number (real)**.
 4. Set a precision that will preserve several decimal places.
@@ -231,57 +233,37 @@ Now apply the area weight to the 2025 block group population values.
 "WEIGHT" * "VALUE0"
 ```
 
-5. Run the calculation.
+![](images/20260424_144833_image.png)
+
+6. Run the calculation.
+7. Toggle off editing and save your edits.
 
 > **Concept note:** `WT_POP` is the estimated share of the original block group population assigned to each overlap polygon. When all overlap polygons from one original block group are added together, the result should be approximately that block group's original population total.
 
-![Placeholder image: QGIS Field Calculator showing a WT_POP calculation that multiplies WEIGHT by VALUE0, the total population field in santa_clara_pop_2025.shp.](images/placeholder_areal_interpolation_weighted_pop.png)
+![](images/20260424_144859_image.png)
 
 ## Part 8: Summarize Population by Fire Hazard Risk Level
 
 Now that each overlap polygon has an estimated population, summarize those weighted values by Fire Hazard Severity Zone risk class.
 
-You can do this with either **Group Stats** or **Statistics by categories**. If your class is already using **Group Stats**, continue with that workflow.
-
-### Option A: Group Stats
-
-1. Open **Vector > Group Stats**.
-2. Use the union layer as the input table.
-3. Set **Rows** to `HAZ_CLASS`.
-4. Set **Values** to `WT_POP`.
-5. Set **Columns** or the summary statistic to `sum`.
-6. Run the summary.
-
-### Option B: Statistics by Categories
+### Statistics by Categories
 
 1. Search for **Statistics by categories** in the **Processing Toolbox**.
 2. Use the union layer as the input table.
 3. Use `WT_POP` as the field to calculate statistics on.
-4. Use `HAZ_CLASS` as the category field.
-5. Run the tool.
+4. Use `HAZ_CLASS` and `HAZ_CODE` as the category fields.
 
-Your output table should show an estimated total population for each hazard risk class, such as `Moderate`, `High`, and `Very High`.
+![](images/20260424_145624_image.png)
+
+![](images/20260424_145933_image.png)
+
+1. Run the tool.
+
+Your output table should show an estimated total population for each hazard risk class, such as `Moderate`, `High`, and `Very High`, under the `SUM` column.
 
 > **Concept note:** This final table is where the interpolation becomes useful. The intermediate polygons are only a method. The real goal is the summarized estimate by the target geography.
 
-![Placeholder image: QGIS summary table or Group Stats window showing summed WT_POP values grouped by HAZ_CLASS for the EarthWorks Fire Hazard Severity Zone dataset, including classes such as Moderate, High, and Very High.](images/placeholder_areal_interpolation_summary_table.png)
-
-## Part 9: Check Your Results
-
-Before treating the results as final, do a quick reasonableness check.
-
-1. Sum the `WT_POP` field for the entire union layer.
-2. Compare that result to the total population from the original block group layer.
-
-These values should be very close if the workflow was completed correctly and the hazard zone polygons cover the area you intended to analyze.
-
-> **Concept note:** A check like this helps you catch field-selection mistakes, projection problems, or missing overlap areas before you interpret the final table.
-
-You should also review:
-
-- whether any overlap polygons have `NULL` values in the key fields
-- whether the `HAZ_CLASS` categories appear as expected
-- whether the output contains any unexpectedly tiny sliver polygons
+![](images/20260424_150101_image.png)
 
 ## Deliverable
 
