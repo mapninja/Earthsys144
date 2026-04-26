@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>02 - Network Analysis with QGIS · HonKit</title>
+        <title>04 - Tabular/Vector Data in Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="03_introducing_simplyanalytics_com.html" />
+    <link rel="next" href="../week05/" />
     
     
-    <link rel="prev" href="01_areal_interpolation_of_attributes_with_qgis.html" />
+    <link rel="prev" href="03_network_analysis_with_qgis.html" />
     
 
     </head>
@@ -490,12 +490,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.7.1" data-path="00_buffering_and_overlay_analysis_in_qgis.html">
+        <li class="chapter " data-level="1.7.1" data-path="00_introducing_simplyanalytics_com.html">
             
-                <a href="00_buffering_and_overlay_analysis_in_qgis.html">
+                <a href="00_introducing_simplyanalytics_com.html">
             
                     
-                    00 - Buffering & Overlay Analysis in QGIS
+                    00 - Introducing SimplyAnalytics.com
             
                 </a>
             
@@ -503,12 +503,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="01_areal_interpolation_of_attributes_with_qgis.html">
+        <li class="chapter " data-level="1.7.2" data-path="01_buffering_and_overlay_analysis_in_qgis.html">
             
-                <a href="01_areal_interpolation_of_attributes_with_qgis.html">
+                <a href="01_buffering_and_overlay_analysis_in_qgis.html">
             
                     
-                    01 - Areal Interpolation of Attributes with QGIS
+                    01 - Buffering & Overlay Analysis in QGIS
             
                 </a>
             
@@ -516,12 +516,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7.3" data-path="02_network_analysis_with_qgis.html">
+        <li class="chapter " data-level="1.7.3" data-path="02_areal_interpolation_of_attributes_with_qgis.html">
             
-                <a href="02_network_analysis_with_qgis.html">
+                <a href="02_areal_interpolation_of_attributes_with_qgis.html">
             
                     
-                    02 - Network Analysis with QGIS
+                    02 - Areal Interpolation of Attributes with QGIS
             
                 </a>
             
@@ -529,12 +529,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.4" data-path="03_introducing_simplyanalytics_com.html">
+        <li class="chapter " data-level="1.7.4" data-path="03_network_analysis_with_qgis.html">
             
-                <a href="03_introducing_simplyanalytics_com.html">
+                <a href="03_network_analysis_with_qgis.html">
             
                     
-                    03 - Introducing SimplyAnalytics.com
+                    03 - Network Analysis with QGIS
             
                 </a>
             
@@ -542,12 +542,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.5" data-path="05_tabular_vector_data_in_google_earth_engine.html">
+        <li class="chapter active" data-level="1.7.5" data-path="04_tabular_vector_data_in_google_earth_engine.html">
             
-                <a href="05_tabular_vector_data_in_google_earth_engine.html">
+                <a href="04_tabular_vector_data_in_google_earth_engine.html">
             
                     
-                    05 - Tabular/Vector Data in Google Earth Engine
+                    04 - Tabular/Vector Data in Google Earth Engine
             
                 </a>
             
@@ -1042,7 +1042,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >02 - Network Analysis with QGIS</a>
+        <a href=".." >04 - Tabular/Vector Data in Google Earth Engine</a>
     </h1>
 </div>
 
@@ -1057,186 +1057,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="network-analysis-with-qgis">Network Analysis with QGIS</h1>
-<blockquote>
-<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
-<p><strong>Attribution note:</strong> This exercise is adapted from Ujaval Gandhi's tutorial on basic network <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> and routing in QGIS.</p>
-</blockquote>
-<h2 id="overview">Overview</h2>
-<p>This lab introduces <strong>network analysis</strong> in QGIS using a street dataset from San Francisco.</p>
-<p>In GIS, a network is a connected system of lines and nodes that can model movement. Roads are one of the most common examples. Once a street <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is treated as a network, QGIS can do more than display it. It can use attributes such as one-way direction to calculate legal routes.</p>
-<p>In this exercise, you will:</p>
-<ol>
-<li>load and inspect a street-network dataset</li>
-<li>symbolize one-way streets with directional arrows</li>
-<li>use the shortest-path tool to calculate a route between two points</li>
-<li>create a final layout showing the route</li>
-</ol>
-<blockquote>
-<p><strong>Concept note:</strong> A road network is not just a line map. It is an analytical structure where geometry and movement rules both matter.</p>
-</blockquote>
-<h2 id="getting-ready">Getting Ready</h2>
-<p>You will need:</p>
-<ul>
-<li><a href="../data/Streets%20Active%20and%20Retired.zip">Streets Active and Retired.zip</a></li>
-</ul>
-<h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
-<ol>
-<li>Download <a href="../data/Streets%20Active%20and%20Retired.zip">Streets Active and Retired.zip</a>.</li>
-<li>Unzip it somewhere stable on your computer.</li>
-<li>Create a new project folder for this lab.</li>
-<li>Save a new QGIS project in that folder as <code>network_analysis.qgz</code>.</li>
-</ol>
-<h2 id="part-1-add-and-inspect-the-street-network">Part 1: Add and Inspect the Street Network</h2>
-<p>The source data comes from DataSF.</p>
-<p><img src="images/Network_Analysis-8f0f8501.png" alt=""></img></p>
-<ol>
-<li>In the <strong>Browser</strong> panel, browse to the unzipped <strong>Streets Active and Retired</strong> folder.</li>
-<li>Add the street <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> to the map canvas.</li>
-</ol>
-<p><img src="images/20250427_131900_image.png" alt=""></img></p>
-<ol>
-<li>Use the <strong>Identify Features</strong> tool and click several road segments.</li>
-</ol>
-<p><img src="images/20250427_132005_image.png" alt=""></img></p>
-<p>Pay special attention to the <code>oneway</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
-<p>Its important values are:</p>
-<ul>
-<li><code>F</code> for one-way in the forward direction</li>
-<li><code>T</code> for one-way in the reverse direction</li>
-<li><code>B</code> for travel allowed in both directions</li>
-<li><code>NULL</code>, which you can treat here as two-way</li>
-</ul>
-<p><img src="images/20250427_132127_image.png" alt=""></img></p>
-<blockquote>
-<p><strong>Concept note:</strong> Network analysis depends on movement rules stored in attributes. Without fields such as <code>oneway</code>, the software cannot tell a legal route from an impossible one.</p>
-</blockquote>
-<h2 id="part-2-symbolize-one-way-streets-with-rule-based-styling">Part 2: Symbolize One-Way Streets with Rule-Based Styling</h2>
-<p>Before doing analysis, make the directionality of the network visible.</p>
-<ol>
-<li>Open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel.</li>
-</ol>
-<p><img src="images/Network_Analysis-fe00bea5.png" alt=""></img></p>
-<ol>
-<li>Change the renderer to <strong>Rule-based</strong>.</li>
-</ol>
-<p><img src="images/Network_Analysis-fab99b21.png" alt=""></img></p>
-<ol>
-<li>Add a new rule.</li>
-</ol>
-<p><img src="images/Network_Analysis-87fdc3a0.png" alt=""></img></p>
-<ol>
-<li>Open the expression builder.</li>
-</ol>
-<p><img src="images/Network_Analysis-b2ce377e.png" alt=""></img></p>
-<ol>
-<li>Use this expression:</li>
-</ol>
-<pre><code class="lang-qgis">"oneway" IN ('F', 'T')
-</code></pre>
-<p><img src="images/20250427_132701_image.png" alt=""></img></p>
-<p>This selects only the one-way street segments.</p>
-<h3 id="add-arrow-markers">Add arrow markers</h3>
-<ol>
-<li>In the symbol settings for that rule, change the symbol <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> type to <strong>Marker line</strong>.</li>
-</ol>
-<p><img src="images/Network_Analysis-028783ac.png" alt=""></img></p>
-<ol>
-<li>Uncheck <strong>With interval</strong>.</li>
-<li>Set <strong>Marker placement</strong> to <strong>On central point</strong>.</li>
-</ol>
-<p><img src="images/Network_Analysis-778a0553.png" alt=""></img></p>
-<ol>
-<li>Choose a marker such as a filled arrowhead.</li>
-</ol>
-<p><img src="images/Network_Analysis-bdbf05cb.png" alt=""></img></p>
-<p>At this point, all arrows may point in the same direction. That is not yet correct.</p>
-<h3 id="use-a-data-defined-override-for-rotation">Use a data-defined override for rotation</h3>
-<ol>
-<li>Find the <strong>Rotation</strong> option.</li>
-<li>Open the data-defined override menu.</li>
-</ol>
-<p><img src="images/Network_Analysis-42cbb64c.png" alt=""></img></p>
-<p><img src="images/Network_Analysis-15bab421.png" alt=""></img></p>
-<ol>
-<li>Use this expression:</li>
-</ol>
-<pre><code class="lang-qgis">if("oneway" = 'T', 180, 0)
-</code></pre>
-<ol>
-<li>Apply the expression.</li>
-</ol>
-<p><img src="images/20250427_133048_image.png" alt=""></img></p>
-<p>The arrows should now align with the stored traffic direction.</p>
-<p><img src="images/Network_Analysis-1ed98943.png" alt=""></img></p>
-<blockquote>
-<p><strong>Concept note:</strong> This is a good example of <a href="../GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">cartography</a> supporting analysis. The data is not changing, but the styling is making the movement rules visible.</p>
-</blockquote>
-<h2 id="part-3-calculate-a-shortest-path">Part 3: Calculate a Shortest Path</h2>
-<p>Now use the network for routing.</p>
-<ol>
-<li>Open <strong>Processing &gt; Toolbox</strong>.</li>
-<li>Search for <strong>Shortest path (point to point)</strong>.</li>
-<li>Open the tool.</li>
-<li><p>Set:</p>
-</li>
-<li><p><strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> representing network:</strong> the San Francisco streets <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></p>
-</li>
-<li><strong>Path type:</strong> <code>Shortest</code></li>
-</ol>
-<p>If you want to reproduce the example route, use:</p>
-<ul>
-<li><strong>Start point:</strong> <code>-122.422227,37.768156</code></li>
-<li><strong>End point:</strong> <code>-122.429083,37.750797</code></li>
-</ul>
-<p>You can type those coordinates directly or use the map picker.</p>
-<p><img src="images/Network_Analysis-5730a422.png" alt=""></img></p>
-<ol>
-<li>Expand the advanced parameters.</li>
-<li><p>Set:</p>
-</li>
-<li><p><strong>Direction <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>:</strong> <code>oneway</code></p>
-</li>
-<li><strong>Value for forward direction:</strong> <code>F</code></li>
-<li><p><strong>Value for backward direction:</strong> <code>T</code></p>
-</li>
-<li><p>Save the output as <code>ShortestPath.shp</code>.</p>
-</li>
-<li>Run the tool.</li>
-</ol>
-<p><img src="images/20250427_134309_image.png" alt=""></img></p>
-<blockquote>
-<p><strong>Concept note:</strong> The shortest-path tool builds a network graph from the line geometry and the movement rules. The route is shortest only among paths that are valid under those rules.</p>
-</blockquote>
-<h2 id="part-4-inspect-and-style-the-result">Part 4: Inspect and Style the Result</h2>
-<p>When the tool finishes, QGIS will add the route result as a new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<ol>
-<li>Select the <code>ShortestPath</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
-<li>Style it so it stands out clearly from the street network.</li>
-</ol>
-<p><img src="images/20250427_134355_image.png" alt=""></img></p>
-<p>As you inspect the route, think about why it follows that specific path. There may appear to be many visual alternatives, but the shortest legal route still has to respect the one-way constraints stored in the network.</p>
-<h2 id="deliverable">Deliverable</h2>
-<p>Create and export a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> centered on your chosen origin and destination pair.</p>
-<p>Include:</p>
-<ul>
-<li>the street network as context</li>
-<li>the shortest path clearly highlighted</li>
-<li>a title</li>
-<li>your name</li>
-<li>the date</li>
-<li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
-<li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> if it helps interpretation</li>
-</ul>
-<p>Choose a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> or background style that stays visually subordinate to the route.</p>
-<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
-<p>By the end of this exercise, you should be able to explain:</p>
-<ul>
-<li>why a street dataset can be treated as a network</li>
-<li>how the <code>oneway</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> changes both <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> and routing</li>
-<li>why data-defined overrides are useful for network <a href="../GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">cartography</a></li>
-<li>how the shortest-path tool uses network geometry and direction rules together</li>
-</ul>
+                                <h1 id="tabularvector-data-in-google-earth-engine">Tabular/Vector Data in Google Earth Engine</h1>
 
                                 
                                 </section>
@@ -1264,12 +1085,12 @@
 
             
                 
-                <a href="01_areal_interpolation_of_attributes_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 01 - Areal Interpolation of Attributes with QGIS">
+                <a href="03_network_analysis_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 03 - Network Analysis with QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="03_introducing_simplyanalytics_com.html" class="navigation navigation-next " aria-label="Next page: 03 - Introducing SimplyAnalytics.com">
+                <a href="../week05/" class="navigation navigation-next " aria-label="Next page: Week 05 - Basic Raster Analysis">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1280,7 +1101,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - Network Analysis with QGIS","level":"1.7.3","depth":2,"next":{"title":"03 - Introducing SimplyAnalytics.com","level":"1.7.4","depth":2,"path":"week04/03_introducing_simplyanalytics_com.md","ref":"week04/03_introducing_simplyanalytics_com.md","articles":[]},"previous":{"title":"01 - Areal Interpolation of Attributes with QGIS","level":"1.7.2","depth":2,"path":"week04/01_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/01_areal_interpolation_of_attributes_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/02_network_analysis_with_qgis.md","mtime":"2026-04-26T21:53:20.150Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-26T21:53:29.314Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"next":{"title":"Week 05 - Basic Raster Analysis","level":"1.8","depth":1,"path":"week05/README.md","ref":"week05/README.md","articles":[{"title":"00 - Basic Raster Analysis with Google Earth Engine","level":"1.8.1","depth":2,"path":"week05/00_basic_raster_analysis_with_google_earth_engine.md","ref":"week05/00_basic_raster_analysis_with_google_earth_engine.md","articles":[]},{"title":"01 - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.2","depth":2,"path":"week05/01_terrain_and_visibility_with_qgis.md","ref":"week05/01_terrain_and_visibility_with_qgis.md","articles":[]},{"title":"02 - Visibility Analysis with QGIS","level":"1.8.3","depth":2,"path":"week05/02_visibility_analysis_with_qgis.md","ref":"week05/02_visibility_analysis_with_qgis.md","articles":[]},{"title":"03 - Watershed with QGIS & WhiteBox Tools","level":"1.8.4","depth":2,"path":"week05/03_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_watershed_with_qgis_and_whitebox_tools.md","articles":[]},{"title":"04 - Introducing StoryMaps on ArcGIS Online","level":"1.8.5","depth":2,"path":"week05/04_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_introducing_storymaps_on_arcgis_online.md","articles":[]}]},"previous":{"title":"03 - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_network_analysis_with_qgis.md","ref":"week04/03_network_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/04_tabular_vector_data_in_google_earth_engine.md","mtime":"2026-04-26T22:09:40.015Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-26T22:09:49.028Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
