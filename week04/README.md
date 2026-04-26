@@ -45,11 +45,11 @@ A workflow that uses services such as SimplyAnalytics or Google Earth Engine sti
 
 ### [00 - Buffering & Overlay Analysis in QGIS](00_buffering_and_overlay_analysis_in_qgis.md)
 
-This lab introduces fixed-distance and variable-distance buffers, then uses overlay tools to identify candidate areas that satisfy both lake and road proximity criteria.
+This lab uses California lakes, state highways, public-access lands, and statewide parcels to support site selection for potential expanded state camping facilities through buffering, overlay, and parcel selection.
 
 ### [01 - Areal Interpolation of Attributes with QGIS](01_areal_interpolation_of_attributes_with_qgis.md)
 
-This lab introduces area-weighted interpolation using Connecticut block groups and watershed basins. The main goal is to estimate population totals for a target geography whose boundaries do not match the original Census units.
+This lab uses Santa Clara County block-group population data and Fire Hazard Severity Zones to estimate how many people live in each hazard risk class through area-weighted interpolation.
 
 ### [02 - Network Analysis with QGIS](02_network_analysis_with_qgis.md)
 

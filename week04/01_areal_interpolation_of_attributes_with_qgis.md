@@ -1,274 +1,290 @@
-# Areal Interpolation of Attributes with QGIS
-
-> **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
+# Areal Interpolation with QGIS: Santa Clara County Population by Fire Hazard Risk Level
 
 ## Overview
 
-This lab uses **areal interpolation** to estimate population totals for a set of watershed polygons.
+In this lab, you will use **areal interpolation** to estimate how many people live in each **Fire Hazard Severity Zone** risk class in Santa Clara County.
 
-The problem is that the population data and the reporting geography do not use the same boundaries:
+This lab is about **manipulating geography to estimate a measurement that is not directly available to us**.
 
-1. `CT_Block_Groups` contains the source population data
-2. `CT_Major_Basins` contains the watershed boundaries you want to summarize to
+In GIS, we are often interested in demographic values for units of area that are not based on Census geography. Fire hazard zones are a good example. They are meaningful analytical zones, but they are not the polygons the Census or SimplyAnalytics used to report population.
 
-Because those polygon systems do not align, you cannot use a simple attribute join. Instead, you will:
+That creates a common problem: the population data and the geography we care about do not use the same boundaries.
 
-1. calculate the original area of each Census block group
-2. split block groups where they intersect watershed boundaries
-3. calculate the area of the resulting overlap polygons
-4. convert those overlap areas into weights
-5. use those weights to estimate population by watershed piece
-6. summarize the weighted population by watershed
+In this exercise:
 
-> **Concept note:** Areal interpolation is useful whenever attributes are reported for one set of polygons, but the question you want to answer belongs to another set of polygons. In this lab, the interpolation uses a simple area-weighting assumption.
+1. the **Fire Hazard Severity Zone** polygons represent the hazard-risk geography
+2. the **2025 Santa Clara County block group population** polygons represent the demographic reporting geography
+
+Because those boundaries do not line up perfectly, we cannot just use a simple attribute join. Instead, we will use a simplified version of a very common GIS solution. We will split the source polygons where they intersect the target geography, calculate overlap-based weights, and use those weights to estimate population for the hazard zones.
+
+In this lab, we will:
+
+1. calculate the original area of each block group
+2. split block groups where they cross Fire Hazard Severity Zone boundaries
+3. calculate the area of each resulting overlap polygon
+4. use an area-based weight to estimate how much of each block group's population belongs in each hazard polygon
+5. summarize the weighted population totals by hazard risk level
+
+> **Concept note:** Areal interpolation is a way of transferring attribute values from one set of polygons to another when their boundaries do not match. In this lab, we are using a simple area-weighting method, which assumes that population is distributed evenly within each block group.
+
+> **Concept note:** A more advanced and often more accurate method is to build the weight from the **linear length of streets** in the overlapping areas, rather than from polygon area alone. Street infrastructure often correlates more closely with population density, which helps reduce distortion from large but lightly populated spaces such as golf courses, industrial parks, or other land-extensive features.
 
 ## Getting Ready
 
 You will need:
 
-- [CT_Watershed_Data.gdb.zip](../data/CT_Watershed_Data.gdb.zip)
-- the **Group Stats** plugin for QGIS
+- the Stanford EarthWorks Fire Hazard Severity Zone dataset: [stanford-jr312mr8879](https://earthworks.stanford.edu/catalog/stanford-jr312mr8879)
+- `santa_clara_pop_2025.shp`, a **2025 Santa Clara County block group** shapefile exported from SimplyAnalytics
 
-### Install the Group Stats plugin
+Create a new project folder for this lab and save a new QGIS project there as `areal_interpolation_fire_hazard.qgz`.
 
-You will use **Group Stats** at the end of the lab to summarize weighted population by watershed.
+## Data for This Exercise
 
-1. Open **Plugins > Manage and Install Plugins**.
-2. Search for `Group Stats`.
-3. Install the plugin.
+### Fire Hazard Severity Zones
 
-![](images/20250427_125204_image.png)
+Download the Fire Hazard Severity Zone dataset from EarthWorks and add the polygon layer to QGIS. In the EarthWorks download, the layer used in the screenshot is named `fhszs06_3_43`.
 
-> **Concept note:** Group Stats works like a pivot table. It is helpful when you need to group rows by one field and summarize the values from another field.
+This dataset provides the target zones for your final summary. These are the polygons you want your estimated population totals to match.
 
-### Download and unpack the data
+From the attribute table shown in the screenshot, the key fields are:
 
-1. Download [CT_Watershed_Data.gdb.zip](../data/CT_Watershed_Data.gdb.zip).
-2. Unzip it somewhere stable on your computer.
-3. Create a new project folder for this lab.
-4. Save a new QGIS project in that folder as `areal_interpolation.qgz`.
+- `HAZ_CLASS` for the hazard-risk class labels such as `Moderate`
+- `HAZ_CODE` for the coded version of the class
+- `SRA` for the State Responsibility Area designation
 
-## Part 1: Add the Layers and Get Oriented
+### 2025 Santa Clara County Block Groups
 
-1. In the **Browser** panel, browse to the unzipped `CT_Watershed_Data.gdb`.
-2. Drag these layers into the map canvas in this order:
-   1. `CT_State_Boundary`
-   2. `CT_Block_Groups`
-   3. `CT_Major_Basins`
-3. Open the **Layer Styling** panel.
-4. Make the polygon fills transparent and the outlines visible so you can compare the boundary systems.
+Add `santa_clara_pop_2025.shp`, the block group shapefile exported from SimplyAnalytics.
 
-![](images/20250427_122609_image.png)
+This layer should contain:
 
-Take a moment to inspect the attribute tables.
+- one polygon for each block group
+- a field named `VALUE0`, which stores `# Total Population, 2025`
 
-You should notice that:
+> **Concept note:** In this workflow, the block groups are the **source zones** because they hold the original population values, and the Fire Hazard Severity Zones are the **target zones** because they are the geography you want to report results for.
 
-- `CT_Block_Groups` contains the demographic values you want to redistribute
-- `CT_Major_Basins` contains the watershed geography you want to report to
+Before continuing:
 
-> **Concept note:** Before doing any geoprocessing, it helps to look directly at the geometry problem. You should be able to see that many block groups do not line up with watershed boundaries.
+1. confirm that both layers draw in the same place
+2. confirm that both layers are polygon layers
+3. confirm that the population field in the block group layer is `VALUE0`
+4. confirm that the hazard class field in the Fire Hazard Severity Zone layer is `HAZ_CLASS`
+5. note that `HAZ_CODE` is available if you want to compare coded and text labels
 
-## Part 2: Calculate the Parent Area of the Block Groups
+If the two layers have different projected coordinate systems, reproject one so both layers use the same projected CRS before calculating area.
 
-First calculate the original area of each intact block group. This becomes the denominator in the weighting step later.
+> **Concept note:** Area-based calculations depend on the map units of the layer CRS. A projected CRS is important because it lets QGIS measure polygon area in consistent linear units such as feet or meters.
 
-Because the source data is inside a geodatabase, use a **virtual field** for this calculation.
+## Part 1: Add the Layers and Inspect the Attributes
 
-1. Open the attribute table for `CT_Block_Groups`.
-2. Look through the fields, including the population field you will use later.
-3. Open the **Field Calculator**.
+1. Start a new QGIS project.
+2. Add the Fire Hazard Severity Zone layer from the EarthWorks download, such as `fhszs06_3_43`.
+3. Add `santa_clara_pop_2025.shp`.
+4. Move the Fire Hazard Severity Zone layer above the block group layer if needed.
 
-![](images/Areal_Interpolation-fc5900dd.png)
+![](images/20260423_154323_image.png)
 
-4. Create a new **virtual field** named `P_AREA`.
-5. Use a numeric field type.
-6. Use the expression:
+1. Use the **Layer Styling** panel to make one of the polygon fills transparent so you can see both boundary systems at once.
 
-```qgis
-$area
-```
+![](images/20260423_154506_image.png)
 
-7. Run the calculation.
+Take a moment to inspect the attribute tables of both layers.
 
-![](images/20250427_123720_image.png)
+You should identify:
 
-![](images/20250427_122834_image.png)
+- the block group unique identifier field
+- the total population field for 2025: `VALUE0`
+- the Fire Hazard Severity Zone category field: `HAZ_CLASS`
+- the optional coded hazard field: `HAZ_CODE`
 
-> **Concept note:** `P_AREA` stands for **parent area**, meaning the area of the original unsplit source polygon.
+## Part 2: Calculate the Parent Area of Each Block Group
 
-## Part 3: Use Union to Split Block Groups by Watershed
+We first need the original area of each intact block group polygon. This gives us the denominator for the weighting step later.
 
-Now create the overlap geometry that makes the interpolation possible.
+![](images/20260423_154613_image.png)
 
-1. Open the **Processing Toolbox**.
-2. Search for **Union**.
-3. Set:
-
-- **Input layer:** `CT_Major_Basins`
-- **Overlay layer:** `CT_Block_Groups`
-
-![](images/20250427_122945_image.png)
-
-4. Save the output as `union.shp`.
-5. Run the tool.
-
-This may take a little time because the block group geometry is fairly detailed.
-
-When the tool finishes, the `union` layer should contain:
-
-- the attributes of both inputs
-- new polygons wherever the source boundaries intersect
-
-The `P_AREA` field should appear at the far right side of the `union` layer's attribute table.
-
-![](images/20250427_123329_image.png)
-
-> **Concept note:** The union layer creates the new analytical units. These smaller polygons are the pieces to which the population shares will be assigned.
-
-## Part 4: Calculate the Child Area
-
-Now calculate the area of the new polygons created by the union process.
-
-1. Open the attribute table for `union`.
+1. Open the attribute table for the block group layer.
 2. Open the **Field Calculator**.
-
-![](images/Areal_Interpolation-fc5900dd.png)
-
-3. Create a new field named `CH_AREA`.
-4. Use a numeric field type.
+3. Create a new field named `P_AREA`.
+4. Set the output field type to **Decimal number (real)**.
 5. Use the expression:
 
 ```qgis
 $area
 ```
 
-6. Run the calculation.
+![](images/20260423_154735_image.png)
 
-![](images/20250506_142043_image.png)
+7. Run the calculation.
 
-> **Concept note:** `CH_AREA` stands for **child area**, meaning the area of each smaller polygon created after the original block groups were split.
+![](images/20260423_154811_image.png)
+
+7. Toggle of editing and Save your edits.
+
+> **Concept note:** `P_AREA` stands for **parent area**, meaning the area of the original unsplit source polygon before any overlay operation happens.
+
+If your population field contains whole-number totals, leave that field unchanged. The weighted population field later in the workflow should be stored as a decimal number.
+
+## Part 3: Use Union to Split Block Groups by Fire Hazard Severity Zone
+
+Now create the overlap geometry that makes the interpolation possible.
+
+1. Open the **Processing Toolbox**.
+2. Search for **Union**.
+3. Use the **Fire Hazard Severity Zone** layer as the **Input layer**.
+4. Use the **block group population** layer as the **Overlay layer**.
+5. Save the output as `fhsz_union.shp`.
+6. Run the tool.
+
+![](images/20260423_155418_image.png)
+
+![](images/20260423_155646_image.png)
+
+The result should be a new polygon layer containing:
+
+- the Fire Hazard Severity Zone attributes
+- the block group attributes
+- one feature for each area created where the two boundary systems intersect
+
+![](images/20260423_155751_image.png)
+
+> **Concept note:** The union step creates the new analytical units used in the interpolation. Any block group that crosses a hazard boundary will be divided into smaller child polygons.
+
+## Part 4: Calculate the Child Area of the Overlap Polygons
+
+Now calculate the area of each new polygon in the union layer.
+
+1. Open the attribute table for `fhsz_union`.
+2. Open the **Field Calculator**.
+3. Create a new field named `CH_AREA`.
+4. Set the output field type to **Decimal number (real)**.
+5. Use the expression:
+
+```qgis
+$area
+```
+
+![](images/20260423_155837_image.png)
+
+7. Run the calculation.
+
+> **Concept note:** `CH_AREA` stands for **child area**, meaning the area of each smaller overlap polygon created after the source block groups were split.
+
+![](images/20260423_155931_image.png)
 
 ## Part 5: Exclude Records with Null Parent Area
 
-Some polygons in the union result will not represent valid block-group pieces for the interpolation step.
+As in the Week 04 watershed interpolation lab, some polygons in the union result may not represent valid source block-group pieces for the weighting step.
 
-1. In the `union` attribute table, click **Select features using an expression**.
-
-![](images/Areal_Interpolation-730cd2b9.png)
-
-2. Use the expression:
+1. In the `fhsz_union` attribute table, open **Select features using an expression**.
+2. Use:
 
 ```qgis
 "P_AREA" IS NULL
 ```
 
-3. Click **Select Features**.
+![](images/20260423_160103_image.png)
 
-![](images/20250427_123951_image.png)
+4. Apply the selection.
+5. Inspect the selected features on the map.
+6. Invert the selection ![](images/20260424_153338_image.png) so that the selected records are the polygons where `P_AREA` **IS NOT** NULL.
 
-![](images/Areal_Interpolation-59224936.png)
+![](images/20260423_160312_image.png)
 
-4. Close the selection dialog and inspect the selected features.
-
-![](images/20250427_124103_image.png)
-
-These are usually small sliver polygons that do not carry a valid parent-area value from the original block group layer.
-
-5. In the attribute table, click **Invert Selection** so that the selected records are the ones where `P_AREA` is not null.
-
-![](images/Areal_Interpolation-94ba9a51.png)
-
-> **Concept note:** If you leave null parent-area records in the next step, you risk dividing by null and generating invalid weights.
+> **Concept note:** This step protects the weighting calculation from null parent-area values. If a record does not have a valid original block-group area, it should not be used in the area-share calculation.
 
 ## Part 6: Calculate the Area Weight
 
-Now calculate the proportion of each child polygon relative to its original parent polygon.
+Now calculate the proportion of each child polygon relative to its original parent block group.
 
-1. With the non-null records still selected, open the **Field Calculator**.
+1. With the non-null records still selected, open the **Field Calculator** ![](images/20260424_153443_image.png) for the union layer.
 2. Create a new field named `WEIGHT`.
-3. Use **Decimal number (real)** as the field type.
-4. If available, check **Only update selected features**.
+3. Set the output field type to **Decimal number (real)**.
+4. Set a precision that will preserve several decimal places.
 5. Use the expression:
 
 ```qgis
 "CH_AREA" / "P_AREA"
 ```
 
-6. Use a precision of several decimal places.
-7. Run the calculation.
+![](images/20260423_160546_image.png)
 
-![](images/20250427_124525_image.png)
+7. Confirm **Only update selected features** is checked.
+8. Run the calculation.
+9. Toggle off editing.
 
-Many values will be `1`, while others will be smaller than `1`.
+Inspect several records after the calculation:
 
-![](images/20250506_142131_image.png)
+- values close to `1` usually indicate a block group piece that stayed mostly intact within a single hazard zone
+- smaller values indicate that the original block group has been split across multiple zones
 
-> **Concept note:** A value of `1` means the original block group was not split for that record. A value less than `1` means only part of the block group's area falls within that watershed polygon.
+> **Concept note:** The weight is the fraction of the original block group area represented by each overlap polygon. The workflow uses that fraction as a proxy for the fraction of the block group's population assigned to that overlap area.
 
 ## Part 7: Calculate Weighted Population
 
-Now apply the area weight to the block-group population field.
+Now apply the area weight to the 2025 block group population values.
 
-1. Open the **Field Calculator** again for the `union` layer.
+1. Open the **Field Calculator** for the union layer.
 2. Create a new field named `WT_POP`.
-3. Use **Decimal number (real)** as the field type.
+3. Set the output field type to **Decimal number (real)**.
 4. Use the expression:
 
 ```qgis
-"WEIGHT" * "POP2004"
+"WEIGHT" * "VALUE0"
 ```
 
-5. Run the calculation.
+![](images/20260424_144833_image.png)
 
-![](images/20250427_124708_image.png)
+6. Run the calculation.
+7. Toggle off editing and save your edits.
 
-6. Save edits if QGIS prompts you.
-7. Toggle off editing.
-8. Clear the selection.
+> **Concept note:** `WT_POP` is the estimated share of the original block group population assigned to each overlap polygon. When all overlap polygons from one original block group are added together, the result should be approximately that block group's original population total.
 
-![](images/Areal_Interpolation-0665525d.png)
+![](images/20260424_144859_image.png)
 
-![](images/20250506_142321_image.png)
+## Part 8: Summarize Population by Fire Hazard Risk Level
 
-> **Concept note:** `WT_POP` is the estimated population assigned to each child polygon after the area-based redistribution. This is the value you will summarize by watershed.
+Now that each overlap polygon has an estimated population, summarize those weighted values by Fire Hazard Severity Zone risk class.
 
-## Part 8: Summarize Weighted Population by Watershed
+### Statistics by Categories
 
-Now aggregate the interpolated values to the watershed level.
+1. Search for **Statistics by categories** in the **Processing Toolbox**.
+2. Use the union layer as the input table.
+3. Use `WT_POP` as the field to calculate statistics on.
+4. Use `HAZ_CLASS` and `HAZ_CODE` as the category fields.
 
-1. Open **Vector > Group Stats**.
-2. Use the `union` layer as the input table if prompted.
-3. Set:
+![](images/20260424_145624_image.png)
 
-- **Columns:** `sum`
-- **Rows:** `MAJOR`
-- **Value:** `WT_POP`
+![](images/20260424_145933_image.png)
 
-4. Click **Calculate**.
+1. Run the tool.
 
-The result should be a grouped summary table showing the estimated total population for each major basin.
+Your output table should show an estimated total population for each hazard risk class, such as `Moderate`, `High`, and `Very High`, under the `SUM` column.
 
-![](images/20250427_125413_image.png)
+> **Concept note:** This final table is where the interpolation becomes useful. The intermediate polygons are only a method. The real goal is the summarized estimate by the target geography.
 
-If you want to save the result:
-
-1. select the output table
-2. use the plugin export option to save the result as CSV
-
-> **Concept note:** This final step is where the interpolation becomes useful. Up to this point, you have been preparing weighted pieces. Group Stats recombines those pieces by watershed so the result can be interpreted in the target geography.
+![](images/20260424_150101_image.png)
 
 ## Deliverable
 
-Submit:
+Prepare and submit:
 
-- a screenshot of the **Group Stats** results showing weighted population by watershed
+1. a screenshot of your final summary table showing estimated population by Fire Hazard Severity Zone risk level
+2. a short written response identifying which `HAZ_CLASS` contains the largest estimated population
+3. a short written response explaining, in one or two sentences, why areal interpolation was necessary for this analysis
+
+If your instructor requests a map, create a simple layout that includes:
+
+- the Fire Hazard Severity Zone polygons
+- the block group boundaries or the union layer
+- a title
+- your name
+- the date
 
 ## What You Should Understand After This Lab
 
-By the end of the exercise, you should be able to explain:
+By the end of this exercise, you should be able to explain:
 
-- why areal interpolation is needed when two polygon systems do not align
-- why the union step creates the geometry needed for weighting
-- why `CH_AREA / P_AREA` produces the area share used in the estimate
-- why the final watershed population values are estimates rather than direct Census counts
+- why a simple attribute join does not work when polygon boundaries do not match
+- how area-based weighting is used to estimate transferred values
+- why the summary by target zone happens only after the overlap polygons are created and weighted
