@@ -43,27 +43,23 @@ A workflow that uses services such as SimplyAnalytics or Google Earth Engine sti
 
 ## How the Week Fits Together
 
-### [00 - Buffering & Overlay Analysis in QGIS](00_buffering_and_overlay_analysis_in_qgis.md)
+### [00 - Introducing SimplyAnalytics.com](00_introducing_simplyanalytics_com.md)
+
+This lab introduces a Stanford-licensed demographic reporting platform, then brings exported county data into QGIS to join Bigfoot sightings by location and map the result as a normalized county pattern.
+
+### [01 - Buffering & Overlay Analysis in QGIS](01_buffering_and_overlay_analysis_in_qgis.md)
 
 This lab uses California lakes, state highways, public-access lands, and statewide parcels to support site selection for potential expanded state camping facilities through buffering, overlay, and parcel selection.
 
-### [01 - Areal Interpolation of Attributes with QGIS](01_areal_interpolation_of_attributes_with_qgis.md)
+### [02 - Areal Interpolation of Attributes with QGIS](02_areal_interpolation_of_attributes_with_qgis.md)
 
 This lab uses Santa Clara County block-group population data and Fire Hazard Severity Zones to estimate how many people live in each hazard risk class through area-weighted interpolation.
 
-### [02 - Network Analysis with QGIS](02_network_analysis_with_qgis.md)
+### [03 - Network Analysis with QGIS](03_network_analysis_with_qgis.md)
 
 This lab introduces street networks as analytical structures, then uses one-way attributes and the shortest-path tool to calculate and map a route through the San Francisco street system.
 
-### [03 - Introducing SimplyAnalytics.com](03_introducing_simplyanalytics_com.md)
-
-This lab introduces a Stanford-licensed demographic reporting platform, then brings exported county data into QGIS to join Bigfoot sightings by location and finish with either a per-capita map or an advanced geographically weighted regression workflow.
-
-### 04 - Additional Week 04 Exercise
-
-Placeholder: this slot is reserved for another vector-analysis or enrichment exercise if the weekly sequence expands.
-
-### [05 - Tabular/Vector Data in Google Earth Engine](05_tabular_vector_data_in_google_earth_engine.md)
+### [04 - Tabular/Vector Data in Google Earth Engine](04_tabular_vector_data_in_google_earth_engine.md)
 
 Placeholder: this lab returns next in the sequence as the course moves into analysis, using feature collections for measurement and summary of pixel data in Earth Engine.
 

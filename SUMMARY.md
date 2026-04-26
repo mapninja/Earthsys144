@@ -33,11 +33,11 @@
   * [04 - TURN IN - Cartographic Design Basics](week03/04_TURN_IN_cartographic_design_basics.md)
 
 * [Week 04 - Basic Vector Analysis](week04/README.md)
-  * [00 - Buffering & Overlay Analysis in QGIS](week04/00_buffering_and_overlay_analysis_in_qgis.md)
-  * [01 - Areal Interpolation of Attributes with QGIS](week04/01_areal_interpolation_of_attributes_with_qgis.md)
-  * [02 - Network Analysis with QGIS](week04/02_network_analysis_with_qgis.md)
-  * [03 - Introducing SimplyAnalytics.com](week04/03_introducing_simplyanalytics_com.md)
-  * [05 - Tabular/Vector Data in Google Earth Engine](week04/05_tabular_vector_data_in_google_earth_engine.md)
+  * [00 - Introducing SimplyAnalytics.com](week04/00_introducing_simplyanalytics_com.md)
+  * [01 - Buffering & Overlay Analysis in QGIS](week04/01_buffering_and_overlay_analysis_in_qgis.md)
+  * [02 - Areal Interpolation of Attributes with QGIS](week04/02_areal_interpolation_of_attributes_with_qgis.md)
+  * [03 - Network Analysis with QGIS](week04/03_network_analysis_with_qgis.md)
+  * [04 - Tabular/Vector Data in Google Earth Engine](week04/04_tabular_vector_data_in_google_earth_engine.md)
 
 * [Week 05 - Basic Raster Analysis](week05/README.md)
   * [00 - Basic Raster Analysis with Google Earth Engine](week05/00_basic_raster_analysis_with_google_earth_engine.md)
