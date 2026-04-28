@@ -3,7 +3,7 @@
 * [Glossary](GLOSSARY.md)
 
 * [Week 00 - Getting Ready for the Course](week00/README.md)
-  * [Syllabus - Spring 2026](week00/00_earthsys144_spring_2026_syllabus.md)
+  * [Syllabus - Spring 2026](docs/00_earthsys144_spring_2026_syllabus.md)
   * [00 - Things you need to know about your computer](week00/00_things_you_need_to_know_about_your_computer.md)
   * [01 - Things you need to know about GIS data on your computer](week00/01_things_you_need_to_know_about_gis_data_on_your_computer.md)
   * [02 - Logging Into Accounts and Installing Software](week00/02_logging_into_accounts_and_installing_software.md)
