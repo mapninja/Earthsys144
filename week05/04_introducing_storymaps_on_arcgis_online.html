@@ -1058,6 +1058,252 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="introducing-storymaps-on-arcgis-online">Introducing StoryMaps on ArcGIS Online</h1>
+<h2 id="overview">Overview</h2>
+<p>ArcGIS StoryMaps is a web-based publishing tool for combining maps, text, images, video, and other media into a structured spatial narrative.</p>
+<p>In GIS coursework, StoryMaps are useful because they help you explain not only what your map shows, but also why the map matters, where the data came from, what choices you made, and how someone else should interpret the result.</p>
+<p>Students in this course are required to use ArcGIS StoryMaps for the final project submission. The reason is practical: StoryMaps are especially effective for communicating map-based narratives alongside images, screenshots, diagrams, citations, and other media. They let you present spatial work as an argument or explanation, not just as a finished map.</p>
+<p>This workshop introduces the basic StoryMaps workflow:</p>
+<ul>
+<li>log in to Stanford's ArcGIS Online organization</li>
+<li>open ArcGIS StoryMaps</li>
+<li>create a new story</li>
+<li>add a title, text, media, and map content</li>
+<li>preview and share the story</li>
+</ul>
+<p>The goal is not to make a polished final project today. The goal is to understand the structure of a StoryMap and create a first working draft, so the final project format feels familiar before you need it.</p>
+<h2 id="source-links-and-reference-materials">Source Links and Reference Materials</h2>
+<p>Use these materials for examples and additional practice:</p>
+<ul>
+<li><a href="https://storymaps.arcgis.com/stories/dcc9f2676552412c8e82ce1fb1407495" target="_blank">Intro to ArcGIS Online and StoryMaps</a></li>
+<li><a href="https://storymaps.arcgis.com/stories/d15f1045ffcb4fdea7672d1cafafdc12" target="_blank">Create StoryMaps</a></li>
+<li><a href="https://learn.arcgis.com/en/gallery/#?p=storymaps" target="_blank">ArcGIS Learn tutorial gallery filtered for StoryMaps</a></li>
+<li><a href="https://learn.arcgis.com/en/paths/getting-to-know-the-new-storymaps/" target="_blank">Get to know ArcGIS StoryMaps tutorial path</a></li>
+</ul>
+<h2 id="what-is-a-storymap">What Is a StoryMap?</h2>
+<p>A StoryMap is a web application built around a narrative. It is not just a map viewer and it is not just a slide deck.</p>
+<p>A good StoryMap usually combines:</p>
+<ul>
+<li>a clear topic or question</li>
+<li>one or more maps</li>
+<li>short explanatory text</li>
+<li>images, diagrams, screenshots, or video where helpful</li>
+<li>data source credits</li>
+<li>a structure that guides the reader from context to interpretation</li>
+</ul>
+<p>For this course, you can think of a StoryMap as a public-facing spatial report and as the required final project submission format. The reader should be able to understand what place you are discussing, what data you used, what your map shows, and what conclusion or question emerges from the work.</p>
+<p><img src="images/storymaps_page_structure_placeholder.png" alt="Placeholder image: Screenshot-style illustration of an ArcGIS StoryMap page with a title panel, a map block, text blocks, and image/media blocks labeled as parts of a spatial narrative."></img></p>
+<h2 id="why-use-storymaps-in-a-gis-course">Why Use StoryMaps in a GIS Course?</h2>
+<p>GIS work often produces layers, maps, tables, and analytical outputs. Those outputs do not explain themselves.</p>
+<p>StoryMaps help you communicate:</p>
+<ul>
+<li>context: where the work is happening and why the place matters</li>
+<li>method: what data and GIS steps were used</li>
+<li>result: what the final map or analysis shows</li>
+<li>interpretation: what the reader should notice</li>
+<li>limitations: what the map does not prove or what uncertainty remains</li>
+</ul>
+<p>This matters because GIS is not only technical. It is also interpretive. Every map involves choices about data, <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>, <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>, symbolization, and narrative framing.</p>
+<h2 id="part-1-log-in-to-stanford-arcgis-online">Part 1: Log In to Stanford ArcGIS Online</h2>
+<p>Stanford provides access to ArcGIS Online through its institutional ArcGIS organization.</p>
+<ol>
+<li>Open a web browser.</li>
+<li>Go to <a href="https://stanford.maps.arcgis.com" target="_blank">https://stanford.maps.arcgis.com</a>.</li>
+<li>Click <strong>Sign In</strong>.</li>
+<li>Choose the Stanford or enterprise login option if prompted.</li>
+<li>Sign in with your SUNetID and Stanford password.</li>
+<li>Complete any two-factor authentication step if Stanford requires it.</li>
+<li>After login, confirm that you are inside Stanford's ArcGIS Online organization.</li>
+</ol>
+<p>You should see an ArcGIS Online home page, content page, or profile area. The exact screen may vary depending on whether you have used ArcGIS Online before.</p>
+<blockquote>
+<p><strong>Troubleshooting note:</strong> If you accidentally arrive at a generic Esri login page, return to <a href="https://stanford.maps.arcgis.com" target="_blank">https://stanford.maps.arcgis.com</a> and start again from the Stanford organization URL. The organization URL helps ArcGIS know that you should authenticate through Stanford.</p>
+</blockquote>
+<p><img src="images/stanford_arcgis_online_login_placeholder.png" alt="Placeholder image: Browser screenshot showing the Stanford ArcGIS Online sign-in page at stanford.maps.arcgis.com, with the Sign In button highlighted."></img></p>
+<h2 id="part-2-open-arcgis-storymaps">Part 2: Open ArcGIS StoryMaps</h2>
+<p>Once you are signed in to Stanford ArcGIS Online, you can open StoryMaps in several ways. The interface changes occasionally, so use whichever route is visible.</p>
+<p>Common options include:</p>
+<ul>
+<li>the app launcher</li>
+<li>the ArcGIS Online content or home page</li>
+<li>the direct ArcGIS StoryMaps site</li>
+</ul>
+<p>Try this sequence first:</p>
+<ol>
+<li>Look for the <strong>app launcher</strong> button near the top of ArcGIS Online.</li>
+<li>Open the app launcher.</li>
+<li>Choose <strong>StoryMaps</strong>.</li>
+<li>If StoryMaps opens in a new tab, keep both tabs available.</li>
+</ol>
+<p>If you do not see StoryMaps in the app launcher:</p>
+<ol>
+<li>Go to <a href="https://storymaps.arcgis.com" target="_blank">https://storymaps.arcgis.com</a>.</li>
+<li>Confirm that you are still signed in with your Stanford ArcGIS account.</li>
+<li>If prompted, choose to continue with your ArcGIS Online organizational account.</li>
+</ol>
+<h2 id="part-3-create-a-new-story">Part 3: Create a New Story</h2>
+<p>Now create a first StoryMap draft.</p>
+<ol>
+<li>In ArcGIS StoryMaps, click <strong>New story</strong> or <strong>Create story</strong>.</li>
+<li>Choose a blank story or basic guided option.</li>
+<li>Add a short working title, such as <code>My First GIS StoryMap</code>.</li>
+<li>Add your name or a short subtitle in the byline/subtitle area if available.</li>
+<li>Save the story if it does not save automatically.</li>
+</ol>
+<p>Your first title does not need to be final. It is common to begin with a working title and revise it after the story has a clearer structure.</p>
+<h3 id="suggested-first-story-topic">Suggested First Story Topic</h3>
+<p>For a first practice StoryMap, choose something small and familiar.</p>
+<p>Good starter topics include:</p>
+<ul>
+<li>a place you know well</li>
+<li>a map or lab result from this course</li>
+<li>a campus location</li>
+<li>a neighborhood issue</li>
+<li>a short explanation of a spatial pattern you have already mapped</li>
+</ul>
+<p>Avoid choosing a large final-project-<a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> topic for this first exercise. You are practicing the tool, not finishing the quarter.</p>
+<h2 id="part-4-understand-story-blocks">Part 4: Understand Story Blocks</h2>
+<p>StoryMaps are built from blocks. A block is a single piece of content, such as a paragraph, heading, <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, map, button, separator, quote, or embedded media item.</p>
+<p>Common block types include:</p>
+<ul>
+<li><strong>Text blocks</strong> for explanation</li>
+<li><strong>Heading blocks</strong> for structure</li>
+<li><strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">Image</a> blocks</strong> for photos, diagrams, or screenshots</li>
+<li><strong>Map blocks</strong> for web maps or express maps</li>
+<li><strong>Embed blocks</strong> for external web content</li>
+<li><strong>Button blocks</strong> for links</li>
+</ul>
+<p>The basic design idea is simple: add one block, decide what it should do, then add the next block.</p>
+<p><img src="images/storymaps_blocks_placeholder.png" alt="Placeholder image: Diagram of StoryMaps content blocks stacked vertically, including title, heading, paragraph, image, map, and credits blocks."></img></p>
+<h2 id="part-5-add-text-and-structure">Part 5: Add Text and Structure</h2>
+<p>Begin by creating a simple story structure.</p>
+<p>Add these sections:</p>
+<ol>
+<li><strong>Introduction</strong></li>
+<li><strong>Place or Topic</strong></li>
+<li><strong>Map or Evidence</strong></li>
+<li><strong>What to Notice</strong></li>
+<li><strong>Credits</strong></li>
+</ol>
+<p>For each section, add one heading and one short paragraph.</p>
+<p>Example structure:</p>
+<pre><code class="lang-text">Introduction
+This story introduces a place, question, or map I want to explain.
+
+Place or Topic
+The area I am focusing on is...
+
+Map or Evidence
+The map below shows...
+
+What to Notice
+The main pattern I want readers to notice is...
+
+Credits
+Data, maps, images, and software used in this story include...
+</code></pre>
+<p>Keep the writing short. StoryMaps work best when text is broken into readable pieces rather than long uninterrupted paragraphs.</p>
+<h2 id="part-6-add-an-image-or-screenshot">Part 6: Add an Image or Screenshot</h2>
+<p>Images help orient readers. For a first StoryMap, you can use:</p>
+<ul>
+<li>a screenshot from a GIS lab</li>
+<li>a photo of a place</li>
+<li>a diagram</li>
+<li>a map export</li>
+<li>a simple placeholder <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> that you replace later</li>
+</ul>
+<p>To add an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>:</p>
+<ol>
+<li>Click the add-content button where you want the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> to appear.</li>
+<li>Choose <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">Image</a></strong>.</li>
+<li>Upload or select an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</li>
+<li>Add alternative text if prompted.</li>
+<li>Add a short caption if the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> needs explanation.</li>
+</ol>
+<p>Alternative text matters because it helps people using screen readers understand the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. A good alt text description briefly explains what the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> shows and why it is present.</p>
+<h2 id="part-7-add-a-map">Part 7: Add a Map</h2>
+<p>Maps are the spatial center of most StoryMaps.</p>
+<p>There are two common beginner-friendly options:</p>
+<ul>
+<li>add an existing ArcGIS <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></li>
+<li>create a simple express map directly inside StoryMaps</li>
+</ul>
+<h3 id="option-a-add-an-existing-web-map">Option A: Add an Existing Web Map</h3>
+<p>Use this option if you already have a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> in ArcGIS Online.</p>
+<ol>
+<li>Add a new content block.</li>
+<li>Choose <strong>Map</strong>.</li>
+<li>Search your ArcGIS Online content.</li>
+<li>Select a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a>.</li>
+<li>Adjust the map view so the important area is visible.</li>
+<li>Save or place the map in the story.</li>
+</ol>
+<h3 id="option-b-create-an-express-map">Option B: Create an Express Map</h3>
+<p>Use this option if you do not already have a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a>.</p>
+<ol>
+<li>Add a new content block.</li>
+<li>Choose <strong>Map</strong>.</li>
+<li>Choose <strong>Express map</strong> if available.</li>
+<li>Zoom to your area of interest.</li>
+<li>Add a point, line, or area marker.</li>
+<li>Add a short <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> or note.</li>
+<li>Place the express map in the story.</li>
+</ol>
+<p>An express map is useful for quick communication. It is not meant to replace a full GIS analysis map, but it is excellent for showing location and context.</p>
+<p><img src="images/storymaps_add_map_placeholder.png" alt="Placeholder image: Screenshot-style illustration showing a StoryMaps map block with options for adding an existing web map or creating an express map."></img></p>
+<h2 id="part-8-preview-the-story">Part 8: Preview the Story</h2>
+<p>Before sharing, preview the story as a reader.</p>
+<ol>
+<li>Click <strong>Preview</strong>.</li>
+<li>Read from top to bottom.</li>
+<li>Check whether the story has a clear beginning, middle, and ending.</li>
+<li>Confirm that images and maps load correctly.</li>
+<li>Check that the story is readable on a narrower browser window.</li>
+</ol>
+<p>Ask yourself:</p>
+<ul>
+<li>Does the title tell the reader what the story is about?</li>
+<li>Does the first paragraph provide enough context?</li>
+<li>Does the map appear before or after the explanation that helps the reader understand it?</li>
+<li>Are credits included?</li>
+</ul>
+<h2 id="part-9-publish-and-share-a-draft">Part 9: Publish and Share a Draft</h2>
+<p>StoryMaps usually remain private until you publish or share them. For class work, sharing settings matter because your instructor or classmates may not be able to view the story unless permissions are set correctly.</p>
+<p>For a first draft:</p>
+<ol>
+<li>Click <strong>Publish</strong> when you are ready to test sharing.</li>
+<li>Choose a sharing level appropriate for class directions.</li>
+<li>If a course group is available, share the story with that group.</li>
+<li>Copy the story URL.</li>
+<li>Open the URL in a private/incognito browser window if you want to test whether it is viewable.</li>
+</ol>
+<p>If your StoryMap contains web maps or layers, those items may also need to be shared. Sharing the StoryMap alone does not always share every map or <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> inside it.</p>
+<blockquote>
+<p><strong>Important sharing note:</strong> If a reader can open the StoryMap but sees missing maps or unavailable layers, check the sharing settings for the maps and layers inside the story.</p>
+</blockquote>
+<h2 id="first-storymap-checklist">First StoryMap Checklist</h2>
+<p>Use this checklist for your first practice StoryMap:</p>
+<ul>
+<li>Signed in through <a href="https://stanford.maps.arcgis.com" target="_blank">https://stanford.maps.arcgis.com</a></li>
+<li>Created a new StoryMap</li>
+<li>Added a title</li>
+<li>Added at least three section headings</li>
+<li>Added short explanatory text</li>
+<li>Added at least one <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> or screenshot</li>
+<li>Added at least one map or express map</li>
+<li>Added a credits section</li>
+<li>Previewed the story</li>
+<li>Published or saved the draft according to class instructions</li>
+</ul>
+<h2 id="reflection-questions">Reflection Questions</h2>
+<ul>
+<li>What makes a StoryMap different from a single static map?</li>
+<li>What part of your story needs a map?</li>
+<li>What part of your story needs text rather than a map?</li>
+<li>What data, <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, or map credits would a reader need?</li>
+<li>What sharing settings would make the story visible to the intended audience?</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>After you have made a first draft, explore the reference materials linked at the top of this page. The Esri StoryMaps examples are useful for seeing how different story structures feel in practice, and the ArcGIS Learn tutorial path provides more guided practice.</p>
 
                                 
                                 </section>
@@ -1101,7 +1347,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - Introducing StoryMaps on ArcGIS Online","level":"1.8.5","depth":2,"next":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - Modeling Movement with Google Earth Engine","level":"1.9.2","depth":2,"path":"week06/01_modeling_movement_with_google_earth_engine.md","ref":"week06/01_modeling_movement_with_google_earth_engine.md","articles":[]},{"title":"02 - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_sampling_and_interpolation_with_qgis.md","ref":"week06/02_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_introducing_planet_com_satellite_imagery.md","ref":"week06/03_introducing_planet_com_satellite_imagery.md","articles":[]}]},"previous":{"title":"03 - Watershed with QGIS & WhiteBox Tools","level":"1.8.4","depth":2,"path":"week05/03_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/04_introducing_storymaps_on_arcgis_online.md","mtime":"2026-04-28T16:59:55.689Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T17:00:11.650Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - Introducing StoryMaps on ArcGIS Online","level":"1.8.5","depth":2,"next":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - Modeling Movement with Google Earth Engine","level":"1.9.2","depth":2,"path":"week06/01_modeling_movement_with_google_earth_engine.md","ref":"week06/01_modeling_movement_with_google_earth_engine.md","articles":[]},{"title":"02 - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_sampling_and_interpolation_with_qgis.md","ref":"week06/02_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_introducing_planet_com_satellite_imagery.md","ref":"week06/03_introducing_planet_com_satellite_imagery.md","articles":[]}]},"previous":{"title":"03 - Watershed with QGIS & WhiteBox Tools","level":"1.8.4","depth":2,"path":"week05/03_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/04_introducing_storymaps_on_arcgis_online.md","mtime":"2026-04-28T17:44:44.538Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T17:44:53.432Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1059,17 +1059,17 @@
                                 
                                 <h1 id="optional-workshop-introducing-simplyanalyticscom">OPTIONAL Workshop: Introducing SimplyAnalytics.com</h1>
 <blockquote>
-<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+<p><strong>Optional workshop:</strong> This activity is provided as practice and background support. It is not a Week 04 turn-in unless your instructor separately asks you to submit it.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces <strong>SimplyAnalytics</strong> as a source of county-level demographic and consumer data, then brings that exported data back into QGIS for <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
+<p>This optional workshop introduces <strong>SimplyAnalytics</strong> as a source of county-level demographic and consumer data, then brings that exported data back into QGIS for <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>.</p>
 <p>The workflow is intentionally a little strange and a little fun: you will build a county dataset for the United States containing population and <strong>annual beer consumption per capita</strong>, then <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> a national <strong>Bigfoot sightings</strong> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to counties by location.</p>
 <p>From there, the exercise splits into two possible endings:</p>
 <ol>
 <li>a map workflow that calculates and maps <strong>Bigfoot sightings per capita</strong></li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> This lab is less about proving anything meaningful about Bigfoot and more about practicing a real GIS pattern: acquire polygon data from an external reporting platform, enrich it with point events by location, then test and map possible spatial relationships.</p>
+<p><strong>Concept note:</strong> This workshop is less about proving anything meaningful about Bigfoot and more about practicing a real GIS pattern: acquire polygon data from an external reporting platform, enrich it with point events by location, then test and map possible spatial relationships.</p>
 </blockquote>
 <h2 id="getting-ready">Getting Ready</h2>
 <p>You will need:</p>
@@ -1144,7 +1144,7 @@
 <ul>
 <li>the geography is <strong>county</strong>, not state, ZIP code, tract, or block group</li>
 <li>the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> is for the <strong>United States</strong></li>
-<li>both required variables are present</li>
+<li>both selected variables are present</li>
 <li>the county names and identifiers look complete</li>
 <li>there are no obvious filters limiting the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to only one region</li>
 </ul>
@@ -1210,7 +1210,7 @@
 <p><strong>Concept note:</strong> Per-capita normalization matters because raw counts often reflect where more people live, not where a phenomenon is disproportionately common.</p>
 </blockquote>
 <h2 id="part-5-map-bigfoot-sightings-per-capita">Part 5: Map Bigfoot Sightings Per Capita</h2>
-<p>At this point, everyone should have a county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with:</p>
+<p>If you complete the full optional workflow, you should have a county <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with:</p>
 <ul>
 <li>population</li>
 <li>beer consumption per capita</li>
@@ -1226,8 +1226,8 @@
 <li>Choose a <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method and color ramp that make the pattern readable.</li>
 <li>Create a layout and export a final map.</li>
 </ol>
-<h2 id="deliverable">Deliverable</h2>
-<p>Submit:</p>
+<h2 id="optional-practice-output">Optional Practice Output</h2>
+<p>If you want to keep a record of your practice work, save:</p>
 <ul>
 <li>a final map of <strong>Bigfoot sightings per capita by county</strong></li>
 </ul>
@@ -1247,7 +1247,7 @@
 <li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar if appropriate</li>
 <li>a short note describing the main mapped variable</li>
 </ul>
-<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<h2 id="what-you-should-understand-after-this-workshop">What You Should Understand After This Workshop</h2>
 <p>By the end of this exercise, you should be able to explain:</p>
 <ul>
 <li>how an external reporting platform can provide ready-to-map polygon data</li>
@@ -1297,7 +1297,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"next":{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},"previous":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"path":"week04/README.md","ref":"week04/README.md","articles":[{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Areal Interpolation of Attributes with QGIS","level":"1.7.3","depth":2,"path":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","ref":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","mtime":"2026-04-28T16:59:55.284Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T17:00:11.650Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"next":{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},"previous":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"path":"week04/README.md","ref":"week04/README.md","articles":[{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Areal Interpolation of Attributes with QGIS","level":"1.7.3","depth":2,"path":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","ref":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","mtime":"2026-04-28T17:44:44.137Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T17:44:53.432Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
