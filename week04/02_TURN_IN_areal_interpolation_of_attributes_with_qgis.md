@@ -34,9 +34,9 @@ In this lab, we will:
 You will need:
 
 - the Stanford EarthWorks Fire Hazard Severity Zone dataset: [stanford-jr312mr8879](https://earthworks.stanford.edu/catalog/stanford-jr312mr8879)
-- `santa_clara_pop_2025.shp`, a **2025 Santa Clara County block group** shapefile exported from SimplyAnalytics
+- [Santa_Clara_Pop_2025.zip](../data/Santa_Clara_Pop_2025.zip), a **2025 Santa Clara County block group** shapefile exported from SimplyAnalytics
 
-Create a new project folder for this lab and save a new QGIS project there as `areal_interpolation_fire_hazard.qgz`.
+Create a new project folder for this lab. Download and unzip `Santa_Clara_Pop_2025.zip` into that project folder, then save a new QGIS project there as `areal_interpolation_fire_hazard.qgz`.
 
 ## Data for This Exercise
 
@@ -54,7 +54,7 @@ From the attribute table shown in the screenshot, the key fields are:
 
 ### 2025 Santa Clara County Block Groups
 
-Add `santa_clara_pop_2025.shp`, the block group shapefile exported from SimplyAnalytics.
+Download and unzip [Santa_Clara_Pop_2025.zip](../data/Santa_Clara_Pop_2025.zip). Add `santa_clara_pop_2025.shp`, the block group shapefile exported from SimplyAnalytics.
 
 This layer should contain:
 
@@ -79,7 +79,7 @@ If the two layers have different projected coordinate systems, reproject one so 
 
 1. Start a new QGIS project.
 2. Add the Fire Hazard Severity Zone layer from the EarthWorks download, such as `fhszs06_3_43`.
-3. Add `santa_clara_pop_2025.shp`.
+3. Add `santa_clara_pop_2025.shp` from the unzipped [Santa_Clara_Pop_2025.zip](../data/Santa_Clara_Pop_2025.zip) folder.
 4. Move the Fire Hazard Severity Zone layer above the block group layer if needed.
 
 ![](images/20260423_154323_image.png)
