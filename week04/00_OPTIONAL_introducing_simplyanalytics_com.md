@@ -1,4 +1,4 @@
-# Introducing SimplyAnalytics.com
+# OPTIONAL Workshop: Introducing SimplyAnalytics.com
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 

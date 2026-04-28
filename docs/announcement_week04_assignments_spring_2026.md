@@ -1,4 +1,4 @@
-# Week 04 Assignment Announcement: SimplyAnalytics, Overlay, Areal Interpolation, and Networks
+# Week 04 Assignment Announcement: Overlay, Areal Interpolation, Networks, and FeatureCollections
 
 Dear Students,
 
@@ -6,41 +6,44 @@ This week we move fully into **vector analysis**. The main shift is that spatial
 
 The Week 04 materials now follow this sequence:
 
-1. **Introducing SimplyAnalytics.com**
-2. **Buffering & Overlay Analysis in QGIS**
-3. **Areal Interpolation of Attributes with QGIS**
-4. **Network Analysis with QGIS**
-5. **Tabular/Vector Data in Google Earth Engine**
+1. **OPTIONAL - Introducing SimplyAnalytics.com**
+2. **TURN IN - Buffering & Overlay Analysis in QGIS**
+3. **TURN IN - Areal Interpolation of Attributes with QGIS**
+4. **TURN IN - Network Analysis with QGIS**
+5. **TURN IN - Tabular/Vector Data in Google Earth Engine**
 
 ## What You Should Complete This Week
 
 Please complete the following assigned work:
 
-1. [00 - Introducing SimplyAnalytics.com](https://mapninja.github.io/Earthsys144/week04/00_introducing_simplyanalytics_com.html)
-2. [01 - Buffering & Overlay Analysis in QGIS](https://mapninja.github.io/Earthsys144/week04/01_buffering_and_overlay_analysis_in_qgis.html)
-3. [02 - Areal Interpolation of Attributes with QGIS](https://mapninja.github.io/Earthsys144/week04/02_areal_interpolation_of_attributes_with_qgis.html)
-4. [03 - Network Analysis with QGIS](https://mapninja.github.io/Earthsys144/week04/03_network_analysis_with_qgis.html)
-5. [04 - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week04/04_tabular_vector_data_in_google_earth_engine.html)
+1. [01 - TURN IN - Buffering & Overlay Analysis in QGIS](https://mapninja.github.io/Earthsys144/week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html)
+2. [02 - TURN IN - Areal Interpolation of Attributes with QGIS](https://mapninja.github.io/Earthsys144/week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html)
+3. [03 - TURN IN - Network Analysis with QGIS](https://mapninja.github.io/Earthsys144/week04/03_TURN_IN_network_analysis_with_qgis.html)
+4. [04 - TURN IN - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html)
+
+The SimplyAnalytics workshop is available as optional support material:
+
+- [00 - OPTIONAL - Introducing SimplyAnalytics.com](https://mapninja.github.io/Earthsys144/week04/00_OPTIONAL_introducing_simplyanalytics_com.html)
 
 ## Exercise Notes
 
-## [00 - Introducing SimplyAnalytics.com](https://mapninja.github.io/Earthsys144/week04/00_introducing_simplyanalytics_com.html)
+## [00 - OPTIONAL - Introducing SimplyAnalytics.com](https://mapninja.github.io/Earthsys144/week04/00_OPTIONAL_introducing_simplyanalytics_com.html)
 
-This exercise introduces an external demographic reporting platform and asks you to move data between a licensed web system and QGIS. The workflow emphasizes a common GIS pattern: acquire polygon data from a reporting geography, enrich it with point data by location, and normalize the result for interpretation.
+This optional workshop introduces an external demographic reporting platform and asks you to move data between a licensed web system and QGIS. The workflow emphasizes a common GIS pattern: acquire polygon data from a reporting geography, enrich it with point data by location, and normalize the result for interpretation.
 
-## [01 - Buffering & Overlay Analysis in QGIS](https://mapninja.github.io/Earthsys144/week04/01_buffering_and_overlay_analysis_in_qgis.html)
+## [01 - TURN IN - Buffering & Overlay Analysis in QGIS](https://mapninja.github.io/Earthsys144/week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html)
 
 This exercise focuses on site selection for potential expanded state camping facilities in northern California. You will repair geometry, subset statewide layers, classify lakes, build fixed and variable buffers, combine those criteria through overlay, and narrow the result to parcels near Shasta Lake.
 
-## [02 - Areal Interpolation of Attributes with QGIS](https://mapninja.github.io/Earthsys144/week04/02_areal_interpolation_of_attributes_with_qgis.html)
+## [02 - TURN IN - Areal Interpolation of Attributes with QGIS](https://mapninja.github.io/Earthsys144/week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html)
 
 This exercise introduces a common demographic-estimation workflow. You will use Santa Clara County block-group population data and Fire Hazard Severity Zones to estimate population totals for hazard classes that are not themselves Census reporting units.
 
-## [03 - Network Analysis with QGIS](https://mapninja.github.io/Earthsys144/week04/03_network_analysis_with_qgis.html)
+## [03 - TURN IN - Network Analysis with QGIS](https://mapninja.github.io/Earthsys144/week04/03_TURN_IN_network_analysis_with_qgis.html)
 
 This exercise uses San Francisco street data to show how lines become analytical networks. You will inspect one-way attributes, symbolize directionality, and calculate a shortest path that respects those movement rules.
 
-## [04 - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week04/04_tabular_vector_data_in_google_earth_engine.html)
+## [04 - TURN IN - Tabular/Vector Data in Google Earth Engine](https://mapninja.github.io/Earthsys144/week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html)
 
 This exercise returns to Earth Engine and extends the week into feature-based analysis. It is the bridge from QGIS vector workflows into vector/raster measurement workflows in Earth Engine.
 
@@ -48,11 +51,10 @@ This exercise returns to Earth Engine and extends the week into feature-based an
 
 Please submit the following:
 
-1. The required output from **Introducing SimplyAnalytics.com**.
-2. The final site-selection layout from **Buffering & Overlay Analysis in QGIS**.
-3. The required output from **Areal Interpolation of Attributes with QGIS**.
-4. The final route layout from **Network Analysis with QGIS**.
-5. The required output from **Tabular/Vector Data in Google Earth Engine**, if assigned.
+1. The final site-selection layout from **Buffering & Overlay Analysis in QGIS**.
+2. The required output from **Areal Interpolation of Attributes with QGIS**.
+3. The final route layout from **Network Analysis with QGIS**.
+4. The required output from **Tabular/Vector Data in Google Earth Engine**.
 
 ## Week 04 Overview
 

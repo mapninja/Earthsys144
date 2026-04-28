@@ -11,7 +11,7 @@ This week brings together several common forms of vector analysis:
 1. overlay-based analysis
 2. areal interpolation across mismatched polygon systems
 3. network analysis along streets or paths
-4. enrichment and reporting workflows using external data platforms
+4. optional enrichment and reporting workflows using external data platforms
 5. a returning Earth Engine exercise that connects vector features to raster summaries
 
 ## Core Ideas for the Week
@@ -43,25 +43,25 @@ A workflow that uses services such as SimplyAnalytics or Google Earth Engine sti
 
 ## How the Week Fits Together
 
-### [00 - Introducing SimplyAnalytics.com](00_introducing_simplyanalytics_com.md)
+### [00 - OPTIONAL - Introducing SimplyAnalytics.com](00_OPTIONAL_introducing_simplyanalytics_com.md)
 
-This lab introduces a Stanford-licensed demographic reporting platform, then brings exported county data into QGIS to join Bigfoot sightings by location and map the result as a normalized county pattern.
+This optional workshop introduces a Stanford-licensed demographic reporting platform, then brings exported county data into QGIS to join Bigfoot sightings by location and map the result as a normalized county pattern.
 
-### [01 - Buffering & Overlay Analysis in QGIS](01_buffering_and_overlay_analysis_in_qgis.md)
+### [01 - TURN IN - Buffering & Overlay Analysis in QGIS](01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md)
 
 This lab uses California lakes, state highways, public-access lands, and statewide parcels to support site selection for potential expanded state camping facilities through buffering, overlay, and parcel selection.
 
-### [02 - Areal Interpolation of Attributes with QGIS](02_areal_interpolation_of_attributes_with_qgis.md)
+### [02 - TURN IN - Areal Interpolation of Attributes with QGIS](02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md)
 
 This lab uses Santa Clara County block-group population data and Fire Hazard Severity Zones to estimate how many people live in each hazard risk class through area-weighted interpolation.
 
-### [03 - Network Analysis with QGIS](03_network_analysis_with_qgis.md)
+### [03 - TURN IN - Network Analysis with QGIS](03_TURN_IN_network_analysis_with_qgis.md)
 
 This lab introduces street networks as analytical structures, then uses one-way attributes and the shortest-path tool to calculate and map a route through the San Francisco street system.
 
-### [04 - Tabular/Vector Data in Google Earth Engine](04_tabular_vector_data_in_google_earth_engine.md)
+### [04 - TURN IN - Tabular/Vector Data in Google Earth Engine](04_TURN_IN_tabular_vector_data_in_google_earth_engine.md)
 
-Placeholder: this lab returns next in the sequence as the course moves into analysis, using feature collections for measurement and summary of pixel data in Earth Engine.
+This lab returns to Earth Engine as the course moves into analysis, using feature collections for filtering, attribute inspection, table joins, spatial joins, and raster summaries.
 
 ## What to Expect in the Individual Lab Documents
 
