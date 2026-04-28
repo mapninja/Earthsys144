@@ -57,25 +57,25 @@ Raster outputs often need thoughtful styling to become legible. Color ramps, hil
 
 ## How the Week Fits Together
 
-### [00 - Basic Raster Analysis with Google Earth Engine](00_basic_raster_analysis_with_google_earth_engine.md)
-
-Placeholder: this lab introduces raster concepts such as image collections, images, bands, and pixel values through Earth Engine.
-
-### [01 - Terrain Data Preparation and DEM Merging with QGIS](01_terrain_and_visibility_with_qgis.md)
+### [01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS](01_TURN_IN_terrain_and_visibility_with_qgis.md)
 
 This lab introduces raster preparation through hillshading, no-data handling, resampling, and conditional raster merging so that two DEMs of different resolution can be combined into one terrain surface.
 
-### [02 - Visibility Analysis with QGIS](02_visibility_analysis_with_qgis.md)
+### [02 - TURN IN - Visibility Analysis with QGIS](02_TURN_IN_visibility_analysis_with_qgis.md)
 
 This lab uses a DEM, viewing station, and line of sight to create a terrain profile and a viewshed, showing how elevation models can be used for line-of-sight analysis.
 
-### [03 - Watershed with QGIS & WhiteBox Tools](03_watershed_with_qgis_and_whitebox_tools.md)
+### [03 - TURN IN - Watershed with QGIS & WhiteBox Tools](03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md)
 
 This lab extends terrain analysis into hydrologic modeling by deriving flow accumulation, extracting a stream raster, snapping a pour point, delineating a watershed, and converting the modeled stream network to vectors.
 
-### [04 - Introducing StoryMaps on ArcGIS Online](04_introducing_storymaps_on_arcgis_online.md)
+### [04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online](04_OPTIONAL_introducing_storymaps_on_arcgis_online.md)
 
 This workshop introduces ArcGIS StoryMaps as the required final project submission format and as a web-based tool for communicating map-based narratives with text, images, and other media. Students log in through Stanford ArcGIS Online, create a first story, add text and map blocks, preview the result, and understand sharing settings.
+
+### [05 - TURN IN - Basic Raster Analysis with Google Earth Engine](05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md)
+
+This lab introduces raster concepts such as image collections, images, bands, and pixel values through Earth Engine.
 
 ## What to Expect in the Individual Lab Documents
 

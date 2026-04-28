@@ -1,5 +1,7 @@
 # Introducing StoryMaps on ArcGIS Online
 
+> **Optional support lab:** This workshop is provided as practice and final-project support. Complete it if you want additional guidance using ArcGIS StoryMaps.
+
 ## Overview
 
 ArcGIS StoryMaps is a web-based publishing tool for combining maps, text, images, video, and other media into a structured spatial narrative.
@@ -26,6 +28,7 @@ Use these materials for examples and additional practice:
 - [Create StoryMaps](https://storymaps.arcgis.com/stories/d15f1045ffcb4fdea7672d1cafafdc12)
 - [ArcGIS Learn tutorial gallery filtered for StoryMaps](https://learn.arcgis.com/en/gallery/#?p=storymaps)
 - [Get to know ArcGIS StoryMaps tutorial path](https://learn.arcgis.com/en/paths/getting-to-know-the-new-storymaps/)
+- [These ArcGIS StoryMaps collections will inspire you](https://www.esri.com/arcgis-blog/products/story-maps/constituent-engagement/these-arcgis-storymaps-collections-will-inspire-you)
 
 ## What Is a StoryMap?
 

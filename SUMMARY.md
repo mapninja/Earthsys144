@@ -40,11 +40,11 @@
   * [04 - TURN IN - Tabular/Vector Data in Google Earth Engine](week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md)
 
 * [Week 05 - Basic Raster Analysis](week05/README.md)
-  * [00 - Basic Raster Analysis with Google Earth Engine](week05/00_basic_raster_analysis_with_google_earth_engine.md)
-  * [01 - Terrain Data Preparation and DEM Merging with QGIS](week05/01_terrain_and_visibility_with_qgis.md)
-  * [02 - Visibility Analysis with QGIS](week05/02_visibility_analysis_with_qgis.md)
-  * [03 - Watershed with QGIS & WhiteBox Tools](week05/03_watershed_with_qgis_and_whitebox_tools.md)
-  * [04 - Introducing StoryMaps on ArcGIS Online](week05/04_introducing_storymaps_on_arcgis_online.md)
+  * [01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS](week05/01_TURN_IN_terrain_and_visibility_with_qgis.md)
+  * [02 - TURN IN - Visibility Analysis with QGIS](week05/02_TURN_IN_visibility_analysis_with_qgis.md)
+  * [03 - TURN IN - Watershed with QGIS & WhiteBox Tools](week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md)
+  * [04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online](week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md)
+  * [05 - TURN IN - Basic Raster Analysis with Google Earth Engine](week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md)
 
 * [Week 06 - More Raster & Remote Sensing](week06/README.md)
   * [00 - Basic Remote Sensing with Google Earth Engine](week06/00_basic_remote_sensing_with_google_earth_engine.md)
