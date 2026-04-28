@@ -21,7 +21,7 @@ All scripts below are written for the Google Earth Engine Code Editor using the 
 - `TIGER/2018/States`: United States state boundaries from the U.S. Census Bureau TIGER/Line data.
 - `TIGER/2018/Counties`: United States county boundaries from the U.S. Census Bureau TIGER/Line data.
 - `USGS/SRTMGL1_003`: Shuttle Radar Topography Mission elevation data, distributed through the USGS and NASA, with elevation values in meters.
-- `WCMC/WDPA/current/polygons`: World Database on Protected Areas polygon data.
+- A Yosemite-area reference point created directly in Script 7.
 - `WRI/GPPD/power_plants`: Global Power Plant Database point data from the World Resources Institute.
 
 ![Placeholder image: Diagram showing a FeatureCollection as a table linked to map features. The table should show rows as features, columns as attributes, and a geometry column connecting each row to a polygon on a map.](images/featurecollection_table_geometry_placeholder.png)
@@ -228,21 +228,24 @@ print('Flattened joined counties', flattenedJoinedCounties); // Print the flatte
 
 ## Script 7: Spatial Join with Nearby Power Plants
 
-A spatial join matches features based on location instead of matching text or numeric attributes. In this script, Yosemite National Park is the primary feature, and power plants are the secondary features. The join finds power plants within 100 kilometers of Yosemite.
+A spatial join matches features based on location instead of matching text or numeric attributes. In this script, a Yosemite-area reference point is the primary feature, and power plants are the secondary features. The join finds power plants within 100 kilometers of the Yosemite-area point.
 
-![Placeholder image: Map showing Yosemite National Park as a polygon and nearby power plants as points, with a circular 100 kilometer search distance around the park.](images/spatial_join_yosemite_power_plants_placeholder.png)
+![Placeholder image: Map showing a Yosemite-area reference point, nearby power plants as points, and a circular 100 kilometer search distance around the Yosemite-area point.](images/spatial_join_yosemite_power_plants_placeholder.png)
 
 ```javascript
-var protectedAreas = ee.FeatureCollection('WCMC/WDPA/current/polygons'); // Load protected area polygons so Yosemite can be selected from a global conservation dataset.
-var yosemite = protectedAreas.filter(ee.Filter.eq('NAME', 'Yosemite National Park')); // Filter the protected areas to the polygon whose NAME attribute is Yosemite National Park.
+var searchDistance = 100000; // Store the search distance in meters. 100,000 meters is the same as 100 kilometers.
+var yosemitePoint = ee.Geometry.Point([-119.5383, 37.8651]); // Create a point near Yosemite Valley using longitude, latitude coordinates.
+var yosemite = ee.FeatureCollection([ee.Feature(yosemitePoint, {name: 'Yosemite area reference point'})]); // Turn the point into a one-row FeatureCollection so it can be used in a join.
+var searchArea = ee.FeatureCollection([ee.Feature(yosemitePoint.buffer(searchDistance), {name: '100 km search area'})]); // Create a circular buffer so the search distance can be seen on the map.
 var powerPlants = ee.FeatureCollection('WRI/GPPD/power_plants'); // Load global power plant point locations so they can be spatially compared to Yosemite.
-var distanceFilter = ee.Filter.withinDistance({distance: 100000, leftField: '.geo', rightField: '.geo', maxError: 10}); // Create a spatial rule that matches features whose geometries are within 100,000 meters.
+var distanceFilter = ee.Filter.withinDistance({distance: searchDistance, leftField: '.geo', rightField: '.geo', maxError: 10}); // Create a spatial rule that matches features whose geometries are within the search distance.
 var distanceJoin = ee.Join.saveAll({matchesKey: 'nearby_power_plants', measureKey: 'distance'}); // Create a join that saves all nearby power plant matches inside one property on the Yosemite feature.
 var spatialJoined = distanceJoin.apply(yosemite, powerPlants, distanceFilter); // Apply the spatial join so Yosemite receives a list of nearby power plants.
 var yosemiteWithNearbyPlants = ee.Feature(spatialJoined.first()); // Convert the first joined result into a feature so its saved match list can be inspected.
 var nearbyPlants = ee.FeatureCollection(ee.List(yosemiteWithNearbyPlants.get('nearby_power_plants'))); // Convert the saved list of nearby power plant features back into a FeatureCollection for mapping.
-Map.centerObject(yosemite, 8); // Center the map on Yosemite so the park and nearby points are visible.
-Map.addLayer(yosemite, {color: '006600'}, 'Yosemite National Park'); // Draw Yosemite in green so the primary feature is visible.
+Map.centerObject(yosemite, 8); // Center the map on the Yosemite-area point so the search area and nearby points are visible.
+Map.addLayer(searchArea, {color: '006600'}, '100 km search area'); // Draw the search area in green so the distance rule is visible.
+Map.addLayer(yosemite, {color: '0033cc'}, 'Yosemite area reference point'); // Draw the Yosemite-area point in blue so the primary feature is visible.
 Map.addLayer(nearbyPlants, {color: 'cc0000'}, 'Power plants within 100 km'); // Draw matched power plants in red so the spatial join result appears on the map.
 print('Spatial join result', spatialJoined); // Print the joined result so you can inspect the saved nearby_power_plants property.
 print('Nearby power plants as a FeatureCollection', nearbyPlants); // Print the matched power plants as a normal FeatureCollection.
@@ -263,10 +266,27 @@ print('Nearby power plant names', nearbyPlants.aggregate_array('name')); // Prin
 - Why is it useful to combine raster data and vector data in one analysis?
 - Which script was easiest to understand, and which one needs more practice?
 
-## Optional Extensions
+## To Turn In
 
-- Change Script 3 to calculate minimum and maximum elevation for each county.
-- Change Script 4 so it uses four elevation classes instead of three.
-- Change Script 6 so the small table includes counties that are personally meaningful to you.
-- Change Script 7 so the spatial join finds power plants within 50 kilometers, 200 kilometers, or another distance of your choice.
-- Replace Yosemite with another protected area and compare the spatial join results.
+Submit a **Get Link URL** to a modified version of **Script 7: Spatial Join with Nearby Power Plants**.
+
+Your submitted script should:
+
+1. Move the reference point to a different location.
+2. Use a different search distance than `100000` meters.
+3. Update the `name` properties and map layer names so they describe your new location and search distance.
+4. Run successfully in the Earth Engine Code Editor.
+5. Display:
+   - the buffered search area
+   - the reference point
+   - the power plants found within your search distance
+6. Print:
+   - the spatial join result
+   - the nearby power plants as a `FeatureCollection`
+   - the nearby power plant names
+
+Choose a location that is meaningful or interesting to you. For example, you might place the reference point near a city, campus, park, coastline, or another place you want to investigate.
+
+> **Reminder:** Earth Engine point coordinates use longitude first, then latitude. For example, `ee.Geometry.Point([-122.1697, 37.4275])` creates a point near Stanford.
+
+To create the URL, click **Get Link** in the Earth Engine Code Editor after your modified script runs successfully. Submit that URL in Canvas.
