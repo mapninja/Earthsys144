@@ -12,7 +12,7 @@ Week 04 focuses on how vector GIS workflows can reshape, combine, and reinterpre
 
 The core Week 04 assignment is graded as a single 10-point assignment made up of four `TURN_IN` components. The SimplyAnalytics workshop is listed as optional support material and is not part of the Week 04 score.
 
-## Required Lab Pages
+## Week 04 Lab Pages
 
 - Optional Workshop: [00 - OPTIONAL - Introducing SimplyAnalytics.com](https://mapninja.github.io/Earthsys144/week04/00_OPTIONAL_introducing_simplyanalytics_com.html)
 - Lab Document: [01 - TURN IN - Buffering & Overlay Analysis in QGIS](https://mapninja.github.io/Earthsys144/week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html)
