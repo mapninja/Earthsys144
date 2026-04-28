@@ -2,6 +2,10 @@
 
 ## Spring 2026 Lab Syllabus (Draft Mode)
 
+## Course Lab Guide
+
+The course lab materials are published in the [EarthSys144 Lab Guide GitBook](https://mapninja.github.io/Earthsys144/). Use this site as the primary location for weekly lab instructions, support materials, assignment guidance, and final project resources.
+
 ## Course Description
 
 "Everything is somewhere, and that somewhere matters."
@@ -50,6 +54,8 @@ By the end of the course, students should be able to:
 ### Lab Sections
 
 Students should enroll in one lab section. If you have conflicts with the current Lab Section offerings. TA Lab assignments are subject to adjustment.
+
+Weekly lab instructions and support materials are posted in the [EarthSys144 Lab Guide GitBook](https://mapninja.github.io/Earthsys144/). Bring the relevant lab guide page to section so you can follow the steps, links, and submission directions during lab time.
 
 
 | Section | Day/Time                    | Location       | TA            |
@@ -111,6 +117,7 @@ I do this because I would rather give you the opportunity to go back and correct
 ## Assignments and Assessments
 
 - Lab work is assigned weekly and typically due the following week.
+- Weekly lab prompts, data links, support materials, and submission guidance are posted in the [EarthSys144 Lab Guide GitBook](https://mapninja.github.io/Earthsys144/).
 - Midterm assessment: Released Friday, May 1, 2026 (12:00 AM), due Sunday, May 10, 2026 (11:59 PM).
 - Final assessment aligns with university final exam policy and/or assigned take-home format (see announcements).
 - Mini-project proposal and final deliverable dates: see Key Dates section.
