@@ -34,8 +34,9 @@ You will need:
 - `California_Lakes` from [data.ca.gov](https://data.ca.gov/dataset/california-lakes)
 - `SHN_Lines` from [State Highway Network Lines](https://data.ca.gov/dataset/state-highway-network-lines/resource/583d7297-a76f-4286-9c5c-a0d6defa98fe)
 - `CDFW_Public_Access_Lands_[ds3077]` from [California GIS Open Data](https://gis.data.ca.gov/datasets/b3b6dd29b34247dbb2dd773ea17cc82d_0/explore?location=37.304465%2C-119.405679%2C6)
+- [Parcels_CA_2014.zip](https://egis7.gis.lacounty.gov/HubData/Parcels_CA_2014.zip), which contains `Parcels_CA_2014.gdb`
 
-Create a new project folder for this lab and save a new QGIS project there as `buffering_overlay_ca.qgz`.
+Create a new project folder for this lab. Download and unzip [Parcels_CA_2014.zip](https://egis7.gis.lacounty.gov/HubData/Parcels_CA_2014.zip) into that project folder, then save a new QGIS project there as `buffering_overlay_ca.qgz`.
 
 ## Data for This Exercise
 
@@ -446,7 +447,7 @@ Inspect the result and confirm that candidate polygons overlapping the public-ac
 
 This final step narrows the analysis from a regional suitability surface to one specific site-selection story. This is necessary because the `FinalCandidates_CA` layer may still contain many suitable areas spread across your study region. For the final map, you will choose one lake with candidate areas nearby, isolate just those candidate polygons, and then use them to select parcels from the statewide parcel layer. The main tools here are the interactive **Select Features** tools and **Select by Location**, which lets one layer select features from another based on spatial overlap.
 
-1. In the `raw` folder, locate `Parcels_CA_2014.gdb`.
+1. In the folder where you unzipped [Parcels_CA_2014.zip](https://egis7.gis.lacounty.gov/HubData/Parcels_CA_2014.zip), locate `Parcels_CA_2014.gdb`.
 2. In the QGIS **Browser** panel, expand the geodatabase and add the `CA_PARCELS_STATEWIDE` layer to the project.
 
 ![](images/20260425_160311_image.png)
