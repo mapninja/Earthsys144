@@ -75,7 +75,7 @@ This lab extends terrain analysis into hydrologic modeling by deriving flow accu
 
 ### [04 - Introducing StoryMaps on ArcGIS Online](04_introducing_storymaps_on_arcgis_online.md)
 
-Placeholder: this lab focuses on communicating mapped results through a structured web narrative.
+This workshop introduces ArcGIS StoryMaps as the required final project submission format and as a web-based tool for communicating map-based narratives with text, images, and other media. Students log in through Stanford ArcGIS Online, create a first story, add text and map blocks, preview the result, and understand sharing settings.
 
 ## What to Expect in the Individual Lab Documents
 

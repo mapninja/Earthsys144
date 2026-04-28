@@ -1,1 +1,1 @@
-# Week 06 - More Raster & Remote Sensing
+# Week 06 - Raster Analysis & Remote Sensing

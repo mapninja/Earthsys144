@@ -1,10 +1,10 @@
 # OPTIONAL Workshop: Introducing SimplyAnalytics.com
 
-> **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
+> **Optional workshop:** This activity is provided as practice and background support. It is not a Week 04 turn-in unless your instructor separately asks you to submit it.
 
 ## Overview
 
-This lab introduces **SimplyAnalytics** as a source of county-level demographic and consumer data, then brings that exported data back into QGIS for spatial analysis.
+This optional workshop introduces **SimplyAnalytics** as a source of county-level demographic and consumer data, then brings that exported data back into QGIS for spatial analysis.
 
 The workflow is intentionally a little strange and a little fun: you will build a county dataset for the United States containing population and **annual beer consumption per capita**, then join a national **Bigfoot sightings** point layer to counties by location.
 
@@ -12,7 +12,7 @@ From there, the exercise splits into two possible endings:
 
 1. a map workflow that calculates and maps **Bigfoot sightings per capita**
 
-> **Concept note:** This lab is less about proving anything meaningful about Bigfoot and more about practicing a real GIS pattern: acquire polygon data from an external reporting platform, enrich it with point events by location, then test and map possible spatial relationships.
+> **Concept note:** This workshop is less about proving anything meaningful about Bigfoot and more about practicing a real GIS pattern: acquire polygon data from an external reporting platform, enrich it with point events by location, then test and map possible spatial relationships.
 
 ## Getting Ready
 
@@ -83,7 +83,7 @@ Before exporting, make sure:
 
 - the geography is **county**, not state, ZIP code, tract, or block group
 - the table is for the **United States**
-- both required variables are present
+- both selected variables are present
 - the county names and identifiers look complete
 - there are no obvious filters limiting the table to only one region
 
@@ -154,7 +154,7 @@ If you prefer a more readable rate, you can also calculate sightings per 100,000
 
 ## Part 5: Map Bigfoot Sightings Per Capita
 
-At this point, everyone should have a county layer with:
+If you complete the full optional workflow, you should have a county layer with:
 
 - population
 - beer consumption per capita
@@ -170,9 +170,9 @@ Create a choropleth map showing the rate of Bigfoot sightings per capita.
 5. Choose a classification method and color ramp that make the pattern readable.
 6. Create a layout and export a final map.
 
-## Deliverable
+## Optional Practice Output
 
-Submit:
+If you want to keep a record of your practice work, save:
 
 - a final map of **Bigfoot sightings per capita by county**
 
@@ -194,7 +194,7 @@ Include:
 - a scale bar if appropriate
 - a short note describing the main mapped variable
 
-## What You Should Understand After This Lab
+## What You Should Understand After This Workshop
 
 By the end of this exercise, you should be able to explain:
 
