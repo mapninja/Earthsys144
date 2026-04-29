@@ -1079,7 +1079,6 @@
 <li>A Yosemite-area reference point created directly in Script 7.</li>
 <li><code>WRI/GPPD/power_plants</code>: Global Power Plant Database point data from the World Resources Institute.</li>
 </ul>
-<p><img src="images/featurecollection_table_geometry_placeholder.png" alt="Placeholder image: Diagram showing a FeatureCollection as a table linked to map features. The table should show rows as features, columns as attributes, and a geometry column connecting each row to a polygon on a map."></img></p>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>By the end of this lab, you should be able to:</p>
 <ul>
@@ -1101,19 +1100,64 @@
 <p>A <code>FeatureCollection</code> is a group of features. It behaves like a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, but it is stored and processed on Earth Engine servers. This matters because Earth Engine does not immediately download the full <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to your computer. Instead, you build a set of instructions, and Earth Engine evaluates those instructions when you print, map, chart, export, or otherwise request results.</p>
 <h2 id="script-1-load-and-inspect-a-featurecollection">Script 1: Load and Inspect a FeatureCollection</h2>
 <p>This script loads U.S. state and county boundaries, filters counties to California, prints attributes, and adds the results to the map.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>); <span class="hljs-comment">// Load U.S. state boundaries as a FeatureCollection so we can inspect and filter state features.</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// FeatureCollections, filters, attributes, and map layers</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load boundary datasets.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// A FeatureCollection is a group of geographic features.</span>
+<span class="hljs-comment">// Each feature has a geometry, meaning its shape on the map,</span>
+<span class="hljs-comment">// and properties, meaning descriptive information stored in columns.</span>
+
+<span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>); <span class="hljs-comment">// Load U.S. state boundaries as a FeatureCollection so we can inspect and filter state features.</span>
 <span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load U.S. county boundaries as a FeatureCollection so we can work with smaller administrative areas.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filter the datasets to California.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filtering keeps only the features that match a rule.</span>
+
 <span class="hljs-keyword">var</span> california = states.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STUSPS'</span>, <span class="hljs-string">'CA'</span>)); <span class="hljs-comment">// Keep only the state feature whose postal abbreviation attribute is CA.</span>
 <span class="hljs-keyword">var</span> caCounties = counties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STATEFP'</span>, <span class="hljs-string">'06'</span>)); <span class="hljs-comment">// Keep only counties whose state FIPS code is 06, the Census code for California.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the layers on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// After running the script, use the Layers widget in the upper-right corner</span>
+<span class="hljs-comment">// of the map to turn layers on and off.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(california, <span class="hljs-number">6</span>); <span class="hljs-comment">// Center the map on California so the filtered features are visible when the script runs.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(states, {<span class="hljs-attr">color</span>: <span class="hljs-string">'cccccc'</span>}, <span class="hljs-string">'All U.S. states'</span>); <span class="hljs-comment">// Draw all state boundaries in light gray to provide national context.</span>
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(california, {<span class="hljs-attr">color</span>: <span class="hljs-string">'0066cc'</span>}, <span class="hljs-string">'California state boundary'</span>); <span class="hljs-comment">// Draw California in blue so the filtered state is easy to identify.</span>
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(caCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'ff9900'</span>}, <span class="hljs-string">'California counties'</span>); <span class="hljs-comment">// Draw California county boundaries in orange so the county FeatureCollection is visible.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print basic information to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Console tab to inspect printed objects.</span>
+<span class="hljs-comment">// Click the small arrows to expand features, properties, and lists.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'First state feature'</span>, states.<span class="hljs-title function_">first</span>()); <span class="hljs-comment">// Print one state feature so you can expand it and see its geometry and attributes.</span>
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'State attribute names'</span>, states.<span class="hljs-title function_">first</span>().<span class="hljs-title function_">propertyNames</span>()); <span class="hljs-comment">// Print the column names stored in the first state feature.</span>
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Number of California counties'</span>, caCounties.<span class="hljs-title function_">size</span>()); <span class="hljs-comment">// Count the number of county features that remain after filtering to California.</span>
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'First California county feature'</span>, caCounties.<span class="hljs-title function_">first</span>()); <span class="hljs-comment">// Print one California county so you can inspect the county-level attributes.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create and print a sorted list of California county names.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// aggregate_array() collects values from one attribute column into a list.</span>
+
 <span class="hljs-keyword">var</span> countyNames = caCounties.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'NAME'</span>).<span class="hljs-title function_">sort</span>(); <span class="hljs-comment">// Collect the NAME value from each California county and sort the names alphabetically.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'California county names'</span>, countyNames); <span class="hljs-comment">// Print the county name list so you can see values from one attribute column.</span>
 </code></pre>
 <h3 id="check-your-understanding">Check Your Understanding</h3>
@@ -1122,21 +1166,67 @@
 <li>Why does <code>caCounties</code> use <code>STATEFP</code> instead of <code>STUSPS</code>?</li>
 <li>In the Console, expand one <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. Where are the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> values stored?</li>
 </ul>
+<p><img src="images/20260429_112609_image.png" alt=""></img></p>
 <h2 id="script-2-filter-features-and-inspect-attribute-values">Script 2: Filter Features and Inspect Attribute Values</h2>
 <p>Filtering is one of the most important operations in spatial data analysis. A filter asks Earth Engine to keep only rows that meet a condition.</p>
 <p>This script uses county land area and water area attributes to find large California counties and coastal or water-rich counties.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each row represents one U.S. county.</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Filtering county FeatureCollections by attribute values</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load county boundary data.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// A FeatureCollection is like a table with geometry.</span>
+<span class="hljs-comment">// In this case, each row is one county, and each county has a polygon shape.</span>
+
+<span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each row represents one U.S. county.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filter counties by attribute values.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filters keep only the features that match a rule.</span>
+<span class="hljs-comment">// Here, STATEFP, ALAND, and AWATER are attributes in the county dataset.</span>
+
 <span class="hljs-keyword">var</span> caCounties = counties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STATEFP'</span>, <span class="hljs-string">'06'</span>)); <span class="hljs-comment">// Filter the national county table to only California counties.</span>
+
 <span class="hljs-keyword">var</span> largeCaCounties = caCounties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">gt</span>(<span class="hljs-string">'ALAND'</span>, <span class="hljs-number">10000000000</span>)); <span class="hljs-comment">// Keep counties with more than 10 billion square meters of land area.</span>
+
 <span class="hljs-keyword">var</span> waterRichCaCounties = caCounties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">gt</span>(<span class="hljs-string">'AWATER'</span>, <span class="hljs-number">500000000</span>)); <span class="hljs-comment">// Keep counties with more than 500 million square meters of water area.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the filtered county layers on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Layers widget to turn each layer on and off.</span>
+<span class="hljs-comment">// This makes it easier to compare all counties with the filtered results.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(caCounties, <span class="hljs-number">6</span>); <span class="hljs-comment">// Center the map on the California county collection.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(caCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'dddddd'</span>}, <span class="hljs-string">'All California counties'</span>); <span class="hljs-comment">// Draw all California counties in light gray as a reference layer.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(largeCaCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'cc0000'</span>}, <span class="hljs-string">'Large land-area counties'</span>); <span class="hljs-comment">// Draw large land-area counties in red so the filter result stands out.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(waterRichCaCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'0066cc'</span>}, <span class="hljs-string">'Water-rich counties'</span>); <span class="hljs-comment">// Draw water-rich counties in blue so a second filter result can be compared.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print attribute information and filter results to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Console to inspect attributes and confirm which counties passed</span>
+<span class="hljs-comment">// each filter. Click the small arrows to expand printed objects.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'All California county attribute names'</span>, caCounties.<span class="hljs-title function_">first</span>().<span class="hljs-title function_">propertyNames</span>()); <span class="hljs-comment">// Print the available county attributes before choosing fields for analysis.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Large land-area counties'</span>, largeCaCounties); <span class="hljs-comment">// Print the filtered collection so you can inspect which rows passed the land-area condition.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Large land-area county names'</span>, largeCaCounties.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'NAME'</span>).<span class="hljs-title function_">sort</span>()); <span class="hljs-comment">// Print only the names of counties that passed the land-area condition.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Water-rich county names'</span>, waterRichCaCounties.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'NAME'</span>).<span class="hljs-title function_">sort</span>()); <span class="hljs-comment">// Print only the names of counties that passed the water-area condition.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Land area values for all California counties'</span>, caCounties.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'ALAND'</span>)); <span class="hljs-comment">// Print the raw land-area values to connect the table attribute to the filter.</span>
 </code></pre>
 <h3 id="check-your-understanding">Check Your Understanding</h3>
@@ -1145,21 +1235,74 @@
 <li>Why are the <code>ALAND</code> and <code>AWATER</code> values so large?</li>
 <li>How would you change the script to find counties with small land area?</li>
 </ul>
+<p><img src="images/20260429_112635_image.png" alt=""></img></p>
 <h2 id="script-3-summarize-elevation-inside-county-polygons">Script 3: Summarize Elevation Inside County Polygons</h2>
 <p><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> data, such as elevation, are stored as grids of pixels. <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> data, such as counties, are stored as shapes. A common <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> task is to summarize <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels inside <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> boundaries.</p>
 <p>This script calculates mean SRTM elevation for each California county. This operation is often called zonal statistics because each polygon is a zone and the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is summarized within each zone.</p>
-<p><img src="images/zonal_statistics_counties_placeholder.png" alt="Placeholder image: Diagram showing raster elevation pixels under county polygons. The image should show pixels clipped by county boundaries and a table column labeled mean elevation."></img></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each county can be used as a zone for summarizing elevation.</span>
+<p><img src="images/20260429_112658_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Summarizing raster elevation values by county polygons</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load county boundary data.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Counties are polygon features.</span>
+<span class="hljs-comment">// In this script, each county polygon will be used as a zone for summarizing</span>
+<span class="hljs-comment">// the elevation raster values inside it.</span>
+
+<span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each county can be used as a zone for summarizing elevation.</span>
+
 <span class="hljs-keyword">var</span> caCounties = counties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STATEFP'</span>, <span class="hljs-string">'06'</span>)); <span class="hljs-comment">// Filter to California counties so the analysis is focused and faster.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and symbolize elevation data.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// A raster image is made of pixels.</span>
+<span class="hljs-comment">// In this image, each pixel stores an elevation value in meters.</span>
+
 <span class="hljs-keyword">var</span> elevation = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'USGS/SRTMGL1_003'</span>); <span class="hljs-comment">// Load SRTM elevation as a raster image with elevation values in meters.</span>
+
 <span class="hljs-keyword">var</span> elevationVis = {<span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">4000</span>, <span class="hljs-attr">palette</span>: [<span class="hljs-string">'1a9850'</span>, <span class="hljs-string">'fee08b'</span>, <span class="hljs-string">'d73027'</span>]}; <span class="hljs-comment">// Define visualization settings so low, middle, and high elevations draw in different colors.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate mean elevation by county.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// reduceRegions() summarizes raster pixel values inside many polygons.</span>
+<span class="hljs-comment">// The reducer decides what statistic to calculate. Here, mean means average.</span>
+
 <span class="hljs-keyword">var</span> countyMeanElevation = elevation.<span class="hljs-title function_">reduceRegions</span>({<span class="hljs-attr">collection</span>: caCounties, <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">mean</span>(), <span class="hljs-attr">scale</span>: <span class="hljs-number">90</span>}); <span class="hljs-comment">// Calculate the mean elevation of raster pixels inside each county polygon.</span>
+
 <span class="hljs-keyword">var</span> sortedMeanElevation = countyMeanElevation.<span class="hljs-title function_">sort</span>(<span class="hljs-string">'mean'</span>, <span class="hljs-literal">false</span>); <span class="hljs-comment">// Sort counties from highest mean elevation to lowest mean elevation.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the elevation raster and county boundaries on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Layers widget to turn the elevation and boundary layers on and off.</span>
+<span class="hljs-comment">// This helps compare the raster surface with the county zones.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(caCounties, <span class="hljs-number">6</span>); <span class="hljs-comment">// Center the map on California so the counties and elevation layer are visible.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(elevation, elevationVis, <span class="hljs-string">'SRTM elevation'</span>); <span class="hljs-comment">// Draw the elevation raster so you can visually compare terrain with county boundaries.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(caCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'000000'</span>}, <span class="hljs-string">'California county boundaries'</span>); <span class="hljs-comment">// Draw county boundaries in black so the zonal statistics zones are visible.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the results to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Open the Console tab to inspect the output.</span>
+<span class="hljs-comment">// The county features now include a new mean attribute created by reduceRegions().</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'County mean elevation results'</span>, countyMeanElevation); <span class="hljs-comment">// Print the output FeatureCollection, which now includes a new mean attribute.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Highest mean elevation counties'</span>, sortedMeanElevation.<span class="hljs-title function_">limit</span>(<span class="hljs-number">10</span>)); <span class="hljs-comment">// Print the ten counties with the highest mean elevation values.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Mean elevation attribute values'</span>, countyMeanElevation.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'mean'</span>)); <span class="hljs-comment">// Print the new mean elevation values as a list for quick inspection.</span>
 </code></pre>
 <h3 id="why-use-reduceregions">Why Use <code>reduceRegions</code>?</h3>
@@ -1174,23 +1317,88 @@
 <h2 id="script-4-style-counties-by-an-attribute">Script 4: Style Counties by an Attribute</h2>
 <p>Earth Engine can draw features with styles based on their attributes. This is useful for turning a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> into a map pattern.</p>
 <p>This script reuses mean elevation from Script 3 and creates a new color <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> for each county. The map then uses that color <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> to draw lower, middle, and higher elevation counties differently.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each row can be styled on the map.</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Styling county polygons by mean elevation</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load county boundary and elevation data.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// This script combines vector data and raster data.</span>
+<span class="hljs-comment">// The counties are polygon features, and the elevation image is a raster</span>
+<span class="hljs-comment">// made of pixels with elevation values in meters.</span>
+
+<span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so each row can be styled on the map.</span>
+
 <span class="hljs-keyword">var</span> caCounties = counties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STATEFP'</span>, <span class="hljs-string">'06'</span>)); <span class="hljs-comment">// Filter to California counties so the map focuses on one state.</span>
+
 <span class="hljs-keyword">var</span> elevation = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'USGS/SRTMGL1_003'</span>); <span class="hljs-comment">// Load SRTM elevation so each county can receive a mean elevation value.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate mean elevation for each county.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// reduceRegions() summarizes raster pixel values inside many polygons.</span>
+<span class="hljs-comment">// The result is a FeatureCollection where each county has a new mean attribute.</span>
+
 <span class="hljs-keyword">var</span> countyMeanElevation = elevation.<span class="hljs-title function_">reduceRegions</span>({<span class="hljs-attr">collection</span>: caCounties, <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">mean</span>(), <span class="hljs-attr">scale</span>: <span class="hljs-number">90</span>}); <span class="hljs-comment">// Add a mean elevation attribute to each county using raster pixels inside each polygon.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a style for each county based on its mean elevation.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// map() runs the same function once for every feature in a FeatureCollection.</span>
+<span class="hljs-comment">// Here, each county receives a style property based on its mean elevation.</span>
+
 <span class="hljs-keyword">var</span> styledCounties = countyMeanElevation.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">feature</span>) { <span class="hljs-comment">// Start a function that runs once for every county feature.</span>
+
   <span class="hljs-keyword">var</span> meanElevation = ee.<span class="hljs-title class_">Number</span>(feature.<span class="hljs-title function_">get</span>(<span class="hljs-string">'mean'</span>)); <span class="hljs-comment">// Read the county's mean elevation value and store it as an Earth Engine number.</span>
+
   <span class="hljs-keyword">var</span> lowColor = ee.<span class="hljs-title class_">String</span>(<span class="hljs-string">'2c7bb6'</span>); <span class="hljs-comment">// Store a blue color for counties with lower average elevation.</span>
+
   <span class="hljs-keyword">var</span> middleColor = ee.<span class="hljs-title class_">String</span>(<span class="hljs-string">'ffffbf'</span>); <span class="hljs-comment">// Store a pale yellow color for counties with middle average elevation.</span>
+
   <span class="hljs-keyword">var</span> highColor = ee.<span class="hljs-title class_">String</span>(<span class="hljs-string">'d7191c'</span>); <span class="hljs-comment">// Store a red color for counties with higher average elevation.</span>
+
   <span class="hljs-keyword">var</span> color = ee.<span class="hljs-title class_">String</span>(ee.<span class="hljs-property">Algorithms</span>.<span class="hljs-title class_">If</span>(meanElevation.<span class="hljs-title function_">lt</span>(<span class="hljs-number">500</span>), lowColor, ee.<span class="hljs-property">Algorithms</span>.<span class="hljs-title class_">If</span>(meanElevation.<span class="hljs-title function_">lt</span>(<span class="hljs-number">1500</span>), middleColor, highColor))); <span class="hljs-comment">// Choose a color by testing whether mean elevation is low, middle, or high.</span>
+
   <span class="hljs-keyword">return</span> feature.<span class="hljs-title function_">set</span>(<span class="hljs-string">'style'</span>, {<span class="hljs-attr">color</span>: <span class="hljs-string">'333333'</span>, <span class="hljs-attr">width</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">fillColor</span>: color.<span class="hljs-title function_">cat</span>(<span class="hljs-string">'99'</span>)}); <span class="hljs-comment">// Return the county with a new style property that Earth Engine can use for drawing.</span>
+
 }); <span class="hljs-comment">// End the mapping function that creates style information for every county.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the styled counties into a display layer.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// The style() method uses the style property created above.</span>
+<span class="hljs-comment">// This lets each county draw with its own fill color.</span>
+
 <span class="hljs-keyword">var</span> countyStyleImage = styledCounties.<span class="hljs-title function_">style</span>({<span class="hljs-attr">styleProperty</span>: <span class="hljs-string">'style'</span>}); <span class="hljs-comment">// Convert the styled FeatureCollection into a map layer using the per-feature style property.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the styled county layer on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Layers widget to turn the styled layer on and off.</span>
+<span class="hljs-comment">// The colors show broad elevation classes, not exact elevation values.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(caCounties, <span class="hljs-number">6</span>); <span class="hljs-comment">// Center the map on California so the styled counties fill the view.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(countyStyleImage, {}, <span class="hljs-string">'California counties styled by mean elevation'</span>); <span class="hljs-comment">// Add the styled county layer to the map.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print results to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Console to inspect the mean elevation and style attributes.</span>
+<span class="hljs-comment">// Click the small arrows to expand the printed FeatureCollections.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Styled counties with mean elevation and style attributes'</span>, styledCounties); <span class="hljs-comment">// Print the styled collection so you can inspect the new mean and style attributes.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Lowest mean elevation counties'</span>, countyMeanElevation.<span class="hljs-title function_">sort</span>(<span class="hljs-string">'mean'</span>, <span class="hljs-literal">true</span>).<span class="hljs-title function_">limit</span>(<span class="hljs-number">10</span>)); <span class="hljs-comment">// Print the ten lowest mean elevation counties to connect the colors back to the table values.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Highest mean elevation counties'</span>, countyMeanElevation.<span class="hljs-title function_">sort</span>(<span class="hljs-string">'mean'</span>, <span class="hljs-literal">false</span>).<span class="hljs-title function_">limit</span>(<span class="hljs-number">10</span>)); <span class="hljs-comment">// Print the ten highest mean elevation counties to compare the other end of the attribute range.</span>
 </code></pre>
 <h3 id="check-your-understanding">Check Your Understanding</h3>
@@ -1199,16 +1407,57 @@
 <li>Which <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> stores the drawing instructions?</li>
 <li>Why does the script use <code>map()</code> instead of writing a separate style for each county?</li>
 </ul>
+<p><img src="images/20260429_112753_image.png" alt=""></img></p>
 <h2 id="script-5-create-two-simple-tables-and-join-them-by-attribute">Script 5: Create Two Simple Tables and Join Them by Attribute</h2>
 <p>A <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> combines information from two tables. In an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a>, rows match because values in one <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> equal values in another <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</p>
 <p>This script creates two small example tables. It is intentionally simple so the <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> structure is easier to see before using larger spatial datasets.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> primaryFeatures = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'a'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'b'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'c'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'d'</span>})]); <span class="hljs-comment">// Create the first table, where each row has a foo value and a label.</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Joining two simple FeatureCollections</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create two small example tables.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// These tables do not have map geometry.</span>
+<span class="hljs-comment">// They are simple examples for learning how table joins work.</span>
+
+<span class="hljs-keyword">var</span> primaryFeatures = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'a'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'b'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'c'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">foo</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'d'</span>})]); <span class="hljs-comment">// Create the first table, where each row has a foo value and a label.</span>
+
 <span class="hljs-keyword">var</span> secondaryFeatures = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">bar</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'e'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">bar</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'f'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">bar</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'g'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">'h'</span>})]); <span class="hljs-comment">// Create the second table, where each row has a bar value and a label.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define the join rule.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// A join connects rows from two tables.</span>
+<span class="hljs-comment">// Here, rows match when foo in the first table equals bar in the second table.</span>
+
 <span class="hljs-keyword">var</span> toyFilter = ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">equals</span>({<span class="hljs-attr">leftField</span>: <span class="hljs-string">'foo'</span>, <span class="hljs-attr">rightField</span>: <span class="hljs-string">'bar'</span>}); <span class="hljs-comment">// Define the matching rule: foo from the first table must equal bar from the second table.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create and apply an inner join.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// An inner join keeps only the row pairs that match the join rule.</span>
+<span class="hljs-comment">// In this example, non-matching rows are left out of the result.</span>
+
 <span class="hljs-keyword">var</span> innerJoin = ee.<span class="hljs-property">Join</span>.<span class="hljs-title function_">inner</span>(<span class="hljs-string">'primary'</span>, <span class="hljs-string">'secondary'</span>); <span class="hljs-comment">// Create an inner join that keeps only matching row pairs from the two tables.</span>
+
 <span class="hljs-keyword">var</span> toyJoin = innerJoin.<span class="hljs-title function_">apply</span>(primaryFeatures, secondaryFeatures, toyFilter); <span class="hljs-comment">// Apply the join rule to produce a new collection of matching feature pairs.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the original tables and joined result to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Open the Console tab after running the script.</span>
+<span class="hljs-comment">// Expand the printed objects to compare the original tables with the join result.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Primary table'</span>, primaryFeatures); <span class="hljs-comment">// Print the first table so you can inspect the original foo values.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Secondary table'</span>, secondaryFeatures); <span class="hljs-comment">// Print the second table so you can inspect the original bar values.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Inner join toy example'</span>, toyJoin); <span class="hljs-comment">// Print the joined result so you can see which rows matched.</span>
 </code></pre>
 <h3 id="reading-the-join-result">Reading the Join Result</h3>
@@ -1218,24 +1467,96 @@
 <li><code>secondary</code>: the matching <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> from the second collection.</li>
 </ul>
 <p>This nested structure is useful because it preserves all attributes from both matching rows.</p>
+<p><img src="images/20260429_112819_image.png" alt=""></img></p>
 <h2 id="script-6-join-county-boundaries-to-a-small-table">Script 6: Join County Boundaries to a Small Table</h2>
 <p>This script uses an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> with real geographic features. The primary collection is California counties. The secondary collection is a small <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> created inside the script. The <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> matches county names.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so the primary table has real geometries.</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Joining county boundaries to a small attribute table</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter county boundary data.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// The county dataset is a spatial table.</span>
+<span class="hljs-comment">// Each row has a county polygon and county attributes.</span>
+
+<span class="hljs-keyword">var</span> counties = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/Counties'</span>); <span class="hljs-comment">// Load county polygons so the primary table has real geometries.</span>
+
 <span class="hljs-keyword">var</span> caCounties = counties.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STATEFP'</span>, <span class="hljs-string">'06'</span>)); <span class="hljs-comment">// Filter to California counties so the join uses a manageable set of features.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a small non-spatial table.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// This table has no geometry.</span>
+<span class="hljs-comment">// It only contains county names and classroom region labels.</span>
+
 <span class="hljs-keyword">var</span> countyGroups = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">county_name</span>: <span class="hljs-string">'Santa Clara'</span>, <span class="hljs-attr">group</span>: <span class="hljs-string">'Bay Area example'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">county_name</span>: <span class="hljs-string">'Los Angeles'</span>, <span class="hljs-attr">group</span>: <span class="hljs-string">'Southern California example'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">county_name</span>: <span class="hljs-string">'Fresno'</span>, <span class="hljs-attr">group</span>: <span class="hljs-string">'Central Valley example'</span>}), ee.<span class="hljs-title class_">Feature</span>(<span class="hljs-literal">null</span>, {<span class="hljs-attr">county_name</span>: <span class="hljs-string">'Humboldt'</span>, <span class="hljs-attr">group</span>: <span class="hljs-string">'North Coast example'</span>})]); <span class="hljs-comment">// Create a small non-spatial table with county names and classroom region labels.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define the join rule.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// This join matches county names from the boundary dataset</span>
+<span class="hljs-comment">// to county names in the small table.</span>
+
 <span class="hljs-keyword">var</span> nameJoinFilter = ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">equals</span>({<span class="hljs-attr">leftField</span>: <span class="hljs-string">'NAME'</span>, <span class="hljs-attr">rightField</span>: <span class="hljs-string">'county_name'</span>}); <span class="hljs-comment">// Define the join rule so county NAME values match county_name values in the small table.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create and apply the join.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// An inner join keeps only matching records.</span>
+<span class="hljs-comment">// Counties that are not listed in countyGroups are left out.</span>
+
 <span class="hljs-keyword">var</span> countyJoin = ee.<span class="hljs-property">Join</span>.<span class="hljs-title function_">inner</span>(<span class="hljs-string">'county_feature'</span>, <span class="hljs-string">'group_record'</span>); <span class="hljs-comment">// Create an inner join that keeps only counties with matching records in the small table.</span>
+
 <span class="hljs-keyword">var</span> joinedCounties = countyJoin.<span class="hljs-title function_">apply</span>(caCounties, countyGroups, nameJoinFilter); <span class="hljs-comment">// Apply the join so matching county features and group records are paired together.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Flatten the nested join result.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Earth Engine joins create nested results.</span>
+<span class="hljs-comment">// This step turns each joined pair back into a single county feature</span>
+<span class="hljs-comment">// with one new group attribute.</span>
+
 <span class="hljs-keyword">var</span> flattenedJoinedCounties = joinedCounties.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">joinedFeature</span>) { <span class="hljs-comment">// Start a function that converts each nested join result into one easier-to-map feature.</span>
+
   <span class="hljs-keyword">var</span> countyFeature = ee.<span class="hljs-title class_">Feature</span>(joinedFeature.<span class="hljs-title function_">get</span>(<span class="hljs-string">'county_feature'</span>)); <span class="hljs-comment">// Extract the county feature from the nested join result.</span>
+
   <span class="hljs-keyword">var</span> groupRecord = ee.<span class="hljs-title class_">Feature</span>(joinedFeature.<span class="hljs-title function_">get</span>(<span class="hljs-string">'group_record'</span>)); <span class="hljs-comment">// Extract the matching table record from the nested join result.</span>
+
   <span class="hljs-keyword">return</span> countyFeature.<span class="hljs-title function_">set</span>(<span class="hljs-string">'group'</span>, groupRecord.<span class="hljs-title function_">get</span>(<span class="hljs-string">'group'</span>)); <span class="hljs-comment">// Return the county geometry with the joined group attribute added.</span>
+
 }); <span class="hljs-comment">// End the mapping function that flattens the join result.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the joined counties on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Layers widget to compare all California counties</span>
+<span class="hljs-comment">// with the smaller set of counties that matched the table.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(flattenedJoinedCounties, <span class="hljs-number">7</span>); <span class="hljs-comment">// Center the map on the joined counties so the matches are visible.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(caCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'dddddd'</span>}, <span class="hljs-string">'All California counties'</span>); <span class="hljs-comment">// Draw all California counties in light gray for context.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(flattenedJoinedCounties, {<span class="hljs-attr">color</span>: <span class="hljs-string">'cc0000'</span>}, <span class="hljs-string">'Counties matched by name'</span>); <span class="hljs-comment">// Draw only the joined counties in red so the attribute join result stands out.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the tables and join results to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Open the Console tab and expand the printed objects.</span>
+<span class="hljs-comment">// Compare the small table, the nested join result, and the flattened result.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Small county group table'</span>, countyGroups); <span class="hljs-comment">// Print the small table so you can inspect the values that will be matched.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Nested county join result'</span>, joinedCounties); <span class="hljs-comment">// Print the raw join result so you can see the nested county_feature and group_record properties.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Flattened joined counties'</span>, flattenedJoinedCounties); <span class="hljs-comment">// Print the flattened result so you can see county geometry plus the new group attribute.</span>
 </code></pre>
 <h3 id="check-your-understanding">Check Your Understanding</h3>
@@ -1244,25 +1565,120 @@
 <li>What would happen if a county name were misspelled in <code>countyGroups</code>?</li>
 <li>Why is the flattened <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> result easier to map than the nested <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> result?</li>
 </ul>
+<p><img src="images/20260429_112908_image.png" alt=""></img></p>
 <h2 id="script-7-spatial-join-with-nearby-power-plants">Script 7: Spatial Join with Nearby Power Plants</h2>
 <p>A spatial <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> matches features based on location instead of matching text or numeric attributes. In this script, a Yosemite-area reference point is the primary <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>, and power plants are the secondary features. The <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> finds power plants within 100 kilometers of the Yosemite-area point.</p>
-<p><img src="images/spatial_join_yosemite_power_plants_placeholder.png" alt="Placeholder image: Map showing a Yosemite-area reference point, nearby power plants as points, and a circular 100 kilometer search distance around the Yosemite-area point."></img></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> searchDistance = <span class="hljs-number">100000</span>; <span class="hljs-comment">// Store the search distance in meters. 100,000 meters is the same as 100 kilometers.</span>
+<p><img src="images/20260429_112926_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Google Earth Engine</span>
+<span class="hljs-comment">// Spatial join using distance: finding power plants near a point</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Set the search distance and create a reference point.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// This script starts with one point near Yosemite Valley.</span>
+<span class="hljs-comment">// The search distance controls how far away a power plant can be</span>
+<span class="hljs-comment">// and still count as "nearby."</span>
+
+<span class="hljs-keyword">var</span> searchDistance = <span class="hljs-number">100000</span>; <span class="hljs-comment">// Store the search distance in meters. 100,000 meters is the same as 100 kilometers.</span>
+
 <span class="hljs-keyword">var</span> yosemitePoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">119.5383</span>, <span class="hljs-number">37.8651</span>]); <span class="hljs-comment">// Create a point near Yosemite Valley using longitude, latitude coordinates.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Turn the point and its search area into FeatureCollections.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Earth Engine joins work with FeatureCollections.</span>
+<span class="hljs-comment">// The point is the feature we search from.</span>
+<span class="hljs-comment">// The buffer is only for drawing the search area on the map.</span>
+
 <span class="hljs-keyword">var</span> yosemite = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(yosemitePoint, {<span class="hljs-attr">name</span>: <span class="hljs-string">'Yosemite area reference point'</span>})]); <span class="hljs-comment">// Turn the point into a one-row FeatureCollection so it can be used in a join.</span>
+
 <span class="hljs-keyword">var</span> searchArea = ee.<span class="hljs-title class_">FeatureCollection</span>([ee.<span class="hljs-title class_">Feature</span>(yosemitePoint.<span class="hljs-title function_">buffer</span>(searchDistance), {<span class="hljs-attr">name</span>: <span class="hljs-string">'100 km search area'</span>})]); <span class="hljs-comment">// Create a circular buffer so the search distance can be seen on the map.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the power plant point dataset.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// The power plant dataset is a global collection of points.</span>
+<span class="hljs-comment">// Each point represents a power plant location.</span>
+
 <span class="hljs-keyword">var</span> powerPlants = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'WRI/GPPD/power_plants'</span>); <span class="hljs-comment">// Load global power plant point locations so they can be spatially compared to Yosemite.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create the distance rule for the spatial join.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// A spatial join matches features based on their locations.</span>
+<span class="hljs-comment">// withinDistance() keeps matches that are close enough to each other.</span>
+
 <span class="hljs-keyword">var</span> distanceFilter = ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">withinDistance</span>({<span class="hljs-attr">distance</span>: searchDistance, <span class="hljs-attr">leftField</span>: <span class="hljs-string">'.geo'</span>, <span class="hljs-attr">rightField</span>: <span class="hljs-string">'.geo'</span>, <span class="hljs-attr">maxError</span>: <span class="hljs-number">10</span>}); <span class="hljs-comment">// Create a spatial rule that matches features whose geometries are within the search distance.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create and apply the spatial join.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// saveAll() keeps all matching features.</span>
+<span class="hljs-comment">// Here, all nearby power plants are saved inside a property</span>
+<span class="hljs-comment">// on the Yosemite feature.</span>
+
 <span class="hljs-keyword">var</span> distanceJoin = ee.<span class="hljs-property">Join</span>.<span class="hljs-title function_">saveAll</span>({<span class="hljs-attr">matchesKey</span>: <span class="hljs-string">'nearby_power_plants'</span>, <span class="hljs-attr">measureKey</span>: <span class="hljs-string">'distance'</span>}); <span class="hljs-comment">// Create a join that saves all nearby power plant matches inside one property on the Yosemite feature.</span>
+
 <span class="hljs-keyword">var</span> spatialJoined = distanceJoin.<span class="hljs-title function_">apply</span>(yosemite, powerPlants, distanceFilter); <span class="hljs-comment">// Apply the spatial join so Yosemite receives a list of nearby power plants.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the saved matches back into a FeatureCollection.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// The join result stores nearby power plants as a list.</span>
+<span class="hljs-comment">// Converting the list back into a FeatureCollection makes it easier</span>
+<span class="hljs-comment">// to map and inspect the matched points.</span>
+
 <span class="hljs-keyword">var</span> yosemiteWithNearbyPlants = ee.<span class="hljs-title class_">Feature</span>(spatialJoined.<span class="hljs-title function_">first</span>()); <span class="hljs-comment">// Convert the first joined result into a feature so its saved match list can be inspected.</span>
+
 <span class="hljs-keyword">var</span> nearbyPlants = ee.<span class="hljs-title class_">FeatureCollection</span>(ee.<span class="hljs-title class_">List</span>(yosemiteWithNearbyPlants.<span class="hljs-title function_">get</span>(<span class="hljs-string">'nearby_power_plants'</span>))); <span class="hljs-comment">// Convert the saved list of nearby power plant features back into a FeatureCollection for mapping.</span>
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(yosemite, <span class="hljs-number">8</span>); <span class="hljs-comment">// Center the map on the Yosemite-area point so the search area and nearby points are visible.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Student exploration: move the point and rerun the script.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Try changing the longitude and latitude in yosemitePoint to another place</span>
+<span class="hljs-comment">// in the world, then click Run.</span>
+<span class="hljs-comment">// In some regions, there may be no power plants within 100 km.</span>
+<span class="hljs-comment">// If that happens, increase searchDistance and run the script again.</span>
+<span class="hljs-comment">// For example, try 250000 for 250 km or 500000 for 500 km.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// For turn-in:</span>
+<span class="hljs-comment">// Submit a PDF that includes your Get Link URL for your modified script.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the point, search area, and matched power plants on the map.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the Layers widget to turn the search area and power plant layers</span>
+<span class="hljs-comment">// on and off. This helps you check whether the spatial join makes sense.</span>
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(yosemite, <span class="hljs-number">8</span>); <span class="hljs-comment">// Center the map on Yosemite so the park and nearby points are visible.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(searchArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'006600'</span>}, <span class="hljs-string">'100 km search area'</span>); <span class="hljs-comment">// Draw the search area in green so the distance rule is visible.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(yosemite, {<span class="hljs-attr">color</span>: <span class="hljs-string">'0033cc'</span>}, <span class="hljs-string">'Yosemite area reference point'</span>); <span class="hljs-comment">// Draw the Yosemite-area point in blue so the primary feature is visible.</span>
+
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(nearbyPlants, {<span class="hljs-attr">color</span>: <span class="hljs-string">'cc0000'</span>}, <span class="hljs-string">'Power plants within 100 km'</span>); <span class="hljs-comment">// Draw matched power plants in red so the spatial join result appears on the map.</span>
+
+
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the spatial join results to the Console.</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Open the Console tab and expand the printed results.</span>
+<span class="hljs-comment">// The spatial join result contains the saved nearby_power_plants list.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Spatial join result'</span>, spatialJoined); <span class="hljs-comment">// Print the joined result so you can inspect the saved nearby_power_plants property.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Nearby power plants as a FeatureCollection'</span>, nearbyPlants); <span class="hljs-comment">// Print the matched power plants as a normal FeatureCollection.</span>
+
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Nearby power plant names'</span>, nearbyPlants.<span class="hljs-title function_">aggregate_array</span>(<span class="hljs-string">'name'</span>)); <span class="hljs-comment">// Print the names of nearby power plants so the spatial result can be read as a table.</span>
 </code></pre>
 <h3 id="check-your-understanding">Check Your Understanding</h3>
@@ -1305,6 +1721,7 @@
 <p><strong>Reminder:</strong> Earth Engine point coordinates use longitude first, then latitude. For example, <code>ee.Geometry.Point([-122.1697, 37.4275])</code> creates a point near Stanford.</p>
 </blockquote>
 <p>To create the URL, click <strong>Get Link</strong> in the Earth Engine Code Editor after your modified script runs successfully. Submit that URL in Canvas.</p>
+<p><img src="images/20260429_113134_image.png" alt=""></img></p>
 
                                 
                                 </section>
@@ -1348,7 +1765,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"next":{"title":"Week 05 - Basic Raster Analysis","level":"1.8","depth":1,"path":"week05/README.md","ref":"week05/README.md","articles":[{"title":"01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.1","depth":2,"path":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","ref":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","articles":[]},{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","ref":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","articles":[]},{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},{"title":"05 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.5","depth":2,"path":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","ref":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","mtime":"2026-04-28T21:11:25.583Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-28T21:11:39.197Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"next":{"title":"Week 05 - Basic Raster Analysis","level":"1.8","depth":1,"path":"week05/README.md","ref":"week05/README.md","articles":[{"title":"01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.1","depth":2,"path":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","ref":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","articles":[]},{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","ref":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","articles":[]},{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},{"title":"05 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.5","depth":2,"path":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","ref":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","mtime":"2026-04-29T18:32:48.999Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-29T18:32:58.488Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
