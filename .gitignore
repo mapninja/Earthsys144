@@ -6,3 +6,5 @@ workspace/Earthsys144.code-workspace
 .vscode/settings.json
 data/Parcels_CA_2014.zip
 docs/midterm_exam_questions_private.md
+docs/ignore/midterm_exam_questions_private.md
+docs/ignore/
