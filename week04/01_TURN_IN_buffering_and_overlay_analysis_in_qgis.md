@@ -464,7 +464,7 @@ This final step narrows the analysis from a regional suitability surface to one 
 
 - **Select features from:** `CA_PARCELS_STATEWIDE`
 - **Where the features:** `intersect`
-- **By comparing to the features from:** `Lake_Candidates_CA`
+- **By comparing to the features from:** `Final_Candidates_CA`
 
 ![](images/20260425_163822_image.png)
 
