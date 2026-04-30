@@ -162,6 +162,8 @@ Then check the output layer information to confirm the new pixel size:
 
 Now combine the two rasters so the fine DEM is used where it has real data, and the resampled coarse DEM is used everywhere else.
 
+> **Mac note:** In the WhiteboxTools suite, **ConditionalEvaluation** runs as a separate executable. On macOS, the first time this specific tool runs, macOS may block it and QGIS may report an error. If that happens, open **System Settings > Privacy & Security**, as you did in the Week 00 setup, find the blocked WhiteboxTools message, click **Allow Anyway**, and then run **ConditionalEvaluation** again.
+
 1. Search for **ConditionalEvaluation** in **WhiteboxTools**.
 2. Set:
    - **Input raster:** `valley3nonull`
