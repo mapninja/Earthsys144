@@ -1057,12 +1057,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="watershed-with-qgis--whitebox-tools">Watershed with QGIS &amp; WhiteBox Tools</h1>
+                                <h1 id="watershed-with-qgis-and-whiteboxtools">Watershed with QGIS and WhiteboxTools</h1>
 <blockquote>
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
 <h2 id="overview">Overview</h2>
-<p>This lab introduces a basic <strong>watershed modeling</strong> workflow using a digital elevation model and <strong>WhiteboxTools</strong> inside QGIS.</p>
+<p>This lab introduces a basic <strong>watershed modeling</strong> workflow using a digital elevation model, or DEM, and <strong>WhiteboxTools</strong> inside QGIS.</p>
 <p>You will use elevation data to derive:</p>
 <ol>
 <li>a filled DEM</li>
@@ -1070,22 +1070,30 @@
 <li>a flow-accumulation <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
 <li>a reclassified stream <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
 <li>a snapped pour point</li>
-<li>a watershed boundary</li>
+<li>a watershed <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
 <li>a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> stream network</li>
 </ol>
-<p>The main idea is that a DEM can be treated as a surface across which water flows. Once flow direction and flow accumulation are derived, they can be used to estimate stream locations and delineate the area draining to a chosen outlet point.</p>
+<p>The main idea is that a DEM can be treated as a surface across which water flows. Once flow direction and flow accumulation are derived from the elevation surface, they can be used to estimate stream locations and delineate the area draining to a chosen outlet point.</p>
 <blockquote>
 <p><strong>Concept note:</strong> A watershed is the area of land where water drains to a common outlet. In <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> hydrology, that outlet is often represented by a <strong>pour point</strong> placed on a modeled stream cell.</p>
 </blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>why flow accumulation can be used to approximate stream channels</li>
+<li>why a pour point needs to be placed and snapped carefully</li>
+<li>how a flow-direction <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> supports watershed delineation</li>
+<li>why stream extraction from a DEM depends on a <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> choice</li>
+</ul>
 <h2 id="getting-ready">Getting Ready</h2>
 <p>You will need:</p>
 <ul>
-<li><a href="../data/L12.zip">L12.zip</a></li>
-<li>WhiteboxTools installed in QGIS</li>
+<li><a href="../data/WatershedDelineation.zip">WatershedDelineation.zip</a></li>
+<li>WhiteboxTools installed in QGIS. If you have not installed or configured it yet, use the Week 00 guidance for <a href="../week00/07_installing_qgis_and_plugins.html#whiteboxtools-plugin">installing QGIS and WhiteboxTools</a>.</li>
 </ul>
 <h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
 <ol>
-<li>Download <a href="../data/L12.zip">L12.zip</a>.</li>
+<li>Download <a href="../data/WatershedDelineation.zip">WatershedDelineation.zip</a>.</li>
 <li>Unzip it somewhere stable on your computer.</li>
 <li>Create a project folder for this lab.</li>
 <li>Save a new QGIS project in that folder as <code>watershed_modeling.qgz</code>.</li>
@@ -1095,10 +1103,10 @@
 <ul>
 <li><code>Qdrift.tif</code></li>
 </ul>
-<p>You may also reuse supporting layers from the visibility lab if they are included in your local copy of the data.</p>
-<p>All data are in a projected <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> with horizontal units in meters and elevation values in meters.</p>
+<p>This file is included in <code>WatershedDelineation.zip</code>.</p>
+<p>All data are in a projected <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> with horizontal units in meters. The DEM elevation values are also in meters.</p>
 <h2 id="part-1-run-the-flow-accumulation-full-workflow">Part 1: Run the Flow Accumulation Full Workflow</h2>
-<p>Start by generating the core hydrologic rasters from the DEM.</p>
+<p>Start by generating the core hydrologic rasters from the DEM. These layers are the foundation for the rest of the workflow, so it is worth understanding what each output represents before moving on.</p>
 <ol>
 <li>Add <code>Qdrift.tif</code> to QGIS.</li>
 <li>Open the <strong>Processing Toolbox</strong>.</li>
@@ -1120,13 +1128,16 @@
 <p>After it finishes, inspect the new layers and turn off all but <code>flowaccumulation</code>.</p>
 <blockquote>
 <p><strong>Concept note:</strong> This single workflow tool bundles several foundational hydrologic steps. It fills pits in the DEM, computes flow direction, and accumulates upstream contributing cells downslope.</p>
+<p>The <strong>filled DEM</strong> is a corrected elevation surface. Small artificial pits or depressions in a DEM can trap modeled water and interrupt flow paths, even when those pits are caused by data noise rather than real landforms. Filling the DEM creates a surface that allows water to continue moving downslope.</p>
+<p>The <strong>flow-direction <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></strong> stores the direction water would leave each cell. In this lab, the tool uses a D8 flow model, which means water from each cell is routed to one of its eight neighboring cells. This <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is not usually a final map product, but it is essential because later tools need to know how cells are connected downslope.</p>
+<p>The <strong>flow-accumulation <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></strong> counts how many upstream cells drain through each cell. Low values usually occur on ridges or hillslopes. High values occur where many upslope cells converge, which is why flow accumulation is useful for estimating likely stream channels.</p>
 </blockquote>
 <p>You should see the Whitebox hydrological toolset available in the Processing Toolbox:</p>
-<p><img src="images/Watershed_Modeling-172b73a5.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-172b73a5.png" alt="QGIS Processing Toolbox showing the WhiteboxTools hydrological analysis tools."></img></p>
 <p>Use settings like these for the full workflow:</p>
-<p><img src="images/20250427_163513_image.png" alt=""></img></p>
+<p><img src="images/20250427_163513_image.png" alt="FlowAccumulationFullWorkflow settings with Qdrift selected as the input DEM and output type set to cells."></img></p>
 <p>After running the tool, the flow accumulation <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> may look faint at first:</p>
-<p><img src="images/20250427_163632_image.png" alt=""></img></p>
+<p><img src="images/20250427_163632_image.png" alt="Initial flow accumulation raster display in QGIS, appearing faint before rescaling the display range."></img></p>
 <h2 id="part-2-inspect-the-flow-accumulation-raster">Part 2: Inspect the Flow Accumulation Raster</h2>
 <p>The default display may not show the actual value range clearly.</p>
 <ol>
@@ -1137,30 +1148,21 @@
 <p>This should update the displayed maximum value to something closer to the real range of the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</p>
 <blockquote>
 <p><strong>Concept note:</strong> Flow accumulation values count or estimate how many upstream cells drain through each cell. High values usually indicate likely stream channels or major drainage paths.</p>
+<p>The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> may not look meaningful at first because most cells have low accumulation values, while a small number of channel cells have very high values. Changing the min/max display settings does not alter the data. It only changes how QGIS stretches the values for <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a>.</p>
 </blockquote>
 <p>Use the actual-value option here:</p>
-<p><img src="images/Watershed_Modeling-1cf14baf.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-1cf14baf.png" alt="Layer Styling panel showing the Actual slower option in the Min Max Value Settings for the flow accumulation raster."></img></p>
 <h2 id="part-3-reclassify-flow-accumulation-to-approximate-a-stream-network">Part 3: Reclassify Flow Accumulation to Approximate a Stream Network</h2>
-<p>Now turn the flow-accumulation <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> into a simple stream <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> by thresholding the values.</p>
+<p>Now turn the flow-accumulation <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> into a simple stream <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> by thresholding the values. The goal is to separate cells with enough upstream contributing area to be treated as stream cells from cells that are more likely to represent hillslopes.</p>
 <ol>
-<li>Search for <strong>Reclassify by <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong> in the QGIS <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>-analysis tools.</li>
+<li>Search for <strong>Reclassify by <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong> in the QGIS <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis tools.</li>
 <li>Use <code>flowaccumulation</code> as the input <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</li>
 <li>In the advanced parameters, check <strong>Use no data when no range matches value</strong>.</li>
 <li><p>Open the reclassification <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> editor and add:</p>
-</li>
-<li><p><a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">Row</a> 1:</p>
-<ul>
-<li><strong>Minimum:</strong> leave blank</li>
-<li><strong>Maximum:</strong> <code>29999</code></li>
-<li><strong>Value:</strong> <code>0</code></li>
-</ul>
-</li>
-<li><p><a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">Row</a> 2:</p>
-<ul>
-<li><strong>Minimum:</strong> <code>30000</code></li>
-<li><strong>Maximum:</strong> leave blank</li>
-<li><strong>Value:</strong> <code>1</code></li>
-</ul>
+<p>| <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">Row</a> | Minimum | Maximum | Value |
+| --- | --- | --- | --- |
+| 1 | leave blank | <code>29999</code> | <code>0</code> |
+| 2 | <code>30000</code> | leave blank | <code>1</code> |</p>
 </li>
 <li><p>Save the output as <code>Streams.tif</code>.</p>
 </li>
@@ -1168,37 +1170,39 @@
 </ol>
 <p>This should create a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> where cells meeting the <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> are classified as part of the modeled stream network.</p>
 <blockquote>
-<p><strong>Concept note:</strong> The <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> is a modeling choice. A lower <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> will create more stream cells; a higher <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> will create a smaller, more selective stream network.</p>
+<p><strong>Concept note:</strong> The <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> is a modeling choice. A lower <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> will create more stream cells because smaller drainage paths are included. A higher <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> will create a smaller, more selective stream network because only cells with larger upstream contributing areas are included.</p>
+<p>In this lab, cells with flow accumulation values below <code>30000</code> are assigned <code>0</code>, and cells with values of <code>30000</code> or greater are assigned <code>1</code>. The value <code>1</code> represents the modeled stream network. The value <code>0</code> represents non-stream cells.</p>
 </blockquote>
 <p>Open the reclassification <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> dialog like this:</p>
-<p><img src="images/Watershed_Modeling-24fdf103.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-24fdf103.png" alt="QGIS Reclassify by table dialog showing the option to open the reclassification table."></img></p>
 <p>And enter the <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> like this:</p>
-<p><img src="images/20250427_164533_image.png" alt=""></img></p>
+<p><img src="images/20250427_164533_image.png" alt="Reclassification table with values below 30000 assigned to 0 and values 30000 or greater assigned to 1."></img></p>
 <p>The resulting stream <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> should contain only the modeled stream cells:</p>
-<p><img src="images/20250427_164646_image.png" alt=""></img></p>
+<p><img src="images/20250427_164646_image.png" alt="Resulting stream raster showing modeled stream cells after thresholding flow accumulation."></img></p>
 <h2 id="part-4-create-a-pour-point">Part 4: Create a Pour Point</h2>
-<p>Before delineating the watershed, create an outlet point on the modeled stream.</p>
+<p>Before delineating the watershed, create an outlet point on the modeled stream. This point is called a <strong>pour point</strong> because it marks the location where water leaves the watershed you want to delineate.</p>
 <ol>
 <li>Use <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Create <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; New <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
 <li>Create a new <strong>point</strong> <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> named <code>PourPoint.shp</code>.</li>
 <li>Use the same CRS as the rest of the project.</li>
-<li>Place the <code>Streams</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> so it is visible beneath the new pour-point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Place the <code>Streams.tif</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> so it is visible beneath the new pour-point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li>Start editing <code>PourPoint</code>.</li>
-<li>Digitize a single point on or as close as possible to a stream cell in the lower part of the drainage network.</li>
+<li>Digitize a single point on, or as close as possible to, a stream cell in the lower part of the drainage network.</li>
 <li>Save the edit and stop editing.</li>
 </ol>
 <blockquote>
 <p><strong>Concept note:</strong> The watershed result depends strongly on outlet placement. If the point is not actually on the drainage network, the modeled watershed may not correspond to the stream system you intended.</p>
+<p>A pour point placed farther downstream will usually produce a larger watershed because it includes more upstream contributing area. A pour point placed farther upstream will usually produce a smaller watershed. This is why the point should be placed deliberately, not just anywhere on the map.</p>
 </blockquote>
 <p>Create the new point <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> like this:</p>
-<p><img src="images/Watershed_Modeling-be0edbd2.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-be0edbd2.png" alt="New Shapefile Layer dialog configured to create a point layer for the pour point."></img></p>
 <p>Then zoom to the lower-left drainage area and place the point on the stream network:</p>
-<p><img src="images/Watershed_Modeling-af685a27.png" alt=""></img></p>
-<p>The old lab emphasized placing the point as close to on top of a stream <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> as possible:</p>
-<p><img src="images/Watershed_Modeling-1a948e19.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-af685a27.png" alt="Map view zoomed to the lower-left drainage area with the stream network visible for pour point placement."></img></p>
+<p>Place the point as close to the center of a stream cell as possible:</p>
+<p><img src="images/Watershed_Modeling-1a948e19.png" alt="Close-up view showing a pour point placed near the center of a raster stream cell."></img></p>
 <p>You will need to toggle editing and use the Add Point <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a> tool:</p>
-<p><img src="images/Watershed_Modeling-df765dd0.png" alt=""></img></p>
-<p><img src="images/Watershed_Modeling-d0661e45.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-df765dd0.png" alt="QGIS editing toolbar with the toggle editing control highlighted."></img></p>
+<p><img src="images/Watershed_Modeling-d0661e45.png" alt="QGIS editing toolbar with the Add Point Feature tool highlighted."></img></p>
 <h2 id="part-5-snap-the-pour-point-to-the-stream-network">Part 5: Snap the Pour Point to the Stream Network</h2>
 <p>To make sure the outlet is aligned correctly with the modeled drainage, snap it to the nearest high-flow cell.</p>
 <ol>
@@ -1214,13 +1218,14 @@
 </ol>
 <p>Zoom in and compare the original pour point with the snapped point.</p>
 <blockquote>
-<p><strong>Concept note:</strong> Snapping adjusts the outlet so it aligns with the modeled drainage pattern. This is important because a watershed is only meaningful if the outlet sits on the flow network the model has actually derived from the DEM.</p>
+<p><strong>Concept note:</strong> Snapping adjusts the <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> pour point so it aligns with the center of the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell used by the watershed model. This matters because <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>-based hydrologic analysis works cell by cell, so the outlet must be placed on the specific DEM-derived cell that represents the intended drainage location.</p>
+<p>The snap distance tells WhiteboxTools how far it is allowed to search for a better cell. Here, <code>9</code> means the tool can move the pour point within a 9-meter search distance. Because the DEM cell size is in meters, this keeps the point close to the location you chose while still allowing it to align with the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> grid.</p>
 </blockquote>
 <p>Use settings like these:</p>
-<p><img src="images/Watershed_Modeling-4ee9f9b2.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-4ee9f9b2.png" alt="SnapPourPoints settings using the original pour point, the flow accumulation raster, and a snap distance of 9."></img></p>
 <p>Then compare the original point and the snapped point:</p>
-<p><img src="images/20250427_165415_image.png" alt=""></img></p>
-<p><img src="images/Watershed_Modeling-04a7c1fd.png" alt=""></img></p>
+<p><img src="images/20250427_165415_image.png" alt="Map view showing the original pour point and the snapped pour point for comparison."></img></p>
+<p><img src="images/Watershed_Modeling-04a7c1fd.png" alt="Close-up map view showing the snapped pour point aligned to the raster stream cell."></img></p>
 <h2 id="part-6-delineate-the-watershed">Part 6: Delineate the Watershed</h2>
 <p>Now create the watershed draining to the snapped outlet.</p>
 <ol>
@@ -1233,8 +1238,14 @@
 <li>Save the output as <code>watershed.tif</code>.</li>
 <li>Run the tool.</li>
 </ol>
+<blockquote>
+<p><strong>Concept note:</strong> The Watershed tool uses the flow-direction <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> to trace every cell that drains to the snapped pour point. The output watershed <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> identifies the contributing area for that outlet. In other words, it answers the question: "Which cells send water to this point?"</p>
+<p>The <strong>D8 pointer file</strong> is another name for the flow-direction <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> created earlier. It stores the downslope connection from each cell to its neighbor, so the Watershed tool can work backward from the outlet and identify all cells that eventually flow into it.</p>
+</blockquote>
 <p>Use settings like these:</p>
-<p><img src="images/20250427_165750_image.png" alt=""></img></p>
+<p><img src="images/20250427_165750_image.png" alt="WhiteboxTools Watershed settings using the flow-direction raster and snapped pour point."></img></p>
+<p>The result may look confusing at first because the default style is often a solid black <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>. Change the style of <code>watershed.tif</code> immediately so you can confirm that it was created correctly.</p>
+<p><img src="images/20260502_114747_image.png" alt="Initial watershed raster output before styling, shown with a dark default symbol."></img></p>
 <h2 id="part-7-style-the-watershed-raster">Part 7: Style the Watershed Raster</h2>
 <p>The default grayscale styling is not especially helpful, so restyle the watershed similarly to the viewshed workflow.</p>
 <ol>
@@ -1247,9 +1258,10 @@
 </ol>
 <blockquote>
 <p><strong>Concept note:</strong> Semi-transparent styling works well here because the watershed is an analytical overlay. You usually want to see both the watershed extent and the terrain context beneath it.</p>
+<p>The watershed <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is a result <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, not a photograph of the landscape. Styling it clearly helps you interpret the modeled drainage area while still seeing the DEM, hillshade, stream network, and pour point underneath.</p>
 </blockquote>
 <p>Your styled watershed should look something like this:</p>
-<p><img src="images/20250427_170032_image.png" alt=""></img></p>
+<p><img src="images/20250427_170032_image.png" alt="Styled watershed raster shown as a semi-transparent overlay on the terrain."></img></p>
 <h2 id="part-8-convert-the-stream-raster-to-vector-lines">Part 8: Convert the Stream Raster to Vector Lines</h2>
 <p>Now convert the reclassified stream <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> into a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> stream network.</p>
 <ol>
@@ -1265,11 +1277,12 @@
 <p>Style the resulting <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> streams so they are visible on top of the DEM and watershed.</p>
 <blockquote>
 <p><strong>Concept note:</strong> <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> hydrology often produces <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> intermediate outputs, but <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> conversion can make the final stream network easier to symbolize and combine with other GIS layers.</p>
+<p>The <code>Streams.tif</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> stores the stream network as grid cells. The <code>StreamNet.shp</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> stores the same modeled network as line features. Line features are often easier to use in maps because they can be styled with line width and color, labeled, and displayed cleanly over other layers.</p>
 </blockquote>
 <p>Use settings like these:</p>
-<p><img src="images/20250427_170324_image.png" alt=""></img></p>
+<p><img src="images/20250427_170324_image.png" alt="RasterStreamsToVector settings using the reclassified stream raster and D8 flow-direction raster."></img></p>
 <p>The <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> stream output should appear as line features:</p>
-<p><img src="images/Watershed_Modeling-615f9df1.png" alt=""></img></p>
+<p><img src="images/Watershed_Modeling-615f9df1.png" alt="Vector stream network displayed as line features on top of the raster layers."></img></p>
 <h2 id="deliverable">Deliverable</h2>
 <p>Create and export a final layout showing:</p>
 <ul>
@@ -1278,7 +1291,6 @@
 <li><code>SnappedPoint.shp</code></li>
 <li><code>StreamNet.shp</code></li>
 </ul>
-<p>If you want to build a richer layout, you may also include the visibility-analysis layers from the previous lab.</p>
 <p>Include:</p>
 <ul>
 <li>a title</li>
@@ -1286,23 +1298,6 @@
 <li>the date</li>
 <li>a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
 <li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> if it helps interpretation</li>
-</ul>
-<p>The original Week 05 watershed workflow expected a richer final layout, and students were encouraged to reuse the viewshed and profile outputs from the previous visibility lab. If you want to build a fuller terrain-analysis composition, include:</p>
-<ul>
-<li><code>ViewingStation.shp</code></li>
-<li><code>sight.shp</code></li>
-<li>the styled <code>viewshed.tif</code></li>
-<li>the saved profile screenshot from the visibility lab</li>
-</ul>
-<p>An example of the level of layering and composition expected is shown here:</p>
-<p><img src="images/Watershed_Modeling-e2f93a7c.png" alt=""></img></p>
-<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
-<p>By the end of this exercise, you should be able to explain:</p>
-<ul>
-<li>why flow accumulation can be used to approximate stream channels</li>
-<li>why a pour point needs to be placed and snapped carefully</li>
-<li>how a flow-direction <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> supports watershed delineation</li>
-<li>why stream extraction from a DEM depends on a <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> choice</li>
 </ul>
 
                                 
@@ -1347,7 +1342,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"next":{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"previous":{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","ref":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","mtime":"2026-04-30T22:02:49.476Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-30T22:03:07.572Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"next":{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"previous":{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","ref":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","mtime":"2026-05-02T19:09:37.526Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-02T19:09:48.405Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1078,18 +1078,23 @@
 <blockquote>
 <p><strong>Concept note:</strong> Visibility analysis depends on both the elevation surface and the observer location. A DEM is not just a background <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> here; it is the mathematical surface used to test whether terrain blocks or allows visibility.</p>
 </blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>how a terrain profile differs from a viewshed</li>
+<li>why observer location and observer height matter in visibility analysis</li>
+<li>how DEM-based visibility analysis uses the terrain surface to evaluate line of sight</li>
+</ul>
 <h2 id="getting-ready">Getting Ready</h2>
 <p>You will need:</p>
 <ul>
-<li><a href="../data/L11.zip">L11.zip</a></li>
-<li><a href="../data/ViewStationSHP.zip">ViewStationSHP.zip</a> if you need a replacement viewing-station <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a></li>
+<li><a href="../data/Visibility_Analysis.zip">Visibility_Analysis.zip</a>, which includes the updated viewing-station <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a></li>
 <li>WhiteboxTools installed in QGIS</li>
 </ul>
 <h3 id="download-and-unpack-the-data">Download and unpack the data</h3>
 <ol>
-<li>Download <a href="../data/L11.zip">L11.zip</a>.</li>
-<li>If needed, also download <a href="../data/ViewStationSHP.zip">ViewStationSHP.zip</a>.</li>
-<li>Unzip the files somewhere stable on your computer.</li>
+<li>Download <a href="../data/Visibility_Analysis.zip">Visibility_Analysis.zip</a>.</li>
+<li>Unzip the file somewhere stable on your computer.</li>
 <li>Create a project folder for this lab.</li>
 <li>Save a new QGIS project in that folder as <code>visibility_analysis.qgz</code>.</li>
 </ol>
@@ -1101,7 +1106,6 @@
 <li><code>sight.shp</code></li>
 </ul>
 <p>All are in <code>NAD83 UTM Zone 15</code> with elevation values in meters.</p>
-<p>If the <code>ViewingStation.shp</code> file in your copy of the lab data is not usable, use the replacement in <a href="../data/ViewStationSHP.zip">ViewStationSHP.zip</a>.</p>
 <h2 id="part-1-set-up-the-visibility-project">Part 1: Set Up the Visibility Project</h2>
 <ol>
 <li>Start a new QGIS project.</li>
@@ -1190,13 +1194,6 @@
 <li>a <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> if it helps interpretation</li>
 </ul>
 <p>Take and save the profile screenshot before you close the browser output, since it is part of the expected final layout from the original workflow.</p>
-<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
-<p>By the end of this exercise, you should be able to explain:</p>
-<ul>
-<li>how a terrain profile differs from a viewshed</li>
-<li>why observer location and observer height matter in visibility analysis</li>
-<li>how DEM-based visibility analysis uses the terrain surface to evaluate line of sight</li>
-</ul>
 
                                 
                                 </section>
@@ -1240,7 +1237,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"next":{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"previous":{"title":"01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.1","depth":2,"path":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","ref":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","mtime":"2026-04-30T22:02:49.476Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-04-30T22:03:07.572Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Visibility Analysis with QGIS","level":"1.8.2","depth":2,"next":{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"previous":{"title":"01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS","level":"1.8.1","depth":2,"path":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","ref":"week05/01_TURN_IN_terrain_and_visibility_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/02_TURN_IN_visibility_analysis_with_qgis.md","mtime":"2026-05-02T19:09:37.526Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-02T19:09:48.405Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
