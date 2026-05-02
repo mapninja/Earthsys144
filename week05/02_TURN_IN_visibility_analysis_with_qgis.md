@@ -20,21 +20,27 @@ You will:
 
 > **Concept note:** Visibility analysis depends on both the elevation surface and the observer location. A DEM is not just a background image here; it is the mathematical surface used to test whether terrain blocks or allows visibility.
 
+## What You Should Understand After This Lab
+
+By the end of this exercise, you should be able to explain:
+
+- how a terrain profile differs from a viewshed
+- why observer location and observer height matter in visibility analysis
+- how DEM-based visibility analysis uses the terrain surface to evaluate line of sight
+
 ## Getting Ready
 
 You will need:
 
-- [L11.zip](../data/L11.zip)
-- [ViewStationSHP.zip](../data/ViewStationSHP.zip) if you need a replacement viewing-station shapefile
+- [Visibility_Analysis.zip](../data/Visibility_Analysis.zip), which includes the updated viewing-station shapefile
 - WhiteboxTools installed in QGIS
 
 ### Download and unpack the data
 
-1. Download [L11.zip](../data/L11.zip).
-2. If needed, also download [ViewStationSHP.zip](../data/ViewStationSHP.zip).
-3. Unzip the files somewhere stable on your computer.
-4. Create a project folder for this lab.
-5. Save a new QGIS project in that folder as `visibility_analysis.qgz`.
+1. Download [Visibility_Analysis.zip](../data/Visibility_Analysis.zip).
+2. Unzip the file somewhere stable on your computer.
+3. Create a project folder for this lab.
+4. Save a new QGIS project in that folder as `visibility_analysis.qgz`.
 
 ## Data for This Exercise
 
@@ -45,8 +51,6 @@ The main files are:
 - `sight.shp`
 
 All are in `NAD83 UTM Zone 15` with elevation values in meters.
-
-If the `ViewingStation.shp` file in your copy of the lab data is not usable, use the replacement in [ViewStationSHP.zip](../data/ViewStationSHP.zip).
 
 ## Part 1: Set Up the Visibility Project
 
@@ -150,11 +154,3 @@ Create and export a final layout that includes:
 - a legend if it helps interpretation
 
 Take and save the profile screenshot before you close the browser output, since it is part of the expected final layout from the original workflow.
-
-## What You Should Understand After This Lab
-
-By the end of this exercise, you should be able to explain:
-
-- how a terrain profile differs from a viewshed
-- why observer location and observer height matter in visibility analysis
-- how DEM-based visibility analysis uses the terrain surface to evaluate line of sight

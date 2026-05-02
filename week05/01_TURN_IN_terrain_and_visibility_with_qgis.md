@@ -24,6 +24,15 @@ To do that, you will:
 
 > **Concept note:** Raster analysis often depends on matching cell size, extent, and valid-data coverage before layers can be combined meaningfully. A merge workflow is not just about stacking files together. It is about making their grids compatible.
 
+## What You Should Understand After This Lab
+
+By the end of this exercise, you should be able to explain:
+
+- why rasters must often be aligned before they can be merged
+- why `NoData` handling matters in raster analysis
+- why resampling was required before the conditional merge
+- how conditional evaluation can be used to combine two DEMs with different coverage
+
 ## Getting Ready
 
 You will need:
@@ -240,17 +249,4 @@ Include:
 - your name
 - a scale bar
 - a legend
-- the CRS name and EPSG code somewhere in the layout
-
-The old exercise expected a full cartographic layout, not just a screenshot of the map canvas. If you want a model for the level of finish expected, aim for something like this:
-
-![](images/Raster_and_Terrain-c231010e.png)
-
-## What You Should Understand After This Lab
-
-By the end of this exercise, you should be able to explain:
-
-- why rasters must often be aligned before they can be merged
-- why `NoData` handling matters in raster analysis
-- why resampling was required before the conditional merge
-- how conditional evaluation can be used to combine two DEMs with different coverage
+- the CRS
