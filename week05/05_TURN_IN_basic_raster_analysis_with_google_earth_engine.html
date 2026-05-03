@@ -1061,6 +1061,949 @@
 <blockquote>
 <p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
 </blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces basic <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis in Google Earth Engine using several common kinds of spatial data:</p>
+<ul>
+<li>a forest-change <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>, where <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values describe when forest loss occurred</li>
+<li>a digital elevation model, or DEM, where <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values describe elevation</li>
+<li>state boundary polygons, which can be used to summarize <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values by place</li>
+<li>power plant point features, which can be converted into a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
+</ul>
+<p>You will use code to create new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> layers from existing <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> datasets. You will also use the Google Earth Engine Code Editor interface to inspect layers, turn map layers on and off, read <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values, and view summary results in the Console.</p>
+<p>The main idea is that <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis is based on <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values. The map display helps you see patterns, but the analysis itself comes from selecting bands, applying thresholds, masking pixels, calculating terrain derivatives, and summarizing <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values within a geometry.</p>
+<blockquote>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is a grid of pixels. Each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores a value. In a DEM, that value might be elevation. In a forest-loss dataset, that value might represent the year when forest loss occurred. <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> analysis often means creating a new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> by asking a question about those <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values.</p>
+</blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>how <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels store numeric information</li>
+<li>how a <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> is selected from a multi-<a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a></li>
+<li>how thresholding creates a true/false <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> from <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values</li>
+<li>why <code>updateMask()</code> is useful for hiding pixels that do not meet a condition</li>
+<li>how slope can be calculated from a DEM</li>
+<li>how <code>reduceRegion()</code> summarizes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values inside a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> geometry</li>
+<li>how <code>reduceRegions()</code> summarizes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values across many <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features</li>
+<li>how <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features can be converted into distance rasters</li>
+<li>how maximum <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values can be used to find the places farthest from a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
+<li>how edge effects can change distance analysis results near a study-area boundary</li>
+<li>how Earth Engine exports a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> through the <strong>Tasks</strong> tab</li>
+</ul>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>You will need:</p>
+<ul>
+<li>access to the <a href="https://code.earthengine.google.com/" target="_blank">Google Earth Engine Code Editor</a></li>
+<li>a Google Earth Engine account</li>
+<li>the ability to create, paste, run, and save scripts in the Code Editor</li>
+</ul>
+<p>If needed, review the Week 00 <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">Logging in to Google Earth Engine</a> setup guide before continuing.</p>
+<h2 id="code-editor-tools-you-will-use">Code Editor Tools You Will Use</h2>
+<p>As you work through the scripts, pay attention to these parts of the Earth Engine interface:</p>
+<ul>
+<li><strong>Run:</strong> executes the current script.</li>
+<li><strong>Save:</strong> saves the script to your Earth Engine account.</li>
+<li><strong>Get Link:</strong> creates a shareable URL for the script.</li>
+<li><strong>Console:</strong> shows printed objects, dictionaries, lists, and messages from <code>print()</code>.</li>
+<li><strong>Inspector:</strong> lets you click the map and read <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values or <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> properties.</li>
+<li><strong>Layers:</strong> lets you turn map layers on and off, change opacity, and compare outputs.</li>
+<li><strong>Geometry tools:</strong> let you draw points, lines, and polygons on the map.</li>
+<li><strong>Tasks:</strong> manages exports to Google Drive or other destinations.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> The Code Editor is both a programming environment and a map interface. The script defines the analysis, while the map, Console, Inspector, and Layers tools help you check what the script produced.</p>
+</blockquote>
+<p><img src="images/gee_code_editor_interface_placeholder.png" alt="Placeholder image: Screenshot of the Google Earth Engine Code Editor with the script editor, Run button, Save button, Get Link button, Console tab, Inspector tab, Layers panel, and map area labeled for beginning students."></img></p>
+<h2 id="part-1-map-forest-loss-after-2010">Part 1: Map Forest Loss After 2010</h2>
+<p>In this first script, you will load the Hansen Global Forest Change dataset and isolate pixels where forest loss occurred after 2010.</p>
+<p>The key <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> is <code>lossyear</code>. This <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> does not store a calendar year directly. Instead, it stores a number where <code>1</code> means 2001, <code>2</code> means 2002, and so on. That means forest loss after 2010 can be found by selecting pixels where <code>lossyear</code> is greater than <code>10</code>.</p>
+<p>Before running the script:</p>
+<ol>
+<li>Open a new script in the Earth Engine Code Editor.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Look for the red forest-loss pixels on the map.</li>
+<li>Open the <strong>Layers</strong> panel and toggle the forest-loss <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> on and off.</li>
+<li>Switch to the <strong>Inspector</strong> tab and click a red <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>, then click a nearby non-red area.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> Thresholding turns continuous or categorical <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values into a simpler true/false <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>. Here, <code>lossYear.gt(10)</code> asks: "Is this <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>'s loss year greater than 10?" Pixels that meet the condition become <code>1</code>; pixels that do not become <code>0</code>.</p>
+<p><strong>Interface note:</strong> If the red pixels are hard to see, use the <strong>Layers</strong> panel to toggle the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> or adjust opacity. You can also zoom in and out to see how forest-loss patterns change with <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+</blockquote>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 1: Map Forest Loss After 2010</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script introduces a basic raster analysis pattern in Google Earth Engine.</span>
+<span class="hljs-comment">// It uses the Hansen Global Forest Change dataset to map forest loss that</span>
+<span class="hljs-comment">// happened after 2010.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Raster datasets are made of grid cells, or pixels. Each pixel stores a value.</span>
+<span class="hljs-comment">// In the Hansen dataset, the `lossyear` band stores the year when forest loss</span>
+<span class="hljs-comment">// occurred at each pixel.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the Hansen Global Forest Change dataset as an Earth Engine image.</span>
+<span class="hljs-comment">// An `ee.Image` is a raster dataset that can contain one or more bands.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> forest = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'UMD/hansen/global_forest_change_2024_v1_12'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a point geometry that Earth Engine can use for centering the map.</span>
+<span class="hljs-comment">// Coordinates are written as longitude, latitude.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> geometry = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1688463465495</span>, <span class="hljs-number">37.42828781711659</span>]);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select only the `lossyear` band from the multi-band forest image.</span>
+<span class="hljs-comment">// The value 1 means loss in 2001, 2 means loss in 2002, and so on.</span>
+<span class="hljs-comment">// Because 2010 is represented by the value 10, values greater than 10</span>
+<span class="hljs-comment">// represent forest loss from 2011 through 2024.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> lossYear = forest.<span class="hljs-title function_">select</span>(<span class="hljs-string">'lossyear'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a binary raster showing where loss occurred after 2010.</span>
+<span class="hljs-comment">// Pixels with values greater than 10 become 1, or true.</span>
+<span class="hljs-comment">// Pixels with values 10 or lower become 0, or false.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> lossAfter2010 = lossYear.<span class="hljs-title function_">gt</span>(<span class="hljs-number">10</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define how the loss raster should be drawn on the map.</span>
+<span class="hljs-comment">// The palette tells Earth Engine to draw visible pixels in red.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> visParams = {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'red'</span>]};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Mask out pixels that do not represent loss after 2010.</span>
+<span class="hljs-comment">// This hides the 0 values so the map only displays pixels with a value of 1.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> visibleLossAfter2010 = lossAfter2010.<span class="hljs-title function_">updateMask</span>(lossAfter2010);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add the masked forest-loss raster to the map.</span>
+<span class="hljs-comment">// The final text is the layer name that appears in the map layer list.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(visibleLossAfter2010, visParams, <span class="hljs-string">'Forest loss after 2010'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Center the map on the point geometry.</span>
+<span class="hljs-comment">// The number 9 is the zoom level; larger numbers zoom in closer.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(geometry, <span class="hljs-number">9</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Use the hybrid basemap so students can see satellite imagery with labels.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+</code></pre>
+<p>After running the script, you should see red pixels where forest loss occurred after 2010. The script uses <code>updateMask()</code> so that pixels with a value of <code>0</code> are hidden instead of drawn on the map.</p>
+<p>Use the map interface to explore:</p>
+<ul>
+<li>Turn the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> on and off in <strong>Layers</strong>.</li>
+<li>Click red pixels with <strong>Inspector</strong> to examine the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> value.</li>
+<li>Pan around the map to see whether forest loss appears clustered or scattered.</li>
+<li>Change the <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> from <code>gt(10)</code> to <code>gt(15)</code> and run the script again.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> <code>updateMask()</code> does not delete data from the original <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. It controls which pixels are visible in the output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. Masking is useful when you want the map to show only pixels that meet a condition.</p>
+</blockquote>
+<h2 id="part-2-calculate-and-display-slope-from-a-dem">Part 2: Calculate and Display Slope from a DEM</h2>
+<p>This script uses the SRTM DEM to calculate slope. A DEM stores elevation values, but slope is a derived <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. Earth Engine calculates slope by comparing the elevation of each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> with nearby pixels.</p>
+<p>Before running the script:</p>
+<ol>
+<li>Clear the previous script or open a new script.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Use the <strong>Layers</strong> panel to compare the <code>DEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and the <code>Slope</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Use the <strong>Inspector</strong> tab to click different parts of the terrain and compare values.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> A terrain derivative is a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> calculated from another <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>. Slope is derived from elevation. It is not measured directly in the original DEM; it is computed from the pattern of elevation change around each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>.</p>
+<p><strong>Interface note:</strong> The most recently added <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> appears above earlier layers. In this script, <code>Slope</code> is added after <code>DEM</code>, so it appears on top. Use the <strong>Layers</strong> panel to turn <code>Slope</code> off if you want to inspect the DEM underneath.</p>
+</blockquote>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 2: Calculate and Display Slope from a DEM</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script calculates slope from a digital elevation model, or DEM.</span>
+<span class="hljs-comment">// A DEM is a raster in which each pixel stores an elevation value.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Slope is derived from the elevation surface by comparing each pixel with</span>
+<span class="hljs-comment">// nearby pixels. Steeper places have a larger change in elevation over distance.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the SRTM elevation dataset as an Earth Engine image.</span>
+<span class="hljs-comment">// SRTM stands for Shuttle Radar Topography Mission.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> srtm = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'USGS/SRTMGL1_003'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate slope from the elevation image.</span>
+<span class="hljs-comment">// `ee.Terrain.slope()` returns a new raster where each pixel stores slope</span>
+<span class="hljs-comment">// in degrees instead of elevation in meters.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> slope = ee.<span class="hljs-property">Terrain</span>.<span class="hljs-title function_">slope</span>(srtm);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define visualization parameters for the slope raster.</span>
+<span class="hljs-comment">// Visualization parameters control how raster values are drawn on the map.</span>
+<span class="hljs-comment">// They do not change the underlying data.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> slopeVis = {
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'green'</span>, <span class="hljs-string">'yellow'</span>, <span class="hljs-string">'red'</span>]
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add the original elevation raster to the map.</span>
+<span class="hljs-comment">// The display range shows low elevations near 0 meters and high elevations</span>
+<span class="hljs-comment">// near 3000 meters.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(srtm, {<span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>}, <span class="hljs-string">'DEM'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add the slope raster to the map using the color ramp defined above.</span>
+<span class="hljs-comment">// Earth Engine draws later layers on top of earlier layers, so the slope</span>
+<span class="hljs-comment">// layer will appear above the DEM in the layer stack.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(slope, slopeVis, <span class="hljs-string">'Slope'</span>);
+</code></pre>
+<p>After running the script, the DEM should appear as a grayscale elevation <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and the slope <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> should appear as a green-yellow-red <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>Use the map interface to explore:</p>
+<ul>
+<li>Turn <code>DEM</code> and <code>Slope</code> on and off in <strong>Layers</strong>.</li>
+<li>Adjust <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> opacity to compare elevation and slope.</li>
+<li>Use <strong>Inspector</strong> to click flat areas and steep areas.</li>
+<li>Change the <code>max</code> value in <code>slopeVis</code> from <code>30</code> to <code>60</code> and run the script again.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">Visualization</a> parameters change how a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is displayed, not the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values themselves. Changing <code>min</code>, <code>max</code>, or <code>palette</code> can make a pattern easier to see, but it does not recalculate the slope.</p>
+</blockquote>
+<h2 id="part-3-calculate-mean-slope-within-a-polygon">Part 3: Calculate Mean Slope Within a Polygon</h2>
+<p>This script combines <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> analysis. The slope <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>, and the polygon is a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> geometry. The <code>reduceRegion()</code> function summarizes the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels that fall inside the polygon.</p>
+<p>Before running the script:</p>
+<ol>
+<li>Clear the previous script or open a new script.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Open the <strong>Console</strong> tab and look for the printed mean slope result.</li>
+<li>Use the <strong>Layers</strong> panel to make sure the slope <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is visible.</li>
+<li>Use the <strong>Inspector</strong> tab to click inside and outside the polygon area.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> Zonal statistics summarize <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values inside a boundary. In this example, the polygon is the zone, the slope <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> provides the values, and the mean reducer calculates the average slope inside that zone.</p>
+<p><strong>Interface note:</strong> The result of <code>reduceRegion()</code> appears in the <strong>Console</strong>, not as a new map <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. The map shows where the analysis happened; the Console shows the numeric result.</p>
+</blockquote>
+<p><img src="images/gee_reduce_region_console_placeholder.png" alt="Placeholder image: Screenshot of the Earth Engine Code Editor after running a reduceRegion script, with the Console showing a printed mean slope dictionary, the Layers panel showing the Slope layer, and the Inspector tab visible."></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 3: Calculate Mean Slope Within a Polygon</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script calculates slope from a DEM and then summarizes the mean slope</span>
+<span class="hljs-comment">// inside a polygon area of interest. This is a common raster analysis pattern:</span>
+<span class="hljs-comment">// calculate a raster value first, then summarize those pixel values inside a</span>
+<span class="hljs-comment">// vector boundary.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the SRTM (Shuttle Radar Topography Mission) digital elevation model (DEM) dataset.</span>
+<span class="hljs-comment">// Each pixel in this image stores elevation in meters.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> srtm = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'USGS/SRTMGL1_003'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a polygon geometry to use as an area of interest.</span>
+<span class="hljs-comment">// Coordinates are written as longitude, latitude pairs.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> geometry = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Polygon</span>(
+  [[
+    [-<span class="hljs-number">112.17864990234375</span>, <span class="hljs-number">36.12345548205636</span>],
+    [-<span class="hljs-number">112.2747802734375</span>, <span class="hljs-number">36.02466804934359</span>],
+    [-<span class="hljs-number">112.14019775390625</span>, <span class="hljs-number">36.00911716117325</span>],
+    [-<span class="hljs-number">111.99736151664732</span>, <span class="hljs-number">36.10624062602223</span>]
+  ]]
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Center the map on the polygon.</span>
+<span class="hljs-comment">// The number 10 is the zoom level.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(geometry, <span class="hljs-number">10</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Compute slope from the SRTM elevation data.</span>
+<span class="hljs-comment">// The output slope raster stores slope in degrees.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> slope = ee.<span class="hljs-property">Terrain</span>.<span class="hljs-title function_">slope</span>(srtm);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add the slope layer to the map.</span>
+<span class="hljs-comment">// The display range shows slopes from 0 to 60 degrees.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(slope, {<span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">60</span>}, <span class="hljs-string">'Slope'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Compute the mean slope inside the polygon.</span>
+<span class="hljs-comment">// `reduceRegion()` summarizes raster pixel values within a geometry.</span>
+<span class="hljs-comment">// `ee.Reducer.mean()` tells Earth Engine to calculate an average value.</span>
+<span class="hljs-comment">// `scale` sets the pixel size, in meters, used for the calculation.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> slopeDict = slope.<span class="hljs-title function_">reduceRegion</span>({
+  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">mean</span>(),
+  <span class="hljs-attr">geometry</span>: geometry,
+  <span class="hljs-attr">scale</span>: <span class="hljs-number">30</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the result to the Console.</span>
+<span class="hljs-comment">// The dictionary contains the mean slope value for the polygon.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Mean slope within polygon:'</span>, slopeDict);
+</code></pre>
+<p>After running the script, expand the printed dictionary in the <strong>Console</strong>. The value shown is the average slope, in degrees, for pixels inside the polygon.</p>
+<p>Use the interface and code to explore:</p>
+<ul>
+<li>Change the polygon coordinates and run the script again.</li>
+<li>Use the <strong>Geometry tools</strong> to draw a new polygon, then compare it to the scripted geometry.</li>
+<li>Change <code>scale: 30</code> to <code>scale: 90</code> and observe whether the result changes.</li>
+<li>Add the polygon to the map with <code>Map.addLayer(geometry, {color: 'red'}, 'Polygon');</code> if you want to see the exact boundary.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> The <code>scale</code> parameter controls the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> size used for the calculation. A smaller <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> uses finer detail but can take more computation. A larger <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> generalizes the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and may produce a different summary value.</p>
+</blockquote>
+<h2 id="part-4-calculate-forest-loss-by-state-and-export-a-table">Part 4: Calculate Forest Loss by State and Export a Table</h2>
+<p>This script extends the zonal-statistics idea from one polygon to many polygons. Instead of calculating mean slope inside one hand-written polygon, it calculates total forest-loss area inside each state in the contiguous United States.</p>
+<p>The script uses:</p>
+<ul>
+<li><code>TIGER/2018/States</code> for state boundaries</li>
+<li>the Hansen Global Forest Change <code>loss</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> for forest-loss pixels</li>
+<li><code>ee.Image.pixelArea()</code> to convert pixels into area</li>
+<li><code>reduceRegions()</code> to summarize the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> across many state polygons</li>
+<li><code>Export.table.toDrive()</code> to send the result to Google Drive</li>
+</ul>
+<p>Before running the script:</p>
+<ol>
+<li>Clear the previous script or open a new script.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Watch the <strong>Console</strong> for the printed state results.</li>
+<li>Open the <strong>Tasks</strong> tab after the script finishes creating the export task.</li>
+<li>Click <strong>Run</strong> next to the export task if you want to send the result to Google Drive.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> <code>reduceRegion()</code> summarizes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values inside one geometry. <code>reduceRegions()</code> summarizes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values across every <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> in a FeatureCollection. Here, each state polygon becomes one <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> in the output <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>.</p>
+<p><strong>Interface note:</strong> Earth Engine exports do not start automatically. <code>Export.table.toDrive()</code> creates an export task, but you still need to open the <strong>Tasks</strong> tab and click <strong>Run</strong>.</p>
+</blockquote>
+<p><img src="images/gee_tasks_export_placeholder.png" alt="Placeholder image: Screenshot of the Earth Engine Tasks tab showing a table export named forest_loss_by_state ready to run, with the Run button highlighted."></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 4: Calculate Forest Loss by State and Export a Table</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script calculates total forest loss, in acres, for each state in the</span>
+<span class="hljs-comment">// contiguous United States. It combines a raster forest-loss layer with vector</span>
+<span class="hljs-comment">// state boundaries, then exports the state-level result to Google Drive.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load U.S. state boundaries from the Census TIGER dataset.</span>
+<span class="hljs-comment">// A FeatureCollection is a group of vector features.</span>
+<span class="hljs-comment">// Each state feature has geometry and attribute fields.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> tigerStates = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the Hansen Global Forest Change dataset.</span>
+<span class="hljs-comment">// This is a multi-band raster image with forest cover and forest-loss bands.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> forest = ee.<span class="hljs-title class_">Image</span>(<span class="hljs-string">'UMD/hansen/global_forest_change_2024_v1_12'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select the `loss` band.</span>
+<span class="hljs-comment">// In this band, pixels with forest loss have a value of 1.</span>
+<span class="hljs-comment">// Pixels without forest loss have a value of 0.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> loss = forest.<span class="hljs-title function_">select</span>(<span class="hljs-string">'loss'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filter states to the contiguous United States.</span>
+<span class="hljs-comment">// STATEFP is the state FIPS code stored in the state attributes.</span>
+<span class="hljs-comment">// The list below excludes Alaska, Hawaii, and U.S. territories.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> excludedStateFips = [<span class="hljs-string">'02'</span>, <span class="hljs-string">'15'</span>, <span class="hljs-string">'60'</span>, <span class="hljs-string">'66'</span>, <span class="hljs-string">'69'</span>, <span class="hljs-string">'72'</span>, <span class="hljs-string">'78'</span>];
+
+<span class="hljs-keyword">var</span> states = tigerStates.<span class="hljs-title function_">filter</span>(
+  ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">inList</span>(<span class="hljs-string">'STATEFP'</span>, excludedStateFips).<span class="hljs-title function_">not</span>()
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Center the map on the state dataset.</span>
+<span class="hljs-comment">// A lower zoom level shows the full contiguous United States.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(states, <span class="hljs-number">4</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the state boundaries.</span>
+<span class="hljs-comment">// This layer helps you see the vector zones used for the raster summary.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(states, {<span class="hljs-attr">color</span>: <span class="hljs-string">'red'</span>}, <span class="hljs-string">'State boundaries'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display forest-loss pixels.</span>
+<span class="hljs-comment">// `updateMask(loss)` hides pixels where the loss value is 0.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  loss.<span class="hljs-title function_">updateMask</span>(loss),
+  {<span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: [<span class="hljs-string">'red'</span>]},
+  <span class="hljs-string">'Forest loss pixels'</span>
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert forest-loss pixels to acres.</span>
+<span class="hljs-comment">// `ee.Image.pixelArea()` creates a raster where each pixel stores its area in</span>
+<span class="hljs-comment">// square meters. Multiplying by `loss` keeps area only where loss equals 1.</span>
+<span class="hljs-comment">// Dividing by 4047 converts square meters to acres.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> lossAcres = loss
+  .<span class="hljs-title function_">multiply</span>(ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">pixelArea</span>())
+  .<span class="hljs-title function_">divide</span>(<span class="hljs-number">4047</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Sum forest-loss acres inside each state.</span>
+<span class="hljs-comment">// `reduceRegions()` runs the same reducer for every state feature.</span>
+<span class="hljs-comment">// The result is a new FeatureCollection with a `forest_loss_acres` property.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> stateForestLoss = lossAcres.<span class="hljs-title function_">reduceRegions</span>({
+  <span class="hljs-attr">collection</span>: states,
+  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>().<span class="hljs-title function_">setOutputs</span>([<span class="hljs-string">'forest_loss_acres'</span>]),
+  <span class="hljs-attr">scale</span>: <span class="hljs-number">30</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print a small preview to the Console.</span>
+<span class="hljs-comment">// Limiting the preview keeps the Console easier to read.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'State forest loss preview:'</span>, stateForestLoss.<span class="hljs-title function_">limit</span>(<span class="hljs-number">10</span>));
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select the fields to keep in the exported table.</span>
+<span class="hljs-comment">// Keeping the geometry means the GeoJSON can be opened as a map layer later.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> exportTable = stateForestLoss.<span class="hljs-title function_">select</span>([
+  <span class="hljs-string">'NAME'</span>,
+  <span class="hljs-string">'STUSPS'</span>,
+  <span class="hljs-string">'STATEFP'</span>,
+  <span class="hljs-string">'forest_loss_acres'</span>
+]);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create an export task for Google Drive.</span>
+<span class="hljs-comment">// After running the script, open the Tasks tab and click Run to start export.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Export</span>.<span class="hljs-property">table</span>.<span class="hljs-title function_">toDrive</span>({
+  <span class="hljs-attr">collection</span>: exportTable,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'forest_loss_by_state'</span>,
+  <span class="hljs-attr">folder</span>: <span class="hljs-string">'GEE_Examples'</span>,
+  <span class="hljs-attr">fileFormat</span>: <span class="hljs-string">'GeoJSON'</span>
+});
+</code></pre>
+<p>After running the script, the map should show state boundaries and forest-loss pixels. The <strong>Console</strong> should show a preview of the output FeatureCollection. The full export is managed in the <strong>Tasks</strong> tab.</p>
+<p>Use the interface and code to explore:</p>
+<ul>
+<li>Expand one printed state <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> in the <strong>Console</strong> and find <code>forest_loss_acres</code>.</li>
+<li>Use <strong>Layers</strong> to toggle state boundaries and forest-loss pixels.</li>
+<li>Open the <strong>Tasks</strong> tab and inspect the export task before running it.</li>
+<li>Change <code>fileFormat: 'GeoJSON'</code> to <code>fileFormat: 'CSV'</code> if you want a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> without geometry.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> Multiplying a binary <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> by <code>ee.Image.pixelArea()</code> is a common way to calculate area. The binary <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> says where the condition is true, and <code>pixelArea()</code> supplies the area of each true <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>.</p>
+<p><strong>Concept note:</strong> Exporting is separate from displaying. A <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> added with <code>Map.addLayer()</code> appears in the browser map. A <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> created with <code>Export.table.toDrive()</code> is written to your Google Drive only after you run the task.</p>
+</blockquote>
+<h2 id="part-5-create-a-distance-to-power-plant-raster-and-find-the-farthest-area">Part 5: Create a Distance-to-Power-Plant Raster and Find the Farthest Area</h2>
+<p>This script creates a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> where each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores its distance to the nearest power plant. It starts with point features from <code>WRI/GPPD/power_plants</code>, filters them to California, and then creates a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> at a 1 kilometer analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+<p>The result identifies the area of California that is farthest from a mapped power plant and prints that maximum distance to the Console.</p>
+<p>Before running the script:</p>
+<ol>
+<li>Clear the previous script or open a new script.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Look for the distance-to-power-plant <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> on the map.</li>
+<li>Open the <strong>Console</strong> and find the printed maximum distance.</li>
+<li>Use the <strong>Layers</strong> panel to compare <code>Power plants</code>, <code>Distance to nearest power plant</code>, and <code>Farthest point from a power plant</code>.</li>
+<li>Notice that the map centers and zooms to the farthest point after the result is created.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> A distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> stores proximity. Each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value is the distance from that <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to the nearest target <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. In this script, the target features are power plants, so higher <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values represent places farther from power plants.</p>
+<p><strong>Concept note:</strong> The maximum value in a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> marks the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> or pixels farthest from the target features. This script first identifies the farthest <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> area, then converts that area into a point so it can be mapped as a simple location.</p>
+<p><strong>Interface note:</strong> Use the <strong>Inspector</strong> tab to click the <code>Farthest point from a power plant</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. Compare that location to the maximum distance printed in the <strong>Console</strong>.</p>
+</blockquote>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 5: Create a Distance-to-Power-Plant Raster and Find the Farthest Area</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script uses power plant point features to create a distance raster.</span>
+<span class="hljs-comment">// It then finds the area of California farthest from a mapped power plant and</span>
+<span class="hljs-comment">// prints that distance to the Console.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load U.S. state boundaries.</span>
+<span class="hljs-comment">// These polygons provide the state boundary used for this analysis.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the Global Power Plant Database.</span>
+<span class="hljs-comment">// Power plants are vector point features, not raster pixels.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> powerPlantDataset = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'WRI/GPPD/power_plants'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select California from the state boundary dataset.</span>
+<span class="hljs-comment">// STUSPS is the state postal abbreviation field in the TIGER states data.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> california = states.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STUSPS'</span>, <span class="hljs-string">'CA'</span>));
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the California feature into one simplified analysis geometry.</span>
+<span class="hljs-comment">// This geometry is used to clip rasters and summarize values.</span>
+<span class="hljs-comment">// Simplifying the boundary prevents "too many edges" errors while keeping</span>
+<span class="hljs-comment">// enough detail for a 1 kilometer statewide raster analysis.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> californiaGeometry = ee.<span class="hljs-title class_">Feature</span>(california.<span class="hljs-title function_">first</span>())
+  .<span class="hljs-title function_">geometry</span>()
+  .<span class="hljs-title function_">simplify</span>(<span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Keep only power plants that intersect California.</span>
+<span class="hljs-comment">// Filtering reduces the number of features used in the distance calculation.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> powerPlants = powerPlantDataset.<span class="hljs-title function_">filterBounds</span>(californiaGeometry);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Style the power plant features for display.</span>
+<span class="hljs-comment">// The styled layer is only for visualization. The distance calculation still</span>
+<span class="hljs-comment">// uses the original vector point features.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> powerPlantsDisplay = powerPlants.<span class="hljs-title function_">style</span>({
+  <span class="hljs-attr">color</span>: <span class="hljs-string">'#4285F4'</span>,
+  <span class="hljs-attr">pointSize</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">width</span>: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Set the analysis scale and maximum search distance in meters.</span>
+<span class="hljs-comment">// The distance raster is interpreted at a 1 kilometer scale.</span>
+<span class="hljs-comment">// Pixels farther than the search distance are assigned the capped value.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> analysisScale = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">var</span> maxDistanceMeters = <span class="hljs-number">1000000</span>;
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a distance-to-power-plant raster.</span>
+<span class="hljs-comment">// `FeatureCollection.distance()` measures distance from each pixel center to</span>
+<span class="hljs-comment">// the nearest power plant within the search radius.</span>
+<span class="hljs-comment">// `unmask(maxDistanceMeters)` gives far-away pixels the capped maximum value.</span>
+<span class="hljs-comment">// `reproject()` sets the displayed/processed raster scale to 1 kilometer.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> distanceToPowerPlant = powerPlants
+  .<span class="hljs-title function_">distance</span>({
+    <span class="hljs-attr">searchRadius</span>: maxDistanceMeters,
+    <span class="hljs-attr">maxError</span>: <span class="hljs-number">50</span>
+  })
+  .<span class="hljs-title function_">unmask</span>(maxDistanceMeters)
+  .<span class="hljs-title function_">clip</span>(californiaGeometry)
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'distance_to_power_plant_meters'</span>)
+  .<span class="hljs-title function_">reproject</span>({
+    <span class="hljs-attr">crs</span>: <span class="hljs-string">'EPSG:5070'</span>,
+    <span class="hljs-attr">scale</span>: analysisScale
+  });
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define visualization settings for the distance raster.</span>
+<span class="hljs-comment">// Darker colors represent shorter distances. Brighter colors represent places</span>
+<span class="hljs-comment">// farther from power plants.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> distanceVis = {
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">300000</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'1a9850'</span>, <span class="hljs-string">'fee08b'</span>, <span class="hljs-string">'d73027'</span>]
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display California, power plants, and the distance raster.</span>
+<span class="hljs-comment">// The power plant layer is turned off by default because there are many points.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(californiaGeometry, <span class="hljs-number">6</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(californiaGeometry, {<span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>}, <span class="hljs-string">'California boundary'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(powerPlantsDisplay, {}, <span class="hljs-string">'Power plants'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  distanceToPowerPlant,
+  distanceVis,
+  <span class="hljs-string">'Distance to nearest power plant'</span>
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Find the maximum distance to a power plant.</span>
+<span class="hljs-comment">// This identifies the farthest distance value inside California.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> maxDistanceStats = distanceToPowerPlant.<span class="hljs-title function_">reduceRegion</span>({
+  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">max</span>(),
+  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">scale</span>: analysisScale,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+  <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Get the maximum distance value from the output dictionary.</span>
+<span class="hljs-comment">// The value is stored in meters, so we also convert it to kilometers.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> maxDistanceMetersObserved = ee.<span class="hljs-title class_">Number</span>(
+  maxDistanceStats.<span class="hljs-title function_">get</span>(<span class="hljs-string">'distance_to_power_plant_meters'</span>)
+);
+
+<span class="hljs-keyword">var</span> maxDistanceKilometersObserved = maxDistanceMetersObserved.<span class="hljs-title function_">divide</span>(<span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a raster showing the farthest area.</span>
+<span class="hljs-comment">// Because the raster is analyzed at 1 kilometer scale, we show pixels within</span>
+<span class="hljs-comment">// 1 kilometer of the maximum distance.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestArea = distanceToPowerPlant
+  .<span class="hljs-title function_">gte</span>(maxDistanceMetersObserved.<span class="hljs-title function_">subtract</span>(analysisScale))
+  .<span class="hljs-title function_">selfMask</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the farthest raster area into a point feature.</span>
+<span class="hljs-comment">// `reduceToVectors()` turns the farthest-area pixels into vector features.</span>
+<span class="hljs-comment">// `centroid()` converts those vector features into a single representative</span>
+<span class="hljs-comment">// point location.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestAreaVectors = farthestArea.<span class="hljs-title function_">reduceToVectors</span>({
+  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">scale</span>: analysisScale,
+  <span class="hljs-attr">geometryType</span>: <span class="hljs-string">'centroid'</span>,
+  <span class="hljs-attr">eightConnected</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">labelProperty</span>: <span class="hljs-string">'farthest_area'</span>,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+  <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+});
+
+<span class="hljs-keyword">var</span> farthestPoint = ee.<span class="hljs-title class_">Feature</span>(
+  farthestAreaVectors.<span class="hljs-title function_">geometry</span>().<span class="hljs-title function_">centroid</span>(analysisScale)
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the farthest-area raster and the representative point.</span>
+<span class="hljs-comment">// The raster layer is off by default so the point is easier to see.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(farthestArea, {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'purple'</span>]}, <span class="hljs-string">'Farthest area raster'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(farthestPoint, {<span class="hljs-attr">color</span>: <span class="hljs-string">'purple'</span>}, <span class="hljs-string">'Farthest point from a power plant'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Center and zoom the map to the farthest point.</span>
+<span class="hljs-comment">// A zoom level of 9 gives enough context to see the surrounding region.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(farthestPoint, <span class="hljs-number">9</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate the approximate area of the farthest-area pixels in square km.</span>
+<span class="hljs-comment">// This describes the mapped area within 1 km of the maximum distance.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestAreaSquareKm = ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">pixelArea</span>()
+  .<span class="hljs-title function_">updateMask</span>(farthestArea)
+  .<span class="hljs-title function_">divide</span>(<span class="hljs-number">1000000</span>)
+  .<span class="hljs-title function_">reduceRegion</span>({
+    <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>(),
+    <span class="hljs-attr">geometry</span>: californiaGeometry,
+    <span class="hljs-attr">scale</span>: analysisScale,
+    <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+    <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+  });
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the maximum distance and farthest-area summary to the Console.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Maximum distance to nearest power plant, meters:'</span>, maxDistanceMetersObserved);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Maximum distance to nearest power plant, kilometers:'</span>, maxDistanceKilometersObserved);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Approximate farthest-area size, square km:'</span>, farthestAreaSquareKm);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Farthest point feature:'</span>, farthestPoint);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Maximum distance summary dictionary:'</span>, maxDistanceStats);
+</code></pre>
+<p>After running the script, the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> should show a statewide pattern of distance to mapped power plants across California. The map should automatically center and zoom to the <code>Farthest point from a power plant</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, which shows a representative point for the area with the highest distance values at 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+<p>Use the interface and code to explore:</p>
+<ul>
+<li>Turn <code>Power plants</code> on in the <strong>Layers</strong> panel and zoom in to compare plant locations with the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</li>
+<li>Use <strong>Inspector</strong> to click the purple point and inspect its <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> information.</li>
+<li>Find the printed maximum distance in the <strong>Console</strong> and compare meters to kilometers.</li>
+<li>Turn on <code>Farthest area raster</code> to see the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels used to create the point.</li>
+<li>Change <code>analysisScale</code> from <code>1000</code> to <code>5000</code> and observe how the farthest-area <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> changes.</li>
+<li>Change <code>maxDistanceMeters</code> if the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> appears capped at the maximum search distance.</li>
+<li>Change the state abbreviation from <code>CA</code> to another state abbreviation and observe how the result changes.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> The analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> controls the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> size used for the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and summary. A 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> means each output <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> represents an area roughly 1 kilometer across. This is appropriate for a statewide overview, but it is not precise enough for parcel-level interpretation.</p>
+<p><strong>Concept note:</strong> The search radius caps the distance calculation. A larger search radius can represent farther distances, but it can also make the calculation heavier. A smaller search radius is faster, but it may flatten very remote places into the same maximum value.</p>
+<p><strong>Concept note:</strong> This is an analytical definition of distance from power infrastructure, not a complete measure of energy access. It depends on the power plant dataset, the California analysis boundary, the search radius, and the 1 kilometer <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+</blockquote>
+<h2 id="part-6-reduce-edge-effects-with-a-100-mile-buffer">Part 6: Reduce Edge Effects with a 100 Mile Buffer</h2>
+<p>The previous script only selected power plants inside California. That is a reasonable first analysis, but it creates a common <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> problem called an <strong>edge effect</strong>. Edge effects happen when an analysis boundary cuts off nearby features outside the study area. A place near the California border might be close to a power plant in Nevada, Oregon, Arizona, or Mexico, but a California-only selection will ignore that nearby plant.</p>
+<p>This version keeps the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> clipped to California, but it selects power plants from a 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around California. The result is often different near state borders because the distance calculation can now "see" nearby power plants just outside the state.</p>
+<p>Before running the script:</p>
+<ol>
+<li>Clear the previous script or open a new script.</li>
+<li>Paste the script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Compare the new maximum distance to the maximum distance from Part 5.</li>
+<li>Turn on <code>100 mile California buffer</code> and <code>Buffered power plant selection</code> in the <strong>Layers</strong> panel.</li>
+<li>Notice whether the farthest point or maximum distance changed.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> expands a geometry by a specified distance. Here, the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> does not change the area being summarized. The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is still clipped to California. The <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> only changes which power plants are allowed to influence the distance calculation.</p>
+<p><strong>Concept note:</strong> Edge effects are differences in results caused by the boundary of the analysis area rather than by the real-world pattern being studied. Using a <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> is one common way to reduce edge effects because it allows nearby features outside the study area to be included in calculations.</p>
+</blockquote>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 6: Reduce Edge Effects with a 100 Mile Buffer</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This script repeats the California power plant distance analysis, but it</span>
+<span class="hljs-comment">// selects power plants from a 100 mile buffer around California. The distance</span>
+<span class="hljs-comment">// raster is still clipped to California.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Comparing this result with Part 5 shows edge effects. Edge effects happen</span>
+<span class="hljs-comment">// when a study boundary cuts off nearby features that should influence an</span>
+<span class="hljs-comment">// analysis near the boundary.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load U.S. state boundaries.</span>
+<span class="hljs-comment">// These polygons provide the California boundary used for this analysis.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load the Global Power Plant Database.</span>
+<span class="hljs-comment">// Power plants are vector point features, not raster pixels.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> powerPlantDataset = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'WRI/GPPD/power_plants'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select California from the state boundary dataset.</span>
+<span class="hljs-comment">// STUSPS is the state postal abbreviation field in the TIGER states data.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> california = states.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STUSPS'</span>, <span class="hljs-string">'CA'</span>));
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the California feature into one simplified analysis geometry.</span>
+<span class="hljs-comment">// Simplifying the boundary prevents "too many edges" errors while keeping</span>
+<span class="hljs-comment">// enough detail for a 1 kilometer statewide raster analysis.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> californiaGeometry = ee.<span class="hljs-title class_">Feature</span>(california.<span class="hljs-title function_">first</span>())
+  .<span class="hljs-title function_">geometry</span>()
+  .<span class="hljs-title function_">simplify</span>(<span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a 100 mile buffer around California.</span>
+<span class="hljs-comment">// Earth Engine distance values are in meters, so we convert miles to meters.</span>
+<span class="hljs-comment">// This buffer is used only to select nearby power plants outside California.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> metersPerMile = <span class="hljs-number">1609.344</span>;
+<span class="hljs-keyword">var</span> bufferDistanceMiles = <span class="hljs-number">100</span>;
+<span class="hljs-keyword">var</span> bufferDistanceMeters = bufferDistanceMiles * metersPerMile;
+<span class="hljs-keyword">var</span> californiaBuffer = californiaGeometry.<span class="hljs-title function_">buffer</span>(bufferDistanceMeters);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Select power plants that fall inside the 100 mile buffer.</span>
+<span class="hljs-comment">// This reduces edge effects because power plants just outside California can</span>
+<span class="hljs-comment">// now influence distance values near the state boundary.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> bufferedPowerPlants = powerPlantDataset.<span class="hljs-title function_">filterBounds</span>(californiaBuffer);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Style the buffered power plant features for display.</span>
+<span class="hljs-comment">// The styled layer is only for visualization. The distance calculation still</span>
+<span class="hljs-comment">// uses the original vector point features.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> bufferedPowerPlantsDisplay = bufferedPowerPlants.<span class="hljs-title function_">style</span>({
+  <span class="hljs-attr">color</span>: <span class="hljs-string">'#4285F4'</span>,
+  <span class="hljs-attr">pointSize</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">width</span>: <span class="hljs-number">1</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Set the analysis scale and maximum search distance in meters.</span>
+<span class="hljs-comment">// The distance raster is interpreted at a 1 kilometer scale.</span>
+<span class="hljs-comment">// Pixels farther than the search distance are assigned the capped value.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> analysisScale = <span class="hljs-number">1000</span>;
+<span class="hljs-keyword">var</span> maxDistanceMeters = <span class="hljs-number">1000000</span>;
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a distance-to-power-plant raster.</span>
+<span class="hljs-comment">// The input power plants come from the buffered area, but `clip()` keeps the</span>
+<span class="hljs-comment">// final raster inside California. This lets outside power plants influence</span>
+<span class="hljs-comment">// California border areas without expanding the mapped result beyond the state.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> distanceToBufferedPowerPlant = bufferedPowerPlants
+  .<span class="hljs-title function_">distance</span>({
+    <span class="hljs-attr">searchRadius</span>: maxDistanceMeters,
+    <span class="hljs-attr">maxError</span>: <span class="hljs-number">50</span>
+  })
+  .<span class="hljs-title function_">unmask</span>(maxDistanceMeters)
+  .<span class="hljs-title function_">clip</span>(californiaGeometry)
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'distance_to_buffered_power_plant_meters'</span>)
+  .<span class="hljs-title function_">reproject</span>({
+    <span class="hljs-attr">crs</span>: <span class="hljs-string">'EPSG:5070'</span>,
+    <span class="hljs-attr">scale</span>: analysisScale
+  });
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define visualization settings for the distance raster.</span>
+<span class="hljs-comment">// Darker colors represent shorter distances. Brighter colors represent places</span>
+<span class="hljs-comment">// farther from power plants.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> distanceVis = {
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">300000</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'1a9850'</span>, <span class="hljs-string">'fee08b'</span>, <span class="hljs-string">'d73027'</span>]
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display California, the 100 mile buffer, power plants, and the distance raster.</span>
+<span class="hljs-comment">// The buffer and power plant layers are turned off by default so the raster is</span>
+<span class="hljs-comment">// easier to read first.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(californiaGeometry, <span class="hljs-number">6</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(californiaGeometry, {<span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>}, <span class="hljs-string">'California boundary'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(californiaBuffer, {<span class="hljs-attr">color</span>: <span class="hljs-string">'orange'</span>}, bufferDistanceMiles + <span class="hljs-string">' mile California buffer'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(bufferedPowerPlantsDisplay, {}, <span class="hljs-string">'Buffered power plant selection'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  distanceToBufferedPowerPlant,
+  distanceVis,
+  <span class="hljs-string">'Distance to nearest buffered power plant'</span>
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Find the maximum distance to a power plant inside California.</span>
+<span class="hljs-comment">// Because the power plant selection includes the buffer, this maximum may be</span>
+<span class="hljs-comment">// lower or in a different location than the California-only result from Part 5.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> maxDistanceStats = distanceToBufferedPowerPlant.<span class="hljs-title function_">reduceRegion</span>({
+  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">max</span>(),
+  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">scale</span>: analysisScale,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+  <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+});
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Get the maximum distance value from the output dictionary.</span>
+<span class="hljs-comment">// The value is stored in meters, so we also convert it to kilometers and miles.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> maxDistanceMetersObserved = ee.<span class="hljs-title class_">Number</span>(
+  maxDistanceStats.<span class="hljs-title function_">get</span>(<span class="hljs-string">'distance_to_buffered_power_plant_meters'</span>)
+);
+
+<span class="hljs-keyword">var</span> maxDistanceKilometersObserved = maxDistanceMetersObserved.<span class="hljs-title function_">divide</span>(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">var</span> maxDistanceMilesObserved = maxDistanceMetersObserved.<span class="hljs-title function_">divide</span>(metersPerMile);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create a raster showing the farthest area.</span>
+<span class="hljs-comment">// Because the raster is analyzed at 1 kilometer scale, we show pixels within</span>
+<span class="hljs-comment">// 1 kilometer of the maximum distance.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestArea = distanceToBufferedPowerPlant
+  .<span class="hljs-title function_">gte</span>(maxDistanceMetersObserved.<span class="hljs-title function_">subtract</span>(analysisScale))
+  .<span class="hljs-title function_">selfMask</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert the farthest raster area into a point feature.</span>
+<span class="hljs-comment">// This gives us a simple mapped location to inspect and compare with Part 5.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestAreaVectors = farthestArea.<span class="hljs-title function_">reduceToVectors</span>({
+  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">scale</span>: analysisScale,
+  <span class="hljs-attr">geometryType</span>: <span class="hljs-string">'centroid'</span>,
+  <span class="hljs-attr">eightConnected</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">labelProperty</span>: <span class="hljs-string">'farthest_area'</span>,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+  <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+});
+
+<span class="hljs-keyword">var</span> farthestPoint = ee.<span class="hljs-title class_">Feature</span>(
+  farthestAreaVectors.<span class="hljs-title function_">geometry</span>().<span class="hljs-title function_">centroid</span>(analysisScale)
+);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Display the farthest-area raster and the representative point.</span>
+<span class="hljs-comment">// The raster layer is off by default so the point is easier to see.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(farthestArea, {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'purple'</span>]}, <span class="hljs-string">'Buffered farthest area raster'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(farthestPoint, {<span class="hljs-attr">color</span>: <span class="hljs-string">'purple'</span>}, <span class="hljs-string">'Buffered farthest point'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Center and zoom the map to the farthest point.</span>
+<span class="hljs-comment">// A zoom level of 9 gives enough context to see the surrounding region.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(farthestPoint, <span class="hljs-number">9</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate the approximate area of the farthest-area pixels in square km.</span>
+<span class="hljs-comment">// This describes the mapped area within 1 km of the maximum distance.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> farthestAreaSquareKm = ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">pixelArea</span>()
+  .<span class="hljs-title function_">updateMask</span>(farthestArea)
+  .<span class="hljs-title function_">divide</span>(<span class="hljs-number">1000000</span>)
+  .<span class="hljs-title function_">reduceRegion</span>({
+    <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>(),
+    <span class="hljs-attr">geometry</span>: californiaGeometry,
+    <span class="hljs-attr">scale</span>: analysisScale,
+    <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
+    <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
+  });
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print the maximum distance and farthest-area summary to the Console.</span>
+<span class="hljs-comment">// Compare these values with Part 5 to see how edge effects changed the result.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered analysis maximum distance, meters:'</span>, maxDistanceMetersObserved);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered analysis maximum distance, kilometers:'</span>, maxDistanceKilometersObserved);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered analysis maximum distance, miles:'</span>, maxDistanceMilesObserved);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Approximate buffered farthest-area size, square km:'</span>, farthestAreaSquareKm);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered farthest point feature:'</span>, farthestPoint);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered maximum distance summary dictionary:'</span>, maxDistanceStats);
+</code></pre>
+<p>After running the script, compare the printed values with the California-only result from Part 5. If the maximum distance gets smaller, or if the farthest point moves, that difference is evidence of edge effects. The California-only analysis ignored nearby power plants outside the state. The buffered analysis includes those nearby features while still measuring and mapping distance only inside California.</p>
+<p>Use the interface and code to explore:</p>
+<ul>
+<li>Turn on <code>100 mile California buffer</code> to see the expanded selection area.</li>
+<li>Turn on <code>Buffered power plant selection</code> and look for power plants just outside California.</li>
+<li>Use <strong>Inspector</strong> to click the <code>Buffered farthest point</code>.</li>
+<li>Compare the buffered maximum distance to the Part 5 maximum distance.</li>
+<li>Change <code>bufferDistanceMiles</code> from <code>100</code> to <code>25</code>, <code>50</code>, or <code>200</code> and observe how the result changes.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> Buffers do not remove all edge effects. They reduce them by giving the analysis more surrounding context. If important features exist beyond the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance, they can still be excluded.</p>
+</blockquote>
+<h2 id="deliverable">Deliverable</h2>
+<p>Create a short PDF submission that includes:</p>
+<ul>
+<li>your name</li>
+<li>the lab title</li>
+<li>a Google Earth Engine <strong>Get Link</strong> URL for your saved script</li>
+<li>a brief note describing one change you made to one of the scripts</li>
+</ul>
+<p>Your changed script should include comments that identify what you changed. Good options include:</p>
+<ul>
+<li>changing the forest-loss <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> year</li>
+<li>changing the slope <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> palette</li>
+<li>changing the polygon used for the mean slope calculation</li>
+<li>adding a <code>Map.addLayer()</code> call to display the polygon</li>
+<li>changing the state forest-loss export from <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> to CSV</li>
+<li>changing the power plant distance analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> from 1 kilometer to 5 kilometers</li>
+<li>changing the buffered power plant analysis from a 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> to a 50 mile or 200 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a></li>
+</ul>
+<blockquote>
+<p><strong>Course turn-in rule:</strong> All <code>TURN_IN</code> assignments in this course are submitted as PDF files. If the deliverable is a URL, put it in a Google Doc and export that document as a PDF for submission.</p>
+</blockquote>
 
                                 
                                 </section>
@@ -1104,7 +2047,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"05 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.5","depth":2,"next":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - Modeling Movement with Google Earth Engine","level":"1.9.2","depth":2,"path":"week06/01_modeling_movement_with_google_earth_engine.md","ref":"week06/01_modeling_movement_with_google_earth_engine.md","articles":[]},{"title":"02 - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_sampling_and_interpolation_with_qgis.md","ref":"week06/02_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_introducing_planet_com_satellite_imagery.md","ref":"week06/03_introducing_planet_com_satellite_imagery.md","articles":[]}]},"previous":{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","mtime":"2026-05-02T19:09:37.526Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-02T19:09:48.405Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"05 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.5","depth":2,"next":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - Modeling Movement with Google Earth Engine","level":"1.9.2","depth":2,"path":"week06/01_modeling_movement_with_google_earth_engine.md","ref":"week06/01_modeling_movement_with_google_earth_engine.md","articles":[]},{"title":"02 - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_sampling_and_interpolation_with_qgis.md","ref":"week06/02_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_introducing_planet_com_satellite_imagery.md","ref":"week06/03_introducing_planet_com_satellite_imagery.md","articles":[]}]},"previous":{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","mtime":"2026-05-03T21:14:02.862Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-03T21:14:12.884Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
