@@ -727,7 +727,7 @@ Use the interface and code to explore:
 
 The previous script only selected power plants inside California. That is a reasonable first analysis, but it creates a common spatial analysis problem called an **edge effect**. Edge effects happen when an analysis boundary cuts off nearby features outside the study area. A place near the California border might be close to a power plant in Nevada, Oregon, Arizona, or Mexico, but a California-only selection will ignore that nearby plant.
 
-This version keeps the distance raster clipped to California, but it selects power plants from a 100 mile buffer around California. The result is often different near state borders because the distance calculation can now "see" nearby power plants just outside the state.
+This version keeps the distance raster clipped to a focal state, using California as the starting example, but it selects power plants from a 100 mile buffer around that state. The result is often different near state borders because the distance calculation can now "see" nearby power plants just outside the state.
 
 Before running the script:
 
@@ -735,10 +735,11 @@ Before running the script:
 2. Paste the script below.
 3. Click **Run**.
 4. Compare the new maximum distance to the maximum distance from Part 5.
-5. Turn on `100 mile California buffer` and `Buffered power plant selection` in the **Layers** panel.
+5. Turn on the 100 mile buffer layer and `Buffered power plant selection` in the **Layers** panel.
 6. Notice whether the farthest point or maximum distance changed.
+7. Change the focal state abbreviation from `CA` to another state, such as `TX`, and run the script again.
 
-> **Concept note:** A buffer expands a geometry by a specified distance. Here, the buffer does not change the area being summarized. The raster is still clipped to California. The buffer only changes which power plants are allowed to influence the distance calculation.
+> **Concept note:** A buffer expands a geometry by a specified distance. Here, the buffer does not change the area being summarized. The raster is still clipped to the focal state. The buffer only changes which power plants are allowed to influence the distance calculation.
 
 > **Concept note:** Edge effects are differences in results caused by the boundary of the analysis area rather than by the real-world pattern being studied. Using a buffer is one common way to reduce edge effects because it allows nearby features outside the study area to be included in calculations.
 
@@ -747,9 +748,9 @@ Before running the script:
 // EarthSys 144
 // Part 6: Reduce Edge Effects with a 100 Mile Buffer
 //
-// This script repeats the California power plant distance analysis, but it
-// selects power plants from a 100 mile buffer around California. The distance
-// raster is still clipped to California.
+// This script repeats the state-level power plant distance analysis, but it
+// selects power plants from a 100 mile buffer around the focal state. The
+// distance raster is still clipped to the focal state.
 //
 // Comparing this result with Part 5 shows edge effects. Edge effects happen
 // when a study boundary cuts off nearby features that should influence an
@@ -757,7 +758,7 @@ Before running the script:
 
 // ----------------------------------------------------------------------------
 // Load U.S. state boundaries.
-// These polygons provide the California boundary used for this analysis.
+// These polygons provide the state boundary used for this analysis.
 // ----------------------------------------------------------------------------
 var states = ee.FeatureCollection('TIGER/2018/States');
 
@@ -768,36 +769,39 @@ var states = ee.FeatureCollection('TIGER/2018/States');
 var powerPlantDataset = ee.FeatureCollection('WRI/GPPD/power_plants');
 
 // ----------------------------------------------------------------------------
-// Select California from the state boundary dataset.
+// Select the focal state from the state boundary dataset.
 // STUSPS is the state postal abbreviation field in the TIGER states data.
+// Change `focalStateAbbreviation` from 'CA' to another two-letter state code,
+// such as 'TX', to run the same analysis for a different state.
 // ----------------------------------------------------------------------------
-var california = states.filter(ee.Filter.eq('STUSPS', 'CA'));
+var focalStateAbbreviation = 'CA';
+var focalState = states.filter(ee.Filter.eq('STUSPS', focalStateAbbreviation));
 
 // ----------------------------------------------------------------------------
-// Convert the California feature into one simplified analysis geometry.
+// Convert the focal state feature into one simplified analysis geometry.
 // Simplifying the boundary prevents "too many edges" errors while keeping
 // enough detail for a 1 kilometer statewide raster analysis.
 // ----------------------------------------------------------------------------
-var californiaGeometry = ee.Feature(california.first())
+var focalStateGeometry = ee.Feature(focalState.first())
   .geometry()
   .simplify(1000);
 
 // ----------------------------------------------------------------------------
-// Create a 100 mile buffer around California.
+// Create a 100 mile buffer around the focal state.
 // Earth Engine distance values are in meters, so we convert miles to meters.
-// This buffer is used only to select nearby power plants outside California.
+// This buffer is used only to select nearby power plants outside the state.
 // ----------------------------------------------------------------------------
 var metersPerMile = 1609.344;
 var bufferDistanceMiles = 100;
 var bufferDistanceMeters = bufferDistanceMiles * metersPerMile;
-var californiaBuffer = californiaGeometry.buffer(bufferDistanceMeters);
+var focalStateBuffer = focalStateGeometry.buffer(bufferDistanceMeters);
 
 // ----------------------------------------------------------------------------
 // Select power plants that fall inside the 100 mile buffer.
-// This reduces edge effects because power plants just outside California can
+// This reduces edge effects because power plants just outside the state can
 // now influence distance values near the state boundary.
 // ----------------------------------------------------------------------------
-var bufferedPowerPlants = powerPlantDataset.filterBounds(californiaBuffer);
+var bufferedPowerPlants = powerPlantDataset.filterBounds(focalStateBuffer);
 
 // ----------------------------------------------------------------------------
 // Style the buffered power plant features for display.
@@ -821,8 +825,8 @@ var maxDistanceMeters = 1000000;
 // ----------------------------------------------------------------------------
 // Create a distance-to-power-plant raster.
 // The input power plants come from the buffered area, but `clip()` keeps the
-// final raster inside California. This lets outside power plants influence
-// California border areas without expanding the mapped result beyond the state.
+// final raster inside the focal state. This lets outside power plants influence
+// border areas without expanding the mapped result beyond the state.
 // ----------------------------------------------------------------------------
 var distanceToBufferedPowerPlant = bufferedPowerPlants
   .distance({
@@ -830,7 +834,7 @@ var distanceToBufferedPowerPlant = bufferedPowerPlants
     maxError: 50
   })
   .unmask(maxDistanceMeters)
-  .clip(californiaGeometry)
+  .clip(focalStateGeometry)
   .rename('distance_to_buffered_power_plant_meters')
   .reproject({
     crs: 'EPSG:5070',
@@ -849,13 +853,13 @@ var distanceVis = {
 };
 
 // ----------------------------------------------------------------------------
-// Display California, the 100 mile buffer, power plants, and the distance raster.
+// Display the focal state, the 100 mile buffer, power plants, and the distance raster.
 // The buffer and power plant layers are turned off by default so the raster is
 // easier to read first.
 // ----------------------------------------------------------------------------
-Map.centerObject(californiaGeometry, 6);
-Map.addLayer(californiaGeometry, {color: 'blue'}, 'California boundary', false);
-Map.addLayer(californiaBuffer, {color: 'orange'}, bufferDistanceMiles + ' mile California buffer', false);
+Map.centerObject(focalStateGeometry, 6);
+Map.addLayer(focalStateGeometry, {color: 'blue'}, focalStateAbbreviation + ' boundary', false);
+Map.addLayer(focalStateBuffer, {color: 'orange'}, bufferDistanceMiles + ' mile ' + focalStateAbbreviation + ' buffer', false);
 Map.addLayer(bufferedPowerPlantsDisplay, {}, 'Buffered power plant selection', false);
 Map.addLayer(
   distanceToBufferedPowerPlant,
@@ -864,13 +868,14 @@ Map.addLayer(
 );
 
 // ----------------------------------------------------------------------------
-// Find the maximum distance to a power plant inside California.
+// Find the maximum distance to a power plant inside the focal state.
 // Because the power plant selection includes the buffer, this maximum may be
-// lower or in a different location than the California-only result from Part 5.
+// lower or in a different location than an analysis that used only in-state
+// power plants.
 // ----------------------------------------------------------------------------
 var maxDistanceStats = distanceToBufferedPowerPlant.reduceRegion({
   reducer: ee.Reducer.max(),
-  geometry: californiaGeometry,
+  geometry: focalStateGeometry,
   scale: analysisScale,
   maxPixels: 1e13,
   tileScale: 4
@@ -901,7 +906,7 @@ var farthestArea = distanceToBufferedPowerPlant
 // This gives us a simple mapped location to inspect and compare with Part 5.
 // ----------------------------------------------------------------------------
 var farthestAreaVectors = farthestArea.reduceToVectors({
-  geometry: californiaGeometry,
+  geometry: focalStateGeometry,
   scale: analysisScale,
   geometryType: 'centroid',
   eightConnected: true,
@@ -936,7 +941,7 @@ var farthestAreaSquareKm = ee.Image.pixelArea()
   .divide(1000000)
   .reduceRegion({
     reducer: ee.Reducer.sum(),
-    geometry: californiaGeometry,
+    geometry: focalStateGeometry,
     scale: analysisScale,
     maxPixels: 1e13,
     tileScale: 4
@@ -950,39 +955,41 @@ print('Buffered analysis maximum distance, meters:', maxDistanceMetersObserved);
 print('Buffered analysis maximum distance, kilometers:', maxDistanceKilometersObserved);
 print('Buffered analysis maximum distance, miles:', maxDistanceMilesObserved);
 print('Approximate buffered farthest-area size, square km:', farthestAreaSquareKm);
+print('Focal state abbreviation:', focalStateAbbreviation);
 print('Buffered farthest point feature:', farthestPoint);
 print('Buffered maximum distance summary dictionary:', maxDistanceStats);
 ```
 
-After running the script, compare the printed values with the California-only result from Part 5. If the maximum distance gets smaller, or if the farthest point moves, that difference is evidence of edge effects. The California-only analysis ignored nearby power plants outside the state. The buffered analysis includes those nearby features while still measuring and mapping distance only inside California.
+After running the script, compare the printed values with the California-only result from Part 5. If the maximum distance gets smaller, or if the farthest point moves, that difference is evidence of edge effects. The California-only analysis ignored nearby power plants outside the state. The buffered analysis includes those nearby features while still measuring and mapping distance only inside the focal state.
 
 Use the interface and code to explore:
 
-- Turn on `100 mile California buffer` to see the expanded selection area.
-- Turn on `Buffered power plant selection` and look for power plants just outside California.
+- Turn on the 100 mile buffer layer to see the expanded selection area.
+- Turn on `Buffered power plant selection` and look for power plants just outside the focal state.
 - Use **Inspector** to click the `Buffered farthest point`.
 - Compare the buffered maximum distance to the Part 5 maximum distance.
 - Change `bufferDistanceMiles` from `100` to `25`, `50`, or `200` and observe how the result changes.
+- Change `focalStateAbbreviation` from `CA` to another state abbreviation, such as `TX`, and run the script again.
 
 > **Concept note:** Buffers do not remove all edge effects. They reduce them by giving the analysis more surrounding context. If important features exist beyond the buffer distance, they can still be excluded.
 
 ## Deliverable
 
-Create a short PDF submission that includes:
+For your final submission, use the Part 6 script. Change `focalStateAbbreviation` from `CA` to another U.S. state abbreviation, such as `TX`, then run the script again.
+
+Create a short Google Doc and export it as a PDF. The PDF should include:
 
 - your name
 - the lab title
-- a Google Earth Engine **Get Link** URL for your saved script
-- a brief note describing one change you made to one of the scripts
+- the focal state abbreviation you chose
+- a Google Earth Engine **Get Link** URL for your saved, modified Part 6 script
+- a brief note describing how the result changed when you changed the focal state
 
-Your changed script should include comments that identify what you changed. Good options include:
+Your changed script should include a comment near `focalStateAbbreviation` that identifies the state you changed. For example:
 
-- changing the forest-loss threshold year
-- changing the slope visualization palette
-- changing the polygon used for the mean slope calculation
-- adding a `Map.addLayer()` call to display the polygon
-- changing the state forest-loss export from GeoJSON to CSV
-- changing the power plant distance analysis scale from 1 kilometer to 5 kilometers
-- changing the buffered power plant analysis from a 100 mile buffer to a 50 mile or 200 mile buffer
+```javascript
+// Final submission change: I changed the focal state from CA to TX.
+var focalStateAbbreviation = 'TX';
+```
 
 > **Course turn-in rule:** All `TURN_IN` assignments in this course are submitted as PDF files. If the deliverable is a URL, put it in a Google Doc and export that document as a PDF for submission.

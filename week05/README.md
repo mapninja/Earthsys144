@@ -12,7 +12,7 @@ The workflows in this week move through several related raster ideas:
 2. preparing and merging digital elevation models
 3. using terrain surfaces for visibility analysis
 4. extending terrain analysis into watershed processing
-5. communicating raster results through web presentation formats
+5. communicating spatial analysis through web presentation formats
 
 ## Core Ideas for the Week
 
@@ -69,13 +69,13 @@ This lab uses a DEM, viewing station, and line of sight to create a terrain prof
 
 This lab extends terrain analysis into hydrologic modeling by deriving flow accumulation, extracting a stream raster, snapping a pour point, delineating a watershed, and converting the modeled stream network to vectors.
 
-### [04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online](04_OPTIONAL_introducing_storymaps_on_arcgis_online.md)
-
-This workshop introduces ArcGIS StoryMaps as the required final project submission format and as a web-based tool for communicating map-based narratives with text, images, and other media. Students log in through Stanford ArcGIS Online, create a first story, add text and map blocks, preview the result, and understand sharing settings.
-
-### [05 - TURN IN - Basic Raster Analysis with Google Earth Engine](05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md)
+### [04 - TURN IN - Basic Raster Analysis with Google Earth Engine](04_TURN_IN_basic_raster_analysis_with_google_earth_engine.md)
 
 This lab introduces raster concepts such as image collections, images, bands, and pixel values through Earth Engine.
+
+### [05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online](05_OPTIONAL_introducing_storymaps_on_arcgis_online.md)
+
+This workshop introduces ArcGIS StoryMaps as the required final project submission format and as a web-based tool for communicating map-based narratives with text, images, and other media. Students log in through Stanford ArcGIS Online, create a first story, add text and map blocks, preview the result, and understand sharing settings.
 
 ## What to Expect in the Individual Lab Documents
 

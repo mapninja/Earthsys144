@@ -8,6 +8,14 @@ Many of the definitions below are course-oriented paraphrases of foundational GI
 
 A specific geographic area selected for analysis or mapping. An AOI helps limit your work to the place relevant to your question.
 
+## Areal Interpolation
+
+A method for estimating values from one set of polygon boundaries to another when the source and target areas do not match. In introductory GIS, areal interpolation often uses area-weighting to estimate how much of a population or attribute should be assigned to each target polygon.
+
+## ArcGIS StoryMaps
+
+A web-based Esri platform for combining maps, text, images, multimedia, and other content into a spatial narrative. In this course, StoryMaps are used as a way to communicate GIS analysis as an explanation or argument, not just as a standalone map.
+
 ## Absolute Change
 
 The raw numeric difference between one value and another. In GIS tables, absolute change is often calculated by subtracting an earlier value from a later one.
@@ -80,6 +88,14 @@ The kind of value stored in a field, such as text, integer, decimal number, or d
 
 The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.
 
+## Distance Raster
+
+A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.
+
+## Edge Effects
+
+Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.
+
 ## Ellipsoid
 
 A smooth mathematical model of the earth used in coordinate systems and geodesy. Unlike the geoid, an ellipsoid is simplified so it can be used for measurement and calculation.
@@ -99,6 +115,14 @@ The label used to identify a field in a table. A field name such as `MHHINC2020`
 ## Field Calculator
 
 A tool in GIS software, especially QGIS, used to create new fields, update attribute values, and perform calculations using expressions.
+
+## Flow Accumulation
+
+A raster hydrology layer that counts how many upstream cells drain through each cell. High flow-accumulation values often indicate where water is likely to concentrate into channels or streams.
+
+## Flow Direction
+
+A raster hydrology layer that records the downslope direction water would flow from each cell. Flow direction is derived from a DEM and is used to trace drainage paths and delineate watersheds.
 
 ## Foreign Key
 
@@ -220,6 +244,10 @@ A measure of change expressed relative to the starting value, usually as a perce
 
 A land subdivision system used in much of the United States. PLSS grids can be useful as a reference framework in historical mapping and georeferencing exercises.
 
+## Pour Point
+
+The outlet point used to delineate a watershed. In raster hydrology, the pour point should align with the raster cell representing the intended drainage location so the watershed model traces the correct contributing area.
+
 ## Primary Key
 
 A field whose values uniquely identify each record in a table. Primary keys are often used to support joins and relationships between tables.
@@ -271,6 +299,14 @@ A join based on spatial relationship rather than only a shared field. For exampl
 ## Spatial Resolution
 
 The ground area represented by each pixel in a raster dataset. For example, a 10-meter raster has pixels representing 10 by 10 meter areas on the ground.
+
+## Snapping
+
+An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.
+
+## StoryMap
+
+A web-based spatial presentation that combines maps with narrative text, images, video, and other media. A StoryMap is useful when the goal is to explain a spatial question, method, result, and interpretation in a reader-friendly format.
 
 ## SQL
 
