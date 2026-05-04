@@ -613,12 +613,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.4" data-path="../week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+        <li class="chapter " data-level="1.8.4" data-path="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
-                <a href="../week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+                <a href="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
                     
-                    04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
             
                 </a>
             
@@ -626,12 +626,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.5" data-path="../week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.8.5" data-path="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
-                <a href="../week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+                <a href="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
                     
-                    05 - TURN IN - Basic Raster Analysis with Google Earth Engine
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
             
                 </a>
             
@@ -1064,7 +1064,7 @@
 <p>This week brings together several common forms of <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> analysis:</p>
 <ol>
 <li>overlay-based analysis</li>
-<li>areal interpolation across mismatched polygon systems</li>
+<li><a href="../GLOSSARY.html#areal-interpolation" class="glossary-term" title="A method for estimating values from one set of polygon boundaries to another when the source and target areas do not match. In introductory GIS, areal interpolation often uses area-weighting to estimate how much of a population or attribute should be assigned to each target polygon.">areal interpolation</a> across mismatched polygon systems</li>
 <li>network analysis along streets or paths</li>
 <li>optional enrichment and reporting workflows using external data platforms</li>
 <li>a returning Earth Engine exercise that connects <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features to <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> summaries</li>
@@ -1074,7 +1074,7 @@
 <p>When you <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>, intersect, <a href="../GLOSSARY.html#clip" class="glossary-term" title="A geoprocessing operation that cuts a dataset down to a specified boundary or area of interest.">clip</a>, or union layers, you are not just drawing new shapes. You are creating new spatial units for analysis.</p>
 <p>That matters because many GIS workflows depend on redefining geography before measuring or summarizing anything.</p>
 <h3 id="boundaries-rarely-line-up-perfectly">Boundaries rarely line up perfectly</h3>
-<p>Areal interpolation exists because the units where data is collected are often not the same as the units where you want to report results.</p>
+<p><a href="../GLOSSARY.html#areal-interpolation" class="glossary-term" title="A method for estimating values from one set of polygon boundaries to another when the source and target areas do not match. In introductory GIS, areal interpolation often uses area-weighting to estimate how much of a population or attribute should be assigned to each target polygon.">Areal interpolation</a> exists because the units where data is collected are often not the same as the units where you want to report results.</p>
 <p>This week, that means learning to estimate values across polygon systems rather than assuming the source boundaries and target boundaries match.</p>
 <h3 id="networks-are-analytical-structures">Networks are analytical structures</h3>
 <p>Street and path layers are more than lines on a map. In a network analysis workflow, they become connected systems with direction, impedance, and reachable paths.</p>
@@ -1149,7 +1149,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"next":{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},"previous":{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]},"articles":[{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Areal Interpolation of Attributes with QGIS","level":"1.7.3","depth":2,"path":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","ref":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/README.md","mtime":"2026-05-03T21:14:02.393Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-03T21:14:12.884Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Week 04 - Basic Vector Analysis","level":"1.7","depth":1,"next":{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},"previous":{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]},"articles":[{"title":"00 - OPTIONAL - Introducing SimplyAnalytics.com","level":"1.7.1","depth":2,"path":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","ref":"week04/00_OPTIONAL_introducing_simplyanalytics_com.md","articles":[]},{"title":"01 - TURN IN - Buffering & Overlay Analysis in QGIS","level":"1.7.2","depth":2,"path":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","ref":"week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Areal Interpolation of Attributes with QGIS","level":"1.7.3","depth":2,"path":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","ref":"week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Network Analysis with QGIS","level":"1.7.4","depth":2,"path":"week04/03_TURN_IN_network_analysis_with_qgis.md","ref":"week04/03_TURN_IN_network_analysis_with_qgis.md","articles":[]},{"title":"04 - TURN IN - Tabular/Vector Data in Google Earth Engine","level":"1.7.5","depth":2,"path":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","ref":"week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.md","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week04/README.md","mtime":"2026-05-04T18:37:34.755Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-04T18:37:59.833Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>05 - TURN IN - Basic Raster Analysis with Google Earth Engine · HonKit</title>
+        <title>04 - TURN IN - Basic Raster Analysis with Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../week06/" />
+    <link rel="next" href="05_OPTIONAL_introducing_storymaps_on_arcgis_online.html" />
     
     
-    <link rel="prev" href="04_OPTIONAL_introducing_storymaps_on_arcgis_online.html" />
+    <link rel="prev" href="03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html" />
     
 
     </head>
@@ -613,12 +613,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.4" data-path="04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+        <li class="chapter active" data-level="1.8.4" data-path="04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
-                <a href="04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+                <a href="04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
                     
-                    04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
             
                 </a>
             
@@ -626,12 +626,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.8.5" data-path="05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.8.5" data-path="05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
-                <a href="05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+                <a href="05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
                     
-                    05 - TURN IN - Basic Raster Analysis with Google Earth Engine
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
             
                 </a>
             
@@ -1042,7 +1042,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >05 - TURN IN - Basic Raster Analysis with Google Earth Engine</a>
+        <a href=".." >04 - TURN IN - Basic Raster Analysis with Google Earth Engine</a>
     </h1>
 </div>
 
@@ -1067,7 +1067,7 @@
 <li>a forest-change <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>, where <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values describe when forest loss occurred</li>
 <li>a digital elevation model, or DEM, where <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values describe elevation</li>
 <li>state boundary polygons, which can be used to summarize <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values by place</li>
-<li>power plant point features, which can be converted into a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
+<li>power plant point features, which can be converted into a <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a></li>
 </ul>
 <p>You will use code to create new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> layers from existing <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> datasets. You will also use the Google Earth Engine Code Editor interface to inspect layers, turn map layers on and off, read <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values, and view summary results in the Console.</p>
 <p>The main idea is that <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis is based on <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values. The map display helps you see patterns, but the analysis itself comes from selecting bands, applying thresholds, masking pixels, calculating terrain derivatives, and summarizing <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values within a geometry.</p>
@@ -1086,7 +1086,7 @@
 <li>how <code>reduceRegions()</code> summarizes <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values across many <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features</li>
 <li>how <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features can be converted into distance rasters</li>
 <li>how maximum <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values can be used to find the places farthest from a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
-<li>how edge effects can change distance analysis results near a study-area boundary</li>
+<li>how <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">edge effects</a> can change distance analysis results near a study-area boundary</li>
 <li>how Earth Engine exports a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> through the <strong>Tasks</strong> tab</li>
 </ul>
 <h2 id="getting-ready">Getting Ready</h2>
@@ -1519,7 +1519,7 @@
 <p><strong>Concept note:</strong> Exporting is separate from displaying. A <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> added with <code>Map.addLayer()</code> appears in the browser map. A <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> created with <code>Export.table.toDrive()</code> is written to your Google Drive only after you run the task.</p>
 </blockquote>
 <h2 id="part-5-create-a-distance-to-power-plant-raster-and-find-the-farthest-area">Part 5: Create a Distance-to-Power-Plant Raster and Find the Farthest Area</h2>
-<p>This script creates a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> where each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores its distance to the nearest power plant. It starts with point features from <code>WRI/GPPD/power_plants</code>, filters them to California, and then creates a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> at a 1 kilometer analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+<p>This script creates a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> where each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> stores its distance to the nearest power plant. It starts with point features from <code>WRI/GPPD/power_plants</code>, filters them to California, and then creates a <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> at a 1 kilometer analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
 <p>The result identifies the area of California that is farthest from a mapped power plant and prints that maximum distance to the Console.</p>
 <p>Before running the script:</p>
 <ol>
@@ -1532,8 +1532,8 @@
 <li>Notice that the map centers and zooms to the farthest point after the result is created.</li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> A distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> stores proximity. Each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value is the distance from that <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to the nearest target <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. In this script, the target features are power plants, so higher <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values represent places farther from power plants.</p>
-<p><strong>Concept note:</strong> The maximum value in a distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> marks the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> or pixels farthest from the target features. This script first identifies the farthest <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> area, then converts that area into a point so it can be mapped as a simple location.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> stores proximity. Each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> value is the distance from that <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to the nearest target <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>. In this script, the target features are power plants, so higher <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values represent places farther from power plants.</p>
+<p><strong>Concept note:</strong> The maximum value in a <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> marks the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> or pixels farthest from the target features. This script first identifies the farthest <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> area, then converts that area into a point so it can be mapped as a simple location.</p>
 <p><strong>Interface note:</strong> Use the <strong>Inspector</strong> tab to click the <code>Farthest point from a power plant</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. Compare that location to the maximum distance printed in the <strong>Console</strong>.</p>
 </blockquote>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
@@ -1729,45 +1729,46 @@
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Farthest point feature:'</span>, farthestPoint);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Maximum distance summary dictionary:'</span>, maxDistanceStats);
 </code></pre>
-<p>After running the script, the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> should show a statewide pattern of distance to mapped power plants across California. The map should automatically center and zoom to the <code>Farthest point from a power plant</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, which shows a representative point for the area with the highest distance values at 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
+<p>After running the script, the <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> should show a statewide pattern of distance to mapped power plants across California. The map should automatically center and zoom to the <code>Farthest point from a power plant</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, which shows a representative point for the area with the highest distance values at 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
 <p>Use the interface and code to explore:</p>
 <ul>
-<li>Turn <code>Power plants</code> on in the <strong>Layers</strong> panel and zoom in to compare plant locations with the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</li>
+<li>Turn <code>Power plants</code> on in the <strong>Layers</strong> panel and zoom in to compare plant locations with the <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a>.</li>
 <li>Use <strong>Inspector</strong> to click the purple point and inspect its <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> information.</li>
 <li>Find the printed maximum distance in the <strong>Console</strong> and compare meters to kilometers.</li>
 <li>Turn on <code>Farthest area raster</code> to see the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> pixels used to create the point.</li>
 <li>Change <code>analysisScale</code> from <code>1000</code> to <code>5000</code> and observe how the farthest-area <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> changes.</li>
-<li>Change <code>maxDistanceMeters</code> if the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> appears capped at the maximum search distance.</li>
+<li>Change <code>maxDistanceMeters</code> if the <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> appears capped at the maximum search distance.</li>
 <li>Change the state abbreviation from <code>CA</code> to another state abbreviation and observe how the result changes.</li>
 </ul>
 <blockquote>
-<p><strong>Concept note:</strong> The analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> controls the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> size used for the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and summary. A 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> means each output <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> represents an area roughly 1 kilometer across. This is appropriate for a statewide overview, but it is not precise enough for parcel-level interpretation.</p>
+<p><strong>Concept note:</strong> The analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> controls the <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> size used for the <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> and summary. A 1 kilometer <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> means each output <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> represents an area roughly 1 kilometer across. This is appropriate for a statewide overview, but it is not precise enough for parcel-level interpretation.</p>
 <p><strong>Concept note:</strong> The search radius caps the distance calculation. A larger search radius can represent farther distances, but it can also make the calculation heavier. A smaller search radius is faster, but it may flatten very remote places into the same maximum value.</p>
 <p><strong>Concept note:</strong> This is an analytical definition of distance from power infrastructure, not a complete measure of energy access. It depends on the power plant dataset, the California analysis boundary, the search radius, and the 1 kilometer <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</p>
 </blockquote>
 <h2 id="part-6-reduce-edge-effects-with-a-100-mile-buffer">Part 6: Reduce Edge Effects with a 100 Mile Buffer</h2>
-<p>The previous script only selected power plants inside California. That is a reasonable first analysis, but it creates a common <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> problem called an <strong>edge effect</strong>. Edge effects happen when an analysis boundary cuts off nearby features outside the study area. A place near the California border might be close to a power plant in Nevada, Oregon, Arizona, or Mexico, but a California-only selection will ignore that nearby plant.</p>
-<p>This version keeps the distance <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> clipped to California, but it selects power plants from a 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around California. The result is often different near state borders because the distance calculation can now "see" nearby power plants just outside the state.</p>
+<p>The previous script only selected power plants inside California. That is a reasonable first analysis, but it creates a common <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a> problem called an <strong>edge effect</strong>. <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">Edge effects</a> happen when an analysis boundary cuts off nearby features outside the study area. A place near the California border might be close to a power plant in Nevada, Oregon, Arizona, or Mexico, but a California-only selection will ignore that nearby plant.</p>
+<p>This version keeps the <a href="../GLOSSARY.html#distance-raster" class="glossary-term" title="A raster in which each pixel stores its distance to the nearest target feature, such as a road, river, power plant, or other mapped object. Distance rasters are useful for proximity analysis because they turn vector locations into a continuous surface of distance values.">distance raster</a> clipped to a focal state, using California as the starting example, but it selects power plants from a 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> around that state. The result is often different near state borders because the distance calculation can now "see" nearby power plants just outside the state.</p>
 <p>Before running the script:</p>
 <ol>
 <li>Clear the previous script or open a new script.</li>
 <li>Paste the script below.</li>
 <li>Click <strong>Run</strong>.</li>
 <li>Compare the new maximum distance to the maximum distance from Part 5.</li>
-<li>Turn on <code>100 mile California buffer</code> and <code>Buffered power plant selection</code> in the <strong>Layers</strong> panel.</li>
+<li>Turn on the 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and <code>Buffered power plant selection</code> in the <strong>Layers</strong> panel.</li>
 <li>Notice whether the farthest point or maximum distance changed.</li>
+<li>Change the focal state abbreviation from <code>CA</code> to another state, such as <code>TX</code>, and run the script again.</li>
 </ol>
 <blockquote>
-<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> expands a geometry by a specified distance. Here, the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> does not change the area being summarized. The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is still clipped to California. The <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> only changes which power plants are allowed to influence the distance calculation.</p>
-<p><strong>Concept note:</strong> Edge effects are differences in results caused by the boundary of the analysis area rather than by the real-world pattern being studied. Using a <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> is one common way to reduce edge effects because it allows nearby features outside the study area to be included in calculations.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> expands a geometry by a specified distance. Here, the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> does not change the area being summarized. The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is still clipped to the focal state. The <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> only changes which power plants are allowed to influence the distance calculation.</p>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">Edge effects</a> are differences in results caused by the boundary of the analysis area rather than by the real-world pattern being studied. Using a <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> is one common way to reduce <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">edge effects</a> because it allows nearby features outside the study area to be included in calculations.</p>
 </blockquote>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
 <span class="hljs-comment">// EarthSys 144</span>
 <span class="hljs-comment">// Part 6: Reduce Edge Effects with a 100 Mile Buffer</span>
 <span class="hljs-comment">//</span>
-<span class="hljs-comment">// This script repeats the California power plant distance analysis, but it</span>
-<span class="hljs-comment">// selects power plants from a 100 mile buffer around California. The distance</span>
-<span class="hljs-comment">// raster is still clipped to California.</span>
+<span class="hljs-comment">// This script repeats the state-level power plant distance analysis, but it</span>
+<span class="hljs-comment">// selects power plants from a 100 mile buffer around the focal state. The</span>
+<span class="hljs-comment">// distance raster is still clipped to the focal state.</span>
 <span class="hljs-comment">//</span>
 <span class="hljs-comment">// Comparing this result with Part 5 shows edge effects. Edge effects happen</span>
 <span class="hljs-comment">// when a study boundary cuts off nearby features that should influence an</span>
@@ -1775,7 +1776,7 @@
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-comment">// Load U.S. state boundaries.</span>
-<span class="hljs-comment">// These polygons provide the California boundary used for this analysis.</span>
+<span class="hljs-comment">// These polygons provide the state boundary used for this analysis.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>);
 
@@ -1786,36 +1787,39 @@
 <span class="hljs-keyword">var</span> powerPlantDataset = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'WRI/GPPD/power_plants'</span>);
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-comment">// Select California from the state boundary dataset.</span>
+<span class="hljs-comment">// Select the focal state from the state boundary dataset.</span>
 <span class="hljs-comment">// STUSPS is the state postal abbreviation field in the TIGER states data.</span>
+<span class="hljs-comment">// Change `focalStateAbbreviation` from 'CA' to another two-letter state code,</span>
+<span class="hljs-comment">// such as 'TX', to run the same analysis for a different state.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-keyword">var</span> california = states.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STUSPS'</span>, <span class="hljs-string">'CA'</span>));
+<span class="hljs-keyword">var</span> focalStateAbbreviation = <span class="hljs-string">'CA'</span>;
+<span class="hljs-keyword">var</span> focalState = states.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'STUSPS'</span>, focalStateAbbreviation));
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-comment">// Convert the California feature into one simplified analysis geometry.</span>
+<span class="hljs-comment">// Convert the focal state feature into one simplified analysis geometry.</span>
 <span class="hljs-comment">// Simplifying the boundary prevents "too many edges" errors while keeping</span>
 <span class="hljs-comment">// enough detail for a 1 kilometer statewide raster analysis.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-keyword">var</span> californiaGeometry = ee.<span class="hljs-title class_">Feature</span>(california.<span class="hljs-title function_">first</span>())
+<span class="hljs-keyword">var</span> focalStateGeometry = ee.<span class="hljs-title class_">Feature</span>(focalState.<span class="hljs-title function_">first</span>())
   .<span class="hljs-title function_">geometry</span>()
   .<span class="hljs-title function_">simplify</span>(<span class="hljs-number">1000</span>);
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-comment">// Create a 100 mile buffer around California.</span>
+<span class="hljs-comment">// Create a 100 mile buffer around the focal state.</span>
 <span class="hljs-comment">// Earth Engine distance values are in meters, so we convert miles to meters.</span>
-<span class="hljs-comment">// This buffer is used only to select nearby power plants outside California.</span>
+<span class="hljs-comment">// This buffer is used only to select nearby power plants outside the state.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-keyword">var</span> metersPerMile = <span class="hljs-number">1609.344</span>;
 <span class="hljs-keyword">var</span> bufferDistanceMiles = <span class="hljs-number">100</span>;
 <span class="hljs-keyword">var</span> bufferDistanceMeters = bufferDistanceMiles * metersPerMile;
-<span class="hljs-keyword">var</span> californiaBuffer = californiaGeometry.<span class="hljs-title function_">buffer</span>(bufferDistanceMeters);
+<span class="hljs-keyword">var</span> focalStateBuffer = focalStateGeometry.<span class="hljs-title function_">buffer</span>(bufferDistanceMeters);
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-comment">// Select power plants that fall inside the 100 mile buffer.</span>
-<span class="hljs-comment">// This reduces edge effects because power plants just outside California can</span>
+<span class="hljs-comment">// This reduces edge effects because power plants just outside the state can</span>
 <span class="hljs-comment">// now influence distance values near the state boundary.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-keyword">var</span> bufferedPowerPlants = powerPlantDataset.<span class="hljs-title function_">filterBounds</span>(californiaBuffer);
+<span class="hljs-keyword">var</span> bufferedPowerPlants = powerPlantDataset.<span class="hljs-title function_">filterBounds</span>(focalStateBuffer);
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-comment">// Style the buffered power plant features for display.</span>
@@ -1839,8 +1843,8 @@
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-comment">// Create a distance-to-power-plant raster.</span>
 <span class="hljs-comment">// The input power plants come from the buffered area, but `clip()` keeps the</span>
-<span class="hljs-comment">// final raster inside California. This lets outside power plants influence</span>
-<span class="hljs-comment">// California border areas without expanding the mapped result beyond the state.</span>
+<span class="hljs-comment">// final raster inside the focal state. This lets outside power plants influence</span>
+<span class="hljs-comment">// border areas without expanding the mapped result beyond the state.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-keyword">var</span> distanceToBufferedPowerPlant = bufferedPowerPlants
   .<span class="hljs-title function_">distance</span>({
@@ -1848,7 +1852,7 @@
     <span class="hljs-attr">maxError</span>: <span class="hljs-number">50</span>
   })
   .<span class="hljs-title function_">unmask</span>(maxDistanceMeters)
-  .<span class="hljs-title function_">clip</span>(californiaGeometry)
+  .<span class="hljs-title function_">clip</span>(focalStateGeometry)
   .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'distance_to_buffered_power_plant_meters'</span>)
   .<span class="hljs-title function_">reproject</span>({
     <span class="hljs-attr">crs</span>: <span class="hljs-string">'EPSG:5070'</span>,
@@ -1867,13 +1871,13 @@
 };
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-comment">// Display California, the 100 mile buffer, power plants, and the distance raster.</span>
+<span class="hljs-comment">// Display the focal state, the 100 mile buffer, power plants, and the distance raster.</span>
 <span class="hljs-comment">// The buffer and power plant layers are turned off by default so the raster is</span>
 <span class="hljs-comment">// easier to read first.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(californiaGeometry, <span class="hljs-number">6</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(californiaGeometry, {<span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>}, <span class="hljs-string">'California boundary'</span>, <span class="hljs-literal">false</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(californiaBuffer, {<span class="hljs-attr">color</span>: <span class="hljs-string">'orange'</span>}, bufferDistanceMiles + <span class="hljs-string">' mile California buffer'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(focalStateGeometry, <span class="hljs-number">6</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(focalStateGeometry, {<span class="hljs-attr">color</span>: <span class="hljs-string">'blue'</span>}, focalStateAbbreviation + <span class="hljs-string">' boundary'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(focalStateBuffer, {<span class="hljs-attr">color</span>: <span class="hljs-string">'orange'</span>}, bufferDistanceMiles + <span class="hljs-string">' mile '</span> + focalStateAbbreviation + <span class="hljs-string">' buffer'</span>, <span class="hljs-literal">false</span>);
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(bufferedPowerPlantsDisplay, {}, <span class="hljs-string">'Buffered power plant selection'</span>, <span class="hljs-literal">false</span>);
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
   distanceToBufferedPowerPlant,
@@ -1882,13 +1886,14 @@
 );
 
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
-<span class="hljs-comment">// Find the maximum distance to a power plant inside California.</span>
+<span class="hljs-comment">// Find the maximum distance to a power plant inside the focal state.</span>
 <span class="hljs-comment">// Because the power plant selection includes the buffer, this maximum may be</span>
-<span class="hljs-comment">// lower or in a different location than the California-only result from Part 5.</span>
+<span class="hljs-comment">// lower or in a different location than an analysis that used only in-state</span>
+<span class="hljs-comment">// power plants.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-keyword">var</span> maxDistanceStats = distanceToBufferedPowerPlant.<span class="hljs-title function_">reduceRegion</span>({
   <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">max</span>(),
-  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">geometry</span>: focalStateGeometry,
   <span class="hljs-attr">scale</span>: analysisScale,
   <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
   <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
@@ -1919,7 +1924,7 @@
 <span class="hljs-comment">// This gives us a simple mapped location to inspect and compare with Part 5.</span>
 <span class="hljs-comment">// ----------------------------------------------------------------------------</span>
 <span class="hljs-keyword">var</span> farthestAreaVectors = farthestArea.<span class="hljs-title function_">reduceToVectors</span>({
-  <span class="hljs-attr">geometry</span>: californiaGeometry,
+  <span class="hljs-attr">geometry</span>: focalStateGeometry,
   <span class="hljs-attr">scale</span>: analysisScale,
   <span class="hljs-attr">geometryType</span>: <span class="hljs-string">'centroid'</span>,
   <span class="hljs-attr">eightConnected</span>: <span class="hljs-literal">true</span>,
@@ -1954,7 +1959,7 @@
   .<span class="hljs-title function_">divide</span>(<span class="hljs-number">1000000</span>)
   .<span class="hljs-title function_">reduceRegion</span>({
     <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>(),
-    <span class="hljs-attr">geometry</span>: californiaGeometry,
+    <span class="hljs-attr">geometry</span>: focalStateGeometry,
     <span class="hljs-attr">scale</span>: analysisScale,
     <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e13</span>,
     <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
@@ -1968,39 +1973,37 @@
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered analysis maximum distance, kilometers:'</span>, maxDistanceKilometersObserved);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered analysis maximum distance, miles:'</span>, maxDistanceMilesObserved);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Approximate buffered farthest-area size, square km:'</span>, farthestAreaSquareKm);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Focal state abbreviation:'</span>, focalStateAbbreviation);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered farthest point feature:'</span>, farthestPoint);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Buffered maximum distance summary dictionary:'</span>, maxDistanceStats);
 </code></pre>
-<p>After running the script, compare the printed values with the California-only result from Part 5. If the maximum distance gets smaller, or if the farthest point moves, that difference is evidence of edge effects. The California-only analysis ignored nearby power plants outside the state. The buffered analysis includes those nearby features while still measuring and mapping distance only inside California.</p>
+<p>After running the script, compare the printed values with the California-only result from Part 5. If the maximum distance gets smaller, or if the farthest point moves, that difference is evidence of <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">edge effects</a>. The California-only analysis ignored nearby power plants outside the state. The buffered analysis includes those nearby features while still measuring and mapping distance only inside the focal state.</p>
 <p>Use the interface and code to explore:</p>
 <ul>
-<li>Turn on <code>100 mile California buffer</code> to see the expanded selection area.</li>
-<li>Turn on <code>Buffered power plant selection</code> and look for power plants just outside California.</li>
+<li>Turn on the 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see the expanded selection area.</li>
+<li>Turn on <code>Buffered power plant selection</code> and look for power plants just outside the focal state.</li>
 <li>Use <strong>Inspector</strong> to click the <code>Buffered farthest point</code>.</li>
 <li>Compare the buffered maximum distance to the Part 5 maximum distance.</li>
 <li>Change <code>bufferDistanceMiles</code> from <code>100</code> to <code>25</code>, <code>50</code>, or <code>200</code> and observe how the result changes.</li>
+<li>Change <code>focalStateAbbreviation</code> from <code>CA</code> to another state abbreviation, such as <code>TX</code>, and run the script again.</li>
 </ul>
 <blockquote>
-<p><strong>Concept note:</strong> Buffers do not remove all edge effects. They reduce them by giving the analysis more surrounding context. If important features exist beyond the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance, they can still be excluded.</p>
+<p><strong>Concept note:</strong> Buffers do not remove all <a href="../GLOSSARY.html#edge-effects" class="glossary-term" title="Differences in analysis results caused by the boundary of the study area rather than by the real-world pattern being studied. Edge effects are common when nearby features outside the analysis boundary are excluded even though they would influence results near the boundary.">edge effects</a>. They reduce them by giving the analysis more surrounding context. If important features exist beyond the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> distance, they can still be excluded.</p>
 </blockquote>
 <h2 id="deliverable">Deliverable</h2>
-<p>Create a short PDF submission that includes:</p>
+<p>For your final submission, use the Part 6 script. Change <code>focalStateAbbreviation</code> from <code>CA</code> to another U.S. state abbreviation, such as <code>TX</code>, then run the script again.</p>
+<p>Create a short Google Doc and export it as a PDF. The PDF should include:</p>
 <ul>
 <li>your name</li>
 <li>the lab title</li>
-<li>a Google Earth Engine <strong>Get Link</strong> URL for your saved script</li>
-<li>a brief note describing one change you made to one of the scripts</li>
+<li>the focal state abbreviation you chose</li>
+<li>a Google Earth Engine <strong>Get Link</strong> URL for your saved, modified Part 6 script</li>
+<li>a brief note describing how the result changed when you changed the focal state</li>
 </ul>
-<p>Your changed script should include comments that identify what you changed. Good options include:</p>
-<ul>
-<li>changing the forest-loss <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> year</li>
-<li>changing the slope <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> palette</li>
-<li>changing the polygon used for the mean slope calculation</li>
-<li>adding a <code>Map.addLayer()</code> call to display the polygon</li>
-<li>changing the state forest-loss export from <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> to CSV</li>
-<li>changing the power plant distance analysis <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> from 1 kilometer to 5 kilometers</li>
-<li>changing the buffered power plant analysis from a 100 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a> to a 50 mile or 200 mile <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a></li>
-</ul>
+<p>Your changed script should include a comment near <code>focalStateAbbreviation</code> that identifies the state you changed. For example:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Final submission change: I changed the focal state from CA to TX.</span>
+<span class="hljs-keyword">var</span> focalStateAbbreviation = <span class="hljs-string">'TX'</span>;
+</code></pre>
 <blockquote>
 <p><strong>Course turn-in rule:</strong> All <code>TURN_IN</code> assignments in this course are submitted as PDF files. If the deliverable is a URL, put it in a Google Doc and export that document as a PDF for submission.</p>
 </blockquote>
@@ -2031,12 +2034,12 @@
 
             
                 
-                <a href="04_OPTIONAL_introducing_storymaps_on_arcgis_online.html" class="navigation navigation-prev " aria-label="Previous page: 04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online">
+                <a href="03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html" class="navigation navigation-prev " aria-label="Previous page: 03 - TURN IN - Watershed with QGIS & WhiteBox Tools">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../week06/" class="navigation navigation-next " aria-label="Next page: Week 06 - More Raster & Remote Sensing">
+                <a href="05_OPTIONAL_introducing_storymaps_on_arcgis_online.html" class="navigation navigation-next " aria-label="Next page: 05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -2047,7 +2050,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"05 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.5","depth":2,"next":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - Modeling Movement with Google Earth Engine","level":"1.9.2","depth":2,"path":"week06/01_modeling_movement_with_google_earth_engine.md","ref":"week06/01_modeling_movement_with_google_earth_engine.md","articles":[]},{"title":"02 - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_sampling_and_interpolation_with_qgis.md","ref":"week06/02_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_introducing_planet_com_satellite_imagery.md","ref":"week06/03_introducing_planet_com_satellite_imagery.md","articles":[]}]},"previous":{"title":"04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.4","depth":2,"path":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","mtime":"2026-05-03T21:14:02.862Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-03T21:14:12.884Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Basic Raster Analysis with Google Earth Engine","level":"1.8.4","depth":2,"next":{"title":"05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online","level":"1.8.5","depth":2,"path":"week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.md","ref":"week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.md","articles":[]},"previous":{"title":"03 - TURN IN - Watershed with QGIS & WhiteBox Tools","level":"1.8.3","depth":2,"path":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","ref":"week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.md","mtime":"2026-05-04T18:37:35.222Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-04T18:37:59.833Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

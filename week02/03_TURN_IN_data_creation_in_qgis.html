@@ -613,12 +613,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.4" data-path="../week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+        <li class="chapter " data-level="1.8.4" data-path="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
-                <a href="../week05/04_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+                <a href="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
             
                     
-                    04 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
             
                 </a>
             
@@ -626,12 +626,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.5" data-path="../week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.8.5" data-path="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
-                <a href="../week05/05_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+                <a href="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
             
                     
-                    05 - TURN IN - Basic Raster Analysis with Google Earth Engine
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
             
                 </a>
             
@@ -1253,28 +1253,28 @@ y
 <p>Once configured, you can use these shortcuts to quickly pan and zoom while <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>. For example, press <code>C</code> to pan the map, then switch back to your editing tool using the <code>V</code> key without needing to click on the toolbar. This allows for a smoother workflow and minimizes interruptions during the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> process.</p>
 <h2 id="digitizing-continued">Digitizing continued...</h2>
 <h3 id="understanding-lines-in-gis">Understanding Lines in GIS</h3>
-<p>Lines in GIS are essentially a series of points connected in sequence, forming a continuous path. Each point, or vertex, represents a coordinate pair that defines the shape and direction of the line. When <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> lines, it is important to place vertices at key locations, such as intersections, curves, or changes in direction, to accurately represent the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> being mapped. Careful placement of vertices ensures that the line follows the intended path and aligns with other features, especially when snapping is enabled. <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a> lines requires attention to detail and a balance between precision and efficiency, as overly dense vertices can complicate data management, while too few may result in a loss of accuracy.</p>
+<p>Lines in GIS are essentially a series of points connected in sequence, forming a continuous path. Each point, or vertex, represents a coordinate pair that defines the shape and direction of the line. When <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> lines, it is important to place vertices at key locations, such as intersections, curves, or changes in direction, to accurately represent the <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> being mapped. Careful placement of vertices ensures that the line follows the intended path and aligns with other features, especially when <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> is enabled. <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a> lines requires attention to detail and a balance between precision and efficiency, as overly dense vertices can complicate data management, while too few may result in a loss of accuracy.</p>
 <h3 id="lines-digitizing-paths-and-sidewalks">Lines: Digitizing Paths and Sidewalks</h3>
 <ol>
 <li>With the <strong>paths</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, toggle editing on. into the project and toggle editing mode.</li>
-<li><p>Enable snapping for topological accuracy:</p>
+<li><p>Enable <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> for topological accuracy:</p>
 <ul>
-<li>Go to <strong>Project &gt; Snapping Options</strong>.</li>
-<li>Enable snapping for the line <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
-<li><p>Check <strong>Avoid Overlaps</strong> and <strong>Enable Topological Editing, snapping on intersection and self-snapping</strong>.</p>
+<li>Go to <strong>Project &gt; <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">Snapping</a> Options</strong>.</li>
+<li>Enable <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> for the line <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
+<li><p>Check <strong>Avoid Overlaps</strong> and <strong>Enable Topological Editing, <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> on intersection and self-<a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a></strong>.</p>
 <p><img src="images/20250328_184220_image.png" alt=""></img></p>
 <p><img src="images/20250328_184430_image.png" alt=""></img></p>
 </li>
 </ul>
 </li>
-<li>You can dismiss the Project Snapping Settings dialog, once you have made the change to settings.</li>
+<li>You can dismiss the Project <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">Snapping</a> Settings dialog, once you have made the change to settings.</li>
 </ol>
 <h4 id="sidenote-what-is-snapping">Sidenote: What is Snapping?</h4>
-<p>Snapping ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.</p>
+<p><a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">Snapping</a> ensures that vertices and edges of features align precisely, preventing gaps or overlaps. This is crucial for creating topologically correct data, especially for networks like paths and sidewalks.</p>
 <ol>
 <li><p>Use the <strong>Add Line <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong> tool  <img src="images/20250402_101713_image.png" alt=""></img> to trace paths and sidewalks:</p>
 </li>
-<li><p>Place vertices at intersections to ensure proper snapping for network integration.</p>
+<li><p>Place vertices at intersections to ensure proper <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> for network integration.</p>
 </li>
 <li>To <strong>FINISH DRAWING A LINE</strong>, right-click (two-finger click on Mac) <strong>AFTER</strong> you place the final vertex (coordinate pair).</li>
 <li>Don't forget to save your edits using the <strong>Save Edits button</strong> <img src="images/20250402_101940_image.png" alt=""></img>, periodically.</li>
@@ -1294,10 +1294,10 @@ y
 <h4 id="steps-for-digitizing-polygons">Steps for Digitizing Polygons</h4>
 <ol>
 <li>With the <strong>structures</strong> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> selected in the Layers Panel, toggle editing mode.</li>
-<li><p>Enable snapping for polygons:</p>
+<li><p>Enable <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> for polygons:</p>
 <ul>
-<li>Go to <strong>Project &gt; Snapping Options</strong>.</li>
-<li>Enable snapping for the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
+<li>Go to <strong>Project &gt; <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">Snapping</a> Options</strong>.</li>
+<li>Enable <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> for the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and set the tolerance to 10 pixels.</li>
 <li>Check <strong>Avoid Overlaps</strong> and <strong>Enable Topological Editing</strong>.</li>
 </ul>
 <p><img src="images/20250328_184220_image.png" alt=""></img></p>
@@ -1312,7 +1312,7 @@ y
 </ol>
 <h4 id="tips-for-accurate-polygon-digitization">Tips for Accurate Polygon Digitization</h4>
 <ul>
-<li><strong>Snapping</strong>: Use snapping to align polygon edges with adjacent features, ensuring there are no gaps or overlaps.</li>
+<li><strong><a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">Snapping</a></strong>: Use <a href="../GLOSSARY.html#snapping" class="glossary-term" title="An editing or processing operation that moves a point, line, or polygon vertex to align with another feature or grid location. In watershed analysis, snapping a pour point helps align a vector outlet with the raster cell center used by the hydrologic model.">snapping</a> to align polygon edges with adjacent features, ensuring there are no gaps or overlaps.</li>
 <li><strong>Zooming</strong>: Zoom in to capture fine details and ensure precise placement of vertices.</li>
 <li><strong><a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a></strong>: Adjust the <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> of the polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to make it easier to distinguish from the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>.</li>
 </ul>
@@ -1378,7 +1378,7 @@ y
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-05-03T21:14:01.710Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-03T21:14:12.884Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"next":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","ref":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","articles":[]},"previous":{"title":"02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org","level":"1.5.2","depth":2,"path":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","ref":"week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/03_TURN_IN_data_creation_in_qgis.md","mtime":"2026-05-04T18:37:34.073Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-04T18:37:59.833Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
