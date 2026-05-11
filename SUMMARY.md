@@ -48,9 +48,10 @@
 
 * [Week 06 - More Raster & Remote Sensing](week06/README.md)
   * [00 - Basic Remote Sensing with Google Earth Engine](week06/00_basic_remote_sensing_with_google_earth_engine.md)
-  * [01 - Modeling Movement with Google Earth Engine](week06/01_modeling_movement_with_google_earth_engine.md)
+  * [01 - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](week06/01_tobler_hiker_function_and_modeling_movement.md)
   * [02 - Sampling & Interpolation with QGIS](week06/02_sampling_and_interpolation_with_qgis.md)
   * [03 - Introducing Planet.com Satellite Imagery](week06/03_introducing_planet_com_satellite_imagery.md)
+    * [Planet SDK 101: Lake Lagunita Search, Ordering, and NDVI](data/planet_SDK_101_LakeLagunita.ipynb)
 
 * [Week 07 - Web Mapping & APIs](week07/README.md)
   * [00 - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)

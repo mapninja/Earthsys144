@@ -1,423 +1,563 @@
-## Week 6 Lab - Sampling and Interpolation
+# Sampling and Interpolation with QGIS
 
-**_What You’ll Learn_**:
+> **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
-- Systematic and random sampling
-- Stratified sampling
-- Majority filtering
-- Basic interpolation methods
+## Overview
 
-You will also begin working more with Raster data in this exercise. In previous exercises you have USED raster data, but here, you will begin CREATING raster data, specifically from vector data, using _interpolation methods._
+This lab introduces sampling strategies and spatial interpolation methods in QGIS. Instead of using raster data as-is, you will **create** new raster surfaces from point samples using three different interpolation techniques.
 
-[**Data** for the exercise are in the L12.zip file](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip).
+You will work with a digital elevation model (DEM) of southeast Arizona to:
 
-https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip
+1. create sample point layers using systematic, random, and stratified sampling strategies
+2. extract elevation values at those sample points
+3. interpolate new raster surfaces from the samples using Inverse Distance Weighting (IDW), Nearest Neighbor, and Spline methods
+4. compare the interpolated surfaces to the original DEM to understand the strengths and limitations of each method
 
-**Background:** The ideas behind the exercises are covered in Chapter 12 (Spatial Estimation) and 10 (Raster Analysis) of the GIS Fundamentals textbook.
+> **Concept note:** Sampling and interpolation are fundamental to converting sparse point measurements (like weather stations or survey points) into continuous raster surfaces that cover an entire area. The method you choose affects how smooth the output is, how well it honors the original sample values, and how it represents areas between samples.
 
-**Sampling and Interpolation in QGIS**
+## What You Should Understand After This Lab
 
-We’ll practice the mechanics of creating sample points in QGIS, and use them to extract data from a DEM, and practice interpolation.  We’ll then compare the interpolated surface to the original DEM to calculate an error surface, and extract error statistics from a different set of sample points from the same DEM.
+By the end of this exercise, you should be able to explain:
 
-We’ll apply both systematic and random sampling. We’ll also develop and apply a stratification layer, because sometimes you want to stratify your sample, which means you wish to increase sample density in some portion of your area, using a map of zones, or strata.
+- the difference between systematic, random, and stratified sampling strategies and when to use each
+- how interpolation methods like IDW, Nearest Neighbor, and Spline create raster surfaces from point data
+- why stratification can be useful when sampling density matters in some regions more than others
+- how filtering operations like majority filtering generalize raster data
+- how to compare interpolated surfaces to original data to assess interpolation quality
 
-1. Start QGIS, add the DEM from southeast Arizona, _ChirDEM_, and...
-2. **Apply a color scheme** to highlight topography in the DEM. Note the variation in topography, where there is a significant amount of change, where there is little change.
-3. Open the **Processing>Toolbox**
-4. Search for ‘**Hillshade**’
-5. Use the **Raster** **Terrain Analysis**>**Hillshade tool** to **create a hillshade:**
+## Getting Ready
+
+You will need:
+
+- [L12.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip) containing the elevation data for this exercise, OR download `ChirDEM.tif` directly from the course repository
+- QGIS with Processing Toolbox and GDAL tools available
+- SAGA tools (for majority filtering)
+
+> **Background:** The concepts and workflows in this exercise are covered in Chapter 12 (Spatial Estimation) and Chapter 10 (Raster Analysis) of the GIS Fundamentals textbook.
+
+### Download the Data
+
+**Option 1: Download the complete lab data package**
+
+[Download L12.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip) - This archive contains the ChirDEM and supporting documentation. Unzip it to a stable location on your computer.
+
+**Option 2: Download ChirDEM.tif directly**
+
+If you only need the elevation model, download it directly:
+
+[Download ChirDEM.tif](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif)
+
+This file is a GeoTIFF containing the digital elevation model for southeast Arizona (30-meter resolution, NAD83 UTM Zone 12N projection).
+
+### Project Setup
+
+1. Create a new folder for this lab on your computer.
+2. Place `ChirDEM.tif` in that folder (or extract it from L12.zip).
+3. Create a new QGIS project in that same folder and save it as `sampling_interpolation.qgz`.
+4. You will create all output layers (sample points, interpolated rasters, etc.) in this project folder.
+
+## Data for This Exercise
+
+The main data layer is:
+
+- `ChirDEM.tif`: A digital elevation model of southeast Arizona at 30-meter resolution, in NAD83 UTM Zone 12N projection (EPSG:26912)
+
+You will create multiple output layers in this lab, including sample point layers, interpolated raster surfaces, and a stratification layer based on slope classification.
+
+## Part 1: Preparing the DEM and Creating a Base Hillshade
+
+We’ll start by adding the DEM and creating visualization layers to help us understand the terrain variation.
+
+1. Start QGIS, add the DEM from southeast Arizona, _ChirDEM_, and apply a color scheme to highlight topography in the DEM. Note the variation in topography—where there is significant change and where there is little change.
+2. Open **Processing > Toolbox** and search for **Hillshade**.
+3. Use **Raster > Terrain Analysis > Hillshade** to create a hillshade with:
+   - **Solar altitude (vertical angle):** `25 degrees`
+   - **Azimuth:** `315`
+4. Browse and name the output: `Hillshade`
 
 ![](images/Sampling_Interpolation-c4dafe78.png)
 
-1. Use a **solar altitude (vertical angle)** of `25 degrees`, and **Azimuth** of `315`.
-2. Browse and Name the **Output** `Hillshade` .
+5. When finished, place the `Hillshade` underneath the `ChirDEM` in the layers panel.
+6. Set the `ChirDEM` **Rendering** to **Multiply** in the Layer Styling panel to blend the hillshade with the elevation colors.
 
 ![](images/20250427_173837_image.png)
 
-3. When finished, put the `Hillshade` underneath the `ChirDEM` and set the `ChirDEM` **Rendering** to **Multiply**, in the Layer Styling Panel.
+> **Workflow note:** Hillshades help visualize terrain detail by showing the interplay of light and shadow. Placing the DEM above a hillshade using Multiply blending combines color information with shading for a richer visualization.
 
-### Keeping Organized
+## Organizing Your Layers into Groups
 
-To keep your work organized, group your data layers within the Layers panel.  There will be four (4) parts of the lab.  Each will involve a related set of data layers. You can group layers within the Layers Panel to improve organization.
+To keep your work organized as you create multiple interpolation outputs, you will group related layers in the Layers panel. This lab will involve four different interpolation approaches, each with a related set of data layers.
 
-6. **_Select both the DEM and hillshade in the TOC_** (shift-click (PC) or cmd-click (Mac), **_then right click_**, and finally **_click on “Group Selected” in the dropdown_**.
-7. **Rename** this **Group: Original**
+6. **Select both the DEM and hillshade in the Layers panel** (shift-click on PC, cmd-click on Mac), **then right-click and select “Group Selected”** from the dropdown.
+7. **Rename** this group: `Original`
 
-We have now Grouped the original data. As you create layers for each of the three different interpolation methods, select appropriate layers and Group them, then right click to assign a logical group name.  I suggest names of:
+As you create layers for each interpolation method, select appropriate layers and group them with logical names. Suggested group names:
 
-1. Original
-2. Inverse Distance
-3. Nearest Neighbor
-4. Spline Stratified
+- `Original`
+- `Inverse Distance`
+- `Nearest Neighbor`
+- `Spline Stratified`
 
-If you create a layer and it belongs to a group you don’t want it to belong to, right click and select “**Move Out of Group**”.
+If a layer ends up in the wrong group, right-click and select **Move Out of Group**.
 
-Maps will be done in Landscape view and arrange the layers as below for your final output.  You’ll need to set your print canvas to landscape orientation and make sure the map images don’t  overlap.
+> **Workflow note:** Organizing your layers into groups from the start makes it easier to manage the many intermediate outputs you will create and to prepare your final map layout.
+
+**Final Output Layout:** Your maps will be arranged in a landscape orientation with four side-by-side map frames, one for each interpolation method. Each frame should display the interpolated surface, its hillshade, and contours, arranged consistently across all four maps.
 
 ![](images/FourUpLayout.png)
 
-## **Systematic Sampling and IDW Interpolation**
+## Part 2: Systematic Sampling and IDW Interpolation
 
-We’ll first perform a systematic (grid) sampling, and then an Inverse Distance interpolation.
+In this part, you will create a regular grid of sample points evenly spaced across the DEM, extract elevation values at those points, and then use Inverse Distance Weighting (IDW) interpolation to create a continuous raster surface from those samples.
 
-1. Open **Vector Tools>Research Tools>Regular Points**. (Or look up **Regular Points** in the processing toolbox.)
-2. Set the **input extent** by clicking on the options button (arrow 1), and select **Calculate from layer**, using the `ChirDEM` layer.
-3. Set the **point spacing/count** to `1000`,
-4. **check** use point spacing, to specify you want points 1000m apart (see at right).
-5. Specify an output coordinate system if it is not already set to `EPSG:26912` (that of `ChirDEM`)
-6. Browse to save the the output as **SystematicGrid1000m.shp**
+> **Concept note:** Systematic sampling creates an evenly spaced grid of sample points, which is useful for uniform coverage and is easy to implement. However, it can miss important variation if spatial features align poorly with the grid direction.
+
+### Creating a Regular Grid of Sample Points
+
+1. Open **Vector > Research Tools > Regular Points** (or search for **Regular Points** in the Processing Toolbox).
+2. Set the **input extent** by clicking the options button and selecting **Calculate from layer**, using the `ChirDEM` layer.
+3. Set the **point spacing/count** to `1000` meters.
+4. Check **Use point spacing** to specify that you want points 1000 meters apart.
+5. Specify an output coordinate system if it is not already set to `EPSG:26912` (the CRS of `ChirDEM`).
+6. Browse and save the output as **SystematicGrid1000m.shp**.
 
 ![](images/20250427_174625_image.png)
 
-A regular grid of points should be displayed on your screen, if not, navigate to the file you created and display it.
-
-It should look something like the figure below.
+A regular grid of points should be displayed on your screen. If not, navigate to the file you created and add it to the project.
 
 ![](images/20250427_174701_image.png)
 
-Next we will extract the elevation values at these points.
+> **Concept note:** A 1000-meter spacing creates approximately 1000 sample points across the study area, providing uniform coverage without specifying a point count directly. This regular spacing ensures unbiased sampling across all terrain types.
 
-13. Return to the **Processing Toolbox** and use the **Raster Analysis**>**Sample raster values** tool, from the QGIS tools.
-14. Specify:
-    4. Input layer: `SystematicGrid1000m`
-    5. Raster Layer to Sample:`ChirDEM`
-    6. Output point features:`Elevation1000mGrid`
-    7. Output column prefix: **SAMPLE_**
+### Extracting Elevation Values at Sample Points
+
+Next, you will sample the elevation values from the DEM at each grid point location.
+
+1. Return to the **Processing Toolbox** and open **Raster > Analysis > Sample raster values**.
+2. Specify:
+   - **Input layer:** `SystematicGrid1000m`
+   - **Raster layer to sample:** `ChirDEM`
+   - **Output point features:** `Elevation1000mGrid`
+   - **Output column prefix:** `SAMPLE_`
 
 ![](images/20250427_175511_image.png)
 
-This should generate a point layer similar the original, but with an added table column that contains the sampled elevation below each point:
+This generates a point layer with an added attribute column containing the sampled elevation value below each point:
 
 ![](images/20250427_175601_image.png)
 
-Inspect the table for `Elevation1000mGrid` noting the attributes and their values.
+Open the attribute table and inspect the `SAMPLE_1` column, which now contains elevation values extracted from the DEM.
 
-Note the column with our specified prefix, `SAMPLE_1` here, is filled with **elevation values**.
+> **Workflow note:** The column prefix (`SAMPLE_`) is prepended to the raster band number to create column names. Since `ChirDEM` has one band, the result is `SAMPLE_1`.
 
-### Interpolation of Sample Points (Vector to Raster Conversion)
+### Interpolating a Surface with Inverse Distance Weighting (IDW)
 
-Now, perform an **Inverse Distance Weighted** interpolation:
+Now you will create a new raster surface by interpolating from these sample points using IDW, which weights nearby points more heavily than distant ones.
 
-1. Return to the Processing Toolbox Panel and use the search box to find the **GRID:Inverse distance to a Power**
+1. Return to the **Processing Toolbox** and search for **GRID: Inverse distance to a Power**.
 
 ![](images/Sampling_Interpolation-c09e5c96.png)
 
 2. Specify:
-   1. **Point Layer**:`Elevation1000m` as your
-   2. **Weighting Power**: `2`
-   3. **Smoothing**: `1`
-   4. **Radii of search ellipse**: `1000` for both search ellipses
-   5. **Max number of data points** to use: `12`
-   6. **Min number of data points** to use: `1`
-   7. Open up **Advanced Parameters**.
-      : `SAMPLE_1` (_This is the elevations values field_)
-   8. We want to create  ~30m raster cells, but this is actually quite clunky to control using the GRID tools from GDAL, as we are. Paste the following code into the **Additional  command-line parameters [optional]:**
+   - **Point layer:** `Elevation1000mGrid`
+   - **Weighting power:** `2`
+   - **Smoothing:** `1`
+   - **Search ellipse radii (X and Y):** `1000` meters for both
+   - **Maximum number of data points to use:** `12`
+   - **Minimum number of data points to use:** `1`
+3. Open **Advanced Parameters** and set:
+   - **Z value field:** `SAMPLE_1` (the elevation values column)
+4. For the output raster cell size, paste this into **Additional command-line parameters [optional]**:
 
-`-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793`
+```
+-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793
+```
 
-This is the XY Extents, in UTM, as well as the dimensions, in pixels, that we want our output file to have, and if you open the properties of the `ChirDEM` layer, you will see that it has the same dimensions. We are simply using it’s values as a template. You can take a look at docs for GDAL_GRID tools, here: [https://gdal.org/programs/gdal_grid.html](https://gdal.org/programs/gdal_grid.html)
+These parameters specify the output extent and dimensions (943 × 793 pixels) to match the original DEM’s 30-meter cell size. See the [GDAL Grid documentation](https://gdal.org/programs/gdal_grid.html) for more details.
 
-9. **Interpolated (IDW) Output**: Browse to save to your project folder and name: `IDWsysP2_12`
-10. Leave the rest of the settings at `default` and **run** the tool
+5. Browse and name the **Interpolated (IDW) Output:** `IDWsysP2_12`
+6. Run the tool.
 
 ![](images/20250427_180112_image.png)
 
-You can see the “pattern” created by the interaction between search ellipses, and the sample points.
+> **Concept note:** IDW interpolation calculates each output cell value as a weighted average of nearby sample points. The weighting power (2 in this case) controls how much closer points are favored—higher values make distant points matter even less. The search radius limits which points contribute to each cell, creating the characteristic “pattern” you see where nearby sample points create local influence zones.
+
+The resulting map shows clear pattern marks where sample points and search ellipses interact:
 
 ![](images/20250427_180159_image.png)
 
-4. Return to your **Original Group** and right-click on the `ChirDEM` **>Styles>Copy Style**
-5. Now, right-click on your `IDWsysP2_12`**>Styles>Paste Style** to copy the color ramp and classification you used in your Original `ChirDEM` layer.
+### Styling the IDW Surface
+
+Now apply the same color scheme used for the original DEM to the interpolated surface so they are visually comparable.
+
+1. Return to your **Original group** and right-click on the `ChirDEM` layer.
+2. Select **Styles > Copy Style**.
+3. Right-click on your `IDWsysP2_12` layer and select **Styles > Paste Style** to apply the same color ramp and classification.
 
 ![](images/Sampling_Interpolation-2a0e4703.png)
 
 ![](images/Sampling_Interpolation-952d9b81.png)
 
-### Creating Contours (Raster to Vector Conversions)
+### Creating Contours from the Interpolated Surface
 
-1. **_Generate contours_** for the interpolated surface with the  **_Main Menu>Raster>Extraction_**>**_Contour_** tool.
+Contours help visualize the shape of the interpolated surface and make it easier to compare across methods.
 
-   1. **Input Layer**: `IDWsysP2_12`
-   2. **Interval**: `100` (meters, since this is the CRS unit)
-   3. **Contours Output**: Browse and save as `IDW100mContours.shp`
+1. Open **Main Menu > Raster > Extraction > Contour**.
+2. Specify:
+   - **Input layer:** `IDWsysP2_12`
+   - **Interval:** `100` (meters, matching the DEM's coordinate system units)
+   - **Contours output:** Browse and save as `IDW100mContours.shp`
 
 ![](images/20250427_180543_image.png)
 
-2. As you did with the original `ChirDEM`, use the **Raster terrain analysis>Hillshade** to create an `IDWHillshade` layer with your `IDWsysP2_12`, using an **Azimuth of 315 and Elevation of 25**
-3. **Group** the `IDW`, `IDWHillshade`, and `contours`, pulling them into an IDW Group.
-4. Arrange the layers so that your Hillshade is between your `IDWsysP2_12` and **IDW100mContours** layer, similar to the image, below (not necessarily the same colors, etc...):
+3. As you did with the original DEM, use **Raster > Terrain Analysis > Hillshade** to create an `IDWHillshade` layer using the same parameters (Azimuth 315, Elevation 25).
+4. **Group** the `IDWsysP2_12`, `IDWHillshade`, and `IDW100mContours` layers in a group named `Inverse Distance`.
+5. Arrange the layers so that your hillshade is positioned between the interpolated raster and the contours, similar to the image below (colors may vary):
 
 ![](images/20250427_181000_image.png)
 
-### Random Sampling and Nearest Neighbor Interpolation
+## Part 3: Random Sampling and Nearest Neighbor Interpolation
 
-Now we will make use of a new sampling strategy and generate a set of random sampling points:
+In this part, you will create a random sample of points, extract elevation values, and use Nearest Neighbor interpolation, which produces a distinctly different result from IDW.
 
-1. Open the **Vector Tools>Research Tools>Random Points in Extent** tool
-2. Input Extent **>...>Calculate from Layer>**`ChirDEM`
-3. Number of Points: `1000`
-4. Minimum Distance: `60 meters`
-5. Maximum number of search attempts…: `200`
-6. Browse and save the Output  Random Points as: `Random1000Points`
+> **Concept note:** Random sampling avoids the artificial grid pattern of systematic sampling and is good when you want unbiased point placement. However, random samples can accidentally cluster in some areas and leave gaps in others, which affects interpolation quality.
+
+### Creating Random Sample Points
+
+1. Open **Vector > Research Tools > Random Points in Extent**.
+2. Set the **Input extent** by clicking **... > Calculate from Layer** and selecting `ChirDEM`.
+3. Specify:
+   - **Number of points:** `1000`
+   - **Minimum distance:** `60 meters` (to prevent clustering)
+   - **Maximum number of search attempts:** `200`
+4. Browse and save the output as **Random1000Points.shp**.
 
 ![](images/20250427_181349_image.png)
 
-7. Now sample the elevation values from `ChirDEM` as you did with the systematic layer, using the **Processing Toolbox>Raster> Analysis>Sample raster values**
-
-![](images/Sampling_Interpolation-f44a6140.png)
-
-8. Name the output something like **Random1000Elevation**
+5. Now extract elevation values from the DEM at these random points using **Processing Toolbox > Raster > Analysis > Sample raster values**.
+6. Name the output **Random1000Elevation**.
 
 ![](images/20250427_181554_image.png)
 
-![](images/Sampling_Interpolation-fbb0ebe0.png)
+> **Workflow note:** The minimum distance parameter ensures points don’t cluster too tightly, which would create redundant samples. This improves spatial coverage while still preserving randomness.
 
 ### Nearest Neighbor Interpolation
 
-Nearest Neighbor interpolation uses the single nearest value to calculate the value of each raster cell. This  results in  something a ‘stepped’ set of data values, where raster cells nearest a particular sample value, all  take that value. This produced something  similar to the pattern we saw with the Voronoi tool.
+Nearest Neighbor interpolation creates a stepped surface where each raster cell takes the value of the single nearest sample point. This produces output similar to Voronoi polygons and is useful when you want to preserve original sample values without smoothing.
 
-9. Calculate and interpolation surface, this time using: **Processing toolbox>GDAL>Raster Analysis>Grid (Nearest Neighbor)**
-10. Specify:
-11. **Point Layer**: `Random1000Elevation`
-12. **First & Second search ellipses**: `1000`
-13. **Z value**: `SAMPLE_1`
-14. Use the **Additional command-line parameters [optional]** again to control the Cell Size and dimensions of output:
+1. Search the **Processing Toolbox** for **Grid (Nearest Neighbor)** under **GDAL > Raster Analysis**.
+2. Specify:
+   - **Point layer:** `Random1000Elevation`
+   - **First and second search ellipses:** `1000` meters
+   - **Z value field:** `SAMPLE_1`
+3. Paste the same command-line parameters into **Additional command-line parameters [optional]**:
 
-`-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793`
+```
+-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793
+```
 
-11. Browse and name the **Output Interpolated (Nearest Neighbor)** layer: `NNfromRandom1000.tif`
-12. Run the interpolation.
+4. Browse and name the output: **NNfromRandom1000.tif**
+5. Run the tool.
 
 ![](images/20250427_181930_image.png)
 
-12. **Cut & Paste** the **Style** from your original `ChirDEM` layer to the new `NNfromRandom1000.tif`
-13. Create and add contour lines, _as you did for the_ `IDW interpolation`.
+> **Concept note:** Nearest Neighbor is a deterministic method—each cell always takes the value of its nearest point. Unlike IDW, which blends values from multiple neighbors, Nearest Neighbor creates discrete zones of constant elevation, making it useful when you have authoritative point measurements that should not be smoothed or averaged.
+
+### Styling and Visualizing Nearest Neighbor Results
+
+1. Copy the style from your original `ChirDEM` layer and paste it onto `NNfromRandom1000.tif`, just as you did for the IDW result.
+2. Create contour lines from the Nearest Neighbor surface using **Raster > Extraction > Contour** with an interval of `100` meters.
+3. Create an `NNHillshade` layer using **Raster > Terrain Analysis > Hillshade** with Azimuth 315 and Elevation 25.
 
 ![](images/20250427_182216_image.png)
 
-15. Create a `NNHillshade` layer, using an **Azimuth of 315 and a solar angle (elevation) of 25.**
-
 ![](images/20250427_182615_image.png)
 
-15. **Create a Nearest Neighbor Group** containing the sample point, contours, interpolated raster layers within the Layers panel, naming it something like Nearest Group.
-    Your results should look something like the figure here. However, since we are sampling randomly, each map will look slightly different.
+4. Create a **Nearest Neighbor group** in the Layers panel containing the sample points, contours, and interpolated raster layers.
+
+Your results should resemble the figure below. Note that since the sampling is random, your exact map will differ:
 
 ![](images/20250427_182705_image.png)
 
-### Stratified Random Sampling of a Raster Layer
+## Part 4: Stratified Random Sampling and Spline Interpolation
 
-Sometimes we want to vary the sampling frequency across a map. Here, we’ll place **_more samples in steeper areas_**, and use individual polygon areas by slope class to control sampling density.
+In this part, you will implement a more sophisticated sampling strategy: stratified random sampling. Instead of sampling uniformly across the landscape, you will **increase sampling density in steep areas** where terrain variation is greatest. You will then use Spline interpolation, which creates a smooth surface that may not pass exactly through all sample points but produces continuous curvature.
 
-First we’ll create three zones, or strata, and then we’ll assign samples based on these strata. Here, we are using an elevation dataset, but this could, as easily, be used with a dataset like [Landscan](https://earthworks.stanford.edu/catalog/stanford-rg696cc8418) to stratify by population.
+> **Concept note:** Stratified sampling is useful when different parts of your study area have different importance or variability. By stratifying on slope, you sample more densely where terrain is complex and less densely where it is simple. This is more efficient than uniform sampling for capturing important variation.
 
-Our strata boundaries will be based on calculated slope, filtered to create larger, more generalized areas.
+### Step 1: Calculate Slope
 
-1. Calculate the slope for `ChirDEM`, using **Raster>Analysis>Slope**, using the default settings, and Browsing and saving as `SlopeDegrees`
+Begin by deriving a slope layer from the DEM. Your strata boundaries will be based on slope classes.
+
+1. Open **Processing Toolbox > Raster > Analysis > Slope**.
+2. Use `ChirDEM` as the input.
+3. Use the default settings (slope output in degrees).
+4. Browse and save the output as **SlopeDegrees**.
 
 ![](images/20250427_182808_image.png)
 
 ![](images/20250427_182835_image.png)
 
-### Reclassifying Raster Values
+> **Concept note:** Slope represents the rate of elevation change and is derived from the DEM. Steeper slopes indicate terrain where elevation changes rapidly over short distances. In this lab, slope becomes the criterion for stratification—we will sample more densely in steep areas.
 
-2. Reclassify **SlopeDegrees** using **Processing toolbox>Raster Analysis>Reclassify by table**
-3. Click on the **…** next to the **Reclassification table** to create your classes.
-4. Use Add Row to add `3` rows, then fill in the rows.
-5. Use three classes, of:
-6. `up to 1.5`
-7. `1.5-18`
-8. `18 and up`
+### Step 2: Reclassify Slope into Strata
+
+Convert continuous slope values into three discrete classes representing flat, intermediate, and steep terrain.
+
+1. Open **Processing Toolbox > Raster > Analysis > Reclassify by table**.
+2. Click the **...** button next to the **Reclassification table** to define your classes.
+3. Click **Add Row** to create `3` rows.
+4. Define three classes:
+   - `0 to 1.5` (flat)
+   - `1.5 to 18` (intermediate)
+   - `18 and up` (steep)
 
 ![](images/20250427_182939_image.png)
 
-These values are chosen to yield acceptably balanced classes.  Usually you stratify for some threshold of an attribute, e.g., _slopes above which you can’t build_, or _elevations where you’re unlikely to find a resource of interest_.
+These thresholds were chosen to create reasonably balanced classes. In a real workflow, you would select thresholds based on domain knowledge—for example, slopes above which construction is infeasible, or elevations where a particular resource is unlikely to be found.
 
-5. Name the output something like `ReclassSlope`
+5. Browse and save the output as **ReclassSlope**.
 
 ![](images/20250427_183053_image.png)
 
-Your layer should look something like this:
+Your reclassified layer should look similar to this:
 
 ![](images/20250427_183457_image.png)
 
-### Removing Small Zones
+> **Workflow note:** Reclassification reduces complexity by converting many continuous values into a small number of meaningful categories. This simplification is essential for stratification because it defines the population of each stratum.
 
-Now we want to generalize the strata polygons, removing those from single cells or long, thin areas.  Keeping them would complicate sampling needlessly. We’ll use something called a “Majority” filter, which creates a roving “neighborhood” window.
+### Step 3: Apply Majority Filtering to Generalize Strata
 
-1. Use **Processing Toolbox>SAGA>Raster Filter>Majority/Minority filter**
+Before creating sampling zones, generalize the reclassified slope to remove isolated single cells or long thin areas that would complicate stratified sampling.
+
+1. Open **Processing Toolbox > SAGA > Raster Filter > Majority/Minority filter**.
 2. Specify:
-
-   1. **Type**: `Majority`
-   2. **Search Mode**: `Circle`
-   3. **Radius**: `10`
-   4. **Threshold**: `50%`
-3. Name `ReclassSlopeMajority` (Note that the only available output type is `*.sdat`)
+   - **Type:** `Majority`
+   - **Search mode:** `Circle`
+   - **Radius:** `10` pixels
+   - **Threshold:** `50%`
+3. Browse and save the output as **ReclassSlopeMajority** (note: SAGA outputs in `.sdat` format by default).
 
 ![](images/20250427_183551_image.png)
 
-3. Toggle the two layers to see that small zones have been removed.
+Toggle between the reclassified and majority-filtered layers to see how the filter removes small isolated zones:
 
 ![](images/20250427_183655_image.png)
 
-### Raster to Vector Conversions
+> **Concept note:** A majority filter applies a local rule: for each raster cell, if more than half of the cells in a circular neighborhood belong to a particular class, assign that class to the center cell. This generalizes small, isolated patches and creates larger, more contiguous strata suitable for polygon-based sampling.
 
-Convert the final smoothed raster to a vector layer:
+### Step 4: Convert Raster Strata to Vector Polygons
 
-1. Use **Raster Conversion>Polygonize**
-2. Use the `defaults` on your `ReclassSlopeMajority` layer
-3. Name the **output Vector polygons**: `STRATA.shp`
+Convert the generalized raster strata to a vector polygon layer that will define your sampling zones.
+
+1. Open **Raster Conversion > Polygonize**.
+2. Use **ReclassSlopeMajority** as input.
+3. Use the default settings.
+4. Browse and save the **output vector polygons** as **STRATA.shp**.
 
 ![](images/20250427_183744_image.png)
 
 ![](images/20250427_183803_image.png)
 
-### Calculating a Stratified Sampling Model
+### Step 5: Calculate Polygon Areas and Determine Samples per Polygon
 
-We would like to have a total of approximately `1000` **sample points**, with `25%` of the sample points in the **steepest areas** (`class 3`)` 65%` of the samples in the **intermediate slope** areas (`class 2`), and `10%` of the samples in the **flat** (`class 1`).
+Now you will use the area of each polygon to calculate how many sample points should fall within it, proportional to both its size and the desired sampling density for its stratum.
 
-This means `250` sample points in `class 3`, `650` in `class 2`, and `100` in the `class 1` strata.
+The sampling logic is:
+- **Flat areas (Class 1):** 10% of 1000 = 100 points
+- **Intermediate areas (Class 2):** 65% of 1000 = 650 points
+- **Steep areas (Class 3):** 25% of 1000 = 250 points
 
-We can achieve this by distributing these samples over the polygons, **_based on the polygon area relative to the total area for the strata_**.  For example, assume the largest steep polygon has an area of 116.3 square kilometers, and the total steep area is 192.5 square kilometers.  So, this largest steep polygon should get `250 * 116.3/192.5`, or `151` **sample points**.
+These proportions reflect the assumption that steep areas warrant denser sampling to capture their complexity.
 
-We multiply the number of points for the strata by the polygon area, and divide it by the total area of the strata.
+#### Calculating Individual Polygon Areas
 
-How do we get the polygon, class, and total strata area?
+1. Open the attribute table for the `STRATA` layer.
+2. Toggle editing mode.
+3. Add a new field of type **Decimal (Real)** named `SqKm`.
+4. Use the **Field Calculator** to populate this field with polygon areas in square kilometers:
 
-Remember from previous labs, we can calculate the area for each individual polygon by using the **Field Calculator** to edit the layer table.
-
-You might recall that the steps are to:
-
-1. Open the data table for editing (i.e., the **attribute table** from the `STRATA` layer),
-2. **Calculate** the area into a _new_ Decimal number (real)  column named: SqKm using:
-
-   `$area/ 1000000`x
+```
+$area / 1000000
+```
 
 ![](images/20250503_174225_image.png)
 
-4. save edits and toggle off editing.
+5. Save your edits and toggle editing off.
 
-### Basic Statistics on a Field
+#### Computing Total Area per Stratum
 
-We can then summarize the resulting column `SqKm` to get total square kilometers in the SqKm Field, or to get a total for a specific class/strata.  Previously we’ve had you use the Basic Statistics tool to calculate summary statistics for all records in a column, including the sum.
+You now need to find the total area for each class (flat, intermediate, steep) to use as a denominator in the sampling calculation.
 
-1. Use the **Select features using an expression** tool in the **attribute table to select a class**, e.g., `class 1 (DN = 1)`
+1. Open the attribute table for the `STRATA` layer.
+2. Select all polygons for one stratum class using **Select features using an expression**:
+
+```
+"DN" = 1
+```
+
+(Repeat for classes 2 and 3 separately.)
 
 ![](images/20250503_174638_image.png)
 
-1. Use the **Vector>Analysis>Basic Statistics for Fields** tool, checking the box for **Selected features only** (figure below), for a **sum** of that class area.
+3. Open **Vector > Analysis > Basic Statistics for Fields**.
+4. Check the box for **Selected features only**.
+5. Select the `SqKm` field and look at the **Sum** to get the total area for that class.
 
 ![](images/20250503_174801_image.png)
 
-3. Record the **Total area** (SUM) for your selected subset of features.
-
 ![](images/20250503_174817_image.png)
 
-You can then use these with the individual polygon table entries for `SqKm` to calculate the number of sample points to apply per polygon.
+You should arrive at areas close to:
 
-You should arrive at calculated areas close to:
+- **Flat (DN = 1):** approximately 289 square kilometers
+- **Intermediate (DN = 2):** approximately 359 square kilometers
+- **Steep (DN = 3):** approximately 25 square kilometers
 
-* `288.749` square kilometers for the `flat (DN = 1)` strata
-* `359.184`  square kilometers for the `intermediate (DN = 2)` strata
-* `25.134` square kilometers for the `steep (DN = 3)` strata
+(Your numbers may differ slightly depending on your earlier parameters.)
 
-Your numbers may be slightly different, but should be within a few percent of these areas if you used the methods we described above.
+> **Workflow note:** This approach uses feature selection to compute statistics on a subset. It lets you find the total area for each stratum without manually summing individual polygons.
 
-### Calculating Samples per Polygon
+#### Calculating Sample Count per Polygon
 
-4. Open the `strata` layer **attribute table** and add a new **long integer field** named `samp_num`
-5. **Select** all the polygons for a given strata (e.g., first DN=1)
-6. **Multiply** the **total number of points** for each stratum (e.g., 100 for the flat strata, DN = 1) by the area of the polygon, divided by the total area of the strata (in this case 286.7), so:
+Now add a field that calculates how many sample points should be placed in each polygon based on its area relative to its stratum.
 
-* DN=1:  `100 *  "SqKm"  / 287.408`
-* DN=2:  `650 *  "SqKm"  / 357.3539`
-* DN=3:  `250 *  "SqKm"  / 25.1439`
-
-7. Repeat for all three strata, selecting each DN, substituting the appropriate areas and number of samples for the strata, and calculating the number of points per strata.
+1. Open the attribute table for the `STRATA` layer and add a new **Long integer** field named **samp_num**.
+2. Use the **Field Calculator** to compute the number of samples for each polygon. For each stratum, use a formula like:
+   - **DN = 1 (flat):** `100 * "SqKm" / 287.408`
+   - **DN = 2 (intermediate):** `650 * "SqKm" / 357.354`
+   - **DN = 3 (steep):** `250 * "SqKm" / 25.144`
 
 ![](images/20250504_105257_image.png)
 
-8. Save your edits and toggle editing
-
-Note that your numbers for the strata area and relative number of samples may be different than those shown if you applied a somewhat different set of generalization parameters in the previous work. Substitute your specific summary numbers.
+3. Calculate each formula separately for each class. After each calculation, select the next class and recalculate.
+4. Save your edits and toggle editing off.
 
 ![](images/20250504_105516_image.png)
 
-Now, to create the random points.  We use the same tool as before, but this time specifying our new `SampleNum` column to determine the number of points, per feature
+> **Concept note:** This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer.
 
-1. Open the **Vector>Research tools>Random Points in Polygons**.
-2. Specify `Strata` as the **Input Polygon Layer**
-3. Click the button on the right end of the **Number of points for each feature option**, then a click on **Field type>SampleNum** in the drop-down to specify the field that holds the number of points for each feature.
+### Step 6: Generate Stratified Random Points
+
+Now create the stratified random sample using the `samp_num` field to determine point density within each polygon.
+
+1. Open **Vector > Research Tools > Random Points in Polygons**.
+2. Set **Input polygon layer** to `STRATA`.
+3. For the **Number of points for each feature** option, click the button on the right end of the field.
+4. From the dropdown, select **Field type > samp_num** to use the field you just calculated.
 
 ![](images/Sampling_Interpolation-c2c8d1d0.png)
 
-4. Browse and save the Output **Random points in polygons** layer as `StrataRandom1000.shp`
+5. Browse and save the **Output random points in polygons** as **StrataRandom1000.shp**.
 
 ![](images/Sampling_Interpolation-51a42dee.png)
 
-This should generate a sample set that looks something like that below, with a higher sampling density in the steeper areas of interest:
-
-To add colors to your STRATA map, change symbology to “Categorized” and use “DN” for value.
+This generates a point layer with higher sampling density in the steeper areas (where `samp_num` is larger) and lower density in flatter areas:
 
 ![](images/20250504_110405_image.png)
 
-### Spline Interpolation
+> **Workflow note:** To add colors to your map, change the `STRATA` layer's symbology to **Categorized** using **DN** as the value field. This helps visualize which strata are being sampled more densely.
 
-Now you will use this stratified random sample to produce one last interpolation method.
+### Step 7: Extract Elevation Values from Stratified Samples
 
-1. First, use the methods previously described (**Processing> Toolbox>Raster Analysis>Sample raster values**) to once again sample/assign the `ChirDEM` **elevations** found at each sample point, and saving the Output as `StratRandElevationSamples.shp`
+As before, sample the elevation values from the DEM at these stratified random points:
+
+1. Open **Processing Toolbox > Raster > Analysis > Sample raster values**.
+2. Specify:
+   - **Input layer:** `StrataRandom1000`
+   - **Raster layer to sample:** `ChirDEM`
+   - **Output point features:** `StratRandElevationSamples`
+   - **Output column prefix:** `SAMPLE_`
 
 ![](images/20250504_110829_image.png)
 
-1. Now, estimate a surface using a spline interpolation routine, found in the **Processing Toolbox**>**SAGA**>**Raster Creation Tools**>**Multi-level b-spline**.
-2. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`STRATA_1`)
-3. **Output Extent**: **Calculate from Layer>**`ChirDEM`
+### Step 8: Spline Interpolation
+
+Spline interpolation creates a smooth continuous surface that minimizes overall curvature. Unlike IDW or Nearest Neighbor, splines are constrained to produce a mathematically smooth function, which can produce unrealistic values between sample points.
+
+1. Open **Processing Toolbox > SAGA > Raster Creation > Multi-level b-spline**.
+2. Specify:
+   - **Input points:** `StratRandElevationSamples`
+   - **Attributes:** `SAMPLE_1` (the elevation field)
+   - **Output extent:** Calculate from layer > `ChirDEM`
+   - **Cellsize:** `30`
+   - **Refinement:** `[1] Yes`
+   - **Threshold error:** `default`
+   - **Maximum level:** `11`
 
 ![](images/20250504_111040_image.png)
 
-1. **Cellsize**: `30`
-2. **Refinement**: `[1]yes`
-3. **Threshold Error**: `default`
-4. **Maximum Level**: `11`
-5. **Output Grid**: Browse and name `SplineStratRand`
+3. Browse and name the **Output grid:** **SplineStratRand**.
 
 ![](images/20250504_111210_image.png)
 
-9. After running the tool, **calculate contours**, Create a **hillshade** and _apply the same style_ as the other Interpolation Layers, including applying transparency to the hillshade, etc...
-10. “**Group**” the Spline layers in the **Layers panel**.
+4. Run the tool.
 
-### To Turn In:
+> **Concept note:** B-spline interpolation (Multi-level b-spline) fits a smooth function through the sample points by minimizing curvature. It does not necessarily pass exactly through every sample point, but it produces a continuous, smooth surface without the sharp discontinuities of Nearest Neighbor or the localized patterns of IDW.
 
-Display these “Groups” and the sample points on your layout.  Arrange the layout so it looks approximately like that in the figure below, although your surfaces and contours may not be exactly the same, and you may use a different base color scheme.  However, you should use the same set of symbology throughout, especially for the elevation surface, so that you may compare the results from the different methods more easily.  Include appropriate title, labels, scale bar, name, and north arrow and submit as a PDF.
+### Step 9: Finishing the Spline Layer
 
-#### Hint:
+Now complete the spline surface by adding supporting layers and organizing them:
 
-As you create each Map in your layout, Lock each Item in the **Item Properties** list:
+1. Calculate contours from the `SplineStratRand` surface using **Raster > Extraction > Contour** with an interval of `100` meters.
+2. Create a `SplineHillshade` layer using **Raster > Terrain Analysis > Hillshade** with Azimuth 315 and Elevation 25.
+3. Copy the color style from your original `ChirDEM` layer and paste it onto the `SplineStratRand` layer.
+4. **Group** the spline layers (`SplineStratRand`, `SplineHillshade`, and contours) in the Layers panel under a group named **Spline Stratified**.
+
+## Final Deliverable: Comparison Map Layout
+
+You now have four complete interpolation results:
+
+1. **Original** (the source DEM)
+2. **Inverse Distance** (systematic sampling + IDW interpolation)
+3. **Nearest Neighbor** (random sampling + Nearest Neighbor interpolation)
+4. **Spline Stratified** (stratified random sampling + Spline interpolation)
+
+Create a final map layout that displays all four methods side by side for visual comparison.
+
+> **Concept note:** Comparing interpolation methods visually helps you understand their characteristics. IDW shows radial patterns around sample points. Nearest Neighbor produces discrete zones. Spline creates smooth transitions. Stratified sampling focuses effort where variation is greatest. No single method is universally best—choice depends on your data, sample density, and application.
+
+### Layout Instructions
+
+1. Set your print canvas to **landscape** orientation.
+2. Create four map frames arranged side by side, one for each group (Original, Inverse Distance, Nearest Neighbor, Spline).
+3. For each frame:
+   - **Locked** (check the Lock Item box in Item Properties so you don't accidentally move it while working on others)
+   - **Locked layers** (check the Lock Layers option in Layer Properties)
+4. Arrange the layers within each frame consistently using this order from bottom to top:
+   - Hillshade (bottom)
+   - DEM or interpolated raster (set to Multiply blend mode)
+   - Contours (stroke width: 1 point)
+   - Sample points (size: 0.4 points, top layer)
 
 ![](images/20250504_120823_image.png)
 
-and check the option to **Lock the Layers** for each of the four **Map Frames**:
-
 ![](images/20250504_120926_image.png)
 
-, so that you can work on the next, without effecting the previous.
+#### Styling Tips
 
-#### HINT:
+You can easily copy and apply consistent styling across methods:
 
-For the image, below, I used the following layer order and settings:
+1. Right-click on a layer you want to copy the style from.
+2. Select **Styles > Copy Style > All Style Categories**.
+3. Right-click on the layer you want to style and select **Styles > Paste Style > All Style Categories**.
 
-1. Sample Points
-   1. Size: .4 points
-2. Countours
-   1. Stroke: 1 point
-3. DEM (Original or Interpolated)
-   1. Rendering: Multiply
-4. Hillshade
-
-#### Hint:
-
-You can easilty COPY your styles from one layer to another (so that your layers match exactly, across groups), by right-clicking on the layer you want to copy the style from, and going to **>Styles>Copy Style>All Style Categories**, then using **>Styles>Paste Style>All Style Categories** on the layer you want to duplicate the styling too.
-
+This ensures that all four maps use the same color ramp and classification for the elevation surface, making them directly comparable:
 
 ![](images/20250504_121923_image.png)
 
 ![](images/FourUpLayout.png)
+
+### Map Document Requirements
+
+Include on your final map layout:
+
+- Clear titles for each of the four map frames identifying the sampling method and interpolation technique
+- A scale bar
+- A north arrow
+- Your name and the lab submission date
+- A brief legend explaining the color ramp and any other symbology used
+
+Export and submit your layout as a **PDF**.
+
+> **Workflow note:** Locking items and layers prevents accidental changes as you refine the layout. This is especially important when working with multiple map frames.

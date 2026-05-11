@@ -32,6 +32,10 @@ A table containing the attributes associated with the features in a vector layer
 
 One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.
 
+## Band Combination
+
+A way of displaying selected raster or imagery bands through the red, green, and blue channels of a screen. Different band combinations can make vegetation, water, built surfaces, bare soil, rock, or burn scars easier to interpret.
+
 ## Basemap
 
 A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.
@@ -168,6 +172,10 @@ In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine,
 
 In Google Earth Engine, a set of images grouped together, often across time. An image collection may contain many satellite scenes for the same place.
 
+## Iron Oxide Ratio
+
+A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.
+
 ## Join
 
 An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.
@@ -211,6 +219,30 @@ In raster analysis, a way of hiding or excluding pixels that do not meet a condi
 ## Metadata
 
 Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.
+
+## Normalized Difference
+
+A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.
+
+## Normalized Burn Ratio (NBR)
+
+A spectral index that compares near infrared and shortwave infrared reflectance to highlight burned-area signals. NBR is often used for fire analysis, especially when comparing pre-fire and post-fire imagery.
+
+## Normalized Difference Built-up Index (NDBI)
+
+A spectral index that compares shortwave infrared and near infrared reflectance to highlight built-up or dry impervious surfaces. NDBI can also respond to bare soil, so it should be interpreted alongside true color imagery and local context.
+
+## Normalized Difference Moisture Index (NDMI)
+
+A spectral index that compares near infrared and shortwave infrared reflectance to highlight moisture differences in vegetation or soil.
+
+## Normalized Difference Vegetation Index (NDVI)
+
+A spectral index that compares near infrared and red reflectance to highlight green vegetation vigor. Healthy vegetation often has high NDVI because it reflects near infrared strongly and absorbs red light.
+
+## Normalized Difference Water Index (NDWI)
+
+A spectral index that compares green and near infrared reflectance to highlight open water or water-related contrast, depending on the specific formula and setting.
 
 ## Many-to-Many Relationship
 
@@ -280,6 +312,10 @@ The level of detail in a dataset. In raster data, spatial resolution usually ref
 
 The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.
 
+## Sentinel-2
+
+A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.
+
 ## Shapefile
 
 A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.
@@ -299,6 +335,10 @@ A join based on spatial relationship rather than only a shared field. For exampl
 ## Spatial Resolution
 
 The ground area represented by each pixel in a raster dataset. For example, a 10-meter raster has pixels representing 10 by 10 meter areas on the ground.
+
+## Spectral Index
+
+A raster layer calculated from two or more imagery bands to highlight a surface property such as vegetation greenness, moisture, water, burned area, built-up land, or bare soil.
 
 ## Snapping
 
