@@ -8,12 +8,17 @@ This week extends raster analysis into remote sensing, terrain-based movement mo
 - [01 - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](01_tobler_hiker_function_and_modeling_movement.md): cost distance, slope, walking speed, and travel-time surfaces in Google Earth Engine.
 - [02 - Sampling & Interpolation with QGIS](02_sampling_and_interpolation_with_qgis.md): point sampling and interpolation concepts in QGIS.
 - [03 - Introducing Planet.com Satellite Imagery](03_introducing_planet_com_satellite_imagery.md): Planet imagery concepts and a companion SDK notebook workflow.
+- [04 - Pan-Sharpen Landsat Imagery with HSV Color Transformation](04_pan-sharpen_LANDSAT.md): Landsat true color, panchromatic imagery, and HSV pan sharpening in Google Earth Engine.
 
 ## Remote Sensing With Earth Engine
 
 The basic remote sensing lab introduces Sentinel-2 imagery in Google Earth Engine. Students filter imagery by date, bounds, and cloud metadata; compare standalone band-combination scripts for true color, color infrared, urban SWIR, and geology SWIR; calculate standalone spectral indices including NDVI, NBR, NDWI, NDMI, NDBI, BSI, and an iron oxide ratio; and adapt one index for a study area of their own choosing.
 
 The lab examples are intentionally modular. Each Earth Engine code block can be pasted into a blank script and run independently, with map layers toggled off by default so students use the **Layers** widget to compare outputs one at a time.
+
+## Pan Sharpening With Landsat
+
+The pan-sharpening lab introduces Landsat 8 TOA imagery and the relationship between 30-meter multispectral bands and the 15-meter panchromatic band. Students use an HSV color transformation to replace image brightness with panchromatic detail, then compare the original true color image, panchromatic band, and pan-sharpened output.
 
 ## Movement Modeling With Earth Engine
 

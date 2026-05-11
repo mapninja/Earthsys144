@@ -52,6 +52,7 @@
   * [02 - Sampling & Interpolation with QGIS](week06/02_sampling_and_interpolation_with_qgis.md)
   * [03 - Introducing Planet.com Satellite Imagery](week06/03_introducing_planet_com_satellite_imagery.md)
     * [Planet SDK 101: Lake Lagunita Search, Ordering, and NDVI](data/planet_SDK_101_LakeLagunita.ipynb)
+  * [04 - Pan-Sharpen Landsat Imagery with HSV Color Transformation](week06/04_pan-sharpen_LANDSAT.md)
 
 * [Week 07 - Web Mapping & APIs](week07/README.md)
   * [00 - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)

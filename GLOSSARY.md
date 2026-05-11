@@ -172,6 +172,10 @@ In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine,
 
 In Google Earth Engine, a set of images grouped together, often across time. An image collection may contain many satellite scenes for the same place.
 
+## HSV
+
+A color model that describes color using hue, saturation, and value. In remote sensing, HSV can be used for pan sharpening by keeping hue and saturation from a color image while replacing value with a sharper panchromatic band.
+
 ## Iron Oxide Ratio
 
 A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.
@@ -187,6 +191,10 @@ A field used to connect records between tables. A key field may function as a pr
 ## Label
 
 Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.
+
+## Landsat
+
+A long-running series of earth observation satellite missions operated by NASA and the U.S. Geological Survey. Landsat imagery is commonly used for land cover, vegetation, water, urban, geology, and change-detection analysis.
 
 ## Layer
 
@@ -267,6 +275,14 @@ The process by which GIS software displays layers with different coordinate refe
 ## Pixel
 
 The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.
+
+## Pan Sharpening
+
+An image-fusion technique that combines lower-resolution multispectral color bands with a higher-resolution panchromatic band to create a sharper-looking color image. Pan-sharpened imagery is useful for visual interpretation but should be used cautiously for quantitative spectral analysis.
+
+## Panchromatic Band
+
+A grayscale satellite image band that records a broad range of wavelengths in one band. Panchromatic bands often have finer spatial resolution than multispectral color bands from the same sensor.
 
 ## Percent Change
 
@@ -363,6 +379,10 @@ A structured set of rows and columns used to store information. In GIS, tables m
 ## Threshold
 
 A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.
+
+## Top Of Atmosphere (TOA)
+
+Satellite reflectance measured or modeled at the top of the earth's atmosphere, before full atmospheric correction to surface reflectance. TOA imagery is often useful for display and introductory image-processing demonstrations.
 
 ## Virtual Layer
 
