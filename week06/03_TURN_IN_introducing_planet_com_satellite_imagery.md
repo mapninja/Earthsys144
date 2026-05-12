@@ -4,6 +4,10 @@ This workshop introduces Planet.com imagery through a Python notebook that uses 
 
 Notebook: [`data/planet_SDK_101_LakeLagunita.ipynb`](../data/planet_SDK_101_LakeLagunita.ipynb)
 
+<a target="_blank" href="https://colab.research.google.com/github/mapninja/Earthsys144/blob/f99ca2d9a922e383d2f6158d47fa5c8f893b3716/data/planet_SDK_101_LakeLagunita.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 Source AOI: [`data/lakelagunita.geojson`](../data/lakelagunita.geojson)
 
 ## What You Should Understand
