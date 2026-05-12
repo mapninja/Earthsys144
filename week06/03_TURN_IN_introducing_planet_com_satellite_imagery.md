@@ -10,6 +10,10 @@ Notebook: [`data/planet_SDK_101_LakeLagunita.ipynb`](../data/planet_SDK_101_Lake
 
 Source AOI: [`data/lakelagunita.geojson`](../data/lakelagunita.geojson)
 
+![Historical black-and-white photograph of Lake Lagunita and the Stanford campus, useful for understanding that the lake has changed through time and is a good target for remote sensing.](../data/images/CC154.jpg "Lake Lagunita, circa 1903-1906")
+
+The notebook uses two photographs from `data/images/` to give ground-level context for the satellite workflow: a historical view of Lake Lagunita and a recent rainy-season view from February 2023. Together, they help students connect what a satellite records from above to visible conditions on the ground.
+
 ## What You Should Understand
 
 By the end of the notebook, you should be able to:
@@ -77,6 +81,10 @@ The testing section runs a small SDK search before the main workflow. This helps
 ### AOI With Visualization
 
 The notebook loads `data/lakelagunita.geojson`, extracts the first polygon geometry, and maps it with Folium. This introduces the AOI as both a data object and a visible search boundary.
+
+![Recent color photograph of Lake Lagunita after winter rain, with water in the basin, Stanford campus buildings in the background, and a rainbow above the scene.](../data/images/0T1A7331-lagunita-with-rainbow-from-casbs-big-02-27-2023-Canon-EOS-7D-Mark-II-Robert-Siegel-1-1200x801.jpg "Lake Lagunita after winter rain, February 27, 2023")
+
+This recent photograph is especially useful for the AOI section because it shows why the 2022-2023 rainy season is an interesting search window. The GeoJSON AOI gives Planet a precise search boundary, while the photo helps students imagine the surface conditions they are trying to observe from satellite imagery.
 
 ### Search
 
