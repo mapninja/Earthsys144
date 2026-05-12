@@ -1,4 +1,4 @@
-# Introducing Planet.com Satellite Imagery
+# (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery
 
 This workshop introduces Planet.com imagery through a Python notebook that uses the official Planet SDK. The notebook is designed for Google Colab and focuses on a small area of interest around Lake Lagunita so that students can see the full search, ordering, download, and visualization workflow without needing a large study area.
 

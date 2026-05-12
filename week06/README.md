@@ -4,11 +4,11 @@ This week extends raster analysis into remote sensing, terrain-based movement mo
 
 ## This Week's Materials
 
-- [00 - Basic Remote Sensing with Google Earth Engine](00_basic_remote_sensing_with_google_earth_engine.md): Sentinel-2 band combinations, metadata, standalone spectral-index scripts, and a student-selected index exercise.
-- [01 - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](01_tobler_hiker_function_and_modeling_movement.md): cost distance, slope, walking speed, and travel-time surfaces in Google Earth Engine.
-- [02 - Sampling & Interpolation with QGIS](02_sampling_and_interpolation_with_qgis.md): point sampling and interpolation concepts in QGIS.
-- [03 - Introducing Planet.com Satellite Imagery](03_introducing_planet_com_satellite_imagery.md): Planet imagery concepts and a companion SDK notebook workflow.
-- [04 - Pan-Sharpen Landsat Imagery with HSV Color Transformation](04_pan-sharpen_LANDSAT.md): Landsat true color, panchromatic imagery, and HSV pan sharpening in Google Earth Engine.
+- [00 - TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine](00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md): Sentinel-2 band combinations, metadata, standalone spectral-index scripts, and a student-selected index exercise.
+- [01 - TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](01_TURN_IN_tobler_hiker_function_and_modeling_movement.md): cost distance, slope, walking speed, and travel-time surfaces in Google Earth Engine.
+- [02 - TURN IN - Sampling & Interpolation with QGIS](02_TURN_IN_sampling_and_interpolation_with_qgis.md): point sampling and interpolation concepts in QGIS.
+- [03 - TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery](03_TURN_IN_introducing_planet_com_satellite_imagery.md): Planet imagery concepts and a companion SDK notebook workflow.
+- [04 - OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation](04_OPTIONAL_pan-sharpen_LANDSAT.md): Landsat true color, panchromatic imagery, and HSV pan sharpening in Google Earth Engine.
 
 ## Remote Sensing With Earth Engine
 

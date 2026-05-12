@@ -58,7 +58,8 @@ As you work through the scripts, pay attention to these parts of the Earth Engin
 
 > **Layers note:** The scripts in this lab add map layers with visibility turned off by default. After running each script, open the **Layers** widget, lock it open if helpful, then turn layers on one at a time to observe what each layer highlights.
 
-![Placeholder image: Screenshot of the Google Earth Engine Code Editor with the Search bar, Data Catalog result for Sentinel-2, Run button, Save button, Get Link button, Console tab, Inspector tab, Layers panel, lock icon, and map area labeled for beginning students.](images/gee_code_editor_remote_sensing_placeholder.png)
+
+![](images/20260511_200056_image.png)
 
 ## Part 1: Find Sentinel-2 in the Data Catalog
 
@@ -85,14 +86,15 @@ Record answers to these questions in your notes:
 
 The scripts in this lab use the following Sentinel-2 bands:
 
-| Band | Common Name | Wavelength Region | Typical Use |
-| --- | --- | --- | --- |
-| `B2` | Blue | Visible blue | True color, water, haze, bare soil |
-| `B3` | Green | Visible green | True color, vegetation, water |
-| `B4` | Red | Visible red | True color, vegetation absorption |
-| `B8` | Near infrared | NIR | Vegetation vigor, biomass, water contrast |
-| `B11` | Shortwave infrared 1 | SWIR 1 | Moisture, built-up areas, bare soil, burn signals |
-| `B12` | Shortwave infrared 2 | SWIR 2 | Geology, burned areas, dry soil, moisture |
+
+| Band  | Common Name          | Wavelength Region | Typical Use                                       |
+| ------- | ---------------------- | ------------------- | --------------------------------------------------- |
+| `B2`  | Blue                 | Visible blue      | True color, water, haze, bare soil                |
+| `B3`  | Green                | Visible green     | True color, vegetation, water                     |
+| `B4`  | Red                  | Visible red       | True color, vegetation absorption                 |
+| `B8`  | Near infrared        | NIR               | Vegetation vigor, biomass, water contrast         |
+| `B11` | Shortwave infrared 1 | SWIR 1            | Moisture, built-up areas, bare soil, burn signals |
+| `B12` | Shortwave infrared 2 | SWIR 2            | Geology, burned areas, dry soil, moisture         |
 
 > **Concept note:** A healthy green plant often reflects strongly in near infrared and absorbs strongly in red. Water usually absorbs near infrared and shortwave infrared. Built surfaces, bare soil, rock, snow, and burned areas each have different spectral patterns. Remote sensing uses those differences.
 
@@ -101,6 +103,8 @@ The scripts in this lab use the following Sentinel-2 bands:
 This first script shows the core Sentinel-2 pattern. It loads imagery over the Stanford campus, filters by date and cloud metadata, selects one image, prints metadata, and adds a true color layer.
 
 Paste this into a blank Earth Engine script and run it.
+
+![](images/20260511_203357_image.png)
 
 ```javascript
 // Stace Maples
@@ -189,6 +193,8 @@ Each block below is independent. Paste one block into a blank script, run it, op
 
 True color uses red, green, and blue bands. It is the most intuitive display for communication because it resembles human vision.
 
+![](images/20260511_200444_image.png)
+
 ```javascript
 // Stace Maples
 // EarthSys 144
@@ -238,6 +244,8 @@ print('Cloudy pixel percentage:', image.get('CLOUDY_PIXEL_PERCENTAGE'));
 
 Color infrared puts near infrared in the red display channel. Healthy vegetation often appears bright red because plants strongly reflect near infrared light.
 
+![](images/20260511_203436_image.png)
+
 ```javascript
 // Stace Maples
 // EarthSys 144
@@ -285,6 +293,8 @@ print('Cloudy pixel percentage:', image.get('CLOUDY_PIXEL_PERCENTAGE'));
 
 Urban SWIR composites can help separate built surfaces, bare ground, vegetation, and water better than true color alone.
 
+![](images/20260511_203501_image.png)
+
 ```javascript
 // Stace Maples
 // EarthSys 144
@@ -293,9 +303,9 @@ Urban SWIR composites can help separate built surfaces, bare ground, vegetation,
 // This standalone script uses SWIR and visible bands to highlight urban surfaces.
 
 // ----------------------------------------------------------------------------
-// Define an AOI centered near Oakland and the inner East Bay.
+// Define an AOI centered near Foster City and the inner East Bay.
 // ----------------------------------------------------------------------------
-var studyPoint = ee.Geometry.Point([-122.2711, 37.8044]);
+var studyPoint = ee.Geometry.Point([-122.1697, 37.4275]);
 var studyArea = studyPoint.buffer(8000);
 
 // ----------------------------------------------------------------------------
@@ -326,11 +336,14 @@ Map.setOptions('HYBRID');
 print('Urban SWIR image:', image);
 print('Image date:', ee.Date(image.get('system:time_start')));
 print('Cloudy pixel percentage:', image.get('CLOUDY_PIXEL_PERCENTAGE'));
+
 ```
 
 ### Geology SWIR: Moab, Utah
 
 Geology composites work best in places where rock and soil are exposed. This example uses the Moab, Utah area because dry surfaces, bare rock, and sparse vegetation make SWIR differences easier to see.
+
+![](images/20260511_201450_image.png)
 
 ```javascript
 // Stace Maples
@@ -377,8 +390,6 @@ print('Image date:', ee.Date(image.get('system:time_start')));
 print('Cloudy pixel percentage:', image.get('CLOUDY_PIXEL_PERCENTAGE'));
 ```
 
-![Placeholder image: Four-panel comparison of Sentinel-2 standalone band combinations. Include true color and color infrared over Stanford, urban SWIR over Oakland, and geology SWIR over Moab, Utah. The image should show that different places and band choices are appropriate for different applications.](images/sentinel2_standalone_band_combinations_placeholder.png)
-
 ## Part 4: Why Spectral Indices Work
 
 Different materials reflect and absorb light differently across the electromagnetic spectrum. A plant, a lake, a concrete roof, a burn scar, and bare soil can have different spectral curves.
@@ -403,15 +414,16 @@ Most normalized difference indices produce values near `-1` to `1`:
 
 ## Common Spectral Indices in This Lab
 
-| Index | Formula with Sentinel-2 Bands | What It Often Highlights | Good Example Area |
-| --- | --- | --- | --- |
-| NDVI | `(B8 - B4) / (B8 + B4)` | Green vegetation vigor | Bay Area and Stanford campus |
-| NDWI | `(B3 - B8) / (B3 + B8)` | Open water | Bay Area shoreline and reservoirs |
-| NDMI | `(B8 - B11) / (B8 + B11)` | Vegetation or soil moisture | Bay Area vegetation or reservoir margins |
-| NDBI | `(B11 - B8) / (B11 + B8)` | Built-up or dry impervious surfaces | Oakland or other urban Bay Area places |
-| NBR | `(B8 - B12) / (B8 + B12)` | Burn signal and burned vegetation | CZU Lightning Complex burn area |
-| BSI | `((B11 + B4) - (B8 + B2)) / ((B11 + B4) + (B8 + B2))` | Bare soil and exposed ground | Southwest dry landscapes such as Moab |
-| Iron Oxide Ratio | `B4 / B2` | Iron-rich exposed rock and soil contrast | Southwest dry landscapes such as Sedona |
+
+| Index            | Formula with Sentinel-2 Bands                         | What It Often Highlights                 | Good Example Area                        |
+| ------------------ | ------------------------------------------------------- | ------------------------------------------ | ------------------------------------------ |
+| NDVI             | `(B8 - B4) / (B8 + B4)`                               | Green vegetation vigor                   | Bay Area and Stanford campus             |
+| NDWI             | `(B3 - B8) / (B3 + B8)`                               | Open water                               | Bay Area shoreline and reservoirs        |
+| NDMI             | `(B8 - B11) / (B8 + B11)`                             | Vegetation or soil moisture              | Bay Area vegetation or reservoir margins |
+| NDBI             | `(B11 - B8) / (B11 + B8)`                             | Built-up or dry impervious surfaces      | Oakland or other urban Bay Area places   |
+| NBR              | `(B8 - B12) / (B8 + B12)`                             | Burn signal and burned vegetation        | CZU Lightning Complex burn area          |
+| BSI              | `((B11 + B4) - (B8 + B2)) / ((B11 + B4) + (B8 + B2))` | Bare soil and exposed ground             | Southwest dry landscapes such as Moab    |
+| Iron Oxide Ratio | `B4 / B2`                                             | Iron-rich exposed rock and soil contrast | Southwest dry landscapes such as Sedona  |
 
 > **Concept note:** A high or low index value does not automatically prove that a target is present. For example, NDBI may highlight some built-up surfaces, but it can also respond to bare soil or dry ground. Always compare the index with true color imagery, local knowledge, and other layers.
 
@@ -419,7 +431,7 @@ Most normalized difference indices produce values near `-1` to `1`:
 
 NDVI, or Normalized Difference Vegetation Index, compares near infrared and red light. Healthy green vegetation usually reflects strongly in near infrared and absorbs strongly in red, so NDVI is often high where vegetation is vigorous.
 
-This block is independent. It calculates only NDVI.
+![](images/20260511_201652_image.png)
 
 ```javascript
 // Stace Maples
@@ -496,90 +508,7 @@ print('NDVI image:', ndvi);
 
 After running the script, open the **Layers** widget and lock it open. Turn on true color first, then NDVI. Use the **Inspector** to compare NDVI values on lawns, trees, buildings, roads, water, and bare ground.
 
-## Part 6: Example Index 2: Burn Index for the CZU Lightning Complex Fire
-
-NBR, or Normalized Burn Ratio, compares near infrared and shortwave infrared. Fire can reduce vegetation structure and moisture, which often lowers NIR reflectance and increases SWIR reflectance. A post-fire NBR image can help reveal burn patterns.
-
-This example focuses on the 2020 CZU Lightning Complex fire in the Santa Cruz Mountains. It calculates only NBR for one post-fire Sentinel-2 image.
-
-```javascript
-// Stace Maples
-// EarthSys 144
-// Index Example 2: NBR Burn Index for the CZU Lightning Complex Fire
-//
-// This standalone script calculates the Normalized Burn Ratio, or NBR.
-// It focuses on the CZU Lightning Complex fire area in the Santa Cruz Mountains.
-
-// ----------------------------------------------------------------------------
-// Define an AOI near the CZU Lightning Complex burn area.
-// ----------------------------------------------------------------------------
-var studyPoint = ee.Geometry.Point([-122.2220, 37.1720]);
-var studyArea = studyPoint.buffer(15000);
-
-// ----------------------------------------------------------------------------
-// Load and filter Sentinel-2 imagery for a post-fire period.
-// The CZU Lightning Complex began in August 2020, so this date range looks
-// shortly after the fire period.
-// ----------------------------------------------------------------------------
-var image = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
-  .filterBounds(studyArea)
-  .filterDate('2020-09-15', '2020-11-15')
-  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 40))
-  .sort('CLOUDY_PIXEL_PERCENTAGE')
-  .first();
-
-// ----------------------------------------------------------------------------
-// Convert scaled integer reflectance to approximate 0 to 1 reflectance.
-// ----------------------------------------------------------------------------
-var reflectance = image.divide(10000);
-
-// ----------------------------------------------------------------------------
-// Calculate NBR.
-//
-// B8 is near infrared.
-// B12 is shortwave infrared 2.
-// Burned areas often have lower NBR than healthy vegetation.
-// ----------------------------------------------------------------------------
-var nbr = reflectance
-  .normalizedDifference(['B8', 'B12'])
-  .rename('NBR');
-
-// ----------------------------------------------------------------------------
-// Define visualization settings.
-// True color helps you orient yourself.
-// The NBR palette below draws low values dark/red and high values green.
-// ----------------------------------------------------------------------------
-var trueColorVis = {
-  bands: ['B4', 'B3', 'B2'],
-  min: 0,
-  max: 3000
-};
-
-var nbrVis = {
-  min: -0.5,
-  max: 0.8,
-  palette: ['black', 'darkred', 'red', 'orange', 'yellow', 'lightgreen', 'darkgreen']
-};
-
-// ----------------------------------------------------------------------------
-// Add layers with visibility off by default.
-// Turn on true color first, then NBR, and compare the burn signal.
-// ----------------------------------------------------------------------------
-Map.centerObject(studyArea, 11);
-Map.addLayer(image, trueColorVis, 'True color: CZU post-fire', false);
-Map.addLayer(nbr, nbrVis, 'NBR burn index: CZU', false);
-Map.addLayer(studyArea, {color: 'yellow'}, 'Study area', false);
-Map.setOptions('HYBRID');
-
-print('Selected post-fire image:', image);
-print('Image date:', ee.Date(image.get('system:time_start')));
-print('Cloudy pixel percentage:', image.get('CLOUDY_PIXEL_PERCENTAGE'));
-print('NBR image:', nbr);
-```
-
-> **Concept note:** NBR is often used in pre-fire and post-fire comparisons as differenced NBR, or dNBR. This introductory block uses only a post-fire NBR image so you can focus on how the index works before comparing dates.
-
-## Part 7: Additional Single-Index Blocks
+## Part 6: Additional Single-Index Blocks
 
 Each block below is independent and calculates only one index. You can run each block by itself, or use it as a model when you adapt the assignment starter script.
 
@@ -596,6 +525,8 @@ This structure is intentionally repetitive. Repetition helps you see that each i
 ### NDWI: Open Water in the Bay Area
 
 NDWI compares green and near infrared. Open water often reflects relatively more green light and absorbs near infrared.
+
+![](images/20260511_203540_image.png)
 
 ```javascript
 // Stace Maples
@@ -657,6 +588,8 @@ print('NDWI image:', ndwi);
 
 NDMI compares near infrared and shortwave infrared. It is often used to show moisture differences in vegetation or soil.
 
+![](images/20260511_203602_image.png)
+
 ```javascript
 // Stace Maples
 // EarthSys 144
@@ -717,6 +650,8 @@ print('NDMI image:', ndmi);
 
 NDBI compares shortwave infrared and near infrared. It can help highlight built-up or dry impervious surfaces, though bare soil may also respond strongly.
 
+![](images/20260511_203628_image.png)
+
 ```javascript
 // Stace Maples
 // EarthSys 144
@@ -776,6 +711,8 @@ print('NDBI image:', ndbi);
 ### BSI: Bare Soil in Moab, Utah
 
 BSI uses four bands to compare SWIR plus red against NIR plus blue. It is useful in dry places where bare soil and exposed ground are common.
+
+![](images/20260511_203648_image.png)
 
 ```javascript
 // Stace Maples
@@ -842,6 +779,8 @@ print('BSI image:', bsi);
 ### Iron Oxide Ratio: Sedona, Arizona
 
 The iron oxide ratio compares red and blue reflectance. It is not a normalized difference index, but it is a common geology-oriented band ratio for dry landscapes where exposed rock and soil are visible.
+
+![](images/20260511_203709_image.png)
 
 ```javascript
 // Stace Maples
@@ -932,6 +871,8 @@ You may create your study area in either of these ways:
 ## Starter Script for Your Own Area
 
 This starter uses NDVI, but the **STEP 4** and **STEP 5** sections can be replaced with any of the index calculation and visualization patterns above.
+
+![](images/20260511_203807_image.png)
 
 ```javascript
 // Stace Maples
@@ -1036,8 +977,6 @@ Submit a PDF that includes:
 - the name and location of your study area
 - the index you chose and why it fits your question
 - the date range you used
-- the selected image date and cloudy pixel percentage from the Console
-- a screenshot of the true color layer
 - a screenshot of your selected spectral index layer
 - a short interpretation of what high and low values appear to mean in your study area
 - a Google Earth Engine **Get Link URL** to your saved script
@@ -1051,13 +990,3 @@ To create the **Get Link URL**:
 5. Paste the URL into a Google Doc with the rest of your submission.
 6. Export or download the Google Doc as a PDF.
 7. Submit the PDF as instructed by the course.
-
-## Reflection Questions
-
-Answer these briefly in your PDF:
-
-- What surface quality is your index intended to isolate?
-- Which wavelengths or bands does your chosen index compare?
-- How does normalization help make that contrast easier to interpret?
-- What is one limitation or possible source of confusion in your result?
-- How did the true color image help you interpret the index layer?

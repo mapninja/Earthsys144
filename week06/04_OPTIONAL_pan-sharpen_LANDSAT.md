@@ -1,4 +1,4 @@
-# Pan-Sharpen Landsat Imagery with HSV Color Transformation
+# (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
