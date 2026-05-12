@@ -72,9 +72,17 @@ The full definition of how spatial data is referenced to the earth. A CRS includ
 
 A defined set of allowed terms used to keep data entry consistent. In field forms and attribute tables, controlled vocabularies reduce spelling differences, ambiguity, and messy categories.
 
+## Cost Surface
+
+A raster in which each pixel stores the modeled cost of moving through that location. Cost may represent time, effort, money, risk, or another form of resistance.
+
 ## Control Point
 
 A known location used during georeferencing to match positions on an image or scanned map to positions in real-world coordinates.
+
+## Cumulative Cost
+
+A raster analysis method that accumulates movement cost outward from a source location. The result shows the least accumulated cost required to reach each pixel from the source.
 
 ## Classification
 
@@ -128,6 +136,10 @@ A raster hydrology layer that counts how many upstream cells drain through each 
 
 A raster hydrology layer that records the downslope direction water would flow from each cell. Flow direction is derived from a DEM and is used to trace drainage paths and delineate watersheds.
 
+## Friction Surface
+
+A raster surface that represents how difficult it is to move across each pixel. In movement modeling, steep slopes, water, dense vegetation, or other barriers may be treated as friction.
+
 ## Foreign Key
 
 A field in one table whose values refer to records in another table. Foreign keys are used to connect related tables.
@@ -179,6 +191,10 @@ A color model that describes color using hue, saturation, and value. In remote s
 ## Iron Oxide Ratio
 
 A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.
+
+## Isochrone
+
+A line or area representing equal travel time from a source. In terrain-based movement modeling, isochrones can show what places are reachable within one hour, one day, or another time threshold.
 
 ## Join
 

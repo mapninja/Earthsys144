@@ -47,12 +47,12 @@
   * [05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online](week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.md)
 
 * [Week 06 - More Raster & Remote Sensing](week06/README.md)
-  * [00 - TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine](week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md)
-  * [01 - TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md)
+  * [00 - TURN IN - Basic Remote Sensing with Google Earth Engine](week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md)
+  * [01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md)
   * [02 - TURN IN - Sampling & Interpolation with QGIS](week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md)
-  * [03 - TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery](week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md)
+  * [03 - TURN IN - Introducing Planet.com Satellite Imagery](week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md)
     * [Planet SDK 101: Lake Lagunita Search, Ordering, and NDVI](data/planet_SDK_101_LakeLagunita.ipynb)
-  * [04 - OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation](week06/04_OPTIONAL_pan-sharpen_LANDSAT.md)
+  * [04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation](week06/04_OPTIONAL_pan-sharpen_LANDSAT.md)
 
 * [Week 07 - Web Mapping & APIs](week07/README.md)
   * [00 - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)

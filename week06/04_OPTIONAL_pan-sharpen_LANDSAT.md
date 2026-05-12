@@ -1,4 +1,4 @@
-# (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation
+# Pan-Sharpen Landsat Imagery with HSV Color Transformation
 
 > **Turn-in for grading:** This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.
 
@@ -23,7 +23,6 @@ By the end of this exercise, you should be able to explain:
 - why HSV pan sharpening replaces the value channel but keeps hue and saturation
 - why pan-sharpened images are best treated as visualization products
 - how to compare the original and pan-sharpened Landsat images in the Layers widget
-- how to save and share a Google Earth Engine script with a **Get Link URL**
 
 ## Getting Ready
 
@@ -63,7 +62,7 @@ HSV pan sharpening works like this:
 
 This preserves much of the color impression from the original multispectral image while using the panchromatic band to add sharper brightness detail.
 
-![Placeholder image: Diagram showing an RGB Landsat true color image converted to HSV, the value channel replaced by a sharper panchromatic band, and the result converted back to a sharper RGB pan-sharpened image.](images/hsv_pan_sharpening_workflow_placeholder.png)
+![](images/20260511_205443_image.png)
 
 ## Exercise: Pan Sharpen Landsat over the Stanford Campus
 
@@ -255,29 +254,3 @@ Change the `studyPoint` coordinates and date range to test another place. Good a
 - a mountain town with roads and forest edges
 
 Keep the study area fairly small so you can inspect visual detail carefully.
-
-## What To Turn In
-
-Submit a PDF that includes:
-
-- your name
-- the title of the lab
-- the location you used
-- the selected Landsat image date
-- the selected image cloud cover value from the Console
-- a screenshot of the original true color Landsat image
-- a screenshot of the panchromatic band
-- a screenshot of the HSV pan-sharpened image
-- a short paragraph explaining where the pan-sharpened image appears sharper
-- a short note describing any color shift, artifact, or limitation you notice
-- a Google Earth Engine **Get Link URL** to your saved script
-
-To create the **Get Link URL**:
-
-1. Click **Save** in the Earth Engine Code Editor.
-2. Give your script a clear name.
-3. Click **Get Link**.
-4. Copy the generated URL.
-5. Paste the URL into a Google Doc with the rest of your submission.
-6. Export or download the Google Doc as a PDF.
-7. Submit the PDF as instructed by the course.
