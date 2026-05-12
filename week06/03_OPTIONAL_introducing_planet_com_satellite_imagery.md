@@ -1,5 +1,7 @@
 # Introducing Planet.com Satellite Imagery
 
+> **Optional workshop:** This lab is optional support material. Use it to explore Planet.com imagery and the Planet SDK workflow, but do not submit it unless your instructor assigns it separately.
+
 This workshop introduces Planet.com imagery through a Python notebook that uses the official Planet SDK. The notebook is designed for Google Colab and focuses on a small area of interest around Lake Lagunita so that students can see the full search, ordering, download, and visualization workflow without needing a large study area.
 
 Notebook: [`data/planet_SDK_101_LakeLagunita.ipynb`](../data/planet_SDK_101_LakeLagunita.ipynb)
