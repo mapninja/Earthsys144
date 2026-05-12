@@ -4,9 +4,9 @@
 
 This workshop introduces Planet.com imagery through a Python notebook that uses the official Planet SDK. The notebook is designed for Google Colab and focuses on a small area of interest around Lake Lagunita so that students can see the full search, ordering, download, and visualization workflow without needing a large study area.
 
-Notebook: [`data/planet_SDK_101_LakeLagunita.ipynb`](../data/planet_SDK_101_LakeLagunita.ipynb)
+Notebook: [Open `data/planet_SDK_101_LakeLagunita.ipynb` in Colab](https://colab.research.google.com/github/mapninja/Earthsys144/blob/master/data/planet_SDK_101_LakeLagunita.ipynb)
 
-<a target="_blank" href="https://colab.research.google.com/github/mapninja/Earthsys144/blob/f99ca2d9a922e383d2f6158d47fa5c8f893b3716/data/planet_SDK_101_LakeLagunita.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/mapninja/Earthsys144/blob/master/data/planet_SDK_101_LakeLagunita.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 

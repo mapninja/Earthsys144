@@ -28,6 +28,6 @@ The Tobler's Hiker Function lab uses terrain to model movement as travel time ra
 
 The Planet.com workshop is supported by a Colab-oriented notebook:
 
-- [Planet SDK 101: Lake Lagunita Search, Ordering, and NDVI](../data/planet_SDK_101_LakeLagunita.ipynb)
+- [Planet SDK 101: Lake Lagunita Search, Ordering, and NDVI](https://colab.research.google.com/github/mapninja/Earthsys144/blob/master/data/planet_SDK_101_LakeLagunita.ipynb)
 
 The notebook uses [`data/lakelagunita.geojson`](../data/lakelagunita.geojson) as the area of interest and walks through SDK-based authentication, search, metadata filtering, footprint mapping, order creation, order monitoring, downloading, and NDVI visualization.
