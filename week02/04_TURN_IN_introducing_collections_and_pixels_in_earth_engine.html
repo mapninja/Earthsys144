@@ -658,12 +658,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.9.1" data-path="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.9.1" data-path="../week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
             
-                <a href="../week06/00_basic_remote_sensing_with_google_earth_engine.html">
+                <a href="../week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
             
                     
-                    00 - Basic Remote Sensing with Google Earth Engine
+                    00 - TURN IN - Basic Remote Sensing with Google Earth Engine
             
                 </a>
             
@@ -671,12 +671,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.2" data-path="../week06/01_modeling_movement_with_google_earth_engine.html">
+        <li class="chapter " data-level="1.9.2" data-path="../week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
             
-                <a href="../week06/01_modeling_movement_with_google_earth_engine.html">
+                <a href="../week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
             
                     
-                    01 - Modeling Movement with Google Earth Engine
+                    01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance
             
                 </a>
             
@@ -684,12 +684,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.3" data-path="../week06/02_sampling_and_interpolation_with_qgis.html">
+        <li class="chapter " data-level="1.9.3" data-path="../week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html">
             
-                <a href="../week06/02_sampling_and_interpolation_with_qgis.html">
+                <a href="../week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html">
             
                     
-                    02 - Sampling & Interpolation with QGIS
+                    02 - TURN IN - Sampling & Interpolation with QGIS
             
                 </a>
             
@@ -697,12 +697,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.4" data-path="../week06/03_introducing_planet_com_satellite_imagery.html">
+        <li class="chapter " data-level="1.9.4" data-path="../week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html">
             
-                <a href="../week06/03_introducing_planet_com_satellite_imagery.html">
+                <a href="../week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html">
             
                     
-                    03 - Introducing Planet.com Satellite Imagery
+                    03 - TURN IN - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../week06/04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                <a href="../week06/04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                    
+                    04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation
             
                 </a>
             
@@ -1081,9 +1094,9 @@
 </ol>
 <p>You will work with:</p>
 <ul>
-<li><strong>Dynamic World V1</strong>, a near-real-time land cover dataset derived from Sentinel-2 imagery</li>
+<li><strong>Dynamic World V1</strong>, a near-real-time land cover dataset derived from<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>imagery</li>
 <li><strong>Hansen Global Forest Change</strong>, a widely used dataset for forest loss and gain analysis</li>
-<li><strong>Sentinel-2</strong>, for natural color and color-infrared <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a></li>
+<li><strong><a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a></strong>, for natural color and color-infrared <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a></li>
 </ul>
 <h2 id="before-you-start">Before You Start</h2>
 <p>This lab assumes that you can:</p>
@@ -1107,7 +1120,7 @@
 </blockquote>
 <h2 id="data-used-in-this-lab">Data Used in This Lab</h2>
 <h3 id="dynamic-world-v1">Dynamic World V1</h3>
-<p>Dynamic World is a global land cover dataset produced from Sentinel-2 imagery. Instead of only assigning a single class, it also provides per-class probability bands such as:</p>
+<p>Dynamic World is a global land cover dataset produced from<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>imagery. Instead of only assigning a single class, it also provides per-class probability bands such as:</p>
 <ul>
 <li><code>trees</code></li>
 <li><code>water</code></li>
@@ -1116,10 +1129,10 @@
 </ul>
 <p>That makes it useful for talking about both <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> and <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>-level confidence.</p>
 <h3 id="hansen-global-forest-change">Hansen Global Forest Change</h3>
-<p>The Hansen dataset includes forest change information derived from Landsat imagery. In this lab, you will use the <code>lossyear</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> to identify pixels where forest loss occurred during a chosen ten-year period.</p>
+<p>The Hansen dataset includes forest change information derived from <a href="../GLOSSARY.html#landsat" class="glossary-term" title="A long-running series of earth observation satellite missions operated by NASA and the U.S. Geological Survey. Landsat imagery is commonly used for land cover, vegetation, water, urban, geology, and change-detection analysis.">Landsat</a> imagery. In this lab, you will use the <code>lossyear</code> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> to identify pixels where forest loss occurred during a chosen ten-year period.</p>
 <h3 id="sentinel-2">Sentinel-2</h3>
-<p>Sentinel-2 provides the underlying multispectral imagery that supports both visual interpretation and products such as Dynamic World.</p>
-<p>In the final section of this lab, you will visualize Sentinel-2 using:</p>
+<p><a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>provides the underlying multispectral imagery that supports both visual interpretation and products such as Dynamic World.</p>
+<p>In the final section of this lab, you will visualize<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>using:</p>
 <ul>
 <li><strong>RGB</strong> for natural color</li>
 <li><strong>CIR / IRG</strong> for near-infrared-enhanced <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> of vegetation</li>
@@ -1735,7 +1748,7 @@
 <li>an AOI</li>
 <li>a changed AOI and changed date range that produce imagery for a new place</li>
 <li>collection filtering by place and date</li>
-<li>RGB and CIR <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> using Sentinel-2 bands</li>
+<li>RGB and CIR <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> using<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>bands</li>
 </ul>
 <h2 id="a-good-script-header-example">A Good Script Header Example</h2>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Your Name</span>
@@ -1786,7 +1799,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"next":{"title":"Week 03 - Tables & Queries","level":"1.6","depth":1,"path":"week03/README.md","ref":"week03/README.md","articles":[{"title":"01 - TURN IN - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","ref":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","articles":[]},{"title":"03 - TURN IN - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_TURN_IN_sql_operations_in_qgis.md","ref":"week03/03_TURN_IN_sql_operations_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","mtime":"2026-05-04T18:37:34.073Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-04T18:37:59.833Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine","level":"1.5.4","depth":2,"next":{"title":"Week 03 - Tables & Queries","level":"1.6","depth":1,"path":"week03/README.md","ref":"week03/README.md","articles":[{"title":"01 - TURN IN - Basic Table Structures & Operations in QGIS","level":"1.6.1","depth":2,"path":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","ref":"week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.md","articles":[]},{"title":"02 - TURN IN - Basic Table Joins and Calculations in QGIS","level":"1.6.2","depth":2,"path":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","ref":"week03/02_TURN_IN_basic_table_joins_and_calculations.md","articles":[]},{"title":"03 - TURN IN - SQL Operations in QGIS","level":"1.6.3","depth":2,"path":"week03/03_TURN_IN_sql_operations_in_qgis.md","ref":"week03/03_TURN_IN_sql_operations_in_qgis.md","articles":[]},{"title":"04 - TURN IN - Cartographic Design Basics","level":"1.6.4","depth":2,"path":"week03/04_TURN_IN_cartographic_design_basics.md","ref":"week03/04_TURN_IN_cartographic_design_basics.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Editing with QGIS","level":"1.5.3","depth":2,"path":"week02/03_TURN_IN_data_creation_in_qgis.md","ref":"week02/03_TURN_IN_data_creation_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.md","mtime":"2026-05-12T05:00:09.328Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-12T05:00:21.833Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

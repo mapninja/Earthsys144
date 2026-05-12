@@ -1,0 +1,2179 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>00 - TURN IN - Basic Remote Sensing with Google Earth Engine · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Editing with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                    
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                    
+                    03 - TURN IN - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                    
+                    04 - TURN IN - Cartographic Design Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                    
+                    00 - OPTIONAL - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                <a href="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                    
+                    03 - TURN IN - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                <a href="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Visibility Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    03 - TURN IN - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.9.1" data-path="00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - TURN IN - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                <a href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                    
+                    01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="03_TURN_IN_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="03_TURN_IN_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - TURN IN - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                <a href="04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                    
+                    04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >00 - TURN IN - Basic Remote Sensing with Google Earth Engine</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="basic-remote-sensing-with-google-earth-engine">Basic Remote Sensing with Google Earth Engine</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces basic <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a> with<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>satellite imagery in Google Earth Engine. You will practice a repeatable workflow:</p>
+<ul>
+<li>choose an area of interest, or AOI</li>
+<li>load<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>imagery</li>
+<li>filter imagery by date, bounds, and cloud <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
+<li>inspect <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> in the Console and Data Catalog</li>
+<li>visualize one <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combination at a time</li>
+<li>calculate one <a href="../GLOSSARY.html#spectral-index" class="glossary-term" title="A raster layer calculated from two or more imagery bands to highlight a surface property such as vegetation greenness, moisture, water, burned area, built-up land, or bare soil.">spectral index</a> at a time</li>
+<li>interpret what the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> highlights</li>
+<li>adapt one example for an area of your own choosing</li>
+</ul>
+<p>Each code block in this lab is independent. You can paste any one block into a blank Earth Engine script, click <strong>Run</strong>, open the <strong>Layers</strong> widget, and turn on the layers for that block.</p>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>why satellite images are stored as multiple spectral bands</li>
+<li>how<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>bands relate to visible, near infrared, and shortwave infrared light</li>
+<li>how to filter an <code>ee.ImageCollection</code> by date, bounds, and cloud <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
+<li>how to inspect dataset and <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> in the Earth Engine Data Catalog and Console</li>
+<li>why true color, color infrared, urban SWIR, and geology SWIR composites emphasize different surfaces</li>
+<li>how a <a href="../GLOSSARY.html#normalized-difference" class="glossary-term" title="A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.">normalized difference</a> index compares two parts of a target's spectral curve</li>
+<li>why normalization helps reduce the effect of overall brightness and illumination</li>
+<li>how to calculate and visualize one <a href="../GLOSSARY.html#spectral-index" class="glossary-term" title="A raster layer calculated from two or more imagery bands to highlight a surface property such as vegetation greenness, moisture, water, burned area, built-up land, or bare soil.">spectral index</a> at a time</li>
+<li>how to adapt a sample index script for an area of your own choosing</li>
+<li>how to create and submit a Google Earth Engine <strong>Get Link URL</strong></li>
+</ul>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>You will need:</p>
+<ul>
+<li>access to the <a href="https://code.earthengine.google.com/" target="_blank">Google Earth Engine Code Editor</a></li>
+<li>a Google Earth Engine account</li>
+<li>the ability to create, paste, run, save, and share scripts in the Code Editor</li>
+</ul>
+<p>If needed, review the Week 00 <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">Logging in to Google Earth Engine</a> setup guide before continuing.</p>
+<h2 id="code-editor-tools-you-will-use">Code Editor Tools You Will Use</h2>
+<p>As you work through the scripts, pay attention to these parts of the Earth Engine interface:</p>
+<ul>
+<li><strong>Search bar:</strong> lets you search for datasets such as<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>in the Data Catalog.</li>
+<li><strong>Docs tab:</strong> shows function documentation for Earth Engine objects and methods.</li>
+<li><strong>Run:</strong> executes the current script.</li>
+<li><strong>Save:</strong> saves the script to your Earth Engine account.</li>
+<li><strong>Get Link:</strong> creates a shareable URL for the script.</li>
+<li><strong>Console:</strong> shows printed images, collections, <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a>, charts, and messages from <code>print()</code>.</li>
+<li><strong>Inspector:</strong> lets you click the map and read <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> or index values.</li>
+<li><strong>Layers:</strong> lets you turn map layers on and off, change opacity, and compare outputs. You can click the lock icon on the Layers widget to keep it open while you compare layers.</li>
+<li><strong>Geometry tools:</strong> let you draw points, lines, and polygons on the map.</li>
+</ul>
+<blockquote>
+<p><strong>Layers note:</strong> The scripts in this lab add map layers with visibility turned off by default. After running each script, open the <strong>Layers</strong> widget, lock it open if helpful, then turn layers on one at a time to observe what each <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> highlights.</p>
+</blockquote>
+<p><img src="images/20260511_200056_image.png" alt=""></img></p>
+<h2 id="part-1-find-sentinel-2-in-the-data-catalog">Part 1: Find Sentinel-2 in the Data Catalog</h2>
+<p>Before writing code, look up the dataset in the Earth Engine Data Catalog.</p>
+<ol>
+<li>Open the <a href="https://code.earthengine.google.com/" target="_blank">Google Earth Engine Code Editor</a>.</li>
+<li>In the search bar, search for <code>Sentinel-2 SR Harmonized</code>.</li>
+<li>Open the result named <code>COPERNICUS/S2_SR_HARMONIZED</code>.</li>
+<li>Read the dataset description.</li>
+<li>Find the <strong>Bands</strong> section.</li>
+<li>Find the <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">Image</a> Properties</strong> section.</li>
+</ol>
+<p>Record answers to these questions in your notes:</p>
+<ul>
+<li>What does the dataset represent?</li>
+<li>What organization or mission produces the data?</li>
+<li>Which bands represent blue, green, red, near infrared, and shortwave infrared?</li>
+<li>What <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> property describes cloudy pixels?</li>
+<li>What is the spatial <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> of bands <code>B2</code>, <code>B3</code>, <code>B4</code>, and <code>B8</code>?</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> is data about data. In <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">remote sensing</a>, <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a> can describe when an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> was acquired, how cloudy it is, which satellite captured it, what processing level it has, and what each <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> represents. <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">Metadata</a> helps you decide whether an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is appropriate before you analyze it.</p>
+</blockquote>
+<h2 id="sentinel-2-band-reference">Sentinel-2 Band Reference</h2>
+<p>The scripts in this lab use the following<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>bands:</p>
+<table>
+<thead>
+<tr>
+<th><a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">Band</a></th>
+<th>Common Name</th>
+<th>Wavelength Region</th>
+<th>Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>B2</code></td>
+<td>Blue</td>
+<td>Visible blue</td>
+<td>True color, water, haze, bare soil</td>
+</tr>
+<tr>
+<td><code>B3</code></td>
+<td>Green</td>
+<td>Visible green</td>
+<td>True color, vegetation, water</td>
+</tr>
+<tr>
+<td><code>B4</code></td>
+<td>Red</td>
+<td>Visible red</td>
+<td>True color, vegetation absorption</td>
+</tr>
+<tr>
+<td><code>B8</code></td>
+<td>Near infrared</td>
+<td>NIR</td>
+<td>Vegetation vigor, biomass, water contrast</td>
+</tr>
+<tr>
+<td><code>B11</code></td>
+<td>Shortwave infrared 1</td>
+<td>SWIR 1</td>
+<td>Moisture, built-up areas, bare soil, burn signals</td>
+</tr>
+<tr>
+<td><code>B12</code></td>
+<td>Shortwave infrared 2</td>
+<td>SWIR 2</td>
+<td>Geology, burned areas, dry soil, moisture</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Concept note:</strong> A healthy green plant often reflects strongly in near infrared and absorbs strongly in red. Water usually absorbs near infrared and shortwave infrared. Built surfaces, bare soil, rock, snow, and burned areas each have different spectral patterns. <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">Remote sensing</a> uses those differences.</p>
+</blockquote>
+<h2 id="part-2-basic-script-overview">Part 2: Basic Script Overview</h2>
+<p>This first script shows the core<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>pattern. It loads imagery over the Stanford campus, filters by date and cloud <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a>, selects one <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, prints <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a>, and adds a true color <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>Paste this into a blank Earth Engine script and run it.</p>
+<p><img src="images/20260511_203357_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Part 1: Basic Sentinel-2 Search and Metadata Overview</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script introduces a common remote sensing workflow:</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// 1. Define an area of interest.</span>
+<span class="hljs-comment">// 2. Load a satellite image collection.</span>
+<span class="hljs-comment">// 3. Filter the collection by location, date, and cloud metadata.</span>
+<span class="hljs-comment">// 4. Select one image for mapping and analysis.</span>
+<span class="hljs-comment">// 5. Inspect the image and its metadata in the Console.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Create an area of interest, or AOI, around the Stanford campus.</span>
+<span class="hljs-comment">// Earth Engine coordinates are written as longitude, latitude.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">5000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load Sentinel-2 Surface Reflectance Harmonized imagery.</span>
+<span class="hljs-comment">// An ee.ImageCollection is a group of satellite images.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> sentinel2 = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Filter the collection.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// filterBounds() keeps images intersecting the AOI.</span>
+<span class="hljs-comment">// filterDate() keeps images from the selected date range.</span>
+<span class="hljs-comment">// ee.Filter.lt() keeps images with cloudiness below the selected percentage.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> filtered = sentinel2
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>));
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Sort from least cloudy to most cloudy, then select the first image.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = filtered
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Print objects so you can inspect metadata in the Console.</span>
+<span class="hljs-comment">// Expand the printed image to look for properties and band names.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Filtered Sentinel-2 collection:'</span>, filtered);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image acquisition date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Band names:'</span>, image.<span class="hljs-title function_">bandNames</span>());
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// True color uses red, green, and blue bands: B4, B3, B2.</span>
+<span class="hljs-comment">// The min and max values control display only.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add layers with visibility off by default.</span>
+<span class="hljs-comment">// Open the Layers widget and turn them on when you are ready.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Stanford campus'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+</code></pre>
+<p>After running the script, expand the printed <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> in the Console. Look for properties such as <code>CLOUDY_PIXEL_PERCENTAGE</code>, <code>MGRS_TILE</code>, <code>PROCESSING_BASELINE</code>, <code>SPACECRAFT_NAME</code>, and <code>system:time_start</code>.</p>
+<h2 id="part-3-standalone-band-combination-blocks">Part 3: Standalone Band Combination Blocks</h2>
+<p>A <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combination assigns <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> bands to the red, green, and blue display channels on your screen. The underlying data do not change. Only the display changes.</p>
+<p>Each block below is independent. Paste one block into a blank script, run it, open the <strong>Layers</strong> widget, lock the widget open if helpful, and turn on the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<h3 id="true-color-bay-area-and-stanford-campus">True Color: Bay Area and Stanford Campus</h3>
+<p>True color uses red, green, and blue bands. It is the most intuitive display for communication because it resembles human vision.</p>
+<p><img src="images/20260511_200444_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Band Combination: True Color for the Stanford Campus</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script displays Sentinel-2 imagery in true color.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define a Stanford campus AOI.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">5000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load, filter, sort, and select one Sentinel-2 image.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// True color displays red, green, and blue bands as red, green, and blue.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add layers with visibility off by default.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Stanford campus'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'True color image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+</code></pre>
+<h3 id="color-infrared-bay-area-vegetation">Color Infrared: Bay Area Vegetation</h3>
+<p>Color infrared puts near infrared in the red display channel. Healthy vegetation often appears bright red because plants strongly reflect near infrared light.</p>
+<p><img src="images/20260511_203436_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Band Combination: Color Infrared for Bay Area Vegetation</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script uses a color infrared display to emphasize vegetation.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define a Stanford campus AOI.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">5000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Color infrared uses NIR, red, and green: B8, B4, B3.</span>
+<span class="hljs-comment">// Vegetation usually appears bright red in this display.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> colorInfraredVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">4000</span>
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, colorInfraredVis, <span class="hljs-string">'Color infrared: vegetation'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Color infrared image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+</code></pre>
+<h3 id="urban-swir-bay-area-urban-surfaces">Urban SWIR: Bay Area Urban Surfaces</h3>
+<p>Urban SWIR composites can help separate built surfaces, bare ground, vegetation, and water better than true color alone.</p>
+<p><img src="images/20260511_203501_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Band Combination: Urban SWIR for the Bay Area</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script uses SWIR and visible bands to highlight urban surfaces.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI centered near Foster City and the inner East Bay.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">8000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Urban SWIR uses SWIR 2, SWIR 1, and red: B12, B11, B4.</span>
+<span class="hljs-comment">// This display often emphasizes built surfaces, dry ground, and water contrast.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> urbanSwirVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B12'</span>, <span class="hljs-string">'B11'</span>, <span class="hljs-string">'B4'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">4000</span>
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">12</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, urbanSwirVis, <span class="hljs-string">'Urban SWIR: Oakland'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Urban SWIR image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+</code></pre>
+<h3 id="geology-swir-moab-utah">Geology SWIR: Moab, Utah</h3>
+<p>Geology composites work best in places where rock and soil are exposed. This example uses the Moab, Utah area because dry surfaces, bare rock, and sparse vegetation make SWIR differences easier to see.</p>
+<p><img src="images/20260511_201450_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Band Combination: Geology SWIR for Moab, Utah</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script uses SWIR bands to emphasize exposed rock and soil.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI near Moab, Utah.</span>
+<span class="hljs-comment">// Dry landscapes with exposed rock are useful for geology-focused composites.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">109.5498</span>, <span class="hljs-number">38.5733</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">15000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-05-01'</span>, <span class="hljs-string">'2023-10-31'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Geology SWIR uses SWIR 2, SWIR 1, and blue: B12, B11, B2.</span>
+<span class="hljs-comment">// This display can make rock, soil, dryness, and burn or mineral-related</span>
+<span class="hljs-comment">// surface contrasts easier to see.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> geologySwirVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B12'</span>, <span class="hljs-string">'B11'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">4000</span>
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, geologySwirVis, <span class="hljs-string">'Geology SWIR: Moab'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Geology SWIR image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+</code></pre>
+<h2 id="part-4-why-spectral-indices-work">Part 4: Why Spectral Indices Work</h2>
+<p>Different materials reflect and absorb light differently across the electromagnetic spectrum. A plant, a lake, a concrete roof, a burn scar, and bare soil can have different spectral curves.</p>
+<p>A <a href="../GLOSSARY.html#spectral-index" class="glossary-term" title="A raster layer calculated from two or more imagery bands to highlight a surface property such as vegetation greenness, moisture, water, burned area, built-up land, or bare soil.">spectral index</a> uses <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> math to emphasize a specific contrast in those curves. Many indices use a <a href="../GLOSSARY.html#normalized-difference" class="glossary-term" title="A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.">normalized difference</a> formula:</p>
+<pre><code class="lang-text">(Band A - Band B) / (Band A + Band B)
+</code></pre>
+<p>The subtraction highlights the contrast between two wavelengths. The division by the sum normalizes that contrast.</p>
+<p>Normalization helps because two pixels can be different in overall brightness for reasons that are not the target property. One <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> might be brighter because of slope, sun angle, haze, shadow, or overall reflectance. Dividing by the sum scales the contrast relative to the total reflected signal. This often makes the index more comparable across the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</p>
+<p>Most <a href="../GLOSSARY.html#normalized-difference" class="glossary-term" title="A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.">normalized difference</a> indices produce values near <code>-1</code> to <code>1</code>:</p>
+<ul>
+<li>Values near <code>1</code> mean <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">Band</a> A is much larger than <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">Band</a> B.</li>
+<li>Values near <code>0</code> mean the bands are similar.</li>
+<li>Values near <code>-1</code> mean <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">Band</a> B is much larger than <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">Band</a> A.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> Normalization does not make an index perfect. It helps isolate one quality of a target's spectral curve, but interpretation still depends on place, season, sensor, atmosphere, land cover, and thresholds.</p>
+</blockquote>
+<h2 id="common-spectral-indices-in-this-lab">Common Spectral Indices in This Lab</h2>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Formula with<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>Bands</th>
+<th>What It Often Highlights</th>
+<th>Good Example Area</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NDVI</td>
+<td><code>(B8 - B4) / (B8 + B4)</code></td>
+<td>Green vegetation vigor</td>
+<td>Bay Area and Stanford campus</td>
+</tr>
+<tr>
+<td>NDWI</td>
+<td><code>(B3 - B8) / (B3 + B8)</code></td>
+<td>Open water</td>
+<td>Bay Area shoreline and reservoirs</td>
+</tr>
+<tr>
+<td>NDMI</td>
+<td><code>(B8 - B11) / (B8 + B11)</code></td>
+<td>Vegetation or soil moisture</td>
+<td>Bay Area vegetation or reservoir margins</td>
+</tr>
+<tr>
+<td>NDBI</td>
+<td><code>(B11 - B8) / (B11 + B8)</code></td>
+<td>Built-up or dry impervious surfaces</td>
+<td>Oakland or other urban Bay Area places</td>
+</tr>
+<tr>
+<td>NBR</td>
+<td><code>(B8 - B12) / (B8 + B12)</code></td>
+<td>Burn signal and burned vegetation</td>
+<td>CZU Lightning Complex burn area</td>
+</tr>
+<tr>
+<td>BSI</td>
+<td><code>((B11 + B4) - (B8 + B2)) / ((B11 + B4) + (B8 + B2))</code></td>
+<td>Bare soil and exposed ground</td>
+<td>Southwest dry landscapes such as Moab</td>
+</tr>
+<tr>
+<td><a href="../GLOSSARY.html#iron-oxide-ratio" class="glossary-term" title="A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.">Iron Oxide Ratio</a></td>
+<td><code>B4 / B2</code></td>
+<td>Iron-rich exposed rock and soil contrast</td>
+<td>Southwest dry landscapes such as Sedona</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Concept note:</strong> A high or low index value does not automatically prove that a target is present. For example, NDBI may highlight some built-up surfaces, but it can also respond to bare soil or dry ground. Always compare the index with true color imagery, local knowledge, and other layers.</p>
+</blockquote>
+<h2 id="part-5-example-index-1-ndvi-for-the-bay-area">Part 5: Example Index 1: NDVI for the Bay Area</h2>
+<p>NDVI, or <a href="../GLOSSARY.html#normalized-difference" class="glossary-term" title="A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.">Normalized Difference</a> Vegetation Index, compares near infrared and red light. Healthy green vegetation usually reflects strongly in near infrared and absorbs strongly in red, so NDVI is often high where vegetation is vigorous.</p>
+<p><img src="images/20260511_201652_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Index Example 1: NDVI for the Stanford Campus</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script calculates NDVI from one Sentinel-2 image.</span>
+<span class="hljs-comment">// NDVI highlights green vegetation vigor.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI around the Stanford campus.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">5000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Convert scaled integer reflectance to approximate 0 to 1 reflectance.</span>
+<span class="hljs-comment">// For normalizedDifference(), the scale factor cancels out, but converting</span>
+<span class="hljs-comment">// makes the reflectance idea clearer for beginning students.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate NDVI.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// B8 is near infrared.</span>
+<span class="hljs-comment">// B4 is red.</span>
+<span class="hljs-comment">// High NDVI often indicates healthy green vegetation.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> ndvi = reflectance
+  .<span class="hljs-title function_">normalizedDifference</span>([<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B4'</span>])
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'NDVI'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define true color and NDVI display settings.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> ndviVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.2</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.8</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'brown'</span>, <span class="hljs-string">'tan'</span>, <span class="hljs-string">'yellow'</span>, <span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'darkgreen'</span>]
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Add layers with visibility off by default.</span>
+<span class="hljs-comment">// Turn on true color first, then NDVI.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Stanford'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(ndvi, ndviVis, <span class="hljs-string">'NDVI: vegetation'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'NDVI image:'</span>, ndvi);
+</code></pre>
+<p>After running the script, open the <strong>Layers</strong> widget and lock it open. Turn on true color first, then NDVI. Use the <strong>Inspector</strong> to compare NDVI values on lawns, trees, buildings, roads, water, and bare ground.</p>
+<h2 id="part-6-additional-single-index-blocks">Part 6: Additional Single-Index Blocks</h2>
+<p>Each block below is independent and calculates only one index. You can run each block by itself, or use it as a model when you adapt the assignment starter script.</p>
+<p>To adapt one of these blocks, keep the overall structure and change only the parts that match your question:</p>
+<ul>
+<li>the <code>studyPoint</code> coordinates</li>
+<li>the <code>buffer()</code> distance</li>
+<li>the <code>filterDate()</code> start and end dates</li>
+<li>the index formula</li>
+<li>the <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> palette and value range</li>
+</ul>
+<p>This structure is intentionally repetitive. Repetition helps you see that each index follows the same basic pattern, even when the bands, dates, places, and interpretation change.</p>
+<h3 id="ndwi-open-water-in-the-bay-area">NDWI: Open Water in the Bay Area</h3>
+<p>NDWI compares green and near infrared. Open water often reflects relatively more green light and absorbs near infrared.</p>
+<p><img src="images/20260511_203540_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Additional Index: NDWI for Open Water in the Bay Area</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI near the Baylands and South San Francisco Bay.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1150</span>, <span class="hljs-number">37.4600</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">8000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate NDWI.</span>
+<span class="hljs-comment">// B3 is green, and B8 is near infrared.</span>
+<span class="hljs-comment">// Higher NDWI values often indicate open water.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> ndwi = reflectance
+  .<span class="hljs-title function_">normalizedDifference</span>([<span class="hljs-string">'B3'</span>, <span class="hljs-string">'B8'</span>])
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'NDWI'</span>);
+
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> ndwiVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'brown'</span>, <span class="hljs-string">'white'</span>, <span class="hljs-string">'blue'</span>]
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">12</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Baylands'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(ndwi, ndwiVis, <span class="hljs-string">'NDWI: open water'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'NDWI image:'</span>, ndwi);
+</code></pre>
+<h3 id="ndmi-vegetation-and-soil-moisture-in-the-bay-area">NDMI: Vegetation and Soil Moisture in the Bay Area</h3>
+<p>NDMI compares near infrared and shortwave infrared. It is often used to show moisture differences in vegetation or soil.</p>
+<p><img src="images/20260511_203602_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Additional Index: NDMI for Bay Area Moisture</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI around the Stanford foothills and nearby open space.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1900</span>, <span class="hljs-number">37.4000</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">7000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-03-01'</span>, <span class="hljs-string">'2023-05-31'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">30</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate NDMI.</span>
+<span class="hljs-comment">// B8 is near infrared, and B11 is shortwave infrared 1.</span>
+<span class="hljs-comment">// Higher NDMI values often indicate more vegetation or soil moisture.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> ndmi = reflectance
+  .<span class="hljs-title function_">normalizedDifference</span>([<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B11'</span>])
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'NDMI'</span>);
+
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> ndmiVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'brown'</span>, <span class="hljs-string">'yellow'</span>, <span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'blue'</span>]
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">12</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Stanford foothills'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(ndmi, ndmiVis, <span class="hljs-string">'NDMI: moisture'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'NDMI image:'</span>, ndmi);
+</code></pre>
+<h3 id="ndbi-built-up-surfaces-in-oakland">NDBI: Built-Up Surfaces in Oakland</h3>
+<p>NDBI compares shortwave infrared and near infrared. It can help highlight built-up or dry impervious surfaces, though bare soil may also respond strongly.</p>
+<p><img src="images/20260511_203628_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Additional Index: NDBI for Built-Up Surfaces in Oakland</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI centered on Oakland.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.2711</span>, <span class="hljs-number">37.8044</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">8000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-06-01'</span>, <span class="hljs-string">'2023-09-30'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate NDBI.</span>
+<span class="hljs-comment">// B11 is shortwave infrared 1, and B8 is near infrared.</span>
+<span class="hljs-comment">// Positive values may correspond to built-up or dry bare surfaces.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> ndbi = reflectance
+  .<span class="hljs-title function_">normalizedDifference</span>([<span class="hljs-string">'B11'</span>, <span class="hljs-string">'B8'</span>])
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'NDBI'</span>);
+
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> ndbiVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'darkgreen'</span>, <span class="hljs-string">'white'</span>, <span class="hljs-string">'magenta'</span>]
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">12</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Oakland'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(ndbi, ndbiVis, <span class="hljs-string">'NDBI: built-up surfaces'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'NDBI image:'</span>, ndbi);
+</code></pre>
+<h3 id="bsi-bare-soil-in-moab-utah">BSI: Bare Soil in Moab, Utah</h3>
+<p>BSI uses four bands to compare SWIR plus red against NIR plus blue. It is useful in dry places where bare soil and exposed ground are common.</p>
+<p><img src="images/20260511_203648_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Additional Index: Bare Soil Index for Moab, Utah</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI near Moab, Utah.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">109.5498</span>, <span class="hljs-number">38.5733</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">15000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-05-01'</span>, <span class="hljs-string">'2023-10-31'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate BSI.</span>
+<span class="hljs-comment">// This formula uses SWIR 1, red, NIR, and blue.</span>
+<span class="hljs-comment">// expression() is useful when an index needs more than two bands.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> bsi = reflectance.<span class="hljs-title function_">expression</span>(
+  <span class="hljs-string">'((swir1 + red) - (nir + blue)) / ((swir1 + red) + (nir + blue))'</span>,
+  {
+    <span class="hljs-attr">swir1</span>: reflectance.<span class="hljs-title function_">select</span>(<span class="hljs-string">'B11'</span>),
+    <span class="hljs-attr">red</span>: reflectance.<span class="hljs-title function_">select</span>(<span class="hljs-string">'B4'</span>),
+    <span class="hljs-attr">nir</span>: reflectance.<span class="hljs-title function_">select</span>(<span class="hljs-string">'B8'</span>),
+    <span class="hljs-attr">blue</span>: reflectance.<span class="hljs-title function_">select</span>(<span class="hljs-string">'B2'</span>)
+  }
+).<span class="hljs-title function_">rename</span>(<span class="hljs-string">'BSI'</span>);
+
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> bsiVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'blue'</span>, <span class="hljs-string">'white'</span>, <span class="hljs-string">'tan'</span>, <span class="hljs-string">'brown'</span>]
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Moab'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(bsi, bsiVis, <span class="hljs-string">'BSI: bare soil'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'BSI image:'</span>, bsi);
+</code></pre>
+<h3 id="iron-oxide-ratio-sedona-arizona">Iron Oxide Ratio: Sedona, Arizona</h3>
+<p>The <a href="../GLOSSARY.html#iron-oxide-ratio" class="glossary-term" title="A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.">iron oxide ratio</a> compares red and blue reflectance. It is not a <a href="../GLOSSARY.html#normalized-difference" class="glossary-term" title="A ratio that compares two raster bands by subtracting them and dividing by their sum. Normalized difference formulas are common in remote sensing because they emphasize contrast between wavelengths while reducing the effect of overall brightness.">normalized difference</a> index, but it is a common geology-oriented <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> ratio for dry landscapes where exposed rock and soil are visible.</p>
+<p><img src="images/20260511_203709_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Additional Index: Iron Oxide Ratio for Sedona, Arizona</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Define an AOI near Sedona, Arizona.</span>
+<span class="hljs-comment">// Dry southwestern landscapes with exposed rock are useful for geology indices.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> studyPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">111.7609</span>, <span class="hljs-number">34.8697</span>]);
+<span class="hljs-keyword">var</span> studyArea = studyPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">15000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Load and filter Sentinel-2 imagery.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> image = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(studyArea)
+  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2023-05-01'</span>, <span class="hljs-string">'2023-10-31'</span>)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> reflectance = image.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Calculate an iron oxide ratio.</span>
+<span class="hljs-comment">// B4 is red, and B2 is blue.</span>
+<span class="hljs-comment">// Higher values may highlight iron-rich rock or soil, but interpretation</span>
+<span class="hljs-comment">// should be checked against true color and local geology.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> ironOxide = reflectance
+  .<span class="hljs-title function_">select</span>(<span class="hljs-string">'B4'</span>)
+  .<span class="hljs-title function_">divide</span>(reflectance.<span class="hljs-title function_">select</span>(<span class="hljs-string">'B2'</span>))
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'Iron_Oxide_Ratio'</span>);
+
+<span class="hljs-keyword">var</span> trueColorVis = {
+  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>],
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>
+};
+
+<span class="hljs-keyword">var</span> ironOxideVis = {
+  <span class="hljs-attr">min</span>: <span class="hljs-number">0.5</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">2.5</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'darkblue'</span>, <span class="hljs-string">'white'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'red'</span>]
+};
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(studyArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(image, trueColorVis, <span class="hljs-string">'True color: Sedona'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(ironOxide, ironOxideVis, <span class="hljs-string">'Iron oxide ratio: Sedona'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(studyArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Study area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, image);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Image date:'</span>, ee.<span class="hljs-title class_">Date</span>(image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, image.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Iron oxide ratio image:'</span>, ironOxide);
+</code></pre>
+<h2 id="part-8-your-turn-choose-one-index-and-one-area">Part 8: Your Turn: Choose One Index and One Area</h2>
+<p>For the assignment, adapt one of the standalone index scripts for an area of your own choosing.</p>
+<p>Choose one index:</p>
+<ul>
+<li><strong>NDVI</strong> for vegetation greenness or vegetation condition.</li>
+<li><strong>NDWI</strong> for open water.</li>
+<li><strong>NDMI</strong> for moisture in vegetation or soil.</li>
+<li><strong>NDBI</strong> for built-up surfaces or urban contrast.</li>
+<li><strong>NBR</strong> for burned-area signal.</li>
+<li><strong>BSI</strong> for bare soil or exposed ground.</li>
+<li><strong><a href="../GLOSSARY.html#iron-oxide-ratio" class="glossary-term" title="A geology-oriented band ratio that compares red and blue reflectance to highlight possible iron-rich exposed rock or soil. Like other spectral indices, it should be interpreted with true color imagery, local knowledge, and appropriate caution.">Iron Oxide Ratio</a></strong> for exposed rock or soil contrast in dry landscapes.</li>
+</ul>
+<p>Choose one study area:</p>
+<ul>
+<li>a park, campus, watershed, neighborhood, fire perimeter, reservoir, farm area, coastline, desert landscape, or other place you can explain</li>
+<li>an area small enough that you can visually inspect the result</li>
+<li>an area where your chosen index makes sense</li>
+</ul>
+<p>You may create your study area in either of these ways:</p>
+<ul>
+<li>Change the longitude and latitude in <code>ee.Geometry.Point()</code> and keep the <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>.</li>
+<li>Use the Geometry tools in the Code Editor to draw your own polygon.</li>
+</ul>
+<blockquote>
+<p><strong>Concept note:</strong> The index should match the question. NDVI is not the best tool for mapping buildings. NDBI is not the best tool for measuring open water. <a href="../GLOSSARY.html#remote-sensing" class="glossary-term" title="The collection of information about the earth from sensors that do not require direct physical contact, such as satellites or aircraft-based sensors.">Remote sensing</a> works best when the spectral contrast, the index, and the research question fit together.</p>
+</blockquote>
+<h2 id="starter-script-for-your-own-area">Starter Script for Your Own Area</h2>
+<p>This starter uses NDVI, but the <strong>STEP 4</strong> and <strong>STEP 5</strong> sections can be replaced with any of the index calculation and <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> patterns above.</p>
+<p><img src="images/20260511_203807_image.png" alt=""></img></p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Stace Maples</span>
+<span class="hljs-comment">// EarthSys 144</span>
+<span class="hljs-comment">// Student Choice Spectral Index</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Student name:</span>
+<span class="hljs-comment">// Study area:</span>
+<span class="hljs-comment">// Chosen index:</span>
+<span class="hljs-comment">// Research question:</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This standalone script calculates one spectral index for one study area.</span>
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 1: Choose your study area.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Replace the longitude and latitude with a point in your study area.</span>
+<span class="hljs-comment">// Keep the coordinate order as longitude, latitude.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> focalPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1697</span>, <span class="hljs-number">37.4275</span>]);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Choose a buffer distance in meters.</span>
+<span class="hljs-comment">// Smaller areas are easier to inspect carefully.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> focalArea = focalPoint.<span class="hljs-title function_">buffer</span>(<span class="hljs-number">5000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 2: Choose your dates.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Pick dates that make sense for your index.</span>
+<span class="hljs-comment">// For vegetation, think about growing season.</span>
+<span class="hljs-comment">// For water, think about wet and dry seasons.</span>
+<span class="hljs-comment">// For burn signal, think about dates after a fire.</span>
+<span class="hljs-comment">// For geology or bare soil, think about dry, cloud-free conditions.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> startDate = <span class="hljs-string">'2023-06-01'</span>;
+<span class="hljs-keyword">var</span> endDate = <span class="hljs-string">'2023-09-30'</span>;
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 3: Load, filter, sort, and select one Sentinel-2 image.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> selectedImage = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR_HARMONIZED'</span>)
+  .<span class="hljs-title function_">filterBounds</span>(focalArea)
+  .<span class="hljs-title function_">filterDate</span>(startDate, endDate)
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>))
+  .<span class="hljs-title function_">sort</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>)
+  .<span class="hljs-title function_">first</span>();
+
+<span class="hljs-keyword">var</span> selectedReflectance = selectedImage.<span class="hljs-title function_">divide</span>(<span class="hljs-number">10000</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 4: Calculate one chosen index.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// This starter calculates NDVI. Replace this block with another index if your</span>
+<span class="hljs-comment">// question focuses on water, moisture, built-up land, burned area, or bare soil.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> selectedIndex = selectedReflectance
+  .<span class="hljs-title function_">normalizedDifference</span>([<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B4'</span>])
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'NDVI'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 5: Choose visualization settings for your selected index.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-keyword">var</span> selectedIndexVis = {
+  <span class="hljs-attr">min</span>: -<span class="hljs-number">0.2</span>,
+  <span class="hljs-attr">max</span>: <span class="hljs-number">0.8</span>,
+  <span class="hljs-attr">palette</span>: [<span class="hljs-string">'brown'</span>, <span class="hljs-string">'tan'</span>, <span class="hljs-string">'yellow'</span>, <span class="hljs-string">'lightgreen'</span>, <span class="hljs-string">'darkgreen'</span>]
+};
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 6: Display true color imagery and your selected index.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(focalArea, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  selectedImage,
+  {<span class="hljs-attr">bands</span>: [<span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B2'</span>], <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">3000</span>},
+  <span class="hljs-string">'True color image'</span>,
+  <span class="hljs-literal">false</span>
+);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(selectedIndex, selectedIndexVis, <span class="hljs-string">'Selected spectral index'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(focalArea, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'Focal area'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'HYBRID'</span>);
+
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 7: Print metadata and index information to the Console.</span>
+<span class="hljs-comment">// ----------------------------------------------------------------------------</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image:'</span>, selectedImage);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected image date:'</span>, ee.<span class="hljs-title class_">Date</span>(selectedImage.<span class="hljs-title function_">get</span>(<span class="hljs-string">'system:time_start'</span>)));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Cloudy pixel percentage:'</span>, selectedImage.<span class="hljs-title function_">get</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>));
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Selected index:'</span>, selectedIndex);
+</code></pre>
+<p>After running your script, open the <strong>Layers</strong> widget and lock it open if you want to compare layers without reopening the menu. Turn on the true color <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> first, then turn on your selected index <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and compare what each <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> highlights.</p>
+<h2 id="what-to-turn-in">What To Turn In</h2>
+<p>Submit a PDF that includes:</p>
+<ul>
+<li>your name</li>
+<li>the title of the lab</li>
+<li>the name and location of your study area</li>
+<li>the index you chose and why it fits your question</li>
+<li>the date range you used</li>
+<li>a screenshot of your selected <a href="../GLOSSARY.html#spectral-index" class="glossary-term" title="A raster layer calculated from two or more imagery bands to highlight a surface property such as vegetation greenness, moisture, water, burned area, built-up land, or bare soil.">spectral index</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li>a short interpretation of what high and low values appear to mean in your study area</li>
+<li>a Google Earth Engine <strong>Get Link URL</strong> to your saved script</li>
+</ul>
+<p>To create the <strong>Get Link URL</strong>:</p>
+<ol>
+<li>Click <strong>Save</strong> in the Earth Engine Code Editor.</li>
+<li>Give your script a clear name.</li>
+<li>Click <strong>Get Link</strong>.</li>
+<li>Copy the generated URL.</li>
+<li>Paste the URL into a Google Doc with the rest of your submission.</li>
+<li>Export or download the Google Doc as a PDF.</li>
+<li>Submit the PDF as instructed by the course.</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Week 06 - More Raster & Remote Sensing">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html" class="navigation navigation-next " aria-label="Next page: 01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"00 - TURN IN - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"next":{"title":"01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance","level":"1.9.2","depth":2,"path":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","ref":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","articles":[]},"previous":{"title":"Week 06 - More Raster & Remote Sensing","level":"1.9","depth":1,"path":"week06/README.md","ref":"week06/README.md","articles":[{"title":"00 - TURN IN - Basic Remote Sensing with Google Earth Engine","level":"1.9.1","depth":2,"path":"week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md","ref":"week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md","articles":[]},{"title":"01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance","level":"1.9.2","depth":2,"path":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","ref":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","articles":[]},{"title":"02 - TURN IN - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"path":"week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md","ref":"week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md","articles":[]},{"title":"03 - TURN IN - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md","ref":"week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md","articles":[]},{"title":"04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation","level":"1.9.5","depth":2,"path":"week06/04_OPTIONAL_pan-sharpen_LANDSAT.md","ref":"week06/04_OPTIONAL_pan-sharpen_LANDSAT.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.md","mtime":"2026-05-12T05:00:10.599Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-12T05:00:21.833Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

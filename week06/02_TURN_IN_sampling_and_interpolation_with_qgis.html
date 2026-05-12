@@ -1,0 +1,1704 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>02 - TURN IN - Sampling & Interpolation with QGIS · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="03_TURN_IN_introducing_planet_com_satellite_imagery.html" />
+    
+    
+    <link rel="prev" href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../week00/">
+            
+                <a href="../week00/">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="../week00/00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="../week00/01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="../week00/02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                <a href="../week00/03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../week00/04_introduction_to_finding_data.html">
+            
+                <a href="../week00/04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../week00/05_submitting_homework_and_getting_help.html">
+            
+                <a href="../week00/05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../week00/06_help_fix_the_labs.html">
+            
+                <a href="../week00/06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../week00/07_installing_qgis_and_plugins.html">
+            
+                <a href="../week00/07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Editing with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                    
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                    
+                    03 - TURN IN - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                    
+                    04 - TURN IN - Cartographic Design Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                    
+                    00 - OPTIONAL - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                <a href="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                    
+                    03 - TURN IN - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                <a href="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Visibility Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    03 - TURN IN - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - TURN IN - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                <a href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                    
+                    01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9.3" data-path="02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="03_TURN_IN_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="03_TURN_IN_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - TURN IN - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                <a href="04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                    
+                    04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >02 - TURN IN - Sampling & Interpolation with QGIS</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="sampling-and-interpolation-with-qgis">Sampling and Interpolation with QGIS</h1>
+<blockquote>
+<p><strong>Turn-in for grading:</strong> This lab includes material that must be turned in for grading. Complete the required deliverables and submit them as instructed by the course.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This lab introduces sampling strategies and spatial interpolation methods in QGIS. Instead of using <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> data as-is, you will <strong>create</strong> new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surfaces from point samples using three different interpolation techniques.</p>
+<p>You will work with a digital elevation model (DEM) of southeast Arizona to:</p>
+<ol>
+<li>create sample point layers using systematic, random, and stratified sampling strategies</li>
+<li>extract elevation values at those sample points</li>
+<li>interpolate new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surfaces from the samples using Inverse Distance Weighting (IDW), Nearest Neighbor, and Spline methods</li>
+<li>compare the interpolated surfaces to the original DEM to understand the strengths and limitations of each method</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> Sampling and interpolation are fundamental to converting sparse point measurements (like weather stations or survey points) into continuous <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surfaces that cover an entire area. The method you choose affects how smooth the output is, how well it honors the original sample values, and how it represents areas between samples.</p>
+</blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>the difference between systematic, random, and stratified sampling strategies and when to use each</li>
+<li>how interpolation methods like IDW, Nearest Neighbor, and Spline create <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surfaces from point data</li>
+<li>why stratification can be useful when sampling density matters in some regions more than others</li>
+<li>how filtering operations like majority filtering generalize <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> data</li>
+<li>how to compare interpolated surfaces to original data to assess interpolation quality</li>
+</ul>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>You will need:</p>
+<ul>
+<li><a href="https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip" target="_blank">L12.zip</a> containing the elevation data for this exercise, OR download <code>ChirDEM.tif</code> directly from the course repository</li>
+<li>QGIS with Processing Toolbox and GDAL tools available</li>
+<li>SAGA tools (for majority filtering)</li>
+</ul>
+<blockquote>
+<p><strong>Background:</strong> The concepts and workflows in this exercise are covered in Chapter 12 (Spatial Estimation) and Chapter 10 (<a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Analysis) of the GIS Fundamentals textbook.</p>
+</blockquote>
+<h3 id="download-the-data">Download the Data</h3>
+<p><strong>Option 1: Download the complete lab data package</strong></p>
+<p><a href="https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip" target="_blank">Download L12.zip</a> - This archive contains the ChirDEM and supporting documentation. Unzip it to a stable location on your computer.</p>
+<p><strong>Option 2: Download ChirDEM.tif directly</strong></p>
+<p>If you only need the elevation model, download it directly:</p>
+<p><a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif" target="_blank">Download ChirDEM.tif</a></p>
+<p>This file is a <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> containing the digital elevation model for southeast Arizona (30-meter <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a>, NAD83 UTM Zone 12N projection).</p>
+<h3 id="project-setup">Project Setup</h3>
+<ol>
+<li>Create a new folder for this lab on your computer.</li>
+<li>Place <code>ChirDEM.tif</code> in that folder (or extract it from L12.zip).</li>
+<li>Create a new QGIS project in that same folder and save it as <code>sampling_interpolation.qgz</code>.</li>
+<li>You will create all output layers (sample points, interpolated rasters, etc.) in this project folder.</li>
+</ol>
+<h2 id="data-for-this-exercise">Data for This Exercise</h2>
+<p>The main data <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is:</p>
+<ul>
+<li><code>ChirDEM.tif</code>: A digital elevation model of southeast Arizona at 30-meter <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a>, in NAD83 UTM Zone 12N projection (EPSG:26912)</li>
+</ul>
+<p>You will create multiple output layers in this lab, including sample point layers, interpolated <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surfaces, and a stratification <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> based on slope <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>.</p>
+<h2 id="part-1-preparing-the-dem-and-creating-a-base-hillshade">Part 1: Preparing the DEM and Creating a Base Hillshade</h2>
+<p>We’ll start by adding the DEM and creating <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> layers to help us understand the terrain variation.</p>
+<ol>
+<li>Start QGIS, add the DEM from southeast Arizona, <em>ChirDEM</em>, and apply a color scheme to highlight topography in the DEM. Note the variation in topography—where there is significant change and where there is little change.</li>
+<li>Open <strong>Processing &gt; Toolbox</strong> and search for <strong>Hillshade</strong>.</li>
+<li>Use <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Terrain Analysis &gt; Hillshade</strong> to create a hillshade with:<ul>
+<li><strong>Solar altitude (vertical angle):</strong> <code>25 degrees</code></li>
+<li><strong>Azimuth:</strong> <code>315</code></li>
+</ul>
+</li>
+<li>Browse and name the output: <code>Hillshade</code></li>
+</ol>
+<p><img src="images/Sampling_Interpolation-c4dafe78.png" alt=""></img></p>
+<ol>
+<li>When finished, place the <code>Hillshade</code> underneath the <code>ChirDEM</code> in the layers panel.</li>
+<li>Set the <code>ChirDEM</code> <strong>Rendering</strong> to <strong>Multiply</strong> in the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling panel to blend the hillshade with the elevation colors.</li>
+</ol>
+<p><img src="images/20250427_173837_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Workflow note:</strong> Hillshades help visualize terrain detail by showing the interplay of light and shadow. Placing the DEM above a hillshade using Multiply blending combines color information with shading for a richer <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a>.</p>
+</blockquote>
+<h2 id="organizing-your-layers-into-groups">Organizing Your Layers into Groups</h2>
+<p>To keep your work organized as you create multiple interpolation outputs, you will group related layers in the Layers panel. This lab will involve four different interpolation approaches, each with a related set of data layers.</p>
+<ol>
+<li><strong>Select both the DEM and hillshade in the Layers panel</strong> (shift-click on PC, cmd-click on Mac), <strong>then right-click and select “Group Selected”</strong> from the dropdown.</li>
+<li><strong>Rename</strong> this group: <code>Original</code></li>
+</ol>
+<p>As you create layers for each interpolation method, select appropriate layers and group them with logical names. Suggested group names:</p>
+<ul>
+<li><code>Original</code></li>
+<li><code>Inverse Distance</code></li>
+<li><code>Nearest Neighbor</code></li>
+<li><code>Spline Stratified</code></li>
+</ul>
+<p>If a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> ends up in the wrong group, right-click and select <strong>Move Out of Group</strong>.</p>
+<blockquote>
+<p><strong>Workflow note:</strong> Organizing your layers into groups from the start makes it easier to manage the many intermediate outputs you will create and to prepare your final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a>.</p>
+</blockquote>
+<p><strong>Final Output Layout:</strong> Your maps will be arranged in a landscape orientation with four side-by-side map frames, one for each interpolation method. Each frame should display the interpolated surface, its hillshade, and contours, arranged consistently across all four maps.</p>
+<p><img src="images/FourUpLayout.png" alt=""></img></p>
+<h2 id="part-2-systematic-sampling-and-idw-interpolation">Part 2: Systematic Sampling and IDW Interpolation</h2>
+<p>In this part, you will create a regular grid of sample points evenly spaced across the DEM, extract elevation values at those points, and then use Inverse Distance Weighting (IDW) interpolation to create a continuous <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surface from those samples.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Systematic sampling creates an evenly spaced grid of sample points, which is useful for uniform coverage and is easy to implement. However, it can miss important variation if spatial features align poorly with the grid direction.</p>
+</blockquote>
+<h3 id="creating-a-regular-grid-of-sample-points">Creating a Regular Grid of Sample Points</h3>
+<ol>
+<li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Research Tools &gt; Regular Points</strong> (or search for <strong>Regular Points</strong> in the Processing Toolbox).</li>
+<li>Set the <strong>input extent</strong> by clicking the options button and selecting <strong>Calculate from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong>, using the <code>ChirDEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Set the <strong>point spacing/count</strong> to <code>1000</code> meters.</li>
+<li>Check <strong>Use point spacing</strong> to specify that you want points 1000 meters apart.</li>
+<li>Specify an output <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> if it is not already set to <code>EPSG:26912</code> (the CRS of <code>ChirDEM</code>).</li>
+<li>Browse and save the output as <strong>SystematicGrid1000m.shp</strong>.</li>
+</ol>
+<p><img src="images/20250427_174625_image.png" alt=""></img></p>
+<p>A regular grid of points should be displayed on your screen. If not, navigate to the file you created and add it to the project.</p>
+<p><img src="images/20250427_174701_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> A 1000-meter spacing creates approximately 1000 sample points across the study area, providing uniform coverage without specifying a point count directly. This regular spacing ensures unbiased sampling across all terrain types.</p>
+</blockquote>
+<h3 id="extracting-elevation-values-at-sample-points">Extracting Elevation Values at Sample Points</h3>
+<p>Next, you will sample the elevation values from the DEM at each grid point location.</p>
+<ol>
+<li>Return to the <strong>Processing Toolbox</strong> and open <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Analysis &gt; Sample <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>SystematicGrid1000m</code></li>
+<li><strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to sample:</strong> <code>ChirDEM</code></li>
+<li><strong>Output point features:</strong> <code>Elevation1000mGrid</code></li>
+<li><strong>Output <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> prefix:</strong> <code>SAMPLE_</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250427_175511_image.png" alt=""></img></p>
+<p>This generates a point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with an added <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> containing the sampled elevation value below each point:</p>
+<p><img src="images/20250427_175601_image.png" alt=""></img></p>
+<p>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> and inspect the <code>SAMPLE_1</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, which now contains elevation values extracted from the DEM.</p>
+<blockquote>
+<p><strong>Workflow note:</strong> The <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> prefix (<code>SAMPLE_</code>) is prepended to the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> number to create <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> names. Since <code>ChirDEM</code> has one <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a>, the result is <code>SAMPLE_1</code>.</p>
+</blockquote>
+<h3 id="interpolating-a-surface-with-inverse-distance-weighting-idw">Interpolating a Surface with Inverse Distance Weighting (IDW)</h3>
+<p>Now you will create a new <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> surface by interpolating from these sample points using IDW, which weights nearby points more heavily than distant ones.</p>
+<ol>
+<li>Return to the <strong>Processing Toolbox</strong> and search for <strong>GRID: Inverse distance to a Power</strong>.</li>
+</ol>
+<p><img src="images/Sampling_Interpolation-c09e5c96.png" alt=""></img></p>
+<ol>
+<li>Specify:<ul>
+<li><strong>Point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>Elevation1000mGrid</code></li>
+<li><strong>Weighting power:</strong> <code>2</code></li>
+<li><strong>Smoothing:</strong> <code>1</code></li>
+<li><strong>Search ellipse radii (X and Y):</strong> <code>1000</code> meters for both</li>
+<li><strong>Maximum number of data points to use:</strong> <code>12</code></li>
+<li><strong>Minimum number of data points to use:</strong> <code>1</code></li>
+</ul>
+</li>
+<li>Open <strong>Advanced Parameters</strong> and set:<ul>
+<li><strong>Z value <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>:</strong> <code>SAMPLE_1</code> (the elevation values <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>)</li>
+</ul>
+</li>
+<li>For the output <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell size, paste this into <strong>Additional command-line parameters [optional]</strong>:</li>
+</ol>
+<pre><code>-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793
+</code></pre><p>These parameters specify the output extent and dimensions (943 × 793 pixels) to match the original DEM’s 30-meter cell size. See the <a href="https://gdal.org/programs/gdal_grid.html" target="_blank">GDAL Grid documentation</a> for more details.</p>
+<ol>
+<li>Browse and name the <strong>Interpolated (IDW) Output:</strong> <code>IDWsysP2_12</code></li>
+<li>Run the tool.</li>
+</ol>
+<p><img src="images/20250427_180112_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> IDW interpolation calculates each output cell value as a weighted average of nearby sample points. The weighting power (2 in this case) controls how much closer points are favored—higher values make distant points matter even less. The search radius limits which points contribute to each cell, creating the characteristic “pattern” you see where nearby sample points create local influence zones.</p>
+</blockquote>
+<p>The resulting map shows clear pattern marks where sample points and search ellipses interact:</p>
+<p><img src="images/20250427_180159_image.png" alt=""></img></p>
+<h3 id="styling-the-idw-surface">Styling the IDW Surface</h3>
+<p>Now apply the same color scheme used for the original DEM to the interpolated surface so they are visually comparable.</p>
+<ol>
+<li>Return to your <strong>Original group</strong> and right-click on the <code>ChirDEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Select <strong>Styles &gt; Copy Style</strong>.</li>
+<li>Right-click on your <code>IDWsysP2_12</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and select <strong>Styles &gt; Paste Style</strong> to apply the same color ramp and <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>.</li>
+</ol>
+<p><img src="images/Sampling_Interpolation-2a0e4703.png" alt=""></img></p>
+<p><img src="images/Sampling_Interpolation-952d9b81.png" alt=""></img></p>
+<h3 id="creating-contours-from-the-interpolated-surface">Creating Contours from the Interpolated Surface</h3>
+<p>Contours help visualize the shape of the interpolated surface and make it easier to compare across methods.</p>
+<ol>
+<li>Open <strong>Main Menu &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Extraction &gt; Contour</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>IDWsysP2_12</code></li>
+<li><strong>Interval:</strong> <code>100</code> (meters, matching the DEM's <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a> units)</li>
+<li><strong>Contours output:</strong> Browse and save as <code>IDW100mContours.shp</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250427_180543_image.png" alt=""></img></p>
+<ol>
+<li>As you did with the original DEM, use <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Terrain Analysis &gt; Hillshade</strong> to create an <code>IDWHillshade</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> using the same parameters (Azimuth 315, Elevation 25).</li>
+<li><strong>Group</strong> the <code>IDWsysP2_12</code>, <code>IDWHillshade</code>, and <code>IDW100mContours</code> layers in a group named <code>Inverse Distance</code>.</li>
+<li>Arrange the layers so that your hillshade is positioned between the interpolated <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and the contours, similar to the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> below (colors may vary):</li>
+</ol>
+<p><img src="images/20250427_181000_image.png" alt=""></img></p>
+<h2 id="part-3-random-sampling-and-nearest-neighbor-interpolation">Part 3: Random Sampling and Nearest Neighbor Interpolation</h2>
+<p>In this part, you will create a random sample of points, extract elevation values, and use Nearest Neighbor interpolation, which produces a distinctly different result from IDW.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Random sampling avoids the artificial grid pattern of systematic sampling and is good when you want unbiased point placement. However, random samples can accidentally cluster in some areas and leave gaps in others, which affects interpolation quality.</p>
+</blockquote>
+<h3 id="creating-random-sample-points">Creating Random Sample Points</h3>
+<ol>
+<li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Research Tools &gt; Random Points in Extent</strong>.</li>
+<li>Set the <strong>Input extent</strong> by clicking <strong>... &gt; Calculate from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> and selecting <code>ChirDEM</code>.</li>
+<li>Specify:<ul>
+<li><strong>Number of points:</strong> <code>1000</code></li>
+<li><strong>Minimum distance:</strong> <code>60 meters</code> (to prevent clustering)</li>
+<li><strong>Maximum number of search attempts:</strong> <code>200</code></li>
+</ul>
+</li>
+<li>Browse and save the output as <strong>Random1000Points.shp</strong>.</li>
+</ol>
+<p><img src="images/20250427_181349_image.png" alt=""></img></p>
+<ol>
+<li>Now extract elevation values from the DEM at these random points using <strong>Processing Toolbox &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Analysis &gt; Sample <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values</strong>.</li>
+<li>Name the output <strong>Random1000Elevation</strong>.</li>
+</ol>
+<p><img src="images/20250427_181554_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Workflow note:</strong> The minimum distance parameter ensures points don’t cluster too tightly, which would create redundant samples. This improves spatial coverage while still preserving randomness.</p>
+</blockquote>
+<h3 id="nearest-neighbor-interpolation">Nearest Neighbor Interpolation</h3>
+<p>Nearest Neighbor interpolation creates a stepped surface where each <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell takes the value of the single nearest sample point. This produces output similar to Voronoi polygons and is useful when you want to preserve original sample values without smoothing.</p>
+<ol>
+<li>Search the <strong>Processing Toolbox</strong> for <strong>Grid (Nearest Neighbor)</strong> under <strong>GDAL &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Analysis</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>Random1000Elevation</code></li>
+<li><strong>First and second search ellipses:</strong> <code>1000</code> meters</li>
+<li><strong>Z value <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>:</strong> <code>SAMPLE_1</code></li>
+</ul>
+</li>
+<li>Paste the same command-line parameters into <strong>Additional command-line parameters [optional]</strong>:</li>
+</ol>
+<pre><code>-tye 3498779.8925000000745058  3522569.8972999998368323 -txe 658307.9677000000374392  686597.9734000000171363 -outsize 943 793
+</code></pre><ol>
+<li>Browse and name the output: <strong>NNfromRandom1000.tif</strong></li>
+<li>Run the tool.</li>
+</ol>
+<p><img src="images/20250427_181930_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> Nearest Neighbor is a deterministic method—each cell always takes the value of its nearest point. Unlike IDW, which blends values from multiple neighbors, Nearest Neighbor creates discrete zones of constant elevation, making it useful when you have authoritative point measurements that should not be smoothed or averaged.</p>
+</blockquote>
+<h3 id="styling-and-visualizing-nearest-neighbor-results">Styling and Visualizing Nearest Neighbor Results</h3>
+<ol>
+<li>Copy the style from your original <code>ChirDEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it onto <code>NNfromRandom1000.tif</code>, just as you did for the IDW result.</li>
+<li>Create contour lines from the Nearest Neighbor surface using <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Extraction &gt; Contour</strong> with an interval of <code>100</code> meters.</li>
+<li>Create an <code>NNHillshade</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> using <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Terrain Analysis &gt; Hillshade</strong> with Azimuth 315 and Elevation 25.</li>
+</ol>
+<p><img src="images/20250427_182216_image.png" alt=""></img></p>
+<p><img src="images/20250427_182615_image.png" alt=""></img></p>
+<ol>
+<li>Create a <strong>Nearest Neighbor group</strong> in the Layers panel containing the sample points, contours, and interpolated <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> layers.</li>
+</ol>
+<p>Your results should resemble the figure below. Note that since the sampling is random, your exact map will differ:</p>
+<p><img src="images/20250427_182705_image.png" alt=""></img></p>
+<h2 id="part-4-stratified-random-sampling-and-spline-interpolation">Part 4: Stratified Random Sampling and Spline Interpolation</h2>
+<p>In this part, you will implement a more sophisticated sampling strategy: stratified random sampling. Instead of sampling uniformly across the landscape, you will <strong>increase sampling density in steep areas</strong> where terrain variation is greatest. You will then use Spline interpolation, which creates a smooth surface that may not pass exactly through all sample points but produces continuous curvature.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Stratified sampling is useful when different parts of your study area have different importance or variability. By stratifying on slope, you sample more densely where terrain is complex and less densely where it is simple. This is more efficient than uniform sampling for capturing important variation.</p>
+</blockquote>
+<h3 id="step-1-calculate-slope">Step 1: Calculate Slope</h3>
+<p>Begin by deriving a slope <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> from the DEM. Your strata boundaries will be based on slope classes.</p>
+<ol>
+<li>Open <strong>Processing Toolbox &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Analysis &gt; Slope</strong>.</li>
+<li>Use <code>ChirDEM</code> as the input.</li>
+<li>Use the default settings (slope output in degrees).</li>
+<li>Browse and save the output as <strong>SlopeDegrees</strong>.</li>
+</ol>
+<p><img src="images/20250427_182808_image.png" alt=""></img></p>
+<p><img src="images/20250427_182835_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> Slope represents the rate of elevation change and is derived from the DEM. Steeper slopes indicate terrain where elevation changes rapidly over short distances. In this lab, slope becomes the criterion for stratification—we will sample more densely in steep areas.</p>
+</blockquote>
+<h3 id="step-2-reclassify-slope-into-strata">Step 2: Reclassify Slope into Strata</h3>
+<p>Convert continuous slope values into three discrete classes representing flat, intermediate, and steep terrain.</p>
+<ol>
+<li>Open <strong>Processing Toolbox &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Analysis &gt; Reclassify by <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong>.</li>
+<li>Click the <strong>...</strong> button next to the <strong>Reclassification <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong> to define your classes.</li>
+<li>Click <strong>Add <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">Row</a></strong> to create <code>3</code> rows.</li>
+<li>Define three classes:<ul>
+<li><code>0 to 1.5</code> (flat)</li>
+<li><code>1.5 to 18</code> (intermediate)</li>
+<li><code>18 and up</code> (steep)</li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250427_182939_image.png" alt=""></img></p>
+<p>These thresholds were chosen to create reasonably balanced classes. In a real workflow, you would select thresholds based on domain knowledge—for example, slopes above which construction is infeasible, or elevations where a particular resource is unlikely to be found.</p>
+<ol>
+<li>Browse and save the output as <strong>ReclassSlope</strong>.</li>
+</ol>
+<p><img src="images/20250427_183053_image.png" alt=""></img></p>
+<p>Your reclassified <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> should look similar to this:</p>
+<p><img src="images/20250427_183457_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Workflow note:</strong> Reclassification reduces complexity by converting many continuous values into a small number of meaningful categories. This simplification is essential for stratification because it defines the population of each stratum.</p>
+</blockquote>
+<h3 id="step-3-apply-majority-filtering-to-generalize-strata">Step 3: Apply Majority Filtering to Generalize Strata</h3>
+<p>Before creating sampling zones, generalize the reclassified slope to remove isolated single cells or long thin areas that would complicate stratified sampling.</p>
+<ol>
+<li>Open <strong>Processing Toolbox &gt; SAGA &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Filter &gt; Majority/Minority filter</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Type:</strong> <code>Majority</code></li>
+<li><strong>Search mode:</strong> <code>Circle</code></li>
+<li><strong>Radius:</strong> <code>10</code> pixels</li>
+<li><strong><a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">Threshold</a>:</strong> <code>50%</code></li>
+</ul>
+</li>
+<li>Browse and save the output as <strong>ReclassSlopeMajority</strong> (note: SAGA outputs in <code>.sdat</code> format by default).</li>
+</ol>
+<p><img src="images/20250427_183551_image.png" alt=""></img></p>
+<p>Toggle between the reclassified and majority-filtered layers to see how the filter removes small isolated zones:</p>
+<p><img src="images/20250427_183655_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> A majority filter applies a local rule: for each <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell, if more than half of the cells in a circular neighborhood belong to a particular class, assign that class to the center cell. This generalizes small, isolated patches and creates larger, more contiguous strata suitable for polygon-based sampling.</p>
+</blockquote>
+<h3 id="step-4-convert-raster-strata-to-vector-polygons">Step 4: Convert Raster Strata to Vector Polygons</h3>
+<p>Convert the generalized <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> strata to a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> that will define your sampling zones.</p>
+<ol>
+<li>Open <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Conversion &gt; Polygonize</strong>.</li>
+<li>Use <strong>ReclassSlopeMajority</strong> as input.</li>
+<li>Use the default settings.</li>
+<li>Browse and save the <strong>output <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> polygons</strong> as <strong>STRATA.shp</strong>.</li>
+</ol>
+<p><img src="images/20250427_183744_image.png" alt=""></img></p>
+<p><img src="images/20250427_183803_image.png" alt=""></img></p>
+<h3 id="step-5-calculate-polygon-areas-and-determine-samples-per-polygon">Step 5: Calculate Polygon Areas and Determine Samples per Polygon</h3>
+<p>Now you will use the area of each polygon to calculate how many sample points should fall within it, proportional to both its size and the desired sampling density for its stratum.</p>
+<p>The sampling logic is:</p>
+<ul>
+<li><strong>Flat areas (Class 1):</strong> 10% of 1000 = 100 points</li>
+<li><strong>Intermediate areas (Class 2):</strong> 65% of 1000 = 650 points</li>
+<li><strong>Steep areas (Class 3):</strong> 25% of 1000 = 250 points</li>
+</ul>
+<p>These proportions reflect the assumption that steep areas warrant denser sampling to capture their complexity.</p>
+<h4 id="calculating-individual-polygon-areas">Calculating Individual Polygon Areas</h4>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for the <code>STRATA</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Toggle editing mode.</li>
+<li>Add a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> of type <strong>Decimal (Real)</strong> named <code>SqKm</code>.</li>
+<li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to populate this <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> with polygon areas in square kilometers:</li>
+</ol>
+<pre><code>$area / 1000000
+</code></pre><p><img src="images/20250503_174225_image.png" alt=""></img></p>
+<ol>
+<li>Save your edits and toggle editing off.</li>
+</ol>
+<h4 id="computing-total-area-per-stratum">Computing Total Area per Stratum</h4>
+<p>You now need to find the total area for each class (flat, intermediate, steep) to use as a denominator in the sampling calculation.</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for the <code>STRATA</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Select all polygons for one stratum class using <strong>Select features using an expression</strong>:</li>
+</ol>
+<pre><code>"DN" = 1
+</code></pre><p>(Repeat for classes 2 and 3 separately.)</p>
+<p><img src="images/20250503_174638_image.png" alt=""></img></p>
+<ol>
+<li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Analysis &gt; Basic Statistics for Fields</strong>.</li>
+<li>Check the box for <strong>Selected features only</strong>.</li>
+<li>Select the <code>SqKm</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and look at the <strong>Sum</strong> to get the total area for that class.</li>
+</ol>
+<p><img src="images/20250503_174801_image.png" alt=""></img></p>
+<p><img src="images/20250503_174817_image.png" alt=""></img></p>
+<p>You should arrive at areas close to:</p>
+<ul>
+<li><strong>Flat (DN = 1):</strong> approximately 289 square kilometers</li>
+<li><strong>Intermediate (DN = 2):</strong> approximately 359 square kilometers</li>
+<li><strong>Steep (DN = 3):</strong> approximately 25 square kilometers</li>
+</ul>
+<p>(Your numbers may differ slightly depending on your earlier parameters.)</p>
+<blockquote>
+<p><strong>Workflow note:</strong> This approach uses <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> selection to compute statistics on a subset. It lets you find the total area for each stratum without manually summing individual polygons.</p>
+</blockquote>
+<h4 id="calculating-sample-count-per-polygon">Calculating Sample Count per Polygon</h4>
+<p>Now add a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> that calculates how many sample points should be placed in each polygon based on its area relative to its stratum.</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for the <code>STRATA</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and add a new <strong>Long integer</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <strong>samp_num</strong>.</li>
+<li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to compute the number of samples for each polygon. For each stratum, use a formula like:<ul>
+<li><strong>DN = 1 (flat):</strong> <code>100 * "SqKm" / 287.408</code></li>
+<li><strong>DN = 2 (intermediate):</strong> <code>650 * "SqKm" / 357.354</code></li>
+<li><strong>DN = 3 (steep):</strong> <code>250 * "SqKm" / 25.144</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250504_105257_image.png" alt=""></img></p>
+<ol>
+<li>Calculate each formula separately for each class. After each calculation, select the next class and recalculate.</li>
+<li>Save your edits and toggle editing off.</li>
+</ol>
+<p><img src="images/20250504_105516_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer.</p>
+</blockquote>
+<h3 id="step-6-generate-stratified-random-points">Step 6: Generate Stratified Random Points</h3>
+<p>Now create the stratified random sample using the <code>samp_num</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to determine point density within each polygon.</p>
+<ol>
+<li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Research Tools &gt; Random Points in Polygons</strong>.</li>
+<li>Set <strong>Input polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></strong> to <code>STRATA</code>.</li>
+<li>For the <strong>Number of points for each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></strong> option, click the button on the right end of the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>From the dropdown, select <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> type &gt; samp_num</strong> to use the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> you just calculated.</li>
+</ol>
+<p><img src="images/Sampling_Interpolation-c2c8d1d0.png" alt=""></img></p>
+<ol>
+<li>Browse and save the <strong>Output random points in polygons</strong> as <strong>StrataRandom1000.shp</strong>.</li>
+</ol>
+<p><img src="images/Sampling_Interpolation-51a42dee.png" alt=""></img></p>
+<p>This generates a point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with higher sampling density in the steeper areas (where <code>samp_num</code> is larger) and lower density in flatter areas:</p>
+<p><img src="images/20250504_110405_image.png" alt=""></img></p>
+<blockquote>
+<p><strong>Workflow note:</strong> To add colors to your map, change the <code>STRATA</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> to <strong>Categorized</strong> using <strong>DN</strong> as the value <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>. This helps visualize which strata are being sampled more densely.</p>
+</blockquote>
+<h3 id="step-7-extract-elevation-values-from-stratified-samples">Step 7: Extract Elevation Values from Stratified Samples</h3>
+<p>As before, sample the elevation values from the DEM at these stratified random points:</p>
+<ol>
+<li>Open <strong>Processing Toolbox &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Analysis &gt; Sample <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>StrataRandom1000</code></li>
+<li><strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to sample:</strong> <code>ChirDEM</code></li>
+<li><strong>Output point features:</strong> <code>StratRandElevationSamples</code></li>
+<li><strong>Output <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> prefix:</strong> <code>SAMPLE_</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250504_110829_image.png" alt=""></img></p>
+<h3 id="step-8-spline-interpolation">Step 8: Spline Interpolation</h3>
+<p>Spline interpolation creates a smooth continuous surface that minimizes overall curvature. Unlike IDW or Nearest Neighbor, splines are constrained to produce a mathematically smooth function, which can produce unrealistic values between sample points.</p>
+<ol>
+<li>Open <strong>Processing Toolbox &gt; SAGA &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Creation &gt; Multi-level b-spline</strong>.</li>
+<li>Specify:<ul>
+<li><strong>Input points:</strong> <code>StratRandElevationSamples</code></li>
+<li><strong>Attributes:</strong> <code>SAMPLE_1</code> (the elevation <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>)</li>
+<li><strong>Output extent:</strong> Calculate from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> &gt; <code>ChirDEM</code></li>
+<li><strong>Cellsize:</strong> <code>30</code></li>
+<li><strong>Refinement:</strong> <code>[1] Yes</code></li>
+<li><strong><a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">Threshold</a> error:</strong> <code>default</code></li>
+<li><strong>Maximum level:</strong> <code>11</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250504_111040_image.png" alt=""></img></p>
+<ol>
+<li>Browse and name the <strong>Output grid:</strong> <strong>SplineStratRand</strong>.</li>
+</ol>
+<p><img src="images/20250504_111210_image.png" alt=""></img></p>
+<ol>
+<li>Run the tool.</li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> B-spline interpolation (Multi-level b-spline) fits a smooth function through the sample points by minimizing curvature. It does not necessarily pass exactly through every sample point, but it produces a continuous, smooth surface without the sharp discontinuities of Nearest Neighbor or the localized patterns of IDW.</p>
+</blockquote>
+<h3 id="step-9-finishing-the-spline-layer">Step 9: Finishing the Spline Layer</h3>
+<p>Now complete the spline surface by adding supporting layers and organizing them:</p>
+<ol>
+<li>Calculate contours from the <code>SplineStratRand</code> surface using <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Extraction &gt; Contour</strong> with an interval of <code>100</code> meters.</li>
+<li>Create a <code>SplineHillshade</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> using <strong><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> &gt; Terrain Analysis &gt; Hillshade</strong> with Azimuth 315 and Elevation 25.</li>
+<li>Copy the color style from your original <code>ChirDEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it onto the <code>SplineStratRand</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li><strong>Group</strong> the spline layers (<code>SplineStratRand</code>, <code>SplineHillshade</code>, and contours) in the Layers panel under a group named <strong>Spline Stratified</strong>.</li>
+</ol>
+<h2 id="final-deliverable-comparison-map-layout">Final Deliverable: Comparison Map Layout</h2>
+<p>You now have four complete interpolation results:</p>
+<ol>
+<li><strong>Original</strong> (the source DEM)</li>
+<li><strong>Inverse Distance</strong> (systematic sampling + IDW interpolation)</li>
+<li><strong>Nearest Neighbor</strong> (random sampling + Nearest Neighbor interpolation)</li>
+<li><strong>Spline Stratified</strong> (stratified random sampling + Spline interpolation)</li>
+</ol>
+<p>Create a final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> that displays all four methods side by side for visual comparison.</p>
+<blockquote>
+<p><strong>Concept note:</strong> Comparing interpolation methods visually helps you understand their characteristics. IDW shows radial patterns around sample points. Nearest Neighbor produces discrete zones. Spline creates smooth transitions. Stratified sampling focuses effort where variation is greatest. No single method is universally best—choice depends on your data, sample density, and application.</p>
+</blockquote>
+<h3 id="layout-instructions">Layout Instructions</h3>
+<ol>
+<li>Set your print canvas to <strong>landscape</strong> orientation.</li>
+<li>Create four map frames arranged side by side, one for each group (Original, Inverse Distance, Nearest Neighbor, Spline).</li>
+<li>For each frame:<ul>
+<li><strong>Locked</strong> (check the Lock Item box in Item Properties so you don't accidentally move it while working on others)</li>
+<li><strong>Locked layers</strong> (check the Lock Layers option in <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Properties)</li>
+</ul>
+</li>
+<li>Arrange the layers within each frame consistently using this order from bottom to top:<ul>
+<li>Hillshade (bottom)</li>
+<li>DEM or interpolated <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> (set to Multiply blend mode)</li>
+<li>Contours (stroke width: 1 point)</li>
+<li>Sample points (size: 0.4 points, top <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>)</li>
+</ul>
+</li>
+</ol>
+<p><img src="images/20250504_120823_image.png" alt=""></img></p>
+<p><img src="images/20250504_120926_image.png" alt=""></img></p>
+<h4 id="styling-tips">Styling Tips</h4>
+<p>You can easily copy and apply consistent styling across methods:</p>
+<ol>
+<li>Right-click on a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> you want to copy the style from.</li>
+<li>Select <strong>Styles &gt; Copy Style &gt; All Style Categories</strong>.</li>
+<li>Right-click on the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> you want to style and select <strong>Styles &gt; Paste Style &gt; All Style Categories</strong>.</li>
+</ol>
+<p>This ensures that all four maps use the same color ramp and <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> for the elevation surface, making them directly comparable:</p>
+<p><img src="images/20250504_121923_image.png" alt=""></img></p>
+<p><img src="images/FourUpLayout.png" alt=""></img></p>
+<h3 id="map-document-requirements">Map Document Requirements</h3>
+<p>Include on your final <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a>:</p>
+<ul>
+<li>Clear titles for each of the four map frames identifying the sampling method and interpolation technique</li>
+<li>A <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> bar</li>
+<li>A north arrow</li>
+<li>Your name and the lab submission date</li>
+<li>A brief <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> explaining the color ramp and any other <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">symbology</a> used</li>
+</ul>
+<p>Export and submit your layout as a <strong>PDF</strong>.</p>
+<blockquote>
+<p><strong>Workflow note:</strong> Locking items and layers prevents accidental changes as you refine the layout. This is especially important when working with multiple map frames.</p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="01_TURN_IN_tobler_hiker_function_and_modeling_movement.html" class="navigation navigation-prev " aria-label="Previous page: 01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="03_TURN_IN_introducing_planet_com_satellite_imagery.html" class="navigation navigation-next " aria-label="Next page: 03 - TURN IN - Introducing Planet.com Satellite Imagery">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"next":{"title":"03 - TURN IN - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md","ref":"week06/03_TURN_IN_introducing_planet_com_satellite_imagery.md","articles":[]},"previous":{"title":"01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance","level":"1.9.2","depth":2,"path":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","ref":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md","mtime":"2026-05-12T05:00:10.600Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-12T05:00:21.833Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
