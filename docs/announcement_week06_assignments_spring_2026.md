@@ -6,32 +6,32 @@ This week extends raster analysis into **remote sensing**, **terrain-based movem
 
 The Week 06 materials now follow this sequence:
 
-1. **TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine**
-2. **TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance**
+1. **TURN IN - Basic Remote Sensing with Google Earth Engine**
+2. **TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance**
 3. **TURN IN - Sampling & Interpolation with QGIS**
-4. **TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery**
-5. **OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation**
+4. **TURN IN - Introducing Planet.com Satellite Imagery**
+5. **OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation**
 
 ## What You Should Complete This Week
 
 Please complete the following assigned work:
 
-1. [00 - TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
-2. [01 - TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
+1. [00 - TURN IN - Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
+2. [01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
 3. [02 - TURN IN - Sampling & Interpolation with QGIS](https://mapninja.github.io/Earthsys144/week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html)
-4. [03 - TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
+4. [03 - TURN IN - Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
 
 The Landsat pan-sharpening workshop is available as optional support material:
 
-- [04 - OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
+- [04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
 
 ## Exercise Notes
 
-## [00 - TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
+## [00 - TURN IN - Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
 
 This exercise introduces Sentinel-2 imagery in Google Earth Engine. You will inspect the Data Catalog, filter imagery by date, bounds, and cloud metadata, compare band combinations, calculate standalone spectral indices, and adapt one index for a study area of your own choosing. Your submission should include a saved Earth Engine **Get Link URL** inside a PDF.
 
-## [01 - TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
+## [01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
 
 This exercise models movement as travel time rather than straight-line distance. You will use a DEM to derive slope, apply Tobler's Hiker Function, create walking-time zones, alter the origin point, export the result, and make a final QGIS layout. Your submission should include the final map layout and a saved Earth Engine **Get Link URL**.
 
@@ -39,11 +39,11 @@ This exercise models movement as travel time rather than straight-line distance.
 
 This exercise compares sampling and interpolation methods in QGIS. You will create systematic, random, and stratified sample sets; run IDW, Nearest Neighbor, and Spline interpolation; and build a four-panel layout comparing the original DEM and interpolated surfaces.
 
-## [03 - TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
+## [03 - TURN IN - Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
 
 This exercise introduces Planet.com imagery through a Colab-oriented SDK notebook. You will review authentication, AOI mapping, SDK search, metadata filtering, footprint visualization, scene selection, order request construction, order monitoring, downloading, and NDVI visualization. Pay particular attention to the safety switch that prevents accidental real order submission while learning.
 
-## [04 - OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
+## [04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
 
 This optional workshop introduces HSV pan sharpening with Landsat 8 imagery. It compares 30-meter true color imagery, the 15-meter panchromatic band, and an HSV pan-sharpened output.
 

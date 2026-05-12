@@ -14,11 +14,11 @@ The core Week 06 assignment is graded as a single 10-point assignment made up of
 
 ## Week 06 Lab Pages
 
-- Lab Document: [00 - TURN IN - (DRAFT-NOT READY) Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
-- Lab Document: [01 - TURN IN - (DRAFT-NOT READY) Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
+- Lab Document: [00 - TURN IN - Basic Remote Sensing with Google Earth Engine](https://mapninja.github.io/Earthsys144/week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html)
+- Lab Document: [01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance](https://mapninja.github.io/Earthsys144/week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html)
 - Lab Document: [02 - TURN IN - Sampling & Interpolation with QGIS](https://mapninja.github.io/Earthsys144/week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html)
-- Lab Document: [03 - TURN IN - (DRAFT-NOT READY) Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
-- Optional Workshop: [04 - OPTIONAL - (DRAFT-NOT READY) Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
+- Lab Document: [03 - TURN IN - Introducing Planet.com Satellite Imagery](https://mapninja.github.io/Earthsys144/week06/03_TURN_IN_introducing_planet_com_satellite_imagery.html)
+- Optional Workshop: [04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation](https://mapninja.github.io/Earthsys144/week06/04_OPTIONAL_pan-sharpen_LANDSAT.html)
 - Week overview: [Week 06 - More Raster & Remote Sensing](https://mapninja.github.io/Earthsys144/week06/README.html)
 
 ## What Students Should Submit
@@ -45,9 +45,7 @@ Total possible points: 10
 
 - This rubric treats the core Week 06 assignment as one 10-point submission with four graded components: remote sensing indices, Tobler movement modeling, sampling/interpolation, and Planet imagery workflows.
 - The pan-sharpening Landsat lab is optional and should not be graded unless separately assigned.
-- Several Week 06 labs are currently marked `(DRAFT-NOT READY)`. If they remain draft at assignment time, adjust Canvas expectations accordingly or grade only the completed portions you explicitly assign.
 - In the remote sensing exercise, the most important issue is whether the index, place, and interpretation fit together. Students should not treat a high index value as proof without visual comparison and local context.
 - In the Tobler exercise, emphasize the modeling logic: elevation supports slope, slope supports walking speed, walking speed supports cost, and cumulative cost supports reachable-area mapping.
 - In the interpolation exercise, emphasize comparison. A strong submission should make it possible to visually compare how sampling strategy and interpolation method change the resulting surface.
 - In the Planet exercise, emphasize workflow literacy and safe ordering behavior. Students should show that they understand the difference between search, filtering, order creation, monitoring, and downloading.
-
