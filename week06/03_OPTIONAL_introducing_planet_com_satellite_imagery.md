@@ -10,7 +10,7 @@ Notebook: [Open `data/planet_SDK_101_LakeLagunita.ipynb` in Colab](https://colab
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-Source AOI: [`data/lakelagunita.geojson`](../data/lakelagunita.geojson)
+Source AOI: [`data/lakelagunita.geojson`](https://github.com/mapninja/Earthsys144/blob/master/data/lakelagunita.geojson)
 
 ![Historical black-and-white photograph of Lake Lagunita and the Stanford campus, useful for understanding that the lake has changed through time and is a good target for remote sensing.](../data/images/CC154.jpg "Lake Lagunita, circa 1903-1906")
 
