@@ -305,12 +305,13 @@ Begin by deriving a slope layer from the DEM. Your strata boundaries will be bas
 Convert continuous slope values into three discrete classes representing flat, intermediate, and steep terrain.
 
 1. Open **Processing Toolbox > Raster > Analysis > Reclassify by table**.
-2. Click the **...** button next to the **Reclassification table** to define your classes.
-3. Click **Add Row** to create `3` rows.
-4. Define three classes:
-   - `0 to 1.5` (flat)
-   - `1.5 to 18` (intermediate)
-   - `18 and up` (steep)
+2. Use the **Slope** Layer as your Input.****
+3. Click the **...** button next to the **Reclassification table** to define your classes.
+4. Click **Add Row** to create `3` rows.
+5. Define three classes:
+   - `NoValue to 1.5` (flat) as Class `1`
+   - `1.5 to 18` (intermediate) as Class `2`
+   - `18 and NoValue` (steep) as Class `3`
 
 ![](images/20250427_182939_image.png)
 
@@ -318,7 +319,7 @@ These thresholds were chosen to create reasonably balanced classes. In a real wo
 
 5. Browse and save the output as **ReclassSlope**.
 
-![](images/20250427_183053_image.png)
+![](images/20260512_145112_image.png)
 
 Your reclassified layer should look similar to this:
 
@@ -364,6 +365,7 @@ Convert the generalized raster strata to a vector polygon layer that will define
 Now you will use the area of each polygon to calculate how many sample points should fall within it, proportional to both its size and the desired sampling density for its stratum.
 
 The sampling logic is:
+
 - **Flat areas (Class 1):** 10% of 1000 = 100 points
 - **Intermediate areas (Class 2):** 65% of 1000 = 650 points
 - **Steep areas (Class 3):** 25% of 1000 = 250 points
