@@ -245,7 +245,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.10" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
+        <li class="chapter " data-level="1.3.10" data-path="../week00/08_installing_saga_for_qgis.html">
+            
+                <a href="../week00/08_installing_saga_for_qgis.html">
+            
+                    
+                    08 - Installing SAGA 9.2 for QGIS Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../week00/09_TURN_IN_introduction_to_qgis.html">
             
                 <a href="../week00/09_TURN_IN_introduction_to_qgis.html">
             
@@ -258,7 +271,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.11" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
+        <li class="chapter " data-level="1.3.12" data-path="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
             
                 <a href="../week00/10_TURN_IN_logging_in_to_google_earth_engine.html">
             
@@ -1098,24 +1111,20 @@
 <h2 id="getting-ready">Getting Ready</h2>
 <p>You will need:</p>
 <ul>
-<li><a href="https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip" target="_blank">L12.zip</a> containing the elevation data for this exercise, OR download <code>ChirDEM.tif</code> directly from the course repository</li>
+<li><a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif" target="_blank">ChirDEM.tif</a>, a <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> containing the elevation data for this exercise</li>
 <li>QGIS with Processing Toolbox and GDAL tools available</li>
-<li>SAGA tools (for majority filtering)</li>
+<li>SAGA tools for SAGA-based processing steps. SAGA must be installed separately and configured through the QGIS <strong>Processing Saga NextGen Provider</strong> plugin. If you have not set this up yet, complete the Week 00 guide for <a href="../week00/08_installing_saga_for_qgis.html">Installing SAGA 9.2 for QGIS Processing</a>.</li>
 </ul>
 <blockquote>
 <p><strong>Background:</strong> The concepts and workflows in this exercise are covered in Chapter 12 (Spatial Estimation) and Chapter 10 (<a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Analysis) of the GIS Fundamentals textbook.</p>
 </blockquote>
 <h3 id="download-the-data">Download the Data</h3>
-<p><strong>Option 1: Download the complete lab data package</strong></p>
-<p><a href="https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip" target="_blank">Download L12.zip</a> - This archive contains the ChirDEM and supporting documentation. Unzip it to a stable location on your computer.</p>
-<p><strong>Option 2: Download ChirDEM.tif directly</strong></p>
-<p>If you only need the elevation model, download it directly:</p>
 <p><a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif" target="_blank">Download ChirDEM.tif</a></p>
 <p>This file is a <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> containing the digital elevation model for southeast Arizona (30-meter <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a>, NAD83 UTM Zone 12N projection).</p>
 <h3 id="project-setup">Project Setup</h3>
 <ol>
 <li>Create a new folder for this lab on your computer.</li>
-<li>Place <code>ChirDEM.tif</code> in that folder (or extract it from L12.zip).</li>
+<li>Place <code>ChirDEM.tif</code> in that folder.</li>
 <li>Create a new QGIS project in that same folder and save it as <code>sampling_interpolation.qgz</code>.</li>
 <li>You will create all output layers (sample points, interpolated rasters, etc.) in this project folder.</li>
 </ol>
@@ -1338,8 +1347,8 @@
 <li>Use the default settings (slope output in degrees).</li>
 <li>Browse and save the output as <strong>SlopeDegrees</strong>.</li>
 </ol>
-<p><img src="images/20250427_182808_image.png" alt=""></img></p>
-<p><img src="images/20250427_182835_image.png" alt=""></img></p>
+<p><img src="images/20260513_090330_image.png" alt=""></img></p>
+<p><img src="images/20260513_090449_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Concept note:</strong> Slope represents the rate of elevation change and is derived from the DEM. Steeper slopes indicate terrain where elevation changes rapidly over short distances. In this lab, slope becomes the criterion for stratification—we will sample more densely in steep areas.</p>
 </blockquote>
@@ -1357,33 +1366,31 @@
 </ul>
 </li>
 </ol>
-<p><img src="images/20250427_182939_image.png" alt=""></img></p>
+<p><img src="images/20260513_090610_image.png" alt=""></img></p>
 <p>These thresholds were chosen to create reasonably balanced classes. In a real workflow, you would select thresholds based on domain knowledge—for example, slopes above which construction is infeasible, or elevations where a particular resource is unlikely to be found.</p>
 <ol>
 <li>Browse and save the output as <strong>ReclassSlope</strong>.</li>
 </ol>
-<p><img src="images/20260512_145112_image.png" alt=""></img></p>
+<p><img src="images/20260513_090710_image.png" alt=""></img></p>
 <p>Your reclassified <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> should look similar to this:</p>
-<p><img src="images/20250427_183457_image.png" alt=""></img></p>
+<p><img src="images/20260513_090726_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Workflow note:</strong> Reclassification reduces complexity by converting many continuous values into a small number of meaningful categories. This simplification is essential for stratification because it defines the population of each stratum.</p>
 </blockquote>
 <h3 id="step-3-apply-majority-filtering-to-generalize-strata">Step 3: Apply Majority Filtering to Generalize Strata</h3>
 <p>Before creating sampling zones, generalize the reclassified slope to remove isolated single cells or long thin areas that would complicate stratified sampling.</p>
 <ol>
-<li>Open <strong>Processing Toolbox &gt; SAGA &gt; <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Filter &gt; Majority/Minority filter</strong>.</li>
+<li>Open <strong>Processing Toolbox &gt; Whitebox Tools &gt; MajorityFilter</strong>.</li>
 <li>Specify:<ul>
-<li><strong>Type:</strong> <code>Majority</code></li>
-<li><strong>Search mode:</strong> <code>Circle</code></li>
-<li><strong>Radius:</strong> <code>10</code> pixels</li>
-<li><strong><a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">Threshold</a>:</strong> <code>50%</code></li>
+<li><strong>Input</strong>: ReclassSlope</li>
+<li><strong>Filter X-Dimension</strong>: 10</li>
 </ul>
 </li>
-<li>Browse and save the output as <strong>ReclassSlopeMajority</strong> (note: SAGA outputs in <code>.sdat</code> format by default).</li>
+<li>Browse and save the output as <strong>ReclassSlopeMajority</strong></li>
 </ol>
-<p><img src="images/20250427_183551_image.png" alt=""></img></p>
+<p><img src="images/20260513_091036_image.png" alt=""></img></p>
 <p>Toggle between the reclassified and majority-filtered layers to see how the filter removes small isolated zones:</p>
-<p><img src="images/20250427_183655_image.png" alt=""></img></p>
+<p><img src="images/20260513_091154_image.png" alt=""></img></p>
 <blockquote>
 <p><strong>Concept note:</strong> A majority filter applies a local rule: for each <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> cell, if more than half of the cells in a circular neighborhood belong to a particular class, assign that class to the center cell. This generalizes small, isolated patches and creates larger, more contiguous strata suitable for polygon-based sampling.</p>
 </blockquote>
@@ -1396,7 +1403,7 @@
 <li>Browse and save the <strong>output <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> polygons</strong> as <strong>STRATA.shp</strong>.</li>
 </ol>
 <p><img src="images/20250427_183744_image.png" alt=""></img></p>
-<p><img src="images/20250427_183803_image.png" alt=""></img></p>
+<p><img src="images/20260513_091315_image.png" alt=""></img></p>
 <h3 id="step-5-calculate-polygon-areas-and-determine-samples-per-polygon">Step 5: Calculate Polygon Areas and Determine Samples per Polygon</h3>
 <p>Now you will use the area of each polygon to calculate how many sample points should fall within it, proportional to both its size and the desired sampling density for its stratum.</p>
 <p>The sampling logic is:</p>
@@ -1413,11 +1420,8 @@
 <li>Add a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> of type <strong>Decimal (Real)</strong> named <code>SqKm</code>.</li>
 <li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to populate this <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> with polygon areas in square kilometers:</li>
 </ol>
-<pre><code>$area / 1000000
-</code></pre><p><img src="images/20250503_174225_image.png" alt=""></img></p>
-<ol>
-<li>Save your edits and toggle editing off.</li>
-</ol>
+<p>$area / 1000000</p>
+<p><img src="images/20260513_091442_image.png" alt=""></img></p>
 <h4 id="computing-total-area-per-stratum">Computing Total Area per Stratum</h4>
 <p>You now need to find the total area for each class (flat, intermediate, steep) to use as a denominator in the sampling calculation.</p>
 <ol>
@@ -1430,14 +1434,14 @@
 <ol>
 <li>Open <strong><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> &gt; Analysis &gt; Basic Statistics for Fields</strong>.</li>
 <li>Check the box for <strong>Selected features only</strong>.</li>
-<li>Select the <code>SqKm</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and look at the <strong>Sum</strong> to get the total area for that class.</li>
+<li>Select the <code>SqKm</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and look at the <strong>SUM</strong> to get the total area for that class.</li>
 </ol>
-<p><img src="images/20250503_174801_image.png" alt=""></img></p>
-<p><img src="images/20250503_174817_image.png" alt=""></img></p>
-<p>You should arrive at areas close to:</p>
+<p><img src="images/20260513_091750_image.png" alt=""></img></p>
+<p><img src="images/20260513_091805_image.png" alt=""></img></p>
+<p>You should arrive at Area SUMs close to:</p>
 <ul>
-<li><strong>Flat (DN = 1):</strong> approximately 289 square kilometers</li>
-<li><strong>Intermediate (DN = 2):</strong> approximately 359 square kilometers</li>
+<li><strong>Flat (DN = 1):</strong> approximately 287 square kilometers</li>
+<li><strong>Intermediate (DN = 2):</strong> approximately 357 square kilometers</li>
 <li><strong>Steep (DN = 3):</strong> approximately 25 square kilometers</li>
 </ul>
 <p>(Your numbers may differ slightly depending on your earlier parameters.)</p>
@@ -1448,21 +1452,25 @@
 <p>Now add a <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> that calculates how many sample points should be placed in each polygon based on its area relative to its stratum.</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for the <code>STRATA</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and add a new <strong>Long integer</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> named <strong>samp_num</strong>.</li>
-<li>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to compute the number of samples for each polygon. For each stratum, use a formula like:<ul>
-<li><strong>DN = 1 (flat):</strong> <code>100 * "SqKm" / 287.408</code></li>
-<li><strong>DN = 2 (intermediate):</strong> <code>650 * "SqKm" / 357.354</code></li>
-<li><strong>DN = 3 (steep):</strong> <code>250 * "SqKm" / 25.144</code></li>
+<li>Select all polygons for one stratum class, using <strong>Select features using an epression:</strong>
+<code>"DN"=1</code>
+(Repeat for classes 2 and 3 seperately.)</li>
+<li><p>Use the <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> Calculator</strong> to caluculate the number of samples for each polygon into a new <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> (for the first calculation, then use "Update") called <code>SampleNum</code>. For each stratum, use a formula like:</p>
+<ul>
+<li><strong>DN = 1 (flat):</strong> <code>100 * "SqKm" / 287</code></li>
+<li><strong>DN = 2 (intermediate):</strong> <code>650 * "SqKm" / 357</code></li>
+<li><strong>DN = 3 (steep):</strong> <code>250 * "SqKm" / 25</code></li>
 </ul>
 </li>
 </ol>
-<p><img src="images/20250504_105257_image.png" alt=""></img></p>
+<p><img src="images/20260513_093133_image.png" alt=""></img></p>
 <ol>
 <li>Calculate each formula separately for each class. After each calculation, select the next class and recalculate.</li>
 <li>Save your edits and toggle editing off.</li>
 </ol>
-<p><img src="images/20250504_105516_image.png" alt=""></img></p>
+<p><img src="images/20260513_093309_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer.</p>
+<p><strong>Concept note:</strong> This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer, or none at all.</p>
 </blockquote>
 <h3 id="step-6-generate-stratified-random-points">Step 6: Generate Stratified Random Points</h3>
 <p>Now create the stratified random sample using the <code>samp_num</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> to determine point density within each polygon.</p>
@@ -1472,11 +1480,11 @@
 <li>For the <strong>Number of points for each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></strong> option, click the button on the right end of the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 <li>From the dropdown, select <strong><a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">Field</a> type &gt; samp_num</strong> to use the <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> you just calculated.</li>
 </ol>
-<p><img src="images/Sampling_Interpolation-c2c8d1d0.png" alt=""></img></p>
+<p><img src="images/20260513_095537_image.png" alt=""></img></p>
 <ol>
-<li>Browse and save the <strong>Output random points in polygons</strong> as <strong>StrataRandom1000.shp</strong>.</li>
+<li>Browse and save the <strong>Output random points in polygons</strong> as <strong>StrataRandom1000.shp</strong></li>
 </ol>
-<p><img src="images/Sampling_Interpolation-51a42dee.png" alt=""></img></p>
+<p><img src="images/20260513_095619_image.png" alt=""></img></p>
 <p>This generates a point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with higher sampling density in the steeper areas (where <code>samp_num</code> is larger) and lower density in flatter areas:</p>
 <p><img src="images/20250504_110405_image.png" alt=""></img></p>
 <blockquote>
@@ -1494,7 +1502,8 @@
 </ul>
 </li>
 </ol>
-<p><img src="images/20250504_110829_image.png" alt=""></img></p>
+<p><img src="images/20260513_100233_image.png" alt=""></img></p>
+<p><img src="images/20260513_100359_image.png" alt=""></img></p>
 <h3 id="step-8-spline-interpolation">Step 8: Spline Interpolation</h3>
 <p>Spline interpolation creates a smooth continuous surface that minimizes overall curvature. Unlike IDW or Nearest Neighbor, splines are constrained to produce a mathematically smooth function, which can produce unrealistic values between sample points.</p>
 <ol>
@@ -1502,7 +1511,7 @@
 <li>Specify:<ul>
 <li><strong>Input points:</strong> <code>StratRandElevationSamples</code></li>
 <li><strong>Attributes:</strong> <code>SAMPLE_1</code> (the elevation <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>)</li>
-<li><strong>Output extent:</strong> Calculate from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> &gt; <code>ChirDEM</code></li>
+<li><strong>Output extent:</strong> Calculate from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> &gt; <code>ReclassSlopeMajority</code></li>
 <li><strong>Cellsize:</strong> <code>30</code></li>
 <li><strong>Refinement:</strong> <code>[1] Yes</code></li>
 <li><strong><a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">Threshold</a> error:</strong> <code>default</code></li>
@@ -1514,7 +1523,7 @@
 <ol>
 <li>Browse and name the <strong>Output grid:</strong> <strong>SplineStratRand</strong>.</li>
 </ol>
-<p><img src="images/20250504_111210_image.png" alt=""></img></p>
+<p><img src="images/20260513_102842_image.png" alt=""></img></p>
 <ol>
 <li>Run the tool.</li>
 </ol>
@@ -1529,6 +1538,7 @@
 <li>Copy the color style from your original <code>ChirDEM</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it onto the <code>SplineStratRand</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 <li><strong>Group</strong> the spline layers (<code>SplineStratRand</code>, <code>SplineHillshade</code>, and contours) in the Layers panel under a group named <strong>Spline Stratified</strong>.</li>
 </ol>
+<p><img src="images/20260513_103630_image.png" alt=""></img></p>
 <h2 id="final-deliverable-comparison-map-layout">Final Deliverable: Comparison Map Layout</h2>
 <p>You now have four complete interpolation results:</p>
 <ol>
@@ -1626,7 +1636,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"next":{"title":"03 - OPTIONAL - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.md","ref":"week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.md","articles":[]},"previous":{"title":"01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance","level":"1.9.2","depth":2,"path":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","ref":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md","mtime":"2026-05-12T21:53:58.871Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-12T21:54:09.227Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Sampling & Interpolation with QGIS","level":"1.9.3","depth":2,"next":{"title":"03 - OPTIONAL - Introducing Planet.com Satellite Imagery","level":"1.9.4","depth":2,"path":"week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.md","ref":"week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.md","articles":[]},"previous":{"title":"01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance","level":"1.9.2","depth":2,"path":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","ref":"week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week06/02_TURN_IN_sampling_and_interpolation_with_qgis.md","mtime":"2026-05-13T17:59:42.338Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-13T17:59:54.933Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

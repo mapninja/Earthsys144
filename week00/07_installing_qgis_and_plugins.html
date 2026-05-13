@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="09_TURN_IN_introduction_to_qgis.html" />
+    <link rel="next" href="08_installing_saga_for_qgis.html" />
     
     
     <link rel="prev" href="06_help_fix_the_labs.html" />
@@ -245,7 +245,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.10" data-path="09_TURN_IN_introduction_to_qgis.html">
+        <li class="chapter " data-level="1.3.10" data-path="08_installing_saga_for_qgis.html">
+            
+                <a href="08_installing_saga_for_qgis.html">
+            
+                    
+                    08 - Installing SAGA 9.2 for QGIS Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="09_TURN_IN_introduction_to_qgis.html">
             
                 <a href="09_TURN_IN_introduction_to_qgis.html">
             
@@ -258,7 +271,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.11" data-path="10_TURN_IN_logging_in_to_google_earth_engine.html">
+        <li class="chapter " data-level="1.3.12" data-path="10_TURN_IN_logging_in_to_google_earth_engine.html">
             
                 <a href="10_TURN_IN_logging_in_to_google_earth_engine.html">
             
@@ -1153,41 +1166,17 @@
 </ol>
 <p><img src="images/20260224_110022_image.png" alt=""></img></p>
 <h3 id="saga-nextgen-plugin">SAGA NextGen Plugin</h3>
-<p>SAGA (System for Automated Geoscientific Analyses) provides powerful <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools. SAGA is no longer included with QGIS and must be installed separately as a standalone application. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.</p>
-<h4 id="step-1-install-saga-gis">Step 1: Install SAGA GIS</h4>
-<ol>
-<li>Download the SAGA GIS installer for your platform:<ul>
-<li><strong>macOS</strong>: <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/saga-9.11.3_mac.zip/download" target="_blank">saga-9.11.3_mac.zip</a></li>
-<li><strong>Windows</strong>: <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/" target="_blank">SAGA 9.11.3 Downloads</a></li>
+<p>SAGA (System for Automated Geoscientific Analyses) provides powerful <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools. Modern QGIS installations do not include SAGA automatically, so SAGA must be installed as a separate program and then connected to QGIS with a Processing provider plugin.</p>
+<p>For the course setup, use the separate Week 00 guide:</p>
+<p><a href="08_installing_saga_for_qgis.html">Installing SAGA 9.2 for QGIS Processing</a></p>
+<p>That guide covers:</p>
+<ul>
+<li>downloading SAGA 9.2.0 for macOS and Windows</li>
+<li>finding the correct SAGA binary folder</li>
+<li>installing the <strong>Processing Saga NextGen Provider</strong> plugin</li>
+<li>setting <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG &gt; SAGA folder</strong></li>
+<li>confirming that SAGA tools appear in the QGIS Processing Toolbox</li>
 </ul>
-</li>
-<li>Follow the instructions provided by the SAGA GIS installer. It should install as a standalone application in your <strong>Applications</strong> folder (macOS) or <strong>Program Files</strong> (Windows).</li>
-</ol>
-<h4 id="step-2-configure-qgis-to-find-saga">Step 2: Configure QGIS to Find SAGA</h4>
-<ol>
-<li>Open <strong>Finder</strong> and navigate to your <strong>Applications</strong> folder</li>
-<li>Locate the <strong>"SAGA.app"</strong> application bundle</li>
-<li>Right-click on <strong>"SAGA.app"</strong> and select <strong>"Show Package Contents"</strong></li>
-<li>Navigate to <strong>Contents &gt; MacOS</strong> — this is your SAGA folder</li>
-<li>Open <strong>QGIS</strong> and go to <strong>Processing &gt; Options &gt; Providers &gt; SAGA</strong></li>
-<li>In the <strong>"SAGA folder"</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>, paste the path you found above. Example: <code>/Applications/SAGA.app/Contents/MacOS/</code></li>
-<li>Save the changes and restart QGIS</li>
-</ol>
-<h4 id="step-3-install-the-plugin">Step 3: Install the Plugin</h4>
-<ol>
-<li>Open <strong>Plugins &gt; Manage and Install Plugins</strong></li>
-<li>In the <strong>All</strong> tab, search for <strong>SAGA</strong></li>
-<li>Find <strong>Processing SAGA NextGen Provider</strong> and click <strong>Install Plugin</strong></li>
-<li>Close the Plugin Manager</li>
-</ol>
-<p><img src="images/20260224_110102_image.png" alt=""></img></p>
-<p><strong>Verify Installation:</strong></p>
-<ol>
-<li>Go to <strong>Processing &gt; Toolbox</strong> to open the Processing Toolbox panel</li>
-<li>You should now see <strong>SAGA Next Gen</strong> as a provider alongside the others</li>
-</ol>
-<p><img src="images/20260224_110200_image.png" alt=""></img></p>
-<p>The SAGA Next Gen toolset duplicates the original SAGA provider but with improved integration for the latest QGIS versions.</p>
 <h3 id="whiteboxtools-plugin">WhiteboxTools Plugin</h3>
 <p>WhiteboxTools is an excellent, high-performance toolkit particularly useful for hydrological modeling, terrain analysis, and <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> processing. Installing WhiteboxTools is a two-step process: downloading the executables and then installing the QGIS plugin.</p>
 <h4 id="step-1-download-whiteboxtools-executables">Step 1: Download WhiteboxTools Executables</h4>
@@ -1387,7 +1376,7 @@ Execution failed after 0.04 seconds
                 </a>
                 
                 
-                <a href="09_TURN_IN_introduction_to_qgis.html" class="navigation navigation-next " aria-label="Next page: 09 - TURN IN - Introduction to QGIS: Being John Snow">
+                <a href="08_installing_saga_for_qgis.html" class="navigation navigation-next " aria-label="Next page: 08 - Installing SAGA 9.2 for QGIS Processing">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1398,7 +1387,7 @@ Execution failed after 0.04 seconds
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.10","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-05-12T21:53:57.131Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-12T21:54:09.227Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"08 - Installing SAGA 9.2 for QGIS Processing","level":"1.3.10","depth":2,"path":"week00/08_installing_saga_for_qgis.md","ref":"week00/08_installing_saga_for_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-05-13T17:59:40.422Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-13T17:59:54.933Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

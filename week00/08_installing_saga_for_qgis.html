@@ -1,0 +1,1452 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>08 - Installing SAGA 9.2 for QGIS Processing · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 6.1.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="09_TURN_IN_introduction_to_qgis.html" />
+    
+    
+    <link rel="prev" href="07_installing_qgis_and_plugins.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../GLOSSARY.html">
+            
+                <a href="../GLOSSARY.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Week 00 - Getting Ready for the Course
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                <a href="../docs/00_earthsys144_spring_2026_syllabus.html">
+            
+                    
+                    Syllabus - Spring 2026
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="00_things_you_need_to_know_about_your_computer.html">
+            
+                <a href="00_things_you_need_to_know_about_your_computer.html">
+            
+                    
+                    00 - Things you need to know about your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                <a href="01_things_you_need_to_know_about_gis_data_on_your_computer.html">
+            
+                    
+                    01 - Things you need to know about GIS data on your computer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="02_logging_into_accounts_and_installing_software.html">
+            
+                <a href="02_logging_into_accounts_and_installing_software.html">
+            
+                    
+                    02 - Logging Into Accounts and Installing Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="03_introduction_to_spatial_data_formats.html">
+            
+                <a href="03_introduction_to_spatial_data_formats.html">
+            
+                    
+                    03 - Introduction to Spatial Data Formats
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="04_introduction_to_finding_data.html">
+            
+                <a href="04_introduction_to_finding_data.html">
+            
+                    
+                    04 - Introduction to Finding Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="05_submitting_homework_and_getting_help.html">
+            
+                <a href="05_submitting_homework_and_getting_help.html">
+            
+                    
+                    05 - Submitting Homework and Getting Help
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="06_help_fix_the_labs.html">
+            
+                <a href="06_help_fix_the_labs.html">
+            
+                    
+                    06 - Help Fix the Labs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="07_installing_qgis_and_plugins.html">
+            
+                <a href="07_installing_qgis_and_plugins.html">
+            
+                    
+                    07 - Installing QGIS and Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.10" data-path="08_installing_saga_for_qgis.html">
+            
+                <a href="08_installing_saga_for_qgis.html">
+            
+                    
+                    08 - Installing SAGA 9.2 for QGIS Processing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="09_TURN_IN_introduction_to_qgis.html">
+            
+                <a href="09_TURN_IN_introduction_to_qgis.html">
+            
+                    
+                    09 - TURN IN - Introduction to QGIS: Being John Snow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                <a href="10_TURN_IN_logging_in_to_google_earth_engine.html">
+            
+                    
+                    10 - TURN IN - Logging in to Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../week01/">
+            
+                <a href="../week01/">
+            
+                    
+                    Week 01 - Lining it Up & Cartographic Presentation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                <a href="../week01/01_TURN_IN_create_an_aoi_with_geojson_io.html">
+            
+                    
+                    01 - TURN IN - Create an Area of Interest with GeoJSON.io
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                <a href="../week01/02_TURN_IN_projection_error_measurement_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Projection Error Measurement with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                <a href="../week01/03_TURN_IN_introducing_google_earth_engine_with_coordinates_and_pixels.html">
+            
+                    
+                    03 - TURN IN - Coordinates and Geometries with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../week02/">
+            
+                <a href="../week02/">
+            
+                    
+                    Week 02 - Making & Collecting Data
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                <a href="../week02/01_PICK_ONE_TO_TURN_IN_introducing_arcgis_fieldmaps_and_arcgis_online_for_data_collection.html">
+            
+                    
+                    01 - PICK ONE TO TURN IN - Designing Mobile Field Collection with ArcGIS Field Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                <a href="../week02/02_PICK_ONE_TO_TURN_IN_georeferencing_with_qgis_and_allmaps_org.html">
+            
+                    
+                    02 - PICK ONE TO TURN IN - Georeferencing Historical Maps with QGIS and AllMaps.org
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                <a href="../week02/03_TURN_IN_data_creation_in_qgis.html">
+            
+                    
+                    03 - TURN IN - Editing with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                <a href="../week02/04_TURN_IN_introducing_collections_and_pixels_in_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Collections, Bands, Pixels, and Masking in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../week03/">
+            
+                <a href="../week03/">
+            
+                    
+                    Week 03 - Tables & Queries
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                <a href="../week03/01_TURN_IN_basic_table_structures_and_operations_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Basic Table Structures & Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                <a href="../week03/02_TURN_IN_basic_table_joins_and_calculations.html">
+            
+                    
+                    02 - TURN IN - Basic Table Joins and Calculations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                <a href="../week03/03_TURN_IN_sql_operations_in_qgis.html">
+            
+                    
+                    03 - TURN IN - SQL Operations in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                <a href="../week03/04_TURN_IN_cartographic_design_basics.html">
+            
+                    
+                    04 - TURN IN - Cartographic Design Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../week04/">
+            
+                <a href="../week04/">
+            
+                    
+                    Week 04 - Basic Vector Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                <a href="../week04/00_OPTIONAL_introducing_simplyanalytics_com.html">
+            
+                    
+                    00 - OPTIONAL - Introducing SimplyAnalytics.com
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                <a href="../week04/01_TURN_IN_buffering_and_overlay_analysis_in_qgis.html">
+            
+                    
+                    01 - TURN IN - Buffering & Overlay Analysis in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                <a href="../week04/02_TURN_IN_areal_interpolation_of_attributes_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Areal Interpolation of Attributes with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                <a href="../week04/03_TURN_IN_network_analysis_with_qgis.html">
+            
+                    
+                    03 - TURN IN - Network Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                <a href="../week04/04_TURN_IN_tabular_vector_data_in_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Tabular/Vector Data in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../week05/">
+            
+                <a href="../week05/">
+            
+                    
+                    Week 05 - Basic Raster Analysis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                <a href="../week05/01_TURN_IN_terrain_and_visibility_with_qgis.html">
+            
+                    
+                    01 - TURN IN - Terrain Data Preparation and DEM Merging with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                <a href="../week05/02_TURN_IN_visibility_analysis_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Visibility Analysis with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                <a href="../week05/03_TURN_IN_watershed_with_qgis_and_whitebox_tools.html">
+            
+                    
+                    03 - TURN IN - Watershed with QGIS & WhiteBox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                <a href="../week05/04_TURN_IN_basic_raster_analysis_with_google_earth_engine.html">
+            
+                    
+                    04 - TURN IN - Basic Raster Analysis with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                <a href="../week05/05_OPTIONAL_introducing_storymaps_on_arcgis_online.html">
+            
+                    
+                    05 - OPTIONAL - Introducing StoryMaps on ArcGIS Online
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../week06/">
+            
+                <a href="../week06/">
+            
+                    
+                    Week 06 - More Raster & Remote Sensing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                <a href="../week06/00_TURN_IN_basic_remote_sensing_with_google_earth_engine.html">
+            
+                    
+                    00 - TURN IN - Basic Remote Sensing with Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                <a href="../week06/01_TURN_IN_tobler_hiker_function_and_modeling_movement.html">
+            
+                    
+                    01 - TURN IN - Tobler's Hiker Function: Modeling Movement and Terrain-Based Distance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                <a href="../week06/02_TURN_IN_sampling_and_interpolation_with_qgis.html">
+            
+                    
+                    02 - TURN IN - Sampling & Interpolation with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.html">
+            
+                <a href="../week06/03_OPTIONAL_introducing_planet_com_satellite_imagery.html">
+            
+                    
+                    03 - OPTIONAL - Introducing Planet.com Satellite Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../week06/04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                <a href="../week06/04_OPTIONAL_pan-sharpen_LANDSAT.html">
+            
+                    
+                    04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../week07/">
+            
+                <a href="../week07/">
+            
+                    
+                    Week 07 - Web Mapping & APIs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                <a href="../week07/00_making_and_serving_map_tiles_with_qgis.html">
+            
+                    
+                    00 - Making & Serving Map Tiles with QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                <a href="../week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
+            
+                    
+                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                <a href="../week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+            
+                    
+                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                <a href="../week07/03_introducing_openrefine_for_data_carpentry.html">
+            
+                    
+                    03 - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../week08/">
+            
+                <a href="../week08/">
+            
+                    
+                    Week 08 - Analytic Models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                <a href="../week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.html">
+            
+                    
+                    00 - Wildfire Detection & Severity Measurement in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../week08/01_suitability_modeling_in_qgis.html">
+            
+                <a href="../week08/01_suitability_modeling_in_qgis.html">
+            
+                    
+                    01 - Suitability Modeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                <a href="../week08/02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+            
+                    
+                    02 - Landcover Classification & Change Detection in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                <a href="../week08/03_introducing_model_builder_in_qgis.html">
+            
+                    
+                    03 - Introducing Model Builder in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../week09/">
+            
+                <a href="../week09/">
+            
+                    
+                    Week 09 - Scaling, Code, Odds & Ends
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                <a href="../week09/00_the_alphaearth_embedding_database_in_google_earth_engine.html">
+            
+                    
+                    00 - The AlphaEarth Embedding Database in Google Earth Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                <a href="../week09/01_being_john_snow_in_a_python_notebook.html">
+            
+                    
+                    01 - Being John Snow in a Python Notebook
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                <a href="../week09/02_photogrammetric_processing_of_drone_imagery.html">
+            
+                    
+                    02 - Photogrammetric Processing of Drone Imagery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                <a href="../week09/03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.html">
+            
+                    
+                    03 - Introducing GDAL & Command Line Tools on Stanford Farmshare
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                <a href="../week09/04_TURN_IN_tree_labeling_in_qgis.html">
+            
+                    
+                    04 - TURN IN - Tree Labeling in QGIS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../week10/">
+            
+                <a href="../week10/">
+            
+                    
+                    Week 10 - Wrapping It All Up
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../week10/00_final_project_guidelines.html">
+            
+                <a href="../week10/00_final_project_guidelines.html">
+            
+                    
+                    00 - Final Project Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../week10/01_storymaps_support_materials.html">
+            
+                <a href="../week10/01_storymaps_support_materials.html">
+            
+                    
+                    01 - StoryMaps Support Materials
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                <a href="../week10/02_guide_to_citation_of_spatial_data_and_software.html">
+            
+                    
+                    02 - Guide to Citation of Spatial Data & Software
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="../week10/03_staces_crazy_list.html">
+            
+                <a href="../week10/03_staces_crazy_list.html">
+            
+                    
+                    03 - Stace's Crazy List of Additional GISci Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >08 - Installing SAGA 9.2 for QGIS Processing</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="installing-saga-92-for-qgis-processing">Installing SAGA 9.2 for QGIS Processing</h1>
+<h2 id="overview">Overview</h2>
+<p>SAGA GIS is a separate open-source geospatial analysis program. QGIS can call SAGA tools from the <strong>Processing Toolbox</strong>, but modern QGIS installations do not include SAGA automatically.</p>
+<p>This guide walks you through installing <strong>SAGA 9.2.0</strong> on macOS or Windows, then connecting it to QGIS with the <strong>Processing Saga NextGen Provider</strong> plugin.</p>
+<blockquote>
+<p><strong>Why this matters:</strong> QGIS Processing is a shared toolbox interface. Some tools are built directly into QGIS, while others come from outside programs such as SAGA. Installing the plugin adds the QGIS interface for SAGA tools. Installing SAGA itself adds the actual analysis program that does the work.</p>
+</blockquote>
+<h2 id="what-you-should-understand-after-this-guide">What You Should Understand After This Guide</h2>
+<p>By the end of this setup, you should be able to explain:</p>
+<ul>
+<li>why the QGIS plugin and the SAGA program are two separate pieces</li>
+<li>where SAGA is installed on your computer</li>
+<li>how to point QGIS Processing to the SAGA folder that contains the SAGA binaries</li>
+<li>how to check that SAGA tools appear in the QGIS Processing Toolbox</li>
+</ul>
+<h2 id="before-you-begin">Before You Begin</h2>
+<p>You need:</p>
+<ul>
+<li>QGIS installed</li>
+</ul>
+<p>If you have not installed QGIS yet, first complete <a href="07_installing_qgis_and_plugins.html">Installing QGIS and Plugins</a>.</p>
+<blockquote>
+<p><strong>Current plugin note:</strong> As checked on May 13, 2026, the QGIS plugin page for <strong>Processing Saga NextGen Provider</strong> still lists stable version 1.1.0 for QGIS 3.22 through 3.99, but it also says the plugin is marked for deletion. If the plugin no longer appears in QGIS Plugin Manager, ask for help before spending a long time troubleshooting.</p>
+</blockquote>
+<h2 id="the-two-pieces-you-are-installing">The Two Pieces You Are Installing</h2>
+<h3 id="saga-gis-920">SAGA GIS 9.2.0</h3>
+<p>SAGA GIS is the analysis software. It includes command-line programs such as <code>saga_cmd</code>, which QGIS uses in the background when you run SAGA tools from the Processing Toolbox.</p>
+<p>For this course, use the SAGA 9.2.0 files from:</p>
+<p><a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.2.0/" target="_blank">SAGA 9.2.0 downloads on SourceForge</a></p>
+<p>The files you need are:</p>
+<ul>
+<li>macOS: <code>saga-9.2.0_mac.zip</code></li>
+<li>Windows, easiest option: <code>saga-9.2.0_x64.zip</code></li>
+<li>Windows, installer option: <code>saga-9.2.0_x64_setup.exe</code></li>
+</ul>
+<h3 id="processing-saga-nextgen-provider">Processing Saga NextGen Provider</h3>
+<p>The QGIS plugin is the connection <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. It tells QGIS how to show SAGA tools inside <strong>Processing Toolbox</strong> and how to send your inputs to the SAGA program.</p>
+<p>The plugin page is:</p>
+<p><a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/" target="_blank">Processing Saga NextGen Provider in the QGIS Python Plugins Repository</a></p>
+<h2 id="part-1-install-saga-920-on-macos">Part 1: Install SAGA 9.2.0 on macOS</h2>
+<ol>
+<li>Go to the <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.2.0/" target="_blank">SAGA 9.2.0 downloads page</a>.</li>
+<li>Download <code>saga-9.2.0_mac.zip</code>.</li>
+<li>Open your <strong>Downloads</strong> folder.</li>
+<li>Double-click the zip file to unzip it.</li>
+<li>Move the unzipped SAGA application to a stable location. The simplest choice is your <strong>Applications</strong> folder.</li>
+<li>Confirm that you can find the application, usually named <code>SAGA.app</code>.</li>
+</ol>
+<blockquote>
+<p><strong>Why move it out of Downloads?</strong> Downloads folders often become messy or get cleaned out later. QGIS needs to remember where SAGA lives. If you move SAGA after configuring QGIS, the connection will break and you will need to set the path again.</p>
+</blockquote>
+<h3 id="find-the-macos-saga-binary-folder">Find the macOS SAGA Binary Folder</h3>
+<p>QGIS does not need the outer <code>SAGA.app</code> folder. It needs the folder inside the app bundle that contains the SAGA command-line binaries.</p>
+<ol>
+<li>In <strong>Finder</strong>, open <strong>Applications</strong>.</li>
+<li>Find <code>SAGA.app</code>.</li>
+<li>Control-click or right-click <code>SAGA.app</code>.</li>
+<li>Choose <strong>Show Package Contents</strong>.</li>
+<li>Open <code>Contents</code>.</li>
+<li>Open <code>MacOS</code>.</li>
+<li>This is the folder QGIS needs.</li>
+</ol>
+<p>The path will usually look like:</p>
+<pre><code class="lang-text">/Applications/SAGA.app/Contents/MacOS
+</code></pre>
+<p>You should see files in that folder related to SAGA. The most important one for QGIS Processing is usually <code>saga_cmd</code>.</p>
+<blockquote>
+<p><strong>Screenshot placeholder:</strong> Finder window showing <code>SAGA.app</code>, the <strong>Show Package Contents</strong> menu, and the <code>Contents/MacOS</code> folder containing the SAGA command-line files.</p>
+</blockquote>
+<h3 id="if-macos-blocks-saga">If macOS Blocks SAGA</h3>
+<p>When you first open or run software downloaded outside the App Store, macOS may show a security warning.</p>
+<p>If this happens:</p>
+<ol>
+<li>Open <strong>System Settings</strong>.</li>
+<li>Go to <strong>Privacy &amp; Security</strong>.</li>
+<li>Look for a message saying SAGA was blocked.</li>
+<li>Choose <strong>Open Anyway</strong> if you trust the file you downloaded from the official SAGA SourceForge page.</li>
+<li>Try opening SAGA again.</li>
+</ol>
+<p>You may not need this step. It depends on your macOS security settings.</p>
+<h2 id="part-2-install-saga-920-on-windows">Part 2: Install SAGA 9.2.0 on Windows</h2>
+<p>Windows has two practical options. Use the zip option if you do not have administrator permissions.</p>
+<h3 id="recommended-windows-option-zip-file">Recommended Windows Option: Zip File</h3>
+<ol>
+<li>Go to the <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.2.0/" target="_blank">SAGA 9.2.0 downloads page</a>.</li>
+<li>Download <code>saga-9.2.0_x64.zip</code>.</li>
+<li>Open your <strong>Downloads</strong> folder.</li>
+<li>Right-click the zip file.</li>
+<li>Choose <strong>Extract All</strong>.</li>
+<li>Extract it to a stable location, such as:</li>
+</ol>
+<pre><code class="lang-text">C:\SAGA\saga-9.2.0_x64
+</code></pre>
+<p>or:</p>
+<pre><code class="lang-text">C:\Users\your-user-name\Documents\SAGA\saga-9.2.0_x64
+</code></pre>
+<ol>
+<li>Open the extracted folder.</li>
+<li>Confirm that the folder contains SAGA files such as <code>saga_cmd.exe</code>.</li>
+</ol>
+<blockquote>
+<p><strong>Why the zip option is useful:</strong> The zip version does not require a formal installation. You unzip it, keep it somewhere stable, and point QGIS to that folder.</p>
+</blockquote>
+<h3 id="windows-installer-option">Windows Installer Option</h3>
+<ol>
+<li>Go to the <a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.2.0/" target="_blank">SAGA 9.2.0 downloads page</a>.</li>
+<li>Download <code>saga-9.2.0_x64_setup.exe</code>.</li>
+<li>Double-click the installer.</li>
+<li>If Windows asks for administrator permission, approve it if this is your own computer. On a lab or managed computer, ask for help.</li>
+<li>Accept the default installation location unless you have a reason to change it.</li>
+<li>After installation, find the SAGA installation folder.</li>
+</ol>
+<p>The path may look something like:</p>
+<pre><code class="lang-text">C:\Program Files\SAGA
+</code></pre>
+<p>or:</p>
+<pre><code class="lang-text">C:\Program Files\SAGA GIS
+</code></pre>
+<p>The exact folder name can vary. The folder QGIS needs is the one that contains <code>saga_cmd.exe</code>.</p>
+<blockquote>
+<p><strong>Screenshot placeholder:</strong> Windows File Explorer showing an extracted SAGA 9.2.0 folder with <code>saga_cmd.exe</code> visible.</p>
+</blockquote>
+<h2 id="part-3-install-the-qgis-processing-saga-nextgen-provider-plugin">Part 3: Install the QGIS Processing Saga NextGen Provider Plugin</h2>
+<ol>
+<li>Open QGIS.</li>
+<li>Go to <strong>Plugins &gt; Manage and Install Plugins</strong>.</li>
+<li>In the search box, type <code>Processing Saga NextGen Provider</code>.</li>
+<li>Select <strong>Processing Saga NextGen Provider</strong>.</li>
+<li>Click <strong>Install Plugin</strong>.</li>
+<li>Close the Plugin Manager.</li>
+<li>Restart QGIS.</li>
+</ol>
+<p>If the plugin does not appear:</p>
+<ol>
+<li>In the Plugin Manager, check whether <strong>Show also experimental plugins</strong> is enabled under <strong>Settings</strong>.</li>
+<li>Search again for <code>SAGA</code>.</li>
+<li>If the plugin still does not appear, the plugin may no longer be available from the QGIS plugin repository. Ask for help and include your QGIS version number.</li>
+</ol>
+<blockquote>
+<p><strong>Screenshot placeholder:</strong> QGIS Plugin Manager search results showing <strong>Processing Saga NextGen Provider</strong> selected and ready to install.</p>
+</blockquote>
+<h2 id="part-4-point-qgis-to-the-saga-folder">Part 4: Point QGIS to the SAGA Folder</h2>
+<p>After the plugin is installed, QGIS needs to know where SAGA is located on your computer.</p>
+<ol>
+<li>Open QGIS.</li>
+<li>Go to <strong>Settings &gt; Options</strong>.</li>
+<li>In the left panel, choose <strong>Processing</strong>.</li>
+<li>Expand <strong>Providers</strong>.</li>
+<li>Find <strong>SAGANG</strong>.</li>
+<li>Look for the setting named <strong>SAGA folder</strong>.</li>
+<li>Click the browse button next to the folder path.</li>
+<li>Choose the folder that contains the SAGA binaries.</li>
+</ol>
+<p><img src="images/20260513_101854_image.png" alt=""></img></p>
+<p>Use the appropriate folder for your operating system:</p>
+<table>
+<thead>
+<tr>
+<th>Operating system</th>
+<th>Folder to choose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td><code>/Applications/SAGA.app/Contents/MacOS</code></td>
+</tr>
+<tr>
+<td>Windows zip install</td>
+<td>the extracted SAGA folder that contains <code>saga_cmd.exe</code></td>
+</tr>
+<tr>
+<td>Windows installer</td>
+<td>the installed SAGA folder that contains <code>saga_cmd.exe</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Click <strong>OK</strong> to save the Processing settings.</li>
+<li>Restart QGIS.</li>
+</ol>
+<blockquote>
+<p><strong>Why the exact folder matters:</strong> QGIS is not just looking for a general SAGA folder. It needs the folder where the runnable SAGA programs live. On Windows, that usually means the folder with <code>saga_cmd.exe</code>. On macOS, that usually means the <code>Contents/MacOS</code> folder inside <code>SAGA.app</code>.</p>
+<p><strong>Screenshot placeholder:</strong> QGIS <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG</strong> panel with the <strong>SAGA folder</strong> setting pointing to the folder that contains the SAGA binaries.</p>
+</blockquote>
+<h2 id="part-5-confirm-that-saga-works-in-qgis">Part 5: Confirm That SAGA Works in QGIS</h2>
+<ol>
+<li>In QGIS, open <strong>Processing &gt; Toolbox</strong>.</li>
+<li>In the Processing Toolbox search box, type <code>SAGA</code>.</li>
+<li>Look for a SAGA provider group, usually named <strong>SAGA Next Gen</strong> or <strong>SAGANG</strong>.</li>
+<li>Expand the provider group.</li>
+<li>Confirm that SAGA tools are listed.</li>
+</ol>
+<p>For a simple test:</p>
+<ol>
+<li>Search the Processing Toolbox for a basic SAGA tool.</li>
+<li>Open the tool.</li>
+<li>Confirm that the tool dialog opens without an error.</li>
+</ol>
+<p>If the tool dialog opens and the SAGA provider appears in the Processing Toolbox, QGIS has found the SAGA installation.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="the-saga-provider-does-not-appear-in-processing-toolbox">The SAGA provider does not appear in Processing Toolbox</h3>
+<p>Try these checks:</p>
+<ol>
+<li>Restart QGIS.</li>
+<li>Go to <strong>Plugins &gt; Manage and Install Plugins &gt; Installed</strong> and confirm that <strong>Processing Saga NextGen Provider</strong> is enabled.</li>
+<li>Go to <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG</strong> and confirm that the provider is enabled.</li>
+<li>Confirm that the <strong>SAGA folder</strong> path points to the folder containing <code>saga_cmd</code> or <code>saga_cmd.exe</code>.</li>
+</ol>
+<h3 id="qgis-says-it-cannot-find-saga">QGIS says it cannot find SAGA</h3>
+<p>This usually means the path is pointed at the wrong folder.</p>
+<p>Check:</p>
+<ul>
+<li>On macOS, do not point QGIS only to <code>/Applications/SAGA.app</code>. Use <code>/Applications/SAGA.app/Contents/MacOS</code>.</li>
+<li>On Windows, do not point QGIS to the zip file. Unzip it first, then point QGIS to the extracted folder containing <code>saga_cmd.exe</code>.</li>
+<li>If you moved the SAGA folder after configuring QGIS, update the path in <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG</strong>.</li>
+</ul>
+<h3 id="windows-shows-a-security-warning">Windows shows a security warning</h3>
+<p>Windows may warn you about downloaded software.</p>
+<p>Check that you downloaded SAGA from the official SourceForge page linked above. If this is your own computer and you trust the source, allow the installer or executable to run. If you are on a lab, library, or managed computer, ask for help instead of bypassing security settings.</p>
+<h3 id="macos-shows-a-security-warning">macOS shows a security warning</h3>
+<p>Use <strong>System Settings &gt; Privacy &amp; Security</strong> to allow SAGA if macOS blocks it. This is common for open-source software that is not distributed through the Mac App Store.</p>
+<h3 id="the-plugin-is-missing-from-qgis-plugin-manager">The plugin is missing from QGIS Plugin Manager</h3>
+<p>The plugin repository page currently says the plugin is marked for deletion. If it disappears from Plugin Manager, do not try random replacement plugins without checking with the course staff. The safest next step is to report:</p>
+<ul>
+<li>your operating system</li>
+<li>your QGIS version</li>
+<li>whether SAGA 9.2.0 is installed</li>
+<li>whether you can find <code>saga_cmd</code> or <code>saga_cmd.exe</code></li>
+<li>what you see when searching for <code>SAGA</code> in the QGIS Plugin Manager</li>
+</ul>
+<h2 id="setup-checklist">Setup Checklist</h2>
+<p>Before moving on, make sure you can answer yes to each item:</p>
+<ul>
+<li>I downloaded SAGA 9.2.0 from the course-linked SourceForge page.</li>
+<li>I unzipped or installed SAGA somewhere stable.</li>
+<li>I know where the SAGA binary folder is on my computer.</li>
+<li>I installed the <strong>Processing Saga NextGen Provider</strong> plugin in QGIS.</li>
+<li>I set <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG &gt; SAGA folder</strong> to the correct folder.</li>
+<li>I restarted QGIS.</li>
+<li>I can see SAGA tools in the QGIS Processing Toolbox.</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.2.0/" target="_blank">SAGA GIS 9.2.0 files on SourceForge</a></li>
+<li><a href="https://plugins.qgis.org/plugins/processing_saga_nextgen/" target="_blank">Processing Saga NextGen Provider in the QGIS Python Plugins Repository</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="07_installing_qgis_and_plugins.html" class="navigation navigation-prev " aria-label="Previous page: 07 - Installing QGIS and Plugins">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="09_TURN_IN_introduction_to_qgis.html" class="navigation navigation-next " aria-label="Next page: 09 - TURN IN - Introduction to QGIS: Being John Snow">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"08 - Installing SAGA 9.2 for QGIS Processing","level":"1.3.10","depth":2,"next":{"title":"09 - TURN IN - Introduction to QGIS: Being John Snow","level":"1.3.11","depth":2,"path":"week00/09_TURN_IN_introduction_to_qgis.md","ref":"week00/09_TURN_IN_introduction_to_qgis.md","articles":[]},"previous":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"path":"week00/07_installing_qgis_and_plugins.md","ref":"week00/07_installing_qgis_and_plugins.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/08_installing_saga_for_qgis.md","mtime":"2026-05-13T17:59:40.422Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-13T17:59:54.933Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
