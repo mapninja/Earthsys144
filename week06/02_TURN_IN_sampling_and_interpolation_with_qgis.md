@@ -29,21 +29,13 @@ By the end of this exercise, you should be able to explain:
 
 You will need:
 
-- [L12.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip) containing the elevation data for this exercise, OR download `ChirDEM.tif` directly from the course repository
+- [ChirDEM.tif](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif), a GeoTIFF containing the elevation data for this exercise
 - QGIS with Processing Toolbox and GDAL tools available
-- SAGA tools (for majority filtering)
+- SAGA tools for SAGA-based processing steps. SAGA must be installed separately and configured through the QGIS **Processing Saga NextGen Provider** plugin. If you have not set this up yet, complete the Week 00 guide for [Installing SAGA 9.2 for QGIS Processing](../week00/08_installing_saga_for_qgis.md).
 
 > **Background:** The concepts and workflows in this exercise are covered in Chapter 12 (Spatial Estimation) and Chapter 10 (Raster Analysis) of the GIS Fundamentals textbook.
 
 ### Download the Data
-
-**Option 1: Download the complete lab data package**
-
-[Download L12.zip](https://github.com/mapninja/Earthsys144/raw/master/data/L12.zip) - This archive contains the ChirDEM and supporting documentation. Unzip it to a stable location on your computer.
-
-**Option 2: Download ChirDEM.tif directly**
-
-If you only need the elevation model, download it directly:
 
 [Download ChirDEM.tif](https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/ChirDEM.tif)
 
@@ -52,7 +44,7 @@ This file is a GeoTIFF containing the digital elevation model for southeast Ariz
 ### Project Setup
 
 1. Create a new folder for this lab on your computer.
-2. Place `ChirDEM.tif` in that folder (or extract it from L12.zip).
+2. Place `ChirDEM.tif` in that folder.
 3. Create a new QGIS project in that same folder and save it as `sampling_interpolation.qgz`.
 4. You will create all output layers (sample points, interpolated rasters, etc.) in this project folder.
 
@@ -294,9 +286,9 @@ Begin by deriving a slope layer from the DEM. Your strata boundaries will be bas
 3. Use the default settings (slope output in degrees).
 4. Browse and save the output as **SlopeDegrees**.
 
-![](images/20250427_182808_image.png)
+![](images/20260513_090330_image.png)
 
-![](images/20250427_182835_image.png)
+![](images/20260513_090449_image.png)
 
 > **Concept note:** Slope represents the rate of elevation change and is derived from the DEM. Steeper slopes indicate terrain where elevation changes rapidly over short distances. In this lab, slope becomes the criterion for stratification—we will sample more densely in steep areas.
 
@@ -313,17 +305,17 @@ Convert continuous slope values into three discrete classes representing flat, i
    - `1.5 to 18` (intermediate) as Class `2`
    - `18 and NoValue` (steep) as Class `3`
 
-![](images/20250427_182939_image.png)
+![](images/20260513_090610_image.png)
 
 These thresholds were chosen to create reasonably balanced classes. In a real workflow, you would select thresholds based on domain knowledge—for example, slopes above which construction is infeasible, or elevations where a particular resource is unlikely to be found.
 
 5. Browse and save the output as **ReclassSlope**.
 
-![](images/20260512_145112_image.png)
+![](images/20260513_090710_image.png)
 
 Your reclassified layer should look similar to this:
 
-![](images/20250427_183457_image.png)
+![](images/20260513_090726_image.png)
 
 > **Workflow note:** Reclassification reduces complexity by converting many continuous values into a small number of meaningful categories. This simplification is essential for stratification because it defines the population of each stratum.
 
@@ -331,19 +323,17 @@ Your reclassified layer should look similar to this:
 
 Before creating sampling zones, generalize the reclassified slope to remove isolated single cells or long thin areas that would complicate stratified sampling.
 
-1. Open **Processing Toolbox > SAGA > Raster Filter > Majority/Minority filter**.
+1. Open **Processing Toolbox > Whitebox Tools > MajorityFilter**.
 2. Specify:
-   - **Type:** `Majority`
-   - **Search mode:** `Circle`
-   - **Radius:** `10` pixels
-   - **Threshold:** `50%`
-3. Browse and save the output as **ReclassSlopeMajority** (note: SAGA outputs in `.sdat` format by default).
+   - **Input**: ReclassSlope
+   - **Filter X-Dimension**: 10
+3. Browse and save the output as **ReclassSlopeMajority**
 
-![](images/20250427_183551_image.png)
+![](images/20260513_091036_image.png)
 
 Toggle between the reclassified and majority-filtered layers to see how the filter removes small isolated zones:
 
-![](images/20250427_183655_image.png)
+![](images/20260513_091154_image.png)
 
 > **Concept note:** A majority filter applies a local rule: for each raster cell, if more than half of the cells in a circular neighborhood belong to a particular class, assign that class to the center cell. This generalizes small, isolated patches and creates larger, more contiguous strata suitable for polygon-based sampling.
 
@@ -358,7 +348,7 @@ Convert the generalized raster strata to a vector polygon layer that will define
 
 ![](images/20250427_183744_image.png)
 
-![](images/20250427_183803_image.png)
+![](images/20260513_091315_image.png)
 
 ### Step 5: Calculate Polygon Areas and Determine Samples per Polygon
 
@@ -379,13 +369,9 @@ These proportions reflect the assumption that steep areas warrant denser samplin
 3. Add a new field of type **Decimal (Real)** named `SqKm`.
 4. Use the **Field Calculator** to populate this field with polygon areas in square kilometers:
 
-```
 $area / 1000000
-```
 
-![](images/20250503_174225_image.png)
-
-5. Save your edits and toggle editing off.
+![](images/20260513_091442_image.png)
 
 #### Computing Total Area per Stratum
 
@@ -404,16 +390,16 @@ You now need to find the total area for each class (flat, intermediate, steep) t
 
 3. Open **Vector > Analysis > Basic Statistics for Fields**.
 4. Check the box for **Selected features only**.
-5. Select the `SqKm` field and look at the **Sum** to get the total area for that class.
+5. Select the `SqKm` field and look at the **SUM** to get the total area for that class.
 
-![](images/20250503_174801_image.png)
+![](images/20260513_091750_image.png)
 
-![](images/20250503_174817_image.png)
+![](images/20260513_091805_image.png)
 
-You should arrive at areas close to:
+You should arrive at Area SUMs close to:
 
-- **Flat (DN = 1):** approximately 289 square kilometers
-- **Intermediate (DN = 2):** approximately 359 square kilometers
+- **Flat (DN = 1):** approximately 287 square kilometers
+- **Intermediate (DN = 2):** approximately 357 square kilometers
 - **Steep (DN = 3):** approximately 25 square kilometers
 
 (Your numbers may differ slightly depending on your earlier parameters.)
@@ -425,19 +411,23 @@ You should arrive at areas close to:
 Now add a field that calculates how many sample points should be placed in each polygon based on its area relative to its stratum.
 
 1. Open the attribute table for the `STRATA` layer and add a new **Long integer** field named **samp_num**.
-2. Use the **Field Calculator** to compute the number of samples for each polygon. For each stratum, use a formula like:
-   - **DN = 1 (flat):** `100 * "SqKm" / 287.408`
-   - **DN = 2 (intermediate):** `650 * "SqKm" / 357.354`
-   - **DN = 3 (steep):** `250 * "SqKm" / 25.144`
+2. Select all polygons for one stratum class, using **Select features using an epression:**
+   `"DN"=1`
+   (Repeat for classes 2 and 3 seperately.)
+3. Use the **Field Calculator** to caluculate the number of samples for each polygon into a new field (for the first calculation, then use "Update") called `SampleNum`. For each stratum, use a formula like:
 
-![](images/20250504_105257_image.png)
+   - **DN = 1 (flat):** `100 * "SqKm" / 287`
+   - **DN = 2 (intermediate):** `650 * "SqKm" / 357`
+   - **DN = 3 (steep):** `250 * "SqKm" / 25`
+
+![](images/20260513_093133_image.png)
 
 3. Calculate each formula separately for each class. After each calculation, select the next class and recalculate.
 4. Save your edits and toggle editing off.
 
-![](images/20250504_105516_image.png)
+![](images/20260513_093309_image.png)
 
-> **Concept note:** This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer.
+> **Concept note:** This calculation distributes the target number of samples (100, 650, or 250 depending on class) proportionally across the polygons in each stratum based on their area. Larger polygons within a stratum get more samples; smaller ones get fewer, or none at all.
 
 ### Step 6: Generate Stratified Random Points
 
@@ -448,11 +438,11 @@ Now create the stratified random sample using the `samp_num` field to determine 
 3. For the **Number of points for each feature** option, click the button on the right end of the field.
 4. From the dropdown, select **Field type > samp_num** to use the field you just calculated.
 
-![](images/Sampling_Interpolation-c2c8d1d0.png)
+![](images/20260513_095537_image.png)
 
-5. Browse and save the **Output random points in polygons** as **StrataRandom1000.shp**.
+5. Browse and save the **Output random points in polygons** as **StrataRandom1000.shp**
 
-![](images/Sampling_Interpolation-51a42dee.png)
+![](images/20260513_095619_image.png)
 
 This generates a point layer with higher sampling density in the steeper areas (where `samp_num` is larger) and lower density in flatter areas:
 
@@ -471,7 +461,9 @@ As before, sample the elevation values from the DEM at these stratified random p
    - **Output point features:** `StratRandElevationSamples`
    - **Output column prefix:** `SAMPLE_`
 
-![](images/20250504_110829_image.png)
+![](images/20260513_100233_image.png)
+
+![](images/20260513_100359_image.png)
 
 ### Step 8: Spline Interpolation
 
@@ -481,7 +473,7 @@ Spline interpolation creates a smooth continuous surface that minimizes overall 
 2. Specify:
    - **Input points:** `StratRandElevationSamples`
    - **Attributes:** `SAMPLE_1` (the elevation field)
-   - **Output extent:** Calculate from layer > `ChirDEM`
+   - **Output extent:** Calculate from layer > `ReclassSlopeMajority`
    - **Cellsize:** `30`
    - **Refinement:** `[1] Yes`
    - **Threshold error:** `default`
@@ -491,7 +483,7 @@ Spline interpolation creates a smooth continuous surface that minimizes overall 
 
 3. Browse and name the **Output grid:** **SplineStratRand**.
 
-![](images/20250504_111210_image.png)
+![](images/20260513_102842_image.png)
 
 4. Run the tool.
 
@@ -505,6 +497,8 @@ Now complete the spline surface by adding supporting layers and organizing them:
 2. Create a `SplineHillshade` layer using **Raster > Terrain Analysis > Hillshade** with Azimuth 315 and Elevation 25.
 3. Copy the color style from your original `ChirDEM` layer and paste it onto the `SplineStratRand` layer.
 4. **Group** the spline layers (`SplineStratRand`, `SplineHillshade`, and contours) in the Layers panel under a group named **Spline Stratified**.
+
+![](images/20260513_103630_image.png)
 
 ## Final Deliverable: Comparison Map Layout
 

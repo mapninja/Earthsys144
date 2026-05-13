@@ -101,42 +101,19 @@ QuickMapServices provides convenient access to basemap layers from various provi
 
 ### SAGA NextGen Plugin
 
-SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. SAGA is no longer included with QGIS and must be installed separately as a standalone application. The SAGA NextGen plugin keeps up with the latest SAGA updates and ensures compatibility with current QGIS versions.
+SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. Modern QGIS installations do not include SAGA automatically, so SAGA must be installed as a separate program and then connected to QGIS with a Processing provider plugin.
 
-#### Step 1: Install SAGA GIS
+For the course setup, use the separate Week 00 guide:
 
-1. Download the SAGA GIS installer for your platform:
-   - **macOS**: [saga-9.11.3_mac.zip](https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/saga-9.11.3_mac.zip/download)
-   - **Windows**: [SAGA 9.11.3 Downloads](https://sourceforge.net/projects/saga-gis/files/SAGA%20-%209/SAGA%20-%209.11.3/)
-2. Follow the instructions provided by the SAGA GIS installer. It should install as a standalone application in your **Applications** folder (macOS) or **Program Files** (Windows).
+[Installing SAGA 9.2 for QGIS Processing](08_installing_saga_for_qgis.md)
 
-#### Step 2: Configure QGIS to Find SAGA
+That guide covers:
 
-1. Open **Finder** and navigate to your **Applications** folder
-2. Locate the **"SAGA.app"** application bundle
-3. Right-click on **"SAGA.app"** and select **"Show Package Contents"**
-4. Navigate to **Contents > MacOS** — this is your SAGA folder
-5. Open **QGIS** and go to **Processing > Options > Providers > SAGA**
-6. In the **"SAGA folder"** field, paste the path you found above. Example: `/Applications/SAGA.app/Contents/MacOS/`
-7. Save the changes and restart QGIS
-
-#### Step 3: Install the Plugin
-
-1. Open **Plugins > Manage and Install Plugins**
-2. In the **All** tab, search for **SAGA**
-3. Find **Processing SAGA NextGen Provider** and click **Install Plugin**
-4. Close the Plugin Manager
-
-![](images/20260224_110102_image.png)
-
-**Verify Installation:**
-
-1. Go to **Processing > Toolbox** to open the Processing Toolbox panel
-2. You should now see **SAGA Next Gen** as a provider alongside the others
-
-![](images/20260224_110200_image.png)
-
-The SAGA Next Gen toolset duplicates the original SAGA provider but with improved integration for the latest QGIS versions.
+- downloading SAGA 9.2.0 for macOS and Windows
+- finding the correct SAGA binary folder
+- installing the **Processing Saga NextGen Provider** plugin
+- setting **Settings > Options > Processing > Providers > SAGANG > SAGA folder**
+- confirming that SAGA tools appear in the QGIS Processing Toolbox
 
 ### WhiteboxTools Plugin
 

@@ -47,6 +47,7 @@ This week covers the essential technical skills and setup procedures that will e
 - [05 - Submitting Homework and Getting Help](05_submitting_homework_and_getting_help.md)
 - [06 - Help Fix the Labs](06_help_fix_the_labs.md)
 - [07 - Installing QGIS and Plugins](07_installing_qgis_and_plugins.md)
+- [08 - Installing SAGA 9.2 for QGIS Processing](08_installing_saga_for_qgis.md)
 - [09 - TURN IN - Introduction to QGIS: Being John Snow](09_TURN_IN_introduction_to_qgis.md)
 - [10 - TURN IN - Logging in to Google Earth Engine](10_TURN_IN_logging_in_to_google_earth_engine.md)
 
