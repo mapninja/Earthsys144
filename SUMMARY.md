@@ -55,10 +55,11 @@
   * [04 - OPTIONAL - Pan-Sharpen Landsat Imagery with HSV Color Transformation](week06/04_OPTIONAL_pan-sharpen_LANDSAT.md)
 
 * [Week 07 - Web Mapping & APIs](week07/README.md)
-  * [00 - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)
-  * [01 - Geocoding Addresses with locator.stanford.edu & OpenRefine](week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md)
-  * [02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages](week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md)
-  * [03 - Introducing OpenRefine for Data Carpentry](week07/03_introducing_openrefine_for_data_carpentry.md)
+  * [00 - DRAFT - Making & Serving Map Tiles with QGIS](week07/00_making_and_serving_map_tiles_with_qgis.md)
+  * [01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine](week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md)
+  * [02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages](week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md)
+  * [03 - DRAFT - Introducing OpenRefine for Data Carpentry](week07/03_introducing_openrefine_for_data_carpentry.md)
+  * [04 - DRAFT - Getting XYZ Tiles from Google Earth Engine](week07/04_getting_xyz_tiles_from_earth_engine.md)
 
 * [Week 08 - Analytic Models](week08/README.md)
   * [00 - Wildfire Detection & Severity Measurement in Google Earth Engine](week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md)

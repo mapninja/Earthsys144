@@ -153,6 +153,7 @@ var dataset = ee.Image("CGIAR/SRTM90_V4"),
   // Visualization parameters control how layers are drawn on the map.
   // They do not change the underlying analysis values.
   slopevis = {"min": 0, "max": 60, "palette": ["green", "yellow", "red"]},
+  hrsFromVisParam = {"min": 0, "max": 24, "palette": ["ffffff", "fdd49e", "fdbb84", "fc8d59", "d7301f", "7f0000"]},
   kmhrVisParam = {"opacity": 1, "bands": ["slope"], "min": 0.2204210745253552, "max": 5.036742124615245, "palette": ["060606", "ffffff"]},
   hrppVisParam = {"opacity": 1, "bands": ["constant"], "min": 0.000595623108306179, "max": 0.004712466148282336, "palette": ["10b306", "fbff00", "ff1f08"]};
 
@@ -270,7 +271,7 @@ var hrsFlat = flatTime.cumulativeCost(originImage, 60000);
 
 // Define how many hours of walking count as one travel day.
 // Change this value to increase or reduce the number of walking hours per day.
-var daysWalk = 12;
+var daysWalk = 8;
 
 // Create true/false rasters for 1-day, 2-day, and 3-day walking zones.
 // lt() means "less than". Pixels inside the threshold become true.
@@ -288,6 +289,7 @@ var threedayFlat = hrsFlat.lt(daysWalk * 3);
 Map.addLayer(slope, slopevis, 'slope', 0);
 Map.addLayer(speedDEM, kmhrVisParam, 'km/hr', 0);
 Map.addLayer(toblerTime, hrppVisParam, 'Hours per Pixel', 0);
+Map.addLayer(hrsFrom, hrsFromVisParam, 'Hours from Origin', 0);
 
 // Add the walking-time zones with opacity.
 // Layer order matters: layers later in the code draw on top of earlier layers.
@@ -343,6 +345,21 @@ Export.image.toDrive({
   scale: 150
 });
 */
+```
+
+### Define the Hours-from-Origin Visualization Parameters
+
+Before you test the `hrsFrom` layer later in the model, define its visualization parameters. This prevents an error when `hrsFromVisParam` is used in a `Map.addLayer()` call.
+
+```javascript
+// Define how the hours-from-origin layer should draw on the map.
+// This does not change the analysis values in hrsFrom.
+// It only tells Earth Engine how to color the layer for visual inspection.
+var hrsFromVisParam = {
+  min: 0,
+  max: 24,
+  palette: ['ffffff', 'fdd49e', 'fdbb84', 'fc8d59', 'd7301f', '7f0000']
+};
 ```
 
 ## Begin Producing the Analytic Layers of Your Model

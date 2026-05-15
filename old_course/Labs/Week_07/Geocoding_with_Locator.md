@@ -130,7 +130,7 @@ In the image, above, you can see the `endpoint URL`, broken down, as follows:
 - **Green** - These are the `query parameters`, and their `values`, commonly referred to as a "`key-value`" `pair`. They structure the data that we want to process, so that the locator service understands what it is being given to work with.
 - **Gray** - These are `query parameters`, but they are `keys` with no `values`. In most cases, it isn't necessary to include these in the URL
 
-## Creating the API `endpoint URL`
+## Creating the API endpoint URL
 
 2. Open up a **Plain Text Editor** of your choice (I like: [Atom](https://atom.io/) for MacOS, [Notepad++](https://notepad-plus-plus.org/downloads/) is a good one for Windows) and **Cut&Paste** the `endpoint URL` into the editor and delete the `key-pairs` with no `values`. You should end up with this:
 

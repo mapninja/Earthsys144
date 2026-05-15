@@ -420,6 +420,10 @@ The ordering of map elements so the most important information stands out first 
 
 A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.
 
+## XYZ Tile
+
+A small map image requested through a URL pattern that uses `{z}`, `{x}`, and `{y}` placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.
+
 ## Sources
 
 - Esri GIS Dictionary: https://support.esri.com/en-us/gis-dictionary
