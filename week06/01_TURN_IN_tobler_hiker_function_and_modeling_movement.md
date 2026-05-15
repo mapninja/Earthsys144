@@ -153,7 +153,7 @@ var dataset = ee.Image("CGIAR/SRTM90_V4"),
   // Visualization parameters control how layers are drawn on the map.
   // They do not change the underlying analysis values.
   slopevis = {"min": 0, "max": 60, "palette": ["green", "yellow", "red"]},
-  hrsFromVisParam = {"min": 0, "max": 24, "palette": ["ffffff", "fdd49e", "fdbb84", "fc8d59", "d7301f", "7f0000"]},
+  hrsFromVisParam = {"min": 0, "max": 96, "palette": ["ffffff", "fdd49e", "fdbb84", "fc8d59", "d7301f", "7f0000"]},
   kmhrVisParam = {"opacity": 1, "bands": ["slope"], "min": 0.2204210745253552, "max": 5.036742124615245, "palette": ["060606", "ffffff"]},
   hrppVisParam = {"opacity": 1, "bands": ["constant"], "min": 0.000595623108306179, "max": 0.004712466148282336, "palette": ["10b306", "fbff00", "ff1f08"]};
 
