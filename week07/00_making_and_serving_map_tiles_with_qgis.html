@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>00 - Making & Serving Map Tiles with QGIS · HonKit</title>
+        <title>00 - DRAFT - Making & Serving Map Tiles with QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -760,7 +760,7 @@
                 <a href="00_making_and_serving_map_tiles_with_qgis.html">
             
                     
-                    00 - Making & Serving Map Tiles with QGIS
+                    00 - DRAFT - Making & Serving Map Tiles with QGIS
             
                 </a>
             
@@ -773,7 +773,7 @@
                 <a href="01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
             
                     
-                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+                    01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine
             
                 </a>
             
@@ -786,7 +786,7 @@
                 <a href="02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
             
                     
-                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+                    02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages
             
                 </a>
             
@@ -799,7 +799,20 @@
                 <a href="03_introducing_openrefine_for_data_carpentry.html">
             
                     
-                    03 - Introducing OpenRefine for Data Carpentry
+                    03 - DRAFT - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="04_getting_xyz_tiles_from_earth_engine.html">
+            
+                <a href="04_getting_xyz_tiles_from_earth_engine.html">
+            
+                    
+                    04 - DRAFT - Getting XYZ Tiles from Google Earth Engine
             
                 </a>
             
@@ -1068,7 +1081,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >00 - Making & Serving Map Tiles with QGIS</a>
+        <a href=".." >00 - DRAFT - Making & Serving Map Tiles with QGIS</a>
     </h1>
 </div>
 
@@ -1083,7 +1096,281 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="making--serving-map-tiles-with-qgis">Making &amp; Serving Map Tiles with QGIS</h1>
+                                <h1 id="draft---making-and-serving-map-tiles-with-qgis">DRAFT - Making and Serving Map Tiles with QGIS</h1>
+<blockquote>
+<p><strong>Draft status:</strong> This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>In this exercise, you will create your own <strong><a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> service</strong> using QGIS. You will begin with a georeferenced <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, style it for web display, export it into a folder of map tiles, and optionally publish those tiles with GitHub Pages.</p>
+<blockquote>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> rarely loads one giant <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> all at once. Instead, it usually loads many small <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> tiles. Each tile covers a small part of the map at a particular zoom level. This makes web maps faster because the browser only requests the pieces needed for the current view.</p>
+</blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>why web maps use tiled images instead of a single large <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a></li>
+<li>why <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> tiles usually use the Web Mercator coordinate reference system, <code>EPSG:3857</code></li>
+<li>how QGIS can generate an <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> folder and preview HTML page</li>
+<li>why a local <code>file:///</code> tile path must be changed before a web-hosted map can work</li>
+<li>how GitHub Pages can serve simple static <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> files</li>
+</ul>
+<h2 id="getting-ready">Getting Ready</h2>
+<h3 id="data">Data</h3>
+<p>We'll be using an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> created, and georeferenced, by David Rumsey, and made available through <a href="http://drmc.stanford.edu" target="_blank">The David Rumsey Map Center</a>:</p>
+<p><code>"San Francisco Scale Model, Scale 1 inch 100 ft. Constructed by Federal Works Agency, Work Projects Administration. Sponsored by City Planning Commission. 1940 (Raster Image)"</code> <a href="https://searchworks.stanford.edu/view/dv566pd4199" target="_blank">https://searchworks.stanford.edu/view/dv566pd4199</a></p>
+<ol>
+<li><strong>Download</strong> the data from: <a href="https://searchworks.stanford.edu/view/dv566pd4199" target="_blank">https://searchworks.stanford.edu/view/dv566pd4199</a>, using the <strong>Download</strong> <code>data_EPSG_4326.zip</code> option, from the <strong>download widget</strong>.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-520d4b81.png" alt=""></img></p>
+<ol>
+<li>Create a Project folder to <strong>Save</strong> and <strong>unzip</strong> the <code>data_EPSG_4326.zip</code> file to.</li>
+</ol>
+<h3 id="github-account-optional">GitHub Account (optional)</h3>
+<p>For the optional portion of the lab, you will need both a GitHub.com account and GitHub Desktop for your operating system.</p>
+<p>If you do not already have a GitHub account, go to <a href="https://github.com/signup" target="_blank">https://github.com/signup</a> and create a free one.</p>
+<p>To download and install GitHub Desktop, see: <a href="https://desktop.github.com/" target="_blank">https://desktop.github.com/</a></p>
+<h2 id="preparing-the-imagery-layer">Preparing the Imagery Layer</h2>
+<p>Here, you will set the project CRS to one appropriate for <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services, <code>EPSG:3857</code>. You will also adjust rendering and resampling options in the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling panel to increase the <a href="../GLOSSARY.html#legibility" class="glossary-term" title="The degree to which map text, symbols, and layout elements can be read and understood easily. Legibility depends on choices such as font size, contrast, spacing, and the amount of visual clutter in the design.">legibility</a> of the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</p>
+<blockquote>
+<p><strong>Concept note:</strong> A coordinate reference system, or CRS, tells GIS software how coordinates relate to locations on Earth. Most slippy web maps use Web Mercator, <code>EPSG:3857</code>, because it supports the global tile grid used by common web mapping libraries.</p>
+</blockquote>
+<h3 id="add-layers">Add Layers</h3>
+<ol>
+<li>Create a new QGIS Project, and save it to the same folder you unzipped the <code>data_EPSG_4326.zip</code> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> to.</li>
+<li>Add the <code>data_EPSG_4326</code> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> from the <strong>Project Home</strong> folder in the <strong>Browser</strong> panel.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-65f6c51c.png" alt=""></img></p>
+<h3 id="adjust-the-project-crs">Adjust the Project CRS</h3>
+<ol>
+<li>Use the <strong>Quick Map Services plugin</strong> to add a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> to the project.</li>
+<li>Right-click on the <strong><a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">Basemap</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> you added and go to <strong>&gt;<a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> CRS&gt;Set Project CRS from <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong></li>
+<li>Save your changes.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-5e9ddd5d.png" alt=""></img></p>
+<h3 id="adjust-the-layer-styling">Adjust the Layer Styling</h3>
+<h4 id="rendering">Rendering</h4>
+<ol>
+<li>Select the <code>data_EPSG_4326</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and open the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Styling</strong> panel</li>
+<li>Zoom in to a detail area at a <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a> of about 1:2500 and observe the "before" rendering detail and color.</li>
+</ol>
+<p><em>The <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> below, show a detail area, where Golden Gate Park meets the Panhandle Park.</em></p>
+<p><img src="images/GitHub_XYZ_Tile_Service-9482a3a8.png" alt=""></img></p>
+<ol>
+<li>Under <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Rendering</strong>, adjust the <strong>Saturation</strong> to <code>25</code> and the <strong>Contrast</strong> to <code>25</code></li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-e87b7c8c.png" alt=""></img></p>
+<h4 id="resampling-method">Resampling Method</h4>
+<ol>
+<li>Under <strong>Resampling</strong>, set:<ul>
+<li><strong>Zoomed in</strong>: <code>Cubic</code></li>
+<li><strong>Zoomed out</strong>: <code>Cubic</code></li>
+<li><strong>Oversampling</strong>: <code>3.00</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-3eb81103.png" alt=""></img></p>
+<ol>
+<li>Note the results, and that the <strong>street labels</strong> should now be a bit more legible.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-b4f88a2d.png" alt=""></img></p>
+<ol>
+<li>Remove the <strong><a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">Basemap</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong></li>
+<li>Right-click on the <code>data_EPSG_4326</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and <strong>Zoom to <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>(s)</strong></li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-d5ce5a4c.png" alt=""></img></p>
+<ol>
+<li>Save your project.</li>
+</ol>
+<h3 id="create-the-directory-of-tiles">Create the Directory of Tiles</h3>
+<ol>
+<li>Search the Processing Toolbox for "<strong>XYZ</strong>" and open the <strong>Generate XYZ tiles (Directory) tool</strong>.</li>
+<li>Set the <strong>Extent</strong> as <strong>Use Current Map </strong></li>
+<li>Change the following options:<ul>
+<li><strong>Minimum zoom</strong>: <code>7</code></li>
+<li><strong>Maximum zoom</strong>: <code>15</code></li>
+<li><strong>Output Directory</strong>: Make a new directory in your <strong>project folder</strong> called <code>SF_Model_Tiles</code></li>
+<li><strong>Output html (Leaflet)</strong>: Save to the <code>Output directory</code> you created, above, as <code>index.html</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-a28d1678.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Run</strong> to create the XYZ tiles, directories and <code>index.html</code>.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-eee667ba.png" alt=""></img></p>
+<ol>
+<li>Close the <strong>Generate XYZ Tiles (Directory)</strong> tool.</li>
+<li>Click on the <strong>File path:</strong> URL in the <strong>Results Viewer</strong> window that appears when the <strong>Generate XYZ Tiles (Directory)</strong> tool has finished, to open the Leaflet map and verify that the tiles have been created.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-dc50a05c.png" alt=""></img></p>
+<p><img src="images/GitHub_XYZ_Tile_Service-fec4cfc1.png" alt=""></img></p>
+<ol>
+<li>Save your <strong>QGIS Project</strong> and <strong>Close QGIS</strong></li>
+</ol>
+<blockquote>
+<p><strong>Concept note:</strong> The output tile folder is organized by zoom level, <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, and <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>. That is why the tile path uses the template <code>{z}/{x}/{y}.png</code>: <code>{z}</code> is the zoom level, <code>{x}</code> is the tile <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, and <code>{y}</code> is the tile <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>.</p>
+</blockquote>
+<h2 id="draft-deliverable">Draft Deliverable</h2>
+<p>Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. The older version of this lab asked students to:</p>
+<ol>
+<li>Take <strong>two</strong> screenshots of the working Leaflet map:<ol>
+<li>Zoomed out so the entire <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> can be seen,</li>
+<li>Zoomed in to show detail</li>
+</ol>
+</li>
+<li>Upload the two screenshot images to <strong>Canvas</strong></li>
+</ol>
+<p><strong>OR</strong></p>
+<ol>
+<li>Continue through the following optional section of the exercise and submit your live, GitHub-hosted <code>Leaflet Map URL</code> on <strong>Canvas</strong>.</li>
+</ol>
+<h2 id="upload-the-tiles-to-github-optional">Upload the tiles to GitHub (Optional)</h2>
+<h3 id="upload-to-github-and-edit-the-indexhtml">Upload to GitHub and Edit the index.html</h3>
+<ol>
+<li>Using your Text Editor, Browse to <code>index.html</code> and open it.</li>
+</ol>
+<pre><code class="lang-html">
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Leaflet Preview<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"</span>
+   <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="</span>
+   <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">""</span>/&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"</span>
+   <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="</span>
+   <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">""</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="language-css">
+    <span class="hljs-selector-tag">body</span> {
+       <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+       <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span>, <span class="hljs-selector-id">#map</span>{
+       <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+       <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"map"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">var</span> map = L.<span class="hljs-title function_">map</span>(<span class="hljs-string">'map'</span>).<span class="hljs-title function_">setView</span>([<span class="hljs-number">37.752990353923</span>, -<span class="hljs-number">122.43432528011124</span>], <span class="hljs-number">11.0</span>);
+      L.<span class="hljs-title function_">tileLayer</span>(<span class="hljs-string">'file:////Users/maples/Scratch/144%20Labs/Week%2007/data_EPSG_4326/SF_Model_Tiles/{z}/{x}/{y}.png'</span>, {
+        <span class="hljs-attr">minZoom</span>: <span class="hljs-number">7</span>,
+        <span class="hljs-attr">maxZoom</span>: <span class="hljs-number">15</span>,
+        <span class="hljs-attr">tms</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">attribution</span>: <span class="hljs-string">'Generated by TilesXYZ'</span>
+      }).<span class="hljs-title function_">addTo</span>(map);
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Find the <code>L.tileLayer()</code> function in the code, above, and note that it is calling the <code>{z}/{x}/{y}.png</code> tiles using a <code>file:////</code> path on your local hard drive.</p>
+<p>In order for this function to find the tiles once we have them on GitHub, the path value in this function will need to be updated to the path on GitHub.  We'll do that, after we upload the tiles, so we can copy the tiles URL directly from GitHub.</p>
+<p>For this (optional) part of the exercise, you need to install the <strong>GitHub Desktop application</strong>, from <a href="https://desktop.github.com/" target="_blank">https://desktop.github.com/</a></p>
+<ol>
+<li>Start the GitHub Desktop application</li>
+<li>Login to your <strong>GitHub Account</strong> as directed</li>
+<li>Go to <strong>File&gt;Add Local Repository...</strong></li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-0fa2c0ac.png" alt=""></img></p>
+<ol>
+<li>Click the link to "create a repository here, instead"</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-8e2b2bd8.png" alt=""></img></p>
+<ol>
+<li>Check the <strong>Initialize this repository with a README</strong> option...</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-d5b48231.png" alt=""></img></p>
+<ol>
+<li><p><strong>Uncheck</strong> the option to <strong>Keep this code private</strong>, then Click <strong>Create Repository</strong></p>
+</li>
+<li><p>In the <strong>Main GitHub Desktop Window</strong>, click <strong>Publish repository</strong>, then click it, again, to <em><strong>publish the repo to GitHub.com</strong></em>.</p>
+</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-2fce7425.png" alt=""></img></p>
+<ol>
+<li><p>Wait for the upload of the file in the folder (there are MANY!).</p>
+</li>
+<li><p>Click on the <strong>View on GitHub</strong> Button to open the Repository in your browser.</p>
+</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-88e72fc6.png" alt=""></img></p>
+<ol>
+<li>Examine the resulting repository to see that it looks similar to the following:</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-7e78e8d1.png" alt=""></img></p>
+<h3 id="turn-on-github-pages-for-the-repo">Turn on GitHub Pages for the Repo</h3>
+<ol>
+<li>From the <code>SF_Model_Tiles</code> <strong>Repository page</strong>, go to the Settings&gt;Pages section.</li>
+<li>Select <code>Main</code> as the <strong>branch</strong> to use for GitHub Pages, and click Save.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-99573f99.png" alt=""></img></p>
+<ol>
+<li>Refresh the Settings&gt;Pages page, every few minutes, until the repository pages are published, and the URL appears at the top of the page.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-48349e25.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>Visit Site</strong> button, to see that the <strong>Leaflet Map</strong> is currently disabled.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-ce32b26f.png" alt=""></img></p>
+<p>This is because the path in the <code>L.tileLayer()</code> function is still pointing to the files on your local hard drive, which is not accessible to GitHub. In the next section, you will edit the <code>index.html</code> file to point to the new location of the tiles, on GitHub.</p>
+<h3 id="edit-the-indexhtml-file-to-use-the-github-hosted-tiles">Edit the <code>index.html</code> file to Use the GitHub Hosted Tiles</h3>
+<ol>
+<li>Return to the main <code>SF_Model_Tiles</code> repository page, on GitHub.</li>
+<li>Click into one of the numbered Repository folders, such as <code>11</code>, then continue to click into folders, until you find a <code>*.png</code> file.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-ac9d67de.png" alt=""></img></p>
+<ol>
+<li>Click "into" the <code>*.png</code> file, then click on the Download button</li>
+<li>Select and <strong>Copy</strong> the URL for the <code>*.png</code> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, from the URL bar of your browser.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-710707a8.png" alt=""></img></p>
+<ol>
+<li>Paste this <code>download URL</code> into a <strong>New text document</strong>, in your plain text editor.</li>
+</ol>
+<p>Your <code>download URL</code> should be similar to the one, below, but with your username, and the subpath to the specific <code>*.png</code> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> you browsed to.</p>
+<p><code>https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/11/326/791.png</code></p>
+<ol>
+<li>Select and Delete the part of the <code>download URL</code> after <code>/main/</code>, so that you have something like the following, left:</li>
+</ol>
+<p><code>https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/</code></p>
+<ol>
+<li>Now you need to paste the <code>`{z}/{x}/{y}.png</code> template for the service, to the end of the URL, like so:</li>
+</ol>
+<p><code>https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png</code></p>
+<ol>
+<li>Select and copy this <strong><a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> template URL</strong></li>
+<li>Return to the Main Repository Page and click on the index.html file to view it.</li>
+<li>Click on the Edit button <img src="images/GitHub_XYZ_Tile_Service-5d4cd008.png" alt=""></img> to open the GitHub Text editor.</li>
+<li>Locate the following line in the <code>index.html</code> file (<em>your file:/// path will be slightly different</em>):</li>
+</ol>
+<p><code>L.tileLayer('file:////Users/maples/Scratch/144%20Labs/Week%2007/data_EPSG_4326/SF_Model_Tiles/{z}/{x}/{y}.png', {</code></p>
+<ol>
+<li>Select the entire <code>file:////...</code> path between the <strong>single quotes (' ')</strong> and paste the copied path into it's place, like so:</li>
+</ol>
+<p><code>L.tileLayer('https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png', {</code></p>
+<ol>
+<li>Create a Commit comment and click the <strong>Commit changes</strong> button.</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-7254fef6.png" alt=""></img></p>
+<h2 id="test-your-live-leaflet-map">Test your live Leaflet Map</h2>
+<ol>
+<li>Give it a few minutes for the changes to be published to GitHub Pages, then return to <strong>Settings&gt;Pages</strong>, for the repo, and click on the <strong>Visit Site</strong> button to open the Leaflet Map:</li>
+</ol>
+<p><img src="images/GitHub_XYZ_Tile_Service-c20b8697.png" alt=""></img></p>
+<p><img src="images/GitHub_XYZ_Tile_Service-3fd93f5f.png" alt=""></img></p>
+<p>You can see the live Leaflet Map for the example, here:</p>
+<p><a href="https://mapninja.github.io/SF_Model_Tiles/" target="_blank"><code>https://mapninja.github.io/SF_Model_Tiles/</code></a></p>
+<h2 id="using-your-service-in-other-platforms">Using Your Service in Other Platforms</h2>
+<p>Now that you have a stable, public <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ Tile</a> Service, you can connect to it with any platform that supports XYZ Tiles, using your <strong><a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ Tile</a> Template URL</strong> (here's the example, URL):</p>
+<p><code>https://raw.githubusercontent.com/mapninja/SF_Model_Tiles/main/{z}/{x}/{y}.png</code></p>
+<p>Here is the <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ Tile</a> Service being served, as a Tile <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a>, in ArcGIS Online:</p>
+<p><a href="https://arcg.is/1TW5580" target="_blank">https://arcg.is/1TW5580</a></p>
+<p><img src="images/GitHub_XYZ_Tile_Service-da026bb0.png" alt=""></img></p>
 
                                 
                                 </section>
@@ -1116,7 +1403,7 @@
                 </a>
                 
                 
-                <a href="01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html" class="navigation navigation-next " aria-label="Next page: 01 - Geocoding Addresses with locator.stanford.edu & OpenRefine">
+                <a href="01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html" class="navigation navigation-next " aria-label="Next page: 01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1127,7 +1414,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"00 - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"next":{"title":"01 - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},"previous":{"title":"Week 07 - Web Mapping & APIs","level":"1.10","depth":1,"path":"week07/README.md","ref":"week07/README.md","articles":[{"title":"00 - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","ref":"week07/00_making_and_serving_map_tiles_with_qgis.md","articles":[]},{"title":"01 - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},{"title":"02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages","level":"1.10.3","depth":2,"path":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","ref":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","articles":[]},{"title":"03 - Introducing OpenRefine for Data Carpentry","level":"1.10.4","depth":2,"path":"week07/03_introducing_openrefine_for_data_carpentry.md","ref":"week07/03_introducing_openrefine_for_data_carpentry.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","mtime":"2026-05-13T17:59:42.934Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-13T17:59:54.933Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"00 - DRAFT - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"next":{"title":"01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},"previous":{"title":"Week 07 - Web Mapping & APIs","level":"1.10","depth":1,"path":"week07/README.md","ref":"week07/README.md","articles":[{"title":"00 - DRAFT - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","ref":"week07/00_making_and_serving_map_tiles_with_qgis.md","articles":[]},{"title":"01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},{"title":"02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages","level":"1.10.3","depth":2,"path":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","ref":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","articles":[]},{"title":"03 - DRAFT - Introducing OpenRefine for Data Carpentry","level":"1.10.4","depth":2,"path":"week07/03_introducing_openrefine_for_data_carpentry.md","ref":"week07/03_introducing_openrefine_for_data_carpentry.md","articles":[]},{"title":"04 - DRAFT - Getting XYZ Tiles from Google Earth Engine","level":"1.10.5","depth":2,"path":"week07/04_getting_xyz_tiles_from_earth_engine.md","ref":"week07/04_getting_xyz_tiles_from_earth_engine.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","mtime":"2026-05-15T17:33:51.538Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-15T17:34:01.417Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

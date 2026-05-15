@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>01 - Geocoding Addresses with locator.stanford.edu & OpenRefine · HonKit</title>
+        <title>01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.1.7">
@@ -760,7 +760,7 @@
                 <a href="00_making_and_serving_map_tiles_with_qgis.html">
             
                     
-                    00 - Making & Serving Map Tiles with QGIS
+                    00 - DRAFT - Making & Serving Map Tiles with QGIS
             
                 </a>
             
@@ -773,7 +773,7 @@
                 <a href="01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.html">
             
                     
-                    01 - Geocoding Addresses with locator.stanford.edu & OpenRefine
+                    01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine
             
                 </a>
             
@@ -786,7 +786,7 @@
                 <a href="02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
             
                     
-                    02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages
+                    02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages
             
                 </a>
             
@@ -799,7 +799,20 @@
                 <a href="03_introducing_openrefine_for_data_carpentry.html">
             
                     
-                    03 - Introducing OpenRefine for Data Carpentry
+                    03 - DRAFT - Introducing OpenRefine for Data Carpentry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="04_getting_xyz_tiles_from_earth_engine.html">
+            
+                <a href="04_getting_xyz_tiles_from_earth_engine.html">
+            
+                    
+                    04 - DRAFT - Getting XYZ Tiles from Google Earth Engine
             
                 </a>
             
@@ -1068,7 +1081,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >01 - Geocoding Addresses with locator.stanford.edu & OpenRefine</a>
+        <a href=".." >01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine</a>
     </h1>
 </div>
 
@@ -1083,7 +1096,366 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="geocoding-addresses-with-locatorstanfordedu--openrefine">Geocoding Addresses with locator.stanford.edu &amp; OpenRefine</h1>
+                                <h1 id="draft---geocoding-addresses-with-locatorstanfordedu-and-openrefine">DRAFT - Geocoding Addresses with locator.stanford.edu and OpenRefine</h1>
+<blockquote>
+<p><strong>Draft status:</strong> This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.</p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p>This exercise introduces <strong><a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a></strong> with OpenRefine and Stanford's <code>locator.stanford.edu</code> service. You will start with a CSV <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> of street addresses, build a web API request, use OpenRefine to send one request per <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>, and extract longitude and latitude values from the returned JSON.</p>
+<blockquote>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a> is the process of turning a place description, such as a street address, into map coordinates. The result is usually a pair of longitude and latitude values that can be used to create point geometry in GIS software.</p>
+</blockquote>
+<h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
+<p>By the end of this exercise, you should be able to explain:</p>
+<ul>
+<li>what a <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> API does</li>
+<li>why an address <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> must have consistent address fields before <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a></li>
+<li>how a URL can carry <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> parameters to a web service</li>
+<li>why API responses are often returned as JSON</li>
+<li>how OpenRefine can repeat a web request across many <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> rows</li>
+</ul>
+<h2 id="getting-ready">Getting Ready</h2>
+<h3 id="data">Data</h3>
+<p><strong>Download</strong> the data for this exercise, here (you may need to <strong>File&gt;Save As...</strong> if your browser opens the <code>csv</code>, rather than downloading it ).</p>
+<p><a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/SantaClara_TattooParlors.csv" target="_blank">https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/SantaClara_TattooParlors.csv</a></p>
+<h3 id="download-and-install-openrefine">Download and Install <a href="https://openrefine.org/" target="_blank">OpenRefine</a></h3>
+<p><a href="https://openrefine.org/download" target="_blank">https://openrefine.org/download</a></p>
+<p><img src="images/Geocoding_with_Locator-6c1662fa.png" alt=""></img></p>
+<p>This exercise will demonstrate how to use <strong>OpenRefine</strong> to submit <strong>URLs</strong> to web-based <strong><a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a> APIs</strong> in order to augment an existing dataset with things like <code>latitude</code> &amp; <code>longitude</code> coordinates, <code>elevation</code> values, drive times, etc…</p>
+<p><strong>OpenRefine</strong> is a piece of <strong>open-source software</strong> that allows you to manipulate data in many different ways. It’s not just great for <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> and augmenting datasets, but is also really great for cleaning up ‘dirty’ data.</p>
+<p>For the needs of this exercise, <strong><a href="https://openrefine.org/" target="_blank">OpenRefine</a></strong> allows us to build and <strong>submit URLs</strong> to a <strong>web service</strong> (like a <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> API) over and over tens, hundreds, even thousands or more times, saving us the trouble of typing a URL into a browser and copy &amp; pasting values, one at a time. <strong>OpenRefine</strong> runs in your browser, but does so locally by installing itself as a sort of server running on your own machine. <strong>OpenRefine</strong> used to be called <strong>GoogleRefine</strong>, but has recently been re-branded, so much of the support materials you will find on-line will still refer to <strong>GoogleRefine</strong>.</p>
+<p>You will need to download OpenRefine in order to complete this exercise. You can get the appropriate version for your operating system from <a href="http://openrefine.org/" target="_blank">OpenRefine.org</a>. In the meantime, there are 3 videos on the OpenRefine front page. You should take a look at all three, because they give a great, concise overview of many of the capabilities of OpenRefine.</p>
+<p>For the purposes of this exercise, it wouldn’t hurt to watch the 3rd video, linked here:</p>
+<p><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=5tsyz3ibYzk" target="_blank">http://www.youtube.com/watch?feature=player_embedded&amp;v=5tsyz3ibYzk</a></p>
+<p>You might also want to take a look at this page on <strong><em>Expressions</em></strong> in OpenRefine:</p>
+<p><a href="https://docs.openrefine.org/manual/expressions" target="_blank">https://docs.openrefine.org/manual/expressions</a></p>
+<p>And, here’s the full <strong>User Manual</strong>:</p>
+<p><a href="https://docs.openrefine.org/" target="_blank">https://docs.openrefine.org/</a></p>
+<h2 id="what-is-a-geocoding-api">What is a Geocoding API?</h2>
+<p>An <strong>API</strong> (<strong>Application Programming Interface</strong>) is, essentially, a set of instructions that allows computer programs to pass data back and forth. In the following exercise, we will be using a REST API, hosted by Stanford Libraries, at <a href="https://locator.stanford.edu" target="_blank">https://locator.stanford.edu</a>.</p>
+<p>Web APIs allow you to submit a URL just like when you type a URL into your browser address bar. The important difference is that the URL we are submitting has a bit of data, such as an <code>address</code> or <code>coordinate pair</code>, that we want to know something about. Rather than giving us back an <code>HTML</code> file that instructs our browser to retrieve images, text, and other objects and arrange them into a webpage, the web API we will use gives us back information about the <code>address</code> data we submit.</p>
+<blockquote>
+<p><strong>Concept note:</strong> A REST API is designed around URLs. The base part of the URL identifies the service, and the <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> parameters after the <code>?</code> provide the specific inputs and options for a request.</p>
+</blockquote>
+<h2 id="connecting-to-locatorstanfordedu-services">Connecting to locator.stanford.edu Services</h2>
+<p><a href="https://locator.stanford.edu" target="_blank">locator.stanford.edu</a> is <strong>IP restricted to Stanford Network IP addresses</strong>, <strong>including VPN</strong>. If you find that you are unable to connect to the services, try using <strong>AnyConnect VPN</strong> to connect to the <strong>Stanford Network</strong>. If you are currently on the Stanford WiFi, or using a Stanford computer, on campus, you should be able to connect without issue.</p>
+<h2 id="building-your-template-query">Building your template Query</h2>
+<p>The easiest way for beginners to use APIs is to start by building a single URL <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> to quickly test that you have typed all of the parameters correctly and that <a href="https://locator.stanford.edu" target="_blank">https://locator.stanford.edu</a> is returning valid data.</p>
+<p>We'll be using the USA Street Address <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> service. The service <strong>endpoint</strong> is a URL that you can submit your queries to. In this case, the USA Geocoder endpoint is at:</p>
+<p><a href="https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer" target="_blank">https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer</a></p>
+<p>This page will look rather terrifying to someone not yet familiar with these types of services, but fortunately, there is an easy way to get locator.stanford.edu to give us a <code>endpoint URL</code> we can begin altering to do what we want.</p>
+<ol>
+<li>Scroll to the bottom of the <a href="https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer" target="_blank">https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer</a> page and look for the <a href="https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates" target="_blank">Find Address Candidates</a> link and click on it.</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-d2d737e6.png" alt=""></img></p>
+<p>The <strong>Find Address Candidates: (geocode/USA)</strong> page provides a convenient way to build a template <code>endpoint URL</code>, by filling out the information in the form that duplicates the data we want to feed to the service.</p>
+<ol>
+<li>Now, examine the data we will feed into the APIs, at <a href="https://github.com/mapninja/Earthsys144/blob/master/data/SantaClara_TattooParlors.csv" target="_blank">https://github.com/mapninja/Earthsys144/blob/master/data/SantaClara_TattooParlors.csv</a></li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-11dfb04d.png" alt=""></img></p>
+<p>Note that we have several columns with <em>Implicit Location Data</em> in them, including:</p>
+<ul>
+<li><code>Street Address</code></li>
+<li><code>City</code></li>
+<li><code>State Abbreviation</code></li>
+<li><p><code>Zip Code</code></p>
+</li>
+<li><p>Use the values for these columns, from the first record in the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, to fill out the <strong>Find Address Candidates: (geocode/USA)</strong> form.</p>
+</li>
+<li>For <strong>Max Locations</strong>: <code>1</code></li>
+<li>Change the <strong>Format</strong> dropdown to <code>JSON</code></li>
+<li>Click <strong>Find Address Candidates (GET)</strong></li>
+</ul>
+<p><img src="images/Geocoding_with_Locator-e4a947d4.png" alt=""></img></p>
+<p>You should get TWO very important results.</p>
+<p>First, you should get a plain text result, in JSON (JavaScript Object Notation) format:</p>
+<pre><code>{
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "candidates": [
+  {
+   "address": "801 N 13th St, San Jose, California, 95112",
+   "location": {
+    "x": -121.8895229109295,
+    "y": 37.357328337757636
+   },
+   "score": 100,
+   "attributes": {
+
+   },
+   "extent": {
+    "xmin": -121.890754,
+    "ymin": 37.356155000000008,
+    "xmax": -121.88875399999999,
+    "ymax": 37.358155000000004
+   }
+  }
+ ]
+}
+</code></pre><p>And second, you should get a <code>endpoint URL</code> in your browser's <strong>URL Bar</strong>:</p>
+<p><code>https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&amp;Address2=&amp;Address3=&amp;Neighborhood=&amp;City=SAN+JOSE&amp;Subregion=&amp;Region=CA&amp;Postal=951121527&amp;PostalExt=&amp;CountryCode=&amp;SingleLine=&amp;outFields=&amp;maxLocations=1&amp;matchOutOfRange=true&amp;langCode=&amp;locationType=&amp;sourceCountry=&amp;category=&amp;location=&amp;distance=&amp;searchExtent=&amp;outSR=&amp;magicKey=&amp;f=pjson</code></p>
+<blockquote>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> parameters are the <code>key=value</code> pieces after the <code>?</code> in a URL. In this example, <code>City=SAN+JOSE</code> tells the service which city value to use, and <code>maxLocations=1</code> tells it to return only the best candidate.</p>
+</blockquote>
+<h3 id="reading-the-endpoint-url">Reading the <code>endpoint URL</code></h3>
+<p>That's probably alot to take in, all at once, so let's break it down:</p>
+<p><img src="images/Geocoding_with_Locator-38164032.png" alt=""></img></p>
+<p>In the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, above, you can see the <code>endpoint URL</code>, broken down, as follows:</p>
+<ul>
+<li><strong>Red</strong> - This is the <code>base URL</code> of the locator.stanford.edu server</li>
+<li><strong>Orange</strong> - This is the <code>resource path</code> of the specific <em>USA Geocode Service</em></li>
+<li><strong>Yellow</strong> - This is <code>resource path</code> of the specific <strong>Operation</strong> we want to run: "<em>Find Address Candidates</em>"</li>
+<li><strong>Green</strong> - These are the <code>query parameters</code>, and their <code>values</code>, commonly referred to as a "<code>key-value</code>" <code>pair</code>. They structure the data that we want to process, so that the locator service understands what it is being given to work with.</li>
+<li><strong>Gray</strong> - These are <code>query parameters</code>, but they are <code>keys</code> with no <code>values</code>. In most cases, it isn't necessary to include these in the URL</li>
+</ul>
+<h2 id="creating-the-api-endpoint-url">Creating the API <code>endpoint URL</code></h2>
+<ol>
+<li>Open up a <strong>Plain Text Editor</strong> of your choice (I like: <a href="https://atom.io/" target="_blank">Atom</a> for MacOS, <a href="https://notepad-plus-plus.org/downloads/" target="_blank">Notepad++</a> is a good one for Windows) and <strong>Cut&amp;Paste</strong> the <code>endpoint URL</code> into the editor and delete the <code>key-pairs</code> with no <code>values</code>. You should end up with this:</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-b131d6e7.png" alt=""></img></p>
+<p>or:</p>
+<p><code>https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&amp;City=SAN+JOSE&amp;Region=CA&amp;Postal=951121527&amp;maxLocations=1&amp;f=pjson</code></p>
+<h2 id="testing-your-api-endpoint-url">Testing your API <code>endpoint URL</code></h2>
+<ol>
+<li>Paste the new <code>endpoint URL</code> into your browser.</li>
+</ol>
+<p>This should result in the same result as before.</p>
+<pre><code>{
+ "spatialReference": {
+  "wkid": 4326,
+  "latestWkid": 4326
+ },
+ "candidates": [
+  {
+   "address": "801 N 13th St, San Jose, California, 95112",
+   "location": {
+    "x": -121.8895229109295,
+    "y": 37.357328337757636
+   },
+   "score": 100,
+   "attributes": {
+
+   },
+   "extent": {
+    "xmin": -121.890754,
+    "ymin": 37.356155000000008,
+    "xmax": -121.88875399999999,
+    "ymax": 37.358155000000004
+   }
+  }
+ ]
+}
+</code></pre><p>See them!? There are <code>X/Y</code> or <code>longitude/latitude</code> coordinates in there! That’s what we are after!</p>
+<h2 id="making-sense-of-our-returned-json-data">Making Sense of our Returned JSON Data</h2>
+<h3 id="what-is-json">What is JSON?</h3>
+<p>For our purposes, we don’t really need to go deeply into what <strong>JSON (JavaScript Object Notation)</strong> is. It is enough for you to know that it is a format for storing and exchanging data in human readable text format and that it is an output format for many web-based data APIs.</p>
+<p>The <strong>JSON</strong> we got back might be a little intimidating if you aren’t used to looking at code, but if you look closely, you will see that there is actually some useful information in there! In fact, since what we are doing is <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> addresses, you can see that the data we need is buried in there!</p>
+<blockquote>
+<p><strong>Concept note:</strong> JSON stores data in nested structures. This is powerful because one API response can include coordinates, match scores, full addresses, and <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a>, but it also means you need to know the path to the value you want.</p>
+</blockquote>
+<h2 id="use-jsonviewerstackhu-to-make-json-more-readable">Use jsonviewer.stack.hu to make JSON more readable</h2>
+<p>You can make the JSON data even more readable with <a href="http://jsonviewer.stack.hu/" target="_blank">http://jsonviewer.stack.hu/</a>.</p>
+<ol>
+<li>Copy &amp; Paste your JSON from the browser window into the <a href="http://jsonviewer.stack.hu/" target="_blank">http://jsonviewer.stack.hu/</a> text tab</li>
+<li><strong>Click</strong> on the <strong>Format Button</strong> in the Main Menu.</li>
+<li><strong>Switch</strong> to the <strong>Viewer Tab</strong>…</li>
+<li>Expand all of the elements in the hierarchy so that you have something that looks like this:</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-6a54e6cc.png" alt=""></img></p>
+<h3 id="the-structure-of-json-data">The Structure of JSON data</h3>
+<p>The structure of a JSON object is as follows:</p>
+<ul>
+<li>The <strong>data</strong> are in <code>key-value</code> pairs.</li>
+<li><strong>Commas</strong> <strong>,</strong> separate Data <code>objects</code>.</li>
+<li><strong>Curly braces</strong> <strong>{ }</strong> hold <code>objects</code>.</li>
+<li><strong>Square brackets</strong> <strong>[ ]</strong> hold arrays of multiple <code>objects</code> (this provides the ability to represent<a href="../GLOSSARY.html#one-to-many-relationship" class="glossary-term" title="A relationship in which one record in one table corresponds to many records in another table. In GIS, one soil type may relate to many soil polygons.">one-to-many relationship</a>s between the <code>objects</code>).</li>
+<li>Each data <code>value</code> is enclosed with <strong>quotes</strong> <strong>""</strong> if it is a <code>string value</code>, or <strong>without quotes</strong> if it is a <code>numeric value</code>.</li>
+</ul>
+<h3 id="reading-our-returned-json-data">Reading Our Returned JSON Data</h3>
+<p>If you track forward through the hierarchy of our returned <strong>JSON data</strong>, you will find that it contains:</p>
+<ul>
+<li>An <code>object</code> called <code>spatialReference</code></li>
+<li>And an <code>array</code> called <code>candidates</code> which contains:<ul>
+<li>numbered <code>candidate</code> <code>objects</code> (there is only one <code>candidate</code> <code>object</code>, whose index is <code>0</code> ( because we limited the number of results with <code>&amp;maxLocations=1</code>, in the <code>endpoint URL</code>), which contains:<ul>
+<li>three <code>objects</code>, one of which is named <code>location</code>, which contains:<ul>
+<li>two <code>properties</code> called <code>x</code> &amp; <code>y</code>, which contain the latitude &amp; longitude coordinates we are interested in, in <code>key-value</code> pairs.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>To refer to the <code>x</code>, or longitude, propertiy we would use the following:</p>
+<p><code>candidates[0].location.x</code></p>
+<p><strong>or:</strong></p>
+<p>"the property named <code>x</code>, of the object named <code>location</code>, which is the first object named <code>[0]</code> in the array called <code>candidates</code>" reading backwards from the property we are interested in.</p>
+<p>We'll make use of this, later in <strong>OpenRefine</strong>, to extract the <strong>longitude</strong> &amp; <strong>latitude</strong> <strong>coordinates</strong> from the JSON formatted data we get back from <strong>locator.stanford.edu</strong></p>
+<h2 id="bulk-geocoding-with-openrefine">Bulk Geocoding with OpenRefine</h2>
+<p>Now it’s time to start up OpenRefine and use the URL we’ve just created to submit a <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a> Request for each of our addresses.</p>
+<h2 id="create-a-new-openrefine-project">Create a New OpenRefine Project</h2>
+<ol>
+<li>Start <strong>OpenRefine</strong> by double-clicking the <strong>OpenRefine</strong> app</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-963a18fe.png" alt=""></img></p>
+<ol>
+<li>Click on the <strong>Create Project</strong> link.</li>
+<li>Select the option to <strong>Get data from this computer</strong> and Click on the <strong>Choose Files</strong> button.</li>
+<li><strong>Browse</strong> to the <code>SantaClara_TattooParlors.csv</code> and Select it. Click <strong>Next</strong></li>
+<li>Make sure the data is properly formatted in the Preview, change the <strong>Parse data as...</strong> parameters until the data is properly formatted.</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-1b9651e5.png" alt=""></img></p>
+<ol>
+<li>Click <strong>Create Project</strong> in the upper right corner of the page.</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-28dc0c5e.png" alt=""></img></p>
+<p>Note that the default for <strong>OpenRefine</strong> is to only show the first 10 records in your <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. You can click on the <strong>Show:</strong> option, to show the number of records you want to see.</p>
+<p>Spend some time exploring the interface. It's beyond the scope of this exercise to explore all of the functionality in OpenRefine, but it's worth you time to learn. A great resource for more exploration of OpenRefine and it's capabilities, is <a href="https://datacarpentry.org/" target="_blank">datacarpentry.org</a>'s <a href="https://datacarpentry.org/openrefine-socialsci/" target="_blank">OpenRefine for Social Science Data</a></p>
+<h2 id="using-our-url-as-a-template">Using Our URL as a Template</h2>
+<p>If you haven’t already, now is a good time to take a look at the basics of the <strong>GREL (General Refine Expression Language)</strong> <a href="https://docs.openrefine.org/manual/expressions" target="_blank">https://docs.openrefine.org/manual/expressions</a>.</p>
+<ol>
+<li>Return to your URL you created, and Copy it from the Browser Address Bar, or your Text Editor. Again, it should be this:</li>
+</ol>
+<p><code>https://locator.stanford.edu/arcgis/rest/services/geocode/USA/GeocodeServer/findAddressCandidates?Address=801+N+13TH+ST&amp;City=SAN+JOSE&amp;Region=CA&amp;Postal=951121527&amp;maxLocations=1&amp;f=pjson</code></p>
+<ol>
+<li>Now Click on the <strong>Drop-down Arrow</strong> next to the <code>Street Address</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and go to <strong>Edit <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">Column</a>&gt;Add <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">Column</a> by Fetching URLs</strong></li>
+</ol>
+<p><img src="images/20250504_162626_image.png" alt=""></img></p>
+<ol>
+<li>Name the new <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> something like <code>locatorJSON</code></li>
+<li>Paste your <code>endpoint URL</code> into the <strong>Expression Window</strong> (this will result in a error messages, which is fine)</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-418ccf1e.png" alt=""></img></p>
+<h3 id="replacing-the-query-parameter-values-with-data-from-the-table">Replacing the Query Parameter Values with Data from the table</h3>
+<p>Because we started this Expression from the <code>Street Address</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, we only need to refer to the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> values as <code>value</code>, and convert them to <strong>URL Encoded text</strong>.</p>
+<ol>
+<li>Now, <strong>Copy</strong> the following text:</li>
+</ol>
+<p><code>"+ escape(value,'url')+"</code></p>
+<ol>
+<li><strong>Carefully</strong> <strong><em>SELECT</em></strong> the following text from your <code>endpoint URL</code> template in the <strong>Expression window</strong> and replace it by pasting the text you just copied from above:</li>
+</ol>
+<p><code>801+N+13TH+ST</code></p>
+<p><img src="images/Geocoding_with_Locator-5253c61c.png" alt=""></img></p>
+<h4 id="calling-values-from-other-columns">Calling Values from Other columns</h4>
+<p>To call the values from other columns into our expression, we need to tell OpenRefine, specifically, what columns we want to call. In <strong>GREL</strong> the <code>cells</code> object is used to call values from columns other than the one the Expression Editor was launched from. We'll use it do tell our <code>endpoint URL</code> template which columns to replace our <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> parameters with.</p>
+<p>First, replace the <code>&amp;City=</code> parameter value with the values in the <code>City</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>:</p>
+<ol>
+<li><strong>Copy</strong> the following text:</li>
+</ol>
+<p><code>"+escape(cells["City"].value,'url')+"</code></p>
+<ol>
+<li><strong>Carefully</strong> <strong><em>SELECT</em></strong> the following text from your <code>endpoint URL</code> template in the <strong>Expression window</strong> and replace it by <strong>pasting the text you just copied</strong> from above:</li>
+</ol>
+<p><code>SAN+JOSE</code></p>
+<p><img src="images/Geocoding_with_Locator-57ef4332.png" alt=""></img></p>
+<hr></hr>
+<p>Next, replace the <code>&amp;Region=</code> parameter value with the values in the <code>State Abbreviation</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>:</p>
+<ol>
+<li><strong>Copy</strong> the following text:</li>
+</ol>
+<p><code>"+escape(cells["State Abbreviation"].value,'url')+"</code></p>
+<ol>
+<li><strong>Carefully</strong> <strong><em>SELECT</em></strong> the following text from your <code>endpoint URL</code> template in the <strong>Expression window</strong> and replace it by <strong>pasting the text you just copied</strong> from above:</li>
+</ol>
+<p><code>CA</code></p>
+<p><img src="images/Geocoding_with_Locator-06523969.png" alt=""></img></p>
+<hr></hr>
+<p>Finally, replace the <code>&amp;Postal=</code> parameter value with the values in the <code>Zip Code</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>:</p>
+<ol>
+<li><strong>Copy</strong> the following text:</li>
+</ol>
+<p><code>"+escape(cells["Zip Code"].value,'url')+"</code></p>
+<ol>
+<li><strong>Carefully</strong> <strong><em>SELECT</em></strong> the following text from your <code>endpoint URL</code> template in the <strong>Expression window</strong> and replace it by <strong>pasting the text you just copied</strong> from above:</li>
+</ol>
+<p><code>951121527</code></p>
+<p><img src="images/Geocoding_with_Locator-52b7fb45.png" alt=""></img></p>
+<hr></hr>
+<p>It's not necessary to replace the value for the <code>&amp;maxLocations=</code> or <code>&amp;f=</code> parameters, since they are the same for every <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> we run.</p>
+<ol>
+<li>Now, add <strong>double quotes (")</strong> to the beginning and end of the <strong>Expression</strong> and you should see any syntax errors dismissed.</li>
+</ol>
+<p>Using the same highlighting conventions as above, you should have this:</p>
+<p><img src="images/Geocoding_with_Locator-4d046ca0.png" alt=""></img></p>
+<p>In the Preview Window, you should see the auto-generated <code>endpoint URL</code> with the contents of the <strong>columns</strong> called <code>Street Address</code>, <code>City</code>, <code>State Abbreviation</code>, and <code>Zip Code</code> inserted for each <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</p>
+<p>Your first record should be identical to the original <code>endpoint URL</code> we started with, while the <code>endpoint URL</code> for the second record should have the values from it's own columns:</p>
+<p><img src="images/Geocoding_with_Locator-715dedda.png" alt=""></img></p>
+<ol>
+<li>Set the <strong>Throttle Delay</strong> value to <code>200</code> milliseconds (this will tell OpenRefine to submit 5 Geocode Requests per second).</li>
+<li><strong>Uncheck:</strong> <code>Cache Responses</code></li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-c75f6cf8.png" alt=""></img></p>
+<ol>
+<li><strong>Click OK</strong> to submit a custom <code>endpoint URL</code> for every record in your <code>SantaClara_TattooParlors.csv</code> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, once every 0.2 seconds.</li>
+</ol>
+<p>Wait for the <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> to finish (a few seconds, HOORAY FOR PROGRESS MESSAGES!) and you should have something like this:</p>
+<p><img src="images/Geocoding_with_Locator-03bed4d7.png" alt=""></img></p>
+<h2 id="parsing-the-returned-json-data-for-what-you-need">Parsing the Returned JSON Data for what you need</h2>
+<p>Note that the JSON response returned for the first record in the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> should be identical to the JSON response we got in the browser, originally. Now we would like to use what we learned about the structure of JSON, earlier, to extract the Longitude &amp; Latitude values we are interested in, into a new <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</p>
+<p>Recall that:</p>
+<p>"the property named <code>x</code>, of the object named <code>location</code>, which is the first object named <code>[0]</code> in the array called <code>candidates</code>"</p>
+<p><strong>or:</strong></p>
+<p><code>candidates[0].location.x</code></p>
+<p>OpenRefine’s expression language has a function called <strong>parseJson()</strong>, that allows us to address <code>objects</code> and <code>properties</code> within JSON. We’ll use this to extract the exact value we are interested in and put them in new columns we can use to make a map!</p>
+<ol>
+<li>Click on the <strong>Drop-down Arrow</strong> next to the <code>locatorJSON</code> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> and go to <strong>Edit <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">Column</a>&gt;Add <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> based on this <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>...</strong></li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-b4c598ff.png" alt=""></img></p>
+<p>The function we want to use is <code>parseJson()</code></p>
+<p><strong>and,</strong></p>
+<p>The Longitude coordinate is at: <code>candidates[0].location.x</code></p>
+<p>So, we want to:</p>
+<p>"take the <code>locatorJSON</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>'s <code>value</code>, <em>parse</em> it as <strong>JSON</strong>, and access the <code>candidate</code> object's first, or <code>[0]</code>, object, calling <code>location</code>'s property <code>x</code>'s' <code>value</code>"</p>
+<p><strong>or,</strong></p>
+<p><code>value.parseJson().candidates[0].location.x</code></p>
+<ol>
+<li><strong>Cut&amp;Paste</strong> the above <strong>GREL</strong> code, into the <strong>Expression Window</strong></li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-28203d5b.png" alt=""></img></p>
+<ol>
+<li>Confirm that the value in the <strong>Preview Window</strong> is a <strong>valid longitude coordinate</strong></li>
+<li>Name the new <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> <code>Longitude</code> and <strong>click OK</strong> to write the longitude coordinates to the new <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
+</ol>
+<p>( <em>Note that in the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>, below, I have used the <strong>&gt;View&gt;Collapse this <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a></strong> option to hide the rather large <code>locateJSON</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, to better display the new <code>Longitude</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</em>)</p>
+<p><img src="images/Geocoding_with_Locator-d8e74c2d.png" alt=""></img></p>
+<ol>
+<li>Repeat the above to extract the <code>y</code> values to a new <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, named <code>Latitude</code> using the following <strong>GREL</strong> expression:</li>
+</ol>
+<p><code>value.parseJson().candidates[0].location.y</code></p>
+<p><img src="images/Geocoding_with_Locator-db4b346d.png" alt=""></img></p>
+<p><em>Note that there is an <strong>History tab</strong> in the <strong>OpenRefine Expression Window</strong> that you can find your previous expressions in and <strong>Reuse</strong> them as the basis for new queries</em></p>
+<p><img src="images/Geocoding_with_Locator-276396f1.png" alt=""></img></p>
+<h2 id="cleaning-up">Cleaning up</h2>
+<p>You always want to make sure you received valid <code>values</code> for every <code>record</code> in your dataset. <strong>OpenRefine</strong> makes this easy with a built in <strong>facet</strong> function.</p>
+<ol>
+<li>Click on the <strong>drop-down arrow</strong>, next to your <code>Longitude</code> or <code>Latitude</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, and go to <strong>&gt;Facet&gt;Text Facet</strong></li>
+<li>Scroll up and down through the resulting <strong>Facet/Filter</strong> panel that appears on the left side of OpenRefine, to confirm that all of the values in the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> are valid coordinates.</li>
+</ol>
+<p><img src="images/Geocoding_with_Locator-8a7a49ca.png" alt=""></img></p>
+<h2 id="draft-deliverable">Draft Deliverable</h2>
+<p>Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. The older version of this lab asked students to submit:</p>
+<ol>
+<li><strong>Export</strong> the resulting dataset as a <strong>Comma-separated value (CSV) <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></strong>, naming it <code>YOURNAME_SantaClaraTattooShops.csv</code> using the <strong>Export</strong> button at the top of <strong>OpenRefine</strong>.</li>
+<li>Create a new <strong>QGIS Project</strong> and use the <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a>&gt;Add <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a>&gt;Add Delimited Text <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> to add your geocoded data to the project, using the <code>Latitude</code> and <code>Longitude</code> columns as the <strong>Geometry Definition</strong>, and <code>EPSG:4326 - WGS 84</code> as the <strong>CRS</strong>.</li>
+<li>Create a Map, showing the distribution of <strong>Tattoo Shops, in Santa Clara County</strong>, and displaying their <code>Company Name</code> as a <strong><a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a></strong> for each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>.</li>
+<li>Use your creativity to create a <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">Map Layout</a>, being sure to add the appropriate cartographic elements and <strong>Upload</strong> your <strong>Map</strong> as an <strong><a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> or PDF</strong> <em><strong>AND</strong></em> your <strong>CSV</strong> of geocoded data.</li>
+</ol>
+<h2 id="more-learning-and-api-links">More Learning and API Links</h2>
+<h2 id="learning-links">Learning Links</h2>
+<p><strong>How to Read API Documentation</strong>: <a href="https://www.departmentofproduct.com/blog/how-to-read-api-documentation/" target="_blank">https://www.departmentofproduct.com/blog/how-to-read-api-documentation/</a></p>
+<p><a href="https://datacarpentry.org/" target="_blank">datacarpentry.org</a>'s <strong>OpenRefine for Social Science Data</strong>: <a href="https://datacarpentry.org/openrefine-socialsci/" target="_blank">https://datacarpentry.org/openrefine-socialsci/</a></p>
+<h2 id="additional-apis">Additional APIs</h2>
+<p><strong>OpenRefine.org</strong>: <a href="http://openrefine.org/" target="_blank">http://openrefine.org/</a></p>
+<p><strong>Geonames.org <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a> API</strong>: <a href="http://www.geonames.org/export/geonames-search.html" target="_blank">http://www.geonames.org/export/geonames-search.html</a> - An excellent, and free, global <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> API, as well as other APIs.</p>
+<p><strong>Geolocate JSON Wrapper API Documentation</strong>: <a href="http://www.geo-locate.org/files/glcJSON.pdf" target="_blank">http://www.geo-locate.org/files/glcJSON.pdf</a> - Maintained by Tulane University, this <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">geocoding</a> API can accept esoteric text-based localities, like those found in biological specimen collections (i.e.: when the collection location for a specimen is "5 miles north of Stanford, CA")</p>
+<p><strong>Google <a href="../GLOSSARY.html#geocoding" class="glossary-term" title="The process of converting a text description of a location, such as a street address, into geographic coordinates.">Geocoding</a> API</strong>: <a href="https://developers.google.com/maps/documentation/geocoding/" target="_blank">https://developers.google.com/maps/documentation/geocoding/</a></p>
+<p><strong>Google Directions API</strong>: <a href="https://developers.google.com/maps/documentation/directions/" target="_blank">https://developers.google.com/maps/documentation/directions/</a></p>
+<p><strong>Google Elevation API</strong>: <a href="https://developers.google.com/maps/documentation/elevation/" target="_blank">https://developers.google.com/maps/documentation/elevation/</a></p>
+<p><strong>Online JSON Viewer</strong>: <a href="http://jsonviewer.stack.hu/" target="_blank">http://jsonviewer.stack.hu/</a></p>
+<p><strong>U.S. Census Data API</strong>: <a href="https://www.census.gov/data/developers/guidance/api-user-guide.html" target="_blank">https://www.census.gov/data/developers/guidance/api-user-guide.html</a></p>
 
                                 
                                 </section>
@@ -1111,12 +1483,12 @@
 
             
                 
-                <a href="00_making_and_serving_map_tiles_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 00 - Making & Serving Map Tiles with QGIS">
+                <a href="00_making_and_serving_map_tiles_with_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 00 - DRAFT - Making & Serving Map Tiles with QGIS">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html" class="navigation navigation-next " aria-label="Next page: 02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages">
+                <a href="02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html" class="navigation navigation-next " aria-label="Next page: 02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1127,7 +1499,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"next":{"title":"02 - Creating & Hosting a WebMap, using MapLibre & Turf.js and Github Pages","level":"1.10.3","depth":2,"path":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","ref":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","articles":[]},"previous":{"title":"00 - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","ref":"week07/00_making_and_serving_map_tiles_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","mtime":"2026-05-13T17:59:42.936Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-13T17:59:54.933Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - DRAFT - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"next":{"title":"02 - DRAFT - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages","level":"1.10.3","depth":2,"path":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","ref":"week07/02_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","articles":[]},"previous":{"title":"00 - DRAFT - Making & Serving Map Tiles with QGIS","level":"1.10.1","depth":2,"path":"week07/00_making_and_serving_map_tiles_with_qgis.md","ref":"week07/00_making_and_serving_map_tiles_with_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/01_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","mtime":"2026-05-15T17:33:51.538Z","type":"markdown"},"gitbook":{"version":"6.1.7","time":"2026-05-15T17:34:01.417Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
