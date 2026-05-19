@@ -1,4 +1,4 @@
-# DRAFT - Introducing OpenRefine for Data Carpentry
+# OPTIONAL - Introducing OpenRefine for Data Carpentry
 
 > **Draft status:** This page is currently a placeholder. It should be expanded or linked to the relevant OpenRefine material before being assigned.
 

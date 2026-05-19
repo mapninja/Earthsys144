@@ -1,4 +1,4 @@
-# DRAFT - Geocoding Addresses with locator.stanford.edu and OpenRefine
+# TURN IN - Geocoding Addresses with locator.stanford.edu and OpenRefine
 
 > **Draft status:** This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.
 

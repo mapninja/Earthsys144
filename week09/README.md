@@ -10,6 +10,3 @@
 
 ### [03 - Introducing GDAL & Command Line Tools on Stanford Farmshare](03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
 
-### [04 - TURN IN - Tree Labeling in QGIS](04_TURN_IN_tree_labeling_in_qgis.md)
-
-This page provides a tree-labeling workflow in QGIS using prefire and postfire Castle Fire imagery.

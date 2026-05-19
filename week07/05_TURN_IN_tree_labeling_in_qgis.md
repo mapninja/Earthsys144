@@ -1,4 +1,4 @@
-# 04 - TURN IN - Tree Labeling in QGIS
+# 05 - TURN IN - Tree Labeling in QGIS
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 

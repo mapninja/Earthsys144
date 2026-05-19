@@ -1,4 +1,4 @@
-# DRAFT - Making and Serving Map Tiles with QGIS
+# OPTIONAL - Making and Serving Map Tiles with QGIS
 
 > **Draft status:** This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.
 

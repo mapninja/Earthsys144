@@ -1,4 +1,4 @@
-# DRAFT - Getting XYZ Tiles from Google Earth Engine
+# TURN IN - Getting XYZ Tiles from Google Earth Engine
 
 > **Draft status:** This page introduces a useful workflow for moving a Google Earth Engine visualization into another mapping environment. Review the current QGIS interface and Earth Engine tile behavior before assigning it.
 
