@@ -1,7 +1,5 @@
 # TURN IN - Creating and Hosting a Web Map with MapLibre and GitHub Pages
 
-> **Draft status:** This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.
-
 Adapted from: [https://labs.mapbox.com/education/impact-tools/sheet-mapper/](https://labs.mapbox.com/education/impact-tools/sheet-mapper/)
 
 ## Overview

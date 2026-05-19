@@ -1,12 +1,14 @@
-# Week 09 - Scaling, Code, Odds&Ends
+# Week 09 - Final Clinic Week
+
+Week 09 is a final clinic week focused on open support, troubleshooting, and finalizing projects. Instructors will hold open office hours at the SGC throughout the week to help students complete assignments, refine analyses, and prepare final deliverables.
 
 ## Week 09 Pages
 
-### [00 - The AlphaEarth Embedding Database in Google Earth Engine](00_the_alphaearth_embedding_database_in_google_earth_engine.md)
+### [The AlphaEarth Embedding Database in Google Earth Engine](00_the_alphaearth_embedding_database_in_google_earth_engine.md)
 
-### [01 - Being John Snow in a Python Notebook](01_being_john_snow_in_a_python_notebook.md)
+### [Being John Snow in a Python Notebook](01_being_john_snow_in_a_python_notebook.md)
 
-### [02 - Photogrammetric Processing of Drone Imagery](02_photogrammetric_processing_of_drone_imagery.md)
+### [Photogrammetric Processing of Drone Imagery](02_photogrammetric_processing_of_drone_imagery.md)
 
-### [03 - Introducing GDAL & Command Line Tools on Stanford Farmshare](03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+### [Introducing GDAL & Command Line Tools on Stanford Farmshare](03_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
 

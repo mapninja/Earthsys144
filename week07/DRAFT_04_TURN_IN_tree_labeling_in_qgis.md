@@ -1,8 +1,11 @@
-# 05 - TURN IN - Tree Labeling in QGIS
+
+# DRAFT — Tree Labeling in QGIS (Not Ready for Use)
+
+> **DRAFT NOTICE (Not Ready for Use):** This lab is currently under development and is not ready for regular assignment. Do not assign this lab or ask students to submit it without explicit instructor approval. The content, workflows, and submission instructions are provisional and may change.
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
-> **Turn-in for grading:** Complete and submit this exercise only if assigned by your instructor.
+> **Turn-in for grading (only if explicitly assigned):** Complete and submit this exercise only if your instructor instructs you to do so.
 
 ## Introduction
 

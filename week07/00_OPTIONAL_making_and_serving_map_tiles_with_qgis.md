@@ -1,7 +1,5 @@
 # OPTIONAL - Making and Serving Map Tiles with QGIS
 
-> **Draft status:** This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.
-
 ## Overview
 
 In this exercise, you will create your own **XYZ tile service** using QGIS. You will begin with a georeferenced raster image, style it for web display, export it into a folder of map tiles, and optionally publish those tiles with GitHub Pages.

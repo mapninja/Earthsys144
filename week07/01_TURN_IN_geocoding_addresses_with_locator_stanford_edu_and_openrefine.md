@@ -1,7 +1,5 @@
 # TURN IN - Geocoding Addresses with locator.stanford.edu and OpenRefine
 
-> **Draft status:** This page has been migrated from the older course materials and is not yet finalized for the current version of the lab guide. The workflow, screenshots, and submission instructions should be reviewed before assigning it.
-
 ## Overview
 
 This exercise introduces **geocoding** with OpenRefine and Stanford's `locator.stanford.edu` service. You will start with a CSV table of street addresses, build a web API request, use OpenRefine to send one request per row, and extract longitude and latitude values from the returned JSON.

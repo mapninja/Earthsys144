@@ -1,7 +1,5 @@
 # TURN IN - Getting XYZ Tiles from Google Earth Engine
 
-> **Draft status:** This page introduces a useful workflow for moving a Google Earth Engine visualization into another mapping environment. Review the current QGIS interface and Earth Engine tile behavior before assigning it.
-
 ## Overview
 
 In this lab, you will create a visualization in Google Earth Engine, print an **XYZ tile URL** for that visualization, and add the tile URL to **QGIS**.
@@ -37,7 +35,6 @@ If you are still setting up Earth Engine, return to the course login and setup l
 1. Open the Google Earth Engine Data Catalog:
 
    [https://developers.google.com/earth-engine/datasets](https://developers.google.com/earth-engine/datasets)
-
 2. Choose a dataset that interests you.
 
    Good beginner choices include:
@@ -47,13 +44,9 @@ If you are still setting up Earth Engine, return to the course login and setup l
    - Sentinel-2 imagery
    - land cover datasets
    - climate or environmental layers
-
 3. Open the dataset page.
-
 4. Look for the sample script on the dataset page.
-
 5. Click **Open in Code Editor** or **Launch in Code Editor**.
-
 6. Run the sample script once.
 
 Before changing anything, make sure the sample visualization appears in the Code Editor map.
@@ -79,6 +72,8 @@ The printed `urlFormat` is the XYZ tile URL. It contains the `{z}`, `{x}`, and `
 ## Part 3: Example Earth Engine Script
 
 The script below creates terrain visualizations from the SRTM elevation dataset near Yosemite National Park. You can use this example if you want a known working script before adapting your own Data Catalog sample.
+
+![](images/20260519_115435_image.png)
 
 Copy the full script into a new Earth Engine Code Editor script and run it.
 
@@ -290,8 +285,7 @@ slope.getMap(slopeVis, function(data) {
 Now return to the Data Catalog sample script you opened earlier.
 
 1. Identify the image or image collection being displayed.
-
-2. Identify the visualization parameters.
+2. Identify the visualization parameters, particularly the name of the variable holding the parameters.
 
    They often look like this:
 
@@ -302,7 +296,6 @@ Now return to the Data Catalog sample script you opened earlier.
      bands: ['B4', 'B3', 'B2']
    };
    ```
-
 3. Identify the line that adds the layer to the map.
 
    It often looks like this:
@@ -310,7 +303,6 @@ Now return to the Data Catalog sample script you opened earlier.
    ```javascript
    Map.addLayer(image, visualization, 'Layer name');
    ```
-
 4. Add a `getMap()` block after the `Map.addLayer()` line.
 
    Replace `image` and `visualization` with the names used in your script:
@@ -320,55 +312,43 @@ Now return to the Data Catalog sample script you opened earlier.
      print('XYZ tile URL for QGIS:', data.urlFormat);
    });
    ```
-
 5. Run the script.
-
 6. In the **Console**, find the printed URL.
-
 7. Copy the full `urlFormat` value.
+
+![](images/20260519_115522_image.png)
 
 > **Troubleshooting note:** If your Data Catalog sample uses an `ImageCollection`, it may need to be filtered, sorted, mosaicked, or reduced to a single `Image` before `getMap()` works. Look for the variable that is actually passed into `Map.addLayer()`. That is usually the object you should use with `getMap()`.
 
-## Part 5: Add the Earth Engine Tile URL to QGIS
+## Part 5: Add the Earth Engine Tile URLs to QGIS
 
 1. Open QGIS.
-
 2. Open the **Browser** panel.
 
    If you do not see it, go to **View > Panels > Browser**.
-
 3. In the Browser panel, find **XYZ Tiles**.
-
 4. Right-click **XYZ Tiles** and choose **New Connection**.
-
 5. Give the connection a clear name, such as:
 
    `Earth Engine Tanaka Hillshade`
-
 6. Paste the Earth Engine `urlFormat` into the **URL** field.
-
 7. Click **OK**.
-
 8. Double-click the new XYZ tile connection to add it to your QGIS map.
-
 9. Pan and zoom to the area you viewed in Earth Engine.
-
 10. If the layer does not appear, right-click the layer and choose **Zoom to Layer** only if QGIS can detect an extent. If that does not help, manually zoom to the same place you used in Earth Engine.
 
 > **Screenshot placeholder:** QGIS Browser panel with **XYZ Tiles** expanded, showing a newly created Earth Engine tile connection. The screenshot should make clear where students right-click to create a new connection.
+
+![](images/20260519_120404_image.png)
 
 ## Part 6: Compare Earth Engine and QGIS
 
 Once the tile layer appears in QGIS, compare it with another layer:
 
 1. Add a QGIS basemap, such as OpenStreetMap or another available XYZ basemap.
-
 2. Move the Earth Engine tile layer above the basemap.
-
 3. Adjust the layer opacity from the **Layer Styling** panel.
-
 4. Pan and zoom to test whether QGIS requests new tiles from Earth Engine.
-
 5. Think about what is being transferred:
 
    - QGIS is not downloading the original raster dataset.
@@ -378,15 +358,15 @@ Once the tile layer appears in QGIS, compare it with another layer:
 
 > **Concept note:** A rendered tile layer is excellent for visual comparison, cartographic context, and quick exploration. It is not appropriate when you need the original pixel values for measurement, classification, raster calculator work, or statistical analysis in QGIS. For those tasks, export the data from Earth Engine instead.
 
-## Draft Deliverable
+## Deliverable
 
-Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. A useful draft submission would include:
+Submit the following (confirm specifics with your instructor if needed):
 
 1. The name and URL of the Earth Engine Data Catalog dataset you selected.
 2. Your Earth Engine **Get Link** URL for the script you ran.
-3. The printed Earth Engine XYZ tile URL copied from the Console.
-4. A screenshot of the Earth Engine layer visible in QGIS.
-5. Two or three sentences explaining whether the tile layer is being used for visualization, analysis, or both.
+3. All printed Earth Engine XYZ tile URLs copied from the Console. Note: the example script in this guide prints multiple XYZ tile URLs (for example, a Tanaka-style hillshade and a stepped elevation layer). If you use that example in QGIS, create XYZ connections for BOTH URLs, add them to your project, place the hillshade layer above the elevation layer, and set the hillshade layer opacity (Layer Properties → Transparency) to around 0.5 so the combined visual effect matches the example.
+4. A screenshot of the Earth Engine layer(s) visible in QGIS showing layer order and opacity settings.
+5. Two or three sentences explaining whether the tile layers were used for visualization only or for analysis, and any limitations.
 
 ## Common Problems
 
@@ -405,4 +385,3 @@ Earth Engine tile URLs are temporary. Return to the Code Editor, run the script 
 ### The colors in QGIS are not what I expected
 
 Change the visualization parameters in Earth Engine, run the script again, and copy the new tile URL. QGIS is displaying the rendered tiles Earth Engine creates from those visualization settings.
-
