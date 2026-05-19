@@ -38,9 +38,9 @@ By the end of this lab, you will be able to:
 
 ### Download and Extract the Project Package
 
-Download the `CastleFire.zip` file using this direct download link:
+Download the `CastleFire.zip` file from the course repository data folder:
 
-[Download CastleFire.zip](https://github.com/mapninja/Earthsys144/raw/refs/heads/master/data/CastleFire.zip)
+[Download CastleFire.zip](../data/CastleFire.zip)
 
 This package contains everything you need to get started, with **best-practice folder structure and naming conventions already set up for you**.
 
