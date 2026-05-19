@@ -28,9 +28,9 @@ You will need:
 
 If you are still setting up Earth Engine, return to the course login and setup lab before starting this exercise.
 
-> **Screenshot placeholder:** Google Earth Engine Data Catalog page showing a dataset with a sample script and a button labeled **Open in Code Editor** or **Launch in Code Editor**. The image should help beginners see where to start from the catalog page.
+Use the Data Catalog sample script and the Code Editor launch button as your starting point.
 
-## Part 1: Choose a Dataset from the Earth Engine Data Catalog
+## Part 1: Choose a Dataset from the Google Earth Engine Data Catalog
 
 1. Open the Google Earth Engine Data Catalog:
 
@@ -51,7 +51,7 @@ If you are still setting up Earth Engine, return to the course login and setup l
 
 Before changing anything, make sure the sample visualization appears in the Code Editor map.
 
-> **Concept note:** The Data Catalog is not only a list of datasets. It also gives you a starting script, band names, scale, date range, provider information, and suggested visualization parameters. For beginners, starting from the catalog sample is safer than guessing how a dataset is structured.
+The Data Catalog is not only a list of datasets. It also gives you a starting script, band names, scale, date range, provider information, and suggested visualization parameters. For beginners, starting from the catalog sample is safer than guessing how a dataset is structured.
 
 ## Part 2: Understand the Tile URL Workflow
 
@@ -336,10 +336,14 @@ Now return to the Data Catalog sample script you opened earlier.
 8. Double-click the new XYZ tile connection to add it to your QGIS map.
 9. Pan and zoom to the area you viewed in Earth Engine.
 10. If the layer does not appear, right-click the layer and choose **Zoom to Layer** only if QGIS can detect an extent. If that does not help, manually zoom to the same place you used in Earth Engine.
+11. Create a QGIS Print Layout to produce a cartographic presentation of your Earth Engine layer(s):
 
-> **Screenshot placeholder:** QGIS Browser panel with **XYZ Tiles** expanded, showing a newly created Earth Engine tile connection. The screenshot should make clear where students right-click to create a new connection.
-
-![](images/20260519_120404_image.png)
+    - Choose `Project > New Print Layout` (or use the Layout Manager and create a new layout).
+    - Add a `Map` item showing the Earth Engine XYZ layer(s) in the correct order.
+    - Add standard cartographic elements: title, legend, scale bar, and north arrow.
+    - Add a text box (label) to the layout and paste the full Earth Engine XYZ tile URL(s) you used. Ensure the pasted URLs are complete and copyable (do not truncate them).
+    - If you used a hillshade layer with opacity, record the opacity value in the layout (for example: "Hillshade opacity: 0.5").
+    - Export the layout as a PDF (`Layout > Export as PDF`) and include it in your submission.
 
 ## Part 6: Compare Earth Engine and QGIS
 
@@ -360,13 +364,15 @@ Once the tile layer appears in QGIS, compare it with another layer:
 
 ## Deliverable
 
-Submit the following (confirm specifics with your instructor if needed):
+Submit the following as a PDF:
 
 1. The name and URL of the Earth Engine Data Catalog dataset you selected.
 2. Your Earth Engine **Get Link** URL for the script you ran.
 3. All printed Earth Engine XYZ tile URLs copied from the Console. Note: the example script in this guide prints multiple XYZ tile URLs (for example, a Tanaka-style hillshade and a stepped elevation layer). If you use that example in QGIS, create XYZ connections for BOTH URLs, add them to your project, place the hillshade layer above the elevation layer, and set the hillshade layer opacity (Layer Properties → Transparency) to around 0.5 so the combined visual effect matches the example.
-4. A screenshot of the Earth Engine layer(s) visible in QGIS showing layer order and opacity settings.
-5. Two or three sentences explaining whether the tile layers were used for visualization only or for analysis, and any limitations.
+4. A QGIS Print Layout exported as a PDF that demonstrates a proper cartographic presentation. The layout must include at minimum: a title, legend, north arrow, scale bar, appropriate map extent, and the visible Earth Engine layer(s) with the correct layer order and opacity settings.
+
+   - In the same layout, add a text box (label) and paste ALL Earth Engine XYZ tile URL(s) you used. The pasted URLs must be human-readable and complete so an instructor can copy them.
+   - If you used multiple XYZ URLs (e.g., hillshade + elevation), ensure the layout shows the layers in the order used and documents the hillshade opacity (for example: "Hillshade opacity: 0.5").
 
 ## Common Problems
 

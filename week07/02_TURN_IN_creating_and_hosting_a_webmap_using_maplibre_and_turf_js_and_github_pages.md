@@ -353,10 +353,10 @@ Here’s the **GitHub URL** for the example:
 
 [https://mapninja.github.io/haunted_sheetmapper/index.html](https://mapninja.github.io/haunted_sheetmapper/index.html)
 
-## Draft Deliverable
+## Deliverable
 
-Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. The older version of this lab asked students to submit a live web map URL.
+Submit the following for grading:
 
-Post the `URL` for the **Stanford AFS** _**or**_ **GitHub Pages** version of your `index.html` page to **Canvas** for your submission.
+1. The live URL for your hosted `index.html` (AFS preferred; Github is allowed).
 
 ![](images/20250504_160617_image.png)

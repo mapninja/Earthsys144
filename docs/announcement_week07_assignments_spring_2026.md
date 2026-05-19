@@ -28,7 +28,8 @@ Optional/draft:
 - A single ZIP or PDF bundle containing the required deliverables (see rubric link below).
 - For the web map: include the live URL and a short README describing how the data are sourced and updated.
 - For geocoding: include the cleaned input file and the geocoded output (CSV or GeoJSON).
-- For the XYZ tiles: include the Earth Engine script link (or screenshot) and the printed XYZ URL imported into QGIS.
+- For the XYZ tiles: include the Earth Engine script link, all printed XYZ URL(s), and a QGIS layout PDF showing the Earth Engine layer(s), layer order, opacity, and pasted XYZ URL(s).
+- For the Tree Labelling
 
 ## Rubric
 

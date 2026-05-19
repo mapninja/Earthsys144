@@ -20,7 +20,7 @@ Submit all of the following as a single ZIP or PDF bundle (as specified on Canva
 
 1. A PDF or link demonstrating successful geocoding of the provided address table (CSV) including: the cleaned input, the geocoding request URL or summary of steps, and a short note on any failed or ambiguous matches.
 2. A live web map URL hosted on GitHub Pages (or equivalent) showing the published MapLibre map with the required data layer and a README describing how to update the data source.
-3. A short QGIS project export or screenshot showing the Earth Engine XYZ tile added into QGIS and evidence that the visualization parameters match the Earth Engine script (include the printed XYZ URL in the submission).
+3. A QGIS layout PDF showing the Earth Engine XYZ tile layer(s) in QGIS, the correct layer order and opacity, and a text box containing the copied XYZ URL(s).
 
 ## Rubric
 

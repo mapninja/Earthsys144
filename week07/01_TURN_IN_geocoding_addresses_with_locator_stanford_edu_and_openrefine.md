@@ -434,14 +434,11 @@ You always want to make sure you received valid `values` for every `record` in y
 
 ![](images/Geocoding_with_Locator-8a7a49ca.png)
 
-## Draft Deliverable
+## Deliverable
 
-Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. The older version of this lab asked students to submit:
+Submit the following for grading (confirm submission format on Canvas):
 
-1. **Export** the resulting dataset as a **Comma-separated value (CSV) table**, naming it `YOURNAME_SantaClaraTattooShops.csv` using the **Export** button at the top of **OpenRefine**.
-2. Create a new **QGIS Project** and use the **Layer>Add Layer>Add Delimited Text Layer** to add your geocoded data to the project, using the `Latitude` and `Longitude` columns as the **Geometry Definition**, and `EPSG:4326 - WGS 84` as the **CRS**.
-3. Create a Map, showing the distribution of **Tattoo Shops, in Santa Clara County**, and displaying their `Company Name` as a **label** for each feature.
-4. Use your creativity to create a Map Layout, being sure to add the appropriate cartographic elements and **Upload** your **Map** as an **image or PDF** _**AND**_ your **CSV** of geocoded data.
+1. A map layout exported as a PDF or image showing the geocoded points, appropriate cartographic elements, and labeled features as requested in the lab.
 
 ## More Learning and API Links
 

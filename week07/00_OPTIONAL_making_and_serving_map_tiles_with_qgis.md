@@ -122,18 +122,12 @@ _The image below, show a detail area, where Golden Gate Park meets the Panhandle
 > **Concept note:** The output tile folder is organized by zoom level, column, and row. That is why the tile path uses the template `{z}/{x}/{y}.png`: `{z}` is the zoom level, `{x}` is the tile column, and `{y}` is the tile row.
 
 
-## Draft Deliverable
+## Deliverable (Optional)
 
-Because this page is still in draft form, confirm the current deliverable with the instructor before submitting. The older version of this lab asked students to:
+If you choose to complete this optional workshop, submit one of the following:
 
-1. Take **two** screenshots of the working Leaflet map:
-   1. Zoomed out so the entire layer can be seen,
-   2. Zoomed in to show detail
-2. Upload the two screenshot images to **Canvas**
-
-**OR**
-
-3. Continue through the following optional section of the exercise and submit your live, GitHub-hosted `Leaflet Map URL` on **Canvas**.
+- Two screenshots of the working Leaflet map (one zoomed out showing the full layer, one zoomed in showing detail), uploaded to Canvas.
+- OR a live GitHub Pages (or Stanford AFS) URL to your hosted Leaflet map, plus a short README describing where you put the tile folder and how to update the `index.html` if needed.
 
 ## Upload the tiles to GitHub (Optional)
 
