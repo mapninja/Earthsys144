@@ -1,11 +1,11 @@
 
-# DRAFT — Tree Labeling in QGIS (Not Ready for Use)
+# TURN IN BONUS LAB - Tree Labeling in QGIS
 
-> **DRAFT NOTICE (Not Ready for Use):** This lab is currently under development and is not ready for regular assignment. Do not assign this lab or ask students to submit it without explicit instructor approval. The content, workflows, and submission instructions are provisional and may change.
+> **Bonus turn-in:** This lab is a required turn-in for students who choose to complete the bonus labeling opportunity. It is not an optional workshop. Students may contribute 10 additional labeled grid cells for up to 10 extra points added to their quarter total.
 
 > **Note:** To make sure you are viewing the most recent version of this lab guide, hold **Shift** and click the browser refresh button.
 
-> **Turn-in for grading (only if explicitly assigned):** Complete and submit this exercise only if your instructor instructs you to do so.
+> **Turn-in for grading:** Submit this lab on Canvas when you complete the bonus labeling work.
 
 ## Introduction
 
@@ -336,7 +336,7 @@ Now begin the main labeling task.
 4. If the cell meets those conditions, label the trees by drawing rectangles around them using **Add Polygon Feature**.
 5. Save your edits periodically.
 6. When you finish one grid cell, select another sampled grid cell and repeat.
-7. Continue until you have labeled trees in **3 grid cells**.
+7. Continue until you have labeled trees in **10 additional grid cells**.
 
 **Labeling guidance:**
 
@@ -356,7 +356,7 @@ While digitizing:
 
 ### Step 14: Create the Prefire Label Layer by Copying the Postfire Layer
 
-Once you have finished labeling 3 grid cells in the postfire imagery:
+Once you have finished labeling 10 additional grid cells in the postfire imagery:
 
 1. Right-click `sunetid_castle_postfire_labels`.
 2. Choose **Save Features As...**
@@ -375,7 +375,7 @@ Now switch to the prefire imagery and finish the second label layer.
 
 1. Turn on the **prefire** imagery.
 2. Start editing `sunetid_castle_prefire_labels`.
-3. Return to the same 3 sampled grid cells you already worked on.
+3. Return to the same 10 sampled grid cells you already worked on.
 4. Keep the copied tree labels that already match visible trees.
 5. Add rectangles for any additional trees visible in the prefire imagery.
 6. Save edits regularly.
@@ -421,7 +421,7 @@ When you are done:
 - [ ] You exported the selected grid cells to `sunetid_castle_sample_grid.shp`
 - [ ] You used the docked attribute table to move through the grid cells
 - [ ] You created `sunetid_castle_postfire_labels.shp` in `EPSG:4326`
-- [ ] You labeled trees in 3 sampled grid cells in the postfire imagery
+- [ ] You labeled trees in 10 additional sampled grid cells in the postfire imagery
 - [ ] You copied that work to `sunetid_castle_prefire_labels.shp`
 - [ ] You finished the prefire labels using the prefire imagery
 - [ ] You exported both final layers to GeoJSON
@@ -429,7 +429,7 @@ When you are done:
 
 ### Validation Notes
 
-Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 3 grid cells you worked on.
+Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 10 additional grid cells you worked on.
 
 ---
 

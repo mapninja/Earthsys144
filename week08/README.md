@@ -10,3 +10,6 @@ All of the week’s labs are marked as OPTIONAL, giving students flexibility to 
 - [OPTIONAL - Suitability Modeling in QGIS](01_suitability_modeling_in_qgis.md)
 - [OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine](02_landcover_classification_and_change_detection_in_google_earth_engine.md)
 - [OPTIONAL - Introducing Model Builder in QGIS](03_introducing_model_builder_in_qgis.md)
+- [OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine](04_the_alphaearth_embedding_database_in_google_earth_engine.md)
+- [OPTIONAL - Being John Snow,... in a Python Notebook](05_being_john_snow_in_a_python_notebook.md)
+- [OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare](06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)

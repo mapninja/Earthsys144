@@ -57,9 +57,9 @@ This lab shows how a web map is constructed from HTML, JavaScript, a tile layer,
 
 This lab bridges cloud-based spatial analysis with desktop GIS by exporting an Earth Engine visualization as an XYZ tile service and bringing it into QGIS.
 
-### [04 - TURN IN - Tree Labeling in QGIS](04_TURN_IN_tree_labeling_in_qgis.md)
+### [04 - TURN IN BONUS LAB - Tree Labeling in QGIS](04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md)
 
-This lab is currently in draft mode and not ready for use. It is intended to introduce tree crown labeling workflows that support training data creation for machine learning.
+This bonus turn-in asks students to contribute 10 additional labeled grid cells for up to 10 extra points added to their quarter total. It introduces tree crown labeling workflows that support training data creation for machine learning.
 
 ## What to Expect in the Individual Lab Documents
 
