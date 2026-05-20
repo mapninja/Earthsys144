@@ -282,39 +282,50 @@ slope.getMap(slopeVis, function(data) {
 
 ## Part 4: Adapt the Pattern to Your Chosen Dataset
 
-Now return to the Data Catalog sample script you opened earlier.
+Now return to the dataset you have chosen from the Data Catalog. Here, we'll use the NOAA CFSv2 Harmonized 6-Hour Forecast page in the Earth Engine Data Catalog as an example:
+
+https://developers.google.com/earth-engine/datasets/catalog/NOAA_CFSV2_FOR6H_HARMONIZED
+
+The page includes this sample script:
+
+```javascript
+var dataset = ee.ImageCollection('NOAA/CFSV2/FOR6H_HARMONIZED')
+                  .filter(ee.Filter.date('2018-03-01', '2018-03-14'));
+var temperatureAboveGround = dataset.select('Temperature_height_above_ground');
+var visParams = {
+  min: 220.0,
+  max: 310.0,
+  palette: ['blue', 'purple', 'cyan', 'green', 'yellow', 'red'],
+};
+Map.setCenter(-88.6, 26.4, 1);
+Map.addLayer(temperatureAboveGround, visParams, 'Temperature Above Ground');
+```
+
+To add the getMap() function to your chosen script, use the following steps:
 
 1. Identify the image or image collection being displayed.
-2. Identify the visualization parameters, particularly the name of the variable holding the parameters.
+3. Identify the visualization parameters, particularly the name of the variable holding the parameters.
 
-   They often look like this:
+   In this sample, the visualization parameters are held in `visParams`.
+4. Identify the line that adds the layer to the map.
+
+   In this sample, it is:
 
    ```javascript
-   var visualization = {
-     min: 0,
-     max: 3000,
-     bands: ['B4', 'B3', 'B2']
-   };
+   Map.addLayer(temperatureAboveGround, visParams, 'Temperature Above Ground');
    ```
-3. Identify the line that adds the layer to the map.
+5. Add a `getMap()` block after the `Map.addLayer()` line.
 
-   It often looks like this:
-
-   ```javascript
-   Map.addLayer(image, visualization, 'Layer name');
-   ```
-4. Add a `getMap()` block after the `Map.addLayer()` line.
-
-   Replace `image` and `visualization` with the names used in your script:
+   Replace `temperatureAboveGround` and `visParams` with the names used in your script:
 
    ```javascript
-   image.getMap(visualization, function(data) {
+   temperatureAboveGround.getMap(visParams, function(data) {
      print('XYZ tile URL for QGIS:', data.urlFormat);
    });
    ```
-5. Run the script.
-6. In the **Console**, find the printed URL.
-7. Copy the full `urlFormat` value.
+6. Run the script.
+7. In the **Console**, find the printed URL.
+8. Copy the full `urlFormat` value.
 
 ![](images/20260519_115522_image.png)
 
