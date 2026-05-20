@@ -40,7 +40,7 @@ The Week 07 rubric is available here:
 ## Notes & Help
 
 - The Tree Labeling lab is currently draft and not part of the required graded assignment.
-- If you need help this week, bring your questions to lab, post in Slack, or attend office hours. For week 09 we will also host an open clinic at the SGC for final support.
+- If you need help this week, bring your questions to lab, post in Slack, or attend office hours. During the June 1 open office hours week, we will also host an open clinic at the SGC for final support.
 
 Best,
 

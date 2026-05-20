@@ -10,8 +10,8 @@ Good projects can be serious, playful, practical, artistic, experimental, or per
 
 ## Required Project Pages
 
-- Lab Document: [Final Project Guidelines](https://mapninja.github.io/Earthsys144/week10/00_final_project_guidelines.html)
-- Support Document: [StoryMaps Support Materials](https://mapninja.github.io/Earthsys144/week10/01_storymaps_support_materials.html)
+- Lab Document: [Final Project Guidelines](https://mapninja.github.io/Earthsys144/appendix/00_final_project_guidelines.html)
+- Support Document: [StoryMaps Support Materials](https://mapninja.github.io/Earthsys144/appendix/01_storymaps_support_materials.html)
 
 ## What Students Should Submit
 

@@ -10,9 +10,9 @@ This project is not about saving the world in one quarter. It is about doing som
 
 ## Required Project Pages
 
-- Lab Document: [Final Project Guidelines](https://mapninja.github.io/Earthsys144/week10/00_final_project_guidelines.html)
-- Support Document: [StoryMaps Support Materials](https://mapninja.github.io/Earthsys144/week10/01_storymaps_support_materials.html)
-- Support Document: [Guide to Citation of Spatial Data and Software](https://mapninja.github.io/Earthsys144/week10/02_guide_to_citation_of_spatial_data_and_software.html)
+- Lab Document: [Final Project Guidelines](https://mapninja.github.io/Earthsys144/appendix/00_final_project_guidelines.html)
+- Support Document: [StoryMaps Support Materials](https://mapninja.github.io/Earthsys144/appendix/01_storymaps_support_materials.html)
+- Support Document: [Guide to Citation of Spatial Data and Software](https://mapninja.github.io/Earthsys144/appendix/02_guide_to_citation_of_spatial_data_and_software.html)
 
 ## What Students Should Submit
 
