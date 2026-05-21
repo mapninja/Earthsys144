@@ -6,8 +6,6 @@
     <!-- Load MapLibre GL JS for the map -->
     <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
-    <!-- Load jQuery for easy AJAX requests -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <!-- Load csv2geojson to convert CSV to GeoJSON -->
     <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
     <style>
@@ -19,7 +17,7 @@
     <!-- This div is where the map will appear -->
     <div id="map"></div>
     <script>
-        // Create the map and set its starting position and zoom
+        // Create the map and set its starting position and zoom.
         var map = new maplibregl.Map({
             container: 'map',
             style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more 
@@ -27,53 +25,245 @@
             zoom: 8
         });
 
-        // When the page is ready, get the CSV data
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                //YOUR TURN: Replace with csv export link
-                url: 'replace this text with the link to your CSV file within the single quotes', // replace the text in single quotes with the link to your CSV file
-                dataType: "text",
-                success: function (csvData) { makeGeoJSON(csvData); }
-            });
-            function makeGeoJSON(csvData) {
-                csv2geojson.csv2geojson(csvData, {
-                    latfield: 'latitude', // replace with the actual column name for latitude in your CSV
-                    lonfield: 'longitude', // replace with the actual column name for longitude in your CSV
-                    delimiter: ','
-                }, function (err, geojson) {
-                    map.on('load', function () {
-                        map.addLayer({
-                            id: 'points',
-                            type: 'circle',
-                            source: { type: 'geojson', data: geojson },
-                            paint: {
-                                'circle-radius': 6,
-                                'circle-color': 'purple'
-                            }
-                        });
-                        // When a point is clicked, show a popup
-                        map.on('click', 'points', function (e) {
-                            var props = e.features[0].properties;
-                            // Create popup HTML: location as heading, description as text
-                            var html = `<h3>${props.location}</h3><p>${props.description}</p>`; // replace 'location' and 'description' with the actual column names from your CSV
-                            new maplibregl.Popup()
-                                .setLngLat(e.lngLat)
-                                .setHTML(html)
-                                .addTo(map);
-                        });
+        // YOUR TURN: Replace this example text with your CSV export link.
+        // Google Sheets links and regular CSV links are both supported.
+        var csvUrl = 'replace this text with the link to your CSV file within the single quotes';
 
-                        // Change cursor to pointer when hovering over points
-                        map.on('mouseenter', 'points', function () {
-                            map.getCanvas().style.cursor = 'pointer';
-                        });
-                        map.on('mouseleave', 'points', function () {
-                            map.getCanvas().style.cursor = '';
-                        });
-                    });
-                });
-            }
+        // These field names must match the column headers in your spreadsheet.
+        var latitudeField = 'latitude';
+        var longitudeField = 'longitude';
+        var titleField = 'location';
+        var descriptionField = 'description';
+
+        var mapHasLoaded = false;
+        var pointsGeoJSON = null;
+        var popupEventsHaveBeenAdded = false;
+
+        map.on('load', function () {
+            mapHasLoaded = true;
+            addPointsLayer();
         });
+
+        loadData();
+
+        function loadData() {
+            if (!csvUrl || csvUrl.indexOf('replace this text') !== -1) {
+                console.error('Add your CSV export URL to the csvUrl variable.');
+                return;
+            }
+
+            if (csvUrl.indexOf('docs.google.com/spreadsheets') !== -1) {
+                loadGoogleSheet(csvUrl);
+                return;
+            }
+
+            loadRegularCSV(csvUrl);
+        }
+
+        function loadRegularCSV(url) {
+            fetch(url)
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('CSV request failed with status ' + response.status);
+                    }
+                    return response.text();
+                })
+                .then(function (csvData) {
+                    makeGeoJSONFromCSV(csvData);
+                })
+                .catch(function (error) {
+                    console.error('The CSV could not be loaded. The file may need to allow browser access with CORS.', error);
+                });
+        }
+
+        function loadGoogleSheet(url) {
+            var sheetInfo = getGoogleSheetInfo(url);
+
+            if (!sheetInfo) {
+                console.error('The Google Sheets URL could not be understood. Check the spreadsheet ID and sheet name.');
+                return;
+            }
+
+            // Google Sheets CSV export links often work as downloads but fail in
+            // browser code because of CORS. JSONP loads the same public sheet data
+            // through a script tag, which avoids that browser restriction.
+            var script = document.createElement('script');
+            script.src = 'https://docs.google.com/spreadsheets/d/' + sheetInfo.sheetId +
+                '/gviz/tq?tqx=out:json;responseHandler:handleGoogleSheetData&sheet=' +
+                encodeURIComponent(sheetInfo.sheetName);
+            script.onerror = function () {
+                console.error('The Google Sheet could not be loaded.');
+            };
+            document.head.appendChild(script);
+        }
+
+        function getGoogleSheetInfo(url) {
+            var idMatch = url.match(/\/spreadsheets\/d\/([^/]+)/);
+
+            if (!idMatch) {
+                return null;
+            }
+
+            var sheetName = 'Sheet1';
+            var sheetMatch = url.match(/[?&]sheet=([^&]+)/);
+
+            if (sheetMatch) {
+                sheetName = decodeURIComponent(sheetMatch[1].replace(/\+/g, ' '));
+            }
+
+            return {
+                sheetId: idMatch[1],
+                sheetName: sheetName
+            };
+        }
+
+        function handleGoogleSheetData(response) {
+            if (!response || response.status !== 'ok') {
+                console.error('Google Sheets returned an error:', response);
+                return;
+            }
+
+            pointsGeoJSON = makeGeoJSONFromGoogleTable(response.table);
+            addPointsLayer();
+        }
+
+        function makeGeoJSONFromCSV(csvData) {
+            csv2geojson.csv2geojson(csvData, {
+                latfield: latitudeField,
+                lonfield: longitudeField,
+                delimiter: ','
+            }, function (err, geojson) {
+                if (err) {
+                    console.error('The CSV could not be converted to GeoJSON. Check your latitude and longitude column names.', err);
+                    return;
+                }
+
+                pointsGeoJSON = geojson;
+                addPointsLayer();
+            });
+        }
+
+        function makeGeoJSONFromGoogleTable(table) {
+            var columnNames = table.cols.map(function (column) {
+                return column.label;
+            });
+
+            var features = table.rows.map(function (row) {
+                var properties = {};
+
+                columnNames.forEach(function (columnName, index) {
+                    if (!columnName) {
+                        return;
+                    }
+
+                    // Google stores each table cell inside a small object. Empty
+                    // cells may be null, so check for a value before reading it.
+                    var cell = row.c[index];
+                    properties[columnName] = cell ? cell.v : null;
+                });
+
+                var longitude = Number(properties[longitudeField]);
+                var latitude = Number(properties[latitudeField]);
+
+                if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+                    return null;
+                }
+
+                return {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [longitude, latitude]
+                    },
+                    properties: properties
+                };
+            }).filter(function (feature) {
+                return feature !== null;
+            });
+
+            return {
+                type: 'FeatureCollection',
+                features: features
+            };
+        }
+
+        function addPointsLayer() {
+            if (!mapHasLoaded || !pointsGeoJSON) {
+                return;
+            }
+
+            if (map.getSource('spreadsheet-points')) {
+                map.getSource('spreadsheet-points').setData(pointsGeoJSON);
+                return;
+            }
+
+            map.addSource('spreadsheet-points', {
+                type: 'geojson',
+                data: pointsGeoJSON
+            });
+
+            map.addLayer({
+                id: 'points',
+                type: 'circle',
+                source: 'spreadsheet-points',
+                paint: {
+                    'circle-radius': 6,
+                    'circle-color': 'purple'
+                }
+            });
+
+            zoomToPoints(pointsGeoJSON);
+            addPopupEvents();
+        }
+
+        function zoomToPoints(geojson) {
+            if (!geojson.features || geojson.features.length === 0) {
+                console.error('No point features were created. Check the latitude and longitude values in your table.');
+                return;
+            }
+
+            var bounds = new maplibregl.LngLatBounds();
+
+            geojson.features.forEach(function (feature) {
+                bounds.extend(feature.geometry.coordinates);
+            });
+
+            map.fitBounds(bounds, { padding: 40, maxZoom: 12 });
+        }
+
+        function addPopupEvents() {
+            if (popupEventsHaveBeenAdded) {
+                return;
+            }
+
+            popupEventsHaveBeenAdded = true;
+
+            // When a point is clicked, show a popup.
+            map.on('click', 'points', function (e) {
+                var props = e.features[0].properties;
+                var popupContent = document.createElement('div');
+                var title = document.createElement('h3');
+                var description = document.createElement('p');
+
+                title.textContent = props[titleField] || 'Mapped point';
+                description.textContent = props[descriptionField] || '';
+                popupContent.appendChild(title);
+                popupContent.appendChild(description);
+
+                new maplibregl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setDOMContent(popupContent)
+                    .addTo(map);
+            });
+
+            // Change cursor to pointer when hovering over points.
+            map.on('mouseenter', 'points', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'points', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        }
     </script>
 </body>
 </html>
