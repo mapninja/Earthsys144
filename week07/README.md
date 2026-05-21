@@ -59,7 +59,7 @@ This lab bridges cloud-based spatial analysis with desktop GIS by exporting an E
 
 ### [04 - TURN IN BONUS LAB - Tree Labeling in QGIS](04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md)
 
-This bonus turn-in asks students to contribute 10 additional labeled grid cells for up to 10 extra points added to their quarter total. It introduces tree crown labeling workflows that support training data creation for machine learning.
+This bonus turn-in asks students to randomly select 20 candidate grid cells from the MORTALITREE fire dataset and label trees in the first 5 suitable cells for up to 10 extra points added to their quarter total. It introduces tree crown labeling workflows that support training data creation for machine learning.
 
 ## What to Expect in the Individual Lab Documents
 

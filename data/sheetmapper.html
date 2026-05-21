@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSV to Map Example</title>
+    <!-- Load MapLibre GL JS for the map -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <!-- This div is where the map will appear -->
+    <div id="map"></div>
+    <script>
+        // Create the map and set its starting position and zoom.
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more 
+            center: [-122.411, 37.785], // [longitude, latitude]
+            zoom: 8
+        });
+
+        var mapHasLoaded = false;
+        var hauntedPlacesGeoJSON = null;
+
+        // This is the same Google Sheet as the CSV export link. The browser cannot
+        // reliably read that CSV with AJAX because Google does not send a CORS
+        // header. The JSONP format loads the public sheet through a script tag.
+        var sheetId = '1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ';
+        var sheetName = 'cal_haunted_places';
+
+        map.on('load', function () {
+            mapHasLoaded = true;
+            addPointsLayer();
+        });
+
+        function loadSheetData() {
+            var script = document.createElement('script');
+            script.src = 'https://docs.google.com/spreadsheets/d/' + sheetId +
+                '/gviz/tq?tqx=out:json;responseHandler:handleSheetData&sheet=' +
+                encodeURIComponent(sheetName);
+            script.onerror = function () {
+                console.error('The Google Sheet could not be loaded.');
+            };
+            document.head.appendChild(script);
+        }
+
+        function handleSheetData(response) {
+            if (!response || response.status !== 'ok') {
+                console.error('Google Sheets returned an error:', response);
+                return;
+            }
+
+            hauntedPlacesGeoJSON = makeGeoJSON(response.table);
+            addPointsLayer();
+        }
+
+        function makeGeoJSON(table) {
+            var columnNames = table.cols.map(function (column) {
+                return column.label;
+            });
+
+            var features = table.rows.map(function (row) {
+                var properties = {};
+
+                columnNames.forEach(function (columnName, index) {
+                    if (!columnName) {
+                        return;
+                    }
+
+                    // Google stores each table cell inside a small object. Empty
+                    // cells may be null, so check for a value before reading it.
+                    var cell = row.c[index];
+                    properties[columnName] = cell ? cell.v : null;
+                });
+
+                var longitude = Number(properties.longitude);
+                var latitude = Number(properties.latitude);
+
+                if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+                    return null;
+                }
+
+                return {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [longitude, latitude]
+                    },
+                    properties: properties
+                };
+            }).filter(function (feature) {
+                return feature !== null;
+            });
+
+            return {
+                type: 'FeatureCollection',
+                features: features
+            };
+        }
+
+        function addPointsLayer() {
+            if (!mapHasLoaded || !hauntedPlacesGeoJSON) {
+                return;
+            }
+
+            if (map.getSource('haunted-places')) {
+                map.getSource('haunted-places').setData(hauntedPlacesGeoJSON);
+                return;
+            }
+
+            map.addSource('haunted-places', {
+                type: 'geojson',
+                data: hauntedPlacesGeoJSON
+            });
+
+            map.addLayer({
+                id: 'points',
+                type: 'circle',
+                source: 'haunted-places',
+                paint: {
+                    'circle-radius': 4,
+                    'circle-color': 'red'
+                }
+            });
+
+            if (hauntedPlacesGeoJSON.features.length > 0) {
+                var bounds = new maplibregl.LngLatBounds();
+                hauntedPlacesGeoJSON.features.forEach(function (feature) {
+                    bounds.extend(feature.geometry.coordinates);
+                });
+                map.fitBounds(bounds, { padding: 40, maxZoom: 8 });
+            }
+
+            // When a point is clicked, show a popup.
+            map.on('click', 'points', function (e) {
+                var props = e.features[0].properties;
+                var popupContent = document.createElement('div');
+                var title = document.createElement('h3');
+                var description = document.createElement('p');
+
+                title.textContent = props.location || props.city || 'Haunted place';
+                description.textContent = props.description || '';
+                popupContent.appendChild(title);
+                popupContent.appendChild(description);
+
+                new maplibregl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setDOMContent(popupContent)
+                    .addTo(map);
+            });
+
+            // Change cursor to pointer when hovering over points.
+            map.on('mouseenter', 'points', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'points', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        }
+
+        loadSheetData();
+    </script>
+</body>
+</html>
