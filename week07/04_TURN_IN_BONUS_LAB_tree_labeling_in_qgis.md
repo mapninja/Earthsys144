@@ -96,6 +96,8 @@ QGIS uses a library called **GDAL** to read these cloud-hosted files. The NAIP b
 
 > **Why do this?** The project's VRT files point to imagery paths that begin with `/vsis3/`. That prefix tells GDAL to stream files directly from AWS S3. Because these NAIP files are in a Requester Pays bucket, QGIS must send `AWS_REQUEST_PAYER=requester` along with a valid AWS profile. Without these settings, AWS will reject the imagery request and QGIS will show `AccessDenied` or HTTP `403` warnings.
 
+> **Performance note:** The VRT layers reference massive amounts of NAIP imagery. For performance reasons, keep the prefire and postfire imagery layers toggled off until you have zoomed to the grid-cell level where you are ready to inspect and label trees. Turning these layers on while zoomed far out can make QGIS slow because it has to request many imagery tiles from AWS.
+
 ### What's in the Data Folder
 
 Inside the extracted `mortalitree/data/` folder you'll find:
