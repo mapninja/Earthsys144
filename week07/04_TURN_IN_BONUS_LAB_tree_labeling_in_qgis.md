@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by digitizing individual tree crowns from high-resolution aerial imagery.
+This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by digitizing individual tree crowns from high-resolution aerial imagery.
 
 **What you'll be doing:**
 You'll use Google Earth Engine to create temporary XYZ tile URLs for high-resolution NAIP (National Agriculture Imagery Program) imagery from before and after five major 2020 California fires. You will add those tile URLs to QGIS, organize them into prefire and postfire layer groups, randomly select 20 candidate grid cells, inspect them in the imagery, and label trees in both postfire and prefire imagery for the first 4 cells that contain forest cover without structures, roads, or other human-built infrastructure. After the required 4 cells, you may continue labeling additional suitable cells for extra credit.
@@ -44,7 +44,6 @@ Download the `mortalitree.zip` file from the course repository data folder:
 [Download mortalitree.zip](../data/mortalitree.zip)
 
 This package contains the QGIS project structure and vector data you need for the labeling workflow. It does **not** include local NAIP imagery files or VRT imagery references. You will add the imagery yourself by creating Google Earth Engine XYZ tile URLs in the next section.
-
 
 ![](images/20260522_093351_image.png)
 
@@ -172,8 +171,8 @@ function buildNaipLayer(year) {
 
   // Add preview layers to the Earth Engine map.
   // The final false keeps them turned off until you choose to view them.
-  Map.addLayer(naip, rgbVis, 'NAIP RGB ' + year, false);
-  Map.addLayer(naip, irgVis, 'NAIP IRG ' + year, false);
+  Map.addLayer(naip, rgbVis, 'NAIP RGB ' + year, true);
+  Map.addLayer(naip, irgVis, 'NAIP IRG ' + year, true);
 
   // Convert each visualization into an Earth Engine map tile object.
   // getMap() returns the URL pattern that QGIS needs for XYZ tiles.
@@ -208,21 +207,20 @@ You will add four tile services to QGIS: 2020 RGB, 2020 IRG, 2022 RGB, and 2022 
 1. Open QGIS.
 2. Go to **Project > Open** (or press `Ctrl+O` / `Cmd+O`).
 3. Navigate to your extracted `mortalitree` folder.
-4. Select the QGIS project file `mortalitree.qgs`.
-
-   - Example path: `~/Documents/mortalitree/mortalitree.qgs`
-5. Click **Open**.
-6. In the **Browser** panel, find **XYZ Tiles**.
-7. Right-click **XYZ Tiles** and choose **New Connection...**
-8. Add the first connection:
+4. Select the QGIS project file `mortalitree.qgs` and **Open**.
+5. In the **Browser** panel, find **XYZ Tiles**.
+6. Right-click **XYZ Tiles** and choose **New Connection...**
+7. Add the first connection:
 
 
    | Setting | Value                                                      |
    | --------- | ------------------------------------------------------------ |
    | Name    | `NAIP 2020 RGB - Earth Engine`                             |
    | URL     | Paste the`NAIP RGB XYZ URL (2020)` value from Earth Engine |
-9. Click **OK**.
-10. Repeat the same process for the other three URLs:
+
+   ![](images/20260522_102953_image.png)
+8. Click **OK**.
+9. Repeat the same process for the other three URLs:
 
 
 | QGIS connection name           | Earth Engine Console URL  |
