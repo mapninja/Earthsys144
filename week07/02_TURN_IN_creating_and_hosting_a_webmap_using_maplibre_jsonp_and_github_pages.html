@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages · HonKit</title>
+        <title>02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.2.0">
@@ -781,12 +781,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.10.3" data-path="02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+        <li class="chapter active" data-level="1.10.3" data-path="02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.html">
             
-                <a href="02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.html">
+                <a href="02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.html">
             
                     
-                    02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages
+                    02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP
             
                 </a>
             
@@ -1036,7 +1036,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages</a>
+        <a href=".." >02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP</a>
     </h1>
 </div>
 
@@ -1051,302 +1051,367 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="turn-in---creating-and-hosting-a-web-map-with-maplibre-and-github-pages">TURN IN - Creating and Hosting a Web Map with MapLibre and GitHub Pages</h1>
+                                <h1 id="turn-in---creating-and-hosting-a-web-map-with-maplibre-and-google-sheets-jsonp">TURN IN - Creating and Hosting a Web Map with MapLibre and Google Sheets JSONP</h1>
 <p>Adapted from: <a href="https://labs.mapbox.com/education/impact-tools/sheet-mapper/" target="_blank">https://labs.mapbox.com/education/impact-tools/sheet-mapper/</a></p>
 <h2 id="overview">Overview</h2>
-<p>In this exercise, you will create a live-updating <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> that displays locations from a spreadsheet. The older version of the exercise used haunted places in California as the example dataset, but the same workflow can be used for offices, <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> observations, event locations, emergency shelters, or any other point dataset with coordinates.</p>
+<p>In this exercise, you will create a live-updating <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> that displays point locations from a public Google Sheet. The older version of this lab used the Google Sheets CSV download link and <code>csv2geojson</code>. This version uses the Google Sheets <code>gviz</code> <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> response instead.</p>
+<p><a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> is useful here because many Google Sheets CSV download links work when you click them in a browser, but are blocked when JavaScript tries to read them from a different website. The <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> approach lets a simple static web page read a public Google Sheet without a proxy server.</p>
 <p><img src="images/20250504_160606_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> is usually made from several pieces working together: an HTML page, JavaScript libraries, a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>, and one or more data <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>. In this lab, the spreadsheet acts as the data source, and MapLibre GL JS draws the interactive map in the browser.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> is usually made from several pieces working together: an HTML page, JavaScript libraries, a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>, and one or more data <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>. In this lab, the Google Sheet acts as the data source, and <a href="../GLOSSARY.html#maplibre-gl-js" class="glossary-term" title="An open-source JavaScript library for drawing interactive web maps in a browser. In this course, MapLibre is used to display basemaps, GeoJSON points, and popups from an HTML file.">MapLibre GL JS</a> draws the interactive map in the browser.</p>
 </blockquote>
 <h2 id="what-you-should-understand-after-this-lab">What You Should Understand After This Lab</h2>
 <p>By the end of this exercise, you should be able to explain:</p>
 <ul>
 <li>how a public Google Sheet can act as a simple <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> data source</li>
 <li>why the sheet needs longitude and latitude columns</li>
-<li>how a CSV export URL lets JavaScript retrieve spreadsheet data</li>
-<li>how MapLibre GL JS displays points and popups in a browser</li>
+<li>how a Google Sheets <code>gviz</code> <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> URL lets JavaScript retrieve public spreadsheet data</li>
+<li>how spreadsheet rows are converted into <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> point features</li>
+<li>how <a href="../GLOSSARY.html#maplibre-gl-js" class="glossary-term" title="An open-source JavaScript library for drawing interactive web maps in a browser. In this course, MapLibre is used to display basemaps, GeoJSON points, and popups from an HTML file.">MapLibre GL JS</a> displays points and popups in a browser</li>
 <li>how GitHub Pages or Stanford AFS can host a simple static <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></li>
 </ul>
 <h2 id="getting-ready">Getting Ready</h2>
-<p>There are a few resources you'll need to get started:</p>
-<p>You will need to use a <strong>plain-text editor</strong> to write and edit your code. Do not use a document editor such as Microsoft Word. Document editors can add hidden formatting characters that break HTML and JavaScript files.</p>
+<p>You will need a <strong>code editor</strong>, also called a <strong>plain-text editor</strong>, to write and edit your HTML and JavaScript. This is required.</p>
+<p>Do <strong>not</strong> use a document editor such as Microsoft Word, Google Docs, Pages, or LibreOffice Writer for your <code>index.html</code> file. Document editors are designed for formatted writing, not code. They can add hidden formatting characters, curly quotation marks, automatic spacing, and other invisible changes that break HTML and JavaScript.</p>
+<p>Your file must be saved as plain text with the exact file name <code>index.html</code>. A code editor helps you do this correctly and also highlights different parts of the code so errors are easier to notice.</p>
 <h3 id="plain-text-editors">Plain-text Editors</h3>
-<p>All of these editors <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> things like Code Highlighting (color coding of parts of your code), directory browsing and preview capabilities.</p>
+<p>All of these editors support code editing:</p>
 <ul>
-<li><a href="https://www.sublimetext.com/" target="_blank">Sublime</a> is very popular with Mac users, and has versions for Windows and Linux, as well. It's very simple, and a great first "code" editor.</li>
-<li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> for macOS or Windows is a widely used code editor with many integrations.</li>
-<li><a href="https://notepad-plus-plus.org/downloads/" target="_blank">Notepad++</a> is also a good one I used when I was a Windows user.</li>
+<li><a href="https://www.sublimetext.com/" target="_blank">Sublime Text</a> is a lightweight editor that opens quickly and has a simple interface. It is a good choice if you want a focused tool for editing a single HTML file.</li>
+<li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> is a full-featured code editor with file browsing, syntax highlighting, extensions, and built-in tools. It is a good choice if you expect to keep working with web files, notebooks, or programming projects.</li>
+<li><a href="https://notepad-plus-plus.org/downloads/" target="_blank">Notepad++</a> is a Windows-only plain-text and code editor. It is a good alternative to Notepad because it shows code structure more clearly and avoids the formatting problems of document editors.</li>
 </ul>
-<p><strong>Templates and Data:</strong></p>
+<h3 id="templates-and-data">Templates and Data</h3>
 <ul>
-<li><a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html" target="_blank">Sample index.html code</a></li>
-<li><a href="https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing" target="_blank">Sample data spreadsheet <code>haunted_places</code></a></li>
-<li><a href="https://web.stanford.edu/~maples/mapbox/" target="_blank">Live map demo</a></li>
+<li><a href="../data/index_jsonp_template.html">JSONP index.html template</a>: this is the starter HTML file for the lab. You will copy this code into your own <code>index.html</code>, then replace the placeholder Google Sheet ID and sheet name with your own values.</li>
+<li><a href="https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing" target="_blank">Sample data spreadsheet <code>haunted_places</code></a>: this public Google Sheet provides example point data with <code>longitude</code>, <code>latitude</code>, <code>location</code>, and <code>description</code> columns. You can duplicate it for practice or use it as a model for your own spreadsheet.</li>
+<li><a href="https://web.stanford.edu/~maples/earthsys144/week07/index_jsonp.html" target="_blank">Live map demo</a>: this is a working example of the finished map. Use it to preview the expected result before you begin editing your own file.</li>
 </ul>
-<p><strong>Tools we'll use:</strong></p>
+<h3 id="tools-well-use">Tools We'll Use</h3>
 <ul>
-<li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Google Sheets</a> to create and store your event data.</li>
-<li>A <strong>PLAIN TEXT EDITOR</strong> (See above)</li>
-<li><a href="https://maplibre.org" target="_blank">MapLibre GL JS</a> to add interactivity to your map and publish it on the web.</li>
-<li><a href="https://github.com/mapbox/csv2geojson" target="_blank">Csv2geojson</a> JavaScript Library to convert CSV and TSV files to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> data suitable for maps‍</li>
-<li><a href="https://afs.stanford.edu/" target="_blank">Stanford’s AFS web server</a> to publish your MapLibre GL JS map (If you want to see more about simple web services at Stanford, check out: <a href="https://uit.stanford.edu/service/afs/intro" target="_blank">https://uit.stanford.edu/service/afs/intro</a></li>
-<li>A <a href="https://github.com/" target="_blank">GitHub Account</a> to publish your map, should AFS not work.</li>
+<li><a href="https://docs.google.com/spreadsheets/u/0/" target="_blank">Google Sheets</a> to create and store your point data</li>
+<li>A plain-text editor to edit the HTML file</li>
+<li><a href="https://maplibre.org" target="_blank">MapLibre GL JS</a> to draw the interactive <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></li>
+<li>Stanford's AFS web server or GitHub Pages to publish your static <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a></li>
 </ul>
-<p><em>Note: This tutorial demonstrates how to access data from a Google Sheet using csv2geojson.js, but this solution is also appropriate for users storing data as a <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank">CSV</a> or <a href="https://en.wikipedia.org/wiki/Tab-separated_values" target="_blank">TSV</a>. For more information read the <a href="https://github.com/mapbox/csv2geojson" target="_blank">csv2geojson README.</a></em></p>
 <blockquote>
-<p><strong>Concept note:</strong> A static website is a website made from files that can be served directly, such as <code>index.html</code>, CSS, JavaScript, and images. It does not require a custom database or server-side application, which is why GitHub Pages and AFS can host this kind of map.</p>
+<p><strong>Concept note:</strong> A <a href="../GLOSSARY.html#static-website" class="glossary-term" title="A website made from files such as HTML, CSS, JavaScript, and images that can be served directly without a custom database or server-side application. GitHub Pages and Stanford AFS can host static websites.">static website</a> is a website made from files that can be served directly, such as <code>index.html</code>, CSS, JavaScript, and images. It does not require a custom database or server-side application, which is why GitHub Pages and AFS can host this kind of map.</p>
 </blockquote>
-<h3 id="create-data-in-google-sheet">Create data in Google sheet</h3>
+<h2 id="create-data-in-google-sheets">Create Data in Google Sheets</h2>
 <ol>
-<li>For this exercise, you can <a href="https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing" target="_blank">duplicate your sheet from this template</a></li>
+<li>For this exercise, you can <a href="https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing" target="_blank">duplicate the sample sheet</a>.</li>
 </ol>
 <p><img src="images/Haunted_Sheetmapper-87ac1ea5.png" alt=""></img></p>
 <ol>
-<li>Make the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
-<li>...or make your own sheet from scratch, with any data you want. You will need the following columns:<ol>
-<li>longitude</li>
-<li>latitude</li>
-<li>Any additional fields you want to be displayed in the popups</li>
-</ol>
+<li>You may use the sample data, or create your own sheet from scratch.</li>
+<li>Your sheet must include these exact <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> names:<ul>
+<li><code>longitude</code></li>
+<li><code>latitude</code></li>
+</ul>
+</li>
+<li>To use the template popup code without changes, your sheet should also include:<ul>
+<li><code>location</code></li>
+<li><code>description</code></li>
+</ul>
 </li>
 </ol>
-<h2 id="make-your-table-public">Make your table PUBLIC!</h2>
+<blockquote>
+<p><strong>Why these columns matter:</strong> Longitude and latitude are the coordinates that place each <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> on the map. The popup code uses <code>location</code> and <code>description</code> because those are easy fields to display when a user clicks a point.</p>
+</blockquote>
+<h2 id="make-your-table-public">Make Your Table Public</h2>
+<p>Your <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> can only read your Google Sheet if the sheet is public enough for visitors to access.</p>
 <ol>
-<li>Once you have made your <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, you will need to use the <strong>Share Button</strong> to make the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> accessible so that "<strong><em>Anyone on the internet with the link can view</em></strong>":</li>
+<li>Click the <strong>Share</strong> button.</li>
+<li>Change the sharing setting so that <strong>Anyone on the internet with the link can view</strong>.</li>
 </ol>
 <p><img src="images/Haunted_Sheetmapper-8273bec6.png" alt=""></img></p>
 <p><img src="images/Haunted_Sheetmapper-242bf40a.png" alt=""></img></p>
-<ol>
-<li>To create an export link, copy the following link to your text editor for use, later:</li>
-</ol>
-<p><code>https://docs.google.com/spreadsheets/d/{key}/gviz/tq?tqx=out:csv&amp;sheet={sheetname}</code></p>
 <blockquote>
 <p><strong>Concept note:</strong> Your JavaScript code can only retrieve spreadsheet data if the sheet is public enough for the browser to access. If the sheet is private, the <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a> cannot read it for visitors who are not signed in with permission.</p>
 </blockquote>
-<h2 id="creating-a-google-sheet-link">Creating a Google Sheet link:</h2>
-<p>Now that you have your dataset in Google Sheets, we need to 'craft' a custom URL that Mapbox csv2json can use as a source for the map.</p>
-<ol>
-<li>To find the <strong>Google Sheets ID</strong> for your <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">Table</a>, look in the <strong>URL Bar</strong> of your browser:</li>
-</ol>
+<h2 id="find-your-google-sheet-id-and-sheet-name">Find Your Google Sheet ID and Sheet Name</h2>
+<p>The <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> template needs two pieces of information: the spreadsheet ID and the sheet tab name.</p>
+<h3 id="find-the-sheet-id">Find the Sheet ID</h3>
+<p>Look in the URL bar of your browser. The spreadsheet ID is the long string between <code>/d/</code> and <code>/edit</code>.</p>
 <p><img src="images/Haunted_Sheetmapper-4009fb0c.png" alt=""></img></p>
-<ol>
-<li>To Find the <strong>Sheet Name</strong>, look at the bottom of the Sheet Page, for your <strong>current tab</strong>:</li>
-</ol>
+<p>Example:</p>
+<pre><code class="lang-text">https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/edit?usp=sharing
+</code></pre>
+<p>In that URL, the sheet ID is:</p>
+<pre><code class="lang-text">1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ
+</code></pre>
+<h3 id="find-the-sheet-name">Find the Sheet Name</h3>
+<p>Look at the tab name at the bottom of the Google Sheet.</p>
 <p><img src="images/Haunted_Sheetmapper-a0fd95fd.png" alt=""></img></p>
-<p>In the case of My <code>Sheet ID</code> and <code>Name</code> (In the images), they are the following (use your own):</p>
-<p><strong>Google Sheet ID:</strong> <code>1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ</code></p>
-<p><strong>Sheet name:</strong> <code>cal_haunted_places</code></p>
+<p>In the sample sheet, the sheet name is:</p>
+<pre><code class="lang-text">cal_haunted_places
+</code></pre>
+<h2 id="start-coding">Start Coding</h2>
 <ol>
-<li>Using the following template URL, craft your own <strong>CSV Direct Download URL</strong></li>
+<li>Open your plain-text editor.</li>
+<li>Create a file called <code>index.html</code>.</li>
+<li>Copy the contents of <a href="../data/index_jsonp_template.html">index_jsonp_template.html</a> into your new <code>index.html</code> file.</li>
+<li>Save the file.</li>
 </ol>
-<p><code>https://docs.google.com/spreadsheets/d/{key}/gviz/tq?tqx=out:csv&amp;sheet={sheetname}</code></p>
+<p>The rest of this lab explains the four main sections of the template:</p>
 <ol>
-<li>Replace:<ul>
-<li><code>{key}</code> with your <code>Google Sheet ID</code>
-and</li>
-<li><code>{sheet_name}</code> with the <code>name of your sheet</code></li>
-</ul>
-</li>
+<li>Make the map.</li>
+<li>Call the Google Sheet.</li>
+<li>Create the points.</li>
+<li>Create minimal popups.</li>
 </ol>
-<p>The newly constructed URL for my example would be:</p>
-<p><a href="https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&amp;sheet=cal_haunted_places" target="_blank"><code>https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&amp;sheet=cal_haunted_places</code></a></p>
-<p>If you click on the above link, it should start a download of the <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>, as <code>data.csv</code>.</p>
-<ol>
-<li>You can test <em><strong>your own</strong></em> <strong>CSV Direct Download URL</strong> by pasting it in your browser URL bar and hitting ENTER to be sure that it initiates a <code>data.csv</code> download</li>
-</ol>
-<h2 id="start-coding">Start Coding!</h2>
-<p>In this part, you will start from template code and modify it for your own spreadsheet and map design.</p>
-<ol>
-<li><p>Open you chosen <strong>plain text editor</strong> and create a file called <code>index.html</code>.</p>
-<p>In <em><strong>Atom</strong></em>, you can go to <strong>File&gt;New File</strong> to create a new file.</p>
-</li>
-<li><p>Set up the document by copying and pasting <a href="https://raw.githubusercontent.com/mapninja/Earthsys144/master/data/index.html" target="_blank">this template code</a> into your new HTML file</p>
-<p>(or, you can just save that webpage of html, as <code>index.html</code>), but make sure you add the <code>.html</code> extension, if necessary, when you <strong>save as...</strong></p>
-</li>
-</ol>
-<p>The next sections walk you through altering the above code to customize with your data and other parameters. Feel free to experiment, knowing that you can always come back to the above code and start again, fresh.</p>
-<h2 id="importing-a-javascript-library">Importing a Javascript library</h2>
-<p>The following code uses the <code>&lt;head&gt;</code> tag to provide text in the HTML file that will not be rendered as text, but will import Javascript functions from another source, in this case:</p>
-<ul>
-<li>The <a href="https://maplibre.org" target="_blank">MapLibre GL JS</a> library, to add interactivity to your map and publish it on the web.</li>
-<li>The <a href="https://github.com/mapbox/csv2geojson" target="_blank">Csv2geojson</a> JavaScript Library to convert CSV and TSV files to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> data suitable for maps‍</li>
-<li>The jQuery library for asynchronous updating within the browser.</li>
-</ul>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<h2 id="the-html-head">The HTML Head</h2>
+<p>The <code>&lt;head&gt;</code> section loads <a href="../GLOSSARY.html#maplibre-gl-js" class="glossary-term" title="An open-source JavaScript library for drawing interactive web maps in a browser. In this course, MapLibre is used to display basemaps, GeoJSON points, and popups from an HTML file.">MapLibre GL JS</a> and the MapLibre CSS file. These are the only external code libraries needed in this version.</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CSV to Map Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- Load MapLibre GL JS for the map --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Google Sheet JSONP Map Template<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Load MapLibre GL JS, the JavaScript library that draws the interactive map. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Load MapLibre's CSS so the map controls and popups display correctly. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> /&gt;</span>
-    <span class="hljs-comment">&lt;!-- Load jQuery for easy AJAX requests --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- Load csv2geojson to convert CSV to GeoJSON --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://npmcdn.com/csv2geojson@latest/csv2geojson.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-comment">/* Make the page fill the whole browser window. Without this, the map div has no useful height. */</span>
         <span class="hljs-selector-tag">body</span>, <span class="hljs-selector-tag">html</span> { <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>; }
+
+        <span class="hljs-comment">/* Place the map over the full page so the user sees only the interactive map. */</span>
         <span class="hljs-selector-id">#map</span> { <span class="hljs-attribute">position</span>: absolute; <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>; <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; }
     </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 </code></pre>
-<h2 id="change-the-basemap-style">Change the Basemap Style</h2>
-<p>MapLibre GL JS supports basemaps from various providers. For this exercise, the HTML file defaults to a free <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> from OpenStreetMap. You can update the style by simply replacing the link to the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> JSON file:</p>
-<pre><code class="lang-javascript">        <span class="hljs-comment">// Create the map and set its starting position and zoom</span>
-        <span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> maplibregl.<span class="hljs-title class_">Map</span>({
-            <span class="hljs-attr">container</span>: <span class="hljs-string">'map'</span>,
-            <span class="hljs-attr">style</span>: <span class="hljs-string">'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json'</span>, <span class="hljs-comment">// OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more</span>
-            <span class="hljs-attr">center</span>: [-<span class="hljs-number">122.411</span>, <span class="hljs-number">37.785</span>], <span class="hljs-comment">// [longitude, latitude]</span>
-            <span class="hljs-attr">zoom</span>: <span class="hljs-number">8</span>
+<blockquote>
+<p><strong>Why this is simpler than the old version:</strong> This version does not load jQuery or <code>csv2geojson</code>. Google sends structured <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> data through <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a>, and the template converts that <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> directly into <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
+</blockquote>
+<h2 id="step-1-make-the-map">Step 1: Make the Map</h2>
+<p>The first JavaScript section creates the MapLibre map object.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 1: MAKE THE MAP</span>
+<span class="hljs-comment">// MapLibre creates the interactive web map inside the &lt;div id="map"&gt;&lt;/div&gt;.</span>
+<span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> maplibregl.<span class="hljs-title class_">Map</span>({
+    <span class="hljs-attr">container</span>: <span class="hljs-string">'map'</span>,
+    <span class="hljs-attr">style</span>: <span class="hljs-string">'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json'</span>,
+    <span class="hljs-attr">center</span>: [-<span class="hljs-number">122.411</span>, <span class="hljs-number">37.785</span>],
+    <span class="hljs-attr">zoom</span>: <span class="hljs-number">8</span>
+});
+</code></pre>
+<p>The important settings are:</p>
+<ul>
+<li><code>container</code>: the HTML element where the map will appear</li>
+<li><code>style</code>: the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> style URL</li>
+<li><code>center</code>: the starting map center in <code>[longitude, latitude]</code> order</li>
+<li><code>zoom</code>: the starting zoom level</li>
+</ul>
+<h3 id="change-the-basemap-style">Change the Basemap Style</h3>
+<p>To change the <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a>, replace the <code>style</code> URL.</p>
+<pre><code class="lang-javascript"><span class="hljs-attr">style</span>: <span class="hljs-string">'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json'</span>,
+</code></pre>
+<p>Basemaps you can try:</p>
+<ul>
+<li><a href="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json" target="_blank">Dark Matter</a><br></br><code>https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json</code></li>
+<li><a href="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json" target="_blank">Positron</a><br></br><code>https://basemaps.cartocdn.com/gl/positron-gl-style/style.json</code></li>
+<li><a href="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json" target="_blank">Voyager</a><br></br><code>https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json</code></li>
+</ul>
+<h2 id="step-2-call-the-google-sheet">Step 2: Call the Google Sheet</h2>
+<p>This section creates a <code>&lt;script&gt;</code> tag that asks Google Sheets for the public sheet data.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 2: CALL THE GOOGLE SHEET</span>
+<span class="hljs-comment">// Wait for the basemap to load before adding spreadsheet data.</span>
+map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'load'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// This URL uses Google Sheets gviz JSONP, not the CSV download.</span>
+    <span class="hljs-comment">// JSONP loads data with a script tag, which avoids the CORS issue that blocks many CSV downloads.</span>
+    <span class="hljs-comment">// Paste your spreadsheet ID after /d/ and paste your sheet tab name after sheet=.</span>
+    <span class="hljs-keyword">var</span> sheetScript = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'script'</span>);
+    sheetScript.<span class="hljs-property">src</span> = <span class="hljs-string">'https://docs.google.com/spreadsheets/d/PASTE_YOUR_SHEET_ID_HERE/gviz/tq?tqx=out:json;responseHandler:handleGoogleSheetData&amp;sheet=PASTE_YOUR_SHEET_NAME_HERE'</span>;
+    <span class="hljs-variable language_">document</span>.<span class="hljs-property">head</span>.<span class="hljs-title function_">appendChild</span>(sheetScript);
+});
+</code></pre>
+<p>Replace:</p>
+<ul>
+<li><code>PASTE_YOUR_SHEET_ID_HERE</code> with your Google Sheet ID</li>
+<li><code>PASTE_YOUR_SHEET_NAME_HERE</code> with your sheet tab name</li>
+</ul>
+<p>Keep the rest of the URL exactly the same. Only replace the spreadsheet ID placeholder and the sheet name placeholder.</p>
+<blockquote>
+<p><strong>Concept note:</strong> <a href="../GLOSSARY.html#jsonp" class="glossary-term" title="Short for JSON with Padding. JSONP is an older browser pattern that loads data using a <script> tag and calls a named JavaScript function when the data arrives.">JSONP</a> works by loading data as a script. The <code>responseHandler:handleGoogleSheetData</code> part tells Google to call a function named <code>handleGoogleSheetData</code> after the sheet data loads. This pattern comes from the older Google <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">Visualization</a> API / Google Charts data-<a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> system, not the newer Google Sheets API. For reference, see Google's documentation for the <a href="https://developers.google.com/chart/interactive/docs/dev/implementing_data_source" target="_blank">Chart Tools Datasource Protocol</a>, <a href="https://developers.google.com/chart/interactive/docs/queries" target="_blank">Data Queries</a>, and the <a href="https://developers.google.com/chart/interactive/docs/querylanguage" target="_blank">Visualization API Query Language</a>.</p>
+</blockquote>
+<h2 id="step-3-create-the-points">Step 3: Create the Points</h2>
+<p>Google's response is a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. MapLibre draws <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>. This section converts each spreadsheet <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> into a <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> point.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Google calls this function after the sheet data loads.</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">handleGoogleSheetData</span>(<span class="hljs-params">response</span>) {
+    <span class="hljs-comment">// Store the column names from the first row of the Google Sheet.</span>
+    <span class="hljs-keyword">var</span> columns = response.<span class="hljs-property">table</span>.<span class="hljs-property">cols</span>.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">column</span>) {
+        <span class="hljs-keyword">return</span> column.<span class="hljs-property">label</span>;
+    });
+
+    <span class="hljs-comment">// STEP 3: CREATE THE POINTS</span>
+    <span class="hljs-comment">// Turn each spreadsheet row into one GeoJSON point.</span>
+    <span class="hljs-keyword">var</span> features = response.<span class="hljs-property">table</span>.<span class="hljs-property">rows</span>.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">row</span>) {
+        <span class="hljs-keyword">var</span> props = {};
+
+        <span class="hljs-comment">// Copy each cell into props using its spreadsheet column name.</span>
+        columns.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">columnName, index</span>) {
+            <span class="hljs-keyword">if</span> (!columnName) <span class="hljs-keyword">return</span>;
+            props[columnName] = row.<span class="hljs-property">c</span>[index] ? row.<span class="hljs-property">c</span>[index].<span class="hljs-property">v</span> : <span class="hljs-literal">null</span>;
         });
+
+        <span class="hljs-comment">// MapLibre expects point coordinates as numbers in [longitude, latitude] order.</span>
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">'Feature'</span>,
+            <span class="hljs-attr">geometry</span>: {
+                <span class="hljs-attr">type</span>: <span class="hljs-string">'Point'</span>,
+                <span class="hljs-attr">coordinates</span>: [<span class="hljs-title class_">Number</span>(props.<span class="hljs-property">longitude</span>), <span class="hljs-title class_">Number</span>(props.<span class="hljs-property">latitude</span>)]
+            },
+            <span class="hljs-attr">properties</span>: props
+        };
+    });
+
+    <span class="hljs-comment">// GeoJSON is the standard web map format MapLibre uses for vector features.</span>
+    <span class="hljs-keyword">var</span> geojson = {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'FeatureCollection'</span>,
+        <span class="hljs-attr">features</span>: features
+    };
 </code></pre>
-<p>Here's a few basemaps you can try:</p>
-<h3 id="cartocdn-basemaps">CartoCDN Basemaps</h3>
-<p><a href="../GLOSSARY.html#sources" class="glossary-term" title="">Sources</a>:</p>
-<ul>
-<li><a href="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json" target="_blank">Dark Matter</a> <code>https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json</code></li>
-<li><a href="https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json" target="_blank">Dark Matter No Labels</a> <code>https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json</code></li>
-<li><a href="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json" target="_blank">Positron</a> <code>https://basemaps.cartocdn.com/gl/positron-gl-style/style.json</code></li>
-<li><a href="https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json" target="_blank">Positron No Labels</a> <code>https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json</code></li>
-<li><a href="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json" target="_blank">Voyager</a> <code>https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json</code></li>
-<li><a href="https://basemaps.cartocdn.com/gl/voyager-nolabels-gl-style/style.json" target="_blank">Voyager No Labels</a> <code>https://basemaps.cartocdn.com/gl/voyager-nolabels-gl-style/style.json</code></li>
-</ul>
-<h3 id="institut-cartogràfic-i-geològic-de-catalunya-icgc-basemaps"><a href="https://openicgc.github.io/" target="_blank">Institut Cartogràfic i Geològic de Catalunya (ICGC) Basemaps</a></h3>
-<p><a href="../GLOSSARY.html#sources" class="glossary-term" title="">Sources</a>:</p>
-<ul>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc.json" target="_blank">ICGC Main</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_mapa_base_fosc.json" target="_blank">ICGC Dark Base Map</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_mapa_base_fosc.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_ombra_hipsometria_corbes.json" target="_blank">ICGC Shadow Hypsometry Contours</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_ombra_hipsometria_corbes.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_ombra_fosca.json" target="_blank">ICGC Dark Shadow</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_ombra_fosca.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard.json" target="_blank">ICGC Standard Orthophoto</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json" target="_blank">ICGC Standard Orthophoto Gray</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json" target="_blank">ICGC Hybrid Orthophoto</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json" target="_blank">ICGC Geological Risks</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json" target="_blank">ICGC Standard Orthophoto</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_orto_estandard_gris.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json" target="_blank">ICGC Hybrid Orthophoto</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json</code></li>
-<li><a href="https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json" target="_blank">ICGC Geological Risks</a> <code>https://geoserveis.icgc.cat/contextmaps/icgc_geologic_riscos.json</code></li>
-</ul>
-<h2 id="connect-your-google-sheet">Connect your Google Sheet</h2>
-<p>The code in this html calls a Javascript Library called <a href="https://github.com/mapbox/csv2geojson" target="_blank">csv2geojson</a> to retrieve data from the Google Sheet CSV export that you created and convert into the <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> format that  make use of. You can see how an HTML page calls JavaScript libraries into your browser to run as code that drive interactivity in your HTML page.</p>
-<ol>
-<li>Find the following section in your <code>index.html</code> file (it's immediately after the section you just edited):</li>
-</ol>
-<pre><code class="lang-javascript">        <span class="hljs-comment">// When the page is ready, get the CSV data</span>
-        $(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ready</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-            $.<span class="hljs-title function_">ajax</span>({
-                <span class="hljs-attr">type</span>: <span class="hljs-string">"GET"</span>,
-                <span class="hljs-comment">//YOUR TURN: Replace with csv export link</span>
-                <span class="hljs-attr">url</span>: <span class="hljs-string">'replace this text with the link to your CSV file within the single quotes'</span>,
-                <span class="hljs-attr">dataType</span>: <span class="hljs-string">"text"</span>,
-                <span class="hljs-attr">success</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">csvData</span>) { <span class="hljs-title function_">makeGeoJSON</span>(csvData); }
-            });
+<p>The key line is:</p>
+<pre><code class="lang-javascript"><span class="hljs-attr">coordinates</span>: [<span class="hljs-title class_">Number</span>(props.<span class="hljs-property">longitude</span>), <span class="hljs-title class_">Number</span>(props.<span class="hljs-property">latitude</span>)]
 </code></pre>
-<ol>
-<li>To connect your Google Sheet, replace the following text with the Google Sheet export link that you crafted, previously in the exercise, so that:
-<code>'replace this text with the link to your CSV file within the single quotes'</code>
-becomes something like:
-<code>'https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&amp;sheet=cal_haunted_places'</code></li>
-</ol>
-<p>That’s really the last of the coding you have to do. The remainder of the section about the code in your <code>index.html</code> is primarily for explanation, or if you are feeling adventurous and want to experiment with altering the look of your map.</p>
-<h2 id="changing-your-symbology">Changing Your Symbology</h2>
-<p>The next part of the code in your index.html file adds the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the map and specifies how it will be styled. In this example, the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is added as a <code>circle</code>  with a <code>6 px</code> <strong>radius</strong> and the <strong>color</strong> is set to <code>purple</code>.</p>
-<p>Feel free to alter the following section of code in order to change the (try:  <strong>size</strong> (<code>circle-radius</code>) or <strong>color</strong> (<code>circle-color</code>) of your symbols.</p>
-<pre><code class="lang-javascript">                        <span class="hljs-comment">// Add the GeoJSON data as a layer on the map</span>
-                        map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'load'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-                            map.<span class="hljs-title function_">addLayer</span>({
-                                <span class="hljs-attr">id</span>: <span class="hljs-string">'points'</span>,
-                                <span class="hljs-attr">type</span>: <span class="hljs-string">'circle'</span>,
-                                <span class="hljs-attr">source</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">'geojson'</span>, <span class="hljs-attr">data</span>: geojson },
-                                <span class="hljs-attr">paint</span>: {
-                                    <span class="hljs-string">'circle-radius'</span>: <span class="hljs-number">6</span>,
-                                    <span class="hljs-string">'circle-color'</span>: <span class="hljs-string">'purple'</span>
-                                }
-                            });
+<p>MapLibre expects coordinates in longitude, latitude order. This is the opposite of the way people often say coordinates out loud.</p>
+<h2 id="draw-the-points-on-the-map">Draw the Points on the Map</h2>
+<p>After the code creates <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>, it adds the data to the map.</p>
+<pre><code class="lang-javascript">    <span class="hljs-comment">// Add the GeoJSON as a map source. Sources hold data.</span>
+    map.<span class="hljs-title function_">addSource</span>(<span class="hljs-string">'sheet-points'</span>, {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'geojson'</span>,
+        <span class="hljs-attr">data</span>: geojson
+    });
+
+    <span class="hljs-comment">// Add a circle layer to draw the source data. Layers control appearance.</span>
+    map.<span class="hljs-title function_">addLayer</span>({
+        <span class="hljs-attr">id</span>: <span class="hljs-string">'points'</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'circle'</span>,
+        <span class="hljs-attr">source</span>: <span class="hljs-string">'sheet-points'</span>,
+        <span class="hljs-attr">paint</span>: {
+            <span class="hljs-string">'circle-radius'</span>: <span class="hljs-number">6</span>,
+            <span class="hljs-string">'circle-color'</span>: <span class="hljs-string">'purple'</span>
+        }
+    });
 </code></pre>
-<p>For more on customizing your circle markers see: <a href="https://maplibre.org/maplibre-style-spec/layers/#circle" target="_blank">https://maplibre.org/maplibre-style-spec/layers/#circle</a></p>
-<h3 id="popups">Popups</h3>
-<p>This section of code creates teh on-click pop-ups for the data in the csv. Note how the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> names in the csv are referred to as <code>props.location</code> and <code>props.description</code>:</p>
-<pre><code class="lang-javascript">                            <span class="hljs-comment">// When a point is clicked, show a popup</span>
-                            map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'click'</span>, <span class="hljs-string">'points'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) {
-                                <span class="hljs-keyword">var</span> props = e.<span class="hljs-property">features</span>[<span class="hljs-number">0</span>].<span class="hljs-property">properties</span>;
-                                <span class="hljs-comment">// Create popup HTML: location as heading, description as text</span>
-                                <span class="hljs-keyword">var</span> html = <span class="hljs-string">`&lt;h3&gt;<span class="hljs-subst">${props.location}</span>&lt;/h3&gt;&lt;p&gt;<span class="hljs-subst">${props.description}</span>&lt;/p&gt;`</span>;
-                                <span class="hljs-keyword">new</span> maplibregl.<span class="hljs-title class_">Popup</span>()
-                                    .<span class="hljs-title function_">setLngLat</span>(e.<span class="hljs-property">lngLat</span>)
-                                    .<span class="hljs-title function_">setHTML</span>(html)
-                                    .<span class="hljs-title function_">addTo</span>(map);
-                            });
+<p>To change how the points look, edit:</p>
+<pre><code class="lang-javascript"><span class="hljs-string">'circle-radius'</span>: <span class="hljs-number">6</span>,
+<span class="hljs-string">'circle-color'</span>: <span class="hljs-string">'purple'</span>
 </code></pre>
-<p>If you want to add different fields, change the text in the following line to match the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> names in your own CSV:</p>
+<p>For more on customizing circle markers, see the <a href="https://maplibre.org/maplibre-style-spec/layers/#circle" target="_blank">MapLibre circle layer documentation</a>.</p>
+<h2 id="step-4-create-minimal-popups">Step 4: Create Minimal Popups</h2>
+<p>This section creates simple popups when a user clicks a point.</p>
+<pre><code class="lang-javascript">    <span class="hljs-comment">// STEP 4: CREATE MINIMAL POPUPS</span>
+    <span class="hljs-comment">// When a point is clicked, show values from the location and description columns.</span>
+    map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'click'</span>, <span class="hljs-string">'points'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) {
+        <span class="hljs-keyword">var</span> props = e.<span class="hljs-property">features</span>[<span class="hljs-number">0</span>].<span class="hljs-property">properties</span>;
+        <span class="hljs-keyword">var</span> html = <span class="hljs-string">`&lt;h3&gt;<span class="hljs-subst">${props.location}</span>&lt;/h3&gt;&lt;p&gt;<span class="hljs-subst">${props.description}</span>&lt;/p&gt;`</span>;
+
+        <span class="hljs-keyword">new</span> maplibregl.<span class="hljs-title class_">Popup</span>()
+            .<span class="hljs-title function_">setLngLat</span>(e.<span class="hljs-property">lngLat</span>)
+            .<span class="hljs-title function_">setHTML</span>(html)
+            .<span class="hljs-title function_">addTo</span>(map);
+    });
+</code></pre>
+<p>The popup uses the <code>location</code> and <code>description</code> columns:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> html = <span class="hljs-string">`&lt;h3&gt;<span class="hljs-subst">${props.location}</span>&lt;/h3&gt;&lt;p&gt;<span class="hljs-subst">${props.description}</span>&lt;/p&gt;`</span>;
 </code></pre>
+<p>If your sheet uses different <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a> names, change <code>props.location</code> and <code>props.description</code> to match your columns.</p>
+<p>The final lines change the mouse cursor when the user hovers over a point:</p>
+<pre><code class="lang-javascript">    <span class="hljs-comment">// Make the cursor change over points so users know the points can be clicked.</span>
+    map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'mouseenter'</span>, <span class="hljs-string">'points'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        map.<span class="hljs-title function_">getCanvas</span>().<span class="hljs-property">style</span>.<span class="hljs-property">cursor</span> = <span class="hljs-string">'pointer'</span>;
+    });
+    map.<span class="hljs-title function_">on</span>(<span class="hljs-string">'mouseleave'</span>, <span class="hljs-string">'points'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        map.<span class="hljs-title function_">getCanvas</span>().<span class="hljs-property">style</span>.<span class="hljs-property">cursor</span> = <span class="hljs-string">''</span>;
+    });
+}
+</code></pre>
 <h2 id="publish-and-test-your-web-map">Publish and Test Your Web Map</h2>
-<p>Note that because of something called <strong>Cross-Origin Resource Sharing (CORS)</strong> you won’t see the content from your Spreadsheet, until you publish your <code>index.html</code>. This ALSO means <em><strong>any changes you want to make will have to be uploaded each time</strong></em> to check the results.</p>
-<p>So you’ve made a <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a>! But it isn’t a web page yet… and, in fact, you probably can’t see the full functionality until the page is published to the web, and accessible, publicly (again, the cross origin resource sharing thing is the culprit, here). To do that we need some way to host a webpage. There are many different ways to host a webpage. GitHub Pages is one good solution, but Stanford students have access to a service called <code>afs.stanford.edu</code>, which allows them to publish simple webpages.</p>
-<h2 id="publish-your-map-with-your-afs-web-space-pages">Publish your map with your AFS Web Space Pages:</h2>
-<p>You can use Secure File Transfer Protocol (SFTP) to publish your index.html page to your Stanford AFS web hosting server space.</p>
-<p>University IT maintains Instructions, which are not great, and need to have their screenshots updated, but are sufficient if you are brave and resourceful (you are):</p>
-<h3 id="download-the-securefx-client">Download the SecureFX Client:</h3>
+<p>Because this version uses <a href="../GLOSSARY.html#google-sheets-jsonp" class="glossary-term" title="A way for a simple web page to request public Google Sheet data through a script tag instead of a CSV download. In this course, JSONP helps avoid common browser CORS restrictions when building a spreadsheet-driven web map.">Google Sheets JSONP</a>, it avoids the most common CORS problem from the CSV download workflow. You still need to publish the page to test it the same way your audience will see it.</p>
+<p>After each code change:</p>
+<ol>
+<li>Save your <code>index.html</code>.</li>
+<li>Upload or commit the new version.</li>
+<li>Refresh the published page.</li>
+<li>Open the browser developer console if the points do not appear.</li>
+</ol>
+<h2 id="publish-your-map-with-your-afs-web-space">Publish Your Map with Your AFS Web Space</h2>
+<p>You can use Secure File Transfer Protocol (SFTP) to publish your <code>index.html</code> page to your Stanford AFS web hosting space.</p>
+<h3 id="download-the-securefx-client">Download the SecureFX Client</h3>
 <p><a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">https://uit.stanford.edu/software/scrt_sfx</a></p>
-<h3 id="instructions-for-installing-and-licensing-securefx-client-for-mac">Instructions for Installing and Licensing SecureFX Client, for Mac:</h3>
-<p><a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">https://uit.stanford.edu/service/ess/scrt_sfx/securefx/mac/install</a></p>
-<h3 id="instructions-for-installing-and-licensing-securefx-client-for-windows-bundled-with-securecrt">Instructions for Installing and Licensing SecureFX Client, for Windows (Bundled with SecureCRT):</h3>
-<p><a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">https://uit.stanford.edu/service/ess/scrt_sfx/install</a></p>
-<h2 id="using-securefx-to-move-files-to-your-afs-space">Using SecureFX to move files to your AFS space</h2>
-<p>Below is a screenshot of the Mac version of SecureFX. You can see on the left side of teh sofrtware, (behind the login screen) that you can browse files on your local machine, and on the right, you can browse folders and files on your remote AFS space. You can also drag and drop files from one place to another. THis is how we will use SecureFX.</p>
+<h3 id="instructions-for-installing-and-licensing-securefx-client">Instructions for Installing and Licensing SecureFX Client</h3>
+<ul>
+<li><a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">SecureFX for Mac</a></li>
+<li><a href="https://uit.stanford.edu/software/scrt_sfx" target="_blank">SecureFX for Windows</a></li>
+</ul>
+<h2 id="using-securefx-to-move-files-to-your-afs-space">Using SecureFX to Move Files to Your AFS Space</h2>
+<p>The screenshot below shows the Mac version of SecureFX. The left side shows files on your computer, and the right side shows folders and files in your remote AFS space. You can drag and drop files from one side to the other.</p>
 <p><img src="images/20250504_144608_image.png" alt=""></img></p>
 <ol>
-<li>Connect to <code>cardinal.stanford.edu</code> and login with your SUNetID and password.</li>
-<li>Browse into your <code>WWW</code> folder and right-click <strong>New&gt;Folder</strong> to make a new folder called <code>sheetmapper</code>.</li>
+<li>Connect to <code>cardinal.stanford.edu</code> and log in with your SUNetID and password.</li>
+<li>Browse into your <code>WWW</code> folder and create a new folder called <code>sheetmapper</code>.</li>
 </ol>
 <p><img src="images/20250504_145603_image.png" alt=""></img></p>
 <ol>
-<li>Find your <code>index.html</code> file in the view of your local drive, and <strong>drag-and-drop</strong> it into the <code>sheetmapper</code> folder.</li>
+<li>Find your <code>index.html</code> file on your local computer and drag it into the <code>sheetmapper</code> folder.</li>
 </ol>
 <p><img src="images/20250504_150023_image.png" alt=""></img></p>
 <ol>
-<li>Test your sheetmapper page replacing <code>SUNETID</code> with your own <code>SUNetID</code> in the following URL: <code>http://web.stanford.edu/~SUNETID/sheetmapper/index.html</code></li>
+<li>Test your sheetmapper page by replacing <code>SUNETID</code> with your own SUNetID:</li>
 </ol>
-<p>Here’s the finished version of the example map:</p>
-<p><a href="https://web.stanford.edu/~maples/sheetmapper/index.html" target="_blank">https://web.stanford.edu/~maples/sheetmapper/index.html</a></p>
-<h2 id="a-note-about-browsers-and-security">A Note About Browsers and Security</h2>
-<p>If you are a Safari or Chrome user, you shouldn't have any trouble viewing your sheetmapper index.html, but if you are a Firefox user, things may not work, at first, or sometimes at all. This is because Firefox is a bit alarmist about the <strong>Cross-Origin Resource Sharing (CORS)</strong> thing. If you are not able to see your map, or data, try the following:</p>
-<ol>
-<li>Hold the Shift Key and refresh the browser Page</li>
-<li>Clear your cache and cookies using the methods described, here: <a href="https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies" target="_blank">https://www.kaspersky.com/resource-center/preemptive-safety/how-to-clear-cache-and-cookies</a></li>
-<li>Try a different browser</li>
-</ol>
+<pre><code class="lang-text">http://web.stanford.edu/~SUNETID/sheetmapper/index.html
+</code></pre>
 <h2 id="if-afs-does-not-work-for-you">If AFS Does Not Work For You</h2>
-<p>You don’t need to do this for the homework unless AFS doesn’t work for you (it seems finicky for some students for some reason), but it’s nice to know that the following is an option for web publishing this type of application. This option also means that your access to the material won't end when your time at Stanford does.:</p>
-<h2 id="publish-your-map-with-github-pages">Publish your map with GitHub Pages:</h2>
+<p>GitHub Pages can also publish this type of simple <a href="../GLOSSARY.html#web-map" class="glossary-term" title="A map designed to be viewed in a web browser or mobile app, often combining basemaps, hosted layers, popups, forms, and sharing settings.">web map</a>.</p>
+<h2 id="publish-your-map-with-github-pages">Publish Your Map with GitHub Pages</h2>
 <ol>
-<li>Create a GitHub account if you don’t have one. I suggest taking advantage of the GitHub Student Developer Pack: <a href="https://education.github.com/pack" target="_blank">https://education.github.com/pack</a></li>
-<li>Create a new <a href="https://help.github.com/articles/create-a-repo/" target="_blank">GitHub repository</a>:</li>
+<li>Create a GitHub account if you do not have one.</li>
+<li>Create a new <a href="https://help.github.com/articles/create-a-repo/" target="_blank">GitHub repository</a>.</li>
 </ol>
 <p><img src="images/Haunted_Sheetmapper-726465ac.png" alt=""></img></p>
 <ol>
-<li>Name it for your map (this will be visible in the URL).</li>
-<li>Make it Public</li>
-<li>Click the box to ‘Initialize this repository with a README’</li>
+<li>Name the repository for your map.</li>
+<li>Make it public.</li>
+<li>Initialize the repository with a README.</li>
 </ol>
 <p><img src="images/Haunted_Sheetmapper-d67f7a1b.png" alt=""></img></p>
 <ol>
-<li>Either:</li>
-<li>Upload your <code>index.html</code> file to your new repository, or...</li>
-<li>Create a new file called <code>index.html</code></li>
-<li>In the blank <code>index.html</code> file, paste in the entire edited code that you built in your text editor and <strong>commit</strong> it.</li>
+<li>Upload your <code>index.html</code> file, or create a new file called <code>index.html</code> and paste in your edited code.</li>
+<li>Commit the file.</li>
 </ol>
 <p><img src="images/Haunted_Sheetmapper-67ba8c5b.png" alt=""></img></p>
 <ol>
-<li><strong>Enable GitHub Pages</strong> by going to <strong>Settings&gt;Pages</strong> for your repo and changing the <strong>Branch</strong> from <strong>None</strong> to <strong>main</strong>, and save</li>
-<li>After a minute or two, your <strong>GitHub Page URL</strong> will be published online. It will look something like <code>HTTPS://[YOUR GITHUB NAME].github.io/[YOUR REPO NAME]/</code> - <strong>you can find your URL navigating back to the GitHub Pages section in your repository settings.</strong></li>
+<li>Enable GitHub Pages by going to <strong>Settings &gt; Pages</strong> for your repository.</li>
+<li>Change the branch from <strong>None</strong> to <strong>main</strong> and save.</li>
+<li>After a minute or two, GitHub will publish a URL like:</li>
 </ol>
+<pre><code class="lang-text">https://YOUR-GITHUB-NAME.github.io/YOUR-REPO-NAME/
+</code></pre>
 <p><img src="images/Haunted_Sheetmapper-9a49c8a0.png" alt=""></img></p>
-<p>Here’s the <strong>GitHub URL</strong> for the example:</p>
-<p><a href="https://mapninja.github.io/haunted_sheetmapper/index.html" target="_blank">https://mapninja.github.io/haunted_sheetmapper/index.html</a></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>The <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> appears, but no points appear</strong></p>
+<ul>
+<li>Confirm the Google Sheet is public.</li>
+<li>Confirm the sheet ID is pasted after <code>/d/</code>.</li>
+<li>Confirm the sheet name is pasted after <code>sheet=</code>.</li>
+<li>Confirm your sheet has columns named <code>longitude</code> and <code>latitude</code>.</li>
+<li>Open the browser developer console and look for JavaScript errors.</li>
+</ul>
+<p><strong>The popups say undefined</strong></p>
+<ul>
+<li>Confirm your sheet has columns named <code>location</code> and <code>description</code>.</li>
+<li>If your columns have different names, update the popup line:</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> html = <span class="hljs-string">`&lt;h3&gt;<span class="hljs-subst">${props.location}</span>&lt;/h3&gt;&lt;p&gt;<span class="hljs-subst">${props.description}</span>&lt;/p&gt;`</span>;
+</code></pre>
+<p><strong>The map opens locally but not after publishing</strong></p>
+<ul>
+<li>Confirm your file is named exactly <code>index.html</code>.</li>
+<li>Confirm it was uploaded or committed to the correct folder.</li>
+<li>Hold <strong>Shift</strong> and refresh the browser page.</li>
+</ul>
 <h2 id="deliverable">Deliverable</h2>
 <p>Submit the following for grading:</p>
 <ol>
-<li>The live URL for your hosted <code>index.html</code> (AFS preferred; Github is allowed).</li>
+<li>The live URL for your hosted <code>index.html</code> page.</li>
 </ol>
 <p><img src="images/20250504_160617_image.png" alt=""></img></p>
 
@@ -1392,7 +1457,7 @@ becomes something like:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages","level":"1.10.3","depth":2,"next":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"previous":{"title":"01 - TURN IN - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_TURN_IN_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_TURN_IN_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md","mtime":"2026-05-22T21:50:04.531Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T21:50:17.723Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP","level":"1.10.3","depth":2,"next":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"previous":{"title":"01 - TURN IN - Geocoding Addresses with locator.stanford.edu & OpenRefine","level":"1.10.2","depth":2,"path":"week07/01_TURN_IN_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","ref":"week07/01_TURN_IN_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","mtime":"2026-05-22T22:51:13.297Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T22:51:26.433Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
