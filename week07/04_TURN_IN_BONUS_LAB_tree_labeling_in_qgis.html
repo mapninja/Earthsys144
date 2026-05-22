@@ -1576,11 +1576,17 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <h3 id="step-10-get-ready-to-edit">Step 10: Get Ready to Edit</h3>
 <p>Before you start drawing labels, adjust the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> settings so QGIS uses the rectangle tool you need for this exercise.</p>
 <ol>
-<li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
-<li>Open <strong>Options</strong>.</li>
+<li>Go to <strong>Settings &gt; Options</strong>.</li>
 <li>In the Options dialog, go to <strong>Map Tools &gt; <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">Digitizing</a></strong>.</li>
 <li>Enable <strong>Suppress <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> form pop-up after <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> creation</strong>.</li>
+<li>Update the Rubberband settings, as below:</li>
+</ol>
+<p><img src="images/20260522_140509_image.png" alt=""></img></p>
+<ol>
 <li>Click <strong>Advanced</strong> at the bottom of the Options panel.</li>
+</ol>
+<p><img src="images/20260522_135125_image.png" alt=""></img></p>
+<ol>
 <li>Click <strong>I will be careful</strong>.</li>
 <li>Expand <code>digitizing &gt; shape-map-tools &gt; current</code>.</li>
 <li><p>Copy this text:</p>
@@ -1605,36 +1611,47 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li><strong>Stroke:</strong> a color that contrasts clearly with the imagery you are using</li>
 </ul>
 </li>
-<li>Click <strong>Toggle Editing</strong>.</li>
+<li>Right-Click the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and <strong>Toggle Editing</strong>.</li>
 </ol>
-<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
-<p>Now begin the main labeling task.</p>
-<ol>
-<li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_mortalitree_sample_grid</code>, select the first sampled grid cell and zoom to it.</li>
-<li>Inspect that cell in the <strong>postfire</strong> imagery.</li>
-<li>Only choose grid cells that meet all of the following conditions:<ul>
-<li>It should have trees in it.</li>
-<li>It should have no buildings, houses, or other structures.</li>
-<li>It should have no roads, parking lots, cleared pads, or other obvious human-built infrastructure.</li>
-<li>It should have NAIP imagery available in both the prefire and postfire layers.</li>
-</ul>
-</li>
-<li>If the cell meets those conditions, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the trees by drawing rectangles around them using <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>.</li>
-<li>If the cell does not meet those conditions, skip it and move to the next sampled grid cell.</li>
-<li>Save your edits periodically.</li>
-<li>Continue through the random sample in order until you have labeled trees in the first <strong>4 suitable grid cells</strong>.</li>
-<li>For bonus credit, you may continue labeling additional suitable grid cells beyond the required 4. Each additional suitable grid cell must include both postfire and prefire labels before it can count for extra credit.</li>
-</ol>
-<p><strong>Labeling guidance:</strong></p>
+<h2 id="labeling-guidance"><strong>Labeling guidance:</strong></h2>
+<p><img src="images/20260522_141316_image.png" alt=""></img></p>
+<p><img src="images/20260522_141417_image.png" alt=""></img></p>
+<p><img src="images/20260522_141443_image.png" alt=""></img></p>
+<p><img src="images/20260522_141503_image.png" alt=""></img></p>
+<p><img src="images/20260522_141525_image.png" alt=""></img></p>
+<p><img src="images/20260522_141544_image.png" alt=""></img></p>
+<p>Only choose grid cells that meet all of the following conditions:</p>
 <ul>
+<li>It <strong>should have trees in it</strong>.</li>
+<li>It <strong>SHOULD NOT</strong> have buildings, houses, or other structures.</li>
+<li>It should have <strong>no roads, parking lots, cleared pads, or other obvious human-built infrastructure</strong>.</li>
+<li>It <strong>should have NAIP imagery available in both the prefire and postfire layers</strong>.</li>
 <li>Keep the rectangles simple and consistent.</li>
 <li>Work one tree at a time.</li>
-<li>If a sampled cell has no trees or contains roads, buildings, or other human-built infrastructure, move on to the next sampled cell.</li>
+<li><strong>If a sampled cell has no trees or contains roads, buildings, or other human-built infrastructure, move on to the next sampled cell.</strong></li>
 <li>Save often.</li>
 </ul>
 <blockquote>
 <p><strong>Important concept:</strong> In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.</p>
 </blockquote>
+<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
+<p>Now begin the main labeling task.</p>
+<ol>
+<li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_mortalitree_sample_grid</code>, select the first sampled grid cell and zoom to it.</li>
+<li>Inspect that cell in the <strong>postfire</strong> imagery.</li>
+<li>Make sure the Grid Cell is free of structures, etc...</li>
+<li>If the cell meets those conditions, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the trees by drawing rectangles around them using <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>, and the <strong>Digitize Shape</strong> Mode.</li>
+</ol>
+<p><img src="images/20260522_140646_image.png" alt=""></img></p>
+<ol>
+<li>To place a <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a>, click in the center of the tree crown you want to <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a>, then drag to the extent of teh crown, and right-click (two-finger click on Mac) to finish the drawing.</li>
+</ol>
+<p><img src="images/20260522_140940_image.png" alt=""></img></p>
+<ol>
+<li>Save your edits periodically.</li>
+<li>Continue through the random sample in order until you have labeled trees in the first <strong>4 suitable grid cells</strong>.</li>
+<li>For bonus credit, you may continue labeling additional suitable grid cells beyond the required 4. Each additional suitable grid cell must include both postfire and prefire labels before it can count for extra credit.</li>
+</ol>
 <h3 id="step-13-save-your-work-frequently">Step 13: Save Your Work Frequently</h3>
 <p>While <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>:</p>
 <ol>
@@ -1646,6 +1663,9 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <ol>
 <li>Right-click <code>sunetid_mortalitree_postfire_labels</code>.</li>
 <li>Choose <strong>Save Features As...</strong></li>
+</ol>
+<p><img src="images/20260522_142103_image.png" alt=""></img></p>
+<ol>
 <li><p>Save a copy as:</p>
 <pre><code>sunetid_mortalitree_prefire_labels.shp
 </code></pre></li>
@@ -1724,7 +1744,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <p>Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 4 required suitable grid cells you worked on, plus any additional bonus grid cells you choose to complete.</p>
 <hr></hr>
 <h2 id="conclusion">Conclusion</h2>
-<p>Through this lab, you used QGIS 3.44.7 to:</p>
+<p>Through this lab, you used QGIS to:</p>
 <ul>
 <li>bring temporary Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services into QGIS</li>
 <li>organize prefire and postfire NAIP imagery for interpretation</li>
@@ -1771,15 +1791,6 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>Run the NAIP tile URL script again</li>
 <li>Copy the new URL values into the matching QGIS <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> connections</li>
 </ul>
-<hr></hr>
-<h2 id="additional-resources">Additional Resources</h2>
-<ul>
-<li>QGIS Documentation: <a href="https://docs.qgis.org" target="_blank">docs.qgis.org</a></li>
-<li>NAIP Imagery Information: <a href="https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/" target="_blank">USDA NAIP Program</a></li>
-<li><a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> Specification: <a href="https://geojson.org" target="_blank">geojson.org</a></li>
-<li>Web Mercator Tile Scheme: <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames" target="_blank">Slippy Map Tilenames</a></li>
-</ul>
-<p>If you encounter issues not covered in the troubleshooting section, consult the course forum or office hours!</p>
 
                                 
                                 </section>
@@ -1823,7 +1834,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T20:39:07.145Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T20:39:20.918Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T21:25:43.673Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T21:25:57.670Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
