@@ -4,7 +4,11 @@ Adapted from: [https://labs.mapbox.com/education/impact-tools/sheet-mapper/](htt
 
 ## Overview
 
-In this exercise, you will create a live-updating web map that displays point locations from a public Google Sheet. The older version of this lab used the Google Sheets CSV download link and `csv2geojson`. This version uses the Google Sheets `gviz` JSONP response instead.
+In this exercise, you will create a live-updating web map that displays point locations from a public Google Sheet. This setup is useful because a Google Sheet can sit between a simple data-entry form and a public web map. For example, you can create a Google Form for collecting field observations, have each form submission automatically write a new row to a Google Sheet, and have your web map read from that sheet. When the sheet updates, the map updates the next time the page loads.
+
+That pattern is powerful for lightweight data collection and public communication. You do not need to build a database, write a server application, or manually rebuild the map after each new submission. As long as the sheet has usable `longitude` and `latitude` fields, the map can turn spreadsheet rows into web map points.
+
+The older version of this lab used the Google Sheets CSV download link and `csv2geojson`. This version uses the Google Sheets `gviz` JSONP response instead.
 
 JSONP is useful here because many Google Sheets CSV download links work when you click them in a browser, but are blocked when JavaScript tries to read them from a different website. The JSONP approach lets a simple static web page read a public Google Sheet without a proxy server.
 
@@ -17,6 +21,7 @@ JSONP is useful here because many Google Sheets CSV download links work when you
 By the end of this exercise, you should be able to explain:
 
 - how a public Google Sheet can act as a simple web map data source
+- how a Google Form can feed a Google Sheet that then feeds a web map
 - why the sheet needs longitude and latitude columns
 - how a Google Sheets `gviz` JSONP URL lets JavaScript retrieve public spreadsheet data
 - how spreadsheet rows are converted into GeoJSON point features
