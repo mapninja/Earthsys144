@@ -409,7 +409,6 @@ Before moving on, copy the style from the full grid layer to the fire-specific g
 
 Your extracted fire grid should now look like the original grid, but it should contain only the cells for your assigned fire.
 
-
 ![](images/20260522_132352_image.png)
 
 ### Step 6: Randomly Select 20 Candidate Grid Cells
@@ -468,7 +467,6 @@ You will use the exported sample grid as your working unit layer.
 
    ![](images/20260522_133213_image.png)
 
-
 ![](images/20260522_133332_image.png)
 
 1. Use the attribute table tools to:
@@ -479,14 +477,11 @@ You will use the exported sample grid as your working unit layer.
 
 ![](images/20260412_184518_image.png)
 
-
 ![](images/20260522_133424_image.png)
 
 This lets you work through the sampled grid cells systematically instead of hunting around visually.
 
 Note that to dismiss the yellow "Select Box" on your grid cell, you can use the Clear Selection Button ![](images/20260522_133516_image.png)
-
-
 
 ![](images/20260522_133555_image.png)
 
@@ -505,26 +500,31 @@ Create a new empty shapefile for your first set of labels.
    - **CRS:** `WGS 84 (EPSG:4326)`
 3. Click **OK**.
 
-
 ![](images/20260522_133736_image.png)
 
 ### Step 10: Get Ready to Edit
 
 Before you start drawing labels, adjust the digitizing settings so QGIS uses the rectangle tool you need for this exercise.
 
-1. Go to **QGIS > Settings** on Mac, or **Settings** on Windows.
-2. Open **Options**.
-3. In the Options dialog, go to **Map Tools > Digitizing**.
-4. Enable **Suppress attribute form pop-up after feature creation**.
-5. Click **Advanced** at the bottom of the Options panel.
-6. Click **I will be careful**.
-7. Expand `digitizing > shape-map-tools > current`.
-8. Copy this text:
+1. Go to **Settings > Options**.
+2. In the Options dialog, go to **Map Tools > Digitizing**.
+3. Enable **Suppress attribute form pop-up after feature creation**.
+4. Update the Rubberband settings, as below:
+
+![](images/20260522_140509_image.png)
+
+1. Click **Advanced** at the bottom of the Options panel.
+
+![](images/20260522_135125_image.png)
+
+1. Click **I will be careful**.
+2. Expand `digitizing > shape-map-tools > current`.
+3. Copy this text:
 
    ```
    rectangle-from-center-and-a-point
    ```
-9. Paste that text into the **Value** box for the `current` setting.
+4. Paste that text into the **Value** box for the `current` setting.
 
 ![](images/20260412_191109_image.png)
 
@@ -540,7 +540,34 @@ Before you start drawing labels, adjust the digitizing settings so QGIS uses the
 4. Open the layer's styling and set:
    - **Fill:** Transparent
    - **Stroke:** a color that contrasts clearly with the imagery you are using
-5. Click **Toggle Editing**.
+5. Right-Click the layer and **Toggle Editing**.
+
+## **Labeling guidance:**
+
+![](images/20260522_141316_image.png)
+
+![](images/20260522_141417_image.png)
+
+![](images/20260522_141443_image.png)
+
+![](images/20260522_141503_image.png)
+
+![](images/20260522_141525_image.png)
+
+![](images/20260522_141544_image.png)
+
+Only choose grid cells that meet all of the following conditions:
+
+- It **should have trees in it**.
+- It **SHOULD NOT** have buildings, houses, or other structures.
+- It should have **no roads, parking lots, cleared pads, or other obvious human-built infrastructure**.
+- It **should have NAIP imagery available in both the prefire and postfire layers**.
+- Keep the rectangles simple and consistent.
+- Work one tree at a time.
+- **If a sampled cell has no trees or contains roads, buildings, or other human-built infrastructure, move on to the next sampled cell.**
+- Save often.
+
+> **Important concept:** In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.
 
 ### Step 12: Label Trees in the Postfire Imagery
 
@@ -548,25 +575,18 @@ Now begin the main labeling task.
 
 1. In the docked attribute table for `sunetid_mortalitree_sample_grid`, select the first sampled grid cell and zoom to it.
 2. Inspect that cell in the **postfire** imagery.
-3. Only choose grid cells that meet all of the following conditions:
-   - It should have trees in it.
-   - It should have no buildings, houses, or other structures.
-   - It should have no roads, parking lots, cleared pads, or other obvious human-built infrastructure.
-   - It should have NAIP imagery available in both the prefire and postfire layers.
-4. If the cell meets those conditions, label the trees by drawing rectangles around them using **Add Polygon Feature**.
-5. If the cell does not meet those conditions, skip it and move to the next sampled grid cell.
-6. Save your edits periodically.
-7. Continue through the random sample in order until you have labeled trees in the first **4 suitable grid cells**.
-8. For bonus credit, you may continue labeling additional suitable grid cells beyond the required 4. Each additional suitable grid cell must include both postfire and prefire labels before it can count for extra credit.
+3. Make sure the Grid Cell is free of structures, etc...
+4. If the cell meets those conditions, label the trees by drawing rectangles around them using **Add Polygon Feature**, and the **Digitize Shape** Mode.
 
-**Labeling guidance:**
+![](images/20260522_140646_image.png)
 
-- Keep the rectangles simple and consistent.
-- Work one tree at a time.
-- If a sampled cell has no trees or contains roads, buildings, or other human-built infrastructure, move on to the next sampled cell.
-- Save often.
+1. To place a label, click in the center of the tree crown you want to label, then drag to the extent of teh crown, and right-click (two-finger click on Mac) to finish the drawing.
 
-> **Important concept:** In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.
+![](images/20260522_140940_image.png)
+
+1. Save your edits periodically.
+2. Continue through the random sample in order until you have labeled trees in the first **4 suitable grid cells**.
+3. For bonus credit, you may continue labeling additional suitable grid cells beyond the required 4. Each additional suitable grid cell must include both postfire and prefire labels before it can count for extra credit.
 
 ### Step 13: Save Your Work Frequently
 
@@ -581,12 +601,15 @@ Once you have finished labeling the first 4 suitable grid cells in the postfire 
 
 1. Right-click `sunetid_mortalitree_postfire_labels`.
 2. Choose **Save Features As...**
-3. Save a copy as:
+
+![](images/20260522_142103_image.png)
+
+1. Save a copy as:
 
    ```
    sunetid_mortalitree_prefire_labels.shp
    ```
-4. Add the new layer to the project if QGIS does not do this automatically.
+2. Add the new layer to the project if QGIS does not do this automatically.
 
 This copied layer gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.
 
@@ -670,7 +693,7 @@ Your labels will be reviewed as part of a machine learning validation workflow. 
 
 ## Conclusion
 
-Through this lab, you used QGIS 3.44.7 to:
+Through this lab, you used QGIS to:
 
 - bring temporary Earth Engine XYZ tile services into QGIS
 - organize prefire and postfire NAIP imagery for interpretation
@@ -718,14 +741,3 @@ These are foundational GIS data creation skills and an important introduction to
 - Return to the Earth Engine Code Editor
 - Run the NAIP tile URL script again
 - Copy the new URL values into the matching QGIS XYZ tile connections
-
----
-
-## Additional Resources
-
-- QGIS Documentation: [docs.qgis.org](https://docs.qgis.org)
-- NAIP Imagery Information: [USDA NAIP Program](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
-- GeoJSON Specification: [geojson.org](https://geojson.org)
-- Web Mercator Tile Scheme: [Slippy Map Tilenames](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames)
-
-If you encounter issues not covered in the troubleshooting section, consult the course forum or office hours!
