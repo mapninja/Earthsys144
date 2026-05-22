@@ -1399,23 +1399,51 @@ bright in the near-infrared band, so this view can make trees easier to see.
 </ul>
 <h2 id="part-3-fire-assignment-select-by-location-and-random-selection">Part 3: Fire Assignment, Select by Location, and Random Selection</h2>
 <h3 id="step-4-find-your-assigned-fire">Step 4: Find Your Assigned Fire</h3>
-<p>To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire. Your assignment is listed by <code>SUNETID</code>.</p>
-<ol>
-<li><p>Open the fire assignment <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> on Canvas:</p>
-<p><a href="https://canvas.stanford.edu/courses/224871/files?preview=17185814" target="_blank">Fire assignment table on Canvas</a></p>
-</li>
-<li>Sign in with your Stanford account if Canvas prompts you.</li>
-<li>Find your SUNETID in the <code>sunetid</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
-<li><p>Write down both values listed for your <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>:</p>
+<p>To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire based on their <code>SUNETID</code>.</p>
+<p>Find where the first three letters or characters of your <code>SUNETID</code> fall alphabetically in the range <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> below.</p>
+<table>
+<thead>
+<tr>
+<th>SUNETID prefix range</th>
+<th>Assigned fire</th>
+<th>Perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>adi</code> through <code>bas</code></td>
+<td>Castle Fire</td>
+<td><code>castle_2020</code></td>
+</tr>
+<tr>
+<td><code>ben</code> through <code>hcd</code></td>
+<td>Creek Fire</td>
+<td><code>creek_2020</code></td>
+</tr>
+<tr>
+<td><code>iro</code> through <code>lru</code></td>
+<td>CZU August Lightning Complex</td>
+<td><code>czu_aug_lightning_2020</code></td>
+</tr>
+<tr>
+<td><code>lup</code> through <code>rap</code></td>
+<td>North Complex</td>
+<td><code>north_complex_2020</code></td>
+</tr>
+<tr>
+<td><code>rco</code> through <code>wde</code></td>
+<td>SCU Lightning Complex</td>
+<td><code>scu_2020</code></td>
+</tr>
+</tbody>
+</table>
+<p>Write down both values listed for your range:</p>
 <ul>
-<li><code>assigned_fire</code></li>
-<li><code>perimeter_layer</code></li>
+<li>assigned fire</li>
+<li>perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 </ul>
-</li>
-</ol>
-<p>For example, if your <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> lists <code>Creek Fire</code> and <code>creek_2020</code>, you will use the <code>creek_2020</code> fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to select your grid cells.</p>
 <blockquote>
-<p><strong>Why do this?</strong> If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by last-name roster order spreads the labeling work across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.</p>
+<p><strong>Why do this?</strong> If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by <code>SUNETID</code> range spreads the labeling work evenly across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.</p>
 </blockquote>
 <h3 id="step-5-extract-grid-cells-for-your-assigned-fire-by-location">Step 5: Extract Grid Cells for Your Assigned Fire by Location</h3>
 <p>Now you will use your assigned fire perimeter to create a new grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> that contains only the grid cells that intersect that fire. This is called an <strong>extract by location</strong> operation because QGIS writes a new output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> based on the spatial relationship between two input layers.</p>
@@ -1726,7 +1754,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>[ ] You ran the Earth Engine script and copied the 2020 and 2022 NAIP RGB and IRG tile URLs</li>
 <li>[ ] You added the four Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services to QGIS</li>
 <li>[ ] You organized the imagery into prefire 2020 and postfire 2022 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups</li>
-<li>[ ] You found your assigned fire in the fire assignment <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> posted on Canvas</li>
+<li>[ ] You found your assigned fire using the <code>SUNETID</code> range <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li>[ ] You used Extract by location to create a fire-specific grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, such as <code>Z17_castle_2020_grid.shp</code></li>
 <li>[ ] You randomly selected 20 candidate grid cells from your fire-specific grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 <li>[ ] You exported the selected grid cells to <code>sunetid_mortalitree_sample_grid.shp</code></li>
@@ -1834,7 +1862,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T21:25:43.673Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T21:25:57.670Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T21:40:12.838Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T21:40:26.591Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
