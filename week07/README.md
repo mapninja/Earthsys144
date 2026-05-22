@@ -49,9 +49,9 @@ This workshop introduces the process of creating XYZ tiles from a georeferenced 
 
 This lab teaches students how to use OpenRefine and a geocoding API to convert a table of addresses into geographic coordinates. It reinforces why clean data and consistent fields are essential for reliable geocoding.
 
-### [02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages](02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md)
+### [02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP](02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md)
 
-This lab shows how a web map is constructed from HTML, JavaScript, a tile layer, and hosted data. Students publish the result using GitHub Pages so the map can be shared online.
+This lab shows how a web map is constructed from HTML, JavaScript, MapLibre GL JS, and a public Google Sheet. Students use Google Sheets JSONP to avoid common CSV/CORS problems, convert spreadsheet rows into GeoJSON points, create simple popups, and publish the result with AFS or GitHub Pages.
 
 ### [03 - TURN IN - Getting XYZ Tiles from Google Earth Engine](03_TURN_IN_getting_xyz_tiles_from_earth_engine.md)
 
@@ -59,7 +59,7 @@ This lab bridges cloud-based spatial analysis with desktop GIS by exporting an E
 
 ### [04 - TURN IN BONUS LAB - Tree Labeling in QGIS](04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md)
 
-This required Week 07 turn-in asks students to randomly select 20 candidate grid cells from the MORTALITREE fire dataset and label trees in the first 4 suitable cells. Students may continue labeling suitable cells beyond the required 4 as bonus work, earning 1 extra credit point per additional completed prefire/postfire grid cell, up to 10 extra credit points for the quarter. It introduces tree crown labeling workflows that support training data creation for machine learning.
+This required Week 07 turn-in asks students to use Earth Engine XYZ tile URLs in QGIS, randomly select 20 candidate grid cells from the MORTALITREE fire dataset, and label trees in the first 4 suitable cells. Students may continue labeling suitable cells beyond the required 4 as bonus work, earning 1 extra credit point per additional completed prefire/postfire grid cell, up to 10 extra credit points for the quarter. It introduces tree crown labeling workflows that support training data creation for machine learning.
 
 ## What to Expect in the Individual Lab Documents
 

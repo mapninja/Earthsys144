@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Google Sheet JSONP Map Template</title>
+    <!-- Load MapLibre GL JS, the JavaScript library that draws the interactive map. -->
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <!-- Load MapLibre's CSS so the map controls and popups display correctly. -->
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+        /* Make the page fill the whole browser window. Without this, the map div has no useful height. */
+        body, html { margin: 0; padding: 0; height: 100%; }
+
+        /* Place the map over the full page so the user sees only the interactive map. */
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <!-- This empty div is the container where MapLibre will draw the map. -->
+    <div id="map"></div>
+    <script>
+        // STEP 1: MAKE THE MAP
+        // MapLibre creates the interactive web map inside the <div id="map"></div>.
+        var map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+            center: [-122.411, 37.785],
+            zoom: 8
+        });
+
+        // STEP 2: CALL THE GOOGLE SHEET
+        // Wait for the basemap to load before adding spreadsheet data.
+        map.on('load', function () {
+            // This URL uses Google Sheets gviz JSONP, not the CSV download.
+            // JSONP loads data with a script tag, which avoids the CORS issue that blocks many CSV downloads.
+            // Paste your spreadsheet ID after /d/ and paste your sheet tab name after sheet=.
+            var sheetScript = document.createElement('script');
+            sheetScript.src = 'https://docs.google.com/spreadsheets/d/PASTE_YOUR_SHEET_ID_HERE/gviz/tq?tqx=out:json;responseHandler:handleGoogleSheetData&sheet=PASTE_YOUR_SHEET_NAME_HERE';
+            document.head.appendChild(sheetScript);
+        });
+
+        // Google calls this function after the sheet data loads.
+        function handleGoogleSheetData(response) {
+            // Store the column names from the first row of the Google Sheet.
+            var columns = response.table.cols.map(function (column) {
+                return column.label;
+            });
+
+            // STEP 3: CREATE THE POINTS
+            // Turn each spreadsheet row into one GeoJSON point.
+            var features = response.table.rows.map(function (row) {
+                var props = {};
+
+                // Copy each cell into props using its spreadsheet column name.
+                columns.forEach(function (columnName, index) {
+                    if (!columnName) return;
+                    props[columnName] = row.c[index] ? row.c[index].v : null;
+                });
+
+                // MapLibre expects point coordinates as numbers in [longitude, latitude] order.
+                return {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [Number(props.longitude), Number(props.latitude)]
+                    },
+                    properties: props
+                };
+            });
+
+            // GeoJSON is the standard web map format MapLibre uses for vector features.
+            var geojson = {
+                type: 'FeatureCollection',
+                features: features
+            };
+
+            // Add the GeoJSON as a map source. Sources hold data.
+            map.addSource('sheet-points', {
+                type: 'geojson',
+                data: geojson
+            });
+
+            // Add a circle layer to draw the source data. Layers control appearance.
+            map.addLayer({
+                id: 'points',
+                type: 'circle',
+                source: 'sheet-points',
+                paint: {
+                    'circle-radius': 6,
+                    'circle-color': 'purple'
+                }
+            });
+
+            // STEP 4: CREATE MINIMAL POPUPS
+            // When a point is clicked, show values from the location and description columns.
+            map.on('click', 'points', function (e) {
+                var props = e.features[0].properties;
+                var html = `<h3>${props.location}</h3><p>${props.description}</p>`;
+
+                new maplibregl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(html)
+                    .addTo(map);
+            });
+
+            // Make the cursor change over points so users know the points can be clicked.
+            map.on('mouseenter', 'points', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'points', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        }
+    </script>
+</body>
+</html>

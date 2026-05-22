@@ -4,74 +4,126 @@
 <head>
     <meta charset="utf-8">
     <title>CSV to Map Example</title>
-    <!-- Load MapLibre GL JS for the map -->
+    <!-- Load MapLibre GL JS, the JavaScript library that draws the interactive map. -->
     <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <!-- Load MapLibre's CSS so the map controls and popups display correctly. -->
     <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
-    <!-- Load jQuery for easy AJAX requests -->
+    <!-- Load jQuery so we can request the CSV file with a short $.ajax() call. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <!-- Load csv2geojson to convert CSV to GeoJSON -->
+    <!-- Load csv2geojson so the browser can turn latitude/longitude CSV rows into map points. -->
     <script src="https://npmcdn.com/csv2geojson@latest/csv2geojson.js"></script>
     <style>
+        /* Make the page fill the whole browser window. Without this, the map div has no useful height. */
         body, html { margin: 0; padding: 0; height: 100%; }
+
+        /* Place the map over the full page so the user sees only the interactive map. */
         #map { position: absolute; top: 0; bottom: 0; width: 100%; }
     </style>
 </head>
 <body>
-    <!-- This div is where the map will appear -->
+    <!-- This empty div is the container where MapLibre will draw the map. -->
     <div id="map"></div>
     <script>
-        // Create the map and set its starting position and zoom
+        // Create the MapLibre map object. This is the main object we use to add data and interactions.
         var map = new maplibregl.Map({
+            // Tell MapLibre which HTML element should contain the map.
             container: 'map',
+
+            // Use a public basemap style. The basemap gives geographic context behind the points.
             style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json', // OpenStreetMap style. This can be replaced with any MapLibre style URL, see the exercise for more
+
+            // Set the starting map center as [longitude, latitude].
             center: [-122.411, 37.785], // [longitude, latitude]
+
+            // Set the starting zoom level. Higher numbers are more zoomed in.
             zoom: 8
         });
 
-        // When the page is ready, get the CSV data
+        // Wait until the HTML page is ready before requesting the spreadsheet data.
         $(document).ready(function () {
+            // Ask the browser to download the CSV text.
             $.ajax({
+                // GET means "retrieve data from this URL."
                 type: "GET",
-                //YOUR TURN: Replace with csv export link
-                url: 'https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&sheet=cal_haunted_places',
+
+                // YOUR TURN: Replace the Google Sheets CSV export URL inside encodeURIComponent().
+                // Google Sheets CSV downloads are often blocked by browser CORS rules.
+                // The AllOrigins URL is a small proxy that returns the CSV with browser-readable headers.
+                url: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://docs.google.com/spreadsheets/d/1rPYpMp01hEPUJPfKH1nBWFjGcYNMeGraoVFKoOGtOGQ/gviz/tq?tqx=out:csv&sheet=cal_haunted_places'),
+
+                // Treat the response as plain text because CSV is text, not JSON.
                 dataType: "text",
+
+                // After the CSV downloads successfully, send it to the conversion function below.
                 success: function (csvData) { makeGeoJSON(csvData); }
             });
+
+            // Convert the downloaded CSV text into GeoJSON, the format MapLibre expects for point data.
             function makeGeoJSON(csvData) {
                 csv2geojson.csv2geojson(csvData, {
+                    // Name of the CSV column containing latitude values.
                     latfield: 'latitude',
+
+                    // Name of the CSV column containing longitude values.
                     lonfield: 'longitude',
+
+                    // Tell csv2geojson that this is a comma-separated file.
                     delimiter: ','
                 }, function (err, geojson) {
-                    map.on('load', function () {
+                    // Add the converted point data to the map.
+                    function addPoints() {
+                        // Add a new map layer that draws each GeoJSON point as a circle.
                         map.addLayer({
+                            // The layer id lets us refer to this layer later for clicks and hover behavior.
                             id: 'points',
+
+                            // A circle layer draws point features as styled circles.
                             type: 'circle',
+
+                            // Give MapLibre the GeoJSON data created from the CSV.
                             source: { type: 'geojson', data: geojson },
+
+                            // Paint controls how the points look on the map.
                             paint: {
+                                // Set the point size in pixels.
                                 'circle-radius': 6,
+
+                                // Set the point color.
                                 'circle-color': 'purple'
                             }
                         });
-                        // When a point is clicked, show a popup
+
+                        // When a user clicks a point, open a popup for that point.
                         map.on('click', 'points', function (e) {
+                            // Get the spreadsheet attributes for the clicked point.
                             var props = e.features[0].properties;
-                            // Create popup HTML: location as heading, description as text
+
+                            // Build popup HTML using the location and description columns from the CSV.
                             var html = `<h3>${props.location}</h3><p>${props.description}</p>`;
+
+                            // Create and display the popup at the clicked map location.
                             new maplibregl.Popup()
                                 .setLngLat(e.lngLat)
                                 .setHTML(html)
                                 .addTo(map);
                         });
 
-                        // Change cursor to pointer when hovering over points
+                        // Change the cursor to a pointer when hovering over points so they feel clickable.
                         map.on('mouseenter', 'points', function () {
                             map.getCanvas().style.cursor = 'pointer';
                         });
+
+                        // Change the cursor back after the user moves away from the points.
                         map.on('mouseleave', 'points', function () {
                             map.getCanvas().style.cursor = '';
                         });
-                    });
+                    }
+
+                    // If the basemap has already loaded, add the points now.
+                    if (map.loaded()) addPoints();
+
+                    // Otherwise, wait until the basemap finishes loading before adding the points.
+                    else map.on('load', addPoints);
                 });
             }
         });

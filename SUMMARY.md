@@ -57,7 +57,7 @@
 * [Week 07 - Web Mapping & APIs](week07/README.md)
   * [00 - OPTIONAL - Making & Serving Map Tiles with QGIS](week07/00_OPTIONAL_making_and_serving_map_tiles_with_qgis.md)
   * [01 - TURN IN - Geocoding Addresses with locator.stanford.edu & OpenRefine](week07/01_TURN_IN_geocoding_addresses_with_locator_stanford_edu_and_openrefine.md)
-  * [02 - TURN IN - Creating & Hosting a WebMap, using MapLibre & Turf.js and GitHub Pages](week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_and_turf_js_and_github_pages.md)
+  * [02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP](week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md)
   * [03 - TURN IN - Getting XYZ Tiles from Google Earth Engine](week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md)
   * [04 - TURN IN BONUS LAB - Tree Labeling in QGIS](week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md)
 

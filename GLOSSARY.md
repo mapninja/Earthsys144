@@ -160,6 +160,10 @@ A spatial database format that can store multiple layers, tables, relationships,
 
 An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.
 
+## Google Sheets JSONP
+
+A way for a simple web page to request public Google Sheet data through a script tag instead of a CSV download. In this course, JSONP helps avoid common browser CORS restrictions when building a spreadsheet-driven web map.
+
 ## Georeferencing
 
 The process of aligning an image, scanned map, or other dataset to real-world coordinates so it can be used with other spatial data.
@@ -200,6 +204,10 @@ A line or area representing equal travel time from a source. In terrain-based mo
 
 An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.
 
+## JSONP
+
+Short for JSON with Padding. JSONP is an older browser pattern that loads data using a `<script>` tag and calls a named JavaScript function when the data arrives.
+
 ## Key Field
 
 A field used to connect records between tables. A key field may function as a primary key in one table and a foreign key in another.
@@ -231,6 +239,10 @@ A small supporting map that shows where the main map area sits within a larger g
 ## Map Layout
 
 The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.
+
+## MapLibre GL JS
+
+An open-source JavaScript library for drawing interactive web maps in a browser. In this course, MapLibre is used to display basemaps, GeoJSON points, and popups from an HTML file.
 
 ## Map Projection
 
@@ -383,6 +395,10 @@ A web-based spatial presentation that combines maps with narrative text, images,
 ## SQL
 
 Structured Query Language, a language used to ask questions of tables and databases. In GIS, SQL is often used to filter records, join tables, and summarize data.
+
+## Static Website
+
+A website made from files such as HTML, CSS, JavaScript, and images that can be served directly without a custom database or server-side application. GitHub Pages and Stanford AFS can host static websites.
 
 ## Symbology
 
