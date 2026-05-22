@@ -24,7 +24,7 @@ By the end of this lab, you will be able to:
 - Work with layers, including reordering, toggling visibility, and exploring metadata
 - Use Google Earth Engine to create temporary XYZ tile URLs for NAIP imagery
 - Add Earth Engine XYZ tile services to QGIS
-- Query attribute tables and select features based on attributes and location
+- Query attribute tables and select features based on spatial location
 - Use geoprocessing tools to create a random sample of candidate grid cells
 - Create and edit shapefile layers for new spatial labels
 - Use a docked attribute table to move systematically through sampled grid cells
@@ -57,7 +57,7 @@ This package contains the QGIS project structure and vector data you need for th
   - `north_complex_2020` (North Complex perimeter)
   - `scu_2020` (SCU Lightning Complex perimeter)
   - `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid` (XYZ tile grid)
-  - `MORTALITREE_FIRE_PERIMETERS_2020`
+- `MORTALITREE_FIRE_PERIMETERS_2020`
 - Basemap layers, such as `Google Hybrid` and `Google Terrain`
 - Prepared layer groups for organizing the imagery you will add:
   - `PREFIRE - NAIP 2020 Earth Engine Tiles`
@@ -310,11 +310,11 @@ The Layers Panel (usually on the left side) shows all layers in your project. Le
    - Explore the different tabs (Source, Symbology, etc.)
    - Don't make changes yet—just observe what's available
 
----
+![](images/20260522_124428_image.png)
 
 ## Part 2: Working with Attributes and Selections
 
-### Step 4: Open and Explore the Attribute Table
+### Step 3: Open and Explore the Attribute Table
 
 Every vector layer has an attribute table containing information about each feature:
 
@@ -333,30 +333,85 @@ Every vector layer has an attribute table containing information about each feat
 - **Y:** Tile row number
 - These **Z/X/Y** values follow the Web Mercator tiling scheme used by web maps
 
-## Part 3: Geoprocessing and Random Selection
+## Part 3: Fire Assignment, Select by Location, and Random Selection
 
-### Step 5: Randomly Select 20 Candidate Grid Cells
+### Step 4: Find Your Assigned Fire
 
-Now you will randomly select 20 candidate grid cells from the full MORTALITREE tile grid. You will not label all 20 cells for the required part of the lab. You will inspect them in order and label the first 4 cells that meet the suitability rules. If you want to earn extra credit, you may keep working through the sample after those first 4 suitable cells.
+To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire. Your assignment is listed by `SUNETID`.
+
+1. Open the fire assignment table on Canvas:
+
+   [Fire assignment table on Canvas](https://canvas.stanford.edu/courses/224871/files?preview=17185814)
+2. Sign in with your Stanford account if Canvas prompts you.
+3. Find your SUNETID in the `sunetid` column.
+4. Write down both values listed for your row:
+   - `assigned_fire`
+   - `perimeter_layer`
+
+For example, if your row lists `Creek Fire` and `creek_2020`, you will use the `creek_2020` fire perimeter layer to select your grid cells.
+
+> **Why do this?** If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by last-name roster order spreads the labeling work across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.
+
+### Step 5: Extract Grid Cells for Your Assigned Fire by Location
+
+Now you will use your assigned fire perimeter to create a new grid layer that contains only the grid cells that intersect that fire. This is called an **extract by location** operation because QGIS writes a new output layer based on the spatial relationship between two input layers.
+
+1. In the **Layers** panel, turn on:
+   - `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
+   - your assigned fire perimeter layer, such as `castle_2020`
+2. Go to **Processing > Toolbox**.
+3. In the Processing Toolbox search bar, type `extract by location`.
+4. Open **Extract by location**.
+5. Configure the tool:
+   - **Extract features from:** `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
+   - **Where the features (geometric predicate):** check `intersect`
+   - **By comparing to the features from:** your assigned `perimeter_layer`
+   - **Extracted (location):** save the output in your extracted `mortalitree/data/` folder using a fire-specific name
+6. Click **Run**.
+7. Make sure **Open output file after running algorithm** is checked, or add the output layer manually after the tool finishes.
+
+If you are assigned the Castle Fire, use:
+
+```text
+Z17_castle_2020_grid.shp
+```
+
+For other assigned fires, use the same pattern:
+
+| Assigned perimeter layer | Output grid layer name |
+| --- | --- |
+| `castle_2020` | `Z17_castle_2020_grid.shp` |
+| `creek_2020` | `Z17_creek_2020_grid.shp` |
+| `czu_aug_lightning_2020` | `Z17_czu_aug_lightning_2020_grid.shp` |
+| `north_complex_2020` | `Z17_north_complex_2020_grid.shp` |
+| `scu_2020` | `Z17_scu_2020_grid.shp` |
+
+You should now have a new grid layer containing only grid cells in and around your assigned fire perimeter. Turn off the original full grid layer so you can focus on your assigned fire grid.
+
+> **Why use Extract by location?** The grid layer does not have to store a fire name in every row. QGIS can compare the grid cell polygons to the assigned fire perimeter polygon and write a new layer containing only the cells that overlap that perimeter.
+
+### Step 6: Randomly Select 20 Candidate Grid Cells
+
+Now you will randomly select 20 candidate grid cells from your assigned fire grid. You will not label all 20 cells for the required part of the lab. You will inspect them in order and label the first 4 cells that meet the suitability rules. If you want to earn extra credit, you may keep working through the sample after those first 4 suitable cells.
 
 1. Go to **Processing > Toolbox**.
 2. In the Processing Toolbox search bar, type `random selection`.
 3. Open **Random selection**.
 4. Configure the tool:
-   - **Input layer:** `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
+   - **Input layer:** your extracted fire grid layer, such as `Z17_castle_2020_grid`
    - **Method:** `Number of selected features`
    - **Number of selected features:** `20`
 5. Click **Run**.
 
-You should now see 20 selected grid cells. They may fall in any of the five fire areas. That is expected.
+You should now see 20 selected grid cells within your assigned fire area.
 
-> **Why do this?** Random selection spreads the work across the larger project area. You are selecting more candidate cells than you will label because some random cells may contain roads, buildings, water, bare ground, or other features that are not useful for this tree-labeling task.
+> **Why do this?** Random selection spreads the work across your assigned fire area. You are selecting more candidate cells than you will label because some random cells may contain roads, buildings, water, bare ground, or other features that are not useful for this tree-labeling task.
 
-### Step 6: Export the Selected Grid Cells to a New Layer
+### Step 7: Export the Selected Grid Cells to a New Layer
 
 Now export those 20 selected grid cells to a new working layer.
 
-1. Right-click `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`.
+1. Right-click your extracted fire grid layer, such as `Z17_castle_2020_grid`.
 2. Choose **Export > Save Selected Features As...**
 3. Make sure the **Save only selected features** option is enabled.
 4. Save the layer in your extracted project folder as:
@@ -369,17 +424,17 @@ Now export those 20 selected grid cells to a new working layer.
 
    ![](images/20260412_184036_image.png)
 
-**Tip & Trick:** Copy the style from the original grid layer and paste it to the new one, then turn off the old grid layer.
+**Tip & Trick:** Copy the style from the assigned fire grid layer and paste it to the sample grid, then turn off the assigned fire grid layer.
 
-1. Right-click the original grid layer and choose **Styles > Copy Style**.
+1. Right-click your extracted fire grid layer and choose **Styles > Copy Style**.
 
    ![](images/20260412_184119_image.png)
 2. Right-click `sunetid_mortalitree_sample_grid` and choose **Styles > Paste Style**.
 
    ![](images/20260412_184153_image.png)
-3. Turn off the original grid layer.
+3. Turn off your extracted fire grid layer.
 
-### Step 7: Dock the Attribute Table Below the Map and Use It to Navigate
+### Step 8: Dock the Attribute Table Below the Map and Use It to Navigate
 
 You will use the exported sample grid as your working unit layer.
 
@@ -403,7 +458,7 @@ This lets you work through the sampled grid cells systematically instead of hunt
 
 ## Part 4: Create and Edit the Label Layers
 
-### Step 8: Create the Postfire Label Layer
+### Step 9: Create the Postfire Label Layer
 
 Create a new empty shapefile for your first set of labels.
 
@@ -416,7 +471,7 @@ Create a new empty shapefile for your first set of labels.
 
 ![](images/20260412_184834_image.png)
 
-### Step 9: Get Ready to Edit
+### Step 10: Get Ready to Edit
 
 Before you start drawing labels, adjust the digitizing settings so QGIS uses the rectangle tool you need for this exercise.
 
@@ -440,7 +495,7 @@ Before you start drawing labels, adjust the digitizing settings so QGIS uses the
 
 > **Why do this?** This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.
 
-### Step 10: Start Editing the Postfire Label Layer
+### Step 11: Start Editing the Postfire Label Layer
 
 1. Make sure the **POSTFIRE - NAIP 2022 Earth Engine Tiles** imagery group is visible.
 2. Toggle between the `NAIP 2022 RGB - Earth Engine` and `NAIP 2022 IRG - Earth Engine` layers to decide which one is easier to interpret. You can switch between them while labeling if that helps.
@@ -450,7 +505,7 @@ Before you start drawing labels, adjust the digitizing settings so QGIS uses the
    - **Stroke:** a color that contrasts clearly with the imagery you are using
 5. Click **Toggle Editing**.
 
-### Step 11: Label Trees in the Postfire Imagery
+### Step 12: Label Trees in the Postfire Imagery
 
 Now begin the main labeling task.
 
@@ -476,14 +531,14 @@ Now begin the main labeling task.
 
 > **Important concept:** In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.
 
-### Step 12: Save Your Work Frequently
+### Step 13: Save Your Work Frequently
 
 While digitizing:
 
 1. Click **Save Layer Edits** regularly.
 2. Do not wait until the end of the session to save.
 
-### Step 13: Create the Prefire Label Layer by Copying the Postfire Layer
+### Step 14: Create the Prefire Label Layer by Copying the Postfire Layer
 
 Once you have finished labeling the first 4 suitable grid cells in the postfire imagery:
 
@@ -498,7 +553,7 @@ Once you have finished labeling the first 4 suitable grid cells in the postfire 
 
 This copied layer gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.
 
-### Step 14: Finish the Prefire Tree Labels
+### Step 15: Finish the Prefire Tree Labels
 
 Now switch to the prefire imagery and finish the second label layer.
 
@@ -519,7 +574,7 @@ After you complete the required 4 suitable grid cells in both the postfire and p
 - You may earn up to 10 extra credit points total for the quarter through this bonus labeling work.
 - These points can effectively replace a lower grade, or simply make up for points lost on another submission.
 
-### Step 15: Export Both Label Layers to GeoJSON
+### Step 16: Export Both Label Layers to GeoJSON
 
 When both shapefiles are complete, export each one to GeoJSON.
 
@@ -556,7 +611,9 @@ When you are done:
 - [ ] You ran the Earth Engine script and copied the 2020 and 2022 NAIP RGB and IRG tile URLs
 - [ ] You added the four Earth Engine XYZ tile services to QGIS
 - [ ] You organized the imagery into prefire 2020 and postfire 2022 layer groups
-- [ ] You randomly selected 20 candidate grid cells from `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
+- [ ] You found your assigned fire in the fire assignment table posted on Canvas
+- [ ] You used Extract by location to create a fire-specific grid layer, such as `Z17_castle_2020_grid.shp`
+- [ ] You randomly selected 20 candidate grid cells from your fire-specific grid layer
 - [ ] You exported the selected grid cells to `sunetid_mortalitree_sample_grid.shp`
 - [ ] You used the docked attribute table to move through the grid cells
 - [ ] You created `sunetid_mortalitree_postfire_labels.shp` in `EPSG:4326`
@@ -580,7 +637,8 @@ Through this lab, you used QGIS 3.44.7 to:
 
 - bring temporary Earth Engine XYZ tile services into QGIS
 - organize prefire and postfire NAIP imagery for interpretation
-- randomly select candidate grid cells
+- use a fire perimeter to select grid cells by location
+- randomly select candidate grid cells within an assigned fire area
 - export a working subset of grid cells
 - navigate spatial work systematically with the attribute table
 - create and edit shapefile-based label layers
