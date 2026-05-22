@@ -337,21 +337,25 @@ Every vector layer has an attribute table containing information about each feat
 
 ### Step 4: Find Your Assigned Fire
 
-To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire. Your assignment is listed by `SUNETID`.
+To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire based on their `SUNETID`.
 
-1. Open the fire assignment table on Canvas:
+Find where the first three letters or characters of your `SUNETID` fall alphabetically in the range table below.
 
-   [Fire assignment table on Canvas](https://canvas.stanford.edu/courses/224871/files?preview=17185814)
-2. Sign in with your Stanford account if Canvas prompts you.
-3. Find your SUNETID in the `sunetid` column.
-4. Write down both values listed for your row:
 
-   - `assigned_fire`
-   - `perimeter_layer`
+| SUNETID prefix range | Assigned fire                | Perimeter layer          |
+| ---------------------- | ------------------------------ | -------------------------- |
+| `adi` through `bas`  | Castle Fire                  | `castle_2020`            |
+| `ben` through `hcd`  | Creek Fire                   | `creek_2020`             |
+| `iro` through `lru`  | CZU August Lightning Complex | `czu_aug_lightning_2020` |
+| `lup` through `rap`  | North Complex                | `north_complex_2020`     |
+| `rco` through `wde`  | SCU Lightning Complex        | `scu_2020`               |
 
-For example, if your row lists `Creek Fire` and `creek_2020`, you will use the `creek_2020` fire perimeter layer to select your grid cells.
+Write down both values listed for your range:
 
-> **Why do this?** If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by last-name roster order spreads the labeling work across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.
+- assigned fire
+- perimeter layer
+
+> **Why do this?** If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by `SUNETID` range spreads the labeling work evenly across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.
 
 ### Step 5: Extract Grid Cells for Your Assigned Fire by Location
 
@@ -671,7 +675,7 @@ When you are done:
 - [ ] You ran the Earth Engine script and copied the 2020 and 2022 NAIP RGB and IRG tile URLs
 - [ ] You added the four Earth Engine XYZ tile services to QGIS
 - [ ] You organized the imagery into prefire 2020 and postfire 2022 layer groups
-- [ ] You found your assigned fire in the fire assignment table posted on Canvas
+- [ ] You found your assigned fire using the `SUNETID` range table
 - [ ] You used Extract by location to create a fire-specific grid layer, such as `Z17_castle_2020_grid.shp`
 - [ ] You randomly selected 20 candidate grid cells from your fire-specific grid layer
 - [ ] You exported the selected grid cells to `sunetid_mortalitree_sample_grid.shp`
