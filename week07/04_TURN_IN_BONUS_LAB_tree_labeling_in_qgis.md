@@ -345,6 +345,7 @@ To distribute the class evenly across the five 2020 fire areas, each student has
 2. Sign in with your Stanford account if Canvas prompts you.
 3. Find your SUNETID in the `sunetid` column.
 4. Write down both values listed for your row:
+
    - `assigned_fire`
    - `perimeter_layer`
 
@@ -356,12 +357,17 @@ For example, if your row lists `Creek Fire` and `creek_2020`, you will use the `
 
 Now you will use your assigned fire perimeter to create a new grid layer that contains only the grid cells that intersect that fire. This is called an **extract by location** operation because QGIS writes a new output layer based on the spatial relationship between two input layers.
 
+![](images/20260522_131928_image.png)
+
 1. In the **Layers** panel, turn on:
    - `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
    - your assigned fire perimeter layer, such as `castle_2020`
 2. Go to **Processing > Toolbox**.
 3. In the Processing Toolbox search bar, type `extract by location`.
 4. Open **Extract by location**.
+
+![](images/20260522_131938_image.png)
+
 5. Configure the tool:
    - **Extract features from:** `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
    - **Where the features (geometric predicate):** check `intersect`
@@ -378,17 +384,33 @@ Z17_castle_2020_grid.shp
 
 For other assigned fires, use the same pattern:
 
-| Assigned perimeter layer | Output grid layer name |
-| --- | --- |
-| `castle_2020` | `Z17_castle_2020_grid.shp` |
-| `creek_2020` | `Z17_creek_2020_grid.shp` |
+
+| Assigned perimeter layer | Output grid layer name                |
+| -------------------------- | --------------------------------------- |
+| `castle_2020`            | `Z17_castle_2020_grid.shp`            |
+| `creek_2020`             | `Z17_creek_2020_grid.shp`             |
 | `czu_aug_lightning_2020` | `Z17_czu_aug_lightning_2020_grid.shp` |
-| `north_complex_2020` | `Z17_north_complex_2020_grid.shp` |
-| `scu_2020` | `Z17_scu_2020_grid.shp` |
+| `north_complex_2020`     | `Z17_north_complex_2020_grid.shp`     |
+| `scu_2020`               | `Z17_scu_2020_grid.shp`               |
 
 You should now have a new grid layer containing only grid cells in and around your assigned fire perimeter. Turn off the original full grid layer so you can focus on your assigned fire grid.
 
 > **Why use Extract by location?** The grid layer does not have to store a fire name in every row. QGIS can compare the grid cell polygons to the assigned fire perimeter polygon and write a new layer containing only the cells that overlap that perimeter.
+
+Before moving on, copy the style from the full grid layer to the fire-specific grid layer you just created. This keeps the grid cells visible with the same outline and fill settings as the original dataset.
+
+1. In the **Layers** panel, right-click `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`.
+2. Choose **Styles > Copy Style > All Style Categories**.
+
+![](images/20260522_132054_image.png)
+
+1. Right-click your new fire-specific grid layer, such as `Z17_castle_2020_grid`.
+2. Choose **Styles > Paste Style > All Style Cetegories**.
+
+Your extracted fire grid should now look like the original grid, but it should contain only the cells for your assigned fire.
+
+
+![](images/20260522_132352_image.png)
 
 ### Step 6: Randomly Select 20 Candidate Grid Cells
 
@@ -403,7 +425,11 @@ Now you will randomly select 20 candidate grid cells from your assigned fire gri
    - **Number of selected features:** `20`
 5. Click **Run**.
 
+![](images/20260522_132631_image.png)
+
 You should now see 20 selected grid cells within your assigned fire area.
+
+![](images/20260522_132725_image.png)
 
 > **Why do this?** Random selection spreads the work across your assigned fire area. You are selecting more candidate cells than you will label because some random cells may contain roads, buildings, water, bare ground, or other features that are not useful for this tree-labeling task.
 
@@ -419,8 +445,7 @@ Now export those 20 selected grid cells to a new working layer.
    ```
    sunetid_mortalitree_sample_grid.shp
    ```
-5. Leave the default CRS unless QGIS prompts you to choose otherwise.
-6. Click **OK**.
+5. Click **OK**.
 
    ![](images/20260412_184036_image.png)
 
@@ -439,10 +464,14 @@ Now export those 20 selected grid cells to a new working layer.
 You will use the exported sample grid as your working unit layer.
 
 1. Open the attribute table for `sunetid_mortalitree_sample_grid`.
-2. If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.
+2. If it opens in a separate window, dock it below the map panel by clicking on the Dock Attribute Table button at the far rigth of the Attribute Table Toolbar.
 
-   ![](images/20260412_184334_image.png)
-3. Use the attribute table tools to:
+   ![](images/20260522_133213_image.png)
+
+
+![](images/20260522_133332_image.png)
+
+1. Use the attribute table tools to:
 
    - select a feature
    - zoom to the selected feature
@@ -450,9 +479,16 @@ You will use the exported sample grid as your working unit layer.
 
 ![](images/20260412_184518_image.png)
 
-![](images/20260412_184439_image.png)
+
+![](images/20260522_133424_image.png)
 
 This lets you work through the sampled grid cells systematically instead of hunting around visually.
+
+Note that to dismiss the yellow "Select Box" on your grid cell, you can use the Clear Selection Button ![](images/20260522_133516_image.png)
+
+
+
+![](images/20260522_133555_image.png)
 
 ---
 
@@ -469,7 +505,8 @@ Create a new empty shapefile for your first set of labels.
    - **CRS:** `WGS 84 (EPSG:4326)`
 3. Click **OK**.
 
-![](images/20260412_184834_image.png)
+
+![](images/20260522_133736_image.png)
 
 ### Step 10: Get Ready to Edit
 
