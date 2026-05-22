@@ -70,6 +70,16 @@ This package contains the QGIS project structure and vector data you need for th
 1. Download `mortalitree.zip`
 2. Extract it to your Documents folder (or another location you can easily access)
 
+### What's in the Data Folder
+
+Inside the extracted `mortalitree/data/` folder you'll find:
+
+- **Tile boundary grid:** `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
+- **Fire perimeter layers:** `castle_2020`, `creek_2020`, `czu_aug_lightning_2020`, `north_complex_2020`, and `scu_2020`
+- **Combined fire perimeter layer:** `MORTALITREE_FIRE_PERIMETERS_2020`
+
+**Important:** Never modify or delete the original files in the extracted `data/` folder. These are your source data. Save your new working layers and final outputs in clearly named files so they are easy to find later
+
 > **Why is the imagery not already in the package?** NAIP imagery is very large. Instead of downloading or packaging those files, you will ask Earth Engine to serve temporary map tiles to QGIS. This keeps the project package smaller and gives you practice connecting a cloud-based imagery service to desktop GIS.
 
 ### Create NAIP Tile URLs in Google Earth Engine
@@ -237,6 +247,8 @@ You will add four tile services to QGIS: 2020 RGB, 2020 IRG, 2022 RGB, and 2022 
 
 Before you begin random selection and labeling, make sure the imagery is organized so you can quickly switch between years and band combinations. The project package should already include empty prefire and postfire imagery groups. If you do not see them, create them using the steps below.
 
+![](images/20260522_123202_image.png)
+
 1. Look in the **Layers** panel for these groups:
 
    ```
@@ -256,24 +268,12 @@ Before you begin random selection and labeling, make sure the imagery is organiz
 
    - `NAIP 2022 RGB - Earth Engine`
    - `NAIP 2022 IRG - Earth Engine`
-6. Keep the tile layers turned off until you zoom to a sampled grid cell.
-7. When inspecting a grid cell, turn on only one or two imagery layers at a time.
-8. Save the QGIS project so the tile connections and groups remain part of your lab workspace.
+
+   ![](images/20260522_123407_image.png)
+6. When inspecting a grid cell, turn on only one or two imagery layers at a time
+7. Save the QGIS project so the tile connections and groups remain part of your lab workspace.
 
 > **Performance note:** Earth Engine is creating these map tiles for display. If you turn on all four statewide tile layers while zoomed far out, QGIS may feel slow. Zoom to the grid-cell level first, then turn on the imagery you need.
-
-### What's in the Data Folder
-
-Inside the extracted `mortalitree/data/` folder you'll find:
-
-- **Tile boundary grid:** `Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid`
-- **Fire perimeter layers:** `castle_2020`, `creek_2020`, `czu_aug_lightning_2020`, `north_complex_2020`, and `scu_2020`
-- **Combined fire perimeter layer:** `MORTALITREE_FIRE_PERIMETERS_2020`
-- **Basemaps:** `Google Hybrid` and `Google Terrain`
-
-**Important:** Never modify or delete the original files in the extracted `data/` folder. These are your source data. Save your new working layers and final outputs in clearly named files so they are easy to find later.
-
----
 
 ## Part 1: Confirm and Explore the Project
 
@@ -310,26 +310,6 @@ The Layers Panel (usually on the left side) shows all layers in your project. Le
    - Explore the different tabs (Source, Symbology, etc.)
    - Don't make changes yet—just observe what's available
 
-### Step 3: Explore Layer Metadata
-
-Metadata tells you important information about your spatial data:
-
-1. Right-click the **grid layer** and select **Properties**
-2. Navigate to the **Information** tab
-3. Review the metadata including:
-
-   - **CRS (Coordinate Reference System):** The vector grid and fire perimeter layers should be WGS 84 (EPSG:4326)
-   - **Extent:** The bounding box coordinates
-   - **Feature count:** How many grid cells exist
-   - **Geometry type:** Should be "Polygon"
-4. Repeat for the NAIP imagery layer
-
-   - Note that the source is an Earth Engine XYZ tile URL
-   - Check that the URL contains `{z}`, `{x}`, and `{y}` placeholders
-   - Remember that these tile layers are for visual interpretation, not for measuring pixel values or running raster analysis in QGIS
-
-**Why this matters:** Understanding your data's coordinate system, extent, and properties is essential before any spatial analysis. Mismatched coordinate systems are one of the most common GIS errors.
-
 ---
 
 ## Part 2: Working with Attributes and Selections
@@ -344,14 +324,14 @@ Every vector layer has an attribute table containing information about each feat
    - Each row represents one grid cell
    - Columns contain attributes like tile coordinates (X, Y, Z)
 
-![](images/20260412_181047_image.png)
+![](images/20260522_123628_image.png)
 
 **Understanding the Grid:**
 
-- **Z:** Zoom level (should be 18)
+- **Z:** Zoom level (should be 17)
 - **X:** Tile column number
 - **Y:** Tile row number
-- These Z/X/Y values follow the Web Mercator tiling scheme used by web maps
+- These **Z/X/Y** values follow the Web Mercator tiling scheme used by web maps
 
 ## Part 3: Geoprocessing and Random Selection
 
