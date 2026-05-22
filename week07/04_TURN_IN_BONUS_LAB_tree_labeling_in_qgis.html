@@ -1053,14 +1053,14 @@
                                 
                                 <h1 id="turn-in-bonus-lab---tree-labeling-in-qgis">TURN IN BONUS LAB - Tree Labeling in QGIS</h1>
 <blockquote>
-<p><strong>Bonus turn-in:</strong> This lab is a required turn-in for students who choose to complete the bonus labeling opportunity. It is not an optional workshop. Students will randomly select 20 candidate grid cells and complete tree labels in the first 5 suitable cells for up to 10 extra points added to their quarter total.</p>
+<p><strong>Required Week 07 turn-in and bonus opportunity:</strong> This lab is required for the Week 07 lab. Students will randomly select 20 candidate grid cells and complete tree labels in the first 4 suitable cells in both the postfire and prefire imagery. Students may then continue labeling additional suitable grid cells as bonus work. Each additional completed grid cell beyond the required 4, with both postfire and prefire labels, earns 1 extra credit point, up to 10 extra credit points for the quarter.</p>
 <p><strong>Note:</strong> To make sure you are viewing the most recent version of this lab guide, hold <strong>Shift</strong> and click the browser refresh button.</p>
-<p><strong>Turn-in for grading:</strong> Submit this lab on Canvas when you complete the bonus labeling work.</p>
+<p><strong>Turn-in for grading:</strong> Submit this lab on Canvas when you complete the required Week 07 labeling work. If you complete bonus grid cells, include them in the same submission.</p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
 <p>Now that you have QGIS installed and configured, it's time to put it to work! This lab introduces you to the QGIS interface through a hands-on tree crown annotation project. You'll learn essential QGIS skills while creating valuable training data by <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> individual tree crowns from high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> aerial imagery.</p>
 <p><strong>What you'll be doing:</strong>
-You'll work with a QGIS project that contains high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> NAIP (National Agriculture Imagery Program) imagery from before and after five major 2020 California fires. Your task is to randomly select 20 candidate grid cells, inspect them in the imagery, and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery for the first 5 cells that contain forest cover without structures, roads, or other human-built infrastructure.</p>
+You'll use Google Earth Engine to create temporary <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URLs for high-<a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> NAIP (National Agriculture Imagery Program) imagery from before and after five major 2020 California fires. You will add those tile URLs to QGIS, organize them into prefire and postfire <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups, randomly select 20 candidate grid cells, inspect them in the imagery, and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees in both postfire and prefire imagery for the first 4 cells that contain forest cover without structures, roads, or other human-built infrastructure. After the required 4 cells, you may continue labeling additional suitable cells for extra credit.</p>
 <p><strong>Why this matters:</strong>
 The data you create will be used to train machine learning models for automated tree detection and counting. Accurate tree crown delineation is fundamental to forest inventory, wildfire risk assessment, and ecosystem monitoring. This workflow teaches you core GIS skills while contributing to real research applications.</p>
 <h2 id="learning-objectives">Learning Objectives</h2>
@@ -1068,6 +1068,8 @@ The data you create will be used to train machine learning models for automated 
 <ul>
 <li>Navigate the QGIS interface and use essential navigation tools</li>
 <li>Work with layers, including reordering, toggling visibility, and exploring <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
+<li>Use Google Earth Engine to create temporary <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URLs for NAIP imagery</li>
+<li>Add Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services to QGIS</li>
 <li><a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables and select features based on attributes and location</li>
 <li>Use <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools to create a random sample of candidate grid cells</li>
 <li>Create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> layers for new spatial labels</li>
@@ -1081,97 +1083,279 @@ The data you create will be used to train machine learning models for automated 
 <h3 id="download-and-extract-the-project-package">Download and Extract the Project Package</h3>
 <p>Download the <code>mortalitree.zip</code> file from the course repository data folder:</p>
 <p><a href="../data/mortalitree.zip">Download mortalitree.zip</a></p>
-<p>This package contains everything you need to get started, with <strong>best-practice folder structure and naming conventions already set up for you</strong>.</p>
+<p>This package contains the QGIS project structure and <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> data you need for the labeling workflow. It does <strong>not</strong> include local NAIP imagery files or VRT imagery references. You will add the imagery yourself by creating Google Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URLs in the next section.</p>
+<p><img src="images/20260522_093351_image.png" alt=""></img></p>
 <p><strong>What's included in the .zip file:</strong></p>
 <ul>
 <li>Pre-configured QGIS project file: <code>mortalitree.qgs</code></li>
-<li>Raw data layers and imagery references, including:<ul>
+<li><a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> data layers, including:<ul>
 <li><code>castle_2020</code> (Castle Fire perimeter)</li>
 <li><code>creek_2020</code> (Creek Fire perimeter)</li>
 <li><code>czu_aug_lightning_2020</code> (CZU August Lightning Complex perimeter)</li>
 <li><code>north_complex_2020</code> (North Complex perimeter)</li>
 <li><code>scu_2020</code> (SCU Lightning Complex perimeter)</li>
 <li><code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code> (<a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> grid)</li>
-<li><code>PREFIRE</code><ul>
-<li><code>ALL_MORTALITREE_FIRE_PERIMETERS_2020_naip_rgb</code></li>
-<li><code>ALL_MORTALITREE_FIRE_PERIMETERS_2020_naip_cir</code></li>
-</ul>
-</li>
-<li><code>POSTFIRE</code><ul>
-<li><code>ALL_MORTALITREE_FIRE_PERIMETERS_2022_naip_rgb</code></li>
-<li><code>ALL_MORTALITREE_FIRE_PERIMETERS_2022_naip_cir</code></li>
-</ul>
-</li>
 <li><code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
-<li><code>Google Hybrid basemap</code></li>
-<li><code>Google Terrain basemap</code></li>
+</ul>
+</li>
+<li><a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">Basemap</a> layers, such as <code>Google Hybrid</code> and <code>Google Terrain</code></li>
+<li>Prepared <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups for organizing the imagery you will add:<ul>
+<li><code>PREFIRE - NAIP 2020 Earth Engine Tiles</code></li>
+<li><code>POSTFIRE - NAIP 2022 Earth Engine Tiles</code></li>
 </ul>
 </li>
 <li>Pre-built folder structure following GIS best practices</li>
-<li>A ready-to-open QGIS project with <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups already organized</li>
+<li>A ready-to-open QGIS project with the <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers, basemaps, and imagery groups already organized</li>
 </ul>
 <p><strong>Extract the .zip file:</strong></p>
 <ol>
 <li>Download <code>mortalitree.zip</code></li>
 <li>Extract it to your Documents folder (or another location you can easily access)</li>
 </ol>
-<h3 id="allow-qgis-to-read-naip-cogs-from-aws-s3">Allow QGIS to Read NAIP COGs from AWS S3</h3>
-<p>The NAIP imagery in this lab is stored as <strong>Cloud Optimized GeoTIFFs</strong>, or <strong>COGs</strong>, in public AWS S3 buckets. A COG is a <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> designed so GIS software can read only the small pieces of imagery needed for the current map view instead of downloading a whole <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> file.</p>
-<p>QGIS uses a library called <strong>GDAL</strong> to read these cloud-hosted files. The NAIP bucket used by this project is <strong>Requester Pays</strong> on AWS. That means the data are public, but AWS still requires an authenticated requester to accept responsibility for the access request. Before you open the project, add a few GDAL/AWS environment variables so QGIS knows which AWS profile to use, which AWS region to contact, and that the requester-pays access flag should be sent with each imagery request.</p>
+<blockquote>
+<p><strong>Why is the imagery not already in the package?</strong> NAIP imagery is very large. Instead of downloading or packaging those files, you will ask Earth Engine to serve temporary map tiles to QGIS. This keeps the project package smaller and gives you practice connecting a cloud-based imagery service to desktop GIS.</p>
+</blockquote>
+<h3 id="create-naip-tile-urls-in-google-earth-engine">Create NAIP Tile URLs in Google Earth Engine</h3>
+<p>Instead of downloading NAIP imagery or configuring QGIS to read cloud-hosted GeoTIFFs directly, you will use Google Earth Engine as a temporary tile server. Earth Engine will mosaic the California NAIP imagery for 2020 and 2022, create RGB and color-infrared visualizations, and print four <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URLs that QGIS can request as you pan and zoom.</p>
+<blockquote>
+<p><strong>Concept note:</strong> An <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URL is a web address pattern with <code>{z}</code>, <code>{x}</code>, and <code>{y}</code> placeholders. QGIS automatically replaces those placeholders with a zoom level, tile <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>, and tile <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>. This lets QGIS request only the small map images needed for your current view.</p>
+<p><strong>Important limitation:</strong> Earth Engine tile URLs are temporary viewing links. If your QGIS layers stop drawing later, return to Earth Engine, run the script again, copy the new URLs, and update the QGIS XYZ connections.</p>
+</blockquote>
+<ol>
+<li><p>Open the Google Earth Engine Code Editor:</p>
+<p><a href="https://code.earthengine.google.com/" target="_blank">https://code.earthengine.google.com/</a></p>
+</li>
+<li>Create a new script.</li>
+<li>Copy and paste the full script below.</li>
+<li>Click <strong>Run</strong>.</li>
+<li><p>Wait for the Console to print four URL lines:</p>
+<ul>
+<li><code>NAIP RGB XYZ URL (2020)</code></li>
+<li><code>NAIP IRG XYZ URL (2020)</code></li>
+<li><code>NAIP RGB XYZ URL (2022)</code></li>
+<li><code>NAIP IRG XYZ URL (2022)</code></li>
+</ul>
+</li>
+<li>Keep the Earth Engine tab open. You will copy these URLs into QGIS in the next section.</li>
+</ol>
+<pre><code class="lang-javascript"><span class="hljs-comment">/*
+EarthSys 144
+NAIP RGB and IRG XYZ Tile URLs for QGIS
+
+Objective:
+This script creates temporary Earth Engine XYZ tile URLs for California
+NAIP imagery from 2020 and 2022. You will copy the printed URLs into QGIS
+so you can view prefire and postfire imagery while digitizing tree labels.
+
+Datasets used:
+1. TIGER/2018/States provides U.S. state boundaries. We use it to select
+   California and clip the imagery to the state boundary.
+2. USDA/NAIP/DOQQ provides high-resolution aerial imagery from the National
+   Agriculture Imagery Program. NAIP usually includes red, green, blue, and
+   near-infrared bands.
+
+Why two visualizations?
+RGB shows imagery in natural color, similar to what your eyes would see.
+IRG uses near-infrared, red, and green bands. Healthy vegetation often appears
+bright in the near-infrared band, so this view can make trees easier to see.
+*/</span>
+
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 1: Create a California boundary.</span>
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+
+<span class="hljs-comment">// Load a FeatureCollection of U.S. state boundaries.</span>
+<span class="hljs-comment">// A FeatureCollection is a table of geographic features.</span>
+<span class="hljs-keyword">var</span> states = ee.<span class="hljs-title class_">FeatureCollection</span>(<span class="hljs-string">'TIGER/2018/States'</span>);
+
+<span class="hljs-comment">// Filter the state table to the single feature whose NAME is California.</span>
+<span class="hljs-comment">// The geometry() call extracts the polygon shape so we can use it for clipping.</span>
+<span class="hljs-keyword">var</span> california = states.<span class="hljs-title function_">filter</span>(
+  ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'NAME'</span>, <span class="hljs-string">'California'</span>)
+).<span class="hljs-title function_">geometry</span>();
+
+<span class="hljs-comment">// Center the Earth Engine map on California at a statewide zoom level.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(california, <span class="hljs-number">6</span>);
+
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 2: Define a helper function for each NAIP year.</span>
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">buildNaipLayer</span>(<span class="hljs-params">year</span>) {
+  <span class="hljs-comment">// Create the first day of the requested year.</span>
+  <span class="hljs-keyword">var</span> start = ee.<span class="hljs-property">Date</span>.<span class="hljs-title function_">fromYMD</span>(year, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+  <span class="hljs-comment">// Create the first day of the next year.</span>
+  <span class="hljs-comment">// Filtering from start to end gives all NAIP images from that calendar year.</span>
+  <span class="hljs-keyword">var</span> end = start.<span class="hljs-title function_">advance</span>(<span class="hljs-number">1</span>, <span class="hljs-string">'year'</span>);
+
+  <span class="hljs-comment">// Load NAIP images, keep only images that intersect California and the</span>
+  <span class="hljs-comment">// selected year, mosaic them into one display image, and clip to California.</span>
+  <span class="hljs-keyword">var</span> naip = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'USDA/NAIP/DOQQ'</span>)
+    .<span class="hljs-title function_">filterBounds</span>(california)
+    .<span class="hljs-title function_">filterDate</span>(start, end)
+    .<span class="hljs-title function_">mosaic</span>()
+    .<span class="hljs-title function_">clip</span>(california);
+
+  <span class="hljs-comment">// RGB visualization uses red, green, and blue bands for natural color.</span>
+  <span class="hljs-keyword">var</span> rgbVis = {
+    <span class="hljs-attr">bands</span>: [<span class="hljs-string">'R'</span>, <span class="hljs-string">'G'</span>, <span class="hljs-string">'B'</span>],
+    <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">max</span>: <span class="hljs-number">255</span>
+  };
+
+  <span class="hljs-comment">// IRG visualization uses near-infrared, red, and green bands.</span>
+  <span class="hljs-comment">// This is often called color infrared, or CIR, imagery.</span>
+  <span class="hljs-keyword">var</span> irgVis = {
+    <span class="hljs-attr">bands</span>: [<span class="hljs-string">'N'</span>, <span class="hljs-string">'R'</span>, <span class="hljs-string">'G'</span>],
+    <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
+    <span class="hljs-attr">max</span>: <span class="hljs-number">255</span>
+  };
+
+  <span class="hljs-comment">// Add preview layers to the Earth Engine map.</span>
+  <span class="hljs-comment">// The final false keeps them turned off until you choose to view them.</span>
+  <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(naip, rgbVis, <span class="hljs-string">'NAIP RGB '</span> + year, <span class="hljs-literal">false</span>);
+  <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(naip, irgVis, <span class="hljs-string">'NAIP IRG '</span> + year, <span class="hljs-literal">false</span>);
+
+  <span class="hljs-comment">// Convert each visualization into an Earth Engine map tile object.</span>
+  <span class="hljs-comment">// getMap() returns the URL pattern that QGIS needs for XYZ tiles.</span>
+  <span class="hljs-keyword">var</span> rgbMap = naip.<span class="hljs-title function_">visualize</span>(rgbVis).<span class="hljs-title function_">getMap</span>({});
+  <span class="hljs-keyword">var</span> irgMap = naip.<span class="hljs-title function_">visualize</span>(irgVis).<span class="hljs-title function_">getMap</span>({});
+
+  <span class="hljs-comment">// Print the tile URLs in the Console.</span>
+  <span class="hljs-comment">// Copy each urlFormat value exactly, including the {z}, {x}, and {y} parts.</span>
+  <span class="hljs-title function_">print</span>(<span class="hljs-string">'================================================'</span>);
+  <span class="hljs-title function_">print</span>(<span class="hljs-string">'NAIP RGB XYZ URL ('</span> + year + <span class="hljs-string">'):'</span>);
+  <span class="hljs-title function_">print</span>(rgbMap.<span class="hljs-property">urlFormat</span>);
+
+  <span class="hljs-title function_">print</span>(<span class="hljs-string">'NAIP IRG XYZ URL ('</span> + year + <span class="hljs-string">'):'</span>);
+  <span class="hljs-title function_">print</span>(irgMap.<span class="hljs-property">urlFormat</span>);
+}
+
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+<span class="hljs-comment">// STEP 3: Build the prefire and postfire imagery layers.</span>
+<span class="hljs-comment">// --------------------------------------------------------------------</span>
+
+<span class="hljs-comment">// For this lab, 2020 is the prefire imagery year.</span>
+<span class="hljs-title function_">buildNaipLayer</span>(<span class="hljs-number">2020</span>);
+
+<span class="hljs-comment">// For this lab, 2022 is the postfire imagery year.</span>
+<span class="hljs-title function_">buildNaipLayer</span>(<span class="hljs-number">2022</span>);
+</code></pre>
+<h3 id="add-the-earth-engine-tile-urls-to-qgis">Add the Earth Engine Tile URLs to QGIS</h3>
+<p>You will add four tile services to QGIS: 2020 RGB, 2020 IRG, 2022 RGB, and 2022 IRG. The 2020 layers are the prefire imagery, and the 2022 layers are the postfire imagery.</p>
 <ol>
 <li>Open QGIS.</li>
-<li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
-<li>Choose <strong>Options</strong>.</li>
-<li>Go to the <strong>System</strong> panel.</li>
-<li>Scroll to <strong>Environment</strong>.</li>
-<li>Check <strong>Use custom variables</strong>.</li>
-<li><p>Add these variables:</p>
-<p>| Variable | Value |
-| --- | --- |
-| <code>AWS_REQUEST_PAYER</code> | <code>requester</code> |
-| <code>AWS_REGION</code> | <code>us-west-2</code> |
-| <code>AWS_PROFILE</code> | <code>default</code> |</p>
+<li>Go to <strong>Project &gt; Open</strong> (or press <code>Ctrl+O</code> / <code>Cmd+O</code>).</li>
+<li>Navigate to your extracted <code>mortalitree</code> folder.</li>
+<li><p>Select the QGIS project file <code>mortalitree.qgs</code>.</p>
+<ul>
+<li>Example path: <code>~/Documents/mortalitree/mortalitree.qgs</code></li>
+</ul>
 </li>
-<li><p>Click <strong>OK</strong>.</p>
-</li>
-<li>Quit QGIS completely and reopen it before opening the project.</li>
+<li>Click <strong>Open</strong>.</li>
+<li>In the <strong>Browser</strong> panel, find <strong>XYZ Tiles</strong>.</li>
+<li>Right-click <strong>XYZ Tiles</strong> and choose <strong>New Connection...</strong></li>
+<li>Add the first connection:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td><code>NAIP 2020 RGB - Earth Engine</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td>Paste the<code>NAIP RGB XYZ URL (2020)</code> value from Earth Engine</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Click <strong>OK</strong>.</li>
+<li>Repeat the same process for the other three URLs:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>QGIS connection name</th>
+<th>Earth Engine Console URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NAIP 2020 IRG - Earth Engine</code></td>
+<td><code>NAIP IRG XYZ URL (2020)</code></td>
+</tr>
+<tr>
+<td><code>NAIP 2022 RGB - Earth Engine</code></td>
+<td><code>NAIP RGB XYZ URL (2022)</code></td>
+</tr>
+<tr>
+<td><code>NAIP 2022 IRG - Earth Engine</code></td>
+<td><code>NAIP IRG XYZ URL (2022)</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Double-click each new XYZ connection to add it to your QGIS project.</li>
 </ol>
 <blockquote>
-<p><strong>Why do this?</strong> The project's VRT files point to imagery paths that begin with <code>/vsis3/</code>. That prefix tells GDAL to stream files directly from AWS S3. Because these NAIP files are in a Requester Pays bucket, QGIS must send <code>AWS_REQUEST_PAYER=requester</code> along with a valid AWS profile. Without these settings, AWS will reject the imagery request and QGIS will show <code>AccessDenied</code> or HTTP <code>403</code> warnings.</p>
-<p><strong>Performance note:</strong> The VRT layers reference massive amounts of NAIP imagery. For performance reasons, keep the prefire and postfire imagery layers toggled off until you have zoomed to the grid-cell level where you are ready to inspect and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> trees. Turning these layers on while zoomed far out can make QGIS slow because it has to request many imagery tiles from AWS.</p>
+<p><strong>Why use both RGB and IRG?</strong> RGB imagery is often easier to interpret because it looks familiar. IRG imagery can make vegetation stand out more clearly because healthy vegetation reflects strongly in near-infrared light. You can switch between them while deciding whether a grid cell contains trees.</p>
+</blockquote>
+<h3 id="organize-the-naip-tile-layers-in-qgis">Organize the NAIP Tile Layers in QGIS</h3>
+<p>Before you begin random selection and labeling, make sure the imagery is organized so you can quickly switch between years and <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> combinations. The project package should already include empty prefire and postfire imagery groups. If you do not see them, create them using the steps below.</p>
+<ol>
+<li><p>Look in the <strong>Layers</strong> panel for these groups:</p>
+<pre><code>PREFIRE - NAIP 2020 Earth Engine Tiles
+</code></pre><pre><code>POSTFIRE - NAIP 2022 Earth Engine Tiles
+</code></pre></li>
+<li>If either group is missing, right-click in an open area of the <strong>Layers</strong> panel and choose <strong>Add Group</strong>. If your QGIS version shows this option in a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>-panel menu instead, use that menu.</li>
+<li>Create the missing group or groups using the exact names shown above.</li>
+<li><p>Drag these layers into the <strong>PREFIRE - NAIP 2020 Earth Engine Tiles</strong> group:</p>
+<ul>
+<li><code>NAIP 2020 RGB - Earth Engine</code></li>
+<li><code>NAIP 2020 IRG - Earth Engine</code></li>
+</ul>
+</li>
+<li><p>Drag these layers into the <strong>POSTFIRE - NAIP 2022 Earth Engine Tiles</strong> group:</p>
+<ul>
+<li><code>NAIP 2022 RGB - Earth Engine</code></li>
+<li><code>NAIP 2022 IRG - Earth Engine</code></li>
+</ul>
+</li>
+<li>Keep the tile layers turned off until you zoom to a sampled grid cell.</li>
+<li>When inspecting a grid cell, turn on only one or two imagery layers at a time.</li>
+<li>Save the QGIS project so the tile connections and groups remain part of your lab workspace.</li>
+</ol>
+<blockquote>
+<p><strong>Performance note:</strong> Earth Engine is creating these map tiles for display. If you turn on all four statewide tile layers while zoomed far out, QGIS may feel slow. Zoom to the grid-cell level first, then turn on the imagery you need.</p>
 </blockquote>
 <h3 id="whats-in-the-data-folder">What's in the Data Folder</h3>
 <p>Inside the extracted <code>mortalitree/data/</code> folder you'll find:</p>
 <ul>
 <li><strong>Tile boundary grid:</strong> <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
 <li><strong>Fire perimeter layers:</strong> <code>castle_2020</code>, <code>creek_2020</code>, <code>czu_aug_lightning_2020</code>, <code>north_complex_2020</code>, and <code>scu_2020</code></li>
-<li><strong>Pre-fire imagery VRTs:</strong> <code>ALL_MORTALITREE_FIRE_PERIMETERS_2020_naip_rgb.vrt</code> and <code>ALL_MORTALITREE_FIRE_PERIMETERS_2020_naip_cir.vrt</code></li>
-<li><strong>Post-fire imagery VRTs:</strong> <code>ALL_MORTALITREE_FIRE_PERIMETERS_2022_naip_rgb.vrt</code> and <code>ALL_MORTALITREE_FIRE_PERIMETERS_2022_naip_cir.vrt</code></li>
-<li><strong>Fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
+<li><strong>Combined fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
 <li><strong>Basemaps:</strong> <code>Google Hybrid</code> and <code>Google Terrain</code></li>
 </ul>
 <p><strong>Important:</strong> Never modify or delete the original files in the extracted <code>data/</code> folder. These are your source data. Save your new working layers and final outputs in clearly named files so they are easy to find later.</p>
 <hr></hr>
-<h2 id="part-1-open-and-explore-the-project">Part 1: Open and Explore the Project</h2>
-<h3 id="step-1-open-the-project-file">Step 1: Open the Project File</h3>
-<p>Now that you've extracted the project package, let's open the pre-configured QGIS project:</p>
-<ol>
-<li>Launch QGIS</li>
-<li>Go to <strong>Project &gt; Open</strong> (or press <code>Ctrl+O</code> / <code>Cmd+O</code>)</li>
-<li>Navigate to your extracted <code>mortalitree</code> folder</li>
-<li>Select the QGIS project file <code>mortalitree.qgs</code><ul>
-<li>Example path: <code>~/Documents/mortalitree/mortalitree.qgs</code></li>
-</ul>
-</li>
-<li>Click <strong>Open</strong></li>
-</ol>
-<p>The project should load with the tile boundary grid, the five fire perimeter layers, prefire and postfire imagery groups, and the Google Hybrid and Google Terrain basemaps visible in the Layers Panel. Everything is pre-configured and ready to use once the COG environment variables are set.</p>
+<h2 id="part-1-confirm-and-explore-the-project">Part 1: Confirm and Explore the Project</h2>
+<h3 id="step-1-confirm-the-project-and-imagery-layers">Step 1: Confirm the Project and Imagery Layers</h3>
+<p>You should now have the <code>mortalitree.qgs</code> project open and four Earth Engine NAIP tile layers added to it.</p>
+<p>The project should show the tile boundary grid, the five fire perimeter layers, your prefire and postfire Earth Engine imagery groups, and the Google Hybrid and Google Terrain basemaps in the Layers Panel.</p>
 <p><strong>Try this:</strong></p>
 <ul>
 <li>Use your mouse wheel to zoom in and out</li>
 <li>Use <strong>Zoom to <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong> on the grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> or one fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to see the project extent again</li>
-<li>Hold spacebar and drag to pan around the imagery</li>
-<li>Notice how the NAIP imagery refreshes as you navigate and change scales.</li>
+<li>Hold spacebar and drag to pan around the map</li>
+<li>Zoom to a fire area, turn on one NAIP tile <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and notice how the imagery refreshes as you navigate and change scales</li>
 </ul>
 <h3 id="step-2-explore-the-layers-panel">Step 2: Explore the Layers Panel</h3>
 <p>The Layers Panel (usually on the left side) shows all layers in your project. Let's explore how it works:</p>
@@ -1212,9 +1396,9 @@ The data you create will be used to train machine learning models for automated 
 </li>
 <li><p>Repeat for the NAIP imagery <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></p>
 <ul>
-<li>Note that the source points to a <code>.vrt</code> file in the project data folder</li>
-<li>The <code>.vrt</code> file points to many <code>/vsis3/</code> COG paths in AWS S3</li>
-<li>Check the CRS. The NAIP COGs in this project are stored in a NAD83 UTM <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>.</li>
+<li>Note that the source is an Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URL</li>
+<li>Check that the URL contains <code>{z}</code>, <code>{x}</code>, and <code>{y}</code> placeholders</li>
+<li>Remember that these tile layers are for visual interpretation, not for measuring <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values or running <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> analysis in QGIS</li>
 </ul>
 </li>
 </ol>
@@ -1242,7 +1426,7 @@ The data you create will be used to train machine learning models for automated 
 </ul>
 <h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
 <h3 id="step-5-randomly-select-20-candidate-grid-cells">Step 5: Randomly Select 20 Candidate Grid Cells</h3>
-<p>Now you will randomly select 20 candidate grid cells from the full MORTALITREE tile grid. You will not <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> all 20 cells. You will inspect them in order and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the first 5 cells that meet the suitability rules.</p>
+<p>Now you will randomly select 20 candidate grid cells from the full MORTALITREE tile grid. You will not <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> all 20 cells for the required part of the lab. You will inspect them in order and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the first 4 cells that meet the suitability rules. If you want to earn extra credit, you may keep working through the sample after those first 4 suitable cells.</p>
 <ol>
 <li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
 <li>In the Processing Toolbox search bar, type <code>random selection</code>.</li>
@@ -1290,7 +1474,8 @@ The data you create will be used to train machine learning models for automated 
 <li><p>If it opens in a separate window, dock it below the map panel by dragging it by the title bar until it snaps into the interface.</p>
 <p><img src="images/20260412_184334_image.png" alt=""></img></p>
 </li>
-<li>Use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> tools to:<ul>
+<li><p>Use the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> tools to:</p>
+<ul>
 <li>select a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
 <li>zoom to the selected <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
 <li>move to the next <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a></li>
@@ -1328,8 +1513,7 @@ The data you create will be used to train machine learning models for automated 
 <li><p>Copy this text:</p>
 <pre><code>rectangle-from-center-and-a-point
 </code></pre></li>
-<li><p>Paste that text into the <strong>Value</strong> box for the <code>current</code> setting.</p>
-</li>
+<li>Paste that text into the <strong>Value</strong> box for the <code>current</code> setting.</li>
 </ol>
 <p><img src="images/20260412_191109_image.png" alt=""></img></p>
 <ol>
@@ -1340,8 +1524,8 @@ The data you create will be used to train machine learning models for automated 
 </blockquote>
 <h3 id="step-10-start-editing-the-postfire-label-layer">Step 10: Start Editing the Postfire Label Layer</h3>
 <ol>
-<li>Make sure the <strong>POSTFIRE</strong> imagery group is visible.</li>
-<li>Toggle between the RGB and CIR versions of the postfire imagery to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
+<li>Make sure the <strong>POSTFIRE - NAIP 2022 Earth Engine Tiles</strong> imagery group is visible.</li>
+<li>Toggle between the <code>NAIP 2022 RGB - Earth Engine</code> and <code>NAIP 2022 IRG - Earth Engine</code> layers to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
 <li>Select <code>sunetid_mortalitree_postfire_labels</code> in the Layers Panel.</li>
 <li>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>'s styling and set:<ul>
 <li><strong>Fill:</strong> Transparent</li>
@@ -1365,7 +1549,8 @@ The data you create will be used to train machine learning models for automated 
 <li>If the cell meets those conditions, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the trees by drawing rectangles around them using <strong>Add Polygon <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">Feature</a></strong>.</li>
 <li>If the cell does not meet those conditions, skip it and move to the next sampled grid cell.</li>
 <li>Save your edits periodically.</li>
-<li>Continue through the random sample in order until you have labeled trees in the first <strong>5 suitable grid cells</strong>.</li>
+<li>Continue through the random sample in order until you have labeled trees in the first <strong>4 suitable grid cells</strong>.</li>
+<li>For bonus credit, you may continue labeling additional suitable grid cells beyond the required 4. Each additional suitable grid cell must include both postfire and prefire labels before it can count for extra credit.</li>
 </ol>
 <p><strong>Labeling guidance:</strong></p>
 <ul>
@@ -1384,7 +1569,7 @@ The data you create will be used to train machine learning models for automated 
 <li>Do not wait until the end of the session to save.</li>
 </ol>
 <h3 id="step-13-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 13: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
-<p>Once you have finished labeling the first 5 suitable grid cells in the postfire imagery:</p>
+<p>Once you have finished labeling the first 4 suitable grid cells in the postfire imagery:</p>
 <ol>
 <li>Right-click <code>sunetid_mortalitree_postfire_labels</code>.</li>
 <li>Choose <strong>Save Features As...</strong></li>
@@ -1397,14 +1582,22 @@ The data you create will be used to train machine learning models for automated 
 <h3 id="step-14-finish-the-prefire-tree-labels">Step 14: Finish the Prefire Tree Labels</h3>
 <p>Now switch to the prefire imagery and finish the second <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
-<li>Turn on the <strong>prefire</strong> imagery.</li>
+<li>Turn on the <strong>PREFIRE - NAIP 2020 Earth Engine Tiles</strong> imagery group.</li>
 <li>Start editing <code>sunetid_mortalitree_prefire_labels</code>.</li>
-<li>Return to the same 5 sampled grid cells you already worked on.</li>
+<li>Return to the same 4 sampled grid cells you already worked on.</li>
 <li>Keep the copied tree labels that already match visible trees.</li>
 <li>Add rectangles for any additional trees visible in the prefire imagery.</li>
 <li>Save edits regularly.</li>
 <li>When finished, stop editing and save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ol>
+<h3 id="bonus-labeling-option">Bonus Labeling Option</h3>
+<p>After you complete the required 4 suitable grid cells in both the postfire and prefire imagery, you may continue labeling additional suitable grid cells from your random sample.</p>
+<ul>
+<li>Each additional suitable grid cell beyond the required 4 earns 1 extra credit point.</li>
+<li>To count for extra credit, an additional grid cell must include both postfire labels and prefire labels.</li>
+<li>You may earn up to 10 extra credit points total for the quarter through this bonus labeling work.</li>
+<li>These points can effectively replace a lower grade, or simply make up for points lost on another submission.</li>
+</ul>
 <h3 id="step-15-export-both-label-layers-to-geojson">Step 15: Export Both Label Layers to GeoJSON</h3>
 <p>When both shapefiles are complete, export each one to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
 <ol>
@@ -1437,23 +1630,29 @@ The data you create will be used to train machine learning models for automated 
 </ol>
 <h3 id="final-checklist">Final Checklist</h3>
 <ul>
+<li>[ ] You ran the Earth Engine script and copied the 2020 and 2022 NAIP RGB and IRG tile URLs</li>
+<li>[ ] You added the four Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services to QGIS</li>
+<li>[ ] You organized the imagery into prefire 2020 and postfire 2022 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups</li>
 <li>[ ] You randomly selected 20 candidate grid cells from <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
 <li>[ ] You exported the selected grid cells to <code>sunetid_mortalitree_sample_grid.shp</code></li>
 <li>[ ] You used the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move through the grid cells</li>
 <li>[ ] You created <code>sunetid_mortalitree_postfire_labels.shp</code> in <code>EPSG:4326</code></li>
-<li>[ ] You inspected the random sample in order and labeled the first 5 suitable grid cells</li>
+<li>[ ] You inspected the random sample in order and labeled the first 4 suitable grid cells</li>
 <li>[ ] You skipped sampled cells with structures, roads, or other human-built infrastructure</li>
 <li>[ ] You copied that work to <code>sunetid_mortalitree_prefire_labels.shp</code></li>
 <li>[ ] You finished the prefire labels using the prefire imagery</li>
+<li>[ ] If you completed bonus cells, each additional cell beyond the required 4 includes both postfire and prefire labels</li>
 <li>[ ] You exported both final layers to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a></li>
 <li>[ ] You zipped the two <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> files and uploaded them to Canvas</li>
 </ul>
 <h3 id="validation-notes">Validation Notes</h3>
-<p>Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 5 suitable grid cells you worked on.</p>
+<p>Your labels will be reviewed as part of a machine learning validation workflow. The goal is consistency and completeness within the 4 required suitable grid cells you worked on, plus any additional bonus grid cells you choose to complete.</p>
 <hr></hr>
 <h2 id="conclusion">Conclusion</h2>
 <p>Through this lab, you used QGIS 3.44.7 to:</p>
 <ul>
+<li>bring temporary Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services into QGIS</li>
+<li>organize prefire and postfire NAIP imagery for interpretation</li>
 <li>randomly select candidate grid cells</li>
 <li>export a working subset of grid cells</li>
 <li>navigate spatial work systematically with the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
@@ -1489,6 +1688,12 @@ The data you create will be used to train machine learning models for automated 
 <ul>
 <li>Use the <strong>postfire</strong> imagery for <code>sunetid_mortalitree_postfire_labels</code></li>
 <li>Use the <strong>prefire</strong> imagery for <code>sunetid_mortalitree_prefire_labels</code></li>
+</ul>
+<p><strong>Earth Engine imagery stops drawing:</strong></p>
+<ul>
+<li>Return to the Earth Engine Code Editor</li>
+<li>Run the NAIP tile URL script again</li>
+<li>Copy the new URL values into the matching QGIS <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> connections</li>
 </ul>
 <hr></hr>
 <h2 id="additional-resources">Additional Resources</h2>
@@ -1542,7 +1747,7 @@ The data you create will be used to train machine learning models for automated 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-21T22:41:34.926Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-21T22:41:45.153Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T16:37:35.645Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T16:37:50.831Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
