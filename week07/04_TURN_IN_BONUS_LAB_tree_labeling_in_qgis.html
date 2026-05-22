@@ -1070,7 +1070,7 @@ The data you create will be used to train machine learning models for automated 
 <li>Work with layers, including reordering, toggling visibility, and exploring <a href="../GLOSSARY.html#metadata" class="glossary-term" title="Information about a dataset, such as who created it, when it was made, what it represents, what coordinate system it uses, and how it should be interpreted.">metadata</a></li>
 <li>Use Google Earth Engine to create temporary <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URLs for NAIP imagery</li>
 <li>Add Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services to QGIS</li>
-<li><a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables and select features based on attributes and location</li>
+<li><a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">Query</a> <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> tables and select features based on spatial location</li>
 <li>Use <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools to create a random sample of candidate grid cells</li>
 <li>Create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> layers for new spatial labels</li>
 <li>Use a docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move systematically through sampled grid cells</li>
@@ -1095,9 +1095,9 @@ The data you create will be used to train machine learning models for automated 
 <li><code>north_complex_2020</code> (North Complex perimeter)</li>
 <li><code>scu_2020</code> (SCU Lightning Complex perimeter)</li>
 <li><code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code> (<a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> grid)</li>
-<li><code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
 </ul>
 </li>
+<li><code>MORTALITREE_FIRE_PERIMETERS_2020</code></li>
 <li><a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">Basemap</a> layers, such as <code>Google Hybrid</code> and <code>Google Terrain</code></li>
 <li>Prepared <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups for organizing the imagery you will add:<ul>
 <li><code>PREFIRE - NAIP 2020 Earth Engine Tiles</code></li>
@@ -1376,9 +1376,9 @@ bright in the near-infrared band, so this view can make trees easier to see.
 </ul>
 </li>
 </ol>
-<hr></hr>
+<p><img src="images/20260522_124428_image.png" alt=""></img></p>
 <h2 id="part-2-working-with-attributes-and-selections">Part 2: Working with Attributes and Selections</h2>
-<h3 id="step-4-open-and-explore-the-attribute-table">Step 4: Open and Explore the Attribute Table</h3>
+<h3 id="step-3-open-and-explore-the-attribute-table">Step 3: Open and Explore the Attribute Table</h3>
 <p>Every <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> has an <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> containing information about each <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a>:</p>
 <ol>
 <li>Right-click <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code> in the Layers Panel</li>
@@ -1397,29 +1397,106 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li><strong>Y:</strong> Tile <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> number</li>
 <li>These <strong>Z/X/Y</strong> values follow the Web Mercator tiling scheme used by web maps</li>
 </ul>
-<h2 id="part-3-geoprocessing-and-random-selection">Part 3: Geoprocessing and Random Selection</h2>
-<h3 id="step-5-randomly-select-20-candidate-grid-cells">Step 5: Randomly Select 20 Candidate Grid Cells</h3>
-<p>Now you will randomly select 20 candidate grid cells from the full MORTALITREE tile grid. You will not <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> all 20 cells for the required part of the lab. You will inspect them in order and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the first 4 cells that meet the suitability rules. If you want to earn extra credit, you may keep working through the sample after those first 4 suitable cells.</p>
+<h2 id="part-3-fire-assignment-select-by-location-and-random-selection">Part 3: Fire Assignment, Select by Location, and Random Selection</h2>
+<h3 id="step-4-find-your-assigned-fire">Step 4: Find Your Assigned Fire</h3>
+<p>To distribute the class evenly across the five 2020 fire areas, each student has been assigned one fire. Your assignment is listed by <code>SUNETID</code>.</p>
+<ol>
+<li><p>Open the fire assignment <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> on Canvas:</p>
+<p><a href="https://canvas.stanford.edu/courses/224871/files?preview=17185814" target="_blank">Fire assignment table on Canvas</a></p>
+</li>
+<li>Sign in with your Stanford account if Canvas prompts you.</li>
+<li>Find your SUNETID in the <code>sunetid</code> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
+<li>Write down both values listed for your <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>:<ul>
+<li><code>assigned_fire</code></li>
+<li><code>perimeter_layer</code></li>
+</ul>
+</li>
+</ol>
+<p>For example, if your <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a> lists <code>Creek Fire</code> and <code>creek_2020</code>, you will use the <code>creek_2020</code> fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to select your grid cells.</p>
+<blockquote>
+<p><strong>Why do this?</strong> If everyone sampled from the full grid, many students might accidentally work in the same fire area. Assigning fires by last-name roster order spreads the labeling work across Castle, Creek, CZU August Lightning Complex, North Complex, and SCU Lightning Complex.</p>
+</blockquote>
+<h3 id="step-5-extract-grid-cells-for-your-assigned-fire-by-location">Step 5: Extract Grid Cells for Your Assigned Fire by Location</h3>
+<p>Now you will use your assigned fire perimeter to create a new grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> that contains only the grid cells that intersect that fire. This is called an <strong>extract by location</strong> operation because QGIS writes a new output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> based on the spatial relationship between two input layers.</p>
+<ol>
+<li>In the <strong>Layers</strong> panel, turn on:<ul>
+<li><code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
+<li>your assigned fire perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, such as <code>castle_2020</code></li>
+</ul>
+</li>
+<li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
+<li>In the Processing Toolbox search bar, type <code>extract by location</code>.</li>
+<li>Open <strong>Extract by location</strong>.</li>
+<li>Configure the tool:<ul>
+<li><strong>Extract features from:</strong> <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
+<li><strong>Where the features (geometric predicate):</strong> check <code>intersect</code></li>
+<li><strong>By comparing to the features from:</strong> your assigned <code>perimeter_layer</code></li>
+<li><strong>Extracted (location):</strong> save the output in your extracted <code>mortalitree/data/</code> folder using a fire-specific name</li>
+</ul>
+</li>
+<li>Click <strong>Run</strong>.</li>
+<li>Make sure <strong>Open output file after running algorithm</strong> is checked, or add the output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> manually after the tool finishes.</li>
+</ol>
+<p>If you are assigned the Castle Fire, use:</p>
+<pre><code class="lang-text">Z17_castle_2020_grid.shp
+</code></pre>
+<p>For other assigned fires, use the same pattern:</p>
+<table>
+<thead>
+<tr>
+<th>Assigned perimeter <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></th>
+<th>Output grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>castle_2020</code></td>
+<td><code>Z17_castle_2020_grid.shp</code></td>
+</tr>
+<tr>
+<td><code>creek_2020</code></td>
+<td><code>Z17_creek_2020_grid.shp</code></td>
+</tr>
+<tr>
+<td><code>czu_aug_lightning_2020</code></td>
+<td><code>Z17_czu_aug_lightning_2020_grid.shp</code></td>
+</tr>
+<tr>
+<td><code>north_complex_2020</code></td>
+<td><code>Z17_north_complex_2020_grid.shp</code></td>
+</tr>
+<tr>
+<td><code>scu_2020</code></td>
+<td><code>Z17_scu_2020_grid.shp</code></td>
+</tr>
+</tbody>
+</table>
+<p>You should now have a new grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> containing only grid cells in and around your assigned fire perimeter. Turn off the original full grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> so you can focus on your assigned fire grid.</p>
+<blockquote>
+<p><strong>Why use Extract by location?</strong> The grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> does not have to store a fire name in every <a href="../GLOSSARY.html#row" class="glossary-term" title="A horizontal record in a table. In an attribute table, each row usually represents one spatial feature such as one county, road, or parcel.">row</a>. QGIS can compare the grid cell polygons to the assigned fire perimeter polygon and write a new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> containing only the cells that overlap that perimeter.</p>
+</blockquote>
+<h3 id="step-6-randomly-select-20-candidate-grid-cells">Step 6: Randomly Select 20 Candidate Grid Cells</h3>
+<p>Now you will randomly select 20 candidate grid cells from your assigned fire grid. You will not <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> all 20 cells for the required part of the lab. You will inspect them in order and <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> the first 4 cells that meet the suitability rules. If you want to earn extra credit, you may keep working through the sample after those first 4 suitable cells.</p>
 <ol>
 <li>Go to <strong>Processing &gt; Toolbox</strong>.</li>
 <li>In the Processing Toolbox search bar, type <code>random selection</code>.</li>
 <li>Open <strong>Random selection</strong>.</li>
 <li>Configure the tool:<ul>
-<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
+<li><strong>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>:</strong> your extracted fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, such as <code>Z17_castle_2020_grid</code></li>
 <li><strong>Method:</strong> <code>Number of selected features</code></li>
 <li><strong>Number of selected features:</strong> <code>20</code></li>
 </ul>
 </li>
 <li>Click <strong>Run</strong>.</li>
 </ol>
-<p>You should now see 20 selected grid cells. They may fall in any of the five fire areas. That is expected.</p>
+<p>You should now see 20 selected grid cells within your assigned fire area.</p>
 <blockquote>
-<p><strong>Why do this?</strong> Random selection spreads the work across the larger project area. You are selecting more candidate cells than you will <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> because some random cells may contain roads, buildings, water, bare ground, or other features that are not useful for this tree-labeling task.</p>
+<p><strong>Why do this?</strong> Random selection spreads the work across your assigned fire area. You are selecting more candidate cells than you will <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> because some random cells may contain roads, buildings, water, bare ground, or other features that are not useful for this tree-labeling task.</p>
 </blockquote>
-<h3 id="step-6-export-the-selected-grid-cells-to-a-new-layer">Step 6: Export the Selected Grid Cells to a New Layer</h3>
+<h3 id="step-7-export-the-selected-grid-cells-to-a-new-layer">Step 7: Export the Selected Grid Cells to a New Layer</h3>
 <p>Now export those 20 selected grid cells to a new working <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
-<li>Right-click <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code>.</li>
+<li>Right-click your extracted fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, such as <code>Z17_castle_2020_grid</code>.</li>
 <li>Choose <strong>Export &gt; Save Selected Features As...</strong></li>
 <li>Make sure the <strong>Save only selected features</strong> option is enabled.</li>
 <li><p>Save the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in your extracted project folder as:</p>
@@ -1430,17 +1507,17 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <p><img src="images/20260412_184036_image.png" alt=""></img></p>
 </li>
 </ol>
-<p><strong>Tip &amp; Trick:</strong> Copy the style from the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it to the new one, then turn off the old grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p><strong>Tip &amp; Trick:</strong> Copy the style from the assigned fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and paste it to the sample grid, then turn off the assigned fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
-<li><p>Right-click the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</p>
+<li><p>Right-click your extracted fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> and choose <strong>Styles &gt; Copy Style</strong>.</p>
 <p><img src="images/20260412_184119_image.png" alt=""></img></p>
 </li>
 <li><p>Right-click <code>sunetid_mortalitree_sample_grid</code> and choose <strong>Styles &gt; Paste Style</strong>.</p>
 <p><img src="images/20260412_184153_image.png" alt=""></img></p>
 </li>
-<li>Turn off the original grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Turn off your extracted fire grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
 </ol>
-<h3 id="step-7-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 7: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
+<h3 id="step-8-dock-the-attribute-table-below-the-map-and-use-it-to-navigate">Step 8: Dock the Attribute Table Below the Map and Use It to Navigate</h3>
 <p>You will use the exported sample grid as your working unit <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
 <li>Open the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_mortalitree_sample_grid</code>.</li>
@@ -1460,7 +1537,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <p>This lets you work through the sampled grid cells systematically instead of hunting around visually.</p>
 <hr></hr>
 <h2 id="part-4-create-and-edit-the-label-layers">Part 4: Create and Edit the Label Layers</h2>
-<h3 id="step-8-create-the-postfire-label-layer">Step 8: Create the Postfire Label Layer</h3>
+<h3 id="step-9-create-the-postfire-label-layer">Step 9: Create the Postfire Label Layer</h3>
 <p>Create a new empty <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a> for your first set of labels.</p>
 <ol>
 <li>Go to <strong><a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; Create <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> &gt; New <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">Shapefile</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a></strong>.</li>
@@ -1473,7 +1550,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>Click <strong>OK</strong>.</li>
 </ol>
 <p><img src="images/20260412_184834_image.png" alt=""></img></p>
-<h3 id="step-9-get-ready-to-edit">Step 9: Get Ready to Edit</h3>
+<h3 id="step-10-get-ready-to-edit">Step 10: Get Ready to Edit</h3>
 <p>Before you start drawing labels, adjust the <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a> settings so QGIS uses the rectangle tool you need for this exercise.</p>
 <ol>
 <li>Go to <strong>QGIS &gt; Settings</strong> on Mac, or <strong>Settings</strong> on Windows.</li>
@@ -1495,7 +1572,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <blockquote>
 <p><strong>Why do this?</strong> This tells QGIS to use a rectangle-based polygon drawing workflow, which makes your tree labels faster and more consistent.</p>
 </blockquote>
-<h3 id="step-10-start-editing-the-postfire-label-layer">Step 10: Start Editing the Postfire Label Layer</h3>
+<h3 id="step-11-start-editing-the-postfire-label-layer">Step 11: Start Editing the Postfire Label Layer</h3>
 <ol>
 <li>Make sure the <strong>POSTFIRE - NAIP 2022 Earth Engine Tiles</strong> imagery group is visible.</li>
 <li>Toggle between the <code>NAIP 2022 RGB - Earth Engine</code> and <code>NAIP 2022 IRG - Earth Engine</code> layers to decide which one is easier to interpret. You can switch between them while labeling if that helps.</li>
@@ -1507,7 +1584,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 </li>
 <li>Click <strong>Toggle Editing</strong>.</li>
 </ol>
-<h3 id="step-11-label-trees-in-the-postfire-imagery">Step 11: Label Trees in the Postfire Imagery</h3>
+<h3 id="step-12-label-trees-in-the-postfire-imagery">Step 12: Label Trees in the Postfire Imagery</h3>
 <p>Now begin the main labeling task.</p>
 <ol>
 <li>In the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> for <code>sunetid_mortalitree_sample_grid</code>, select the first sampled grid cell and zoom to it.</li>
@@ -1535,13 +1612,13 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <blockquote>
 <p><strong>Important concept:</strong> In this exercise, your rectangles are labels for tree locations, not precise canopy outlines.</p>
 </blockquote>
-<h3 id="step-12-save-your-work-frequently">Step 12: Save Your Work Frequently</h3>
+<h3 id="step-13-save-your-work-frequently">Step 13: Save Your Work Frequently</h3>
 <p>While <a href="../GLOSSARY.html#digitizing" class="glossary-term" title="The process of creating vector features from imagery, maps, or other references by tracing or drawing points, lines, and polygons.">digitizing</a>:</p>
 <ol>
 <li>Click <strong>Save <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">Layer</a> Edits</strong> regularly.</li>
 <li>Do not wait until the end of the session to save.</li>
 </ol>
-<h3 id="step-13-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 13: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
+<h3 id="step-14-create-the-prefire-label-layer-by-copying-the-postfire-layer">Step 14: Create the Prefire Label Layer by Copying the Postfire Layer</h3>
 <p>Once you have finished labeling the first 4 suitable grid cells in the postfire imagery:</p>
 <ol>
 <li>Right-click <code>sunetid_mortalitree_postfire_labels</code>.</li>
@@ -1552,7 +1629,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>Add the new <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the project if QGIS does not do this automatically.</li>
 </ol>
 <p>This copied <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> gives you a starting point for the prefire labels, since trees visible after the fire were also present before the fire.</p>
-<h3 id="step-14-finish-the-prefire-tree-labels">Step 14: Finish the Prefire Tree Labels</h3>
+<h3 id="step-15-finish-the-prefire-tree-labels">Step 15: Finish the Prefire Tree Labels</h3>
 <p>Now switch to the prefire imagery and finish the second <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
 <ol>
 <li>Turn on the <strong>PREFIRE - NAIP 2020 Earth Engine Tiles</strong> imagery group.</li>
@@ -1571,7 +1648,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>You may earn up to 10 extra credit points total for the quarter through this bonus labeling work.</li>
 <li>These points can effectively replace a lower grade, or simply make up for points lost on another submission.</li>
 </ul>
-<h3 id="step-15-export-both-label-layers-to-geojson">Step 15: Export Both Label Layers to GeoJSON</h3>
+<h3 id="step-16-export-both-label-layers-to-geojson">Step 16: Export Both Label Layers to GeoJSON</h3>
 <p>When both shapefiles are complete, export each one to <a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a>.</p>
 <ol>
 <li>Right-click <code>sunetid_mortalitree_postfire_labels</code>.</li>
@@ -1606,7 +1683,9 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <li>[ ] You ran the Earth Engine script and copied the 2020 and 2022 NAIP RGB and IRG tile URLs</li>
 <li>[ ] You added the four Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services to QGIS</li>
 <li>[ ] You organized the imagery into prefire 2020 and postfire 2022 <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> groups</li>
-<li>[ ] You randomly selected 20 candidate grid cells from <code>Z17_MORTALITREE_FIRE_PERIMETERS_2020_tile_boundary_grid</code></li>
+<li>[ ] You found your assigned fire in the fire assignment <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> posted on Canvas</li>
+<li>[ ] You used Extract by location to create a fire-specific grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, such as <code>Z17_castle_2020_grid.shp</code></li>
+<li>[ ] You randomly selected 20 candidate grid cells from your fire-specific grid <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
 <li>[ ] You exported the selected grid cells to <code>sunetid_mortalitree_sample_grid.shp</code></li>
 <li>[ ] You used the docked <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> to move through the grid cells</li>
 <li>[ ] You created <code>sunetid_mortalitree_postfire_labels.shp</code> in <code>EPSG:4326</code></li>
@@ -1626,7 +1705,8 @@ bright in the near-infrared band, so this view can make trees easier to see.
 <ul>
 <li>bring temporary Earth Engine <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> services into QGIS</li>
 <li>organize prefire and postfire NAIP imagery for interpretation</li>
-<li>randomly select candidate grid cells</li>
+<li>use a fire perimeter to select grid cells by location</li>
+<li>randomly select candidate grid cells within an assigned fire area</li>
 <li>export a working subset of grid cells</li>
 <li>navigate spatial work systematically with the <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a></li>
 <li>create and edit <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a>-based <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a> layers</li>
@@ -1720,7 +1800,7 @@ bright in the near-infrared band, so this view can make trees easier to see.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T19:44:56.894Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T19:45:10.438Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"next":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"previous":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","ref":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","mtime":"2026-05-22T20:18:35.405Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-22T20:18:49.889Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
