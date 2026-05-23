@@ -438,7 +438,8 @@ You always want to make sure you received valid `values` for every `record` in y
 
 Submit the following for grading (confirm submission format on Canvas):
 
-1. A map layout exported as a PDF or image showing the geocoded points, appropriate cartographic elements, and labeled features as requested in the lab.
+1. Your final geocoded CSV exported from OpenRefine. The CSV should include the original address fields plus the new `Longitude` and `Latitude` columns.
+2. A map layout exported as a PDF or image showing the geocoded points, appropriate cartographic elements, and labeled features as requested in the lab.
 
 ## More Learning and API Links
 

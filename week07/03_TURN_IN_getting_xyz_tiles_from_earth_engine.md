@@ -351,7 +351,8 @@ To add the getMap() function to your chosen script, use the following steps:
 
     - Choose `Project > New Print Layout` (or use the Layout Manager and create a new layout).
     - Add a `Map` item showing the Earth Engine XYZ layer(s) in the correct order.
-    - Add standard cartographic elements: title, legend, scale bar, and north arrow.
+    - Add standard cartographic elements: title, scale bar, north arrow, and any short explanatory labels needed to make the layout understandable.
+    - Do **not** include a legend unless you have added your own vector layers that need one. Legends are not required for Earth Engine XYZ image tiles because QGIS does not automatically know the class breaks or color meanings inside a rendered image tile.
     - Add a text box (label) to the layout and paste the full Earth Engine XYZ tile URL(s) you used. Ensure the pasted URLs are complete and copyable (do not truncate them).
     - If you used a hillshade layer with opacity, record the opacity value in the layout (for example: "Hillshade opacity: 0.5").
     - Export the layout as a PDF (`Layout > Export as PDF`) and include it in your submission.
@@ -380,10 +381,11 @@ Submit the following as a PDF:
 1. The name and URL of the Earth Engine Data Catalog dataset you selected.
 2. Your Earth Engine **Get Link** URL for the script you ran.
 3. All printed Earth Engine XYZ tile URLs copied from the Console. Note: the example script in this guide prints multiple XYZ tile URLs (for example, a Tanaka-style hillshade and a stepped elevation layer). If you use that example in QGIS, create XYZ connections for BOTH URLs, add them to your project, place the hillshade layer above the elevation layer, and set the hillshade layer opacity (Layer Properties → Transparency) to around 0.5 so the combined visual effect matches the example.
-4. A QGIS Print Layout exported as a PDF that demonstrates a proper cartographic presentation. The layout must include at minimum: a title, legend, north arrow, scale bar, appropriate map extent, and the visible Earth Engine layer(s) with the correct layer order and opacity settings.
+4. A QGIS Print Layout exported as a PDF that demonstrates a proper cartographic presentation. The layout must include at minimum: a title, north arrow, scale bar, appropriate map extent, and the visible Earth Engine layer(s) with the correct layer order and opacity settings. A legend is **not required** for the Earth Engine XYZ image tile layer(s).
 
    - In the same layout, add a text box (label) and paste ALL Earth Engine XYZ tile URL(s) you used. The pasted URLs must be human-readable and complete so an instructor can copy them.
    - If you used multiple XYZ URLs (e.g., hillshade + elevation), ensure the layout shows the layers in the order used and documents the hillshade opacity (for example: "Hillshade opacity: 0.5").
+   - If you want to explain the colors, add a short text note describing what the visualization shows rather than trying to force QGIS to create a legend for the XYZ tile.
 
 ## Common Problems
 

@@ -667,8 +667,8 @@ When you are done:
 1. Confirm that both files exist in your `outputs` folder:
    - `sunetid_mortalitree_postfire_labels.geojson`
    - `sunetid_mortalitree_prefire_labels.geojson`
-2. Compress those two GeoJSON files into a single `.zip` file.
-3. Upload that `.zip` file to the assignment on Canvas.
+2. Upload both GeoJSON files separately to the assignment on Canvas.
+3. Do not compress them into a `.zip` file.
 
 ### Final Checklist
 
@@ -687,7 +687,7 @@ When you are done:
 - [ ] You finished the prefire labels using the prefire imagery
 - [ ] If you completed bonus cells, each additional cell beyond the required 4 includes both postfire and prefire labels
 - [ ] You exported both final layers to GeoJSON
-- [ ] You zipped the two GeoJSON files and uploaded them to Canvas
+- [ ] You uploaded the two unzipped GeoJSON files to Canvas
 
 ### Validation Notes
 

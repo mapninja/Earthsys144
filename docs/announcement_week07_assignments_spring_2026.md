@@ -2,7 +2,7 @@
 
 Dear Students,
 
-This week we focus on web mapping workflows and spatial data APIs. The labs teach how to move spatial content from desktop preparation into hosted web maps and service-based visualizations. The required `TURN IN` labs teach geocoding, web map construction and hosting, and bridging Earth Engine visualizations into QGIS via XYZ tiles.
+This week we focus on web mapping workflows and spatial data APIs. The labs teach how to move spatial content from desktop preparation into hosted web maps and service-based visualizations. The required `TURN IN` labs teach geocoding, spreadsheet-driven web map construction, Earth Engine XYZ tile workflows in QGIS, and tree labeling for machine learning training data.
 
 The Week 07 materials now follow this sequence:
 
@@ -22,11 +22,11 @@ Please complete the following assigned work and submit as directed on Canvas:
 
 ## Submission Checklist
 
-- A single ZIP or PDF bundle containing the required deliverables (see rubric link below).
+- Submit the required deliverables as directed on Canvas.
 - For the web map: include the live URL and make sure the map loads points from the public Google Sheet using the JSONP workflow.
-- For geocoding: include the cleaned input file and the geocoded output (CSV or GeoJSON).
-- For the XYZ tiles: include the Earth Engine script link, all printed XYZ URL(s), and a QGIS layout PDF showing the Earth Engine layer(s), layer order, opacity, and pasted XYZ URL(s).
-- For Tree Labeling: submit the required postfire and prefire label outputs described in Lab 04. Additional completed suitable cells may count for bonus credit.
+- For geocoding: submit the final geocoded CSV from OpenRefine and a map layout showing the geocoded points.
+- For the XYZ tiles: include the Earth Engine script link, all printed XYZ URL(s), and a QGIS layout PDF showing the Earth Engine layer(s), layer order, opacity, and pasted XYZ URL(s). No legend is required for Earth Engine XYZ image tiles.
+- For Tree Labeling: upload two unzipped GeoJSON files separately, one postfire and one prefire, as described in Lab 04. Complete the first 4 suitable grid cells from your random sample. Additional completed suitable cells may count for bonus credit.
 
 ## Rubric
 
