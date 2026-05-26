@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine · HonKit</title>
+        <title>02b - OPTIONAL_ Landcover Classification with AlphaEarth Embeddings in Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 6.2.1">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html" />
+    <link rel="next" href="03_introducing_model_builder_in_qgis.html" />
     
     
-    <link rel="prev" href="01_suitability_modeling_in_qgis.html" />
+    <link rel="prev" href="02_landcover_classification_and_change_detection_in_google_earth_engine.html" />
     
 
     </head>
@@ -865,7 +865,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.11.3" data-path="02_landcover_classification_and_change_detection_in_google_earth_engine.html">
+        <li class="chapter " data-level="1.11.3" data-path="02_landcover_classification_and_change_detection_in_google_earth_engine.html">
             
                 <a href="02_landcover_classification_and_change_detection_in_google_earth_engine.html">
             
@@ -878,7 +878,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.4" data-path="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html">
+        <li class="chapter active" data-level="1.11.4" data-path="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html">
             
                 <a href="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html">
             
@@ -1049,7 +1049,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine</a>
+        <a href=".." >02b - OPTIONAL_ Landcover Classification with AlphaEarth Embeddings in Google Earth Engine</a>
     </h1>
 </div>
 
@@ -1064,40 +1064,39 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="landcover-classification--change-detection-in-google-earth-engine">Landcover Classification &amp; Change Detection in Google Earth Engine</h1>
+                                <h1 id="landcover-classification-with-alphaearth-embeddings-in-google-earth-engine">Landcover Classification with AlphaEarth Embeddings in Google Earth Engine</h1>
 <blockquote>
-<p><strong>Draft status:</strong> This lab is currently being revised. We are actively updating it to use the newer classifier workflow in place of the older version, so a few sections may still reflect the transition.</p>
-<p>If you want the newer AlphaEarth-based version of this workflow, see <a href="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html"><code>02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.md</code></a>.</p>
+<p><strong>Source note:</strong> This lab is adapted from the Google Earth Engine community tutorial <a href="https://developers.google.com/earth-engine/tutorials/community/satellite-embedding-03-supervised-classification" target="_blank"><em>Supervised Classification with Satellite Embedding Dataset</em></a> by spatialthoughts, and it extends the same idea to the course landcover classes used elsewhere in Week 08.</p>
+<p><strong>Why this version exists:</strong> unlike the older landcover lab, this version uses the annual AlphaEarth embedding collection directly. That means we do <strong>not</strong> build a<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>composite first. Instead, we train the classifier on the most recent AlphaEarth year available in the collection.</p>
 </blockquote>
+<p><img src="images/alphaearth/15007ad83c675236806a3ea281331ec3.png" alt="Title slide introducing Google’s Satellite Embedding dataset."></img></p>
+<p><img src="images/alphaearth/1e90adaa88399af162677018f95fe22d.png" alt="A slide from the AlphaEarth deck explaining embeddings with a simple analogy."></img></p>
 <h2 id="what-you-should-understand">What You Should Understand</h2>
-<p>By the end of this workshop, you should understand how supervised landcover <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> works in Google Earth Engine and how to compare two classified maps to see where landcover changed.</p>
+<p>By the end of this lab, you should understand how to use an annual embedding <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> as the input to a supervised classifier in Google Earth Engine.</p>
 <p>The main ideas are:</p>
 <ol>
-<li>Build a composite <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> from<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>imagery.</li>
-<li>Use labeled training points to teach a classifier what each landcover class looks like.</li>
-<li>Apply the same classifier to two different dates.</li>
-<li>Compare the two classified maps to detect change.</li>
+<li>Load the AlphaEarth annual embedding collection for the newest available year.</li>
+<li>Sample the 64-<a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> embedding vectors at a small set of labeled points.</li>
+<li>Train a simple classifier on those embedding vectors.</li>
+<li>Classify the entire annual embedding mosaic.</li>
+<li>Optionally repeat the workflow for another year if you want to compare landcover change.</li>
 </ol>
 <blockquote>
 <p><strong>Concept Note:</strong>
-A classifier does not “know” landcover on its own. It learns patterns from example data you give it, then applies those learned patterns to every <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> in the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</p>
+An embedding is not a raw <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a>. It is a learned <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> that summarizes many kinds of spatial, spectral, and temporal context at once.</p>
 <p><strong>Concept Note:</strong>
-Change detection is often easiest when you classify both dates the same way first. Then you compare the class maps instead of comparing raw spectral values.</p>
+Because AlphaEarth embeddings already contain rich context, you do not need to create cloud-free composites before <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>. The annual embedding <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is the input.</p>
 </blockquote>
+<p><img src="images/alphaearth/9621aa91016352355bb1ec0d54102d8b.png" alt="AlphaEarth Foundations overview slide showing the model as a virtual satellite that produces embedding images."></img></p>
 <h2 id="getting-ready">Getting Ready</h2>
-<p>The script uses these pieces of data:</p>
-<ol>
-<li><code>COPERNICUS/S2_SR</code><a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>surface reflectance imagery.</li>
-<li>A custom <code>aoi</code> polygon that defines the study area.</li>
-<li>Four training <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> collections:<ul>
+<p>This lab reuses the same four landcover classes used in the course’s earlier landcover workflow:</p>
+<ul>
+<li><code>Bare</code></li>
 <li><code>Water</code></li>
 <li><code>Vegetation</code></li>
 <li><code>Urban</code></li>
-<li><code>Bare</code></li>
 </ul>
-</li>
-</ol>
-<p>The training points in the shared script are already labeled with numeric class values:</p>
+<p>Each training point or polygon should have a numeric <code>class</code> property:</p>
 <ul>
 <li><code>0</code> = Bare</li>
 <li><code>1</code> = Water</li>
@@ -1106,281 +1105,230 @@ Change detection is often easiest when you classify both dates the same way firs
 </ul>
 <blockquote>
 <p><strong>Concept Note:</strong>
-Earth Engine <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> expects numeric class labels. Starting at <code>0</code> is the safest choice because that is the convention Earth Engine documents and examples use.</p>
+Earth Engine classifiers expect numeric class labels. Starting at <code>0</code> keeps the labels aligned with the class palette we use later.</p>
 </blockquote>
-<h2 id="why-we-are-updating-the-classifier">Why We Are Updating the Classifier</h2>
-<p>The original script used a CART classifier. CART can work, but for a multiband landcover workflow like this, a newer classifier choice is often a better teaching fit because it usually handles noisy training points and mixed spectral signatures more robustly.</p>
-<p>For that reason, this course version is being updated to use:</p>
-<pre><code class="lang-javascript">ee.<span class="hljs-property">Classifier</span>.<span class="hljs-title function_">smileRandomForest</span>(<span class="hljs-number">100</span>)
-</code></pre>
-<p>That means we are training a Random Forest with 100 trees.</p>
+<p>The code below assumes you already have:</p>
+<ol>
+<li>an area of interest named <code>aoi</code></li>
+<li>four labeled <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> collections named <code>Bare</code>, <code>Water</code>, <code>Vegetation</code>, and <code>Urban</code></li>
+</ol>
+<p>If you already built training data for the older landcover lab, you can reuse those same labeled points here.</p>
+<h2 id="why-alphaearth-changes-the-workflow">Why AlphaEarth Changes the Workflow</h2>
+<p>The Satellite Embedding dataset is designed for low-shot learning, meaning it can work well with a relatively small number of representative labeled samples.</p>
+<p>That is why the community tutorial uses a simple classifier such as k-Nearest Neighbors (kNN). The classifier learns directly from embedding vectors rather than from a hand-built spectral composite.</p>
 <blockquote>
 <p><strong>Concept Note:</strong>
-A Random Forest is really many decision trees working together. That usually gives more stable results than a single decision tree.</p>
+This is a useful teaching contrast with the older <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>-based lab. The older workflow started with an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> composite and then sampled pixels. The AlphaEarth workflow starts with the annual embedding mosaic and samples that instead.</p>
 </blockquote>
 <h2 id="workflow-overview">Workflow Overview</h2>
 <p>We will build the workflow in these steps:</p>
 <ol>
-<li>Load the<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>collection and the study area.</li>
-<li>Build two monthly composites, one for <code>before</code> and one for <code>after</code>.</li>
-<li>Review the training points and merge them into one training dataset.</li>
-<li>Split the sample into training and validation data.</li>
-<li>Train a Random Forest classifier.</li>
-<li>Classify the <code>before</code> and <code>after</code> composites.</li>
-<li>Compare the two classified maps to detect change.</li>
-<li>Summarize class area with charts.</li>
-<li>Optionally export the classified result.</li>
+<li>Choose the most recent AlphaEarth year.</li>
+<li>Load the annual embedding mosaic.</li>
+<li>Merge the labeled training points.</li>
+<li>Sample embedding vectors at the training locations.</li>
+<li>Train a kNN classifier.</li>
+<li>Classify the annual embedding mosaic.</li>
+<li>Evaluate the result and optionally export it.</li>
+<li>Optionally repeat the same workflow for a second year to explore change.</li>
 </ol>
 <h2 id="step-1-set-up-the-script">Step 1: Set Up the Script</h2>
-<p>Start with the data and the study area.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Landcover Classification &amp; Change Detection in Google Earth Engine</span>
-<span class="hljs-comment">// This script uses Sentinel-2 imagery, labeled training points,</span>
-<span class="hljs-comment">// and a Random Forest classifier to map landcover for two dates.</span>
+<p>Start by selecting the current year and your study area.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Landcover Classification with AlphaEarth Embeddings in Google Earth Engine</span>
+<span class="hljs-comment">// This version trains directly on the annual AlphaEarth embedding image.</span>
 
-<span class="hljs-comment">// STEP 1: Load the Sentinel-2 image collection.</span>
-<span class="hljs-comment">// `COPERNICUS/S2_SR` contains Sentinel-2 surface reflectance imagery.</span>
-<span class="hljs-keyword">var</span> sentinel = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'COPERNICUS/S2_SR'</span>);
+<span class="hljs-comment">// STEP 1: Choose the newest annual AlphaEarth year available in the collection.</span>
+<span class="hljs-comment">// At the time of writing, 2024 is the latest year used in this course material.</span>
+<span class="hljs-keyword">var</span> year = <span class="hljs-number">2024</span>;
 
-<span class="hljs-comment">// STEP 2: Open the shared script and keep the full training feature</span>
-<span class="hljs-comment">// collections and geometry objects exactly as provided there:</span>
-<span class="hljs-comment">// - Water</span>
-<span class="hljs-comment">// - Vegetation</span>
-<span class="hljs-comment">// - Urban</span>
-<span class="hljs-comment">// - Bare</span>
-<span class="hljs-comment">// - aoi</span>
-<span class="hljs-comment">// - exportaoi</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">// The complete versions of those objects are already present in the</span>
-<span class="hljs-comment">// linked Earth Engine script, so you do not need to redraw them.</span>
-</code></pre>
-<h2 id="step-2-build-before-and-after-composites">Step 2: Build Before and After Composites</h2>
-<p>We will compare two monthly composites:</p>
-<ul>
-<li><code>before</code>: June 2019</li>
-<li><code>after</code>: June 2020</li>
-</ul>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 3: Filter the Sentinel-2 collection by date and area.</span>
-<span class="hljs-comment">// We keep the AOI in the filter so Earth Engine only works with the relevant area.</span>
-<span class="hljs-comment">// A cloud threshold helps reduce cloudy scenes before we make a median composite.</span>
-<span class="hljs-keyword">var</span> before = sentinel
-  .<span class="hljs-title function_">filterBounds</span>(aoi)
-  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2019-06-01'</span>, <span class="hljs-string">'2019-06-30'</span>)
-  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lte</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>));
+<span class="hljs-comment">// STEP 2: Build date boundaries for the selected year.</span>
+<span class="hljs-keyword">var</span> startDate = ee.<span class="hljs-property">Date</span>.<span class="hljs-title function_">fromYMD</span>(year, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-keyword">var</span> endDate = startDate.<span class="hljs-title function_">advance</span>(<span class="hljs-number">1</span>, <span class="hljs-string">'year'</span>);
 
-<span class="hljs-keyword">var</span> after = sentinel
-  .<span class="hljs-title function_">filterBounds</span>(aoi)
-  .<span class="hljs-title function_">filterDate</span>(<span class="hljs-string">'2020-06-01'</span>, <span class="hljs-string">'2020-06-30'</span>)
-  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lte</span>(<span class="hljs-string">'CLOUDY_PIXEL_PERCENTAGE'</span>, <span class="hljs-number">20</span>));
+<span class="hljs-comment">// STEP 3: Load or import your study area.</span>
+<span class="hljs-comment">// The course script can use the same `aoi` geometry object you already drew</span>
+<span class="hljs-comment">// or imported for the landcover lab.</span>
 
-<span class="hljs-comment">// STEP 4: Make median composites.</span>
-<span class="hljs-comment">// `median()` reduces the influence of odd pixels from clouds or haze.</span>
-<span class="hljs-keyword">var</span> beforeImage = before.<span class="hljs-title function_">median</span>();
-<span class="hljs-keyword">var</span> afterImage = after.<span class="hljs-title function_">median</span>();
-
-<span class="hljs-comment">// STEP 5: Choose the bands we want to use.</span>
-<span class="hljs-comment">// These bands give us visible, red-edge, and near-infrared information.</span>
-<span class="hljs-keyword">var</span> bands = [<span class="hljs-string">'B2'</span>, <span class="hljs-string">'B3'</span>, <span class="hljs-string">'B4'</span>, <span class="hljs-string">'B5'</span>, <span class="hljs-string">'B6'</span>, <span class="hljs-string">'B7'</span>, <span class="hljs-string">'B8'</span>];
-
-<span class="hljs-comment">// STEP 6: Define a false-color visualization.</span>
-<span class="hljs-comment">// This shows vegetation well because near-infrared is highlighted.</span>
-<span class="hljs-keyword">var</span> falseColorVis = {
-  <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
-  <span class="hljs-attr">max</span>: <span class="hljs-number">6000</span>,
-  <span class="hljs-attr">bands</span>: [<span class="hljs-string">'B8'</span>, <span class="hljs-string">'B4'</span>, <span class="hljs-string">'B3'</span>]
-};
-
-<span class="hljs-comment">// STEP 7: Add the composites to the map so we can inspect them.</span>
+<span class="hljs-comment">// STEP 4: Center the map on the study area so you can inspect results later.</span>
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(aoi, <span class="hljs-number">10</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(beforeImage, falseColorVis, <span class="hljs-string">'Before (2019) false color'</span>, <span class="hljs-literal">false</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(afterImage, falseColorVis, <span class="hljs-string">'After (2020) false color'</span>, <span class="hljs-literal">true</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(aoi, {<span class="hljs-attr">color</span>: <span class="hljs-string">'FF0000'</span>}, <span class="hljs-string">'AOI'</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(aoi, {<span class="hljs-attr">color</span>: <span class="hljs-string">'red'</span>}, <span class="hljs-string">'AOI'</span>);
+</code></pre>
+<h2 id="step-2-load-the-annual-alphaearth-embedding-mosaic">Step 2: Load the Annual AlphaEarth Embedding Mosaic</h2>
+<p>Now load the annual embedding collection and filter it to your study area and year.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 5: Load the AlphaEarth annual embedding collection.</span>
+<span class="hljs-keyword">var</span> embeddings = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL'</span>);
+
+<span class="hljs-comment">// STEP 6: Filter to the selected year and study area.</span>
+<span class="hljs-keyword">var</span> embeddingsFiltered = embeddings
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">date</span>(startDate, endDate))
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">bounds</span>(aoi));
+
+<span class="hljs-comment">// STEP 7: Mosaic the filtered tiles into one annual embedding image.</span>
+<span class="hljs-keyword">var</span> embeddingsImage = embeddingsFiltered.<span class="hljs-title function_">mosaic</span>();
+
+<span class="hljs-comment">// STEP 8: Save the band names so we can reuse them later.</span>
+<span class="hljs-keyword">var</span> bandNames = embeddingsImage.<span class="hljs-title function_">bandNames</span>();
+
+<span class="hljs-comment">// STEP 9: Print basic information so you can verify the collection structure.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'AlphaEarth embedding band names'</span>, bandNames);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Number of embedding bands'</span>, bandNames.<span class="hljs-title function_">length</span>());
 </code></pre>
 <blockquote>
 <p><strong>Concept Note:</strong>
-A median composite is a simple way to reduce noise from clouds, shadows, and random scene differences. It gives us a more stable <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> for <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>.</p>
+The annual AlphaEarth collection is already analysis-ready. That is the key difference from the older workflow, where we first had to make a cloud-masked <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> composite.</p>
 </blockquote>
 <h2 id="step-3-merge-the-training-points">Step 3: Merge the Training Points</h2>
-<p>Earth Engine can train on one <code>FeatureCollection</code>, so we merge all four class groups into one training <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 8: Merge the labeled training points into one collection.</span>
-<span class="hljs-comment">// The `class` property tells Earth Engine which landcover category each point represents.</span>
+<p>Earth Engine classifiers train on one <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> collection, so we combine the labeled samples into a single training <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 10: Merge the class-specific sample layers into one training collection.</span>
 <span class="hljs-keyword">var</span> trainingFeatures = <span class="hljs-title class_">Bare</span>.<span class="hljs-title function_">merge</span>(<span class="hljs-title class_">Water</span>).<span class="hljs-title function_">merge</span>(<span class="hljs-title class_">Vegetation</span>).<span class="hljs-title function_">merge</span>(<span class="hljs-title class_">Urban</span>);
 
-<span class="hljs-comment">// STEP 9: Sample the after composite at the training points.</span>
-<span class="hljs-comment">// `sampleRegions()` reads the pixel values at each point and builds a table.</span>
-<span class="hljs-keyword">var</span> samples = afterImage.<span class="hljs-title function_">select</span>(bands).<span class="hljs-title function_">sampleRegions</span>({
+<span class="hljs-comment">// STEP 11: Sample the embedding image at the training locations.</span>
+<span class="hljs-comment">// The result is a table where each row contains the 64 embedding values</span>
+<span class="hljs-comment">// plus the class label.</span>
+<span class="hljs-keyword">var</span> samples = embeddingsImage.<span class="hljs-title function_">sampleRegions</span>({
   <span class="hljs-attr">collection</span>: trainingFeatures,
   <span class="hljs-attr">properties</span>: [<span class="hljs-string">'class'</span>],
-  <span class="hljs-attr">scale</span>: <span class="hljs-number">10</span>
+  <span class="hljs-attr">scale</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">tileScale</span>: <span class="hljs-number">4</span>
 });
 
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Training samples'</span>, samples);
+<span class="hljs-comment">// STEP 12: Print one sample so you can inspect the structure.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Training samples'</span>, samples.<span class="hljs-title function_">first</span>());
 </code></pre>
 <blockquote>
 <p><strong>Concept Note:</strong>
-<code>sampleRegions()</code> is the bridge between a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> and a training <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a>. It copies <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values into a <code>FeatureCollection</code> that a classifier can learn from.</p>
+This step is the bridge between the embedding <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> and the classifier. It turns <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values into a <a href="../GLOSSARY.html#table" class="glossary-term" title="A structured set of rows and columns used to store information. In GIS, tables may be spatially linked to layers or may exist as standalone tabular data.">table</a> of labeled examples.</p>
 </blockquote>
-<h2 id="step-4-split-training-and-validation-data">Step 4: Split Training and Validation Data</h2>
-<p>It is good practice to test the classifier on data it did not see during training.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 10: Add a random column so we can split the samples.</span>
-<span class="hljs-comment">// This gives each row a random value between 0 and 1.</span>
+<h2 id="step-4-split-the-data-for-training-and-validation">Step 4: Split the Data for Training and Validation</h2>
+<p>It is still good practice to hold out a portion of the samples for validation.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 13: Add a random column so we can split the sample set.</span>
 <span class="hljs-keyword">var</span> samplesWithRandom = samples.<span class="hljs-title function_">randomColumn</span>(<span class="hljs-string">'random'</span>);
 
-<span class="hljs-comment">// STEP 11: Split the sample into training and validation subsets.</span>
-<span class="hljs-comment">// About 70% of the points go to training, and 30% go to validation.</span>
+<span class="hljs-comment">// STEP 14: Split the samples into training and validation subsets.</span>
 <span class="hljs-keyword">var</span> trainSet = samplesWithRandom.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">lt</span>(<span class="hljs-string">'random'</span>, <span class="hljs-number">0.7</span>));
 <span class="hljs-keyword">var</span> validationSet = samplesWithRandom.<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">gte</span>(<span class="hljs-string">'random'</span>, <span class="hljs-number">0.7</span>));
 
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Training set'</span>, trainSet);
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Validation set'</span>, validationSet);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Training set size'</span>, trainSet.<span class="hljs-title function_">size</span>());
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Validation set size'</span>, validationSet.<span class="hljs-title function_">size</span>());
 </code></pre>
-<h2 id="step-5-train-a-random-forest-classifier">Step 5: Train a Random Forest Classifier</h2>
-<p>The original script used CART. This course version switches to Random Forest.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 12: Train a Random Forest classifier.</span>
-<span class="hljs-comment">// Random Forest is usually a strong choice for landcover classification</span>
-<span class="hljs-comment">// because it combines many decision trees instead of relying on just one.</span>
-<span class="hljs-keyword">var</span> classifier = ee.<span class="hljs-property">Classifier</span>.<span class="hljs-title function_">smileRandomForest</span>(<span class="hljs-number">100</span>).<span class="hljs-title function_">train</span>({
+<blockquote>
+<p><strong>Concept Note:</strong>
+The community tutorial emphasizes that only a small number of good samples is needed. That is why this lab keeps the training/validation split simple.</p>
+</blockquote>
+<h2 id="step-5-train-a-knn-classifier">Step 5: Train a kNN Classifier</h2>
+<p>The community tutorial uses k-Nearest Neighbors, which is a good match for low-shot learning on embeddings.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 15: Train a kNN classifier on the embedding vectors.</span>
+<span class="hljs-keyword">var</span> classifier = ee.<span class="hljs-property">Classifier</span>.<span class="hljs-title function_">smileKNN</span>().<span class="hljs-title function_">train</span>({
   <span class="hljs-attr">features</span>: trainSet,
   <span class="hljs-attr">classProperty</span>: <span class="hljs-string">'class'</span>,
-  <span class="hljs-attr">inputProperties</span>: bands
+  <span class="hljs-attr">inputProperties</span>: bandNames
 });
 
-<span class="hljs-comment">// STEP 13: Print a short explanation of the trained classifier.</span>
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Random Forest classifier explanation'</span>, classifier.<span class="hljs-title function_">explain</span>());
-
-<span class="hljs-comment">// STEP 14: Evaluate the classifier on the training set.</span>
+<span class="hljs-comment">// STEP 16: Evaluate the classifier on the training set.</span>
 <span class="hljs-keyword">var</span> trainConfusion = trainSet.<span class="hljs-title function_">classify</span>(classifier).<span class="hljs-title function_">errorMatrix</span>(<span class="hljs-string">'class'</span>, <span class="hljs-string">'classification'</span>);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Training confusion matrix'</span>, trainConfusion);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Training overall accuracy'</span>, trainConfusion.<span class="hljs-title function_">accuracy</span>());
 
-<span class="hljs-comment">// STEP 15: Evaluate the classifier on the validation set.</span>
+<span class="hljs-comment">// STEP 17: Evaluate the classifier on the validation set.</span>
 <span class="hljs-keyword">var</span> validationConfusion = validationSet.<span class="hljs-title function_">classify</span>(classifier).<span class="hljs-title function_">errorMatrix</span>(<span class="hljs-string">'class'</span>, <span class="hljs-string">'classification'</span>);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Validation confusion matrix'</span>, validationConfusion);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Validation overall accuracy'</span>, validationConfusion.<span class="hljs-title function_">accuracy</span>());
 </code></pre>
 <blockquote>
 <p><strong>Concept Note:</strong>
-Random Forest is often preferred over CART for beginner landcover <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> projects because it usually gives more stable results when the training data are a little noisy.</p>
+kNN works by comparing each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to nearby labeled examples in embedding space. That is why embeddings are so useful: similar places tend to cluster together in the <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> space.</p>
 </blockquote>
-<h2 id="step-6-classify-the-before-and-after-images">Step 6: Classify the Before and After Images</h2>
-<p>Now we can classify both dates with the same trained model.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 16: Classify the after composite.</span>
-<span class="hljs-keyword">var</span> afterClassified = afterImage.<span class="hljs-title function_">select</span>(bands).<span class="hljs-title function_">classify</span>(classifier);
+<h2 id="step-6-classify-the-annual-embedding-mosaic">Step 6: Classify the Annual Embedding Mosaic</h2>
+<p>Now classify every <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> in the annual AlphaEarth mosaic.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 18: Apply the classifier to the annual embedding image.</span>
+<span class="hljs-keyword">var</span> classified = embeddingsImage.<span class="hljs-title function_">classify</span>(classifier);
 
-<span class="hljs-comment">// STEP 17: Classify the before composite.</span>
-<span class="hljs-keyword">var</span> beforeClassified = beforeImage.<span class="hljs-title function_">select</span>(bands).<span class="hljs-title function_">classify</span>(classifier);
-
-<span class="hljs-comment">// STEP 18: Define a color palette for the class map.</span>
-<span class="hljs-comment">// The class order is:</span>
-<span class="hljs-comment">// 0 = Bare</span>
-<span class="hljs-comment">// 1 = Water</span>
-<span class="hljs-comment">// 2 = Vegetation</span>
-<span class="hljs-comment">// 3 = Urban</span>
+<span class="hljs-comment">// STEP 19: Define a palette for the four landcover classes.</span>
 <span class="hljs-keyword">var</span> classVis = {
   <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>,
   <span class="hljs-attr">max</span>: <span class="hljs-number">3</span>,
   <span class="hljs-attr">palette</span>: [<span class="hljs-string">'ffd629'</span>, <span class="hljs-string">'008fff'</span>, <span class="hljs-string">'118b05'</span>, <span class="hljs-string">'ff0c06'</span>]
 };
 
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(beforeClassified, classVis, <span class="hljs-string">'Before classified'</span>, <span class="hljs-literal">false</span>);
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(afterClassified, classVis, <span class="hljs-string">'After classified'</span>, <span class="hljs-literal">true</span>);
-</code></pre>
-<p><img src="images/landcover_classified_placeholder.png" alt="Placeholder: screenshot of the before and after classified maps in the Earth Engine Code Editor, with the class palette visible in the Layers panel."></img></p>
-<h2 id="step-7-detect-change">Step 7: Detect Change</h2>
-<p>The simplest change map shows whether a <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> changed class between the two dates.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 19: Compare the classified maps.</span>
-<span class="hljs-comment">// `neq()` means "not equal to", so this keeps pixels that changed class.</span>
-<span class="hljs-keyword">var</span> changeMask = beforeClassified.<span class="hljs-title function_">neq</span>(afterClassified);
-
-<span class="hljs-comment">// STEP 20: Make changed pixels visible.</span>
-<span class="hljs-comment">// `selfMask()` hides the pixels where the comparison is false.</span>
-<span class="hljs-keyword">var</span> changedPixels = changeMask.<span class="hljs-title function_">selfMask</span>();
-
-<span class="hljs-comment">// STEP 21: Add the change layer to the map.</span>
-<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(changedPixels, {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'ffff00'</span>]}, <span class="hljs-string">'Changed pixels'</span>, <span class="hljs-literal">false</span>);
-</code></pre>
-<p>If you want a more detailed transition map, you can also encode before/after class pairs into a single number. That is useful for more advanced analysis, but the binary change <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> is easier to read at first.</p>
-<blockquote>
-<p><strong>Concept Note:</strong>
-Change detection can be as simple as asking, “Did the class stay the same?” If it did not, that <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> is a change <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a>.</p>
-</blockquote>
-<h2 id="step-8-summarize-area-by-class">Step 8: Summarize Area by Class</h2>
-<p>Now we can measure how much area each class covers.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 22: Define chart styling.</span>
-<span class="hljs-keyword">var</span> options = {
-  <span class="hljs-attr">lineWidth</span>: <span class="hljs-number">1</span>,
-  <span class="hljs-attr">pointSize</span>: <span class="hljs-number">2</span>,
-  <span class="hljs-attr">hAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">'Classes'</span>},
-  <span class="hljs-attr">vAxis</span>: {<span class="hljs-attr">title</span>: <span class="hljs-string">'Area m^2'</span>},
-  <span class="hljs-attr">title</span>: <span class="hljs-string">'Area by class'</span>,
-  <span class="hljs-attr">series</span>: {
-    <span class="hljs-number">0</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">'ffd629'</span>}, <span class="hljs-comment">// Bare</span>
-    <span class="hljs-number">1</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">'008fff'</span>}, <span class="hljs-comment">// Water</span>
-    <span class="hljs-number">2</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">'118b05'</span>}, <span class="hljs-comment">// Vegetation</span>
-    <span class="hljs-number">3</span>: {<span class="hljs-attr">color</span>: <span class="hljs-string">'ff0c06'</span>}  <span class="hljs-comment">// Urban</span>
-  }
-};
-
-<span class="hljs-comment">// STEP 23: Chart the classified area for the after date.</span>
-<span class="hljs-keyword">var</span> areaChartAfter = ui.<span class="hljs-property">Chart</span>.<span class="hljs-property">image</span>.<span class="hljs-title function_">byClass</span>({
-  <span class="hljs-attr">image</span>: ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">pixelArea</span>().<span class="hljs-title function_">addBands</span>(afterClassified),
-  <span class="hljs-attr">classBand</span>: <span class="hljs-string">'classification'</span>,
-  <span class="hljs-attr">region</span>: aoi,
-  <span class="hljs-attr">scale</span>: <span class="hljs-number">30</span>,
-  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>()
-}).<span class="hljs-title function_">setOptions</span>(options)
-  .<span class="hljs-title function_">setSeriesNames</span>([<span class="hljs-string">'bare'</span>, <span class="hljs-string">'water'</span>, <span class="hljs-string">'vegetation'</span>, <span class="hljs-string">'urban'</span>]);
-
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Area by class after'</span>, areaChartAfter);
-
-<span class="hljs-comment">// STEP 24: Chart the classified area for the before date.</span>
-<span class="hljs-keyword">var</span> areaChartBefore = ui.<span class="hljs-property">Chart</span>.<span class="hljs-property">image</span>.<span class="hljs-title function_">byClass</span>({
-  <span class="hljs-attr">image</span>: ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">pixelArea</span>().<span class="hljs-title function_">addBands</span>(beforeClassified),
-  <span class="hljs-attr">classBand</span>: <span class="hljs-string">'classification'</span>,
-  <span class="hljs-attr">region</span>: aoi,
-  <span class="hljs-attr">scale</span>: <span class="hljs-number">30</span>,
-  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>()
-}).<span class="hljs-title function_">setOptions</span>(options)
-  .<span class="hljs-title function_">setSeriesNames</span>([<span class="hljs-string">'bare'</span>, <span class="hljs-string">'water'</span>, <span class="hljs-string">'vegetation'</span>, <span class="hljs-string">'urban'</span>]);
-
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Area by class before'</span>, areaChartBefore);
+<span class="hljs-comment">// STEP 20: Add the classified result to the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(classified.<span class="hljs-title function_">clip</span>(aoi), classVis, <span class="hljs-string">'AlphaEarth landcover classification'</span>);
 </code></pre>
 <blockquote>
 <p><strong>Concept Note:</strong>
-The chart does not just make a nice graphic. It gives you a quick quantitative check that the map is behaving in a way that makes sense.</p>
+The classified output is a landcover map built from embeddings, not from a raw <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> composite. That is the main conceptual shift in this version of the lab.</p>
 </blockquote>
-<h2 id="step-9-export-the-result-if-needed">Step 9: Export the Result if Needed</h2>
-<p>If you want to save the classified map, you can export the result to Google Drive.</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 25: Export the after classification to Google Drive.</span>
-<span class="hljs-comment">// The export AOI is larger than the study area, so feel free to shrink it if needed.</span>
-<span class="hljs-title class_">Export</span>.<span class="hljs-property">image</span>.<span class="hljs-title function_">toDrive</span>({
-  <span class="hljs-attr">image</span>: afterClassified,
-  <span class="hljs-attr">description</span>: <span class="hljs-string">'landcover_after_classified'</span>,
-  <span class="hljs-attr">fileNamePrefix</span>: <span class="hljs-string">'landcover_after_classified'</span>,
-  <span class="hljs-attr">region</span>: exportaoi,
-  <span class="hljs-attr">fileFormat</span>: <span class="hljs-string">'GeoTIFF'</span>,
-  <span class="hljs-attr">formatOptions</span>: {
-    <span class="hljs-attr">cloudOptimized</span>: <span class="hljs-literal">true</span>
-  },
-  <span class="hljs-attr">scale</span>: <span class="hljs-number">30</span>,
-  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e9</span>
+<h2 id="step-7-extract-one-class-as-a-binary-mask">Step 7: Extract One Class as a Binary Mask</h2>
+<p>If you want to focus on one class, you can turn the <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> into a <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 21: Extract the vegetation class as a binary mask.</span>
+<span class="hljs-keyword">var</span> vegetationMask = classified.<span class="hljs-title function_">eq</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">selfMask</span>();
+
+<span class="hljs-comment">// STEP 22: Display only the vegetation pixels.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(vegetationMask.<span class="hljs-title function_">clip</span>(aoi), {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'00ff00'</span>]}, <span class="hljs-string">'Vegetation mask'</span>, <span class="hljs-literal">false</span>);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The same trick works for any class. Change the class number to isolate bare ground, water, vegetation, or urban areas.</p>
+</blockquote>
+<h2 id="step-8-optional-export">Step 8: Optional Export</h2>
+<p>For a large area, you may want to export the <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> as an asset.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 23: Optional export to an Earth Engine asset.</span>
+<span class="hljs-comment">// Replace the path with your own asset folder.</span>
+<span class="hljs-title class_">Export</span>.<span class="hljs-property">image</span>.<span class="hljs-title function_">toAsset</span>({
+  <span class="hljs-attr">image</span>: classified.<span class="hljs-title function_">clip</span>(aoi),
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'AlphaEarth_Landcover_Classification_2024'</span>,
+  <span class="hljs-attr">assetId</span>: <span class="hljs-string">'projects/your-project/assets/AlphaEarth_Landcover_Classification_2024'</span>,
+  <span class="hljs-attr">region</span>: aoi,
+  <span class="hljs-attr">scale</span>: <span class="hljs-number">10</span>,
+  <span class="hljs-attr">pyramidingPolicy</span>: <span class="hljs-string">'MODE'</span>,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e10</span>
 });
 </code></pre>
-<h2 id="what-you-should-submit">What You Should Submit</h2>
-<p>If this optional workshop is assigned for your section, submit:</p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Use <code>MODE</code> for a classified <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> because the output contains discrete class values instead of continuous measurements.</p>
+</blockquote>
+<h2 id="step-9-optional-change-detection-extension">Step 9: Optional Change Detection Extension</h2>
+<p>This <code>02b</code> version is focused on AlphaEarth-based <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a>. If you want to extend it into change detection, repeat the same workflow for a second year and compare the resulting class maps.</p>
+<p>For example:</p>
 <ol>
-<li>A screenshot or PDF showing the before and after classified layers.</li>
-<li>The validation or accuracy output from the classifier.</li>
-<li>A brief note describing where you see change and what it seems to represent.</li>
+<li>classify 2024 with the code above</li>
+<li>change <code>year</code> to 2023</li>
+<li>rerun the workflow</li>
+<li>compare the two classified maps with <code>neq()</code></li>
 </ol>
+<pre><code class="lang-javascript"><span class="hljs-comment">// OPTIONAL EXTENSION ONLY:</span>
+<span class="hljs-comment">// If a second year is available in the annual collection, repeat the</span>
+<span class="hljs-comment">// workflow for that year and compare the results.</span>
+<span class="hljs-keyword">var</span> previousYear = <span class="hljs-number">2023</span>;
+<span class="hljs-keyword">var</span> previousStart = ee.<span class="hljs-property">Date</span>.<span class="hljs-title function_">fromYMD</span>(previousYear, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-keyword">var</span> previousEnd = previousStart.<span class="hljs-title function_">advance</span>(<span class="hljs-number">1</span>, <span class="hljs-string">'year'</span>);
+
+<span class="hljs-keyword">var</span> previousEmbeddings = embeddings
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">date</span>(previousStart, previousEnd))
+  .<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">bounds</span>(aoi))
+  .<span class="hljs-title function_">mosaic</span>();
+
+<span class="hljs-keyword">var</span> previousClassified = previousEmbeddings.<span class="hljs-title function_">classify</span>(classifier);
+<span class="hljs-keyword">var</span> changeMask = previousClassified.<span class="hljs-title function_">neq</span>(classified);
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(changeMask.<span class="hljs-title function_">selfMask</span>().<span class="hljs-title function_">clip</span>(aoi), {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'ffffff'</span>]}, <span class="hljs-string">'Change mask'</span>, <span class="hljs-literal">false</span>);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The optional change detection step only makes sense if the annual AlphaEarth dataset has multiple years available for your study area.</p>
+</blockquote>
 <h2 id="what-this-teaches">What This Teaches</h2>
-<p>This lab shows a realistic Earth Engine workflow:</p>
+<p>The main takeaway is that the AlphaEarth annual embedding collection gives you a compact, analysis-ready representation of the landscape.</p>
+<p>Instead of building a spectral composite first, you can:</p>
 <ol>
-<li>Build a clean composite from satellite imagery.</li>
-<li>Use training points to teach a classifier.</li>
-<li>Evaluate the classifier with validation data.</li>
-<li>Apply the classifier to multiple dates.</li>
-<li>Compare the results to detect change.</li>
+<li>load the annual embedding mosaic</li>
+<li>sample labeled examples</li>
+<li>train a simple classifier</li>
+<li>classify the whole region</li>
 </ol>
+<p>That makes the workflow shorter, more flexible, and more consistent with modern embedding-based analysis.</p>
+<p>If you want to review the community tutorial that inspired this lab, see:</p>
+<p><a href="https://developers.google.com/earth-engine/tutorials/community/satellite-embedding-03-supervised-classification" target="_blank"><em>Supervised Classification with Satellite Embedding Dataset</em></a></p>
 
                                 
                                 </section>
@@ -1408,12 +1356,12 @@ The chart does not just make a nice graphic. It gives you a quick quantitative c
 
             
                 
-                <a href="01_suitability_modeling_in_qgis.html" class="navigation navigation-prev " aria-label="Previous page: 01 - OPTIONAL_ Suitability Modeling in QGIS">
+                <a href="02_landcover_classification_and_change_detection_in_google_earth_engine.html" class="navigation navigation-prev " aria-label="Previous page: 02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.html" class="navigation navigation-next " aria-label="Next page: 02b - OPTIONAL_ Landcover Classification with AlphaEarth Embeddings in Google Earth Engine">
+                <a href="03_introducing_model_builder_in_qgis.html" class="navigation navigation-next " aria-label="Next page: 03 - OPTIONAL_ Introducing Model Builder in QGIS">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1424,7 +1372,7 @@ The chart does not just make a nice graphic. It gives you a quick quantitative c
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"next":{"title":"02b - OPTIONAL_ Landcover Classification with AlphaEarth Embeddings in Google Earth Engine","level":"1.11.4","depth":2,"path":"week08/02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.md","ref":"week08/02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.md","articles":[]},"previous":{"title":"01 - OPTIONAL_ Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","mtime":"2026-05-26T20:46:29.107Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:46:46.902Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"02b - OPTIONAL_ Landcover Classification with AlphaEarth Embeddings in Google Earth Engine","level":"1.11.4","depth":2,"next":{"title":"03 - OPTIONAL_ Introducing Model Builder in QGIS","level":"1.11.5","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},"previous":{"title":"02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.md","mtime":"2026-05-26T20:46:29.107Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:46:46.902Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
