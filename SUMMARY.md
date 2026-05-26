@@ -67,7 +67,7 @@
   * [02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine](week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md)
   * [03 - OPTIONAL - Introducing Model Builder in QGIS](week08/03_introducing_model_builder_in_qgis.md)
   * [04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine](week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md)
-  * [05 - OPTIONAL - Being John Snow,... in a Python Notebook](week08/05_being_john_snow_in_a_python_notebook.md)
+  * [05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook](week08/05_being_john_snow_in_a_python_notebook.md)
   * [06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare](week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
 
 * [Appendix to the Course Guide](appendix/README.md)

@@ -8,8 +8,11 @@ All of the week’s labs are marked as OPTIONAL, giving students flexibility to 
 
 - [OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine](00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md)
 - [OPTIONAL - Suitability Modeling in QGIS](01_suitability_modeling_in_qgis.md)
-- [OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine](02_landcover_classification_and_change_detection_in_google_earth_engine.md)
+- [OPTIONAL - [DRAFT] Landcover Classification & Change Detection in Google Earth Engine](02_landcover_classification_and_change_detection_in_google_earth_engine.md)
+- [OPTIONAL - Landcover Classification with AlphaEarth Embeddings in Google Earth Engine](02b_landcover_classification_with_alphaearth_embeddings_in_google_earth_engine.md)
 - [OPTIONAL - Introducing Model Builder in QGIS](03_introducing_model_builder_in_qgis.md)
 - [OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine](04_the_alphaearth_embedding_database_in_google_earth_engine.md)
-- [OPTIONAL - Being John Snow,... in a Python Notebook](05_being_john_snow_in_a_python_notebook.md)
-- [OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare](06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+- [OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook](05_being_john_snow_in_a_python_notebook.md)
+- [OPTIONAL - [DRAFT] Hands-on with the Unified GDAL CLI and GDALG Pipelines](06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+
+> The runnable notebook for this lab is stored in [`data/Being_John_Snow_Python_Notebook.ipynb`](../data/Being_John_Snow_Python_Notebook.ipynb) so it can be opened directly in Colab.

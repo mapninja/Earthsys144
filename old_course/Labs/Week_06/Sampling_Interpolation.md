@@ -372,7 +372,6 @@ Now you will use this stratified random sample to produce one last interpolation
 2. Specify `StratRandElevationSamples` as the Input points, and your sampled elevation (`STRATA_1`)
 3. **Output Extent**: **Calculate from Layer>**`ChirDEM`
 
-![](images/20250504_111040_image.png)
 
 1. **Cellsize**: `30`
 2. **Refinement**: `[1]yes`
@@ -380,7 +379,8 @@ Now you will use this stratified random sample to produce one last interpolation
 4. **Maximum Level**: `11`
 5. **Output Grid**: Browse and name `SplineStratRand`
 
-![](images/20250504_111210_image.png)
+
+![](images/20260526_125020_image.png)
 
 9. After running the tool, **calculate contours**, Create a **hillshade** and _apply the same style_ as the other Interpolation Layers, including applying transparency to the hillshade, etc...
 10. “**Group**” the Spline layers in the **Layers panel**.
@@ -416,7 +416,6 @@ For the image, below, I used the following layer order and settings:
 #### Hint:
 
 You can easilty COPY your styles from one layer to another (so that your layers match exactly, across groups), by right-clicking on the layer you want to copy the style from, and going to **>Styles>Copy Style>All Style Categories**, then using **>Styles>Paste Style>All Style Categories** on the layer you want to duplicate the styling too.
-
 
 ![](images/20250504_121923_image.png)
 

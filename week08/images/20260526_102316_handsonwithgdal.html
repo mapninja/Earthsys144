@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+	<html class="sl-root decks export offline loaded">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, minimal-ui">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="manifest" href='data:application/manifest+json,{"display": "standalone", "name": "GDAL 101: The Geospatial Data Abstraction Library for beginners."}' />
+		<title>GDAL 101: The Geospatial Data Abstraction Library for beginners.</title>
+
+		<meta name="description" content="Based entirely upon Sara Safavi&#39;s fantastic GDAL Hands-on Workshop, the single best introduction to GDAL, available. See the original, here: http://slides.sarasafavi.com/gdal/#/    I&#39;ve taken Sara&#39;s workshop, added access to speaker notes and updated a few things for the newest versions of GDAL. Otherwise, I&#39;m presenting her work. ">
+
+		<link rel="stylesheet" type="text/css" href="lib/offline-v2.css">
+
+
+
+		<!-- User CSS -->
+		<style id="user-css-output" type="text/css">
+			.reveal pre code {
+  display: block;
+  padding: 0.5em;
+  background: #3F3F3F;
+  color: #DCDCDC;
+}
+.reveal pre .keyword,
+.reveal pre .tag,
+.reveal pre .css .class,
+.reveal pre .css .id,
+.reveal pre .lisp .title,
+.reveal pre .nginx .title,
+.reveal pre .request,
+.reveal pre .status,
+.reveal pre .clojure .attribute {
+  color: #E3CEAB;
+}
+.reveal pre .django .template_tag,
+.reveal pre .django .variable,
+.reveal pre .django .filter .argument {
+  color: #DCDCDC;
+}
+.reveal pre .number,
+.reveal pre .date {
+  color: #8CD0D3;
+}
+.reveal pre .dos .envvar,
+.reveal pre .dos .stream,
+.reveal pre .variable,
+.reveal pre .apache .sqbracket {
+  color: #EFDCBC;
+}
+.reveal pre .dos .flow,
+.reveal pre .diff .change,
+.reveal pre .python .exception,
+.reveal pre .python .built_in,
+.reveal pre .literal,
+.reveal pre .tex .special {
+  color: #EFEFAF;
+}
+.reveal pre .diff .chunk,
+.reveal pre .subst {
+  color: #8F8F8F;
+}
+.reveal pre .dos .keyword,
+.reveal pre .python .decorator,
+.reveal pre .title,
+.reveal pre .haskell .type,
+.reveal pre .diff .header,
+.reveal pre .ruby .class .parent,
+.reveal pre .apache .tag,
+.reveal pre .nginx .built_in,
+.reveal pre .tex .command,
+.reveal pre .prompt {
+  color: #efef8f;
+}
+.reveal pre .dos .winutils,
+.reveal pre .ruby .symbol,
+.reveal pre .ruby .symbol .string,
+.reveal pre .ruby .string {
+  color: #DCA3A3;
+}
+.reveal pre .diff .deletion,
+.reveal pre .string,
+.reveal pre .tag .value,
+.reveal pre .preprocessor,
+.reveal pre .built_in,
+.reveal pre .sql .aggregate,
+.reveal pre .javadoc,
+.reveal pre .smalltalk .class,
+.reveal pre .smalltalk .localvars,
+.reveal pre .smalltalk .array,
+.reveal pre .css .rules .value,
+.reveal pre .attr_selector,
+.reveal pre .pseudo,
+.reveal pre .apache .cbracket,
+.reveal pre .tex .formula {
+  color: #CC9393;
+}
+.reveal pre .shebang,
+.reveal pre .diff .addition,
+.reveal pre .comment,
+.reveal pre .java .annotation,
+.reveal pre .template_comment,
+.reveal pre .pi,
+.reveal pre .doctype {
+  color: #7F9F7F;
+}
+.reveal pre .coffeescript .javascript,
+.reveal pre .javascript .xml,
+.reveal pre .tex .formula,
+.reveal pre .xml .javascript,
+.reveal pre .xml .vbscript,
+.reveal pre .xml .css,
+.reveal pre .xml .cdata {
+  opacity: 0.5;
+}
+.reveal .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #3f3f3f;
+  color: #dcdcdc;
+  -webkit-text-size-adjust: none;
+}
+.reveal .hljs-keyword,
+.reveal .hljs-tag,
+.reveal .css .hljs-class,
+.reveal .css .hljs-id,
+.reveal .lisp .hljs-title,
+.reveal .nginx .hljs-title,
+.reveal .hljs-request,
+.reveal .hljs-status,
+.reveal .clojure .hljs-attribute {
+  color: #e3ceab;
+}
+.reveal .django .hljs-template_tag,
+.reveal .django .hljs-variable,
+.reveal .django .hljs-filter .hljs-argument {
+  color: #dcdcdc;
+}
+.reveal .hljs-number,
+.reveal .hljs-date {
+  color: #8cd0d3;
+}
+.reveal .dos .hljs-envvar,
+.reveal .dos .hljs-stream,
+.reveal .hljs-variable,
+.reveal .apache .hljs-sqbracket {
+  color: #efdcbc;
+}
+.reveal .dos .hljs-flow,
+.reveal .diff .hljs-change,
+.reveal .python .exception,
+.reveal .python .hljs-built_in,
+.reveal .hljs-literal,
+.reveal .tex .hljs-special {
+  color: #efefaf;
+}
+.reveal .diff .hljs-chunk,
+.reveal .hljs-subst {
+  color: #8f8f8f;
+}
+.reveal .dos .hljs-keyword,
+.reveal .hljs-decorator,
+.reveal .hljs-title,
+.reveal .hljs-type,
+.reveal .diff .hljs-header,
+.reveal .ruby .hljs-class .hljs-parent,
+.reveal .apache .hljs-tag,
+.reveal .nginx .hljs-built_in,
+.reveal .tex .hljs-command,
+.reveal .hljs-prompt {
+  color: #efef8f;
+}
+.reveal .dos .hljs-winutils,
+.reveal .ruby .hljs-symbol,
+.reveal .ruby .hljs-symbol .hljs-string,
+.reveal .ruby .hljs-string {
+  color: #dca3a3;
+}
+.reveal .diff .hljs-deletion,
+.reveal .hljs-string,
+.reveal .hljs-tag .hljs-value,
+.reveal .hljs-preprocessor,
+.reveal .hljs-pragma,
+.reveal .hljs-built_in,
+.reveal .hljs-javadoc,
+.reveal .smalltalk .hljs-class,
+.reveal .smalltalk .hljs-localvars,
+.reveal .smalltalk .hljs-array,
+.reveal .css .hljs-rules .hljs-value,
+.reveal .hljs-attr_selector,
+.reveal .hljs-pseudo,
+.reveal .apache .hljs-cbracket,
+.reveal .tex .hljs-formula,
+.reveal .coffeescript .hljs-attribute {
+  color: #cc9393;
+}
+.reveal .hljs-shebang,
+.reveal .diff .hljs-addition,
+.reveal .hljs-comment,
+.reveal .hljs-annotation,
+.reveal .hljs-template_comment,
+.reveal .hljs-pi,
+.reveal .hljs-doctype {
+  color: #7f9f7f;
+}
+.reveal .coffeescript .javascript,
+.reveal .javascript .xml,
+.reveal .tex .hljs-formula,
+.reveal .xml .javascript,
+.reveal .xml .vbscript,
+.reveal .xml .css,
+.reveal .xml .hljs-cdata {
+  opacity: 0.5;
+}
+
+		</style>
+	</head>
+	<body class="reveal-viewport theme-font-quicksand theme-color-silver-green">
+		<div class="reveal">
+			<div class="slides">
+				<section data-id="a4d70aa1d58f1614bfabe1a0d121231d"><div class="sl-block" data-block-type="text" data-name="text-8bfac2" data-block-id="f8e6d2d3e571f0ee77c8be68e7d96c05" style="height: auto; width: 960px; left: 0px; top: 218px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h2>Hands on with GDAL/OGR</h2>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<ul>
+<li>1hr: Setup &amp; Installation</li>
+<li>2hr: Instruction &amp; Group Exercises</li>
+<li>1hr: Self-paced assignments, Q&amp;A</li>
+</ul>
+<p><br></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-name="text-614477" data-block-id="0c8410cc29ff429827b97aefaa9a8aca" style="height: auto; width: 960px; left: 0px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 57%; text-align: center;">
+<p>This workshop is adapted and updated from <a href="http://slides.sarasafavi.com/gdal/#/" target="_blank">http://slides.sarasafavi.com/gdal/#/</a> </p>
+
+<p>which is <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">cc-by-nc 4.0</a>| © Sasha Hart &amp; Sara Safavi, 2017</p>
+</div></div></section><section data-id="9abb55929ab6bd1e8d90c9c3122a3742"><div class="sl-block" data-block-type="text" data-name="text-e79fee" data-block-id="acbd88816eb68326ecd49835e0a21542" style="height: auto; width: 960px; left: 0px; top: 313px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Who are we?</h2>
+</div></div></section><section data-id="f3b4750aba8aaeeb3cdf3ad000538ae6"><div class="sl-block" data-block-type="text" data-name="text-5d1835" data-block-id="9d336c1c64d49b97e4e172ec53654e5d" style="height: auto; width: 800px; left: 80px; top: 197.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>What is GDAL/OGR?</h2>
+	<p>
+
+	<em><strong>Geospatial Data Abstraction Library</strong> for
+		translating &amp; processing
+		raster &amp; vector geospatial data.</em>
+		</p>
+<ul>
+			<li>Free &amp; open source</li>
+			<li>Used by your favorite desktop GIS</li>
+			<li>Has a <strong>command line interface</strong>
+</li>
+		</ul>
+	<p></p>
+</div></div></section><section data-id="f534d49fac4c9e29ed8835b1b57f27b2"><div class="sl-block" data-block-type="text" data-name="text-59428c" data-block-id="dd707aa1aa99071f8eccf742331fb341" style="height: auto; width: 800px; left: 80px; top: 205px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>What kinds of data?</h2>
+	<p>
+		GDAL's superpower is that it can read or write pretty much any spatial
+		file you throw at it.
+		</p> <p>
+
+		As of April 2016, GDAL can translate <strong>142 raster</strong>
+		formats, and <strong>84 vector</strong> formats!
+		</p>
+</div></div></section><section data-id="a82e00e8832022ffe1f95bd9b4998624"><div class="sl-block" data-block-type="text" data-name="text-9a6ba6" data-block-id="5ea2f07c04f22b26eca4f03c72db69b3" style="height: auto; width: 800px; left: 80px; top: 171.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<p><em>A note about the name:</em></p> <p>
+		"GDAL/OGR" refers to the combined project with both raster &amp;
+		vector tools
+		</p>
+<ul>
+			<li>GDAL: raster</li>
+			<li>OGR: vector</li>
+		</ul>
+
+		<p></p> <p>
+                Today, most refer to the combined project as "GDAL"
+                </p>
+		
+		<p></p>
+</div></div></section><section data-id="c76dbbbe306ca4139ac99325151aa559"><div class="sl-block" data-block-type="text" data-name="text-694d07" data-block-id="e5375476bce0942b18962a1ab8c3b94c" style="height: auto; width: 800px; left: 80px; top: 234.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+		<h3>What you'll do today</h3>
+		<ul>
+<li>Lots of typing-what-you-see</li>
+			<li>Probably a bit of Googling</li>
+			<li>Forget at least 50% by tonight<em>  
+					(that's ok!)</em>
+</li>
+			<li>Leave here 100% more familiar with GDAL/OGR</li>
+</ul>
+
+
+		
+	</div></div></section><section data-id="794e33bbae770356c91e92b49a76ce6c" class="stack"><section data-id="97551eb050305a89392b5d70d2598e15"><div class="sl-block" data-block-type="text" data-name="text-3c061d" data-block-id="ffda538a2b84783fc589bc8806797cc2" style="height: auto; width: 960px; left: 0px; top: 320px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Installation &amp; Setup</h3>
+		
+	</div></div></section><section data-id="82df92a0aacd8375e6a98e3fb2b79d96"><div class="sl-block" data-block-type="text" data-name="text-1b9796" data-block-id="9981f4e3fa45c3d47eb6c751d4f877c4" style="height: auto; width: 960px; left: 0px; top: 242px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+<h3>Windows</h3>
+
+<p><em>Recommended route: </em><br>
+OSGEO4W Installer<br>
+http://trac.osgeo.org/osgeo4w</p>
+</div></div></section><section data-id="4250a36698f797967bd84cfb4e8d8f5b"><div class="sl-block" data-block-type="text" data-name="text-a54e1b" data-block-id="5e2310039444af472a8a5ff9637841b2" style="height: auto; width: 960px; left: 0px; top: 254px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+<h3>Linux</h3>
+
+<ul>
+	<li>Ubuntu: GDAL 1.11 in Default (Universe)</li>
+	<li>Debian: GDAL 1.10 in Stable (Jessie)</li>
+	<li>Fedora/CentOS/RHEL: EPEL 7 has GDAL 1.11</li>
+</ul>
+</div></div></section><section data-id="4ea6478c03cee05ea9bf6ebc3aaaa931"><div class="sl-block" data-block-type="text" data-name="text-67339b" data-block-id="645c83389b2fbdbf0d3ac2f1371adb82" style="height: auto; width: 800px; left: 80px; top: 204px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="font-size: 123%;">
+<h3>Mac</h3>
+
+<p><em>Recommended route: </em><br>
+<a href="https://medium.com/@vascofernandes_13322/how-to-install-gdal-on-macos-6a76fb5e24a4" target="_blank"><span style="font-size:0.5em;">https://medium.com/@vascofernandes_13322/how-to-install-gdal-on-macos-6a76fb5e24a4</span></a></p>
+</div></div></section></section><section data-id="6361157064679d3736d3fac9f49e1f5f"><div class="sl-block" data-block-type="text" data-name="text-c67d32" data-block-id="7166ef4cd3400edcff50eef975841f6b" style="height: auto; width: 960px; left: 0px; top: 211px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Getting Started</h3>
+	<p> GDAL/OGR tools are accessed on the command line <br>
+		<em>(i.e., in the terminal or shell)</em></p>
+<p> </p>
+	<p><em><strong>Note for Windows Users:</strong></em><br>
+		Use “OSGeo4W Shell”</p>
+
+	
+</div></div></section><section data-id="711bd2393bb94756c3222e363c4863c2"><div class="sl-block" data-block-type="text" data-name="text-effa60" data-block-id="fa71e964b7152562fb4c489fe349cb43" style="height: auto; width: 960px; left: 0px; top: 240.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10; background-color: rgba(0, 0, 0, 0);">
+<p>Verify installation by typing <code>ogrinfo</code> &amp; hitting enter.<br>
+If all went well, you should see:</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-e6f8e3" style="width: 799px; height: 218px; left: 80px; top: 350px; min-width: 1px; min-height: 1px;" data-block-id="3950cf3080a09acab9c2014a3985c410"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="799" data-natural-height="218" data-lazy-loaded="" data-src="handsonwithgdal/02dec4fe1020d2a9e2ff79e488d9c796.png"></div></div></section><section data-id="9603d86e10e2386c609603aef521ba57"><div class="sl-block" data-block-type="text" data-name="text-971ac3" data-block-id="03932286404b3d7ce47585506776448b" style="height: auto; width: 960px; left: 0px; top: 320px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3><em>Check point</em></h3>
+
+	
+</div></div></section><section data-id="d213d32e7d38042fcc4dcc1a71af4fc7"><div class="sl-block" data-block-type="text" data-name="text-547f8e" data-block-id="43264d8e415c3e816c8a9c585d35f83a" style="height: auto; width: 960px; left: 0px; top: 313px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Exploring Data</h2>
+</div></div></section><section data-id="56c07c1f508291f1ffb1c2220716adcd"><div class="sl-block" data-block-type="text" data-name="text-b6e1fb" data-block-id="551f37d739112cb58e9c4d956119d914" style="height: auto; width: 960px; left: 0px; top: 234.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+<h3>Demo Data</h3>
+
+<p><a href="https://drive.google.com/file/d/18c1L3nt3FTcvd2YLm5HwXzfiulAgs0en/view?usp=sharing" target="_blank">https://drive.google.com/file/d/18c1L3nt3FTcvd2YLm5HwXzfiulAgs0en/view?usp=sharing</a></p>
+
+<p> </p>
+
+<p>Download &amp; unzip<br>
+Move data to a "sandbox" directory</p>
+</div></div></section><section data-id="c683bcba18cbb6a5fa0ae48e205248fd"><div class="sl-block" data-block-type="text" data-name="text-9c0002" data-block-id="87fdecee43747b40376c2a82cd7de93b" style="height: auto; width: 960px; left: 0px; top: 300.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Check out the data visually</h3>
+	<p>Use your favorite GIS desktop application to view data</p>
+</div></div></section><section data-id="fb31fab37031694623a8338b5632c6c7"><div class="sl-block" data-block-type="text" data-name="text-1d62d4" data-block-id="25c6efb52d77ecace797c7947d4db3d6" style="height: auto; width: 960px; left: 0px; top: 661px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p>Demo vector data: Austin-area zipcodes &amp; pools</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-407b5d" style="width: 960px; height: 480.755px; left: 0px; top: 109.623px; min-width: 1px; min-height: 1px;" data-block-id="454765df40ec5b9d2f5012d49e034605"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="1272" data-natural-height="637" style="" data-lazy-loaded="" data-src="handsonwithgdal/422a2b8f73a4286854e535cccbc23bea.png"></div></div></section><section data-id="0b03b483595095cbe3eda8dda940a782"><div class="sl-block" data-block-type="text" data-name="text-25062e" data-block-id="5f920689ac31731d8adeb76a5ac2fbe1" style="height: auto; width: 960px; left: 0px; top: 661px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p>Demo raster data: Austin-area DEM &amp; (clipped) DOQQ</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-dd28d7" data-block-id="168fe8676e2a1ffd3e5e3e92cf9c2d08" style="width: 960px; height: 616.17px; left: 0px; top: 41.915px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="1410" data-natural-height="905" data-lazy-loaded="" data-src="handsonwithgdal/468078db1f0e29a7d634be0e53a1431a.png"></div></div></section><section data-id="33baf271f3b18970bd0c025f1d7ac6ac"><div class="sl-block" data-block-type="text" data-name="text-ccdfba" data-block-id="d95fc15de5a39de6f35f79732647d16d" style="height: auto; width: 960px; left: 0px; top: 300.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Explore data via the command line</h3>
+	<p>Open your terminal and navigate to your working directory</p>
+</div></div></section><section data-id="410e50f8eaa020773adc630922132605"><div class="sl-block" data-block-type="text" data-name="text-7bf250" data-block-id="ddb73dc59c7e72fd855225015922df03" style="height: auto; width: 960px; left: 0px; top: 330.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>OGR for vector data</h4>
+</div></div></section><section data-id="474a74d089e2f9b9f485627c8b3da64c"><div class="sl-block" data-block-type="text" data-name="text-c5e28b" data-block-id="ccfca1faa37d959b927511ce6acda065" style="height: auto; width: 960px; left: 0px; top: 219.5px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+        <p>From your working directory, try this:<br>
+            <code>ogrinfo pools/pools.shp</code></p>
+
+        <pre><code>INFO: Open of `pools/pools.shp'
+      using driver `ESRI Shapefile' successful.
+1: pools (3D Polygon)
+	</code></pre>
+    </div>
+</div></section><section data-id="0ff2fa963e87d48589ea72deab4df908"><div class="sl-block" data-block-type="text" data-name="text-d8ddae" data-block-id="5a423fd1a9fcacd7bdc7e4058678aaa9" style="height: auto; width: 960px; left: 0px; top: 163.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="font-size: 40%;">
+<p><span style="font-size:2.0em;">Now try this:<br>
+<code>ogrinfo -so zipcodes/zipcodes.shp zipcodes</code></span></p>
+
+<pre><code>INFO: Open of `zipcodes/zipcodes.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: zipcodes
+Geometry: Polygon
+Feature Count: 80
+Extent: (-98.589809, 29.669673) - (-97.184067, 31.037805)
+Layer SRS WKT:
+GEOGCS["GCS_WGS_1984",
+    DATUM["WGS_1984",
+        SPHEROID["WGS_84",6378137,298.257223563]],
+    PRIMEM["Greenwich",0],
+    UNIT["Degree",0.017453292519943295]]
+ZIPCODE: String (12.0)
+NAME: String (30.0)
+CREATED_DA: Date (10.0)
+CREATED_BY: String (50.0)
+MODIFIED_D: Date (10.0)
+MODIFIED_B: String (50.0)
+SHAPE_AREA: Real (19.11)
+SHAPE_LEN: Real (19.11)
+</code></pre>
+</div></div></section><section data-id="3ac514c2e63abe94d8394c61d460e397"><div class="sl-block" data-block-type="text" data-name="text-0042ee" data-block-id="e9a690bada227c95c170dc4203aadb9a" style="height: auto; width: 960px; left: 0px; top: 330.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>GDAL for raster data</h4>
+</div></div></section><section data-id="102d5faad995019801f30301f59177c2"><div class="sl-block" data-block-type="text" data-name="text-33c5e5" data-block-id="148d2277253bd81f6425f6673540b4b8" style="height: auto; width: 960px; left: 0px; top: 52px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="font-size: 41%;">
+<p><span style="font-size:2.0em;">Try this:<br>
+<code>gdalinfo dem10m/dem10m.dem</code></span></p>
+
+<pre><code>Driver: USGSDEM/USGS Optional ASCII DEM (and CDED)
+Files: dem10m/dem10m.dem
+       dem10m/dem10m.dem.aux.xml
+Size is 3600, 3600
+Coordinate System is:
+GEOGCS["NAD83",
+    DATUM["North_American_Datum_1983",
+        SPHEROID["GRS 1980",6378137,298.257222101,
+            AUTHORITY["EPSG","7019"]],
+        TOWGS84[0,0,0,0,0,0,0],
+        AUTHORITY["EPSG","6269"]],
+    PRIMEM["Greenwich",0,
+        AUTHORITY["EPSG","8901"]],
+    UNIT["degree",0.0174532925199433,
+        AUTHORITY["EPSG","9108"]],
+    AUTHORITY["EPSG","4269"]]
+Origin = (-97.999999407110110,31.000000503864648)
+Pixel Size = (0.000277777777778,-0.000277777777778)
+Metadata:
+  AREA_OR_POINT=Point
+Corner Coordinates:
+Upper Left  ( -97.9999994,  31.0000005) ( 98d 0' 0.00"W, 31d 0' 0.00"N)
+Lower Left  ( -97.9999994,  30.0000005) ( 98d 0' 0.00"W, 30d 0' 0.00"N)
+Upper Right ( -96.9999994,  31.0000005) ( 97d 0' 0.00"W, 31d 0' 0.00"N)
+Lower Right ( -96.9999994,  30.0000005) ( 97d 0' 0.00"W, 30d 0' 0.00"N)
+Center      ( -97.4999994,  30.5000005) ( 97d30' 0.00"W, 30d30' 0.00"N)
+Band 1 Block=3600x3600 Type=Float32, ColorInterp=Undefined
+  Min=79.900 Max=398.900
+  Minimum=79.900, Maximum=398.900, Mean=193.121, StdDev=63.589
+  NoData Value=-32767
+  Unit Type: m
+  Metadata:
+    STATISTICS_MAXIMUM=398.89999389648
+    STATISTICS_MEAN=193.12105660542
+    STATISTICS_MINIMUM=79.900001525879
+	STATISTICS_STDDEV=63.588582941289
+	</code></pre>
+</div></div></section><section data-id="84be44f1b2cd27e944c739413030e7c3"><div class="sl-block" data-block-type="text" data-name="text-99e661" data-block-id="42b0de184da6f5491641bd3a61d903cf" style="height: auto; width: 960px; left: 0px; top: 313px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Converting Data</h2>
+</div></div></section><section data-id="d163bb88dd7751bef93a937892963bf2"><div class="sl-block" data-block-type="text" data-name="text-d4cf73" data-block-id="3a18030583d1689ca910584c49f551e0" style="height: auto; width: 960px; left: 0px; top: 320px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Exporting original data into new formats</h3>
+	
+</div></div></section><section data-id="13e97002e3a2813eb0e10357e69cd580"><div class="sl-block" data-block-type="text" data-name="text-95f792" data-block-id="89bc6b3cdb97b4316cd3cf52e8b5688b" style="height: auto; width: 960px; left: 0px; top: 303px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>Vector I/O Formats</h4>
+	<p><code>ogr2ogr --formats</code>
+	</p>
+
+	
+</div></div></section><section data-id="bdb9924e372f8890ff44c9bd1f3c1f24"><div class="sl-block" data-block-type="text" data-name="text-ce9e2e" data-block-id="2f9395693a023fc6875bf7dd03f5f0cb" style="height: auto; width: 960px; left: 0px; top: 303px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>Raster I/O Formats</h4>
+	<p><code>gdal_translate --formats</code>
+	</p>
+
+	
+</div></div></section><section data-id="e750f0a62b3680c5890254752be29be1"><div class="sl-block" data-block-type="text" data-name="text-68832c" data-block-id="363069fa00a617a8ffe28c8b76637ffd" style="height: auto; width: 960px; left: 0px; top: 197px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>shapefile → geojson</h4>
+	<p>
+        let's make a webmap-friendly version <br> of our zipcodes shapefile:<br>
+	<code>ogr2ogr -f geojson zipcodes.geojson zipcodes/zipcodes.shp</code>
+        </p>
+        <p> </p>
+        <p>
+        <em>NOTE:</em> This will generate <strong>Warnings</strong> - that's ok!
+	</p>
+	
+</div></div></section><section data-id="a2bb7a1fb2e88a08485ef27b2c7b6fe7"><div class="sl-block" data-block-type="text" data-name="text-f7735a" data-block-id="a05db51c342ed124b4fe6811475218eb" style="height: auto; width: 960px; left: 0px; top: 247.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html=""><p>Now try:<br>
+<code>ogrinfo zipcodes.geojson</code><br>
+ <br>
+and:<br>
+<code>ogrinfo -so zipcodes.geojson zipcodes</code></p></div></div></section><section data-id="caebbc3dc780366ce04f558c9411d177"><div class="sl-block" data-block-type="text" data-name="text-ad8adb" data-block-id="1b474aa70f31f9a169b8c952fa566be3" style="height: auto; width: 960px; left: 0px; top: 303px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>GeoTIFF → georeferenced PNG</h4>
+	<p>
+		<code>gdal_translate -of png doqq.tif converted_doqq.png</code>
+	</p>
+		
+</div></div></section><section data-id="d2c3512d16cfb14d553ea323bcc72592"><div class="sl-block" data-block-type="text" data-name="text-48a72b" data-block-id="56c44d76f3e1d97aefaf06617f886d8d" style="height: auto; width: 960px; left: 0px; top: 306.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<p>
+	Now try:<br>
+	<code>gdalinfo converted_doqq.png</code>
+	</p>
+		
+</div></div></section><section data-id="7faac58609bf03539b37511e04ebd54b"><div class="sl-block" data-block-type="text" data-name="text-cda1c9" data-block-id="ebff9cee948a18ee95846355a0477331" style="height: auto; width: 960px; left: 0px; top: 320px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Reprojecting Data</h3>
+	
+</div></div></section><section data-id="df65025b756359515f80e86c4ed2de7e"><div class="sl-block" data-block-type="text" data-name="text-c40c9d" data-block-id="239dc4964e4abd0ae201a33868899ada" style="height: auto; width: 960px; left: 0px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><em>Side note: EPSG Codes</em><br>
+<small class="caption"><a href="http://spatialreference.org" target="_blank">spatialreference.org</a> (great resource!) </small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-6f34a7" data-block-id="2201ab77f6f2c3a182fd78aba551df40" style="width: 806.4px; height: 565.76px; left: 76.8px; top: 134.24px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="945" data-natural-height="663" data-lazy-loaded="" data-src="handsonwithgdal/cfb64c76a430835b4e3f42a5858e3da6.png"></div></div></section><section data-id="0c0c82c48e18a8da36272b19146fd4b1"><div class="sl-block" data-block-type="text" data-name="text-c6ad32" data-block-id="e9163caf44c7863c83d99dbe2a94347d" style="height: auto; width: 960px; left: 0px; top: 223.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>Let's make everything WGS84!</h4>
+	<p>
+		<code>ogr2ogr -t_srs EPSG:4326 reprojected_pools.shp
+			pools/pools.shp</code><br> <br>
+	<code>gdalwarp -t_srs EPSG:4326 doqq.tif reprojected_doqq.tif</code>
+	</p>
+		
+</div></div></section><section data-id="d36e4b9320a789529739caf467069367"><div class="sl-block" data-block-type="text" data-name="text-e99d94" data-block-id="49564c703ad5140c6ad3c4e9e74bd956" style="height: auto; width: 960px; left: 0px; top: 215px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3><em>Questions so far?</em></h3>
+	<ul>
+		<li>ogrinfo</li>
+		<li>gdalinfo</li>
+		<li>ogr2ogr</li>
+		<li>gdal_translate</li>
+		<li>gdalwarp</li>
+	</ul>
+	
+</div></div></section><section data-id="75d618d571d3b7612f1fda87710bfd3d"><div class="sl-block" data-block-type="text" data-name="text-a244ec" data-block-id="1944c40579c66732dd47a9574836403a" style="height: auto; width: 960px; left: 0px; top: 313px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Querying Data</h2>
+</div></div></section><section data-id="d1bc6c2f3ed637620e1317b5ba8cd688"><div class="sl-block" data-block-type="text" data-name="text-86719f" data-block-id="5baa42240708908a391a8a2ec6fec70b" style="height: auto; width: 960px; left: 0px; top: 300.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Asking questions about your data layers</h3>
+	<p>OGR allows you to use a dialect of SQL ("OGR SQL") to query layers</p>
+</div></div></section><section data-id="8c75fb538084bb5164c4a9d7f52fb13e"><div class="sl-block" data-block-type="text" data-name="text-8d94f9" data-block-id="7d23fcf6c3fe0ccc8456ac1e9070db18" style="height: auto; width: 960px; left: 0px; top: 40px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h4>Q: "How many swimming pools are in Austin?"</h4>
+
+<p><code>ogrinfo pools/pools.shp -sql "SELECT COUNT(*) FROM pools"</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<h4>A: 51,073</h4>
+</div></div>
+<div class="sl-block" data-block-type="code" data-name="code-7b54f2" data-block-id="8a9bb47c5c238a7d26628130a5cbf145" style="width: 960px; height: 350px; left: 0px; top: 210px;"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="none"><code data-line-numbers="">INFO: Open of `pools/pools.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: pools
+Geometry: None
+Feature Count: 1
+Layer SRS WKT:
+(unknown)
+COUNT_*: Integer (0.0)
+OGRFeature(pools):0
+  COUNT_* (Integer) = 51073</code></pre></div></div></section><section data-id="31c13999712816049f373b06071ef745"><div class="sl-block" data-block-type="text" data-name="text-e4a247" data-block-id="925a563a8fa914d065efbd3cd1af6f88" style="height: auto; width: 960px; left: 0px; top: 45px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h4>Q: "What is the first pool feature?"</h4>
+
+<p><code>ogrinfo -q pools/pools.shp -sql "SELECT * FROM pools WHERE fid = 1"</code></p>
+
+<p> </p>
+
+<p> </p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-name="code-e29c27" data-block-id="029d175383d8bd3dc3a61829dc44ceaf" style="width: 960px; height: 350px; left: 0px; top: 210px;"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="none"><code data-line-numbers="">Layer name: pools
+OGRFeature(pools):1
+  POOLS_2013 (Integer) = 2
+  CREATED_BY (String) = AeroMetric
+  CREATED_DA (Date) = 2013/10/01
+  MODIFIED_B (String) = (null)
+  MODIFIED_D (Date) = (null)
+  SOURCE (String) = LiDAR 2012
+  FEATURE (String) = Above ground
+  ORIGIN_FEA (String) = Pools_2013
+  Shape_Leng (Real) = 44.08991859810
+  Shape_Area (Real) = 154.55091064300
+  POLYGON ((3164378.2166 9997997.05799999833 0,3164378.178199999034 9997996.324100002646446 0,3164378.063000001013279 9997995.598399996757507 0,3164377.873099997639656 9997994.888400003314018 0,3164377.6096 9997994.202399998903275 0,3164377.275899998844 9997993.547899998724461 0,3164376.875699996948242 9997992.931400001049042 0,3164376.413400001823902 9997992.3605 0,3164375.893700003623962 9997991.840800002217293 0,3164375.322499997913837 9997991.378300003707409 0,3164374.706399999559 9997990.978 0,3164374.0515 9997990.6446999982 0,3164373.365500003099442 9997990.3812 0,3164372.655900001525879 9997990.19089999795 0,3164371.930200003087521 9997990.076099999249 0,3164371.196199998259544 9997990.037399999797 0,3164370.462300002574921 9997990.076099999249 0,3164369.736599996685982 9997990.19089999795 0,3164369.0269 9997990.3812 0,3164368.340599998831749 9997990.644299998879433 0,3164367.686099998652935 9997990.978 0,3164367.0696 9997991.378300003707409 0,3164366.4987 9997991.840800002217293 0,3164365.979000002145767 9997992.360200002789497 0,3164365.516800001263618 9997992.931400001049042 0,3164365.1162 9997993.547499999404 0,3164364.782899998128414 9997994.202399998903275 0,3164364.5194 9997994.888400003314018 0,3164364.329099997878075 9997995.59809999913 0,3164364.214299999177 9997996.324100002646446 0,3164364.175899997353554 9997997.0577 0,3164364.214299999177 9997997.791599996387959 0,3164364.329099997878075 9997998.517300002276897 0,3164364.5194 9997999.227300003170967 0,3164364.782899998128414 9997999.9133 0,3164365.1162 9998000.567900002002716 0,3164365.516500003635883 9998001.184299997985363 0,3164365.979000002145767 9998001.755199998617172 0,3164366.498400002717972 9998002.274899996817112 0,3164367.0696 9998002.737499997019768 0,3164367.686099998652935 9998003.137699998915195 0,3164368.340599998831749 9998003.471100002527237 0,3164369.026600003242493 9998003.734499998390675 0,3164369.736599996685982 9998003.924800001084805 0,3164370.462300002574921 9998004.039599999785 0,3164371.196199998259544 9998004.0784 0,3164371.929799996316433 9998004.039599999785 0,3164372.655900001525879 9998003.924800001084805 0,3164373.365500003099442 9998003.734499998390675 0,3164374.0515 9998003.4714 0,3164374.706399999559 9998003.137699998915195 0,3164375.322499997913837 9998002.737499997019768 0,3164375.893700003623962 9998002.274899996817112 0,3164376.413099996745586 9998001.755500003695488 0,3164376.875699996948242 9998001.184299997985363 0,3164377.275899998844 9998000.567900002002716 0,3164377.6096 9997999.9133 0,3164377.872699998319149 9997999.227300003170967 0,3164378.063000001013279 9997998.517700001597404 0,3164378.178199999034 9997997.791599996387959 0,3164378.2166 9997997.05799999833 0))
+	
+</code></pre></div></div></section><section data-id="0c30ad129885049e5c1c62120e070377"><div class="sl-block" data-block-type="text" data-name="text-84f104" data-block-id="1e90dbbfbd19d4be67c54cad1c366738" style="height: auto; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h4>Q: "How many above ground pools in Austin?"</h4>
+
+<p><code>ogrinfo -q pools/pools.shp -sql "SELECT COUNT(*) FROM pools WHERE FEATURE = 'Above ground'"</code></p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<p> </p>
+
+<h4>A: 21,550</h4>
+</div></div>
+<div class="sl-block" data-block-type="code" data-name="code-078af4" data-block-id="29c8c8600612126a22f3e5c1978b2ae4" style="width: 960px; height: 350px; left: 0px; top: 210px;"><div class="sl-block-content notranslate" data-highlight-theme="monokai" data-code-frame="none" style="z-index: 11;"><pre class="none"><code data-line-numbers="">Layer name: pools
+OGRFeature(pools):0
+  COUNT_* (Integer) = 21550
+	</code></pre></div></div></section><section data-id="dab55a00823474a86788dd6bafee450a"><div class="sl-block" data-block-type="text" data-name="text-b66052" data-block-id="493893fa4dd9a33d5e4d70cf961b632e" style="height: auto; width: 960px; left: 0px; top: 281px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Saving query results to a new file</h3>
+	<p>Similar to how you might save a "query view" in other GIS software, you
+		can use OGR to create a new file based on a SQL query</p>
+</div></div></section><section data-id="b76a5296f72519157d641a4e6974b707"><div class="sl-block" data-block-type="text" data-name="text-f6f2a9" data-block-id="9cc65425e8c4e6c43efa196d1af9e9b3" style="height: auto; width: 960px; left: 0px; top: 263.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Create a shapefile containing only the zipcode boundaries in Austin city limits"</h4>
+	<p><code>ogr2ogr austin_zips.shp zipcodes/zipcodes.shp -sql "SELECT * FROM zipcodes WHERE name = 'Austin'"</code></p>
+	
+</div></div></section><section data-id="d51da498b59cafc679830b728fba5ed3"><div class="sl-block" data-block-type="image" data-name="image-eef921" data-block-id="de1306c128ec8b260e3e88899bdb0ae0" style="width: 581.447px; height: 560px; left: 189.276px; top: 0px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img style="" data-natural-width="732" data-natural-height="705" data-lazy-loaded="" data-src="handsonwithgdal/1d26c3c99260087247b3b3ed2a880d79.png"></div></div></section><section data-id="f5abcbdc8f287cfdc03cc29e319f211a"><div class="sl-block" data-block-type="text" data-name="text-577bd6" data-block-id="ef3551e82d4dd2791e36ac075dc8cd8f" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Create a shapefile containing small zipcodes"</h4>
+	<p><code>ogr2ogr under_10mil.shp zipcodes/zipcodes.shp -sql "SELECT * FROM zipcodes WHERE SHAPE_AREA &lt;10000000"</code></p>
+	
+</div></div></section><section data-id="64f11c0eeeb7363d0008bdda56431317"><div class="sl-block" data-block-type="text" data-name="text-3cf273" data-block-id="b83ea5802326f2c038dcea77bd095628" style="height: auto; width: 960px; left: 0px; top: 622px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">under_10mil.shp (tiny, purple shape)</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-423130" style="width: 672.733px; height: 560px; left: 143.634px; top: 0px; min-width: 1px; min-height: 1px;" data-block-id="ddbcc96c0533feb0e6468d513b6af211"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="734" data-natural-height="611" style="" data-lazy-loaded="" data-src="handsonwithgdal/b4d80ac6ec593cbc4fabcd8db765f24d.png"></div></div></section><section data-id="e3c07f33506110dac065069b6cb380b8"><div class="sl-block" data-block-type="text" data-name="text-837456" data-block-id="e423cbc2fa5ea29776c2932d1100c42b" style="height: auto; width: 960px; left: 0px; top: 263px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Create a geoJSON with only zipcode 78756's boundary"</h4>
+	<p><code>ogr2ogr -f geojson 78756.geojson zipcodes/zipcodes.shp -sql "SELECT * FROM zipcodes WHERE ZIPCODE = '78756'"</code></p>
+	
+</div></div></section><section data-id="244d2b21f7e2034512d28972b2f0d827"><div class="sl-block" data-block-type="text" data-name="text-d465a5" data-block-id="d7bc2f3325742d85f9cdb12470961f29" style="height: auto; width: 960px; left: 0px; top: 320px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3><em>Break</em></h3>
+	
+</div></div></section><section data-id="96c78b3468e968cf5d96a44a9047d2d0"><div class="sl-block" data-block-type="text" data-name="text-a0025a" data-block-id="76e72714daa6f62dd8489125bd5fd2e1" style="height: auto; width: 960px; left: 0px; top: 277.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Clipping to create new data</h3>
+	<p>You can clip a target data layer to a given clipping layer to create
+		a new layer</p>
+	
+</div></div></section><section data-id="fcdfa3601e25864917e089f781647fd8"><div class="sl-block" data-block-type="text" data-name="text-347dd7" data-block-id="332fc8a08d0f034c988c4a9398dc0748" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Create a new layer with only the pools in zipcode 78756"</h4>
+	<p><code>ogr2ogr -clipsrc 78756.geojson 78756_pools.shp reprojected_pools.shp</code></p>
+	
+</div></div></section><section data-id="b39586df90f59fbe564dde713ed37dca"><div class="sl-block" data-block-type="text" data-name="text-d6c02b" data-block-id="b1a087ce322a74b81d1eb850e64efda3" style="height: auto; width: 960px; left: 0px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">78756_pools.shp (shown over zipcodes)</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-39f1be" data-block-id="525d6a4d0eeb09e3f03a7562c1908022" style="width: 480.363px; height: 560px; left: 239.637px; top: 0px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="567" data-natural-height="661" data-lazy-loaded="" data-src="handsonwithgdal/bd6e78c72e7c683a2b4268564382d58b.png"></div></div></section><section data-id="b087e9b491a52213bf749981780d0b38"><div class="sl-block" data-block-type="text" data-name="text-2e9e79" data-block-id="2d4a7aae40202544d0f5a0b0ca2e0248" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Show only the imagery in zipcode 78756"</h4>
+	<p><code>gdalwarp -cutline 78756.geojson doqq.tif 78756_doqq.tif</code></p>
+	
+</div></div></section><section data-id="0956b0c4f5587bd097ceb24dc643f19a"><div class="sl-block" data-block-type="text" data-name="text-73b03c" data-block-id="b007a58ba932de611b81fcc014af3de5" style="height: auto; width: 960px; left: 0px; top: 661px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">78756_doqq.tif (shown over zipcodes)</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-7908e2" data-block-id="318f16fc6bdad95ea54aaba6be0aefc0" style="width: 533.825px; height: 630px; left: 213.087px; top: 0px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="494" data-natural-height="583" style="" data-lazy-loaded="" data-src="handsonwithgdal/05ec36dc13d52d27c2e638a09112abfc.png"></div></div></section><section data-id="38b93c4d232518b467ea1bee964a60c6"><div class="sl-block" data-block-type="text" data-name="text-a9bc0c" data-block-id="4d75b2a372659042b6e82ba2aa068013" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Clip a DEM to a bounding box"</h4>
+	<p><code>gdal_translate -srcwin 0 0 1000 1000 -of USGSDEM dem10m/dem10m.dem clipped_dem.dem</code></p>
+	
+</div></div></section><section data-id="96c1a2ff782394e1a1902a1b3cc3c8f2"><div class="sl-block" data-block-type="text" data-name="text-bda60f" data-block-id="9e41504f6d36a1916ca2ea7112c7ca85" style="height: auto; width: 960px; left: 0px; top: 622px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">clipped_dem.dem (shown with original DEM)</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-cd0c9f" data-block-id="c4b6efb914a65b043c2e86567ab15bf2" style="width: 473.846px; height: 560px; left: 243.077px; top: 0px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img style="" data-natural-width="550" data-natural-height="650" data-lazy-loaded="" data-src="handsonwithgdal/0b7ee7aa05fa0825bdf469c8bfcb5ce4.png"></div></div></section><section data-id="a0e4c90bc439dd80988cdf85756c7384"><div class="sl-block" data-block-type="text" data-name="text-438fdd" data-block-id="2252c526b7990c47fc014c300399fc82" style="height: auto; width: 960px; left: 0px; top: 268.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Fun with DEMs</h2>
+	<p>Now that our DEM is clipped to a more managable size, let's see what it
+	can do</p>
+</div></div></section><section data-id="6f1e7b1cb4bc862f83b29bfd2fe1f1ef"><div class="sl-block" data-block-type="text" data-name="text-f1802a" data-block-id="a4761939e2567e34c8d0398c300be4d6" style="height: auto; width: 960px; left: 0px; top: 286.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Generate a hillshade from our DEM"</h4>
+	<p><code>gdaldem hillshade -of png clipped_dem.dem hillshade.png
+	</code></p>
+</div></div></section><section data-id="91dbd5be56079ac59d029e85db2834e4"><div class="sl-block" data-block-type="text" data-name="text-d97baf" data-block-id="50cb7b3239cf21c77944d1a132322f4d" style="height: auto; width: 960px; left: 0px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">hillshade.png</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-7c25bf" data-block-id="5d02a0f693525b149a88bad1ea83c012" style="width: 410px; height: 465px; left: 298px; top: 0px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11;"><img data-natural-width="410" data-natural-height="465" style="" data-lazy-loaded="" data-src="handsonwithgdal/e44494613b5478983164c12df95525db.png"></div></div></section><section data-id="94920b1a3eed9533c26bc5ee1763d9d6"><div class="sl-block" data-block-type="text" data-name="text-a055d0" data-block-id="55067bd825feafaf95804a765362171a" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h4>"Make a hillshade Using a z-factor"</h4>
+
+<p><s><code>gdaldem hillshade -of png -az 135 clipped_dem.dem hillshade135.png </code></s></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-name="text-cd990c" data-block-id="169c7f8789afd90be00bfb33af2816bc" style="height: auto; width: 600px; left: 189px; top: 533.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p><a href="https://gdal.org/programs/gdaldem.html" target="_blank">https://gdal.org/programs/gdaldem.html</a></p>
+</div></div></section><section data-id="c18655e20ad05287ffb1f76ce6d16fa9"><div class="sl-block" data-block-type="text" data-name="text-2e8f3c" data-block-id="f2c10a0429a9b26d7b852d4c125722aa" style="height: auto; width: 960px; left: 0px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<p><small class="caption">hillshade135.png</small></p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-name="image-fcc0cc" data-block-id="75330f85acf18b61ed952b125c052700" style="width: 399px; height: 452px; left: 286.5px; top: 98px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 11; border-style: solid; border-width: 46px; border-color: rgb(255, 0, 0);"><img style="" data-natural-width="399" data-natural-height="452" data-lazy-loaded="" data-src="handsonwithgdal/b9794b68ecba1b7983df622bea8dfe40.png"></div></div></section><section data-id="68d02473d13da479aa5304ac65184da9"><div class="sl-block" data-block-type="text" data-name="text-b28dba" data-block-id="e6689b148ff870197d0611caa57444b0" style="height: auto; width: 960px; left: 0px; top: 217px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Make a color relief"</h4>
+	<p><code>gdaldem color-relief clipped_dem.dem colorramp.txt colorrelief.tif</code></p>
+	<p> </p>
+	<p><em>Format of colorramp.txt:<br>
+	(value) (R) (G) (B)</em></p>
+	
+</div></div></section><section data-id="3521c94519aaa306f6d65664913afb6d"><div class="sl-block" data-block-type="text" data-name="text-5aaed5" data-block-id="3ee9619b9e2310336cf185a92cad9ff3" style="height: auto; width: 960px; left: 0px; top: 307px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<p>
+		<img data-lazy-loaded="" data-src="/imgs/gdal/color_relief.png"><br>
+		<small class="caption">colorrelief.tif</small>
+		</p>
+	<p></p>
+</div></div></section><section data-id="a55a63019851fdf272ded98b6ffb59b6"><div class="sl-block" data-block-type="text" data-name="text-d1c71f" data-block-id="3da1f806a72ec18f6fe4f26c95b3d9a3" style="height: auto; width: 960px; left: 0px; top: 283px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h4>"Create contour lines from a DEM"</h4>
+	<p><code>gdal_contour -a elev -i 20 clipped_dem.dem contours.shp</code></p>
+	
+</div></div></section><section data-id="b1f0600d904496c8fde0031359767a1d"><div class="sl-block" data-block-type="text" data-name="text-8627bd" data-block-id="5f44077ca975504f1725440977156ae5" style="height: auto; width: 960px; left: 0px; top: 307px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<p>
+		<img data-lazy-loaded="" data-src="/imgs/gdal/contours.png"><br>
+		<small class="caption">contours.shp</small>
+		</p>
+	<p></p>
+</div></div></section><section data-id="2f80817d27d90593b53b447d2faf1190"><div class="sl-block" data-block-type="text" data-name="text-d96588" data-block-id="445bda8dbfea17bfbc4d59697c3a3b68" style="height: auto; width: 960px; left: 0px; top: 325px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3><em>Questions?</em></h3>
+</div></div></section><section data-id="6da2e9586c9856d58bc6fc51e833fd57"><div class="sl-block" data-block-type="text" data-name="text-2f7174" data-block-id="619f539a4b53e0abb6f551f0fac56bab" style="height: auto; width: 960px; left: 0px; top: 249px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Thank you!!!</h2>
+	<p><a href="http://saras.link/gdal_slides" target="_blank">saras.link/gdal_slides</a><br>
+		 <br>
+		sara@hartsafavi.com | sasha@hartsafavi.com
+	</p>
+</div></div></section><section data-id="8f53fa2a829dea13fa3f1b54907c174f"><div class="sl-block" data-block-type="text" data-name="text-5a6b7d" data-block-id="30cd9dbf0f2d6152ad7f3412affb109a" style="height: auto; width: 960px; left: 0px; top: 192px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h3>Things to Try on Your Own</h3>
+        <em>Googling is good! Or check the useful links on next slide.</em>
+        <p> </p>
+<p>
+        </p>
+<ul>
+            <li> Reproject a dataset using a PROJ4 string or a .prj file</li>
+            <li> Create an index on the zipcodes shapefile</li>
+            <li> Merge two datasets together</li>
+            <li> Resize a raster</li>
+
+        </ul>
+	<p></p>
+</div></div></section><section class="stack" data-id="abdd45c5910c4d69966d949bbf5e5fc6"><section data-id="8dcd8b7ded82a11a721b520b4bc2fd82"><div class="sl-block" data-block-type="text" data-name="text-7f4a5f" data-block-id="0438c5a1a5600ed3d21cb5ad68e8a38b" style="height: auto; width: 960px; left: 0px; top: 249px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="">
+	<h2>Useful Links</h2>
+        <p>
+        <a href="https://github.com/dwtkns/gdal-cheat-sheet" target="_blank">https://github.com/dwtkns/gdal-cheat-sheet</a> <br>
+        <a href="http://www.gdal.org/ogr_sql.html" target="_blank">http://www.gdal.org/ogr_sql.html</a> <br>
+        <a href="http://www.gdal.org/gdal_utilities.html" target="_blank">http://www.gdal.org/gdal_utilities.html</a> <br>
+	</p>
+</div></div></section><section data-id="8a8f8cc408344858b815ef456b0f67d1"><div class="sl-block" data-block-type="text" data-name="text-7f4a5f" style="height: auto; width: 960px; left: 0px; top: 249px;" data-block-id="d3487b45e892b51616e00162e23afd13"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 10;">
+<h2>MORE Useful Links</h2>
+
+<p> </p>
+
+<ol>
+	<li class="km kn ev ko b kp kq kr ks kt ku kv kw kx ow kz la lb ox ld le lf oy lh li lj oz pa pb bj" data-selectable-paragraph="" id="8527"><a class="af lk" href="https://medium.com/planet-stories/a-gentle-introduction-to-gdal-part-1-a3253eb96082" rel="noopener" target="_blank">A Gentle Introduction to GDAL</a></li>
+	<li class="km kn ev ko b kp pc kr ks kt pd kv kw kx pe kz la lb pf ld le lf pg lh li lj oz pa pb bj" data-selectable-paragraph="" id="6821"><a class="af lk" href="https://medium.com/planet-stories/a-gentle-introduction-to-gdal-part-2-map-projections-gdalwarp-e05173bd710a" rel="noopener" target="_blank">Map Projections &amp; gdalwarp</a></li>
+	<li class="km kn ev ko b kp pc kr ks kt pd kv kw kx pe kz la lb pf ld le lf pg lh li lj oz pa pb bj" data-selectable-paragraph="" id="c7bd"><a class="af lk" href="https://medium.com/planet-stories/a-gentle-introduction-to-gdal-part-3-geodesy-local-map-projections-794c6ff675ca" rel="noopener" target="_blank">Geodesy &amp; Local Map Projections</a></li>
+	<li class="km kn ev ko b kp pc kr ks kt pd kv kw kx pe kz la lb pf ld le lf pg lh li lj oz pa pb bj" data-selectable-paragraph="" id="b8f4"><a class="af lk" href="https://medium.com/planet-stories/a-gentle-introduction-to-gdal-part-4-working-with-satellite-data-d3835b5e2971" rel="noopener" target="_blank">Working with Satellite Data</a></li>
+	<li class="km kn ev ko b kp pc kr ks kt pd kv kw kx pe kz la lb pf ld le lf pg lh li lj oz pa pb bj" data-selectable-paragraph="" id="dbb7"><a href="https://medium.com/@robsimmon/a-gentle-introduction-to-gdal-part-5-shaded-relief-ec29601db654" target="_blank">Shaded Relief</a></li>
+</ol>
+
+<p> </p>
+</div></div></section></section>
+			</div>
+		</div>
+
+		<script>
+			var SLConfig = {"deck": {"id":1765105,"slug":"handsonwithgdal","title":"GDAL 101: The Geospatial Data Abstraction Library for beginners.","description":"Based entirely upon Sara Safavi's fantastic GDAL Hands-on Workshop, the single best introduction to GDAL, available. See the original, here: http://slides.sarasafavi.com/gdal/#/    I've taken Sara's workshop, added access to speaker notes and updated a few things for the newest versions of GDAL. Otherwise, I'm presenting her work. ","width":960,"height":700,"margin":0.05,"visibility":"all","published_at":"2022-11-30T18:37:11.372Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/b539255cd8323bf6ea5f09ee0a16058b/thumb.jpg?1692817277","view_count":123,"user":{"id":340536,"username":"staceymaples","name":"Stace Maples","description":"","thumbnail_url":"https://lh5.googleusercontent.com/-OryZO4gMliQ/AAAAAAAAAAI/AAAAAAAAADE/tCUNI0C6l-I/photo.jpg?sz=50","account_type":"pro","team_id":null,"settings":{"id":172432,"present_controls":true,"present_upsizing":true,"present_pointer":true,"present_notes":false,"default_deck_tag_id":null}},"background_transition":"fade","transition":"fade","theme_id":null,"theme_font":"quicksand","theme_color":"silver-green","auto_slide_interval":0,"comments_enabled":false,"forking_enabled":false,"rolling_links":false,"center":false,"shuffle":false,"should_loop":false,"share_notes":false,"slide_number":false,"slide_count":71,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":3,"data_updated_at":1694473920145,"font_typekit":null,"font_google":null,"time_limit":null,"navigation_mode":"default","upsizing_enabled":true,"language":"en","notes":{"a82e00e8832022ffe1f95bd9b4998624":"Confusingly, people will still commonly refer to the project (both\n\t\t\tthe raster-related parts and the vector-related parts) as \"GDAL\".\n\t\t\tAnd to add even *further* to the confusion, the team behind GDAL\n\t\t\tnow is working to unify the raster and vector pieces into a single\n\t\t\tproject officially called \"GDAL\". TL;DR: be aware of the\n\t\t\tdistinction above, but also get used to \"GDAL\" referring to\n\t\t\t\"GDAL/OGR\".","c76dbbbe306ca4139ac99325151aa559":"Most of knowing \u0026 using GDAL/OGR is just being comfortable\n\t\t\tinteracting with the command-line interface, knowing the general\n\t\t\ttypes of things you can do with the tools, and knowing where to\n\t\t\tlook for help. The goal today is to work on the first 2 points, and\n\t\t\thelp familiarize you with the tools overall. After today, you'll\n\t\t\tfind yourself spending a lot of time reading the (very awesome)\n\t\t\tGDAL docs, whenever you want to try something new!","97551eb050305a89392b5d70d2598e15":"Check in: show of hands, who does NOT have GDAL/OGR installed?\n\t\tIf everyone was able to get it set up already, just keep going right\n\t\t(not down)","4250a36698f797967bd84cfb4e8d8f5b":"**For the purposes of this class, we are using GDAL1.X: do not install\n\t\tGDAL 2.0 from Sid","6361157064679d3736d3fac9f49e1f5f":"Everyone open your terminal (or command line) -- if you're using\n\t\tWindows, go ahead and open the OSGeo4W Shell.","711bd2393bb94756c3222e363c4863c2":"Take a minute to explain the usage dialogue here - \"ogrinfo\" is one of\n\t\tGDAL/OGR's built-in commands, and we're just testing to make sure the\n\t\tcommand is avaible on your computer. Note that \"Failure\" is expected,\n\t\tbecause we didn't specify a datasource (e.g., shapefile). Nothing bad\n\t\thappened!","9603d86e10e2386c609603aef521ba57":"Thumbs up if you successfully ran ogrinfo - we won't start the\n\t\texercises until (hopefully) everyone is on the same page here.\n\t\tTarget: T+30m","56c07c1f508291f1ffb1c2220716adcd":"Hopefully you've already downloaded this data before class - but if not,\n\tdownload \u0026 unzip this into a working directory (that you'll use for the\n\texercises in class today)","fb31fab37031694623a8338b5632c6c7":"Just take a minute to get an idea of what's in these datasets,\n\t\tin a way you're probably most familiar with -- seeing the spatial\n\t\trepresentation visually \u0026 checking out an attribute table.","0b03b483595095cbe3eda8dda940a782":"For the sake of time today -- because giant rasters take longer to\n\t\tprocess -- I've clipped the original USGS DOQQ into just a little\n\t\tbounding box of imagery.","474a74d089e2f9b9f485627c8b3da64c":"Break this down:\n\t\tGDAL uses what it calls \"drivers\" to read \u0026 write spatial data. In\n\t\tthis case, it automatically detected this was a shapefile and used the\n\t\t\"ESRI Shapefile\" driver. We'll talk more about drivers in a few\n\t\tminutes.\n\t\tThis shapefile has 1 layer (of course, because it's a shapefile) called\n\t\t\"pools\". Pools is a polygon layer.\n\n\t\tDo the same command for the \"zipcodes\" shapefile.","0ff2fa963e87d48589ea72deab4df908":"Break this down:\n\t\t\"-so\" IMPORTANT, this means \"summary only\". If you don't use this, then\n\t\togr will happily print the attribute values for every record in your\n\t\tspatial layer. (thus, zipcodes vs pools: fewer records in case of\n\t\tmistype :) )\n\n\t\t-so on a layer shows field names \u0026 types; also spatial reference\n\t\tsystem.","102d5faad995019801f30301f59177c2":"the \"gdalinfo\" command doesn't have a -so option, as a raster doesn't\n\t\thave multiple records that could be summarized.\n\n\t\tNotice GDAL auto-detected that this is a USGS DEM and used the\n\t\tappropriate driver.\n\n\t\tHere, we see the CRS, along with useful metadata like bounding box\n\t\tcoordinates, statistics, and more.\n\n\t\tUse the same gdalinfo command on the DOQQ (what driver does GDAL use\n\t\tthere?)","d163bb88dd7751bef93a937892963bf2":"If you do nothing else with GDAL/OGR, one of the most useful things you\n\t\tcan take with you from this class is basic filetype conversions. You\n\t\tmay be used to using something like FME or an ArcGIS toolbox tool.\n\t\tGDAL/OGR makes file conversion super easy - and it's free.","13e97002e3a2813eb0e10357e69cd580":"Some formats are read-only, some also have write.\n\t\n\tGenerally, only a fraction of the more common drivers are included in\n\ta GDAL installation. The version of GDAL you installed may have different\n\tdrivers built-in than the version of someone else: if you want a specific\n\tdriver, you may need to compile your own GDAL installation.","bdb9924e372f8890ff44c9bd1f3c1f24":"Similar to OGR drivers. Some are \"ro\", some are \"rw\". Ignore the \"+\"\n\t\tand \"v\" for now.","e750f0a62b3680c5890254752be29be1":"use \"-f\" to specify the output driver we want ogr to use: here, you put\n\t\tthe output file name first, then the source.\n                \n\t\tyes, really. it's that fast. open your geojson file in a text editor if\n                you don't believe me.\n\n                WARNINGs are because shapefiles don't really support\n                date fields, and coerce into YYYYMMDD strings.","a2bb7a1fb2e88a08485ef27b2c7b6fe7":"notice that OGR gives geojson layer's a default name of\n                        \"OGRGeoJSON\" unless using GDAL 2.2+ - verify\n                        with ogrinfo","caebbc3dc780366ce04f558c9411d177":"note that gdalwarp uses \"-of\" for output format. And for some\n\t\t\treason, source \u0026 destination are reversed from ogr2ogr.","d2c3512d16cfb14d553ea323bcc72592":"here you can verify that your PNG is still spatially aware!","7faac58609bf03539b37511e04ebd54b":"Besides just converting from one file type to another, you can also use\n\t\tGDAL/OGR to reproject your data too.","df65025b756359515f80e86c4ed2de7e":"Is everyone here familiar with EPSG codes as an easy, standard way of\n\t\t referring to a spatial reference system? Just checking... \n\t\t When reprojecting data with GDAL/OGR, EPSG codes are one of the ways\n\t\t you can specify a target spatial reference (you could also use things\n\t\t like a prj file or a PROJ4 definition -- but today we're just going to\n\t\t use EPSG codes for convenience)","0c0c82c48e18a8da36272b19146fd4b1":"REMEMBER: ogr and gdal put the source \u0026 target filenames in reverse\n\t\t\torder, for some reason...","d36e4b9320a789529739caf467069367":"Target: T+1h30m","31c13999712816049f373b06071ef745":"Here I've started using an option \"-q\" flag, before the input file\n\t\tname, to tell ogrinfo to be a little quieter. You can try this command\n\t\twith and without \"-q\" to see the difference -- basically \"quiet\" is\n\t\tjust supressing some metadata from being displayed.","b76a5296f72519157d641a4e6974b707":"Here, you put the target filename first, then the source, followed by\n\t\tthe SQL query.\n\t\tYou can ignore any warnings that talk about SHAPE_AREA field width --\n\t\tthis just means the exact calculated area for SHAPE_AREA won't fit in\n\t\tthe default precision of this shapefile field, so it's being rounded slightly.\n                \n                There is a way to fix (set OGR_TRUNCATE=YES in GDAL\u003e=1.11) this BUT it is GDAL version-dependent so\n                we are going to just ignore the warning for today.","f5abcbdc8f287cfdc03cc29e319f211a":"Here we're just using the calculated area field, in map units (so,\n\t\tdecimal degrees squared in WGS84?). We wouldn't really want that in\n\t\treal life, but we're not going to bother adding a calculated area value\n\t\there for now.","e3c07f33506110dac065069b6cb380b8":"Here you'll see combining a query with format conversion is basically\n\t\tno extra work at all.\n                \n                Again, ignore the WARNINGs about Date field here","244d2b21f7e2034512d28972b2f0d827":"Target: T+2h; take questions and give 15m break if needed.","96c78b3468e968cf5d96a44a9047d2d0":"This is a REALLY USEFUL trick to keep in your toolbox, especially when\n\t\tyou need to clip huge layers that might otherwise freeze or slow down\n\t\tyour desktop GIS application.","fcdfa3601e25864917e089f781647fd8":"We're using a new flag here, \"-clipsrc\", to indicate what we're going\n\t\tto clip our input layer by. \n\t\tIn order to clip layers, they need to be in the same projection -- so\n\t\tuse our WGS84 version of \"pools\", since zipcodes is already in WGS84.\n\t\t\n\t\tYou don't have to create a shapefile here; you can use any output\n\t\tformat you like. Notice how mixing \u0026 matching file types is also\n\t\tnot a problem.","b087e9b491a52213bf749981780d0b38":"We use gdalwarp to modify the raster based on an input raster. Here,\n\t\tthe clipping tool flag is \"-cutline\". \n\t\tRemember, on the gdal side of the house, \"input\" and \"destination\"\n\t\tordering is reversed!","38b93c4d232518b467ea1bee964a60c6":"This time, we're ising gdal_translate and specifying a bounding box\n\t\t(\"srcwin\"). Here, we're starting at x offset=0, y offset=0, and making\n\t\ta box 1000 map units square.","94920b1a3eed9533c26bc5ee1763d9d6":"Here, we've moved the light source for the hillshade by changing the\n\t\tazimuth value (azimuth defaults to 315)","68d02473d13da479aa5304ac65184da9":"In order to apply a color ramp to your shaded relief, you need a text\n\t\tfile containing the color ramp's definitions. The left-most column is\n\t\tthe break-point value applied to your DEM, and the remaining three\n\t\tcolumns are just a color in RGB format.","3521c94519aaa306f6d65664913afb6d":"This is a super-ugly color ramp, so feel free to make it better.\n\t\t\t:)","a55a63019851fdf272ded98b6ffb59b6":"Yet another gdal tool: this one takes an optional flag \"-a\" if you want\n\t\tto attach the elevation value to an attribute: here I'm calling the\n\t\tfield \"elev\". \"-i\" sets the interval between contours.","b1f0600d904496c8fde0031359767a1d":"Hooray, contour lines!","0c38b9c861be7cb3a3bde22aa613a26b":"","a4d70aa1d58f1614bfabe1a0d121231d":"","f3b4750aba8aaeeb3cdf3ad000538ae6":"","f534d49fac4c9e29ed8835b1b57f27b2":"","d213d32e7d38042fcc4dcc1a71af4fc7":"","c683bcba18cbb6a5fa0ae48e205248fd":"","33baf271f3b18970bd0c025f1d7ac6ac":"","410e50f8eaa020773adc630922132605":"","9abb55929ab6bd1e8d90c9c3122a3742":"Introduction to the instructor.","82df92a0aacd8375e6a98e3fb2b79d96":"","4ea6478c03cee05ea9bf6ebc3aaaa931":"","3ac514c2e63abe94d8394c61d460e397":"","84be44f1b2cd27e944c739413030e7c3":"","75d618d571d3b7612f1fda87710bfd3d":"","d1bc6c2f3ed637620e1317b5ba8cd688":"","8c75fb538084bb5164c4a9d7f52fb13e":"","0c30ad129885049e5c1c62120e070377":"","dab55a00823474a86788dd6bafee450a":"","d51da498b59cafc679830b728fba5ed3":"","64f11c0eeeb7363d0008bdda56431317":"","b39586df90f59fbe564dde713ed37dca":"","0956b0c4f5587bd097ceb24dc643f19a":"","96c1a2ff782394e1a1902a1b3cc3c8f2":"","a0e4c90bc439dd80988cdf85756c7384":"","6f1e7b1cb4bc862f83b29bfd2fe1f1ef":"","91dbd5be56079ac59d029e85db2834e4":"","c18655e20ad05287ffb1f76ce6d16fa9":"Change this to incorporate z-factor and improve quality","8dcd8b7ded82a11a721b520b4bc2fd82":"","8f53fa2a829dea13fa3f1b54907c174f":"","6da2e9586c9856d58bc6fc51e833fd57":"","2f80817d27d90593b53b447d2faf1190":"","8a8f8cc408344858b815ef456b0f67d1":""}}};
+
+
+			// Use local fonts
+			SLConfig.fonts_url = 'lib/fonts/';
+		</script>
+
+		<script src="lib/reveal.js"></script>
+		<script src="lib/reveal-plugins.js"></script>
+		<script src="lib/offline.js"></script>
+
+		<!-- Initialize the presentation -->
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.05,
+				
+
+				hash: true,
+				controls: true,
+				progress: true,
+				mouseWheel: false,
+				showNotes: false,
+				slideNumber: false,
+				fragmentInURL: true,
+
+				autoSlide: 0,
+				autoSlideStoppable: true,
+
+				autoAnimateMatcher: SL.deck.AutoAnimate.matcher,
+
+				center: false,
+				shuffle: false,
+				loop: false,
+				rtl: false,
+				navigationMode: "default",
+
+				transition: "fade",
+				backgroundTransition: "fade",
+
+				highlight: {
+					escapeHTML: false
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+		
+
+	</body>
+</html>

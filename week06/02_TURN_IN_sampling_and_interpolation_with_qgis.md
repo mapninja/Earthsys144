@@ -10,7 +10,7 @@ You will work with a digital elevation model (DEM) of southeast Arizona to:
 
 1. create sample point layers using systematic, random, and stratified sampling strategies
 2. extract elevation values at those sample points
-3. interpolate new raster surfaces from the samples using Inverse Distance Weighting (IDW), Nearest Neighbor, and Spline methods
+3. interpolate new raster surfaces from the samples using Inverse Distance Weighting (IDW), Nearest Neighbor, and Radial Basis Function (RBF) methods
 4. compare the interpolated surfaces to the original DEM to understand the strengths and limitations of each method
 
 > **Concept note:** Sampling and interpolation are fundamental to converting sparse point measurements (like weather stations or survey points) into continuous raster surfaces that cover an entire area. The method you choose affects how smooth the output is, how well it honors the original sample values, and how it represents areas between samples.
@@ -20,7 +20,7 @@ You will work with a digital elevation model (DEM) of southeast Arizona to:
 By the end of this exercise, you should be able to explain:
 
 - the difference between systematic, random, and stratified sampling strategies and when to use each
-- how interpolation methods like IDW, Nearest Neighbor, and Spline create raster surfaces from point data
+- how interpolation methods like IDW, Nearest Neighbor, and RBF create raster surfaces from point data
 - why stratification can be useful when sampling density matters in some regions more than others
 - how filtering operations like majority filtering generalize raster data
 - how to compare interpolated surfaces to original data to assess interpolation quality
@@ -88,7 +88,7 @@ As you create layers for each interpolation method, select appropriate layers an
 - `Original`
 - `Inverse Distance`
 - `Nearest Neighbor`
-- `Spline Stratified`
+- `RBF Stratified`
 
 If a layer ends up in the wrong group, right-click and select **Move Out of Group**.
 
@@ -271,9 +271,11 @@ Your results should resemble the figure below. Note that since the sampling is r
 
 ![](images/20250427_182705_image.png)
 
-## Part 4: Stratified Random Sampling and Spline Interpolation
+## Part 4: Stratified Random Sampling and Radial Basis Function (RBF) Interpolation
 
-In this part, you will implement a more sophisticated sampling strategy: stratified random sampling. Instead of sampling uniformly across the landscape, you will **increase sampling density in steep areas** where terrain variation is greatest. You will then use Spline interpolation, which creates a smooth surface that may not pass exactly through all sample points but produces continuous curvature.
+> **Important update:** The older SAGA **Multi-level B-spline** tool is discontinued in the QGIS/SAGA workflow used by this lab. It has been replaced here with the **Whitebox Tools Radial Basis Function (RBF) Interpolation** tool. Some screenshots below will still show the older spline method until they are refreshed, but the instructions and tool guidance in this section now refer to the Whitebox RBF tool.
+
+In this part, you will implement a more sophisticated sampling strategy: stratified random sampling. Instead of sampling uniformly across the landscape, you will **increase sampling density in steep areas** where terrain variation is greatest. You will then use **Radial Basis Function (RBF) interpolation**, which creates a smooth surface with continuous curvature.
 
 > **Concept note:** Stratified sampling is useful when different parts of your study area have different importance or variability. By stratifying on slope, you sample more densely where terrain is complex and less densely where it is simple. This is more efficient than uniform sampling for capturing important variation.
 
@@ -465,40 +467,37 @@ As before, sample the elevation values from the DEM at these stratified random p
 
 ![](images/20260513_100359_image.png)
 
-### Step 8: Spline Interpolation
+### Step 8: Radial Basis Function (RBF) Interpolation
 
-Spline interpolation creates a smooth continuous surface that minimizes overall curvature. Unlike IDW or Nearest Neighbor, splines are constrained to produce a mathematically smooth function, which can produce unrealistic values between sample points.
+RBF interpolation creates a smooth continuous surface that minimizes overall curvature. Like other smooth interpolation methods, it favors smooth transitions rather than sharp breaks. The main difference for this updated lab is that you should use the Whitebox RBF tool instead of the discontinued SAGA Multi-level B-spline tool.
 
-1. Open **Processing Toolbox > SAGA > Raster Creation > Multi-level b-spline**.
+1. Open **Processing Toolbox > Whitebox Tools > Radial Basis Function Interpolation** (or search for **RBF Interpolation**).
 2. Specify:
    - **Input points:** `StratRandElevationSamples`
    - **Attributes:** `SAMPLE_1` (the elevation field)
    - **Output extent:** Calculate from layer > `ReclassSlopeMajority`
    - **Cellsize:** `30`
-   - **Refinement:** `[1] Yes`
-   - **Threshold error:** `default`
-   - **Maximum level:** `11`
+   - **RBF type:** `Gaussian`
+   - **Search radius:** `1000`
+   - Leave the remaining settings at their default values unless your instructor tells you otherwise.
 
-![](images/20250504_111040_image.png)
-
-3. Browse and name the **Output grid:** **SplineStratRand**.
-
-![](images/20260513_102842_image.png)
+![](images/20260526_130537_image.png)
 
 4. Run the tool.
 
-> **Concept note:** B-spline interpolation (Multi-level b-spline) fits a smooth function through the sample points by minimizing curvature. It does not necessarily pass exactly through every sample point, but it produces a continuous, smooth surface without the sharp discontinuities of Nearest Neighbor or the localized patterns of IDW.
+> **Concept note:** RBF interpolation fits a smooth function through the sample points by minimizing curvature. It does not necessarily pass exactly through every sample point, but it produces a continuous, smooth surface without the sharp discontinuities of Nearest Neighbor or the localized patterns of IDW.
 
-### Step 9: Finishing the Spline Layer
+### Step 9: Finishing the RBF Layer
 
-Now complete the spline surface by adding supporting layers and organizing them:
+Now complete the RBF surface by adding supporting layers and organizing them:
 
-1. Calculate contours from the `SplineStratRand` surface using **Raster > Extraction > Contour** with an interval of `100` meters.
-2. Create a `SplineHillshade` layer using **Raster > Terrain Analysis > Hillshade** with Azimuth 315 and Elevation 25.
-3. Copy the color style from your original `ChirDEM` layer and paste it onto the `SplineStratRand` layer.
-4. **Group** the spline layers (`SplineStratRand`, `SplineHillshade`, and contours) in the Layers panel under a group named **Spline Stratified**.
+1. Calculate contours from the `RBFStratRand` surface using **Raster > Extraction > Contour** with an interval of `100` meters.
+2. Create an `RBFHillshade` layer using **Raster > Terrain Analysis > Hillshade** with Azimuth 315 and Elevation 25.
+3. Copy the color style from your original `ChirDEM` layer and paste it onto the `RBFStratRand` layer.
+4. **Group** the RBF layers (`RBFStratRand`, `RBFHillshade`, and contours) in the Layers panel under a group named **RBF Stratified**.
 
-![](images/20260513_103630_image.png)
+
+![](images/20260526_131755_image.png)
 
 ## Final Deliverable: Comparison Map Layout
 
@@ -507,16 +506,16 @@ You now have four complete interpolation results:
 1. **Original** (the source DEM)
 2. **Inverse Distance** (systematic sampling + IDW interpolation)
 3. **Nearest Neighbor** (random sampling + Nearest Neighbor interpolation)
-4. **Spline Stratified** (stratified random sampling + Spline interpolation)
+4. **RBF Stratified** (stratified random sampling + Radial Basis Function interpolation)
 
 Create a final map layout that displays all four methods side by side for visual comparison.
 
-> **Concept note:** Comparing interpolation methods visually helps you understand their characteristics. IDW shows radial patterns around sample points. Nearest Neighbor produces discrete zones. Spline creates smooth transitions. Stratified sampling focuses effort where variation is greatest. No single method is universally best—choice depends on your data, sample density, and application.
+> **Concept note:** Comparing interpolation methods visually helps you understand their characteristics. IDW shows radial patterns around sample points. Nearest Neighbor produces discrete zones. RBF creates smooth transitions. Stratified sampling focuses effort where variation is greatest. No single method is universally best—choice depends on your data, sample density, and application.
 
 ### Layout Instructions
 
 1. Set your print canvas to **landscape** orientation.
-2. Create four map frames arranged side by side, one for each group (Original, Inverse Distance, Nearest Neighbor, Spline).
+2. Create four map frames arranged side by side, one for each group (Original, Inverse Distance, Nearest Neighbor, RBF Stratified).
 3. For each frame:
    - **Locked** (check the Lock Item box in Item Properties so you don't accidentally move it while working on others)
    - **Locked layers** (check the Lock Layers option in Layer Properties)
