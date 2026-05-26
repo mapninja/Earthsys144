@@ -6,7 +6,7 @@
         <title>04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1052,6 +1052,205 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="the-alphaearth-embedding-database-in-google-earth-engine">The AlphaEarth Embedding Database in Google Earth Engine</h1>
+<blockquote>
+<p><strong>Attribution note:</strong> This lab is adapted from the course slide deck <code>alphaearth.html</code>, which explains AlphaEarth Foundations, embeddings, and the Google Earth Engine embedding collection.</p>
+</blockquote>
+<p><img src="images/alphaearth/15007ad83c675236806a3ea281331ec3.png" alt="Title slide from the AlphaEarth deck introducing Google's Satellite Embedding dataset."></img></p>
+<h2 id="what-you-should-understand">What You Should Understand</h2>
+<p>This lab introduces one of the most interesting ideas in modern <a href="../GLOSSARY.html#spatial-analysis" class="glossary-term" title="The process of asking and answering questions using the locations, attributes, and relationships of geographic data.">spatial analysis</a>: an embedding is a learned <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a>, not a raw measurement.</p>
+<p>By the end of this lab, you should understand that:</p>
+<ol>
+<li>The AlphaEarth dataset stores each location as a 64-<a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> embedding <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</li>
+<li>Each <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> is one axis in a 64-dimensional <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> space.</li>
+<li>Similar places have embeddings that point in similar directions.</li>
+<li>A dot product can be used to measure similarity between one reference location and many other pixels.</li>
+<li>The Earth Engine embedding collection is already analysis-ready, so you can use it like any other <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection.</li>
+</ol>
+<blockquote>
+<p><strong>Concept Note:</strong>
+An embedding is a compact numeric summary of a place. It is not the same as a satellite <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> like red, near-infrared, or temperature. Instead, it is a learned description built from many kinds of input data.</p>
+</blockquote>
+<p><img src="images/alphaearth/1e90adaa88399af162677018f95fe22d.png" alt="Slide illustrating embeddings with a food analogy, showing how similar things can be arranged along a conceptual scale."></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The AlphaEarth Embedding dataset was created by AlphaEarth Foundations using a very large multimodal training set. According to the course slide deck, the model was trained on more than 3 billion <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> frames from about 5 million sites worldwide, with two time periods per site for about 10 million total training videos.</p>
+<p><strong>Concept Note:</strong>
+The slide deck also explains that the training data included many different inputs, such as<a href="../GLOSSARY.html#sentinel-2" class="glossary-term" title="A European Space Agency satellite mission that collects multispectral imagery of the earth. Sentinel-2 imagery is commonly used for vegetation, water, urban, burn, agriculture, and land-cover analysis.">Sentinel-2</a>, <a href="../GLOSSARY.html#landsat" class="glossary-term" title="A long-running series of earth observation satellite missions operated by NASA and the U.S. Geological Survey. Landsat imagery is commonly used for land cover, vegetation, water, urban, geology, and change-detection analysis.">Landsat</a>, Sentinel-1, ALOS PALSAR, elevation, GEDI, ERA5-Land, GRACE, NLCD, Wikipedia text linked to GBIF records, and CDL. The goal was to learn a general representation of Earth surface conditions from many data <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>.</p>
+</blockquote>
+<p><img src="images/alphaearth/806d294bed23cd7ee3190fad72fbc43c.png" alt="Slide summarizing the Earth Engine data catalog scale, showing why a large multi-sensor catalog is useful for building a learned embedding dataset."></img></p>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>Open a new script in the Earth Engine Code Editor:</p>
+<ul>
+<li><a href="https://code.earthengine.google.com/" target="_blank">Earth Engine Code Editor</a></li>
+</ul>
+<p>In this lab you will:</p>
+<ol>
+<li>Load the annual AlphaEarth embedding collection.</li>
+<li>Choose one reference point.</li>
+<li>Extract the embedding <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> at that point.</li>
+<li>Compare that <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> to every other <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> in the annual mosaic.</li>
+<li>Display the similarity map.</li>
+</ol>
+<p>The code below uses an example location near Stanford, but you can replace the coordinates with any place you want to study.</p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The AlphaEarth dataset is already organized as an annual <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection. That means you do not need to preprocess raw imagery first. You can treat it like a normal Earth Engine collection and focus on the analysis question.</p>
+</blockquote>
+<h2 id="why-embeddings-matter">Why Embeddings Matter</h2>
+<p>Embeddings are useful because they turn many complicated inputs into a smaller set of numbers that still preserve useful pattern information.</p>
+<p>The slide deck describes AlphaEarth Foundations as a kind of assimilation and featurization system. That means it combines spatial and temporal context to produce a summary of surface conditions over time.</p>
+<p>The model uses:</p>
+<ol>
+<li>A spatial <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> of view of about 1.28 by 1.28 kilometers.</li>
+<li>A full year of imagery to summarize each output period.</li>
+<li>Attention and convolutional processing to blend context into the final embedding.</li>
+</ol>
+<p>That helps the model produce an annual embedding <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> that captures both location and seasonal behavior.</p>
+<p><img src="images/alphaearth/9621aa91016352355bb1ec0d54102d8b.png" alt="Slide showing AlphaEarth Foundations as a virtual satellite that learns meaningful patterns across many data streams and produces embedding images that support downstream analysis."></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Because embeddings are learned features, the meaning of each <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> is not something like “red reflectance” or “soil moisture.” The bands only make sense as a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> together.</p>
+<p><strong>Concept Note:</strong>
+In this lab, the dot product is acting like a similarity score. Since the embeddings are unit-length, values closer to <code>1</code> mean the vectors are more aligned, values near <code>0</code> mean they are more unrelated, and values below <code>0</code> point in opposite directions.</p>
+</blockquote>
+<p><img src="images/alphaearth/49e955897bf831a364188d42d52a1f08.png" alt="Slide explaining dot-product similarity in 64-dimensional embedding space and why aligned vectors are interpreted as more similar."></img></p>
+<h2 id="step-1-choose-a-reference-location">Step 1: Choose a Reference Location</h2>
+<p>Start by defining the place you want to use as your reference point.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 1: Choose a place to compare against the rest of the dataset.</span>
+<span class="hljs-comment">// This example point is near Stanford, but you can change the coordinates later.</span>
+<span class="hljs-keyword">var</span> queryPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">122.1871905211044</span>, <span class="hljs-number">37.420953782194104</span>]);
+
+<span class="hljs-comment">// STEP 2: Pick the year you want to study.</span>
+<span class="hljs-comment">// The AlphaEarth embedding collection is annual, so changing this number changes the year.</span>
+<span class="hljs-keyword">var</span> year = <span class="hljs-number">2024</span>;
+
+<span class="hljs-comment">// STEP 3: Center the map on the point so the study location is easy to find.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(queryPoint, <span class="hljs-number">11</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(queryPoint, {<span class="hljs-attr">color</span>: <span class="hljs-string">'black'</span>}, <span class="hljs-string">'query point'</span>);
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setOptions</span>(<span class="hljs-string">'SATELLITE'</span>);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+We begin with one reference point because similarity is easiest to understand when you compare one place to many places.</p>
+</blockquote>
+<h2 id="step-2-load-the-annual-embedding-collection">Step 2: Load the Annual Embedding Collection</h2>
+<p>Now load the annual AlphaEarth embedding collection and build a one-year mosaic.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 4: Load the AlphaEarth annual embedding image collection.</span>
+<span class="hljs-comment">// Each image in this collection represents one year of learned embeddings.</span>
+<span class="hljs-keyword">var</span> embeddings = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'GOOGLE/SATELLITE_EMBEDDING/V1/ANNUAL'</span>);
+
+<span class="hljs-comment">// STEP 5: Filter the collection to the year we want and combine it into one image.</span>
+<span class="hljs-comment">// `mosaic()` merges the yearly tiles into a single image for the study year.</span>
+<span class="hljs-keyword">var</span> mosaic = embeddings
+  .<span class="hljs-title function_">filterDate</span>(year + <span class="hljs-string">'-01-01'</span>, (year + <span class="hljs-number">1</span>) + <span class="hljs-string">'-01-01'</span>)
+  .<span class="hljs-title function_">mosaic</span>();
+
+<span class="hljs-comment">// STEP 6: Save the band names so we can reuse them in the vector math below.</span>
+<span class="hljs-comment">// AlphaEarth embeddings have 64 bands.</span>
+<span class="hljs-keyword">var</span> bandNames = mosaic.<span class="hljs-title function_">bandNames</span>();
+
+<span class="hljs-comment">// STEP 7: Print the band names and count so students can confirm the structure.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Embedding band names'</span>, bandNames);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Number of embedding bands'</span>, bandNames.<span class="hljs-title function_">length</span>());
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The slide deck describes the Earth Engine AlphaEarth collection as an analysis-ready dataset with annual, 10-meter embeddings and over 1.4 trillion embeddings per year. In practice, that means you can use the collection directly in Earth Engine without building the embeddings yourself.</p>
+</blockquote>
+<h2 id="step-3-sample-the-reference-embedding-vector">Step 3: Sample the Reference Embedding Vector</h2>
+<p>Next we pull out the 64-<a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> embedding <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> for the reference point.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 8: Sample the embedding image at the reference point.</span>
+<span class="hljs-comment">// This gives us the 64 numbers that describe the location in embedding space.</span>
+<span class="hljs-keyword">var</span> queryFeature = ee.<span class="hljs-title class_">Feature</span>(
+  mosaic.<span class="hljs-title function_">sample</span>({
+    <span class="hljs-attr">region</span>: queryPoint,
+    <span class="hljs-attr">scale</span>: <span class="hljs-number">10</span>,
+    <span class="hljs-attr">numPixels</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">geometries</span>: <span class="hljs-literal">true</span>
+  }).<span class="hljs-title function_">first</span>()
+);
+
+<span class="hljs-comment">// STEP 9: Convert the sampled feature properties into a 64-band constant image.</span>
+<span class="hljs-comment">// Each band in the new image holds one value from the reference embedding vector.</span>
+<span class="hljs-keyword">var</span> queryVector = ee.<span class="hljs-property">Image</span>.<span class="hljs-title function_">constant</span>(
+  bandNames.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">bandName</span>) {
+    <span class="hljs-comment">// Look up the sampled value for one embedding band.</span>
+    <span class="hljs-keyword">return</span> ee.<span class="hljs-title class_">Number</span>(queryFeature.<span class="hljs-title function_">get</span>(ee.<span class="hljs-title class_">String</span>(bandName)));
+  })
+).<span class="hljs-title function_">rename</span>(bandNames);
+
+<span class="hljs-comment">// STEP 10: Display the reference vector values in the console for inspection.</span>
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Reference embedding vector'</span>, queryFeature);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+We convert the sampled <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> into an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> because Earth Engine <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> math works well when both inputs have the same <a href="../GLOSSARY.html#band" class="glossary-term" title="One layer of information in a raster image. In satellite imagery, different bands measure different parts of the electromagnetic spectrum, such as red, green, blue, or near infrared.">band</a> structure.</p>
+</blockquote>
+<h2 id="step-4-compute-similarity-with-a-dot-product">Step 4: Compute Similarity With a Dot Product</h2>
+<p>The dot product compares the reference embedding to every other embedding in the mosaic.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 11: Multiply the reference vector by every pixel in the annual mosaic.</span>
+<span class="hljs-comment">// Then sum across all 64 bands to get a single similarity score per pixel.</span>
+<span class="hljs-keyword">var</span> similarity = mosaic.<span class="hljs-title function_">multiply</span>(queryVector)
+  .<span class="hljs-title function_">reduce</span>(ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">sum</span>())
+  .<span class="hljs-title function_">rename</span>(<span class="hljs-string">'similarity'</span>);
+
+<span class="hljs-comment">// STEP 12: Display the similarity map.</span>
+<span class="hljs-comment">// Values closer to 1 mean the pixels are more like the reference location.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  similarity,
+  {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'000004'</span>, <span class="hljs-string">'2C105C'</span>, <span class="hljs-string">'711F81'</span>, <span class="hljs-string">'B63679'</span>, <span class="hljs-string">'EE605E'</span>, <span class="hljs-string">'FDAE78'</span>, <span class="hljs-string">'FCFDBF'</span>, <span class="hljs-string">'FFFFFF'</span>], <span class="hljs-attr">min</span>: -<span class="hljs-number">1</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>},
+  <span class="hljs-string">'similarity'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Because the embeddings are unit-length, the dot product behaves like cosine similarity. That is why we can treat the result as a “how similar is this place?” map.</p>
+</blockquote>
+<h2 id="step-5-highlight-highly-similar-locations">Step 5: Highlight Highly Similar Locations</h2>
+<p>Sometimes it helps to convert the similarity map into a simple yes/no <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 13: Choose a similarity threshold.</span>
+<span class="hljs-comment">// Pixels above this value will be treated as strongly similar to the reference point.</span>
+<span class="hljs-keyword">var</span> threshold = <span class="hljs-number">0.85</span>;
+
+<span class="hljs-comment">// STEP 14: Turn the similarity image into a binary mask.</span>
+<span class="hljs-comment">// `gte()` means "greater than or equal to".</span>
+<span class="hljs-keyword">var</span> similarityMask = similarity.<span class="hljs-title function_">gte</span>(threshold);
+
+<span class="hljs-comment">// STEP 15: Display only the pixels above the threshold.</span>
+<span class="hljs-comment">// `selfMask()` hides the zero values so the map is easier to read.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  similarityMask.<span class="hljs-title function_">selfMask</span>(),
+  {<span class="hljs-attr">palette</span>: [<span class="hljs-string">'red'</span>]},
+  <span class="hljs-string">'similarity above threshold'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Thresholding is a teaching choice, not a universal rule. A different <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> will show a different set of “similar” places.</p>
+</blockquote>
+<h2 id="step-6-try-a-different-point">Step 6: Try a Different Point</h2>
+<p>One of the best ways to learn from embeddings is to compare more than one place.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 16: Optional second point for experimentation.</span>
+<span class="hljs-comment">// Change this location to see how a different reference place changes the output.</span>
+<span class="hljs-keyword">var</span> secondPoint = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([-<span class="hljs-number">121.0028491471539</span>, <span class="hljs-number">37.613864769234134</span>]);
+
+<span class="hljs-comment">// STEP 17: Draw the second point so it is easy to see on the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(secondPoint, {<span class="hljs-attr">color</span>: <span class="hljs-string">'yellow'</span>}, <span class="hljs-string">'second point'</span>);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+If you choose a new reference point, the similarity map will change because the comparison <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> is different. That is the main idea behind embedding search.</p>
+</blockquote>
+<h2 id="what-this-teaches">What This Teaches</h2>
+<p>This lab teaches a general pattern you can reuse in other Earth Engine projects:</p>
+<ol>
+<li>Choose a reference location.</li>
+<li>Load an analysis-ready <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection.</li>
+<li>Sample a <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> from one location.</li>
+<li>Compare that <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> to many other pixels with a <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> operation.</li>
+<li>Turn the result into a map you can interpret visually.</li>
+</ol>
+<p>The main takeaway is that embeddings let you search for places that “feel” similar across many data <a href="../GLOSSARY.html#sources" class="glossary-term" title="">sources</a>, even when the raw inputs are very complex.</p>
 
                                 
                                 </section>
@@ -1084,7 +1283,7 @@
                 </a>
                 
                 
-                <a href="05_being_john_snow_in_a_python_notebook.html" class="navigation navigation-next " aria-label="Next page: 05 - OPTIONAL - Being John Snow,... in a Python Notebook">
+                <a href="05_being_john_snow_in_a_python_notebook.html" class="navigation navigation-next " aria-label="Next page: 05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1095,7 +1294,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"next":{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},"previous":{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"next":{"title":"05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},"previous":{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1052,6 +1052,314 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="wildfire-detection--severity-measurement-in-google-earth-engine">Wildfire Detection &amp; Severity Measurement in Google Earth Engine</h1>
+<blockquote>
+<p><strong>Attribution note:</strong> This workshop is adapted from a Google Earth Blog post by Christophe Restif and Avi Hoffman, <a href="https://medium.com/google-earth/how-to-generate-wildfire-boundary-maps-with-earth-engine-b38eadc97a38" target="_blank">How to generate wildfire boundary maps with Earth Engine</a>. The workflow, the fire-<a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> logic, and the original concept all come from that source.</p>
+</blockquote>
+<h2 id="what-you-should-understand">What You Should Understand</h2>
+<p>This lab shows how Earth Engine can turn a stream of wildfire-detection pixels into a mapped fire boundary.</p>
+<p>The most important idea is that this script is about:</p>
+<ol>
+<li>Finding fire-detection pixels over time.</li>
+<li>Turning the fire <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> codes into confidence values.</li>
+<li>Combining two GOES satellites.</li>
+<li>Smoothing the result so it looks more like a real wildfire footprint.</li>
+<li>Converting the final <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> into polygons.</li>
+</ol>
+<p>This workflow is useful for understanding wildfire extent and the shape of the affected area.</p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+This script is better described as a wildfire boundary workflow than a strict burn-severity index. It uses fire-detection confidence values from GOES fire products, then outlines the affected area.</p>
+<p><strong>Concept Note:</strong>
+When you work with a time series in Earth Engine, you often need to reduce many images into one summary <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. Here, the summary is the maximum fire confidence observed over the event period.</p>
+</blockquote>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>Open a new script in the Earth Engine Code Editor and paste the code blocks below into it as you go:</p>
+<ul>
+<li><a href="https://code.earthengine.google.com/" target="_blank">Earth Engine Code Editor</a></li>
+</ul>
+<p>The code in this lab uses:</p>
+<ol>
+<li><code>NOAA/GOES/16/FDCF</code></li>
+<li><code>NOAA/GOES/17/FDCF</code></li>
+<li>A fire location near the Kincade Fire in California</li>
+<li>A buffered area of interest around that fire location</li>
+</ol>
+<p>The script focuses on a known wildfire event and a specific date range:</p>
+<ul>
+<li>Start date: <code>2019-10-23</code></li>
+<li>End date: <code>2019-11-06</code></li>
+</ul>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The date window matters because the fire <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> values are time-specific. We are not looking at a whole year or a general background <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>. We are focusing on the event itself.</p>
+</blockquote>
+<h2 id="why-this-workflow-works">Why This Workflow Works</h2>
+<p>Earth Engine is useful here because it can:</p>
+<ol>
+<li>Filter an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection by date and location.</li>
+<li>Transform coded <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> values into a simpler confidence <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>.</li>
+<li>Reduce a time series into one summary <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</li>
+<li>Smooth and vectorize the result to create a boundary outline.</li>
+</ol>
+<p>The original Fire Detection and Characterization product gives a set of <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> codes that indicate whether a <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> is likely part of a fire. The script turns those codes into numeric confidence values so the rest of the workflow can process them more easily.</p>
+<h2 id="step-1-load-the-fire-detection-collections">Step 1: Load the Fire Detection Collections</h2>
+<p>Start by defining the fire location, the date range, and the area of interest.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// Wildfire Detection &amp; Severity Measurement in Google Earth Engine</span>
+<span class="hljs-comment">// This script turns GOES fire-detection pixels into a wildfire boundary outline.</span>
+
+<span class="hljs-comment">// STEP 1: Define the fire location and time window.</span>
+<span class="hljs-comment">// We are using the Kincade Fire area in California as the example.</span>
+<span class="hljs-keyword">var</span> kincade = {
+  <span class="hljs-comment">// Longitude of the fire center point.</span>
+  <span class="hljs-attr">longitude</span>: -<span class="hljs-number">122.8</span>,
+  <span class="hljs-comment">// Latitude of the fire center point.</span>
+  <span class="hljs-attr">latitude</span>: <span class="hljs-number">38.7</span>,
+  <span class="hljs-comment">// Start date for the event window.</span>
+  <span class="hljs-attr">start</span>: <span class="hljs-string">'2019-10-23'</span>,
+  <span class="hljs-comment">// End date for the event window.</span>
+  <span class="hljs-attr">end</span>: <span class="hljs-string">'2019-11-06'</span>
+};
+
+<span class="hljs-comment">// STEP 2: Define an area of interest around the fire location.</span>
+<span class="hljs-comment">// Buffering the point gives us a larger region to inspect around the fire.</span>
+<span class="hljs-keyword">var</span> radius_of_interest_meters = <span class="hljs-number">40000</span>;
+<span class="hljs-comment">// Make a point geometry, then expand it into a circle-like area.</span>
+<span class="hljs-keyword">var</span> area_of_interest = ee.<span class="hljs-property">Geometry</span>.<span class="hljs-title class_">Point</span>([
+  kincade.<span class="hljs-property">longitude</span>,
+  kincade.<span class="hljs-property">latitude</span>
+]).<span class="hljs-title function_">buffer</span>(radius_of_interest_meters);
+
+<span class="hljs-comment">// STEP 3: Load the GOES fire detection collections.</span>
+<span class="hljs-comment">// These collections contain the fire-detection mask values we need.</span>
+<span class="hljs-keyword">var</span> goes_16_data = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'NOAA/GOES/16/FDCF'</span>)
+  .<span class="hljs-title function_">filterDate</span>(kincade.<span class="hljs-property">start</span>, kincade.<span class="hljs-property">end</span>)
+  .<span class="hljs-title function_">filterBounds</span>(area_of_interest);
+
+<span class="hljs-keyword">var</span> goes_17_data = ee.<span class="hljs-title class_">ImageCollection</span>(<span class="hljs-string">'NOAA/GOES/17/FDCF'</span>)
+  .<span class="hljs-title function_">filterDate</span>(kincade.<span class="hljs-property">start</span>, kincade.<span class="hljs-property">end</span>)
+  .<span class="hljs-title function_">filterBounds</span>(area_of_interest);
+
+<span class="hljs-comment">// STEP 4: Inspect the map view.</span>
+<span class="hljs-comment">// This centers the map on the fire area so the layers will be easy to see.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">centerObject</span>(area_of_interest, <span class="hljs-number">9</span>);
+<span class="hljs-comment">// Draw the area of interest so we can see the region being studied.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(area_of_interest, {<span class="hljs-attr">color</span>: <span class="hljs-string">'green'</span>}, <span class="hljs-string">'Area of interest'</span>, <span class="hljs-literal">true</span>, <span class="hljs-number">0.2</span>);
+</code></pre>
+<p><img src="images/wildfire_aoi_placeholder.png" alt="Placeholder: map centered on the wildfire area of interest, with the buffer outline visible around the Kincade Fire location."></img></p>
+<h2 id="step-2-convert-fire-mask-codes-to-confidence-values">Step 2: Convert Fire Mask Codes to Confidence Values</h2>
+<p>The GOES fire product uses <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> codes to describe the likelihood that a <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> belongs to a fire.</p>
+<p>We will convert those codes into a simpler confidence score from <code>0</code> to <code>1</code>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 5: Define the mask codes we want to keep.</span>
+<span class="hljs-comment">// The list includes the main fire mask codes and their temporally filtered versions.</span>
+<span class="hljs-keyword">var</span> fire_mask_codes = [<span class="hljs-number">10</span>, <span class="hljs-number">30</span>, <span class="hljs-number">11</span>, <span class="hljs-number">31</span>, <span class="hljs-number">12</span>, <span class="hljs-number">32</span>, <span class="hljs-number">13</span>, <span class="hljs-number">33</span>, <span class="hljs-number">14</span>, <span class="hljs-number">34</span>, <span class="hljs-number">15</span>, <span class="hljs-number">35</span>];
+
+<span class="hljs-comment">// STEP 6: Convert the mask codes into confidence values.</span>
+<span class="hljs-comment">// Higher values mean higher confidence that the pixel is part of the fire.</span>
+<span class="hljs-keyword">var</span> confidence_values = [<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.9</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>];
+
+<span class="hljs-comment">// STEP 7: Use zero for anything that does not match the fire mask list.</span>
+<span class="hljs-keyword">var</span> default_confidence_value = <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// STEP 8: Write a function that remaps the fire mask for one image.</span>
+<span class="hljs-comment">// `clip()` limits the image to the study area so we only process the fire region.</span>
+<span class="hljs-comment">// `remap()` replaces the original code values with our confidence values.</span>
+<span class="hljs-keyword">var</span> map_from_mask_codes_to_confidence_values = <span class="hljs-keyword">function</span>(<span class="hljs-params">image</span>) {
+  <span class="hljs-comment">// Work on one image at a time, then return the remapped result.</span>
+  <span class="hljs-keyword">return</span> image
+    .<span class="hljs-title function_">clip</span>(area_of_interest)
+    .<span class="hljs-title function_">remap</span>(fire_mask_codes, confidence_values, default_confidence_value);
+};
+
+<span class="hljs-comment">// STEP 9: Keep only the Mask band and map the conversion function over time.</span>
+<span class="hljs-comment">// `select(['Mask'])` keeps only the fire mask band.</span>
+<span class="hljs-keyword">var</span> goes_16_confidence = goes_16_data
+  .<span class="hljs-title function_">select</span>([<span class="hljs-string">'Mask'</span>])
+  .<span class="hljs-title function_">map</span>(map_from_mask_codes_to_confidence_values);
+
+<span class="hljs-comment">// Do the same conversion for GOES 17.</span>
+<span class="hljs-keyword">var</span> goes_17_confidence = goes_17_data
+  .<span class="hljs-title function_">select</span>([<span class="hljs-string">'Mask'</span>])
+  .<span class="hljs-title function_">map</span>(map_from_mask_codes_to_confidence_values);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+<code>remap()</code> is a very handy way to translate coded values into a new <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>. In this case, we are converting fire <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> codes into confidence values that are easier to visualize and combine.</p>
+</blockquote>
+<h2 id="step-3-summarize-the-time-series-with-a-maximum">Step 3: Summarize the Time Series With a Maximum</h2>
+<p>As the wildfire evolves, pixels can switch from one fire category to another. We want one summary <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> that captures the strongest fire signal observed during the event.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 10: Reduce each satellite time series to one maximum-confidence image.</span>
+<span class="hljs-comment">// `reduce(ee.Reducer.max())` keeps the highest fire confidence seen for each pixel.</span>
+<span class="hljs-keyword">var</span> goes_16_max_confidence = goes_16_confidence.<span class="hljs-title function_">reduce</span>(ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">max</span>());
+<span class="hljs-keyword">var</span> goes_17_max_confidence = goes_17_confidence.<span class="hljs-title function_">reduce</span>(ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">max</span>());
+
+<span class="hljs-comment">// STEP 11: Choose a color palette for the fire confidence visualization.</span>
+<span class="hljs-keyword">var</span> affected_area_palette = [<span class="hljs-string">'white'</span>, <span class="hljs-string">'yellow'</span>, <span class="hljs-string">'orange'</span>, <span class="hljs-string">'red'</span>, <span class="hljs-string">'purple'</span>];
+
+<span class="hljs-comment">// STEP 12: Add the individual satellite summaries to the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  goes_16_max_confidence,
+  {<span class="hljs-attr">opacity</span>: <span class="hljs-number">0.3</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: affected_area_palette},
+  <span class="hljs-string">'GOES 16 maximum confidence'</span>
+);
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  goes_17_max_confidence,
+  {<span class="hljs-attr">opacity</span>: <span class="hljs-number">0.3</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: affected_area_palette},
+  <span class="hljs-string">'GOES 17 maximum confidence'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+A <code>max</code> reducer is a simple way to capture the strongest evidence of fire over the whole event window. Other reducers would answer different questions.</p>
+</blockquote>
+<h2 id="step-4-combine-goes-16-and-goes-17">Step 4: Combine GOES 16 and GOES 17</h2>
+<p>GOES 16 and GOES 17 see the same region, but not with exactly the same <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> grid.</p>
+<p>We combine them to get one stronger confidence surface.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 13: Combine the two maximum-confidence images.</span>
+<span class="hljs-comment">// `reduce(ee.Reducer.min())` keeps the lower confidence when the two sensors disagree.</span>
+<span class="hljs-comment">// That makes the combined result more conservative.</span>
+<span class="hljs-keyword">var</span> combined_confidence = ee.<span class="hljs-title class_">ImageCollection</span>([
+  goes_16_max_confidence,
+  goes_17_max_confidence
+]).<span class="hljs-title function_">reduce</span>(ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">min</span>());
+
+<span class="hljs-comment">// STEP 14: Add the combined confidence layer to the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  combined_confidence,
+  {<span class="hljs-attr">opacity</span>: <span class="hljs-number">0.3</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: affected_area_palette},
+  <span class="hljs-string">'Combined confidence'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Combining two sensors can improve your confidence in the final result. Here we use a conservative rule so the combined <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> only keeps strong evidence from both satellites.</p>
+</blockquote>
+<h2 id="step-5-smooth-the-pixel-edges">Step 5: Smooth the Pixel Edges</h2>
+<p>The raw confidence <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> still looks blocky because satellite pixels are rectangular.</p>
+<p>We smooth it to make the boundary easier to interpret.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 15: Create a square kernel to look at nearby pixels.</span>
+<span class="hljs-comment">// The kernel size controls how much smoothing happens.</span>
+<span class="hljs-keyword">var</span> kernel = ee.<span class="hljs-property">Kernel</span>.<span class="hljs-title function_">square</span>(<span class="hljs-number">2000</span>, <span class="hljs-string">'meters'</span>, <span class="hljs-literal">true</span>);
+
+<span class="hljs-comment">// STEP 16: Smooth the image by averaging nearby pixels.</span>
+<span class="hljs-comment">// `reduceNeighborhood()` looks around each pixel and summarizes its neighbors.</span>
+<span class="hljs-keyword">var</span> smoothed_confidence = combined_confidence.<span class="hljs-title function_">reduceNeighborhood</span>({
+  <span class="hljs-attr">reducer</span>: ee.<span class="hljs-property">Reducer</span>.<span class="hljs-title function_">mean</span>(),
+  <span class="hljs-attr">kernel</span>: kernel,
+  <span class="hljs-attr">optimization</span>: <span class="hljs-string">'boxcar'</span>
+});
+
+<span class="hljs-comment">// STEP 17: Add the smoothed layer to the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  smoothed_confidence,
+  {<span class="hljs-attr">opacity</span>: <span class="hljs-number">0.3</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: affected_area_palette},
+  <span class="hljs-string">'Smoothed confidence'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Smoothing does not create new fire evidence. It just makes the boundary less jagged and easier to map.</p>
+</blockquote>
+<h2 id="step-6-threshold-the-result">Step 6: Threshold the Result</h2>
+<p>Now we convert the smoothed confidence <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> into a binary fire <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 18: Keep only pixels above the confidence threshold.</span>
+<span class="hljs-comment">// Pixels above 0.6 are treated as part of the wildfire boundary.</span>
+<span class="hljs-keyword">var</span> high_confidence = smoothed_confidence.<span class="hljs-title function_">gt</span>(<span class="hljs-number">0.6</span>);
+
+<span class="hljs-comment">// STEP 19: Display the binary mask on the map.</span>
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  high_confidence,
+  {<span class="hljs-attr">opacity</span>: <span class="hljs-number">0.3</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">max</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">palette</span>: affected_area_palette},
+  <span class="hljs-string">'High confidence'</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Thresholding is a decision step. You are choosing the confidence level that counts as “fire” for this map.</p>
+</blockquote>
+<h2 id="step-7-convert-the-mask-to-polygons">Step 7: Convert the Mask to Polygons</h2>
+<p>Earth Engine can turn the binary <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> into <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> features.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 20: Convert the binary image to vector polygons.</span>
+<span class="hljs-comment">// `reduceToVectors()` traces connected pixels where the image equals 1.</span>
+<span class="hljs-keyword">var</span> affected_areas = high_confidence.<span class="hljs-title function_">reduceToVectors</span>({
+  <span class="hljs-attr">scale</span>: <span class="hljs-number">200</span>,
+  <span class="hljs-attr">maxPixels</span>: <span class="hljs-number">1e10</span>,
+  <span class="hljs-attr">geometry</span>: area_of_interest
+}).<span class="hljs-title function_">filter</span>(ee.<span class="hljs-property">Filter</span>.<span class="hljs-title function_">eq</span>(<span class="hljs-string">'label'</span>, <span class="hljs-number">1</span>));
+
+<span class="hljs-comment">// STEP 21: Start with an empty image, then paint the polygon outlines onto it.</span>
+<span class="hljs-comment">// This lets us display the vectors like a map layer.</span>
+<span class="hljs-keyword">var</span> affected_areas_outline = ee.<span class="hljs-title class_">Image</span>().<span class="hljs-title function_">byte</span>().<span class="hljs-title function_">paint</span>({
+  <span class="hljs-attr">featureCollection</span>: affected_areas,
+  <span class="hljs-attr">width</span>: <span class="hljs-number">2</span>
+});
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(affected_areas_outline, {<span class="hljs-attr">palette</span>: <span class="hljs-string">'purple'</span>}, <span class="hljs-string">'Affected areas'</span>, <span class="hljs-literal">true</span>, <span class="hljs-number">0.3</span>);
+</code></pre>
+<p><img src="images/wildfire_outline_placeholder.png" alt="Placeholder: vector outline of the affected wildfire area traced from the thresholded fire mask."></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+<code>reduceToVectors()</code> is useful when you want a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> result to become a map <a href="../GLOSSARY.html#feature" class="glossary-term" title="A vector object representing something on the landscape. Features are usually stored as points, lines, or polygons.">feature</a> that you can outline, <a href="../GLOSSARY.html#label" class="glossary-term" title="Text placed on a map to identify features or provide information. Labels can be based on attribute values such as names or measurements.">label</a>, or export.</p>
+</blockquote>
+<h2 id="step-8-smooth-the-outline">Step 8: Smooth the Outline</h2>
+<p>The <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> boundary can still be a little jagged, so we simplify it.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 22: Define a simplification function.</span>
+<span class="hljs-comment">// The larger the tolerance, the smoother the polygon becomes.</span>
+<span class="hljs-keyword">var</span> smooth = <span class="hljs-keyword">function</span>(<span class="hljs-params">feature</span>) {
+  <span class="hljs-comment">// Keep the shape general, but drop tiny wiggles that are hard to see at map scale.</span>
+  <span class="hljs-keyword">var</span> max_error_meters = <span class="hljs-number">500</span>;
+  <span class="hljs-keyword">return</span> ee.<span class="hljs-title class_">Feature</span>(feature).<span class="hljs-title function_">simplify</span>(max_error_meters);
+};
+
+<span class="hljs-comment">// STEP 23: Apply the simplification function to every feature.</span>
+<span class="hljs-comment">// `.map()` runs the function once for each polygon in the collection.</span>
+<span class="hljs-keyword">var</span> affected_areas_smoothed = ee.<span class="hljs-title class_">FeatureCollection</span>(affected_areas).<span class="hljs-title function_">map</span>(smooth);
+
+<span class="hljs-comment">// STEP 24: Draw the smoothed outline on the map.</span>
+<span class="hljs-comment">// Paint the simplified polygons so the boundary is easier to read.</span>
+<span class="hljs-keyword">var</span> affected_areas_smoothed_outline = ee.<span class="hljs-title class_">Image</span>().<span class="hljs-title function_">byte</span>().<span class="hljs-title function_">paint</span>({
+  <span class="hljs-attr">featureCollection</span>: affected_areas_smoothed,
+  <span class="hljs-attr">width</span>: <span class="hljs-number">2</span>
+});
+
+<span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(
+  affected_areas_smoothed_outline,
+  {<span class="hljs-attr">palette</span>: <span class="hljs-string">'purple'</span>},
+  <span class="hljs-string">'Smoothed affected areas'</span>,
+  <span class="hljs-literal">true</span>,
+  <span class="hljs-number">0.3</span>
+);
+</code></pre>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Simplification removes small jagged details from the polygon boundary. That makes the outline easier to read, but it also changes the geometry slightly.</p>
+</blockquote>
+<h2 id="step-9-evaluate-the-result">Step 9: Evaluate the Result</h2>
+<p>Every fire boundary workflow has choices:</p>
+<ol>
+<li>The date range.</li>
+<li>The confidence mapping.</li>
+<li>The smoothing kernel.</li>
+<li>The <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> value.</li>
+<li>The <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> simplification tolerance.</li>
+</ol>
+<p>Those choices affect the final boundary. A strong GIS workflow includes checking whether the result makes sense and comparing it to outside reference data when possible.</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// STEP 25: Optional note for future improvement.</span>
+<span class="hljs-comment">// In a real workflow, compare the output to an official fire perimeter dataset</span>
+<span class="hljs-comment">// from a trusted source to see whether the threshold and smoothing choices are reasonable.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Example reference source:</span>
+<span class="hljs-comment">// http://data-nifc.opendata.arcgis.com/</span>
+</code></pre>
+<h2 id="what-this-teaches">What This Teaches</h2>
+<p>This lab teaches a general remote-sensing workflow:</p>
+<ol>
+<li>Filter an <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection by time and place.</li>
+<li>Convert coded pixels into a simplified score.</li>
+<li>Reduce a time series into one summary <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a>.</li>
+<li>Smooth and <a href="../GLOSSARY.html#threshold" class="glossary-term" title="A chosen cutoff value used to separate pixels or records into categories. For example, you might keep only pixels with tree probability greater than 0.6.">threshold</a> the result.</li>
+<li>Vectorize the boundary for mapping.</li>
+</ol>
 
                                 
                                 </section>
@@ -1095,7 +1403,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"next":{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},"previous":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"next":{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},"previous":{"title":"Week 08 - Final Lab Week","level":"1.11","depth":1,"path":"week08/README.md","ref":"week08/README.md","articles":[{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"path":"week08/01_suitability_modeling_in_qgis.md","ref":"week08/01_suitability_modeling_in_qgis.md","articles":[]},{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"path":"week08/03_introducing_model_builder_in_qgis.md","ref":"week08/03_introducing_model_builder_in_qgis.md","articles":[]},{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},{"title":"05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>03 - OPTIONAL - Introducing Model Builder in QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1052,6 +1052,172 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="introducing-model-builder-in-qgis">Introducing Model Builder in QGIS</h1>
+<blockquote>
+<p><strong>Attribution note:</strong> This workshop is adapted from Ujaval Gandhi’s tutorial, <a href="https://www.qgistutorials.com/en/docs/3/processing_graphical_modeler.html" target="_blank">Automating Complex Workflows using Processing Modeler (QGIS3)</a>. The original tutorial, workflow idea, and example imagery are credited to Ujaval Gandhi and the QGIS Tutorials and Tips project.</p>
+</blockquote>
+<h2 id="what-you-should-understand">What You Should Understand</h2>
+<p>By the end of this workshop, you should understand why QGIS Model Builder is useful and how it helps turn a multi-step GIS workflow into something you can run again with one click.</p>
+<p>The key idea is simple: instead of repeating every tool manually, you build a model that connects those tools together in a fixed order.</p>
+<p>That matters because:</p>
+<ol>
+<li>Your inputs might change.</li>
+<li>You may want to experiment with a different parameter, such as grid size.</li>
+<li>You may want to rerun the same workflow on updated data without rebuilding every step from scratch.</li>
+</ol>
+<h2 id="why-model-builder-matters">Why Model Builder Matters</h2>
+<p>Many GIS workflows are really chains of smaller tasks. One tool creates an intermediate output, the next tool uses that output, and so on.</p>
+<p>Model Builder is useful because it lets you:</p>
+<ol>
+<li>Describe the workflow once.</li>
+<li>Reuse the workflow later.</li>
+<li>Share the workflow with someone else.</li>
+<li>Run the same process on many inputs as a batch job.</li>
+</ol>
+<p>In this exercise, we will build a model that turns the <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> into a density-style map by placing a hexagonal grid over the data and counting how many <code>ASAM_events</code> points fall inside each polygon.</p>
+<h2 id="example-data">Example Data</h2>
+<p>This tutorial uses two public datasets:</p>
+<ol>
+<li>The <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> of maritime piracy incidents from the National Geospatial-Intelligence Agency’s Maritime Safety Information portal.</li>
+<li>The <code>ne_10m_land</code> polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> from Natural Earth.</li>
+</ol>
+<p>You can download the same source data directly from the original tutorial page if you want to follow the identical example. For the course version, the important part is not the topic itself but the workflow:</p>
+<ol>
+<li>Start with <code>ASAM_events</code>.</li>
+<li>Reproject <code>ne_10m_land</code> to match the project.</li>
+<li>Create a grid.</li>
+<li>Keep only the grid cells that intersect <code>ASAM_events</code>.</li>
+<li>Count the <code>ASAM_events</code> points inside each cell.</li>
+<li>Style the result.</li>
+</ol>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>If you want to follow the original example exactly, download the source files used in the QGIS tutorial:</p>
+<ol>
+<li><a href="https://www.qgistutorials.com/downloads/ASAM_shp.zip" target="_blank">ASAM_shp.zip</a></li>
+<li><a href="https://www.qgistutorials.com/downloads/ne_10m_land.zip" target="_blank">ne_10m_land.zip</a></li>
+</ol>
+<p>These are the same data files used in the original tutorial by Ujaval Gandhi. Save them in a dedicated folder so you can find them easily in the QGIS Browser panel.</p>
+<h2 id="concept-notes">Concept Notes</h2>
+<blockquote>
+<p><strong>Concept Note:</strong>
+A model is a reusable workflow, not just a one-time map. Once you connect the inputs and algorithms, you can rerun the same logic with different data or different settings.</p>
+<p><strong>Concept Note:</strong>
+The project CRS matters because some tools need measurements in the units of the project. In this tutorial, the equal-area projection helps the grid cells cover comparable area.</p>
+</blockquote>
+<h2 id="the-workflow-we-will-build">The Workflow We Will Build</h2>
+<p>Here is the workflow in plain language:</p>
+<ol>
+<li>Accept the <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as an input.</li>
+<li>Accept the <code>ne_10m_land</code> polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as a base <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Accept a numeric input for grid size.</li>
+<li>Reproject <code>ne_10m_land</code> to the project CRS.</li>
+<li>Create a hexagonal grid over the extent of the reprojected <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>Keep only the grid cells that intersect <code>ASAM_events</code>.</li>
+<li>Count the <code>ASAM_events</code> points in each remaining polygon.</li>
+<li>Symbolize the output using graduated colors.</li>
+</ol>
+<h2 id="step-1-load-the-data">Step 1: Load the Data</h2>
+<p>Open the two data layers in QGIS:</p>
+<ol>
+<li>The <code>ne_10m_land</code> polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>The <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+</ol>
+<p>The <code>ASAM_events</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the original tutorial does not include projection information, so QGIS asks you to define the CRS. Use <code>WGS 84</code> for the <code>ASAM_events</code> data.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1142.png" alt="Loading the `ne_10m_land` and `ASAM_events` layers in QGIS"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/2121.png" alt="Choosing WGS 84 for the `ASAM_events` layer CRS"></img></p>
+<h2 id="step-2-open-the-processing-modeler">Step 2: Open the Processing Modeler</h2>
+<p>Once the layers are loaded, open the Model Builder from the Processing menu.</p>
+<p>In QGIS, go to:</p>
+<p><code>Processing</code> &gt; <code>Graphical Modeler</code></p>
+<p><img src="https://www.qgistutorials.com/en/_images/358.png" alt="Opening the Graphical Modeler from the Processing menu"></img></p>
+<p>When the Modeler window opens, give the model a name and save it. In the original tutorial, the model is called <code>piracy hexbin</code>.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/430.png" alt="Naming and saving the new model"></img></p>
+<h2 id="step-3-add-the-model-inputs">Step 3: Add the Model Inputs</h2>
+<p>Every model starts with inputs. Inputs are the pieces of information a user can change when the model runs.</p>
+<p>For this workflow, we need three inputs:</p>
+<ol>
+<li>The <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>The <code>ne_10m_land</code> polygon <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>A number for grid size.</li>
+</ol>
+<p>Add those inputs to the canvas.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/628.png" alt="Adding inputs to the model canvas"></img></p>
+<p>In the original workflow, the point input is named <code>Input Points</code> and is connected to <code>ASAM_events</code>. The polygon input is named <code>Base Layer</code> and is connected to <code>ne_10m_land</code>. The number input is named <code>Grid Size</code>.</p>
+<h2 id="step-4-reproject-the-base-layer">Step 4: Reproject the Base Layer</h2>
+<p>The next step is to reproject <code>ne_10m_land</code> to the project CRS.</p>
+<p>Why do this? Because the grid tool needs to work in the units of the project CRS, and a global equal-area projection gives us a better basis for comparing grid cells.</p>
+<p>Add the <code>Reproject layer</code> algorithm and connect it to the <code>ne_10m_land</code> base <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> input.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1035.png" alt="Adding the Reproject layer algorithm"></img></p>
+<p>When you configure the algorithm, use <code>ne_10m_land</code> as the input and tell QGIS to use the project CRS as the target CRS.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1143.png" alt="Configuring the reproject step"></img></p>
+<h2 id="step-5-create-a-hexagonal-grid">Step 5: Create a Hexagonal Grid</h2>
+<p>Now add the grid step.</p>
+<p>In the original tutorial, the grid is hexagonal. That shape is useful because it creates a regular tessellation without favoring horizontal or vertical directions the way square cells sometimes do.</p>
+<p>Add the <code>Create grid</code> algorithm and set:</p>
+<ol>
+<li>Grid type: <code>Hexagon (polygon)</code></li>
+<li>Grid extent: the extent from the reprojected <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a></li>
+<li>Horizontal spacing: use the model input for <code>Grid Size</code></li>
+<li>Vertical spacing: use the same <code>Grid Size</code> input</li>
+</ol>
+<p><img src="https://www.qgistutorials.com/en/_images/1236.png" alt="Adding the Create grid algorithm"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/1334.png" alt="Setting the grid spacing from a model input"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/1432.png" alt="Using the same model input for vertical spacing"></img></p>
+<h2 id="step-6-keep-only-grid-cells-with-data">Step 6: Keep Only Grid Cells With Data</h2>
+<p>At this point, the model creates a grid over the full extent of <code>ne_10m_land</code>. Some cells contain <code>ASAM_events</code>, and others do not.</p>
+<p>To keep only the useful cells, add <code>Extract by location</code>.</p>
+<p>Set it up so the grid cells are extracted where they intersect <code>ASAM_events</code>.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1527.png" alt="Adding Extract by location"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/1625.png" alt="Configuring the intersection test"></img></p>
+<h2 id="step-7-count-the-points-in-each-polygon">Step 7: Count the Points in Each Polygon</h2>
+<p>Now we can summarize the <code>ASAM_events</code> points in the cells that remain.</p>
+<p>Add <code>Count points in polygon</code> and connect:</p>
+<ol>
+<li>The extracted grid cells as the polygons.</li>
+<li>The <code>ASAM_events</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> as the points.</li>
+</ol>
+<p>The output will contain a point-count <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> for each grid cell.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1727.png" alt="Adding Count points in polygon"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/1823.png" alt="Setting the output name for the counted polygons"></img></p>
+<h2 id="step-8-save-the-model">Step 8: Save the Model</h2>
+<p>Your model is now complete.</p>
+<p>Save it so QGIS can reuse it from the Processing Toolbox.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/1919.png" alt="Saving the completed model"></img></p>
+<h2 id="step-9-run-the-model">Step 9: Run the Model</h2>
+<p>Switch back to the main QGIS window.</p>
+<p>Before running the model, set the project CRS to a global equal-area projection. The original tutorial uses Mollweide, which works well here because it preserves area better for this kind of summary map.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/2018.png" alt="Opening Project Properties to set the CRS"></img></p>
+<p>Choose the Mollweide projection in the CRS tab.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/2122.png" alt="Selecting the Mollweide CRS"></img></p>
+<p>Then open the model from the Processing Toolbox and run it.</p>
+<p>Use a grid size that makes sense for the CRS units. In the original example, the grid size is set to <code>100000</code> meters.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/2219.png" alt="Running the model from the Processing Toolbox"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/2317.png" alt="Choosing the grid size for the model"></img></p>
+<h2 id="step-10-style-the-result">Step 10: Style the Result</h2>
+<p>The output <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> contains a count <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> that shows how many <code>ASAM_events</code> points fell into each grid cell.</p>
+<p>To make the map easier to read:</p>
+<ol>
+<li>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> properties.</li>
+<li>Switch to <a href="../GLOSSARY.html#symbology" class="glossary-term" title="The visual styling of map layers, including colors, line styles, marker shapes, fills, and classification methods.">Symbology</a>.</li>
+<li>Use <code>Graduated</code> styling.</li>
+<li>Choose the count <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a> as the <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
+<li>Use a color ramp such as <code>Viridis</code>.</li>
+<li>Use a <a href="../GLOSSARY.html#classification" class="glossary-term" title="The process of sorting data into categories. In GIS, classification may refer to symbol classes on a map or to assigning raster pixels to land cover or other categories.">classification</a> method such as <code>Natural Breaks (Jenks)</code>.</li>
+</ol>
+<p><img src="https://www.qgistutorials.com/en/_images/2416.png" alt="Opening the output layer properties"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/2515.png" alt="Setting graduated symbology"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/2614.png" alt="Adjusting the fill and stroke style"></img></p>
+<p><img src="https://www.qgistutorials.com/en/_images/2715.png" alt="Choosing a color ramp and classifying the output"></img></p>
+<p>When you turn off the original <code>ASAM_events</code> point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, you should be able to see the density pattern much more clearly.</p>
+<p><img src="https://www.qgistutorials.com/en/_images/2914.png" alt="Final hexbin-style result"></img></p>
+<h2 id="what-this-teaches">What This Teaches</h2>
+<p>This exercise is not just about one specific map.</p>
+<p>It teaches a bigger GIS habit:</p>
+<ol>
+<li>Break a complicated workflow into repeatable pieces.</li>
+<li>Keep the inputs flexible.</li>
+<li>Reuse the model when the data change.</li>
+<li>Use <a href="../GLOSSARY.html#cartography" class="glossary-term" title="The design and making of maps. Cartography includes choices about symbolization, labeling, layout, scale, color, and visual hierarchy.">cartography</a> to make the output easier to interpret.</li>
+</ol>
 
                                 
                                 </section>
@@ -1095,7 +1261,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"next":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},"previous":{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/03_introducing_model_builder_in_qgis.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - OPTIONAL - Introducing Model Builder in QGIS","level":"1.11.4","depth":2,"next":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},"previous":{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/03_introducing_model_builder_in_qgis.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3,10 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>05 - OPTIONAL - Being John Snow,... in a Python Notebook · HonKit</title>
+        <title>05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1036,7 +1036,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >05 - OPTIONAL - Being John Snow,... in a Python Notebook</a>
+        <a href=".." >05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook</a>
     </h1>
 </div>
 
@@ -1051,7 +1051,96 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="being-john-snow-in-a-python-notebook">Being John Snow,... in a Python Notebook</h1>
+                                <h1 id="being-john-snow-point-pattern-analysis--spatial-statistics-in-a-python-notebook">Being John Snow: Point Pattern Analysis &amp; Spatial Statistics in a Python Notebook</h1>
+<blockquote>
+<p><strong>Notebook location:</strong> The runnable Colab notebook for this lab lives in <a href="../data/Being_John_Snow_Python_Notebook.ipynb"><code>data/Being_John_Snow_Python_Notebook.ipynb</code></a>.</p>
+<p><strong>Source note:</strong> This lab combines the short Week 08 Python-notebook bullet outline with the fuller old-course QGIS version of <em>Being John Snow</em> and turns them into a Python workflow.</p>
+</blockquote>
+<h2 id="what-you-should-understand">What You Should Understand</h2>
+<p>This notebook version keeps the same core story as the QGIS lab, but it expresses the analysis in Python so that students can see how spatial statistics can be carried out with code.</p>
+<p>The main ideas are:</p>
+<ol>
+<li>Voronoi mapping of water pumps, followed by a spatial <a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> of deaths to pumps.</li>
+<li>Spatial mean, weighted spatial mean, standard ellipse, and standard distance.</li>
+<li>Network-based service areas that behave like Voronoi polygons, but use travel time instead of simple straight-line distance.</li>
+<li>Kernel density surfaces to highlight the outbreak hotspot.</li>
+</ol>
+<blockquote>
+<p><strong>Concept Note:</strong>
+John Snow’s map is a classic example of point pattern analysis. The question is not just “where are the deaths?” but “which pump, route, or neighborhood structure may be associated with the pattern?”</p>
+</blockquote>
+<h2 id="before-you-start">Before You Start</h2>
+<p>The companion notebook is designed for <strong>Google Colab</strong>.</p>
+<p>The notebook itself installs the Python packages it needs, including:</p>
+<ul>
+<li><code>geopandas</code></li>
+<li><code>shapely</code></li>
+<li><code>pyogrio</code></li>
+<li><code>rasterio</code></li>
+<li><code>contextily</code></li>
+<li><code>mapclassify</code></li>
+<li><code>osmnx</code> for the optional network-service-area extension</li>
+</ul>
+<p>It also downloads the John Snow archive directly from the course repository if the archive is not already present.</p>
+<h2 id="data-in-the-archive">Data in the Archive</h2>
+<p>The <code>Being_John_Snow.zip</code> archive contains the raw files used by the notebook:</p>
+<ul>
+<li><code>Water_Pumps.geojson</code></li>
+<li><code>deathAddresses.csv</code></li>
+<li><code>Study_Area.shp</code></li>
+<li><code>John_Snow_Map.tif</code></li>
+</ul>
+<p>The notebook converts the death-address CSV into a point <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, loads the pump <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, and reprojects the analysis to a metric CRS so it can compute distances, ellipses, and density surfaces correctly.</p>
+<h2 id="notebook-workflow">Notebook Workflow</h2>
+<p>The notebook is organized into the same analytical arc you saw in the QGIS lab:</p>
+<h3 id="1-load-and-inspect-the-data">1. Load and inspect the data</h3>
+<p>The notebook begins by downloading the archive, unpacking it, and loading the point and polygon layers.</p>
+<h3 id="2-build-voronoi-polygons">2. Build Voronoi polygons</h3>
+<p>The pumps are used to generate Thiessen/Voronoi polygons. These polygons represent simple service areas based on nearest-distance logic.</p>
+<h3 id="3-spatial-join-the-deaths">3. Spatial join the deaths</h3>
+<p>Each death point is assigned to the pump polygon that contains it. This makes it easy to summarize the number of deaths associated with each pump.</p>
+<h3 id="4-compute-spatial-summaries">4. Compute spatial summaries</h3>
+<p>The notebook calculates:</p>
+<ul>
+<li>a mean center</li>
+<li>a weighted mean center</li>
+<li>a standard distance</li>
+<li>a standard ellipse</li>
+</ul>
+<p>These are the same kinds of summary measures the older QGIS lab used to describe the outbreak cluster.</p>
+<h3 id="5-create-a-kernel-density-hotspot-surface">5. Create a kernel density hotspot surface</h3>
+<p>The notebook turns the death locations into a smooth surface that highlights the Broad Street hotspot.</p>
+<h3 id="6-optional-network-based-service-areas">6. Optional network-based service areas</h3>
+<p>The notebook also includes a short optional section on network-based service areas. This is the most direct Python analogue to the old bullet that described service areas as a travel-time version of Voronoi polygons.</p>
+<h2 id="why-this-notebook-version-exists">Why This Notebook Version Exists</h2>
+<p>The old QGIS lab is still a great introduction to the John Snow story, but a Python notebook has a few advantages:</p>
+<ul>
+<li>it is easier to reuse the same logic with other outbreaks or point-pattern datasets</li>
+<li>the code can be adapted into a workflow that students can run in Colab</li>
+<li>students can compare geometric concepts such as Voronoi polygons, mean centers, and kernel density directly in code</li>
+</ul>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The notebook is not meant to replace the historical narrative. It is meant to make the same spatial ideas more reusable and more programmable.</p>
+</blockquote>
+<h2 id="what-to-turn-in">What to Turn In</h2>
+<p>If you are using this as an assignment, the notebook should show:</p>
+<ul>
+<li>a Voronoi service-area map</li>
+<li>a spatial-<a href="../GLOSSARY.html#join" class="glossary-term" title="An operation that connects records from one table to records in another table using a shared field. Joins are often used to add non-spatial information to an existing spatial layer.">join</a> summary of deaths by pump</li>
+<li>a mean-center / weighted-mean-center <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a></li>
+<li>a standard distance or ellipse <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a></li>
+<li>a kernel density hotspot map</li>
+</ul>
+<p>Optional, if you extend the notebook:</p>
+<ul>
+<li>a travel-time network service area analysis</li>
+</ul>
+<h2 id="related-materials">Related Materials</h2>
+<ul>
+<li><a href="../old_course/Labs/Week_08/Being_John_Snow.md">Old-course QGIS lab: <em>Being John Snow: Point Pattern Analysis &amp; Spatial Statistics with QGIS</em></a></li>
+<li><a href="../data/Being_John_Snow_Python_Notebook.ipynb">Week 08 notebook file</a></li>
+</ul>
 
                                 
                                 </section>
@@ -1095,7 +1184,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"next":{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]},"previous":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/05_being_john_snow_in_a_python_notebook.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook","level":"1.11.6","depth":2,"next":{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","ref":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","articles":[]},"previous":{"title":"04 - OPTIONAL - The AlphaEarth Embedding Database in Google Earth Engine","level":"1.11.5","depth":2,"path":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","ref":"week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/05_being_john_snow_in_a_python_notebook.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

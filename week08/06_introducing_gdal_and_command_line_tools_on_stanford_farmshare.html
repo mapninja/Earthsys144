@@ -6,7 +6,7 @@
         <title>06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1051,7 +1051,215 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="introducing-gdal--command-line-tools-on-stanford-farmshare">Introducing GDAL &amp; Command Line Tools on Stanford Farmshare</h1>
+                                <h1 id="draft-hands-on-with-the-unified-gdal-cli-and-gdalg-pipelines">[DRAFT] Hands-on with the Unified GDAL CLI and GDALG Pipelines</h1>
+<blockquote>
+<p><strong>Draft status:</strong> This lab is actively being converted from the classic GDAL/OGR command set to the newer unified <code>gdal</code> CLI. Some examples still show the old workflow as a reference point while the new screenshots and command patterns are added.</p>
+</blockquote>
+<p>For a good overview of why the unified CLI matters, see Kablamo’s write-up: <a href="https://engineering.kablamo.com.au/posts/gdal-evolved/" target="_blank"><em>GDAL Evolved - A guide to the new unified CLI</em></a>.</p>
+<p><img src="images/handsonwithgdal/02dec4fe1020d2a9e2ff79e488d9c796.png" alt="The title slide from the original workshop, which introduced GDAL as a practical command-line tool for raster and vector data."></img></p>
+<p><img src="images/handsonwithgdal/draft_status_screenshot.png" alt="Draft screenshot showing the lab is still being actively converted to the unified GDAL CLI."></img></p>
+<h2 id="what-changed-in-modern-gdal">What Changed in Modern GDAL?</h2>
+<p>The old workflow used separate top-level tools such as <code>ogrinfo</code>, <code>gdalinfo</code>, <code>ogr2ogr</code>, <code>gdal_translate</code>, and <code>gdalwarp</code>. Those commands still exist, but the newer GDAL line is built around a single <code>gdal</code> entry point with <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> and <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> subcommands.</p>
+<p>That means you can now think in a more consistent way:</p>
+<table>
+<thead>
+<tr>
+<th>Older command</th>
+<th>Modern<code>gdal</code> equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ogrinfo</code></td>
+<td><code>gdal vector info</code></td>
+</tr>
+<tr>
+<td><code>gdalinfo</code></td>
+<td><code>gdal raster info</code></td>
+</tr>
+<tr>
+<td><code>ogr2ogr</code></td>
+<td><code>gdal vector convert</code></td>
+</tr>
+<tr>
+<td><code>gdal_translate</code></td>
+<td><code>gdal raster convert</code></td>
+</tr>
+<tr>
+<td><code>gdalwarp</code></td>
+<td><code>gdal raster reproject</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Concept note:</strong> the new CLI is still evolving, so if a subcommand behaves differently than you expect, check <code>--help</code> and the current GDAL documentation.</p>
+</blockquote>
+<p><img src="images/handsonwithgdal/unified_cli_mapping_screenshot.png" alt="Screenshot-style overview of the old-to-new command mapping used while the handout is being rewritten."></img></p>
+<p>The biggest new idea for this lab is the <strong>pipeline</strong> model:</p>
+<ul>
+<li><code>gdal vector pipeline</code> chains <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> steps.</li>
+<li><code>gdal raster pipeline</code> chains <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> steps.</li>
+<li>Both can be serialized as a <code>.gdalg.json</code> file so the workflow can be reopened later like a dataset.</li>
+</ul>
+<p><img src="images/handsonwithgdal/gdalg_pipeline_screenshot.png" alt="Screenshot-style example of a GDALG vector pipeline, showing how the new workflow is meant to be read from top to bottom."></img></p>
+<h2 id="meet-the-data">Meet the Data</h2>
+<p>The original workshop used Austin-area demo data to teach the concepts visually.
+We will keep those images in the lab as teaching aids, but the hands-on commands below use local datasets that already live in this repository:</p>
+<ul>
+<li><a href="../data/assam.gpkg"><code>data/assam.gpkg</code></a> — a GeoPackage with multiple <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers</li>
+<li><a href="../data/ChirDEM.tif"><code>data/ChirDEM.tif</code></a> — a <a href="../GLOSSARY.html#geotiff" class="glossary-term" title="A TIFF image file that includes geographic information, allowing it to be placed correctly in geographic space.">GeoTIFF</a> DEM</li>
+</ul>
+<p><img src="images/handsonwithgdal/422a2b8f73a4286854e535cccbc23bea.png" alt="Original workshop slide showing the vector demo data used in the old lab."></img></p>
+<p><img src="images/handsonwithgdal/468078db1f0e29a7d634be0e53a1431a.png" alt="Original workshop slide showing the raster demo data used in the old lab."></img></p>
+<h2 id="step-1-inspect-the-data">Step 1: Inspect the Data</h2>
+<p>The first thing to learn is how to ask GDAL what it is looking at.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Vector metadata: layers, feature counts, geometry types, and fields.</span>
+gdal vector info data/assam.gpkg
+
+<span class="hljs-comment"># Raster metadata: size, CRS, bands, and raster statistics.</span>
+gdal raster info data/ChirDEM.tif
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> in the old workshop, <code>ogrinfo</code> and <code>gdalinfo</code> were the first commands students learned. The modern <code>gdal vector info</code> and <code>gdal raster info</code> commands do the same kind of discovery, but the command family is clearer.</p>
+</blockquote>
+<p><img src="images/handsonwithgdal/cfb64c76a430835b4e3f42a5858e3da6.png" alt="The original workshop used this side note on EPSG codes to remind students that coordinate reference systems matter before converting or reprojecting data."></img></p>
+<p>When you inspect the GeoPackage, notice that it contains multiple layers. In this lab, the most useful ones are:</p>
+<ul>
+<li><code>boundary</code></li>
+<li><code>roads</code></li>
+<li><code>protected_regions</code></li>
+<li><code>water_polygons</code></li>
+<li><code>water_polylines</code></li>
+</ul>
+<p>When you inspect the DEM, note the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> size and the projected <a href="../GLOSSARY.html#coordinate-system" class="glossary-term" title="A framework used to locate positions in space. In GIS, coordinate systems define how locations are described, whether in latitude and longitude or in projected map coordinates.">coordinate system</a>. That projection matters when you later convert, <a href="../GLOSSARY.html#scale" class="glossary-term" title="The relationship between distance on a map and distance on the earth. Scale can also refer more broadly to the level of geographic detail or extent being studied.">scale</a>, or reproject the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</p>
+<h2 id="step-2-select-filter-and-convert-vector-data">Step 2: Select, Filter, and Convert Vector Data</h2>
+<p>One of the most useful things GDAL can do is move a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> into a more convenient format.</p>
+<h3 id="2a-select-a-smaller-set-of-fields">2a. Select a Smaller Set of Fields</h3>
+<p>Sometimes you do not want every <a href="../GLOSSARY.html#attribute" class="glossary-term" title="Descriptive information associated with a spatial feature or raster cell. For example, a school point may have attributes such as name, enrollment, or address.">attribute</a> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Keep only the fields you care about from the roads layer.</span>
+gdal vector <span class="hljs-keyword">select</span> data/assam.gpkg assam_roads_subset.gpkg name,fclass \
+  --input-layer roads \
+  --overwrite
+</code></pre>
+<p>This is the modern equivalent of the old “copy the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>, but with fewer fields” workflow.</p>
+<h3 id="2b-filter-features">2b. Filter Features</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># Keep only roads that already have a name.</span>
+gdal vector filter data/assam.gpkg assam_named_roads.gpkg \
+  --input-layer roads \
+  --<span class="hljs-built_in">where</span> <span class="hljs-string">"name IS NOT NULL"</span> \
+  --overwrite
+</code></pre>
+<p>That is a very common preprocessing step before sharing a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> or building a pipeline.</p>
+<h3 id="2c-convert-to-geojson">2c. Convert to GeoJSON</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># Convert one layer from the GeoPackage to GeoJSON.</span>
+gdal vector convert data/assam.gpkg assam_roads.geojson \
+  --input-layer roads \
+  --format=GeoJSON \
+  --overwrite
+</code></pre>
+<p>The original workshop used a <a href="../GLOSSARY.html#shapefile" class="glossary-term" title="A widely used vector data format that stores geometry and attributes across several linked files. Although older, it is still common in introductory GIS workflows.">shapefile</a>-to-<a href="../GLOSSARY.html#geojson" class="glossary-term" title="An open format for storing vector spatial data using JSON. GeoJSON commonly stores points, lines, polygons, and their attributes.">GeoJSON</a> example to show how quickly GDAL can change formats. The command above is the same idea, just using the modern CLI.</p>
+<p><img src="images/handsonwithgdal/b4d80ac6ec593cbc4fabcd8db765f24d.png" alt="The workshop’s tiny vector example, used to show that even a simple shapefile can be a useful test case while you are learning the commands."></img></p>
+<p><img src="images/handsonwithgdal/bd6e78c72e7c683a2b4268564382d58b.png" alt="Another original vector example showing a layer of pools overlaid on zip codes. This is a good reminder that layer order and geometry type both matter in vector workflows."></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> converting a dataset is often the first step in making it easier to inspect, share, or publish. A “modern” <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> workflow often starts with <code>select</code>, <code>filter</code>, or <code>convert</code>, not with a desktop GIS.</p>
+</blockquote>
+<h2 id="step-3-convert-and-reproject-raster-data">Step 3: Convert and Reproject Raster Data</h2>
+<p>The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> side of the house follows the same pattern.</p>
+<h3 id="3a-make-a-cloud-friendly-copy">3a. Make a Cloud-Friendly Copy</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># Make a modern GeoTIFF-derived output (COG) from the DEM.</span>
+gdal raster convert data/ChirDEM.tif chir_dem_cog.tif \
+  --format=COG \
+  --co COMPRESS=LZW \
+  --overwrite
+</code></pre>
+<h3 id="3b-reproject-the-raster">3b. Reproject the Raster</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># Reproject the DEM to WGS84.</span>
+gdal raster reproject data/ChirDEM.tif chir_dem_wgs84.tif \
+  --output-crs=EPSG:4326 \
+  --overwrite
+</code></pre>
+<p>The older workshop used <code>gdalwarp -t_srs EPSG:4326 ...</code> for this same job. The new command makes the purpose clearer: <strong>reproject a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> dataset</strong>.</p>
+<h3 id="3c-make-a-simple-display-version">3c. Make a Simple Display Version</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># Scale floating-point elevation values to a Byte preview.</span>
+gdal raster scale data/ChirDEM.tif chir_dem_preview.tif \
+  --datatype=Byte \
+  --input-min=1261.1 \
+  --input-max=2779.6 \
+  --output-min=0 \
+  --output-max=255 \
+  --overwrite
+</code></pre>
+<p><img src="images/handsonwithgdal/05ec36dc13d52d27c2e638a09112abfc.png" alt="The original workshop’s clipped raster example, shown here as a reminder that rasters can be converted, clipped, and prepared for display just as easily as vectors."></img></p>
+<p><img src="images/handsonwithgdal/0b7ee7aa05fa0825bdf469c8bfcb5ce4.png" alt="A clipped DEM from the original workshop. This is the kind of output that often follows a convert/reproject workflow."></img></p>
+<p><img src="images/handsonwithgdal/e44494613b5478983164c12df95525db.png" alt="A hillshade made from the clipped DEM in the original workshop. Once a raster is prepared, you can keep chaining analysis steps."></img></p>
+<p><img src="images/handsonwithgdal/b9794b68ecba1b7983df622bea8dfe40.png" alt="The same hillshade with a different illumination angle, showing how a tiny change in parameters can make the terrain look very different."></img></p>
+<blockquote>
+<p><strong>Concept note:</strong> the old workshop moved from “data inspection” to “data conversion” and then to “reprojection.” That sequence still makes sense, but the modern <code>gdal</code> command family makes it easier to remember which commands belong to <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> work and which belong to <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> work.</p>
+</blockquote>
+<h2 id="step-4-build-a-vector-pipeline">Step 4: Build a Vector Pipeline</h2>
+<p>Pipelines are the newest part of the workflow. Instead of running one command, saving the output, and then running the next command, you chain steps together.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># A vector pipeline that:</span>
+<span class="hljs-comment"># 1. reads the GeoPackage</span>
+<span class="hljs-comment"># 2. keeps only named roads</span>
+<span class="hljs-comment"># 3. reprojects them to WGS84</span>
+<span class="hljs-comment"># 4. writes a GDALG recipe that can be reopened later</span>
+gdal vector pipeline \
+  ! <span class="hljs-built_in">read</span> data/assam.gpkg --layer=roads \
+  ! filter --<span class="hljs-built_in">where</span> <span class="hljs-string">"name IS NOT NULL"</span> \
+  ! reproject --output-crs=EPSG:4326 \
+  ! write roads_named_wgs84.gdalg.json \
+  --overwrite
+</code></pre>
+<p>What this does:</p>
+<ol>
+<li><code>read</code> opens the input dataset.</li>
+<li><code>filter</code> removes features that do not match the condition.</li>
+<li><code>reproject</code> changes the coordinate reference system.</li>
+<li><code>write</code> stores the pipeline as a reusable GDALG file.</li>
+</ol>
+<p>You can now treat <code>roads_named_wgs84.gdalg.json</code> like a dataset:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># The GDALG file can be opened later just like any other vector dataset.</span>
+gdal vector info roads_named_wgs84.gdalg.json
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> a GDALG file is not just an output file. It is a serialized recipe for how to produce or stream a dataset on demand.</p>
+</blockquote>
+<h2 id="step-5-build-a-raster-pipeline">Step 5: Build a Raster Pipeline</h2>
+<p><a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> pipelines work the same way.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># A raster pipeline that:</span>
+<span class="hljs-comment"># 1. reads the DEM</span>
+<span class="hljs-comment"># 2. reprojects it to WGS84</span>
+<span class="hljs-comment"># 3. writes a GDALG recipe</span>
+gdal raster pipeline \
+  ! <span class="hljs-built_in">read</span> data/ChirDEM.tif \
+  ! reproject --output-crs=EPSG:4326 \
+  ! write chir_dem_wgs84.gdalg.json \
+  --overwrite
+</code></pre>
+<p>If you want to use the streamed dataset later, just point another GDAL command at the <code>.gdalg.json</code> file:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Open the streamed dataset through the GDALG driver.</span>
+gdal raster info chir_dem_wgs84.gdalg.json
+</code></pre>
+<blockquote>
+<p><strong>Concept note:</strong> the GDALG driver makes a pipeline behave like a regular input dataset. That is the key idea behind “pipeline as a reusable product.”</p>
+</blockquote>
+<h2 id="step-6-connect-the-modern-cli-to-the-old-workshop-mental-model">Step 6: Connect the Modern CLI to the Old Workshop Mental Model</h2>
+<p>The original workshop taught a very practical sequence:</p>
+<ol>
+<li>inspect data</li>
+<li>convert data</li>
+<li>reproject data</li>
+<li>combine steps into repeatable workflows</li>
+</ol>
+<p>That sequence still applies. The main change is that the modern <code>gdal</code> command family makes the steps easier to organize and the pipelines easier to reuse.</p>
+<p>If you remember only a few things from this lab, remember these:</p>
+<ul>
+<li><code>gdal vector info</code> and <code>gdal raster info</code> are your first stop.</li>
+<li><code>gdal vector convert</code> and <code>gdal raster convert</code> replace most “copy/translate” tasks.</li>
+<li><code>gdal vector reproject</code> and <code>gdal raster reproject</code> are the modern CRS tools.</li>
+<li><code>gdal vector pipeline</code> and <code>gdal raster pipeline</code> let you chain those steps.</li>
+<li><code>.gdalg.json</code> files let you save a workflow as a reusable recipe.</li>
+</ul>
 
                                 
                                 </section>
@@ -1079,7 +1287,7 @@
 
             
                 
-                <a href="05_being_john_snow_in_a_python_notebook.html" class="navigation navigation-prev " aria-label="Previous page: 05 - OPTIONAL - Being John Snow,... in a Python Notebook">
+                <a href="05_being_john_snow_in_a_python_notebook.html" class="navigation navigation-prev " aria-label="Previous page: 05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1095,7 +1303,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"next":{"title":"Appendix to the Course Guide","level":"1.12","depth":1,"path":"appendix/README.md","ref":"appendix/README.md","articles":[{"title":"Final Project Guidelines","level":"1.12.1","depth":2,"path":"appendix/00_final_project_guidelines.md","ref":"appendix/00_final_project_guidelines.md","articles":[]},{"title":"StoryMaps Support Materials","level":"1.12.2","depth":2,"path":"appendix/01_storymaps_support_materials.md","ref":"appendix/01_storymaps_support_materials.md","articles":[]},{"title":"Guide to Citation of Spatial Data & Software","level":"1.12.3","depth":2,"path":"appendix/02_guide_to_citation_of_spatial_data_and_software.md","ref":"appendix/02_guide_to_citation_of_spatial_data_and_software.md","articles":[]},{"title":"Stace's Crazy List of Additional GISci Resources","level":"1.12.4","depth":2,"path":"appendix/03_staces_crazy_list.md","ref":"appendix/03_staces_crazy_list.md","articles":[]}]},"previous":{"title":"05 - OPTIONAL - Being John Snow,... in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"06 - OPTIONAL - Introducing GDAL & Command Line Tools on Stanford Farmshare","level":"1.11.7","depth":2,"next":{"title":"Appendix to the Course Guide","level":"1.12","depth":1,"path":"appendix/README.md","ref":"appendix/README.md","articles":[{"title":"Final Project Guidelines","level":"1.12.1","depth":2,"path":"appendix/00_final_project_guidelines.md","ref":"appendix/00_final_project_guidelines.md","articles":[]},{"title":"StoryMaps Support Materials","level":"1.12.2","depth":2,"path":"appendix/01_storymaps_support_materials.md","ref":"appendix/01_storymaps_support_materials.md","articles":[]},{"title":"Guide to Citation of Spatial Data & Software","level":"1.12.3","depth":2,"path":"appendix/02_guide_to_citation_of_spatial_data_and_software.md","ref":"appendix/02_guide_to_citation_of_spatial_data_and_software.md","articles":[]},{"title":"Stace's Crazy List of Additional GISci Resources","level":"1.12.4","depth":2,"path":"appendix/03_staces_crazy_list.md","ref":"appendix/03_staces_crazy_list.md","articles":[]}]},"previous":{"title":"05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook","level":"1.11.6","depth":2,"path":"week08/05_being_john_snow_in_a_python_notebook.md","ref":"week08/05_being_john_snow_in_a_python_notebook.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

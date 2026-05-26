@@ -6,7 +6,7 @@
         <title>01 - OPTIONAL - Suitability Modeling in QGIS · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 6.2.0">
+        <meta name="generator" content="HonKit 6.2.1">
         
         
         
@@ -909,7 +909,7 @@
                 <a href="05_being_john_snow_in_a_python_notebook.html">
             
                     
-                    05 - OPTIONAL - Being John Snow,... in a Python Notebook
+                    05 - OPTIONAL - Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook
             
                 </a>
             
@@ -1052,6 +1052,234 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="suitability-modeling-in-qgis">Suitability Modeling in QGIS</h1>
+<blockquote>
+<p><strong>Attribution note:</strong> This optional workshop is adapted from Ujaval Gandhi’s tutorial, <a href="https://www.qgistutorials.com/en/docs/3/multi_criteria_overlay.html" target="_blank">Multi Criteria Overlay Analysis (QGIS3)</a>. The workflow, source data organization, and many of the tutorial screenshots are credited to Ujaval Gandhi and the QGIS Tutorials and Tips project.</p>
+</blockquote>
+<h2 id="what-you-should-understand">What You Should Understand</h2>
+<p>This workshop shows how to answer a common GIS question: where are the places that are most suitable if we combine several criteria at once?</p>
+<p>The important idea is that suitability analysis is not just about making one <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> look good. It is about translating a set of geographic rules into a repeatable workflow that can be measured, combined, weighted, and mapped.</p>
+<p>By the end of the exercise, you should understand:</p>
+<ol>
+<li>Why <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> workflows are often better than <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> overlays for multi-criteria suitability analysis.</li>
+<li>Why NoData handling matters when converting <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers to <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</li>
+<li>How to reclassify continuous <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> values into suitability scores.</li>
+<li>How to combine multiple criteria with the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Calculator.</li>
+</ol>
+<blockquote>
+<p><strong>Concept Note:</strong>
+<a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> overlay tools are excellent for yes/no questions, such as whether a parcel intersects a <a href="../GLOSSARY.html#buffer" class="glossary-term" title="A zone of a specified distance around a feature or set of features. Buffers are often used to ask proximity questions, such as what lies within 500 meters of a school.">buffer</a>. <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> suitability analysis is better when you want to rank places and combine more than a few criteria.</p>
+</blockquote>
+<h2 id="getting-ready">Getting Ready</h2>
+<p>Download the tutorial data package from the original QGIS tutorial:</p>
+<ul>
+<li><a href="https://www.qgistutorials.com/downloads/assam.gpkg" target="_blank">assam.gpkg</a></li>
+</ul>
+<p>The GeoPackage contains the five layers used in the analysis:</p>
+<ol>
+<li><code>boundary</code></li>
+<li><code>roads</code></li>
+<li><code>protected_regions</code></li>
+<li><code>water_polygons</code></li>
+<li><code>water_polylines</code></li>
+</ol>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The <code>boundary</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> is important twice. First, it gives us a shared extent for the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> outputs. Later, it helps us <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> out pixels outside the study area so the final map is easier to read.</p>
+</blockquote>
+<h2 id="overview-of-the-task">Overview of the Task</h2>
+<p>In the original tutorial, the goal is to find places in Assam, India that are:</p>
+<ul>
+<li>close to roads,</li>
+<li>away from water bodies, and</li>
+<li>not inside protected regions.</li>
+</ul>
+<p>That is a classic suitability question. Each criterion contributes a score, and the final <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> combines those scores into one map of relative suitability.</p>
+<h2 id="step-1-load-the-data">Step 1: Load the Data</h2>
+<p>Open <code>assam.gpkg</code> in the QGIS Browser and drag the five layers into the map canvas.</p>
+<p>You should see <code>boundary</code>, <code>roads</code>, <code>protected_regions</code>, <code>water_polygons</code>, and <code>water_polylines</code> in the Layers panel.</p>
+<p><img src="images/20250504_173118_image.png" alt="Loading the Assam GeoPackage layers into QGIS"></img></p>
+<p>The layers are already clipped to Assam, which keeps the example manageable and lets us focus on the overlay logic.</p>
+<h2 id="step-2-rasterize-the-boundary-layer">Step 2: Rasterize the <code>boundary</code> Layer</h2>
+<p>Before we rasterize the thematic layers, we need a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a> for <code>boundary</code>.</p>
+<p>Use the Processing Toolbox and search for <code>Rasterize (vector to raster)</code>.</p>
+<p>Set the tool up so:</p>
+<ol>
+<li><code>boundary</code> is the input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</li>
+<li>The burn value is <code>1</code>.</li>
+<li>The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> size units are <code>Geoferenced units</code>.</li>
+<li>The <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> is <code>15</code> meters by <code>15</code> meters.</li>
+<li>The output extent is calculated from <code>boundary</code>.</li>
+<li>The output <a href="../GLOSSARY.html#data-type" class="glossary-term" title="The kind of value stored in a field, such as text, integer, decimal number, or date. Matching data types is important for joins, calculations, and queries.">data type</a> is <code>Int16</code>.</li>
+<li>The output <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> is pre-initialized with <code>0</code>.</li>
+<li>The output file is saved as <code>rasterized_boundary.tif</code>.</li>
+</ol>
+<p><img src="images/20250504_173949_image.png" alt="Rasterize settings for the boundary layer"></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+The <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> controls the level of detail in the output. Smaller pixels capture more detail but make the workflow heavier to run.</p>
+</blockquote>
+<h2 id="step-3-rasterize-and-fill-roads">Step 3: Rasterize and Fill <code>roads</code></h2>
+<p>Now rasterize <code>roads</code> with the same extent and <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a> settings.</p>
+<p>Use:</p>
+<ol>
+<li>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>: <code>roads</code></li>
+<li>Burn value: <code>1</code></li>
+<li>Output size units: <code>Geoferenced units</code></li>
+<li><a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">Resolution</a>: <code>15</code> meters</li>
+<li>Output extent: from <code>boundary</code></li>
+<li>Output <a href="../GLOSSARY.html#data-type" class="glossary-term" title="The kind of value stored in a field, such as text, integer, decimal number, or date. Matching data types is important for joins, calculations, and queries.">data type</a>: <code>Int16</code></li>
+<li>Pre-initialized value: <code>0</code></li>
+<li>Output file: <code>raster_roads.tif</code></li>
+</ol>
+<p><img src="images/20250504_174649_image.png" alt="Rasterizing the roads layer"></img></p>
+<p>After rasterizing, the roads <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> contains <code>NoData</code> where no roads were present. That is a problem for later calculations, because <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Calculator treats NoData specially.</p>
+<p>Use <code>Fill NoData cells</code> to replace NoData with <code>0</code>, and save the result as <code>raster_roads_filled.tif</code>.</p>
+<p><img src="images/20250504_175025_image.png" alt="Filling NoData cells in the roads raster"></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Filling NoData with <code>0</code> makes the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> behave like a true presence/absence <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>. That is much easier to combine later than a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> full of missing values.</p>
+</blockquote>
+<h2 id="step-4-batch-rasterize-the-remaining-layers">Step 4: Batch Rasterize the Remaining Layers</h2>
+<p>Rather than repeating the same rasterization and fill steps manually, use Batch Processing for the other thematic layers:</p>
+<ol>
+<li><code>protected_regions</code></li>
+<li><code>water_polygons</code></li>
+<li><code>water_polylines</code></li>
+</ol>
+<p>Open <code>Rasterize (vector to raster)</code> and choose <code>Execute as Batch Process</code>.</p>
+<p><img src="images/20250504_175227_image.png" alt="Opening the rasterize tool as a batch process"></img></p>
+<p>In the batch dialog:</p>
+<ol>
+<li>Use <code>Select from Open Layers...</code> to fill the input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> <a href="../GLOSSARY.html#column" class="glossary-term" title="A vertical field in a table that stores one type of information for every record. In GIS attribute tables, a column might store county name, population, or median household income.">column</a>.</li>
+<li>Use <code>Fill Down</code> to repeat the shared <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> settings.</li>
+<li>Keep the output extent tied to <code>boundary</code>.</li>
+<li>Set the output file prefix to <code>raster_</code>.</li>
+<li>Make sure the layers load when the batch finishes.</li>
+</ol>
+<p><img src="images/20250504_165521_image.png" alt="Selecting the open layers in the batch dialog"></img></p>
+<p><img src="images/20250504_165746_image.png" alt="Batch layer selection for the thematic rasters"></img></p>
+<p><img src="images/20250504_180106_image.png" alt="Filling the shared raster settings down the batch table"></img></p>
+<p><img src="images/20250504_171255_image.png" alt="Setting the output extent from boundary in the batch workflow"></img></p>
+<p><img src="images/20250504_171858_image.png" alt="Setting the output prefix for the batch rasters"></img></p>
+<p><img src="images/20250504_180520_image.png" alt="Batch processing completed with the thematic rasters loaded"></img></p>
+<p>After rasterization, fill the NoData values for those rasters too, so you end up with:</p>
+<ul>
+<li><code>raster_protected_regions_filled</code></li>
+<li><code>raster_water_polygons_filled</code></li>
+<li><code>raster_water_polylines_filled</code></li>
+</ul>
+<p>You should also keep <code>rasterized_boundary</code> and <code>raster_roads_filled</code> in the project.</p>
+<p><img src="images/20250504_180731_image.png" alt="Raster layers visible after the batch process"></img></p>
+<h2 id="step-5-merge-the-water-layers">Step 5: Merge the Water Layers</h2>
+<p>We now have two water layers, one for polygons and one for polylines. Since both represent water, we can combine them into a single <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>.</p>
+<p>Open <code>Raster calculator</code> and add the two filled water rasters together:</p>
+<pre><code class="lang-text">"raster_water_polygons_filled@1" + "raster_water_polylines_filled@1"
+</code></pre>
+<p>Use <code>rasterized_boundary</code> as the reference extent and save the result as <code>raster_water_merged.tif</code>.</p>
+<p><img src="images/20250506_124330_image.png" alt="Combining the water rasters in the Raster Calculator"></img></p>
+<p>The merged water <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> may contain pixels with a value of <code>2</code> where polygon and polyline water overlap. That is not what we want for a simple presence/absence <a href="../GLOSSARY.html#mask" class="glossary-term" title="In raster analysis, a way of hiding or excluding pixels that do not meet a condition. In Google Earth Engine, updateMask() is used to control which pixels remain visible or available for analysis.">mask</a>.</p>
+<p>Use <code>Raster calculator</code> again with:</p>
+<pre><code class="lang-text">"raster_water_merged@1" &gt; 0
+</code></pre>
+<p>Save the output as <code>raster_water_filled.tif</code>.</p>
+<p><img src="images/20250506_131137_image.png" alt="Cleaning the merged water raster to 0 and 1 values"></img></p>
+<p><img src="images/20250506_131159_image.png" alt="The cleaned water raster showing only 0 and 1 values"></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+<a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> Calculator is useful because it lets us turn a messy intermediate <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> into a cleaner analysis <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> with simple logical rules.</p>
+</blockquote>
+<h2 id="step-6-generate-proximity-rasters">Step 6: Generate Proximity Rasters</h2>
+<p>Distance to roads and water matters in the suitability model, so we need distance rasters.</p>
+<p>Use <code>Proximity (raster distance)</code> for <code>raster_roads_filled</code>:</p>
+<ol>
+<li>Input <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a>: <code>raster_roads_filled</code></li>
+<li>Distance units: <code>Georeferenced coordinates</code></li>
+<li>Maximum distance: <code>5000</code></li>
+<li>NoData value: <code>5000</code></li>
+<li>Output <a href="../GLOSSARY.html#data-type" class="glossary-term" title="The kind of value stored in a field, such as text, integer, decimal number, or date. Matching data types is important for joins, calculations, and queries.">data type</a>: <code>Int16</code></li>
+<li>Output file: <code>roads_proximity.tif</code></li>
+</ol>
+<p><img src="images/20250506_134001_image.png" alt="Creating the road proximity raster"></img></p>
+<p>Once the <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> is created, adjust the styling so the distance values are easier to read.</p>
+<p><img src="images/20250506_133533_image.png" alt="Styling the road proximity raster"></img></p>
+<p>Repeat the same proximity workflow for <code>raster_water_filled</code> and save the result as <code>water_proximity.tif</code>.</p>
+<p><img src="images/20250506_134058_image.png" alt="Creating the water proximity raster"></img></p>
+<h2 id="step-7-reclassify-the-distance-rasters">Step 7: Reclassify the Distance Rasters</h2>
+<p>Distance rasters are continuous values, but suitability analysis usually needs simpler categories.</p>
+<p>We will convert the road and water proximity rasters into suitability scores.</p>
+<p>For roads, nearer is better:</p>
+<ul>
+<li><code>0-1000 m</code> = <code>100</code></li>
+<li><code>1000-5000 m</code> = <code>50</code></li>
+<li><code>&gt;5000 m</code> = <code>10</code></li>
+</ul>
+<p>Use <code>Raster calculator</code> with:</p>
+<pre><code class="lang-text">100*("roads_proximity@1"&lt;=1000) + 50*("roads_proximity@1"&gt;1000)*("roads_proximity@1"&lt;=5000) + 10*("roads_proximity@1"&gt;5000)
+</code></pre>
+<p>Save the result as <code>roads_reclass.tif</code>.</p>
+<p><img src="images/20250506_144136_image.png" alt="Reclassifying the road distance raster"></img></p>
+<p>For water, farther is better:</p>
+<ul>
+<li><code>0-1000 m</code> = <code>10</code></li>
+<li><code>1000-5000 m</code> = <code>50</code></li>
+<li><code>&gt;5000 m</code> = <code>100</code></li>
+</ul>
+<p>Use:</p>
+<pre><code class="lang-text">100*("water_proximity@1"&gt;5000) + 50*("water_proximity@1"&gt;1000)*("water_proximity@1"&lt;=5000) + 10*("water_proximity@1"&lt;1000)
+</code></pre>
+<p>Save the output as <code>water_reclass.tif</code>.</p>
+<p><img src="images/20250506_144431_image.png" alt="Reclassifying the water distance raster"></img></p>
+<p><img src="images/20250506_144638_image.png" alt="The water reclassification result"></img></p>
+<blockquote>
+<p><strong>Concept Note:</strong>
+Reclassification turns a continuous measurement into a simple scoring system. That makes it easier to combine several criteria in one formula.</p>
+</blockquote>
+<h2 id="step-8-build-the-final-suitability-raster">Step 8: Build the Final Suitability Raster</h2>
+<p>Now combine the reclassified road and water layers, then remove protected regions and keep the result inside the boundary.</p>
+<p>Use <code>Raster calculator</code> with this expression:</p>
+<pre><code class="lang-text">("roads_reclass@1" + "water_reclass@1")*("raster_protected_regions_filled@1" != 1)*"rasterized_boundary@1"
+</code></pre>
+<p>Save the output as <code>overlay.tif</code>.</p>
+<p><img src="images/20250509_120721_image.png" alt="Calculating the final suitability overlay raster"></img></p>
+<p>This is the final suitability map. Higher values mean more suitable areas, and lower values mean less suitable areas.</p>
+<p><img src="images/20250509_120929_image.png" alt="The final suitability result"></img></p>
+<h2 id="step-9-style-the-map">Step 9: Style the Map</h2>
+<p>Open the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> styling panel for <code>overlay</code> and set:</p>
+<ol>
+<li>Renderer: <code>Singleband pseudocolor</code></li>
+<li>Color ramp: a ramp that clearly separates suitable from unsuitable values</li>
+<li>Labels: edit the default class labels so the <a href="../GLOSSARY.html#legend" class="glossary-term" title="A map element explaining the meaning of symbols, colors, and patterns used in a map.">legend</a> is easier to interpret</li>
+</ol>
+<p><img src="images/20250509_121833_image.png" alt="Styling the final overlay raster"></img></p>
+<p><img src="images/20250509_122145_image.png" alt="Editing the class labels for the final overlay map"></img></p>
+<h2 id="step-10-use-an-inverted-polygon-mask-for-the-layout">Step 10: Use an Inverted Polygon Mask for the Layout</h2>
+<p>To hide pixels outside the study area in a layout, change the <code>boundary</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to use the <code>Inverted Polygons</code> renderer.</p>
+<p>This gives the map a clean study-area edge while keeping the final <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> visible inside Assam.</p>
+<p><img src="images/20250509_122825_image.png" alt="Setting the boundary layer to inverted polygons"></img></p>
+<p><img src="images/20250509_122854_image.png" alt="Boundary layer styling with the inverted polygons renderer"></img></p>
+<p>Move the <code>boundary</code> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> to the top of the <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> stack so the masked edge appears correctly.</p>
+<p><img src="images/20250509_135812_image.png" alt="Moving the boundary layer to the top of the stack"></img></p>
+<h2 id="what-you-should-turn-in">What You Should Turn In</h2>
+<p>If your instructor asks for a submission from this optional workshop, include:</p>
+<ol>
+<li>The final styled <code>overlay</code> <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a>.</li>
+<li>A <a href="../GLOSSARY.html#map-layout" class="glossary-term" title="The arrangement of map elements for export or printing. A layout usually includes the map frame, title, legend, scale bar, author name, date, and other cartographic elements.">map layout</a> that clearly shows the suitability pattern.</li>
+<li>A note describing the criteria you used and how you interpreted the result.</li>
+</ol>
+<h2 id="what-this-teaches">What This Teaches</h2>
+<p>This lab is really about workflow design.</p>
+<p>You learned how to:</p>
+<ol>
+<li>Convert <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">vector</a> layers into rasters with a shared grid.</li>
+<li>Clean NoData so the layers can be combined reliably.</li>
+<li>Use distance rasters to quantify proximity.</li>
+<li>Reclassify rasters into scores.</li>
+<li>Combine several criteria into one suitability map.</li>
+</ol>
+<blockquote>
+<p><strong>Concept Note:</strong>
+<a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a>-based overlay analysis is powerful because every criterion can be scored, weighted, and recombined. That makes it easy to update the model later if the decision rules change.</p>
+</blockquote>
 
                                 
                                 </section>
@@ -1095,7 +1323,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"next":{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},"previous":{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/01_suitability_modeling_in_qgis.md","mtime":"2026-05-23T04:40:24.099Z","type":"markdown"},"gitbook":{"version":"6.2.0","time":"2026-05-23T04:40:37.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"01 - OPTIONAL - Suitability Modeling in QGIS","level":"1.11.2","depth":2,"next":{"title":"02 - OPTIONAL - Landcover Classification & Change Detection in Google Earth Engine","level":"1.11.3","depth":2,"path":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","ref":"week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md","articles":[]},"previous":{"title":"00 - OPTIONAL - Wildfire Detection & Severity Measurement in Google Earth Engine","level":"1.11.1","depth":2,"path":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","ref":"week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week08/01_suitability_modeling_in_qgis.md","mtime":"2026-05-26T20:41:47.341Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-26T20:42:04.989Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
