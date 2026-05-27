@@ -71,6 +71,7 @@
   * [04 - OPTIONAL_ The AlphaEarth Embedding Database in Google Earth Engine](week08/04_the_alphaearth_embedding_database_in_google_earth_engine.md)
   * [05 - OPTIONAL_ Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook](week08/05_being_john_snow_in_a_python_notebook.md)
   * [06 - OPTIONAL_ [DRAFT] Hands-on with the Unified GDAL CLI and GDALG Pipelines](week08/06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+  * [07 - OPTIONAL_ Finding the Largest Active Fire Today in Google Earth Engine](week08/07_OPTIONAL_finding_the_largest_active_fire_today_in_google_earth_engine.md)
 
 * [Appendix to the Course Guide](appendix/README.md)
   * [Final Project Guidelines](appendix/00_final_project_guidelines.md)

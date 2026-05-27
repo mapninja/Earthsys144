@@ -18,5 +18,8 @@ Use this week to explore:
 - [OPTIONAL_ The AlphaEarth Embedding Database in Google Earth Engine](04_the_alphaearth_embedding_database_in_google_earth_engine.md)
 - [OPTIONAL_ Being John Snow: Point Pattern Analysis & Spatial Statistics in a Python Notebook](05_being_john_snow_in_a_python_notebook.md)
 - [OPTIONAL_ [DRAFT] Hands-on with the Unified GDAL CLI and GDALG Pipelines](06_introducing_gdal_and_command_line_tools_on_stanford_farmshare.md)
+- [OPTIONAL_ Finding the Largest Active Fire Today in Google Earth Engine](07_OPTIONAL_finding_the_largest_active_fire_today_in_google_earth_engine.md)
 
 > The runnable notebook for this lab is stored in [`data/Being_John_Snow_Python_Notebook.ipynb`](../data/Being_John_Snow_Python_Notebook.ipynb) so it can be opened directly in Colab.
+>
+> The runnable notebook for the fire workflow is stored in [`data/largest_fire_today_workflow.ipynb`](../data/largest_fire_today_workflow.ipynb) so it can be opened directly in Colab.
