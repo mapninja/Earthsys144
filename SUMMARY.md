@@ -62,6 +62,7 @@
   * [04 - TURN IN BONUS LAB - Tree Labeling in QGIS](week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md)
 
 * [Week 08 - OPTIONAL Catch-All Week](week08/README.md)
+  * This week is a catch-all for advanced topics, alternate workflows, and final-project ideas. Every item is optional.
   * [00 - OPTIONAL_ Wildfire Detection & Severity Measurement in Google Earth Engine](week08/00_wildfire_detection_and_severity_measurement_in_google_earth_engine.md)
   * [01 - OPTIONAL_ Suitability Modeling in QGIS](week08/01_suitability_modeling_in_qgis.md)
   * [02 - OPTIONAL_ [DRAFT] Landcover Classification & Change Detection in Google Earth Engine](week08/02_landcover_classification_and_change_detection_in_google_earth_engine.md)
