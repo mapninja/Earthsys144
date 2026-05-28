@@ -1140,11 +1140,10 @@
 <h2 id="part-2-understand-the-tile-url-workflow">Part 2: Understand the Tile URL Workflow</h2>
 <p>Earth Engine scripts often use <code>Map.addLayer()</code> to show a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Code Editor. That is useful for viewing the map inside Earth Engine.</p>
 <p>For QGIS, we need one extra step: we ask Earth Engine for the map tile information behind a <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a>. The method that does this is:</p>
-<pre><code class="lang-javascript">image.<span class="hljs-title function_">getMap</span>(visualizationParameters, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
-  <span class="hljs-title function_">print</span>(data.<span class="hljs-property">urlFormat</span>);
-});
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> mapId = image.<span class="hljs-title function_">getMapId</span>(visualizationParameters);
+<span class="hljs-title function_">print</span>(mapId.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
 </code></pre>
-<p>The printed <code>urlFormat</code> is the <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URL. It contains the <code>{z}</code>, <code>{x}</code>, and <code>{y}</code> placeholders that QGIS needs.</p>
+<p>The printed tile URL template is the <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URL. It contains the <code>{z}</code>, <code>{x}</code>, and <code>{y}</code> placeholders that QGIS needs.</p>
 <blockquote>
 <p><strong>Important limitation:</strong> Earth Engine tile URLs are temporary viewing links. They are useful for class demonstrations, quick comparison, and visual exploration in QGIS. They are not a permanent public tile service and they are not the same as exporting data for analysis.</p>
 </blockquote>
@@ -1332,26 +1331,21 @@ the appearance of terrain.
 <span class="hljs-comment">// STEP 6: Print XYZ tile URLs for QGIS.</span>
 <span class="hljs-comment">// ---------------------------------------------------------------------</span>
 
-<span class="hljs-comment">// getMap() asks Earth Engine to create map tile information for a specific</span>
-<span class="hljs-comment">// image and visualization style. The callback function receives that</span>
-<span class="hljs-comment">// information as the variable named data.</span>
-tanakaHillshade.<span class="hljs-title function_">getMap</span>(hillVis, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
-  <span class="hljs-comment">// urlFormat is the XYZ tile URL template.</span>
-  <span class="hljs-comment">// Copy this value into QGIS as a new XYZ Tiles connection.</span>
-  <span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Hillshade XYZ tile URL for QGIS:'</span>, data.<span class="hljs-property">urlFormat</span>);
-});
+<span class="hljs-comment">// getMapId() asks Earth Engine to create map tile information for a specific</span>
+<span class="hljs-comment">// image and visualization style. The returned object includes a tile URL</span>
+<span class="hljs-comment">// template that QGIS can use for XYZ tiles.</span>
+<span class="hljs-keyword">var</span> tanakaHillshadeMap = tanakaHillshade.<span class="hljs-title function_">getMapId</span>(hillVis);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Hillshade XYZ tile URL for QGIS:'</span>, tanakaHillshadeMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
 
 <span class="hljs-comment">// This version prints the full map information object.</span>
-<span class="hljs-comment">// It includes urlFormat and other details, which can be useful for debugging.</span>
-tanakaElevation.<span class="hljs-title function_">getMap</span>(elevVis, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
-  <span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Elevation full map information:'</span>, data);
-});
+<span class="hljs-comment">// It includes the tile fetcher and other details, which can be useful for debugging.</span>
+<span class="hljs-keyword">var</span> tanakaElevationMap = tanakaElevation.<span class="hljs-title function_">getMapId</span>(elevVis);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Elevation full map information:'</span>, tanakaElevationMap);
 
 <span class="hljs-comment">// This prints a tile URL for the slope visualization.</span>
 <span class="hljs-comment">// Use this if you prefer to view slope in QGIS instead of hillshade.</span>
-slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
-  <span class="hljs-title function_">print</span>(<span class="hljs-string">'Slope XYZ tile URL for QGIS:'</span>, data.<span class="hljs-property">urlFormat</span>);
-});
+<span class="hljs-keyword">var</span> slopeMap = slope.<span class="hljs-title function_">getMapId</span>(slopeVis);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Slope XYZ tile URL for QGIS:'</span>, slopeMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
 </code></pre>
 <h2 id="part-4-adapt-the-pattern-to-your-chosen-dataset">Part 4: Adapt the Pattern to Your Chosen Dataset</h2>
 <p>Now return to the dataset you have chosen from the Data Catalog. Here, we'll use the NOAA CFSv2 Harmonized 6-Hour Forecast page in the Earth Engine Data Catalog as an example:</p>
@@ -1368,7 +1362,7 @@ slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hl
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">setCenter</span>(-<span class="hljs-number">88.6</span>, <span class="hljs-number">26.4</span>, <span class="hljs-number">1</span>);
 <span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(temperatureAboveGround, visParams, <span class="hljs-string">'Temperature Above Ground'</span>);
 </code></pre>
-<p>To add the getMap() function to your chosen script, use the following steps:</p>
+<p>To add the <code>getMapId()</code> function to your chosen script, use the following steps:</p>
 <ol>
 <li>Identify the <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> or <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> collection being displayed.</li>
 <li><p>Identify the <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> parameters, particularly the name of the variable holding the parameters.</p>
@@ -1379,20 +1373,19 @@ slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hl
 <pre><code class="lang-javascript"><span class="hljs-title class_">Map</span>.<span class="hljs-title function_">addLayer</span>(temperatureAboveGround, visParams, <span class="hljs-string">'Temperature Above Ground'</span>);
 </code></pre>
 </li>
-<li><p>Add a <code>getMap()</code> block after the <code>Map.addLayer()</code> line.</p>
+<li><p>Add a <code>getMapId()</code> block after the <code>Map.addLayer()</code> line.</p>
 <p>Replace <code>temperatureAboveGround</code> and <code>visParams</code> with the names used in your script:</p>
-<pre><code class="lang-javascript">temperatureAboveGround.<span class="hljs-title function_">getMap</span>(visParams, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) {
-  <span class="hljs-title function_">print</span>(<span class="hljs-string">'XYZ tile URL for QGIS:'</span>, data.<span class="hljs-property">urlFormat</span>);
-});
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> temperatureMap = temperatureAboveGround.<span class="hljs-title function_">getMapId</span>(visParams);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'XYZ tile URL for QGIS:'</span>, temperatureMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
 </code></pre>
 </li>
 <li>Run the script.</li>
 <li>In the <strong>Console</strong>, find the printed URL.</li>
-<li>Copy the full <code>urlFormat</code> value.</li>
+<li>Copy the full tile URL template.</li>
 </ol>
 <p><img src="images/20260519_115522_image.png" alt=""></img></p>
 <blockquote>
-<p><strong>Troubleshooting note:</strong> If your Data Catalog sample uses an <code>ImageCollection</code>, it may need to be filtered, sorted, mosaicked, or reduced to a single <code>Image</code> before <code>getMap()</code> works. Look for the variable that is actually passed into <code>Map.addLayer()</code>. That is usually the object you should use with <code>getMap()</code>.</p>
+<p><strong>Troubleshooting note:</strong> If your Data Catalog sample uses an <code>ImageCollection</code>, it may need to be filtered, sorted, mosaicked, or reduced to a single <code>Image</code> before <code>getMapId()</code> works. Look for the variable that is actually passed into <code>Map.addLayer()</code>. That is usually the object you should use with <code>getMapId()</code>.</p>
 </blockquote>
 <h2 id="part-5-add-the-earth-engine-tile-urls-to-qgis">Part 5: Add the Earth Engine Tile URLs to QGIS</h2>
 <ol>
@@ -1405,7 +1398,7 @@ slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hl
 <li><p>Give the connection a clear name, such as:</p>
 <p><code>Earth Engine Tanaka Hillshade</code></p>
 </li>
-<li>Paste the Earth Engine <code>urlFormat</code> into the <strong>URL</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
+<li>Paste the Earth Engine tile URL template into the <strong>URL</strong> <a href="../GLOSSARY.html#field" class="glossary-term" title="A column in an attribute table. Each field stores one type of information, such as NAME, DATE, or POPULATION.">field</a>.</li>
 <li>Click <strong>OK</strong>.</li>
 <li>Double-click the new <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> connection to add it to your QGIS map.</li>
 <li>Pan and zoom to the area you viewed in Earth Engine.</li>
@@ -1457,11 +1450,11 @@ slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hl
 </ol>
 <h2 id="common-problems">Common Problems</h2>
 <h3 id="the-console-does-not-print-a-url">The Console does not print a URL</h3>
-<p>Check that you ran the script and that your <code>getMap()</code> block uses the same <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> variable and <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> variable used by <code>Map.addLayer()</code>.</p>
+<p>Check that you ran the script and that your <code>getMapId()</code> block uses the same <a href="../GLOSSARY.html#image" class="glossary-term" title="In raster GIS and remote sensing, an image is a grid of pixels. In Earth Engine, an Image is often a single raster dataset or a single scene from a larger collection.">image</a> variable and <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> variable used by <code>Map.addLayer()</code>.</p>
 <h3 id="qgis-says-the-tile-url-is-invalid">QGIS says the tile URL is invalid</h3>
-<p>Make sure you copied the full <code>urlFormat</code> value, including <code>{z}</code>, <code>{x}</code>, <code>{y}</code>, and any token or <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> text at the end of the URL.</p>
+<p>Make sure you copied the full tile URL template, including <code>{z}</code>, <code>{x}</code>, <code>{y}</code>, and any token or <a href="../GLOSSARY.html#query" class="glossary-term" title="A request for specific data from a table or layer. Queries are used to filter, sort, summarize, or select records based on conditions.">query</a> text at the end of the URL.</p>
 <h3 id="the-layer-worked-earlier-but-does-not-work-now">The layer worked earlier but does not work now</h3>
-<p>Earth Engine tile URLs are temporary. Return to the Code Editor, run the script again, print a new <code>urlFormat</code>, and update the QGIS XYZ Tiles connection.</p>
+<p>Earth Engine tile URLs are temporary. Return to the Code Editor, run the script again, print a new tile URL template, and update the QGIS XYZ Tiles connection.</p>
 <h3 id="the-colors-in-qgis-are-not-what-i-expected">The colors in QGIS are not what I expected</h3>
 <p>Change the <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> parameters in Earth Engine, run the script again, and copy the new tile URL. QGIS is displaying the rendered tiles Earth Engine creates from those <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> settings.</p>
 
@@ -1507,7 +1500,7 @@ slope.<span class="hljs-title function_">getMap</span>(slopeVis, <span class="hl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"next":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","ref":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","articles":[]},"previous":{"title":"02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP","level":"1.10.3","depth":2,"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","ref":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","mtime":"2026-05-28T18:26:45.268Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-28T18:26:59.909Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"next":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","ref":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","articles":[]},"previous":{"title":"02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP","level":"1.10.3","depth":2,"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","ref":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","mtime":"2026-05-28T20:15:31.358Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-28T20:15:47.319Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
