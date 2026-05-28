@@ -60,12 +60,11 @@ Earth Engine scripts often use `Map.addLayer()` to show a layer in the Code Edit
 For QGIS, we need one extra step: we ask Earth Engine for the map tile information behind a visualization. The method that does this is:
 
 ```javascript
-image.getMap(visualizationParameters, function(data) {
-  print(data.urlFormat);
-});
+var mapId = image.getMapId(visualizationParameters);
+print(mapId.tile_fetcher.url_format);
 ```
 
-The printed `urlFormat` is the XYZ tile URL. It contains the `{z}`, `{x}`, and `{y}` placeholders that QGIS needs.
+The printed tile URL template is the XYZ tile URL. It contains the `{z}`, `{x}`, and `{y}` placeholders that QGIS needs.
 
 > **Important limitation:** Earth Engine tile URLs are temporary viewing links. They are useful for class demonstrations, quick comparison, and visual exploration in QGIS. They are not a permanent public tile service and they are not the same as exporting data for analysis.
 
@@ -258,26 +257,21 @@ Map.addLayer(contourlines, contourVis, 'Contour Lines', false, 1);
 // STEP 6: Print XYZ tile URLs for QGIS.
 // ---------------------------------------------------------------------
 
-// getMap() asks Earth Engine to create map tile information for a specific
-// image and visualization style. The callback function receives that
-// information as the variable named data.
-tanakaHillshade.getMap(hillVis, function(data) {
-  // urlFormat is the XYZ tile URL template.
-  // Copy this value into QGIS as a new XYZ Tiles connection.
-  print('Tanaka Hillshade XYZ tile URL for QGIS:', data.urlFormat);
-});
+// getMapId() asks Earth Engine to create map tile information for a specific
+// image and visualization style. The returned object includes a tile URL
+// template that QGIS can use for XYZ tiles.
+var tanakaHillshadeMap = tanakaHillshade.getMapId(hillVis);
+print('Tanaka Hillshade XYZ tile URL for QGIS:', tanakaHillshadeMap.tile_fetcher.url_format);
 
 // This version prints the full map information object.
-// It includes urlFormat and other details, which can be useful for debugging.
-tanakaElevation.getMap(elevVis, function(data) {
-  print('Tanaka Elevation full map information:', data);
-});
+// It includes the tile fetcher and other details, which can be useful for debugging.
+var tanakaElevationMap = tanakaElevation.getMapId(elevVis);
+print('Tanaka Elevation full map information:', tanakaElevationMap);
 
 // This prints a tile URL for the slope visualization.
 // Use this if you prefer to view slope in QGIS instead of hillshade.
-slope.getMap(slopeVis, function(data) {
-  print('Slope XYZ tile URL for QGIS:', data.urlFormat);
-});
+var slopeMap = slope.getMapId(slopeVis);
+print('Slope XYZ tile URL for QGIS:', slopeMap.tile_fetcher.url_format);
 ```
 
 ## Part 4: Adapt the Pattern to Your Chosen Dataset
@@ -301,7 +295,7 @@ Map.setCenter(-88.6, 26.4, 1);
 Map.addLayer(temperatureAboveGround, visParams, 'Temperature Above Ground');
 ```
 
-To add the getMap() function to your chosen script, use the following steps:
+To add the `getMapId()` function to your chosen script, use the following steps:
 
 1. Identify the image or image collection being displayed.
 3. Identify the visualization parameters, particularly the name of the variable holding the parameters.
@@ -314,22 +308,21 @@ To add the getMap() function to your chosen script, use the following steps:
    ```javascript
    Map.addLayer(temperatureAboveGround, visParams, 'Temperature Above Ground');
    ```
-5. Add a `getMap()` block after the `Map.addLayer()` line.
+5. Add a `getMapId()` block after the `Map.addLayer()` line.
 
    Replace `temperatureAboveGround` and `visParams` with the names used in your script:
 
    ```javascript
-   temperatureAboveGround.getMap(visParams, function(data) {
-     print('XYZ tile URL for QGIS:', data.urlFormat);
-   });
+   var temperatureMap = temperatureAboveGround.getMapId(visParams);
+   print('XYZ tile URL for QGIS:', temperatureMap.tile_fetcher.url_format);
    ```
 6. Run the script.
 7. In the **Console**, find the printed URL.
-8. Copy the full `urlFormat` value.
+8. Copy the full tile URL template.
 
 ![](images/20260519_115522_image.png)
 
-> **Troubleshooting note:** If your Data Catalog sample uses an `ImageCollection`, it may need to be filtered, sorted, mosaicked, or reduced to a single `Image` before `getMap()` works. Look for the variable that is actually passed into `Map.addLayer()`. That is usually the object you should use with `getMap()`.
+> **Troubleshooting note:** If your Data Catalog sample uses an `ImageCollection`, it may need to be filtered, sorted, mosaicked, or reduced to a single `Image` before `getMapId()` works. Look for the variable that is actually passed into `Map.addLayer()`. That is usually the object you should use with `getMapId()`.
 
 ## Part 5: Add the Earth Engine Tile URLs to QGIS
 
@@ -342,7 +335,7 @@ To add the getMap() function to your chosen script, use the following steps:
 5. Give the connection a clear name, such as:
 
    `Earth Engine Tanaka Hillshade`
-6. Paste the Earth Engine `urlFormat` into the **URL** field.
+6. Paste the Earth Engine tile URL template into the **URL** field.
 7. Click **OK**.
 8. Double-click the new XYZ tile connection to add it to your QGIS map.
 9. Pan and zoom to the area you viewed in Earth Engine.
@@ -391,15 +384,15 @@ Submit the following as a PDF:
 
 ### The Console does not print a URL
 
-Check that you ran the script and that your `getMap()` block uses the same image variable and visualization variable used by `Map.addLayer()`.
+Check that you ran the script and that your `getMapId()` block uses the same image variable and visualization variable used by `Map.addLayer()`.
 
 ### QGIS says the tile URL is invalid
 
-Make sure you copied the full `urlFormat` value, including `{z}`, `{x}`, `{y}`, and any token or query text at the end of the URL.
+Make sure you copied the full tile URL template, including `{z}`, `{x}`, `{y}`, and any token or query text at the end of the URL.
 
 ### The layer worked earlier but does not work now
 
-Earth Engine tile URLs are temporary. Return to the Code Editor, run the script again, print a new `urlFormat`, and update the QGIS XYZ Tiles connection.
+Earth Engine tile URLs are temporary. Return to the Code Editor, run the script again, print a new tile URL template, and update the QGIS XYZ Tiles connection.
 
 ### The colors in QGIS are not what I expected
 

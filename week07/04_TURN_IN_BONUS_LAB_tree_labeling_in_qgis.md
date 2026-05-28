@@ -185,18 +185,18 @@ function buildNaipLayer(year) {
   Map.addLayer(naip, irgVis, 'NAIP IRG ' + year, true);
 
   // Convert each visualization into an Earth Engine map tile object.
-  // getMap() returns the URL pattern that QGIS needs for XYZ tiles.
-  var rgbMap = naip.visualize(rgbVis).getMap({});
-  var irgMap = naip.visualize(irgVis).getMap({});
+  // getMapId() returns the URL pattern that QGIS needs for XYZ tiles.
+  var rgbMap = naip.getMapId(rgbVis);
+  var irgMap = naip.getMapId(irgVis);
 
   // Print the tile URLs in the Console.
-  // Copy each urlFormat value exactly, including the {z}, {x}, and {y} parts.
+  // Copy each tile URL template exactly, including the {z}, {x}, and {y} parts.
   print('================================================');
   print('NAIP RGB XYZ URL (' + year + '):');
-  print(rgbMap.urlFormat);
+  print(rgbMap.tile_fetcher.url_format);
 
   print('NAIP IRG XYZ URL (' + year + '):');
-  print(irgMap.urlFormat);
+  print(irgMap.tile_fetcher.url_format);
 }
 
 // --------------------------------------------------------------------
