@@ -23,7 +23,7 @@ By the end of this lab, you will be able to:
 - Install QGIS on macOS, Windows, or Linux
 - Create a new user profile for course work
 - Install and configure essential QGIS plugins
-- Set up WhiteboxTools for advanced terrain analysis
+- Install Whitebox Workflows for advanced terrain analysis
 - Access basemap services through QuickMapServices
 
 ## Installing QGIS
@@ -99,132 +99,39 @@ QuickMapServices provides convenient access to basemap layers from various provi
 
 ![](images/20260224_110022_image.png)
 
-### SAGA NextGen Plugin
+### SAGA
 
-SAGA (System for Automated Geoscientific Analyses) provides powerful geoprocessing tools. Modern QGIS installations do not include SAGA automatically, so SAGA must be installed as a separate program and then connected to QGIS with a Processing provider plugin.
+SAGA is used as a standalone application for this course. We will not install or connect a SAGA plugin inside QGIS in this guide, as QGIS integrations with SAGA have been discontiniued.
 
-For the course setup, use the separate Week 00 guide:
+When a later lab asks you to use SAGA, launch the SAGA application directly and follow that lab's standalone instructions.
 
-[Installing SAGA 9.2 for QGIS Processing](08_installing_saga_for_qgis.md)
+### Whitebox Workflows for QGIS
 
-That guide covers:
+The older WhiteboxTools QGIS plugin has been deprecated. For this course, install **Whitebox Workflows for QGIS** instead. This is the current QGIS plugin from Whitebox Geo, and QGIS may ask to install the Python package with `pip` during setup.
 
-- downloading SAGA 9.2.0 for macOS and Windows
-- finding the correct SAGA binary folder
-- installing the **Processing Saga NextGen Provider** plugin
-- setting **Settings > Options > Processing > Providers > SAGANG > SAGA folder**
-- confirming that SAGA tools appear in the QGIS Processing Toolbox
-
-### WhiteboxTools Plugin
-
-WhiteboxTools is an excellent, high-performance toolkit particularly useful for hydrological modeling, terrain analysis, and raster processing. Installing WhiteboxTools is a two-step process: downloading the executables and then installing the QGIS plugin.
-
-#### Step 1: Download WhiteboxTools Executables
-
-1. **Download** the appropriate version for your operating system from: [whiteboxgeo.com/download-redirect/](https://www.whiteboxgeo.com/download-redirect/)
-2. **Unzip** the downloaded archive to a stable location on your hard drive:
-   - **macOS**: Consider `/Users/[username]/WBT` or `~/Applications/WBT`
-   - **Windows**: Consider `C:\WBT` or `C:\Program Files\WBT`
-   - **Linux**: Consider `~/WBT` or `/opt/WBT`
-3. **Remember this location** - you'll need to point the QGIS plugin to it
-
-For a video demonstration, see: [WhiteboxTools Setup Video](https://www.youtube.com/watch?v=xJXDBsNbcTg&t=3s)
-
-#### Step 2: Install the WhiteboxTools QGIS Plugin
+#### Install the Plugin
 
 1. Return to **Plugins > Manage and Install Plugins**
-2. Search for **WhiteboxTools**
-3. Find **WhiteboxTools for QGIS** and click **Install Plugin**
-4. Close the Plugin Manager
+2. Search for **Whitebox Workflows**
+3. Find **Whitebox Workflows for QGIS** and click **Install Plugin**
 
-#### Step 3: Configure WhiteboxTools in QGIS
+   ![](images/20260528_111043_image.png)
+4. If QGIS prompts you to **Install using pip**, allow it
+5. Follow any remaining prompts until the installation finishes
+6. Close the Plugin Manager
+
+#### Verify the Installation
 
 1. Go to **Processing > Toolbox** to open the Processing Toolbox
-2. Click the **wrench icon** at the top to open Processing Settings
-3. In the left panel, expand **Providers > WhiteboxTools**
-4. **Double-click** in the box next to **WhiteboxTools executable**
-5. Click the **...** button to browse to the folder where you unzipped WhiteboxTools
+2. Look for the **Whitebox Workflows** provider
+3. Expand it to confirm the tools are available
+4. Search for and run the **Random Sample** tool using the
+5. When we use Whitebox tools later in the course, run the example tool in that lesson to confirm everything is working
 
-![](images/20260224_110439_image.png)
+#### Installing the Whitebox Workflows Python Dependency
 
-1. Navigate to the **WhiteboxTools executable** inside the WBT folder:
-
-   - **macOS/Linux**: Select the `whitebox_tools` file (no extension)
-   - **Windows**: Select `whitebox_tools.exe`
-
-     ![](images/20260224_110633_image.png)
-
-     ![](images/20260224_110722_image.png)
-2. Click **Open**, then **OK** to save the settings
-
-**Verify Installation:**
-
-1. In the Processing Toolbox, expand the **WhiteboxTools** provider
-2. You should see hundreds of tools organized by category
-3. Test the installation by running the **RandomSample** tool:
-   - Search for **RandomSample** in the Processing Toolbox
-   - For the **Input Raster File**, select `stanford_campus_irg.tif` from the test data you downloaded earlier
-   - Set **Num. Samples** to **100**
-   - For the **Output File**, click the **...** button and **browse to an actual folder** on your computer, then type a filename (e.g., `random_sample_test.shp`). **Important:** WhiteboxTools does not work well with temporary layers. You must save the output to a real file path. If you only type a filename without browsing to a folder first, QGIS will error because it needs a full path (e.g., `/Users/yourname/Documents/random_sample_test.shp`), not just a filename.
-
-     ![](images/20260401_103355_image.png)
-   - Click **Run**
-
-> Note that the output file will likely appear to be solid black. This is becasue the RandomSamples are single pixels, likely too small to be seen on your screen resolution. Also note that the values of those pixels are sequential identifiers, from `1` to `100`, with `0` the background value.
-
-1. Now use the output to create a distance map with the **EuclideanDistance** tool:
-   - Search for **EuclideanDistance** in the Processing Toolbox
-   - For the **Input Vector File**, select the `random_sample_test.shp` output you just created
-   - For the **Output File**, click the **...** button, browse to the same folder, and save as `euclidean_distance_test.tif`
-   - Click **Run**
-2. If both tools complete successfully, WhiteboxTools is properly configured. You should see a raster layer showing the distance from each pixel to the nearest random sample point.
-
-![](images/20260401_103306_image.png)
-
-**Note on WhiteboxTools Plugins:** WhiteboxTools includes additional plugin executables in the `WBT/plugins/` directory. These specialized tools extend WhiteboxTools functionality and will be used later in the course.
-
-## Troubleshooting WhiteBox Tools
-
-### macOS Security Configuration for WhiteboxTools
-
-**Important for macOS users:** WhiteboxTools executables are not registered with Apple, which triggers macOS security warnings. You'll need to explicitly allow the executable to run.
-
-If you see an error like:
-
-```
-WhiteboxTools output:
-Process "whitebox_tools" failed to start. Either "whitebox_tools" is missing, 
-or you may have insufficient permissions to run the program.
-Execution failed after 0.04 seconds
-```
-
-![](images/20260224_111154_image.png)
-
-Follow these steps:
-
-1. **Navigate to your WhiteboxTools installation folder** (e.g., `/Users/[username]/WBT`)
-2. **Right-click** (or Control-click) on the `whitebox_tools` executable
-
-   ![](images/20260224_111855_image.png)
-3. Select **Open** from the context menu
-4. A security warning will appear - **DO NOT click "Move to Trash"**
-5. **Dismiss the warning dialog**
-6. Go to **System Settings > Privacy & Security**
-7. Scroll down to the Security section
-8. Click **Open Anyway** next to the message about `whitebox_tools`
-   ![](images/20260224_111449_image.png)
-9. **Confirm** through any additional security prompts
-   ![](images/20260224_111523_image.png)
-10. The executable will launch in Terminal - you can close the Terminal window once it opens
-11. **Return to QGIS** and retest the **RandomSample** tool
-
-This process only needs to be done once. After approval, WhiteboxTools will run normally from QGIS.
-
-### Configure Processing Toolbox Display
-
-1. Go to **Processing > Toolbox**
-2. Right-click in the toolbox panel
-3. Select **Reorganize by Type** to group similar tools together
+1. If QGIS prompts you to install the Python dependency with `pip`, choose **Install using pip**
+2. If the plugin does not appear right away, restart QGIS and check the Processing Toolbox again
 
 ## Troubleshooting Common Issues
 
@@ -242,22 +149,12 @@ This process only needs to be done once. After approval, WhiteboxTools will run 
 - Try **Plugins > Manage and Install Plugins > Reinstall Plugin**
 - Clear the plugin cache and restart QGIS
 
-### WhiteboxTools Executable Not Found
+### Whitebox Workflows Not Showing Up
 
-- Verify you've downloaded and unzipped the WhiteboxTools executables
-- Double-check the path in **Processing > Options > Providers > WhiteboxTools**
-- Make sure you're pointing to the executable file, not just the folder
-- **macOS/Linux**: Ensure the executable has execute permissions (`chmod +x whitebox_tools`)
-
-### SAGA Tools Missing or Broken
-
-- SAGA is no longer bundled with QGIS — you must install it separately as a standalone application (see the SAGA NextGen Plugin section above)
-- Make sure you installed **Processing SAGA NextGen Provider**, not just the base SAGA
-- Verify the **SAGA folder** path is set correctly in **Processing > Options > Providers > SAGA** (e.g., `/Applications/SAGA.app/Contents/MacOS/`)
-- Try using tools from **SAGA Next Gen** instead of the original **SAGA** provider
-- **Conflicting installations**: If you had older versions of SAGA installed, ensure they are removed to avoid conflicts
-- **Permissions**: Rarely, you might need to adjust file permissions on the SAGA folder to allow QGIS to access it
-- Some tools may require specific data types or CRS - check tool documentation
+- Make sure you installed **Whitebox Workflows for QGIS**, not the older WhiteboxTools plugin
+- If QGIS prompted you to install the Python package, choose **Install using pip**
+- Restart QGIS and check **Processing > Toolbox** again
+- If the plugin still does not appear, reinstall it from **Plugins > Manage and Install Plugins**
 
 ### QuickMapServices Shows No Basemaps
 
@@ -271,10 +168,10 @@ To verify your installation:
 
 1. Create a new QGIS project
 2. Load the **Google Hybrid** basemap from **Web > QuickMapServices > Google > Google Hybrid**
-3. Open the **Processing Toolbox** and expand it to show **SAGA Next Gen** and **WhiteboxTools** providers and the Scripts under their sections.
+3. Open the **Processing Toolbox** and expand it to show the **Whitebox Workflows** provider and the Scripts under its section.
 4. **Create a screenshot** showing:
    - QGIS interface with the Google Hybrid basemap loaded
-   - Processing Toolbox panel visible with SAGA Next Gen and WhiteboxTools expanded
+   - Processing Toolbox panel visible with Whitebox Workflows expanded
 5. **Upload the screenshot** to Canvas
 
 ## Next Steps
@@ -282,8 +179,7 @@ To verify your installation:
 With QGIS and essential plugins installed, you're ready to:
 
 - Create your first maps with professional basemaps
-- Perform terrain analysis using WhiteboxTools
-- Apply geoprocessing algorithms from SAGA Next Gen
+- Perform terrain analysis using Whitebox Workflows
 - Begin exploring spatial data visualization and analysis
 
 These tools will form the foundation of all the desktop GIS work we'll do throughout the course.
