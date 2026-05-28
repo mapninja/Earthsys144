@@ -1108,7 +1108,7 @@
 <li>Install QGIS on macOS, Windows, or Linux</li>
 <li>Create a new user profile for course work</li>
 <li>Install and configure essential QGIS plugins</li>
-<li>Set up WhiteboxTools for advanced terrain analysis</li>
+<li>Install Whitebox Workflows for advanced terrain analysis</li>
 <li>Access <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> services through QuickMapServices</li>
 </ul>
 <h2 id="installing-qgis">Installing QGIS</h2>
@@ -1172,124 +1172,34 @@
 <li>Select <strong>Google &gt; Google Hybrid</strong> to load a <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a></li>
 </ol>
 <p><img src="images/20260224_110022_image.png" alt=""></img></p>
-<h3 id="saga-nextgen-plugin">SAGA NextGen Plugin</h3>
-<p>SAGA (System for Automated Geoscientific Analyses) provides powerful <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> tools. Modern QGIS installations do not include SAGA automatically, so SAGA must be installed as a separate program and then connected to QGIS with a Processing provider plugin.</p>
-<p>For the course setup, use the separate Week 00 guide:</p>
-<p><a href="08_installing_saga_for_qgis.html">Installing SAGA 9.2 for QGIS Processing</a></p>
-<p>That guide covers:</p>
-<ul>
-<li>downloading SAGA 9.2.0 for macOS and Windows</li>
-<li>finding the correct SAGA binary folder</li>
-<li>installing the <strong>Processing Saga NextGen Provider</strong> plugin</li>
-<li>setting <strong>Settings &gt; Options &gt; Processing &gt; Providers &gt; SAGANG &gt; SAGA folder</strong></li>
-<li>confirming that SAGA tools appear in the QGIS Processing Toolbox</li>
-</ul>
-<h3 id="whiteboxtools-plugin">WhiteboxTools Plugin</h3>
-<p>WhiteboxTools is an excellent, high-performance toolkit particularly useful for hydrological modeling, terrain analysis, and <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> processing. Installing WhiteboxTools is a two-step process: downloading the executables and then installing the QGIS plugin.</p>
-<h4 id="step-1-download-whiteboxtools-executables">Step 1: Download WhiteboxTools Executables</h4>
-<ol>
-<li><strong>Download</strong> the appropriate version for your operating system from: <a href="https://www.whiteboxgeo.com/download-redirect/" target="_blank">whiteboxgeo.com/download-redirect/</a></li>
-<li><strong>Unzip</strong> the downloaded archive to a stable location on your hard drive:<ul>
-<li><strong>macOS</strong>: Consider <code>/Users/[username]/WBT</code> or <code>~/Applications/WBT</code></li>
-<li><strong>Windows</strong>: Consider <code>C:\WBT</code> or <code>C:\Program Files\WBT</code></li>
-<li><strong>Linux</strong>: Consider <code>~/WBT</code> or <code>/opt/WBT</code></li>
-</ul>
-</li>
-<li><strong>Remember this location</strong> - you'll need to point the QGIS plugin to it</li>
-</ol>
-<p>For a video demonstration, see: <a href="https://www.youtube.com/watch?v=xJXDBsNbcTg&amp;t=3s" target="_blank">WhiteboxTools Setup Video</a></p>
-<h4 id="step-2-install-the-whiteboxtools-qgis-plugin">Step 2: Install the WhiteboxTools QGIS Plugin</h4>
+<h3 id="saga">SAGA</h3>
+<p>SAGA is used as a standalone application for this course. We will not install or connect a SAGA plugin inside QGIS in this guide, as QGIS integrations with SAGA have been discontiniued.</p>
+<p>When a later lab asks you to use SAGA, launch the SAGA application directly and follow that lab's standalone instructions.</p>
+<h3 id="whitebox-workflows-for-qgis">Whitebox Workflows for QGIS</h3>
+<p>The older WhiteboxTools QGIS plugin has been deprecated. For this course, install <strong>Whitebox Workflows for QGIS</strong> instead. This is the current QGIS plugin from Whitebox Geo, and QGIS may ask to install the Python package with <code>pip</code> during setup.</p>
+<h4 id="install-the-plugin">Install the Plugin</h4>
 <ol>
 <li>Return to <strong>Plugins &gt; Manage and Install Plugins</strong></li>
-<li>Search for <strong>WhiteboxTools</strong></li>
-<li>Find <strong>WhiteboxTools for QGIS</strong> and click <strong>Install Plugin</strong></li>
+<li>Search for <strong>Whitebox Workflows</strong></li>
+<li><p>Find <strong>Whitebox Workflows for QGIS</strong> and click <strong>Install Plugin</strong></p>
+<p><img src="images/20260528_111043_image.png" alt=""></img></p>
+</li>
+<li>If QGIS prompts you to <strong>Install using pip</strong>, allow it</li>
+<li>Follow any remaining prompts until the installation finishes</li>
 <li>Close the Plugin Manager</li>
 </ol>
-<h4 id="step-3-configure-whiteboxtools-in-qgis">Step 3: Configure WhiteboxTools in QGIS</h4>
+<h4 id="verify-the-installation">Verify the Installation</h4>
 <ol>
 <li>Go to <strong>Processing &gt; Toolbox</strong> to open the Processing Toolbox</li>
-<li>Click the <strong>wrench icon</strong> at the top to open Processing Settings</li>
-<li>In the left panel, expand <strong>Providers &gt; WhiteboxTools</strong></li>
-<li><strong>Double-click</strong> in the box next to <strong>WhiteboxTools executable</strong></li>
-<li>Click the <strong>...</strong> button to browse to the folder where you unzipped WhiteboxTools</li>
+<li>Look for the <strong>Whitebox Workflows</strong> provider</li>
+<li>Expand it to confirm the tools are available</li>
+<li>Search for and run the <strong>Random Sample</strong> tool using the</li>
+<li>When we use Whitebox tools later in the course, run the example tool in that lesson to confirm everything is working</li>
 </ol>
-<p><img src="images/20260224_110439_image.png" alt=""></img></p>
+<h4 id="installing-the-whitebox-workflows-python-dependency">Installing the Whitebox Workflows Python Dependency</h4>
 <ol>
-<li><p>Navigate to the <strong>WhiteboxTools executable</strong> inside the WBT folder:</p>
-<ul>
-<li><strong>macOS/Linux</strong>: Select the <code>whitebox_tools</code> file (no extension)</li>
-<li><p><strong>Windows</strong>: Select <code>whitebox_tools.exe</code></p>
-<p><img src="images/20260224_110633_image.png" alt=""></img></p>
-<p><img src="images/20260224_110722_image.png" alt=""></img></p>
-</li>
-</ul>
-</li>
-<li>Click <strong>Open</strong>, then <strong>OK</strong> to save the settings</li>
-</ol>
-<p><strong>Verify Installation:</strong></p>
-<ol>
-<li>In the Processing Toolbox, expand the <strong>WhiteboxTools</strong> provider</li>
-<li>You should see hundreds of tools organized by category</li>
-<li><p>Test the installation by running the <strong>RandomSample</strong> tool:</p>
-<ul>
-<li>Search for <strong>RandomSample</strong> in the Processing Toolbox</li>
-<li>For the <strong>Input <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">Raster</a> File</strong>, select <code>stanford_campus_irg.tif</code> from the test data you downloaded earlier</li>
-<li>Set <strong>Num. Samples</strong> to <strong>100</strong></li>
-<li><p>For the <strong>Output File</strong>, click the <strong>...</strong> button and <strong>browse to an actual folder</strong> on your computer, then type a filename (e.g., <code>random_sample_test.shp</code>). <strong>Important:</strong> WhiteboxTools does not work well with temporary layers. You must save the output to a real file path. If you only type a filename without browsing to a folder first, QGIS will error because it needs a full path (e.g., <code>/Users/yourname/Documents/random_sample_test.shp</code>), not just a filename.</p>
-<p><img src="images/20260401_103355_image.png" alt=""></img></p>
-</li>
-<li>Click <strong>Run</strong></li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>Note that the output file will likely appear to be solid black. This is becasue the RandomSamples are single pixels, likely too small to be seen on your screen <a href="../GLOSSARY.html#resolution" class="glossary-term" title="The level of detail in a dataset. In raster data, spatial resolution usually refers to the size of each pixel on the ground.">resolution</a>. Also note that the values of those pixels are sequential identifiers, from <code>1</code> to <code>100</code>, with <code>0</code> the background value.</p>
-</blockquote>
-<ol>
-<li>Now use the output to create a distance map with the <strong>EuclideanDistance</strong> tool:<ul>
-<li>Search for <strong>EuclideanDistance</strong> in the Processing Toolbox</li>
-<li>For the <strong>Input <a href="../GLOSSARY.html#vector" class="glossary-term" title="A spatial data model that represents geographic features as points, lines, and polygons.">Vector</a> File</strong>, select the <code>random_sample_test.shp</code> output you just created</li>
-<li>For the <strong>Output File</strong>, click the <strong>...</strong> button, browse to the same folder, and save as <code>euclidean_distance_test.tif</code></li>
-<li>Click <strong>Run</strong></li>
-</ul>
-</li>
-<li>If both tools complete successfully, WhiteboxTools is properly configured. You should see a <a href="../GLOSSARY.html#raster" class="glossary-term" title="A spatial data model made of a regular grid of cells or pixels. Raster data is commonly used for imagery, elevation, temperature, and other continuous surfaces.">raster</a> <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> showing the distance from each <a href="../GLOSSARY.html#pixel" class="glossary-term" title="The smallest cell in a raster dataset. Each pixel stores a value, such as reflectance, temperature, elevation, probability, or class.">pixel</a> to the nearest random sample point.</li>
-</ol>
-<p><img src="images/20260401_103306_image.png" alt=""></img></p>
-<p><strong>Note on WhiteboxTools Plugins:</strong> WhiteboxTools includes additional plugin executables in the <code>WBT/plugins/</code> directory. These specialized tools extend WhiteboxTools functionality and will be used later in the course.</p>
-<h2 id="troubleshooting-whitebox-tools">Troubleshooting WhiteBox Tools</h2>
-<h3 id="macos-security-configuration-for-whiteboxtools">macOS Security Configuration for WhiteboxTools</h3>
-<p><strong>Important for macOS users:</strong> WhiteboxTools executables are not registered with Apple, which triggers macOS security warnings. You'll need to explicitly allow the executable to run.</p>
-<p>If you see an error like:</p>
-<pre><code>WhiteboxTools output:
-Process "whitebox_tools" failed to start. Either "whitebox_tools" is missing, 
-or you may have insufficient permissions to run the program.
-Execution failed after 0.04 seconds
-</code></pre><p><img src="images/20260224_111154_image.png" alt=""></img></p>
-<p>Follow these steps:</p>
-<ol>
-<li><strong>Navigate to your WhiteboxTools installation folder</strong> (e.g., <code>/Users/[username]/WBT</code>)</li>
-<li><p><strong>Right-click</strong> (or Control-click) on the <code>whitebox_tools</code> executable</p>
-<p><img src="images/20260224_111855_image.png" alt=""></img></p>
-</li>
-<li>Select <strong>Open</strong> from the context menu</li>
-<li>A security warning will appear - <strong>DO NOT click "Move to Trash"</strong></li>
-<li><strong>Dismiss the warning dialog</strong></li>
-<li>Go to <strong>System Settings &gt; Privacy &amp; Security</strong></li>
-<li>Scroll down to the Security section</li>
-<li>Click <strong>Open Anyway</strong> next to the message about <code>whitebox_tools</code>
-<img src="images/20260224_111449_image.png" alt=""></img></li>
-<li><strong>Confirm</strong> through any additional security prompts
-<img src="images/20260224_111523_image.png" alt=""></img></li>
-<li>The executable will launch in Terminal - you can close the Terminal window once it opens</li>
-<li><strong>Return to QGIS</strong> and retest the <strong>RandomSample</strong> tool</li>
-</ol>
-<p>This process only needs to be done once. After approval, WhiteboxTools will run normally from QGIS.</p>
-<h3 id="configure-processing-toolbox-display">Configure Processing Toolbox Display</h3>
-<ol>
-<li>Go to <strong>Processing &gt; Toolbox</strong></li>
-<li>Right-click in the toolbox panel</li>
-<li>Select <strong>Reorganize by Type</strong> to group similar tools together</li>
+<li>If QGIS prompts you to install the Python dependency with <code>pip</code>, choose <strong>Install using pip</strong></li>
+<li>If the plugin does not appear right away, restart QGIS and check the Processing Toolbox again</li>
 </ol>
 <h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
 <h3 id="qgis-wont-launch">QGIS Won't Launch</h3>
@@ -1306,22 +1216,12 @@ Execution failed after 0.04 seconds
 <li>Try <strong>Plugins &gt; Manage and Install Plugins &gt; Reinstall Plugin</strong></li>
 <li>Clear the plugin cache and restart QGIS</li>
 </ul>
-<h3 id="whiteboxtools-executable-not-found">WhiteboxTools Executable Not Found</h3>
+<h3 id="whitebox-workflows-not-showing-up">Whitebox Workflows Not Showing Up</h3>
 <ul>
-<li>Verify you've downloaded and unzipped the WhiteboxTools executables</li>
-<li>Double-check the path in <strong>Processing &gt; Options &gt; Providers &gt; WhiteboxTools</strong></li>
-<li>Make sure you're pointing to the executable file, not just the folder</li>
-<li><strong>macOS/Linux</strong>: Ensure the executable has execute permissions (<code>chmod +x whitebox_tools</code>)</li>
-</ul>
-<h3 id="saga-tools-missing-or-broken">SAGA Tools Missing or Broken</h3>
-<ul>
-<li>SAGA is no longer bundled with QGIS — you must install it separately as a standalone application (see the SAGA NextGen Plugin section above)</li>
-<li>Make sure you installed <strong>Processing SAGA NextGen Provider</strong>, not just the base SAGA</li>
-<li>Verify the <strong>SAGA folder</strong> path is set correctly in <strong>Processing &gt; Options &gt; Providers &gt; SAGA</strong> (e.g., <code>/Applications/SAGA.app/Contents/MacOS/</code>)</li>
-<li>Try using tools from <strong>SAGA Next Gen</strong> instead of the original <strong>SAGA</strong> provider</li>
-<li><strong>Conflicting installations</strong>: If you had older versions of SAGA installed, ensure they are removed to avoid conflicts</li>
-<li><strong>Permissions</strong>: Rarely, you might need to adjust file permissions on the SAGA folder to allow QGIS to access it</li>
-<li>Some tools may require specific data types or CRS - check tool documentation</li>
+<li>Make sure you installed <strong>Whitebox Workflows for QGIS</strong>, not the older WhiteboxTools plugin</li>
+<li>If QGIS prompted you to install the Python package, choose <strong>Install using pip</strong></li>
+<li>Restart QGIS and check <strong>Processing &gt; Toolbox</strong> again</li>
+<li>If the plugin still does not appear, reinstall it from <strong>Plugins &gt; Manage and Install Plugins</strong></li>
 </ul>
 <h3 id="quickmapservices-shows-no-basemaps">QuickMapServices Shows No Basemaps</h3>
 <ul>
@@ -1334,10 +1234,10 @@ Execution failed after 0.04 seconds
 <ol>
 <li>Create a new QGIS project</li>
 <li>Load the <strong>Google Hybrid</strong> <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> from <strong>Web &gt; QuickMapServices &gt; Google &gt; Google Hybrid</strong></li>
-<li>Open the <strong>Processing Toolbox</strong> and expand it to show <strong>SAGA Next Gen</strong> and <strong>WhiteboxTools</strong> providers and the Scripts under their sections.</li>
+<li>Open the <strong>Processing Toolbox</strong> and expand it to show the <strong>Whitebox Workflows</strong> provider and the Scripts under its section.</li>
 <li><strong>Create a screenshot</strong> showing:<ul>
 <li>QGIS interface with the Google Hybrid <a href="../GLOSSARY.html#basemap" class="glossary-term" title="A background map layer used to provide context for other spatial data. Examples include satellite imagery, street maps, and light gray reference maps.">basemap</a> loaded</li>
-<li>Processing Toolbox panel visible with SAGA Next Gen and WhiteboxTools expanded</li>
+<li>Processing Toolbox panel visible with Whitebox Workflows expanded</li>
 </ul>
 </li>
 <li><strong>Upload the screenshot</strong> to Canvas</li>
@@ -1346,8 +1246,7 @@ Execution failed after 0.04 seconds
 <p>With QGIS and essential plugins installed, you're ready to:</p>
 <ul>
 <li>Create your first maps with professional basemaps</li>
-<li>Perform terrain analysis using WhiteboxTools</li>
-<li>Apply <a href="../GLOSSARY.html#geoprocessing" class="glossary-term" title="Operations that create new spatial data from existing data. Common geoprocessing tasks include buffering, clipping, overlay, dissolving, and spatial selection.">geoprocessing</a> algorithms from SAGA Next Gen</li>
+<li>Perform terrain analysis using Whitebox Workflows</li>
 <li>Begin exploring spatial data <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a> and analysis</li>
 </ul>
 <p>These tools will form the foundation of all the desktop GIS work we'll do throughout the course.</p>
@@ -1394,7 +1293,7 @@ Execution failed after 0.04 seconds
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"08 - Installing SAGA 9.2 for QGIS Processing","level":"1.3.10","depth":2,"path":"week00/08_installing_saga_for_qgis.md","ref":"week00/08_installing_saga_for_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-05-27T20:07:35.968Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-27T20:07:51.638Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"07 - Installing QGIS and Plugins","level":"1.3.9","depth":2,"next":{"title":"08 - Installing SAGA 9.2 for QGIS Processing","level":"1.3.10","depth":2,"path":"week00/08_installing_saga_for_qgis.md","ref":"week00/08_installing_saga_for_qgis.md","articles":[]},"previous":{"title":"06 - Help Fix the Labs","level":"1.3.8","depth":2,"path":"week00/06_help_fix_the_labs.md","ref":"week00/06_help_fix_the_labs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week00/07_installing_qgis_and_plugins.md","mtime":"2026-05-28T18:26:42.947Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-28T18:26:59.909Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
