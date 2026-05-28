@@ -167,31 +167,30 @@ Then check the output layer information to confirm the new pixel size:
 
 ![](images/20250427_150542_image.png)
 
-## Part 5: Merge the DEMs with Conditional Evaluation
+## Part 5: Merge the DEMs with the QGIS Raster Calculator
 
 Now combine the two rasters so the fine DEM is used where it has real data, and the resampled coarse DEM is used everywhere else.
 
-> **Mac note:** In the WhiteboxTools suite, **ConditionalEvaluation** runs as a separate executable. On macOS, the first time this specific tool runs, macOS may block it and QGIS may report an error. If that happens, open **System Settings > Privacy & Security**, as you did in the Week 00 setup, find the blocked WhiteboxTools message, click **Allow Anyway**, and then run **ConditionalEvaluation** again.
+This version stays inside QGIS and uses the Raster Calculator instead of an external processing tool. That makes it easier to repeat, easier to explain, and easier to keep the workflow fully native to QGIS.
 
-1. Search for **ConditionalEvaluation** in **WhiteboxTools**.
-2. Set:
-   - **Input raster:** `valley3nonull`
-   - **Conditional statement:** `value != 0`
-   - **Value where TRUE:** `valley3`
-   - **Value where FALSE:** `valley9_3m`
-3. Save the output as `valley_merged.tif`.
-4. Run the tool.
+1. Open **Raster > Raster Calculator**.
+2. Build the expression below:
+
+   ```text
+   if("valley3nonull@1" != 0, "valley3@1", "valley9_3m@1")
+   ```
+3. Set the output layer name to `valley_merged.tif`.
+4. Use the same extent and pixel size as the aligned rasters, so the output stays on the same 3 meter grid.
+5. Run the calculation.
+
+![](images/20260528_154315_image.png)
 
 This logic means:
 
 - if the high-resolution raster has a real elevation value, keep it
 - if it has `0` from the filled background area, use the resampled coarse DEM instead
 
-> **Concept note:** This is a simple raster map-algebra decision rule. It uses the raster cell value itself to determine which source raster contributes to the final merged DEM.
-
-Use settings like these:
-
-![](images/20250427_154549_image.png)
+> **Concept note:** This is a simple raster map-algebra decision rule. It uses the raster cell value itself to determine which source raster contributes to the final merged DEM
 
 ## Part 6: Create and Inspect a Hillshade of the Merged DEM
 
