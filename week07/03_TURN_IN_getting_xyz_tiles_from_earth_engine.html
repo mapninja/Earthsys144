@@ -284,6 +284,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.13" data-path="../week00/11_installing_whitebox_tools.html">
+            
+                <a href="../week00/11_installing_whitebox_tools.html">
+            
+                    
+                    11 - Installing Whitebox Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1141,7 +1154,7 @@
 <p>Earth Engine scripts often use <code>Map.addLayer()</code> to show a <a href="../GLOSSARY.html#layer" class="glossary-term" title="A set of spatial data displayed in a map. A layer may be vector, raster, tabular, or a web service.">layer</a> in the Code Editor. That is useful for viewing the map inside Earth Engine.</p>
 <p>For QGIS, we need one extra step: we ask Earth Engine for the map tile information behind a <a href="../GLOSSARY.html#visualization" class="glossary-term" title="The way data is displayed so it can be interpreted visually. In GIS and remote sensing, visualization includes map design, color ramps, band combinations, and symbol choices.">visualization</a>. The method that does this is:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> mapId = image.<span class="hljs-title function_">getMapId</span>(visualizationParameters);
-<span class="hljs-title function_">print</span>(mapId.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
+<span class="hljs-title function_">print</span>(mapId.<span class="hljs-property">url_format</span>);
 </code></pre>
 <p>The printed tile URL template is the <a href="../GLOSSARY.html#xyz-tile" class="glossary-term" title="A small map image requested through a URL pattern that uses {z}, {x}, and {y} placeholders for zoom level, tile column, and tile row. XYZ tiles let web maps and GIS software load only the pieces of a map needed for the current view.">XYZ tile</a> URL. It contains the <code>{z}</code>, <code>{x}</code>, and <code>{y}</code> placeholders that QGIS needs.</p>
 <blockquote>
@@ -1335,17 +1348,17 @@ the appearance of terrain.
 <span class="hljs-comment">// image and visualization style. The returned object includes a tile URL</span>
 <span class="hljs-comment">// template that QGIS can use for XYZ tiles.</span>
 <span class="hljs-keyword">var</span> tanakaHillshadeMap = tanakaHillshade.<span class="hljs-title function_">getMapId</span>(hillVis);
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Hillshade XYZ tile URL for QGIS:'</span>, tanakaHillshadeMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Hillshade XYZ tile URL for QGIS:'</span>, tanakaHillshadeMap.<span class="hljs-property">url_format</span>);
 
 <span class="hljs-comment">// This version prints the full map information object.</span>
-<span class="hljs-comment">// It includes the tile fetcher and other details, which can be useful for debugging.</span>
+<span class="hljs-comment">// It includes the tile URL and other details, which can be useful for debugging.</span>
 <span class="hljs-keyword">var</span> tanakaElevationMap = tanakaElevation.<span class="hljs-title function_">getMapId</span>(elevVis);
 <span class="hljs-title function_">print</span>(<span class="hljs-string">'Tanaka Elevation full map information:'</span>, tanakaElevationMap);
 
 <span class="hljs-comment">// This prints a tile URL for the slope visualization.</span>
 <span class="hljs-comment">// Use this if you prefer to view slope in QGIS instead of hillshade.</span>
 <span class="hljs-keyword">var</span> slopeMap = slope.<span class="hljs-title function_">getMapId</span>(slopeVis);
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'Slope XYZ tile URL for QGIS:'</span>, slopeMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'Slope XYZ tile URL for QGIS:'</span>, slopeMap.<span class="hljs-property">url_format</span>);
 </code></pre>
 <h2 id="part-4-adapt-the-pattern-to-your-chosen-dataset">Part 4: Adapt the Pattern to Your Chosen Dataset</h2>
 <p>Now return to the dataset you have chosen from the Data Catalog. Here, we'll use the NOAA CFSv2 Harmonized 6-Hour Forecast page in the Earth Engine Data Catalog as an example:</p>
@@ -1376,7 +1389,7 @@ the appearance of terrain.
 <li><p>Add a <code>getMapId()</code> block after the <code>Map.addLayer()</code> line.</p>
 <p>Replace <code>temperatureAboveGround</code> and <code>visParams</code> with the names used in your script:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> temperatureMap = temperatureAboveGround.<span class="hljs-title function_">getMapId</span>(visParams);
-<span class="hljs-title function_">print</span>(<span class="hljs-string">'XYZ tile URL for QGIS:'</span>, temperatureMap.<span class="hljs-property">tile_fetcher</span>.<span class="hljs-property">url_format</span>);
+<span class="hljs-title function_">print</span>(<span class="hljs-string">'XYZ tile URL for QGIS:'</span>, temperatureMap.<span class="hljs-property">url_format</span>);
 </code></pre>
 </li>
 <li>Run the script.</li>
@@ -1500,7 +1513,7 @@ the appearance of terrain.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"next":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","ref":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","articles":[]},"previous":{"title":"02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP","level":"1.10.3","depth":2,"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","ref":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","mtime":"2026-05-28T22:48:26.192Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-05-28T22:48:39.534Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"03 - TURN IN - Getting XYZ Tiles from Google Earth Engine","level":"1.10.4","depth":2,"next":{"title":"04 - TURN IN BONUS LAB - Tree Labeling in QGIS","level":"1.10.5","depth":2,"path":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","ref":"week07/04_TURN_IN_BONUS_LAB_tree_labeling_in_qgis.md","articles":[]},"previous":{"title":"02 - TURN IN - Creating & Hosting a Web Map with MapLibre and Google Sheets JSONP","level":"1.10.3","depth":2,"path":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","ref":"week07/02_TURN_IN_creating_and_hosting_a_webmap_using_maplibre_jsonp_and_github_pages.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"week07/03_TURN_IN_getting_xyz_tiles_from_earth_engine.md","mtime":"2026-06-01T16:56:01.830Z","type":"markdown"},"gitbook":{"version":"6.2.1","time":"2026-06-01T16:56:15.560Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
