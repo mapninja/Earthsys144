@@ -15,6 +15,7 @@
   * [08 - Installing SAGA 9.2 for QGIS Processing](week00/08_installing_saga_for_qgis.md)
   * [09 - TURN IN - Introduction to QGIS: Being John Snow](week00/09_TURN_IN_introduction_to_qgis.md)
   * [10 - TURN IN - Logging in to Google Earth Engine](week00/10_TURN_IN_logging_in_to_google_earth_engine.md)
+  * [11 - Installing Whitebox Tools](week00/11_installing_whitebox_tools.md)
 
 * [Week 01 - Lining it Up & Cartographic Presentation](week01/README.md)
   * [01 - TURN IN - Create an Area of Interest with GeoJSON.io](week01/01_TURN_IN_create_an_aoi_with_geojson_io.md)

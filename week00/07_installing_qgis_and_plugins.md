@@ -23,7 +23,7 @@ By the end of this lab, you will be able to:
 - Install QGIS on macOS, Windows, or Linux
 - Create a new user profile for course work
 - Install and configure essential QGIS plugins
-- Install Whitebox Workflows for advanced terrain analysis
+- Install Whitebox Tools for advanced terrain analysis
 - Access basemap services through QuickMapServices
 
 ## Installing QGIS
@@ -105,33 +105,17 @@ SAGA is used as a standalone application for this course. We will not install or
 
 When a later lab asks you to use SAGA, launch the SAGA application directly and follow that lab's standalone instructions.
 
-### Whitebox Workflows for QGIS
+### Whitebox Tools
 
-The older WhiteboxTools QGIS plugin has been deprecated. For this course, install **Whitebox Workflows for QGIS** instead. This is the current QGIS plugin from Whitebox Geo, and QGIS may ask to install the Python package with `pip` during setup.
+For this course, use the standalone Whitebox Tools setup described in [Installing Whitebox Tools](11_installing_whitebox_tools.md).
 
-#### Install the Plugin
+That guide shows you how to:
 
-1. Return to **Plugins > Manage and Install Plugins**
-2. Search for **Whitebox Workflows**
-3. Find **Whitebox Workflows for QGIS** and click **Install Plugin**
-
-   ![](images/20260528_111043_image.png)
-4. If QGIS prompts you to **Install using pip**, allow it
-5. Follow any remaining prompts until the installation finishes
-6. Close the Plugin Manager
-
-#### Verify the Installation
-
-1. Go to **Processing > Toolbox** to open the Processing Toolbox
-2. Look for the **Whitebox Workflows** provider
-3. Expand it to confirm the tools are available
-4. Search for and run the **Random Sample** tool using the
-5. When we use Whitebox tools later in the course, run the example tool in that lesson to confirm everything is working
-
-#### Installing the Whitebox Workflows Python Dependency
-
-1. If QGIS prompts you to install the Python dependency with `pip`, choose **Install using pip**
-2. If the plugin does not appear right away, restart QGIS and check the Processing Toolbox again
+1. choose the correct Mac or Windows binary
+2. check your Mac chip type with **About This Mac**
+3. install the **WhiteboxTools for QGIS** plugin
+4. point QGIS at the `whitebox_tools` executable
+5. verify that the toolset is ready for later raster labs
 
 ## Troubleshooting Common Issues
 
@@ -149,12 +133,12 @@ The older WhiteboxTools QGIS plugin has been deprecated. For this course, instal
 - Try **Plugins > Manage and Install Plugins > Reinstall Plugin**
 - Clear the plugin cache and restart QGIS
 
-### Whitebox Workflows Not Showing Up
+### Whitebox Tools Not Showing Up
 
-- Make sure you installed **Whitebox Workflows for QGIS**, not the older WhiteboxTools plugin
-- If QGIS prompted you to install the Python package, choose **Install using pip**
+- Make sure you followed [Installing Whitebox Tools](11_installing_whitebox_tools.md) and pointed QGIS at the correct executable
+- If you chose the wrong Mac binary, download the one that matches your chip type
 - Restart QGIS and check **Processing > Toolbox** again
-- If the plugin still does not appear, reinstall it from **Plugins > Manage and Install Plugins**
+- If the plugin still does not appear, reinstall **WhiteboxTools for QGIS** from **Plugins > Manage and Install Plugins**
 
 ### QuickMapServices Shows No Basemaps
 
@@ -168,10 +152,10 @@ To verify your installation:
 
 1. Create a new QGIS project
 2. Load the **Google Hybrid** basemap from **Web > QuickMapServices > Google > Google Hybrid**
-3. Open the **Processing Toolbox** and expand it to show the **Whitebox Workflows** provider and the Scripts under its section.
+3. Open the **Processing Toolbox** and expand it to show the **WhiteboxTools** provider.
 4. **Create a screenshot** showing:
    - QGIS interface with the Google Hybrid basemap loaded
-   - Processing Toolbox panel visible with Whitebox Workflows expanded
+   - Processing Toolbox panel visible with WhiteboxTools expanded
 5. **Upload the screenshot** to Canvas
 
 ## Next Steps
@@ -179,7 +163,7 @@ To verify your installation:
 With QGIS and essential plugins installed, you're ready to:
 
 - Create your first maps with professional basemaps
-- Perform terrain analysis using Whitebox Workflows
+- Perform terrain analysis using Whitebox Tools
 - Begin exploring spatial data visualization and analysis
 
 These tools will form the foundation of all the desktop GIS work we'll do throughout the course.

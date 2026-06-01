@@ -38,7 +38,7 @@ By the end of this exercise, you should be able to explain:
 You will need:
 
 - [TerrainLabData01.zip](../data/TerrainLabData01.zip)
-- WhiteboxTools installed in QGIS
+- WhiteboxTools installed in QGIS. If needed, see [Installing Whitebox Tools](../week00/11_installing_whitebox_tools.md).
 
 ### Install WhiteboxTools if needed
 

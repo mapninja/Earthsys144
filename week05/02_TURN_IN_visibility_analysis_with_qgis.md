@@ -33,7 +33,7 @@ By the end of this exercise, you should be able to explain:
 You will need:
 
 - [Visibility_Analysis.zip](../data/Visibility_Analysis.zip), which includes the updated viewing-station shapefile
-- WhiteboxTools installed in QGIS
+- WhiteboxTools installed in QGIS. If needed, see [Installing Whitebox Tools](../week00/11_installing_whitebox_tools.md).
 
 ### Download and unpack the data
 

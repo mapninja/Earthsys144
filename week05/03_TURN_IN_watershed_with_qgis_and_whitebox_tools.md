@@ -34,7 +34,7 @@ By the end of this exercise, you should be able to explain:
 You will need:
 
 - [WatershedDelineation.zip](../data/WatershedDelineation.zip)
-- WhiteboxTools installed in QGIS. If you have not installed or configured it yet, use the Week 00 guidance for [installing QGIS and WhiteboxTools](../week00/07_installing_qgis_and_plugins.md#whiteboxtools-plugin).
+- WhiteboxTools installed in QGIS. If you have not installed or configured it yet, use the Week 00 guidance for [installing Whitebox Tools](../week00/11_installing_whitebox_tools.md).
 
 ### Download and unpack the data
 

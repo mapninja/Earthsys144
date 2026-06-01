@@ -61,7 +61,7 @@ For QGIS, we need one extra step: we ask Earth Engine for the map tile informati
 
 ```javascript
 var mapId = image.getMapId(visualizationParameters);
-print(mapId.tile_fetcher.url_format);
+print(mapId.url_format);
 ```
 
 The printed tile URL template is the XYZ tile URL. It contains the `{z}`, `{x}`, and `{y}` placeholders that QGIS needs.
@@ -261,17 +261,17 @@ Map.addLayer(contourlines, contourVis, 'Contour Lines', false, 1);
 // image and visualization style. The returned object includes a tile URL
 // template that QGIS can use for XYZ tiles.
 var tanakaHillshadeMap = tanakaHillshade.getMapId(hillVis);
-print('Tanaka Hillshade XYZ tile URL for QGIS:', tanakaHillshadeMap.tile_fetcher.url_format);
+print('Tanaka Hillshade XYZ tile URL for QGIS:', tanakaHillshadeMap.url_format);
 
 // This version prints the full map information object.
-// It includes the tile fetcher and other details, which can be useful for debugging.
+// It includes the tile URL and other details, which can be useful for debugging.
 var tanakaElevationMap = tanakaElevation.getMapId(elevVis);
 print('Tanaka Elevation full map information:', tanakaElevationMap);
 
 // This prints a tile URL for the slope visualization.
 // Use this if you prefer to view slope in QGIS instead of hillshade.
 var slopeMap = slope.getMapId(slopeVis);
-print('Slope XYZ tile URL for QGIS:', slopeMap.tile_fetcher.url_format);
+print('Slope XYZ tile URL for QGIS:', slopeMap.url_format);
 ```
 
 ## Part 4: Adapt the Pattern to Your Chosen Dataset
@@ -314,7 +314,7 @@ To add the `getMapId()` function to your chosen script, use the following steps:
 
    ```javascript
    var temperatureMap = temperatureAboveGround.getMapId(visParams);
-   print('XYZ tile URL for QGIS:', temperatureMap.tile_fetcher.url_format);
+   print('XYZ tile URL for QGIS:', temperatureMap.url_format);
    ```
 6. Run the script.
 7. In the **Console**, find the printed URL.

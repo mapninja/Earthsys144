@@ -50,6 +50,7 @@ This week covers the essential technical skills and setup procedures that will e
 - [08 - Installing SAGA 9.2 for QGIS Processing](08_installing_saga_for_qgis.md)
 - [09 - TURN IN - Introduction to QGIS: Being John Snow](09_TURN_IN_introduction_to_qgis.md)
 - [10 - TURN IN - Logging in to Google Earth Engine](10_TURN_IN_logging_in_to_google_earth_engine.md)
+- [11 - Installing Whitebox Tools](11_installing_whitebox_tools.md)
 
 ## Grading Note
 
