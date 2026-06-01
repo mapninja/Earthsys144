@@ -252,6 +252,7 @@ Now that each overlap polygon has an estimated population, summarize those weigh
 2. Use the union layer as the input table.
 3. Use `WT_POP` as the field to calculate statistics on.
 4. Use `HAZ_CLASS` and `HAZ_CODE` as the category fields.
+5. Save the file to a `Comma Separated Values file (CSV)`
 
 ![](images/20260424_145624_image.png)
 
